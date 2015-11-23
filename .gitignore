@@ -1,0 +1,6 @@
+*.xcworkspace
+/Pods
+Podfile.lock
+.DS_Store
+/img/*
+/vexflow-master/*
