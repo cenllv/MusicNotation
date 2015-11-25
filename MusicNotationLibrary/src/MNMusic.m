@@ -37,7 +37,7 @@
 
 @implementation RootAccidentalTypeStruct
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     //    self = [super init];
@@ -883,7 +883,7 @@ function(note1, note2, direction) {
  *  @param keySignature <#keySignature description#>
  *  @return <#return value description#>
  */
-+ (NSMutableDictionary*)createScaleMap:(NSString*)keySignature;
++ (NSMutableDictionary*)createScaleMap:(NSString*)keySignature
 {
     /*
 createScaleMap: function(keySignature) {

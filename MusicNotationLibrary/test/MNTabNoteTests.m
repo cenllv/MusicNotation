@@ -69,7 +69,7 @@
     w = w != 0 ? w : 350;
     h = h != 0 ? h : 150;
 
-    [MNFont setFont:@" 10pt Arial"];
+    // [MNFont setFont:@" 10pt Arial"];
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
     return [MNViewStaffStruct contextWithStaff:staff andView:nil];
@@ -159,7 +159,7 @@
     return note;
 }
 
-- (MNTestTuple*)draw:(MNTestCollectionItemView*)parent;
+- (MNTestTuple*)draw:(MNTestCollectionItemView*)parent
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
 
@@ -219,7 +219,7 @@
     return ret;
 }
 
-- (MNTestTuple*)drawStemsUp:(MNTestCollectionItemView*)parent;
+- (MNTestTuple*)drawStemsUp:(MNTestCollectionItemView*)parent
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
 
@@ -263,7 +263,7 @@
     return ret;
 }
 
-- (MNTestTuple*)drawStemsDown:(MNTestCollectionItemView*)parent;
+- (MNTestTuple*)drawStemsDown:(MNTestCollectionItemView*)parent
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
 
@@ -327,7 +327,7 @@
     return ret;
 }
 
-- (MNTestTuple*)drawStemsUpThrough:(MNTestCollectionItemView*)parent;
+- (MNTestTuple*)drawStemsUpThrough:(MNTestCollectionItemView*)parent
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
 
@@ -392,7 +392,7 @@
     return ret;
 }
 
-- (MNTestTuple*)drawStemsDownThrough:(MNTestCollectionItemView*)parent;
+- (MNTestTuple*)drawStemsDownThrough:(MNTestCollectionItemView*)parent
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
 
@@ -467,7 +467,7 @@
     return ret;
 }
 
-- (MNTestTuple*)drawStemsDotted:(MNTestCollectionItemView*)parent;
+- (MNTestTuple*)drawStemsDotted:(MNTestCollectionItemView*)parent
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
 

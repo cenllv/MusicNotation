@@ -44,7 +44,7 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
 
 #pragma mark - Initialization
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -167,7 +167,7 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
     return self.floatValue != 0;
 }
 
-- (NSNumber*)numberValue;
+- (NSNumber*)numberValue
 {
     return [NSNumber numberWithFloat:self.floatValue];
 }
@@ -492,7 +492,7 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
     return [self floatValue] == other;
 }
 
-+ (BOOL)equalsRational:(MNRational*)rat1 and:(MNRational*)rat2;
++ (BOOL)equalsRational:(MNRational*)rat1 and:(MNRational*)rat2
 {
     //    [param1 simplify];
     //    [param2 simplify];
@@ -589,7 +589,7 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
     return self;
 }
 
-+ (MNRational*)parse:(NSString*)numString;
++ (MNRational*)parse:(NSString*)numString
 {
     MNRational* ret;
     @try

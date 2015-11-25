@@ -29,7 +29,7 @@
 
 @implementation NSObject (MNAdditions)
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [self init];
     if(self)
@@ -45,7 +45,7 @@
     return self;
 }
 
-- (void)setValuesForKeyPathsWithDictionary:(NSDictionary*)keyedValues;
+- (void)setValuesForKeyPathsWithDictionary:(NSDictionary*)keyedValues
 {
     for(NSString* key_keyPath in keyedValues.allKeys)
     {
@@ -54,7 +54,7 @@
     }
 }
 
-- (NSDictionary*)dictionaryWithValuesForKeyPaths:(NSArray*)keyPaths;
+- (NSDictionary*)dictionaryWithValuesForKeyPaths:(NSArray*)keyPaths
 {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
     for(NSString* keyPath in keyPaths)

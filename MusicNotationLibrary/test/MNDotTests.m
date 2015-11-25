@@ -57,7 +57,7 @@
     w = w != 0 ? w : 350;
     h = h != 0 ? h : 150;
 
-    [MNFont setFont:@" 10pt Arial"];
+    // [MNFont setFont:@" 10pt Arial"];
 
     //    TestCollectionItemView* test =
     //        self.currentCell;   //  MNTestView* test =  [MNTestView createCanvasTest:CGSizeMake(w, h)
@@ -86,7 +86,7 @@
  */
 // TODO: test the following text writing
 //    [[[MNFont setFont:@"10 pt Arial"] setStrokeStyle:@"#579"] setFillStyle:@"#345"];
-//     [MNText drawSimpleText:ctx
+//     [MNText drawText:ctx
 //                   atPoint:MNPointMake(note.absoluteX - 25, 200 / 1.5)
 //                  withText:[NSString stringWithFormat:@"w: %f", note.width]];
 
@@ -244,7 +244,7 @@
                                                   }];
 
     [description drawAtPoint:CGPointMake(note2.absoluteX + 15, 20 / 1.5)];
-    //     [MNText drawSimpleText:ctx
+    //     [MNText drawText:ctx
     //                   atPoint:MNPointMake(note2.absoluteX + 15, 20 / 1.5)
     //                  withText:[NSString stringWithFormat:@"w: %f", note2.width]];
 
@@ -256,7 +256,7 @@
                                                   }];
 
     [description drawAtPoint:CGPointMake(note1.absoluteX + 15, 220 / 1.5)];
-    //     [MNText drawSimpleText:ctx
+    //     [MNText drawText:ctx
     //                   atPoint:MNPointMake(note1.absoluteX + 15, 220 / 1.5)
     //                  withText:[NSString stringWithFormat:@"w: %f", note1.width]];
     CGContextSaveGState(ctx);

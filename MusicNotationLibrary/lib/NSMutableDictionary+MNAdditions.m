@@ -59,7 +59,7 @@
     return [[self class] dictionaryByMerging:self with:dict];
 }
 
-+ (NSDictionary*)merge:(NSDictionary*)destination with:(NSDictionary*)source;
++ (NSDictionary*)merge:(NSDictionary*)destination with:(NSDictionary*)source
 {
     destination = [[self class] dictionaryByMerging:destination with:source];
     return destination;

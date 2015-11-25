@@ -39,7 +39,7 @@
 
 @synthesize x = _x;
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -68,7 +68,7 @@
     self.fontItalic = YES;
 }
 
-- (instancetype)initWithType:(MNRepetitionType)type x:(float)x y_shift:(float)y_shift;
+- (instancetype)initWithType:(MNRepetitionType)type x:(float)x y_shift:(float)y_shift
 {
     self = [self initWithDictionary:@{}];
     if(self)
@@ -81,7 +81,7 @@
     return self;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -142,13 +142,13 @@
     }
 }
 
-- (void)drawCodaFixed:(CGContextRef)ctx staff:(MNStaff*)staff x:(float)x;
+- (void)drawCodaFixed:(CGContextRef)ctx staff:(MNStaff*)staff x:(float)x
 {
     float y = [staff getYForTopTextWithLine:staff.options.numLines] + self.yShift;
     [MNGlyph renderGlyph:ctx atX:x atY:y withScale:1 forGlyphCode:@"v4d"];
 }
 
-- (void)drawSignoFixed:(CGContextRef)ctx staff:(MNStaff*)staff x:(float)x;
+- (void)drawSignoFixed:(CGContextRef)ctx staff:(MNStaff*)staff x:(float)x
 {
     float y = [staff getYForTopTextWithLine:staff.options.numLines] + self.yShift;
     [MNGlyph renderGlyph:ctx atX:x atY:y withScale:1 forGlyphCode:@"v8c"];
@@ -158,7 +158,7 @@
                  staff:(MNStaff*)staff
                      x:(float)x
               withText:(NSString*)text
-                isCoda:(BOOL)drawCoda;
+                isCoda:(BOOL)drawCoda
 {
     //    CTTextAlignment justification = kCTTextAlignmentLeft;
     NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];

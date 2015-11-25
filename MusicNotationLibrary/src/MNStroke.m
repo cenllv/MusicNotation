@@ -39,7 +39,7 @@
 
 @implementation MNStroke
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -65,7 +65,7 @@
     return ret;
 }
 
-- (void)setupStrokesithDictionary:(NSDictionary*)optionsDict;
+- (void)setupStrokesithDictionary:(NSDictionary*)optionsDict
 {
     /*
      // ## Prototype Methods
@@ -131,7 +131,7 @@
     return @"strokes";
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"note_end" : @"noteEnd"}];
@@ -145,7 +145,7 @@
  *  @param context   <#context description#>
  *  @return <#return value description#>
  */
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context;
++ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
     NSMutableArray* strokes = modifiers;
 
@@ -203,13 +203,13 @@ getPosition: function() { return self.position; },
 addEndNote: function(note) { self.note_end = note; return this; },
  */
 
-- (id)addEndNote:(MNNote*)note;
+- (id)addEndNote:(MNNote*)note
 {
     self.noteEnd = note;
     return self;
 }
 
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
 

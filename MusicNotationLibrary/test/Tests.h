@@ -41,6 +41,7 @@
 #import "MNClefTests.h"
 #import "MNCurveTests.h"
 #import "MNDotTests.h"
+#import "MNFontTests.h"
 #import "MNFormatterTests.h"
 #import "MNGraceNoteTests.h"
 #import "MNKeyClefTests.h"

@@ -65,7 +65,7 @@ static const char* getPropertyType(objc_property_t property)
     return "";
 }
 
-+ (NSDictionary*)classPropsDictForClass:(Class)klass;
++ (NSDictionary*)classPropsDictForClass:(Class)klass
 {
     if(klass == NULL)
     {
@@ -94,14 +94,14 @@ static const char* getPropertyType(objc_property_t property)
     return [NSDictionary dictionaryWithDictionary:results];
 }
 
-+ (NSSet*)classPropNamesSetForClass:(Class)klass;
++ (NSSet*)classPropNamesSetForClass:(Class)klass
 {
     NSDictionary* dict = [MNPropertyUtil classPropsDictForClass:klass];
     NSArray* keys = dict.allKeys;
     return [NSSet setWithArray:keys];
 }
 
-+ (BOOL)allDictKeys:(NSDictionary*)dict haveClassProperties:(Class)klass;
++ (BOOL)allDictKeys:(NSDictionary*)dict haveClassProperties:(Class)klass
 {
     NSSet* setPropNames = [MNPropertyUtil classPropNamesSetForClass:klass];
     NSSet* setDictKeys = [NSSet setWithArray:[dict allKeys]];

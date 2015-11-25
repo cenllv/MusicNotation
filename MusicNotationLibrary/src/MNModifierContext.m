@@ -56,7 +56,7 @@
 #import "OCTotallyLazy.h"
 
 @implementation MNModifierState
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -94,7 +94,7 @@
 @implementation MNModifierContext
 
 #pragma mark - Initialization
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -113,7 +113,7 @@
     return self;
 }
 
-+ (MNModifierContext*)modifierContext;
++ (MNModifierContext*)modifierContext
 {
     return [[MNModifierContext alloc] init];
 }
@@ -131,7 +131,7 @@
     _state.text_line = 0;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -211,12 +211,12 @@
     return _modifiersDict;
 }
 
-- (float)getExtraLeftPx;
+- (float)getExtraLeftPx
 {
     return self.state.left_shift;
 }
 
-- (float)getExtraRightPx;
+- (float)getExtraRightPx
 {
     return self.state.right_shift;
 }
@@ -261,7 +261,7 @@
 }
 
 #pragma mark - Methods
-- (void)addModifier:(MNModifier*)modifier;
+- (void)addModifier:(MNModifier*)modifier
 {
     /*
     addModifier: function(modifier) {
@@ -284,7 +284,7 @@
     _preFormatted = NO;
 }
 
-- (NSMutableArray*)getModifiersForType:(NSString*)modifierType;
+- (NSMutableArray*)getModifiersForType:(NSString*)modifierType
 {
     // getModifiers: function(type) { return self.modifiers[type]; },
     return [self.modifiersDict objectForKey:modifierType];

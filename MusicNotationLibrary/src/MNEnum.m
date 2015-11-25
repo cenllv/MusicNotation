@@ -32,7 +32,7 @@
 
 // prevent subclassing
 // http://stackoverflow.com/a/19194900/629014
-+ (id)allocWithZone:(struct _NSZone*)zone;
++ (id)allocWithZone:(struct _NSZone*)zone
 {
     if(self != [MNEnum class])
     {
@@ -43,7 +43,7 @@
     return [super allocWithZone:zone];
 }
 
-- (instancetype)init;
+- (instancetype)init
 {
     self = [super init];
     if(self)
@@ -54,7 +54,7 @@
     return self;
 }
 
-+ (NSString*)nameForPosition:(MNPositionType)type;
++ (NSString*)nameForPosition:(MNPositionType)type
 {
     switch(type)
     {
@@ -77,7 +77,7 @@
     return nil;
 }
 
-+ (NSString*)nameForDirection:(MNShiftDirectionType)type;
++ (NSString*)nameForDirection:(MNShiftDirectionType)type
 {
     switch(type)
     {
@@ -100,7 +100,7 @@
     return nil;
 }
 
-+ (NSString*)nameForNoteType:(MNNoteNHMRSType)type;
++ (NSString*)nameForNoteType:(MNNoteNHMRSType)type
 {
     switch(type)
     {
@@ -133,7 +133,7 @@
 }
 
 static NSDictionary* _typeNoteNHMRSTypeForString;
-+ (MNNoteNHMRSType)typeNoteNHMRSTypeForString:(NSString*)string;
++ (MNNoteNHMRSType)typeNoteNHMRSTypeForString:(NSString*)string
 {
     if(!_typeNoteNHMRSTypeForString)
     {
@@ -150,7 +150,7 @@ static NSDictionary* _typeNoteNHMRSTypeForString;
     return [_typeNoteNHMRSTypeForString[string] unsignedIntegerValue];
 }
 
-+ (NSString*)nameForBarNoteType:(MNBarNoteType)type;
++ (NSString*)nameForBarNoteType:(MNBarNoteType)type
 {
     switch(type)
     {
@@ -182,7 +182,7 @@ static NSDictionary* _typeNoteNHMRSTypeForString;
     return nil;
 }
 
-+ (NSString*)nameForBarLineType:(MNBarLineType)type;
++ (NSString*)nameForBarLineType:(MNBarLineType)type
 {
     switch(type)
     {
@@ -215,7 +215,7 @@ static NSDictionary* _typeNoteNHMRSTypeForString;
     return nil;
 }
 
-+ (NSString*)nameForClefType:(MNClefType)type;
++ (NSString*)nameForClefType:(MNClefType)type
 {
     switch(type)
     {
@@ -263,7 +263,7 @@ static NSDictionary* _typeNoteNHMRSTypeForString;
 }
 
 static NSDictionary* _typeClefTypeForString;
-+ (MNClefType)typeClefTypeForString:(NSString*)string;
++ (MNClefType)typeClefTypeForString:(NSString*)string
 {
     if(!_typeClefTypeForString)
     {
@@ -285,7 +285,7 @@ static NSDictionary* _typeClefTypeForString;
     return [_typeClefTypeForString[string] unsignedIntegerValue];
 }
 
-+ (NSString*)nameForStemDirectionType:(MNStemDirectionType)type;
++ (NSString*)nameForStemDirectionType:(MNStemDirectionType)type
 {
     switch(type)
     {
@@ -305,7 +305,7 @@ static NSDictionary* _typeClefTypeForString;
     return nil;
 }
 
-+ (NSString*)nameForLogLevelType:(MNLogLevelType)type;
++ (NSString*)nameForLogLevelType:(MNLogLevelType)type
 {
     switch(type)
     {
@@ -331,7 +331,7 @@ static NSDictionary* _typeClefTypeForString;
     return nil;
 }
 
-+ (NSString*)nameForModeType:(MNModeType)type;
++ (NSString*)nameForModeType:(MNModeType)type
 {
     switch(type)
     {
@@ -351,7 +351,7 @@ static NSDictionary* _typeClefTypeForString;
     return nil;
 }
 
-+ (NSString*)nameForTimeType:(MNTimeType)type;
++ (NSString*)nameForTimeType:(MNTimeType)type
 {
     switch(type)
     {
@@ -419,7 +419,7 @@ static NSDictionary* _typeClefTypeForString;
     return nil;
 }
 
-+ (NSString*)simplNameForTimeType:(MNTimeType)type;
++ (NSString*)simplNameForTimeType:(MNTimeType)type
 {
     NSString* ret;
     switch(type)
@@ -493,7 +493,7 @@ static NSDictionary* _typeClefTypeForString;
 }
 
 static NSDictionary* _typeTimeType;
-+ (MNTimeType)typeTimeTypeForString:(NSString*)string;
++ (MNTimeType)typeTimeTypeForString:(NSString*)string
 {
     if(!_typeTimeType)
     {
@@ -522,7 +522,7 @@ static NSDictionary* _typeTimeType;
     return [_typeTimeType[string] unsignedIntegerValue];
 }
 
-+ (NSString*)nameForStrokeDirectionType:(MNStrokeDirectionType)type;
++ (NSString*)nameForStrokeDirectionType:(MNStrokeDirectionType)type
 {
     switch(type)
     {
@@ -539,7 +539,7 @@ static NSDictionary* _typeTimeType;
     return nil;
 }
 
-+ (NSString*)nameForStrokeType:(MNStrokeType)type;
++ (NSString*)nameForStrokeType:(MNStrokeType)type
 {
     switch(type)
     {
@@ -569,7 +569,7 @@ static NSDictionary* _typeTimeType;
 }
 
 static NSDictionary* _typeStrokeType;
-+ (MNStrokeType)typeStrokeTypeForString:(NSString*)string;
++ (MNStrokeType)typeStrokeTypeForString:(NSString*)string
 {
     if(!_typeStrokeType)
     {
@@ -585,7 +585,7 @@ static NSDictionary* _typeStrokeType;
     return [_typeStrokeType[string] unsignedIntegerValue];
 }
 
-+ (NSString*)nameForNoteDurationType:(MNNoteDurationType)type;
++ (NSString*)nameForNoteDurationType:(MNNoteDurationType)type
 {
     switch(type)
     {
@@ -630,7 +630,7 @@ static NSDictionary* _typeStrokeType;
 }
 
 static NSDictionary* _typeNoteDurationTypeForString;
-+ (MNNoteDurationType)typeNoteDurationTypeForString:(NSString*)string;
++ (MNNoteDurationType)typeNoteDurationTypeForString:(NSString*)string
 {
     if(!_typeNoteDurationTypeForString)
     {
@@ -660,7 +660,7 @@ static NSDictionary* _typeNoteDurationTypeForString;
     return [_typeNoteDurationTypeForString[string] unsignedIntegerValue];
 }
 
-+ (NSString*)nameForTupletLocationType:(MNTupletLocationType)type;
++ (NSString*)nameForTupletLocationType:(MNTupletLocationType)type
 {
     switch(type)
     {
@@ -680,7 +680,7 @@ static NSDictionary* _typeNoteDurationTypeForString;
     return nil;
 }
 
-+ (NSString*)nameForKeySignatureNoteType:(MNKeySignatureNoteType)type;
++ (NSString*)nameForKeySignatureNoteType:(MNKeySignatureNoteType)type
 {
     switch(type)
     {
@@ -715,7 +715,7 @@ static NSDictionary* _typeNoteDurationTypeForString;
     return nil;
 }
 
-+ (NSString*)nameForSymbolCategory:(MNSymbolCategoryType)type;
++ (NSString*)nameForSymbolCategory:(MNSymbolCategoryType)type
 {
     switch(type)
     {
@@ -747,7 +747,7 @@ static NSDictionary* _typeNoteDurationTypeForString;
     return nil;
 }
 
-+ (NSString*)nameForRepetitionType:(MNRepetitionType)type;
++ (NSString*)nameForRepetitionType:(MNRepetitionType)type
 {
     switch(type)
     {
@@ -794,7 +794,7 @@ static NSDictionary* _typeNoteDurationTypeForString;
     return nil;
 }
 
-+ (NSString*)nameForVoltaType:(MNVoltaType)type;
++ (NSString*)nameForVoltaType:(MNVoltaType)type
 {
     switch(type)
     {
@@ -820,7 +820,7 @@ static NSDictionary* _typeNoteDurationTypeForString;
     return nil;
 }
 
-+ (NSString*)nameForArticulationType:(MNArticulationType)type;
++ (NSString*)nameForArticulationType:(MNArticulationType)type
 {
     switch(type)
     {
@@ -872,7 +872,7 @@ static NSDictionary* _typeNoteDurationTypeForString;
 }
 
 static NSDictionary* _typeArticulationTypeForString;
-+ (MNArticulationType)typeArticulationTypeForString:(NSString*)string;
++ (MNArticulationType)typeArticulationTypeForString:(NSString*)string
 {
     if(!_typeArticulationTypeForString)
     {
@@ -895,7 +895,7 @@ static NSDictionary* _typeArticulationTypeForString;
     return [_typeArticulationTypeForString[string] unsignedIntegerValue];
 }
 
-+ (NSString*)nameForStaffConnType:(MNStaffConnectorType)type;
++ (NSString*)nameForStaffConnType:(MNStaffConnectorType)type
 {
     switch(type)
     {
@@ -936,7 +936,7 @@ static NSDictionary* _typeArticulationTypeForString;
     return nil;
 }
 
-+ (NSString*)nameForJustiticationType:(MNJustiticationType)type;
++ (NSString*)nameForJustiticationType:(MNJustiticationType)type
 {
     switch(type)
     {
@@ -959,7 +959,7 @@ static NSDictionary* _typeArticulationTypeForString;
     return nil;
 }
 
-+ (NSString*)nameForVerticalJustifyType:(MNVerticalJustifyType)type;
++ (NSString*)nameForVerticalJustifyType:(MNVerticalJustifyType)type
 {
     switch(type)
     {
@@ -982,7 +982,7 @@ static NSDictionary* _typeArticulationTypeForString;
     return nil;
 }
 
-+ (NSString*)nameForBendType:(MNBendDirectionType)type;
++ (NSString*)nameForBendType:(MNBendDirectionType)type
 {
     switch(type)
     {
@@ -1001,7 +1001,7 @@ static NSDictionary* _typeArticulationTypeForString;
     return nil;
 }
 
-+ (NSString*)nameForOrnamentType:(MNOrnamentType)type;
++ (NSString*)nameForOrnamentType:(MNOrnamentType)type
 {
     switch(type)
     {
@@ -1052,7 +1052,7 @@ static NSDictionary* _typeArticulationTypeForString;
 }
 
 static NSDictionary* _typeOrnamentTypeForString;
-+ (MNOrnamentType)typeOrnamentTypeForString:(NSString*)string;
++ (MNOrnamentType)typeOrnamentTypeForString:(NSString*)string
 {
     if(!_typeOrnamentTypeForString)
     {
@@ -1075,7 +1075,7 @@ static NSDictionary* _typeOrnamentTypeForString;
     return [_typeOrnamentTypeForString[string] unsignedIntegerValue];
 }
 
-+ (NSString*)nameForAccidentalType:(MNAccidentalType)type;
++ (NSString*)nameForAccidentalType:(MNAccidentalType)type
 {
     switch(type)
     {
@@ -1123,7 +1123,7 @@ static NSDictionary* _typeOrnamentTypeForString;
 }
 
 static NSDictionary* _typeAccidentalTypeForString;
-+ (MNAccidentalType)typeAccidentalTypeForString:(NSString*)string;
++ (MNAccidentalType)typeAccidentalTypeForString:(NSString*)string
 {
     if(!_typeAccidentalTypeForString)
     {
@@ -1145,7 +1145,7 @@ static NSDictionary* _typeAccidentalTypeForString;
     return [_typeAccidentalTypeForString[string] unsignedIntegerValue];
 }
 
-+ (NSString*)nameForKeySignatureType:(MNKeySignatureType)type;
++ (NSString*)nameForKeySignatureType:(MNKeySignatureType)type
 {
     switch(type)
     {
@@ -1247,7 +1247,7 @@ static NSDictionary* _typeAccidentalTypeForString;
 }
 
 static NSDictionary* _typeKeySignatureType;
-+ (MNKeySignatureType)typeKeySignatureTypeForString:(NSString*)string;
++ (MNKeySignatureType)typeKeySignatureTypeForString:(NSString*)string
 {
     if(!_typeKeySignatureType)
     {
@@ -1287,7 +1287,7 @@ static NSDictionary* _typeKeySignatureType;
     return [_typeKeySignatureType[string] unsignedIntegerValue];
 }
 
-+ (NSString*)nameForNotePitchType:(MNNotePitchType)type;
++ (NSString*)nameForNotePitchType:(MNNotePitchType)type
 {
     switch(type)
     {
@@ -1335,7 +1335,7 @@ static NSDictionary* _typeKeySignatureType;
 }
 
 static NSDictionary* _typeNotePitchType;
-+ (MNNotePitchType)typeNotePitchTypeForString:(NSString*)string;
++ (MNNotePitchType)typeNotePitchTypeForString:(NSString*)string
 {
     if(!_typeNotePitchType)
     {
@@ -1357,11 +1357,11 @@ static NSDictionary* _typeNotePitchType;
     return [_typeNotePitchType[string] unsignedIntegerValue];
 }
 
-+ (NSString*)nameForGlyphNameType:(MNGlyphNameType)type;
++ (NSString*)nameForGlyphNameType:(MNGlyphNameType)type
 {
     return @"";
 }
-+ (NSString*)categoryNameForGlyphNameType:(MNGlyphNameType)type;
++ (NSString*)categoryNameForGlyphNameType:(MNGlyphNameType)type
 {
     //    switch ([self indexForName:name]) {
     // TODO: change to a dictionary
@@ -1777,7 +1777,7 @@ static NSDictionary* _typeNotePitchType;
 }
 
 static NSDictionary* _typeGlyphNameType;
-+ (MNGlyphNameType)typeGlyphNameTypeForString:(NSString*)string;
++ (MNGlyphNameType)typeGlyphNameTypeForString:(NSString*)string
 {
     if(!_typeGlyphNameType)
     {

@@ -26,8 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
-
 #import "MNColor.h"
 #import "MNBezierPath.h"
 #import "MNBeam.h"
@@ -51,6 +49,7 @@
 #import "NSMutableArray+MNAdditions.h"
 #import "MNTuplet.h"
 #import "MNBeamConfig.h"
+#import "MNConstants.h"
 
 @interface MNBeamRenderOptions : MNOptions
 @property (assign, nonatomic) float beam_width;
@@ -88,7 +87,7 @@
 + (MNBeamLine*)lineWithStart:(NSUInteger)start end:(NSUInteger)end;
 @end
 @implementation MNBeamLine
-+ (MNBeamLine*)lineWithStart:(NSUInteger)start end:(NSUInteger)end;
++ (MNBeamLine*)lineWithStart:(NSUInteger)start end:(NSUInteger)end
 {
     MNBeamLine* ret = [[MNBeamLine alloc] init];
     ret.start = start;
@@ -103,7 +102,7 @@
 + (MNBeamPartial*)partialWithLeft:(BOOL)left right:(BOOL)right;
 @end
 @implementation MNBeamPartial
-+ (MNBeamPartial*)partialWithLeft:(BOOL)left right:(BOOL)right;
++ (MNBeamPartial*)partialWithLeft:(BOOL)left right:(BOOL)right
 {
     MNBeamPartial* ret = [[MNBeamPartial alloc] init];
     ret.left = left;
@@ -155,7 +154,7 @@
     }
     return self;
 }
-- (instancetype)initWithNotes:(NSArray*)notes autoStem:(BOOL)autoStem;
+- (instancetype)initWithNotes:(NSArray*)notes autoStem:(BOOL)autoStem
 {
     self = [self initWithDictionary:nil];
     if(self)
@@ -167,7 +166,7 @@
     return self;
 }
 
-+ (MNBeam*)beamWithNotes:(NSArray*)notes;
++ (MNBeam*)beamWithNotes:(NSArray*)notes
 {
     return [[MNBeam alloc] initWithNotes:notes autoStem:YES];
 }
@@ -246,7 +245,7 @@
     _slope = 0;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{
@@ -282,7 +281,7 @@
  *
  *  @return a count of possible beams
  */
-- (NSUInteger)getBeamCount;
+- (NSUInteger)getBeamCount
 {
     NSArray* beamCounts = [self.notes oct_map:^NSNumber*(MNStemmableNote* note) {
       return [NSNumber numberWithUnsignedInteger:note.glyph.beamCount];
@@ -301,7 +300,7 @@
  *
  *  @return this object
  */
-- (id)breakSecondaryAt:(NSArray*)indices;
+- (id)breakSecondaryAt:(NSArray*)indices
 {
     self.break_on_indices = indices;
     return self;
@@ -318,7 +317,7 @@
  *
  *  @return the y coordinate for the given x and other variables
  */
-- (float)getSlopeYForX:(float)x first_x_px:(float)first_x_px first_y_px:(float)first_y_px slope:(float)slope;
+- (float)getSlopeYForX:(float)x first_x_px:(float)first_x_px first_y_px:(float)first_y_px slope:(float)slope
 {
     return first_y_px + ((x - first_x_px) * slope);
 }
@@ -326,7 +325,7 @@
 /*!
  *  Calculate the best possible slope for the provided notes
  */
-- (void)calculateSlope;
+- (void)calculateSlope
 {
     MNStemmableNote* first_note = self.notes[0];
     float first_y_px = first_note.stemExtents.topY;
@@ -405,7 +404,7 @@
  *   Create new stems for the notes in the beam, so that each stem
  *   extends into the beams.
  */
-- (void)applyStemExtensions;
+- (void)applyStemExtensions
 {
     MNStemmableNote* first_note = self.notes[0];
     float first_y_px = first_note.stemExtents.topY;
@@ -496,7 +495,7 @@
  *  @param duration <#duration description#>
  *  @return an array of BeamLine objects
  */
-- (NSArray*)getBeamLines:(NSString*)duration;
+- (NSArray*)getBeamLines:(NSString*)duration
 {
     NSMutableArray* beam_lines = [NSMutableArray array];
     BOOL beam_started = NO;
@@ -607,7 +606,7 @@
  *
  *  @param ctx the graphics context
  */
-- (void)drawStems:(CGContextRef)ctx;
+- (void)drawStems:(CGContextRef)ctx
 {
     [self.notes foreach:^(MNStemmableNote* note, NSUInteger index, BOOL* stop) {
       if(note.stem)
@@ -623,7 +622,7 @@
  *
  *  @param ctx the graphics context
  */
-- (void)drawBeamLines:(CGContextRef)ctx;
+- (void)drawBeamLines:(CGContextRef)ctx
 {
     NSArray* valid_beam_durations = @[ @"4", @"8", @"16", @"32", @"64" ];
 
@@ -680,7 +679,7 @@
  *
  *  @return YES if preFormatting was successful, NO otherwise
  */
-- (BOOL)preFormat;
+- (BOOL)preFormat
 {
     // do nothing
 
@@ -694,7 +693,7 @@
  *
  *  @return YES if preFormatting was successful, NO otherwise
  */
-- (BOOL)postFormat;
+- (BOOL)postFormat
 {
     if(_postFormatted)
     {
@@ -714,7 +713,7 @@
  *
  *  @param ctx the graphics context
  */
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
 
@@ -737,7 +736,7 @@
  *
  *  @return up or down
  */
-+ (MNStemDirectionType)calculateStemDirection:(NSArray*)notes;
++ (MNStemDirectionType)calculateStemDirection:(NSArray*)notes
 {
     __block NSInteger lineSum = 0;
     [notes foreach:^(MNStaffNote* note, NSUInteger index, BOOL* stop) {
@@ -763,13 +762,13 @@
 // Gets the default beam groups for a provided time signature.
 // Attempts to guess if the time signature is not found in table.
 // Currently this is fairly naive.
-+ (NSArray*)getDefaultBeamGroupsForTimeSignatureType:(MNTimeType)timeType;
++ (NSArray*)getDefaultBeamGroupsForTimeSignatureType:(MNTimeType)timeType
 {
     NSString* ret = [MNEnum simplNameForTimeType:timeType];
     return [self getDefaultBeamGroupsForTimeSignatureName:ret];
 }
 
-+ (NSArray*)getDefaultBeamGroupsForTimeSignatureName:(NSString*)timeType;
++ (NSArray*)getDefaultBeamGroupsForTimeSignatureName:(NSString*)timeType
 {
     // TODO: does this belong in  MNTables?
     NSDictionary* defaults = @{
@@ -840,7 +839,7 @@
 // * `voice` - The voice to generate the beams for
 // * `stem_direction` - A stem direction to apply to the entire voice
 // * `groups` - An array of `Fraction` representing beat groupings for the beam
-+ (NSArray*)applyAndGetBeams:(MNVoice*)voice direction:(MNStemDirectionType)stem_direction groups:(NSArray*)groups;
++ (NSArray*)applyAndGetBeams:(MNVoice*)voice direction:(MNStemDirectionType)stem_direction groups:(NSArray*)groups
 {
     return [self generateBeams:voice.tickables
                         config:[[MNBeamConfig alloc] initWithDictionary:@{
@@ -849,9 +848,12 @@
                         }]];
 }
 
-+ (NSArray*)applyAndGetBeams:(MNVoice*)voice groups:(NSArray*)groups;
++ (NSArray*)applyAndGetBeams:(MNVoice*)voice groups:(NSArray*)groups
 {
-    return [self generateBeams:voice.tickables config:[[MNBeamConfig alloc] initWithDictionary:@{@"groups" : groups}]];
+    return
+        [self generateBeams:voice.tickables config:[[MNBeamConfig alloc] initWithDictionary:@{
+                                                @"groups" : groups
+                                            }]];
 }
 
 + (NSArray*)applyAndGetBeams:(MNVoice*)voice
@@ -887,12 +889,12 @@
  *
  *  @return generated beams
  */
-+ (NSArray*)generateBeams:(NSArray*)notes withDictionary:(NSDictionary*)config;
++ (NSArray*)generateBeams:(NSArray*)notes withDictionary:(NSDictionary*)config
 {
     return [[self class] generateBeams:notes config:[[MNBeamConfig alloc] initWithDictionary:config]];
 }
 
-+ (NSArray*)generateBeams:(NSArray*)notes config:(MNBeamConfig*)config;
++ (NSArray*)generateBeams:(NSArray*)notes config:(MNBeamConfig*)config
 {
     if(!config)
     {

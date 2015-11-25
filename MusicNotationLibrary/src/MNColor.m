@@ -30,12 +30,12 @@
 
 #if TARGET_OS_IPHONE
 @implementation MNColor
-- (void)setStroke;
+- (void)setStroke
 {
     //     [MNLog LogNotYetImplementedForObj:self andSelector:_cmd];
     [super setStroke];
 }
-- (void)setFill;
+- (void)setFill
 {
     //     [MNLog LogNotYetImplementedForObj:self andSelector:_cmd];
     [super setFill];
@@ -135,12 +135,12 @@
 
 @implementation MNColor
 
-- (void)setStroke;
+- (void)setStroke
 {
     //     [MNLog LogNotYetImplementedForObj:self andSelector:_cmd];
     [super setStroke];
 }
-- (void)setFill;
+- (void)setFill
 {
     //     [MNLog LogNotYetImplementedForObj:self andSelector:_cmd];
     [super setFill];

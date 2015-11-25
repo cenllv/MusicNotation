@@ -1,10 +1,10 @@
 //
-//  MNCarrierTest.m
+//  MNConstants.h
 //  MusicNotation
 //
-//  Created by Scott on 8/8/15.
-//  Copyright (c) Scott Riccardelli 2015
+//  Created by Scott Riccardelli on 11/24/15.
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
+//  Ported from [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,27 +25,17 @@
 //  THE SOFTWARE.
 //
 
-#import "MNTestAction.h"
+#ifndef MNConstants_h
+#define MNConstants_h
 
-@implementation MNTestAction
+static const NSUInteger kRESOLUTION = 16384;   // ticks per measure
+static const float kSCALE = 0.025f;
+static const float kSTEM_WIDTH = 1.5;
+static const float kSTEM_HEIGHT = 32.f;
+static const float kSTAFF_LINE_THICKNESS = 1.f;
+static const float kPI = 3.14159f;
+static float kTHICKNESS = 2.f;
 
-- (instancetype)init
-{
-    self = [super init];
-    if(self)
-    {
-    }
-    return self;
-}
+extern NSString* const textBracketFontFamily;
 
-+ (MNTestAction*)testWithName:(NSString*)name andSelector:(SEL)selector andTarget:(id)target andFrame:(CGRect)frame
-{
-    MNTestAction* ret = [[MNTestAction alloc] init];
-    ret.name = name;
-    ret.selector = selector;
-    ret.target = target;
-    ret.frame = frame;
-    return ret;
-}
-
-@end
+#endif /* MNConstants_h */

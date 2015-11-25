@@ -35,7 +35,7 @@
 
 @implementation MNVibrato
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -68,7 +68,7 @@
     [self setVibratoWidth:[self->_renderOptions vibrato_width]];
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -86,7 +86,7 @@
 
 // Arrange vibratos inside a `ModifierContext`.
 // TODO: this prototype differs from the other  MNModifiers
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context;
++ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
     NSMutableArray* vibratos = modifiers;
     if(!vibratos || vibratos.count == 0)
@@ -119,7 +119,7 @@
     return YES;
 }
 
-- (id)setVibratoWidth:(float)width;
+- (id)setVibratoWidth:(float)width
 {
     _vibrato_width = width;
     //    _width = width;
@@ -131,12 +131,12 @@
     _harsh = harsh;
     return self;
 }
-- (BOOL)harsh;
+- (BOOL)harsh
 {
     return _harsh;
 }
 
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
 

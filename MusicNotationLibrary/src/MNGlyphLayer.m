@@ -42,7 +42,7 @@
     return [[MNGlyphShapeLayer alloc] init];
 }
 
-- (void)animate;
+- (void)animate
 {
     POPSpringAnimation* scaleAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
     scaleAnimation.velocity = [NSValue valueWithCGSize:CGSizeMake(3.f, 3.f)];

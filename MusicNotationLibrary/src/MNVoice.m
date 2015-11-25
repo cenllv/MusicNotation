@@ -40,6 +40,7 @@
 #import "MNStaffNote.h"
 #import "NSString+Ruby.h"
 #import "OCTotallyLazy.h"
+#import "MNConstants.h"
 
 @interface MNVoice ()
 {
@@ -65,7 +66,7 @@
     return self;
 }
 
-- (instancetype)initWithTimeDict:(NSDictionary*)optionsDict;
+- (instancetype)initWithTimeDict:(NSDictionary*)optionsDict
 {
     self = [self initWithDictionary:optionsDict];
     if(self)
@@ -85,7 +86,7 @@
     return self;
 }
 
-- (instancetype)initWithTime:(MNVoiceTime*)timeStruct;
+- (instancetype)initWithTime:(MNVoiceTime*)timeStruct
 {
     self = [self initWithTimeDict:nil];
     if(self)
@@ -96,7 +97,7 @@
     return self;
 }
 
-+ (MNVoice*)voiceWithTime:(MNVoiceTime*)timeStruct;
++ (MNVoice*)voiceWithTime:(MNVoiceTime*)timeStruct
 {
     return [[MNVoice alloc] initWithTime:timeStruct];
 }
@@ -175,7 +176,7 @@
     _voiceGroup = nil;
 }
 
-+ (MNVoice*)voiceWithNumBeats:(NSUInteger)beats beatValue:(NSUInteger)beatValue resolution:(NSUInteger)resolution;
++ (MNVoice*)voiceWithNumBeats:(NSUInteger)beats beatValue:(NSUInteger)beatValue resolution:(NSUInteger)resolution
 {
     return [MNVoice voiceWithBeats:beats beatValue:beatValue resolution:resolution];
 }
@@ -185,7 +186,7 @@
     return [MNVoice voiceWithBeats:4 beatValue:4 resolution:kRESOLUTION];
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -388,7 +389,7 @@
  *  @param tickables the array of tickables
  *  @return this voice
  */
-- (id)addTickables:(NSArray*)tickables;
+- (id)addTickables:(NSArray*)tickables
 {
     for(id<MNTickableDelegate> tickable in tickables)
     {

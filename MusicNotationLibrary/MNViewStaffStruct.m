@@ -31,7 +31,7 @@
 
 @implementation MNViewStaffStruct
 
-+ (MNViewStaffStruct*)contextWithStaff:(MNStaff*)staff andView:(MNTestCollectionItemView*)testView;
++ (MNViewStaffStruct*)contextWithStaff:(MNStaff*)staff andView:(MNTestCollectionItemView*)testView
 {
     MNViewStaffStruct* ret = [[MNViewStaffStruct alloc] init];
     ret.staff = staff;

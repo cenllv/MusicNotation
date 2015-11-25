@@ -102,7 +102,7 @@ static NSUInteger staff_LINE_THICKNESS;
     w = w != 0 ? w : 350;
     h = h != 0 ? h : 150;
 
-    [MNFont setFont:@" 10pt Arial"];
+    // [MNFont setFont:@" 10pt Arial"];
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
     return [MNViewStaffStruct contextWithStaff:staff andView:nil];

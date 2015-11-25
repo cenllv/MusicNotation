@@ -35,7 +35,7 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -170,7 +170,7 @@
         stringWithFormat:@"rect: (%f, %f, %f, %f)\n", self.xPosition, self.yPosition, self.width, self.height];
 }
 
-- (void)mergeWithBox:(MNRect*)box;
+- (void)mergeWithBox:(MNRect*)box
 {   // andDrawWthContext:(CGContextRef)ctx; {
     [self setRect:CGRectUnion(self.rect, box.rect)];
 

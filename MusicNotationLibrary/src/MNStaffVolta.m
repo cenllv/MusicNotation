@@ -33,7 +33,7 @@
 
 @implementation MNStaffVolta
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -58,7 +58,7 @@
     return self;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -122,7 +122,7 @@
         CGContextSaveGState(ctx);
         // TODO: set font
         // draw text better
-        //[MNText drawSimpleText:ctx atPoint:MNPointMake(_x + x + 5, top_y + 15) withHeight:12 withText:self.number];
+        //[MNText drawText:ctx atPoint:MNPointMake(_x + x + 5, top_y + 15) withHeight:12 withText:self.number];
 
         //        CTTextAlignment justification = kCTTextAlignmentLeft;
         NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];

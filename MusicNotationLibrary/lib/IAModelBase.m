@@ -12,7 +12,7 @@
 
 @implementation IAModelBase (JSONDescription)
 
-- (NSString*)description;
+- (NSString*)description
 {
     NSError* writeError = nil;
     NSData* jsonData = [NSJSONSerialization dataWithJSONObject:[self dictionarySerialization]
@@ -25,7 +25,7 @@
         concat:[NSString stringWithFormat:@"%@", jsonString]];
 }
 
-- (NSDictionary*)dictionarySerialization;
+- (NSDictionary*)dictionarySerialization
 {
     return [self dictionaryWithValuesForKeyPaths:@[]];
 }
@@ -48,11 +48,11 @@
     return self;
 }
 
-- (void)setValue:(id)value forUndefinedKey:(NSString*)key;
+- (void)setValue:(id)value forUndefinedKey:(NSString*)key
 {
 }
 
-- (void)setValue:(id)value forKey:(NSString*)key;
+- (void)setValue:(id)value forKey:(NSString*)key
 {
     NSString* realKey = [_dictionaryOfKeysToKeys valueForKey:key];
 
@@ -71,12 +71,12 @@
     }
 }
 
-- (BOOL)isArrayOrDictionary:(id)value;
+- (BOOL)isArrayOrDictionary:(id)value
 {
     return [value isKindOfClass:[NSArray class]] || [value isKindOfClass:[NSDictionary class]];
 }
 
-- (Class)classForKey:(NSString*)key;
+- (Class)classForKey:(NSString*)key
 {
     Class objectClass = [self class];
     NSString* accessorKey = key;
@@ -105,7 +105,7 @@
     return propClass;
 }
 
-- (void)setValue:(id)value forModelKey:(NSString*)key;
+- (void)setValue:(id)value forModelKey:(NSString*)key
 {
     Class cls = [self classForKey:key];
 
@@ -154,13 +154,13 @@
 //    return [self class];
 //}
 
-- (void)fillObjectWithDictionary:(NSDictionary*)dic forKey:(NSString*)key withEntryClass:(Class) class;
+- (void)fillObjectWithDictionary:(NSDictionary*)dic forKey:(NSString*)key withEntryClass:(Class) class
 {
     id modelObject = [[class alloc] initWithDictionary:dic];
     [super setValue:modelObject forKey:key];
 }
 
-- (void)fillArrayWithArray:(NSArray*)array forKey:(NSString*)key withEntryClass:(Class) class;
+- (void)fillArrayWithArray:(NSArray*)array forKey:(NSString*)key withEntryClass:(Class) class
 {
     NSMutableArray* retArray = [[NSMutableArray alloc] init];
 
@@ -173,7 +173,7 @@
     [super setValue:retArray forKey:key];
 }
 
-- (Class)classForKeyInCollection:(NSString*)key;
+- (Class)classForKeyInCollection:(NSString*)key
 {
     NSString* className = [_dictionaryOfKeysClasses objectForKey:key];
 
@@ -189,7 +189,7 @@
     return nil;
 }
 
-- (Class)classForKeyByProcessingName:(NSString*)key;
+- (Class)classForKeyByProcessingName:(NSString*)key
 {
     NSArray* suffixes = CollectionSuffiex;
     NSString* keyWithNoSuffix = nil;
@@ -219,7 +219,7 @@
     return NSClassFromString(keyWithNoSuffix);
 }
 
-- (NSString*)keyNameByRemovingSuffixOrNil:(NSString*)key suffix:(NSString*)suffix;
+- (NSString*)keyNameByRemovingSuffixOrNil:(NSString*)key suffix:(NSString*)suffix
 {
     NSUInteger location = [key rangeOfString:suffix].location;
     NSString* keyWithNoSuffix = [key substringToIndex:location];
@@ -240,7 +240,7 @@
     return keyWithNoSuffix;
 }
 
-- (instancetype)initWithDictionary:(NSDictionary*)dictionary;
+- (instancetype)initWithDictionary:(NSDictionary*)dictionary
 {
     self = [super init];
 
@@ -256,7 +256,7 @@
     return self;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     /*
      //create a dictionary that maps the correct property name
@@ -282,7 +282,7 @@
     return _propertiesToDictionaryEntriesMapping;
 }
 
-- (NSMutableDictionary*)classesForArrayEntries;
+- (NSMutableDictionary*)classesForArrayEntries
 {
     /*
      //Since objective c does not have strongly templated collections
@@ -318,7 +318,7 @@
 }
 
 
-- (void)setValuesForKeyPathsWithDictionary:(NSDictionary*)keyedValues;
+- (void)setValuesForKeyPathsWithDictionary:(NSDictionary*)keyedValues
 {
     for(NSString* key_keyPath in keyedValues.allKeys)
     {
@@ -334,7 +334,7 @@
     }
 }
 
-- (NSDictionary*)dictionaryWithValuesForKeyPaths:(NSArray*)keyPaths;
+- (NSDictionary*)dictionaryWithValuesForKeyPaths:(NSArray*)keyPaths
 {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
     for(NSString* keyPath in keyPaths)

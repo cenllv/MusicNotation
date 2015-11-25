@@ -28,7 +28,7 @@
 #import "MNTableAccidentalCodes.h"
 
 @implementation MNTableAccidentalCodes
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)

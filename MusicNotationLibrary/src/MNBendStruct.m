@@ -10,7 +10,7 @@
 
 @implementation MNBendStruct
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -19,7 +19,7 @@
     return self;
 }
 
-+ (MNBendStruct*)bendStructWithType:(MNBendDirectionType)type andText:(NSString*)text;
++ (MNBendStruct*)bendStructWithType:(MNBendDirectionType)type andText:(NSString*)text
 {
     MNBendStruct* ret = [[MNBendStruct alloc] initWithDictionary:nil];
     ret.type = type;

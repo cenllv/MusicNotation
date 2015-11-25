@@ -56,7 +56,7 @@
 - (instancetype)initWithNotes:(NSArray*)notes
                     withStaff:(MNStaff*)staff
                       andType:(MNStaffHairpinType)type
-                      options:(NSDictionary*)optionsDict;
+                      options:(NSDictionary*)optionsDict
 {
     self = [self initWithDictionary:optionsDict];
     if(self)
@@ -71,7 +71,7 @@
     return self;
 }
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -92,7 +92,7 @@
     self.right_shift_px = 0;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     [propertiesEntriesMapping addEntriesFromDictionary:@{
@@ -129,7 +129,7 @@
                    leftShift:(float)leftShiftTicks
                  righttShift:(float)righttShiftTicks
                       height:(float)height
-                      yShift:(float)yShift;
+                      yShift:(float)yShift
 {
     float ppt = formatter.pixelsPerTick;
 
@@ -161,7 +161,7 @@
     }
 }
 
-- (void)setRenderOptions:(NSDictionary*)renderOptions;
+- (void)setRenderOptions:(NSDictionary*)renderOptions
 {
     if(renderOptions[@"height"])
     {
@@ -255,7 +255,7 @@
     CGContextStrokePath(ctx);
 }
 
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
 

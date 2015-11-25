@@ -59,7 +59,7 @@ typedef void (^AddFunction)(MNTickable*, id);
 
 @implementation MNFormatter
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -68,7 +68,7 @@ typedef void (^AddFunction)(MNTickable*, id);
     return self;
 }
 
-+ (MNFormatter*)formatter;
++ (MNFormatter*)formatter
 {
     return [[MNFormatter alloc] init];
 }
@@ -116,7 +116,7 @@ typedef void (^AddFunction)(MNTickable*, id);
 + (NSUInteger)lookAhead:(NSArray*)notes
             andRestLine:(NSUInteger)restLine
                      by:(NSUInteger)lookAheadIndex
-        makeComparisons:(BOOL)shouldCompare;
+        makeComparisons:(BOOL)shouldCompare
 {
     // If no valid next note group, next_rest_line is same as current.
     NSUInteger next_rest_line = restLine;
@@ -155,7 +155,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  */
 - (MNFormatterContext*)createContexts:(NSArray*)voices
                       withContextType:(Class)contextType
-                       andAddFunction:(AddFunction)add_fn;
+                       andAddFunction:(AddFunction)add_fn
 {
     if(!voices || voices.count == 0)
     {
@@ -281,7 +281,7 @@ typedef void (^AddFunction)(MNTickable*, id);
                                  dirtyRect:(CGRect)dirtyRect
                                    toStaff:(MNStaff*)staff
                                  withNotes:(NSArray*)notes
-                                withParams:(NSDictionary*)params;
+                                withParams:(NSDictionary*)params
 {
     NSDictionary* options = [NSMutableDictionary merge:@{@"auto_beam" : @NO, @"align_rests" : @NO} with:params];
 
@@ -321,10 +321,8 @@ typedef void (^AddFunction)(MNTickable*, id);
 + (MNBoundingBox*)formatAndDrawWithContext:(CGContextRef)ctx
                                    toStaff:(MNStaff*)staff
                                  withNotes:(NSArray*)notes
-                          withJustifyWidth:(float)justifyWidth;
+                          withJustifyWidth:(float)justifyWidth
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
-    abort();
 
     NSDictionary* options = [NSMutableDictionary merge:@{@"auto_beam" : @NO, @"align_rests" : @NO} with:@{}];
 
@@ -366,7 +364,7 @@ typedef void (^AddFunction)(MNTickable*, id);
 + (MNBoundingBox*)formatAndDrawWithContext:(CGContextRef)ctx
                                  dirtyRect:(CGRect)dirtyRect
                                    toStaff:(MNStaff*)staff
-                                 withNotes:(NSArray*)notes;
+                                 withNotes:(NSArray*)notes
 {
     return [MNFormatter formatAndDrawWithContext:ctx dirtyRect:dirtyRect toStaff:staff withNotes:notes withParams:nil];
 }
@@ -375,7 +373,7 @@ typedef void (^AddFunction)(MNTickable*, id);
                                  dirtyRect:(CGRect)dirtyRect
                                    toStaff:(MNStaff*)staff
                                  withNotes:(NSArray*)notes
-                          withJustifyWidth:(float)justifyWidth;
+                          withJustifyWidth:(float)justifyWidth
 {
     return [MNFormatter formatAndDrawWithContext:ctx toStaff:staff withNotes:notes withJustifyWidth:justifyWidth];
 }
@@ -402,7 +400,7 @@ typedef void (^AddFunction)(MNTickable*, id);
                         andTabNotes:(NSArray*)tabNotes
                            andNotes:(NSArray*)notes
                             andBeam:(BOOL)autobeam
-                         withParams:(NSDictionary*)params;
+                         withParams:(NSDictionary*)params
 {
     NSDictionary* opts = @{@"auto_beam" : @(autobeam), @"align_rests" : @NO};
 
@@ -456,7 +454,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param alignAllNotes If set to NO, only aligns non-beamed notes.
  *  @param alignTuplets  If set to NO, ignores tuplets.
  */
-+ (void)alignRestsToNotes:(NSArray*)notes withNoteAlignment:(BOOL)alignAllNotes andTupletAlignment:(BOOL)alignTuplets;
++ (void)alignRestsToNotes:(NSArray*)notes withNoteAlignment:(BOOL)alignAllNotes andTupletAlignment:(BOOL)alignTuplets
 {
     for(NSUInteger i = 0; i < notes.count; ++i)
     {
@@ -515,7 +513,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param voices        the collection of voices
  *  @param alignAllNotes <#alignAllNotes description#>
  */
-- (void)alignRests:(NSArray*)voices alignAllNotes:(BOOL)alignAllNotes;
+- (void)alignRests:(NSArray*)voices alignAllNotes:(BOOL)alignAllNotes
 {
     /*
     // ## Prototype Methods
@@ -546,7 +544,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param voices the collection of voices
  *  @return <#return value description#>
  */
-- (float)preCalculateMinTotalWidth:(NSArray*)voices;
+- (float)preCalculateMinTotalWidth:(NSArray*)voices
 {
     // Cache results.
     if(self.hasMinTotalWidth)
@@ -591,7 +589,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  `preCalculateMinTotalWidth` must be called before self method.
  *  @return <#return value description#>
  */
-- (float)getMinTotalWidth;
+- (float)getMinTotalWidth
 {
     /*
     getMinTotalWidth: function() {
@@ -619,7 +617,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param voices the collection of voices
  *  @return <#return value description#>
  */
-- (MNFormatterContext*)createModifierContexts:(NSArray*)voices;
+- (MNFormatterContext*)createModifierContexts:(NSArray*)voices
 {
     /*
     createModifierContexts: function(voices) {
@@ -649,7 +647,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param voices the collection of voices
  *  @return <#return value description#>
  */
-- (MNFormatterContext*)createTickContexts:(NSArray*)voices;
+- (MNFormatterContext*)createTickContexts:(NSArray*)voices
 {
     /*
     createTickContexts: function(voices) {
@@ -689,7 +687,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param staff  the staff being drawn onto
  *  @return YES if successful
  */
-- (BOOL)preFormatWithContext:(CGContextRef)ctx voices:(NSArray*)voices staff:(MNStaff*)staff;
+- (BOOL)preFormatWithContext:(CGContextRef)ctx voices:(NSArray*)voices staff:(MNStaff*)staff
 {
     return [self preFormatWith:0 voices:voices staff:staff];
 }
@@ -697,7 +695,7 @@ typedef void (^AddFunction)(MNTickable*, id);
 {
     return [self preFormatWith:0 voices:@[] staff:nil];
 }
-- (BOOL)preFormatWith:(float)justifyWidth voices:(NSArray*)voices staff:(MNStaff*)staff;
+- (BOOL)preFormatWith:(float)justifyWidth voices:(NSArray*)voices staff:(MNStaff*)staff
 {
     // Initialize context maps.
     MNFormatterContext* contexts = self.tContexts;
@@ -863,7 +861,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param voices the collection of voices
  *  @return <#return value description#>
  */
-- (BOOL)postFormat   //:(NSArray*)voices;
+- (BOOL)postFormat   //:(NSArray*)voices
 {
     // Postformat modifier contexts
     [self.mContexts.list foreach:^(NSNumber* mContext, NSUInteger index, BOOL* stop) {
@@ -877,7 +875,7 @@ typedef void (^AddFunction)(MNTickable*, id);
     return YES;
 }
 
-- (id)joinVoices:(NSArray*)voices;
+- (id)joinVoices:(NSArray*)voices
 {
     [self joinVoices:voices params:nil];
     return self;
@@ -890,19 +888,19 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param voices the collection of voices
  *  @param params <#params description#>
  */
-- (void)joinVoices:(NSArray*)voices params:(NSDictionary*)params;
+- (void)joinVoices:(NSArray*)voices params:(NSDictionary*)params
 {
     [self createModifierContexts:voices];
     self.hasMinTotalWidth = NO;
 }
 
-- (id)formatWith:(NSArray*)voices;
+- (id)formatWith:(NSArray*)voices
 {
     [self formatWith:voices withJustifyWidth:0];
     return self;
 }
 
-- (id)formatWith:(NSArray*)voices withJustifyWidth:(float)justifyWidth;
+- (id)formatWith:(NSArray*)voices withJustifyWidth:(float)justifyWidth
 {
     return [self formatWith:voices withJustifyWidth:justifyWidth andOptions:@{}];
 }
@@ -922,7 +920,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param options      <#options description#>
  *  @return this formatter object
  */
-- (id)formatWith:(NSArray*)voices withJustifyWidth:(float)justifyWidth andOptions:(NSDictionary*)options;
+- (id)formatWith:(NSArray*)voices withJustifyWidth:(float)justifyWidth andOptions:(NSDictionary*)options
 {
     NSDictionary* opts = @{@"align_rests" : @(NO), @"context" : [NSNull null]};
     opts = [NSMutableDictionary merge:opts with:options];
@@ -940,7 +938,7 @@ typedef void (^AddFunction)(MNTickable*, id);
     return self;
 }
 
-- (id)formatToStaff:(NSArray*)voices staff:(MNStaff*)staff;
+- (id)formatToStaff:(NSArray*)voices staff:(MNStaff*)staff
 {
     return [self formatToStaff:voices staff:staff options:nil];
 }
@@ -953,7 +951,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param options the collection of voices
  *  @return <#return value description#>
  */
-- (id)formatToStaff:(NSArray*)voices staff:(MNStaff*)staff options:(NSDictionary*)options;
+- (id)formatToStaff:(NSArray*)voices staff:(MNStaff*)staff options:(NSDictionary*)options
 {
     // TODO: this could be one spot to reduce width from clefs, time sigs, etc.
     float justifyWidth = staff.noteEndX - staff.noteStartX - 10;
@@ -963,7 +961,7 @@ typedef void (^AddFunction)(MNTickable*, id);
     return [self formatWith:voices withJustifyWidth:justifyWidth andOptions:params];
 }
 
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     [MNFormatter formatAndDrawWithContext:ctx dirtyRect:CGRectZero toStaff:nil withNotes:nil];
 }

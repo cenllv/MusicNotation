@@ -91,6 +91,9 @@
             self.testType = NoneTestType;
         }
 
+        // // // UNCOMMENT TO DISABLE PREVIOUS TEST // // //
+        //        self.testType = NoneTestType;
+
         self.differentSublayerBackgroundsCheckBox.state =
             [[defaults objectForKey:@"differentSublayerBackgrounds"] boolValue];
         self.showBoundingBoxesCheckBox.state = [[defaults objectForKey:@"showBoundingBoxes"] boolValue];
@@ -215,6 +218,7 @@
             @(CurveTestType) : [MNCurveTests class],
             @(DotTestType) : [MNDotTests class],
             @(EveryThingTestType) : [NSNull null],
+            @(FontTestType) : [MNFontTests class],
             @(FormatterTestType) : [MNFormatterTests class],
             @(GraceNoteTestType) : [MNGraceNoteTests class],
             @(KeyClefTestType) : [MNKeyClefTests class],

@@ -5,7 +5,6 @@
 //  Created by Scott on 3/9/15.
 //  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
-//  Ported from [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +28,7 @@
 #import "MNTestViewController.h"
 
 /*!
- *  The `MNTextTests` class
+ *  The `MNTextTests` class tests fonts and text
  */
 @interface MNTextTests : MNTestViewController
 

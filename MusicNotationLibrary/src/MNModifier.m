@@ -46,6 +46,7 @@
 #import "MNTable.h"
 #import "MNTickable.h"
 #import "MNPoint.h"
+#import "MNConstants.h"
 
 @interface MNModifier (private)
 //@property (assign, nonatomic) float width;
@@ -58,7 +59,7 @@
 //@synthesize x_shift = _x_shift;
 @synthesize shouldIgnoreTicks = _shouldIgnoreTicks;
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -69,7 +70,7 @@
     return self;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{
@@ -105,26 +106,26 @@
  *  category of this modifier
  *  @return class name
  */
-+ (NSString*)CATEGORY;
++ (NSString*)CATEGORY
 {
     return @"none";
 }
 
 // Every modifier has a category. The `ModifierContext` uses this to determine
 // the type and order of the modifiers.
-- (NSString*)category;
+- (NSString*)category
 {
     return [MNModifier CATEGORY];
 }
 
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context;
++ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
     return YES;
 }
 
 //- (BOOL)preFormat; { return YES; }
 //- (BOOL)postFormat; { return YES; }
-- (BOOL)postFormatWith:(NSArray*)notes;
+- (BOOL)postFormatWith:(NSArray*)notes
 {
     return YES;
 }
@@ -133,7 +134,7 @@
 
 // Shift modifier `x` pixels in the direction of the modifier. Negative values
 // shift reverse.
-- (id)setXShift:(float)xShift;
+- (id)setXShift:(float)xShift
 {
     _xShift = 0;
     if(self.position == MNPositionLeft)
@@ -152,34 +153,34 @@
     return _xShift;
 }
 
-- (id)setPosition:(MNPositionType)position;
+- (id)setPosition:(MNPositionType)position
 {
     _positionType = position;
     return self;
 }
 
-- (MNPositionType)position;
+- (MNPositionType)position
 {
     return _positionType;
 }
 
-- (void)setIndex:(NSUInteger)index;
+- (void)setIndex:(NSUInteger)index
 {
     _index = index;
 }
 
-- (NSUInteger)index;
+- (NSUInteger)index
 {
     return _index;
 }
 
 // Render the modifier onto the canvas.
-- (void)draw:(CGContextRef)ctx withStaff:(MNStaff*)staff withShiftX:(float)shiftX;
+- (void)draw:(CGContextRef)ctx withStaff:(MNStaff*)staff withShiftX:(float)shiftX
 {
     // abstract ?
 }
 
-- (void)setupTickable;
+- (void)setupTickable
 {
     _intrinsicTicks = 0;
     _tickMultiplier = [MNRational rationalWithNumerator:1 andDenominator:1];
@@ -217,13 +218,13 @@
     return ret;
 }
 
-- (MNBoundingBox*)boundingBox;
+- (MNBoundingBox*)boundingBox
 {
     MNTickableMetrics* metrics = self.metrics;
     return [MNBoundingBox boundingBoxAtX:metrics.modLeftPx atY:metrics.modRightPx withWidth:self.width andHeight:0];
 }
 
-- (float)getCenterXShift;
+- (float)getCenterXShift
 {
     if(self.centerAlign)
     {
@@ -258,7 +259,7 @@
  *  @param tuplet the tuplet to attach to
  *  @return this object
  */
-- (id)setTuplet:(MNTuplet*)tuplet;
+- (id)setTuplet:(MNTuplet*)tuplet
 {
     // Detach from previous tuplet
     NSUInteger noteCount, beatsOccupied;
@@ -286,7 +287,7 @@
 }
 
 // optional, if tickable has modifiers
-- (void)addToModifierContext:(MNModifierContext*)mc;
+- (void)addToModifierContext:(MNModifierContext*)mc
 {
     self.modifierContext = mc;
     // Add modifiers to modifier context (if any)
@@ -300,20 +301,20 @@
 //    self.preFormatted = NO;
 //}
 
-- (id)addModifier:(MNModifier*)modifier;
+- (id)addModifier:(MNModifier*)modifier
 {
     [self.modifiers addObject:modifier];
     self.preFormatted = NO;
     return self;
 }
 
-- (void)setTickContext:(MNTickContext*)tickContext;
+- (void)setTickContext:(MNTickContext*)tickContext
 {
     _tickContext = tickContext;
     self.preFormatted = NO;
 }
 
-- (BOOL)preFormat;
+- (BOOL)preFormat
 {
     if(self.preFormatted)
     {
@@ -327,7 +328,7 @@
     return YES;
 }
 
-- (BOOL)postFormat;
+- (BOOL)postFormat
 {
     if(self.postFormatted)
     {
@@ -337,7 +338,7 @@
     return YES;
 }
 
-- (MNRational*)tickMultiplier;
+- (MNRational*)tickMultiplier
 {
     if(!_tickMultiplier)
     {
@@ -346,7 +347,7 @@
     return _tickMultiplier;
 }
 
-- (MNRational*)ticks;
+- (MNRational*)ticks
 {
     if(!_ticks)
     {
@@ -355,13 +356,13 @@
     return _ticks;
 }
 
-- (void)setIntrinsicTicks:(NSUInteger)intrinsicTicks;
+- (void)setIntrinsicTicks:(NSUInteger)intrinsicTicks
 {
     _intrinsicTicks = intrinsicTicks;
     _ticks = [[self.tickMultiplier clone] mult:intrinsicTicks];
 }
 
-- (void)applyTickMultiplier:(NSUInteger)numerator denominator:(NSUInteger)denominator;
+- (void)applyTickMultiplier:(NSUInteger)numerator denominator:(NSUInteger)denominator
 {
     [self.tickMultiplier multiply:[MNRational rationalWithNumerator:numerator andDenominator:denominator]];
     _ticks = [[self.tickMultiplier clone] mult:self.intrinsicTicks];
@@ -374,7 +375,7 @@
 //    _intrinsicTicks = [self.ticks floatValue];
 //}
 
-- (void)setTickDuration:(MNRational*)duration;
+- (void)setTickDuration:(MNRational*)duration
 {
     NSUInteger ticks = duration.numerator * (kRESOLUTION / duration.denominator);
     _ticks = [[self.tickMultiplier clone] mult:ticks];

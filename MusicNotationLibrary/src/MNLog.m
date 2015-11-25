@@ -216,7 +216,7 @@ static MNBrowserLogger* _browserLogger = nil;
     [MNLog logVexDump:msg];
 }
 
-+ (void)logNotYetImplementedForClass:(id)obj andSelector:(SEL)sel;
++ (void)logNotYetImplementedForClass:(id)obj andSelector:(SEL)sel
 {
     //    Method method = class_getInstanceMethod([obj class], sel);
 
@@ -245,7 +245,7 @@ static MNBrowserLogger* _browserLogger = nil;
     //     [MNLog LogMessage:prefix withLevel:error];
 }
 
-+ (void)logVexDump:(NSString*)msg;
++ (void)logVexDump:(NSString*)msg
 {
     NSArray* mnSymbols = [NSThread callStackSymbols];
     __block NSMutableString* output = [@"" mutableCopy];

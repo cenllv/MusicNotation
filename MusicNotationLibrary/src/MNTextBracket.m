@@ -38,7 +38,7 @@
 
 @implementation MNTextBracket
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -91,7 +91,7 @@
     _underlineSuperscript = YES;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -121,7 +121,7 @@
     return self;
 }
 
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
 
@@ -164,7 +164,7 @@
     // TODO: cannot set font size
     //    font.size = self.fontSize;
     //         context.setFont(self.font.family, self.font.size, self.font.weight);
-    //     [MNText drawSimpleText:ctx withFont:font atPoint:[MNPoint pointWithX:start.x andY:start.y]
+    //     [MNText drawText:ctx withFont:font atPoint:[MNPoint pointWithX:start.x andY:start.y]
     //    withText:self.text];
 
     [title drawAtPoint:CGPointMake(start.x, start.y -= title.size.height / 2)];
@@ -173,7 +173,7 @@
     // TODO: cannot set font size
     //    font.size = font.size / 1.4;
     font = [MNFont fontWithName:self.fontFamily size:self.fontSize / 1.4];
-    //     [MNText drawSimpleText:ctx
+    //     [MNText drawText:ctx
     //                  withFont:font
     //                   atPoint:[MNPoint pointWithX:(start.x + mainWidth + 1)andY:super_y]
     //                  withText:self.superscript];

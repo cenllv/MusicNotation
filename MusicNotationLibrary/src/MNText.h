@@ -5,7 +5,6 @@
 //  Created by Scott Riccardelli on 1/1/15.
 //  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
-//  Ported from [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,37 +25,58 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNPoint.h"
 #import "IAModelBase.h"
 
 @class MNFont, MNColor, MNBoundingBox;
 
-/*! The `MNText` prints text in a standard format
+typedef NS_ENUM(NSUInteger, MNTextAlignment)
+{
+    MNTextAlignmentLeft = NSTextAlignmentLeft,
+#if TARGET_OS_IPHONE
+    MNTextAlignmentCenter = 1,
+    MNTextAlignmentRight = 2,
+#else
+    MNTextAlignmentRight = NSTextAlignmentRight,
+    MNTextAlignmentCenter = NSCenterTextAlignment,
+#endif
+    MNTextAlignmentJustified =
+        NSTextAlignmentJustified,
+    MNTextAlignmentNatural = NSTextAlignmentNatural,  
+};
+
+typedef NS_ENUM(NSUInteger, MNTextVerticalAlignment)
+{
+    MNTextAlignmentTop = 1,
+    MNTextAlignmentMiddle = 2,
+    MNTextAlignmentBottom = 3,
+};
+
+/*! The `MNText` draws text
  */
-@interface MNText : IAModelBase
+@interface MNText : NSObject
 
 #pragma mark - Properties
-//@property (strong, nonatomic, readonly)  MNFont *font;
-@property (strong, nonatomic) MNColor* color;
-//@property (strong, nonatomic) NSString *fontName;
-//@property (assign, nonatomic) NSUInteger fontSize;
-//@property (assign, nonatomic) BOOL fontItalic;
-//@property (assign, nonatomic) BOOL fontBold;
-
-#pragma mark - Methods//+ (MNText *)sharedText;
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-
++ (void)setAlignment:(MNTextAlignment)alignment;
++ (void)setVerticalAlignment:(MNTextVerticalAlignment)alignment;
 + (void)setFont:(MNFont*)font;
 + (void)setBold:(BOOL)bold;
 + (void)setItalic:(BOOL)italic;
 + (void)setColor:(MNColor*)color;
++ (void)showBoundingBox:(BOOL)showBoundingBox;
 
-//+ (void)drawSimpleText:(CGContextRef)ctx atPoint:(CGPoint)point withHeight:(float)h withText:(NSString *)text;
-+ (void)drawSimpleText:(CGContextRef)ctx atPoint:(MNPoint*)point withBounds:(CGRect)bounds withText:(NSString*)text;
-+ (void)drawSimpleText:(CGContextRef)ctx withFont:(MNFont*)font atPoint:(MNPoint*)point withText:(NSString*)text;
-+ (void)drawSimpleText:(CGContextRef)ctx atPoint:(MNPoint*)point withText:(NSString*)text;
-+ (void)drawSimpleText:(CGContextRef)ctx atPoint:(MNPoint*)point withHeight:(float)h withText:(NSString*)text;
+#pragma mark - Methods
+
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+
+//+ (void)drawText:(CGContextRef)ctx atPoint:(CGPoint)point withHeight:(float)h withText:(NSString *)text;
++ (void)drawText:(CGContextRef)ctx atPoint:(MNPoint*)point withBounds:(CGRect)bounds withText:(NSString*)text;
+
++ (void)drawText:(CGContextRef)ctx withFont:(MNFont*)font atPoint:(MNPoint*)point withText:(NSString*)text;
++ (void)drawText:(CGContextRef)ctx withFont:(MNFont*)font atRect:(CGRect)rect withText:(NSString*)text;
+
++ (void)drawText:(CGContextRef)ctx atPoint:(MNPoint*)point withText:(NSString*)text;
++ (void)drawText:(CGContextRef)ctx atPoint:(MNPoint*)point withHeight:(float)h withText:(NSString*)text;
 
 + (void)drawTextWithContext:(CGContextRef)ctx
                     atPoint:(MNPoint*)point

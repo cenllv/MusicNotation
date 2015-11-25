@@ -26,23 +26,16 @@
 //  THE SOFTWARE.
 //
 
-
-
-
 #import "MNColor.h"
 #import "MNBezierPath.h"
-
 #import "MNStaffNote.h"
 #import "MNUtils.h"
-#import "MNUtils.h"
-
 #import "MNGlyph.h"
 #import "MNBeam.h"
 #import "MNClef.h"
 #import "MNNote.h"
 #import "MNMetrics.h"
 #import "MNPadding.h"
-
 #import "MNStaff.h"
 #import "MNNote.h"
 #import "MNAccidental.h"
@@ -77,6 +70,7 @@
 #import "MNTickContext.h"
 #import "MNShapeLayer.h"
 #import "MNStroke.h"
+#import "NSString+MNAdditions.h"
 
 @interface FormatNote : IAModelBase
 @property (assign, nonatomic) float line;       // note/rest base line
@@ -95,7 +89,7 @@
 @end
 
 @implementation StaffNoteRenderOptions
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -137,7 +131,7 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -149,19 +143,19 @@
     return self;
 }
 
-+ (MNStaffNote*)noteWithKeys:(NSArray*)keys andDuration:(NSString*)duration;
++ (MNStaffNote*)noteWithKeys:(NSArray*)keys andDuration:(NSString*)duration
 {
-    NSDictionary* options = @{@"keys" : keys, @"duration" : duration};
+    NSDictionary* options = @{ @"keys" : keys, @"duration" : duration };
     return [[MNStaffNote alloc] initWithDictionary:options];
 }
 
-+ (MNStaffNote*)noteWithKeys:(NSArray*)keys andDuration:(NSString*)duration autoStem:(BOOL)autoStem;
++ (MNStaffNote*)noteWithKeys:(NSArray*)keys andDuration:(NSString*)duration autoStem:(BOOL)autoStem
 {
-    NSDictionary* options = @{@"keys" : keys, @"duration" : duration, @"autoStem" : @(autoStem)};
+    NSDictionary* options = @{ @"keys" : keys, @"duration" : duration, @"autoStem" : @(autoStem) };
     return [[MNStaffNote alloc] initWithDictionary:options];
 }
 
-+ (MNStaffNote*)noteWithKeys:(NSArray*)keys andDuration:(NSString*)duration andClef:(NSString*)clef;
++ (MNStaffNote*)noteWithKeys:(NSArray*)keys andDuration:(NSString*)duration andClef:(NSString*)clef
 {
     NSDictionary* options = @{
         @"keys" : keys,
@@ -174,16 +168,19 @@
 + (MNStaffNote*)noteWithKeys:(NSArray*)keys
                  andDuration:(NSString*)duration
                      andClef:(NSString*)clef
-                 octaveShift:(float)octaveShift;
+                 octaveShift:(float)octaveShift
 {
     NSDictionary* options =
-        @{@"keys" : keys, @"duration" : duration, @"clefName" : clef, @"octave_shift" : @(octaveShift)};
+        @{ @"keys" : keys,
+           @"duration" : duration,
+           @"clefName" : clef,
+           @"octave_shift" : @(octaveShift) };
     return [[MNStaffNote alloc] initWithDictionary:options];
 }
 
-+ (MNStaffNote*)noteWithKeys:(NSArray*)keys andDuration:(NSString*)duration dots:(NSUInteger)dots;
++ (MNStaffNote*)noteWithKeys:(NSArray*)keys andDuration:(NSString*)duration dots:(NSUInteger)dots
 {
-    NSDictionary* options = @{@"keys" : keys, @"duration" : duration, @"dots" : @(dots)};
+    NSDictionary* options = @{ @"keys" : keys, @"duration" : duration, @"dots" : @(dots) };
     MNStaffNote* ret = [[MNStaffNote alloc] initWithDictionary:options];
     //     MNTablesNoteStringData* data = [MNTables parseNoteData:@{}];  //  [MNTables
     //    parseNoteDurationString:duration];
@@ -203,13 +200,13 @@
 
     return ret;
 }
-+ (MNStaffNote*)noteWithKeys:(NSArray*)keys andDuration:(NSString*)duration type:(NSString*)type;
++ (MNStaffNote*)noteWithKeys:(NSArray*)keys andDuration:(NSString*)duration type:(NSString*)type
 {
     [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
     abort();
     return nil;
 }
-+ (MNStaffNote*)noteWithKeys:(NSArray*)keys andDuration:(NSString*)duration dots:(NSUInteger)dots type:(NSString*)type;
++ (MNStaffNote*)noteWithKeys:(NSArray*)keys andDuration:(NSString*)duration dots:(NSUInteger)dots type:(NSString*)type
 {
     //    MNStaffNote* ret = [[self class] noteWithKeys:keys andDuration:duration dots:dots];
     //     MNTablesNoteStringData* data = [MNTables parseNoteDurationString:duration];
@@ -219,15 +216,15 @@
     //        MNLogError(@"");
     //    }
 
-    NSDictionary* options = @{@"keys" : keys, @"duration" : duration, @"dots" : @(dots), @"noteNHMRSString" : type};
+    NSDictionary* options = @{ @"keys" : keys, @"duration" : duration, @"dots" : @(dots), @"noteNHMRSString" : type };
     MNStaffNote* ret = [[MNStaffNote alloc] initWithDictionary:options];
     return ret;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
-    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"octave_shift" : @"octaveShift"}];
+    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{ @"octave_shift" : @"octaveShift" }];
     return propertiesEntriesMapping;
 }
 
@@ -246,7 +243,7 @@
  *  helps create a debug description from the specified string to properties dictionary
  *  @return a dictionary of property names
  */
-- (NSDictionary*)dictionarySerialization;
+- (NSDictionary*)dictionarySerialization
 {
     return [self dictionaryWithValuesForKeyPaths:@[
         @"position",
@@ -591,7 +588,7 @@
 }
 
 // Format notes inside a ModifierContext.
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context;
++ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
     NSMutableArray* notes = modifiers;
     if(!notes || notes.count < 2)
@@ -834,7 +831,7 @@
     return YES;
 }
 
-+ (BOOL)postFormat:(NSMutableArray*)modifiers;
++ (BOOL)postFormat:(NSMutableArray*)modifiers
 {
     NSArray* notes = modifiers;
     if(!notes)
@@ -1087,7 +1084,7 @@
 
 // Sets the current note to the provided `Staff`. This applies
 // `y` values to the `NoteHeads`.
-- (id)setStaff:(MNStaff*)staff;
+- (id)setStaff:(MNStaff*)staff
 {
     // TODO: fix these redundant lines, this function is messy
     super.staff = staff;
@@ -1109,7 +1106,7 @@
     return self;
 }
 
-- (MNStaff*)staff;
+- (MNStaff*)staff
 {
     return _staff;
 }
@@ -1169,7 +1166,7 @@
  *  @param index    if there's more than one modifier, then which index to occupy
  *  @return an xy point
  */
-- (MNPoint*)getModifierstartXYforPosition:(MNPositionType)position andIndex:(NSUInteger)index;
+- (MNPoint*)getModifierstartXYforPosition:(MNPositionType)position andIndex:(NSUInteger)index
 {
     if(self.preFormatted == NO)
     {
@@ -1289,7 +1286,7 @@
     ((MNNoteHead*)self.note_heads[index]).styleBlock = styleBlock;
 }
 
-- (void)setKeyLine:(NSUInteger)index withLine:(NSUInteger)line;
+- (void)setKeyLine:(NSUInteger)index withLine:(NSUInteger)line
 {
     ((MNKeyProperty*)self.keyProps[index]).line = line;
     ((MNNoteHead*)self.note_heads[index]).line = line;
@@ -1359,7 +1356,7 @@ addModifier: function(index, modifier) {
     return self;
 }
 
-- (id)addArticulation:(MNArticulation*)articulation;
+- (id)addArticulation:(MNArticulation*)articulation
 {
     return [self addModifier:articulation atIndex:0];
 }
@@ -1391,7 +1388,7 @@ addModifier: function(index, modifier) {
     return self;
 }
 
-- (MNStaffNote*)addDotToAll;
+- (MNStaffNote*)addDotToAll
 {
     for(NSUInteger i = 0; i < self.keyProps.count; ++i)
     {
@@ -1403,13 +1400,13 @@ addModifier: function(index, modifier) {
 + (MNStaffNote*)showNoteWithDictionary:(NSDictionary*)noteStruct
                            withContext:(CGContextRef)ctx
                                onStaff:(MNStaff*)staff
-                                   atX:(float)x;
+                                   atX:(float)x
 {
     MNStaffNote* ret = [[MNStaffNote alloc] initWithDictionary:noteStruct];
     return [[self class] showNoteWithNote:ret withContext:ctx onStaff:staff atX:x];
 }
 
-+ (MNStaffNote*)showNoteWithNote:(MNStaffNote*)note withContext:(CGContextRef)ctx onStaff:(MNStaff*)staff atX:(float)x;
++ (MNStaffNote*)showNoteWithNote:(MNStaffNote*)note withContext:(CGContextRef)ctx onStaff:(MNStaff*)staff atX:(float)x
 {
     //    MNStaffNote* ret = [[MNStaffNote alloc] initWithDictionary:noteStruct];
     MNTickContext* tickContext = [[MNTickContext alloc] init];
@@ -1426,13 +1423,13 @@ addModifier: function(index, modifier) {
 }
 
 #if TARGET_OS_IPHONE
-+ (UIImage*)imageForNoteWithDictionary:(NSDictionary*)noteStruct rect:(CGRect)rect;
++ (UIImage*)imageForNoteWithDictionary:(NSDictionary*)noteStruct rect:(CGRect)rect
 {
     MNStaffNote* note = [[MNStaffNote alloc] initWithDictionary:noteStruct];
     return [[self class] imageForNote:note rect:rect];
 }
 
-+ (UIImage*)imageForNote:(MNStaffNote*)note rect:(CGRect)rect;
++ (UIImage*)imageForNote:(MNStaffNote*)note rect:(CGRect)rect
 {
     //    CGRect rect = CGRectZero;
     CGFloat scale = 0.0;   // main screen scale
@@ -1728,12 +1725,14 @@ addModifier: function(index, modifier) {
     // Format stem x positions
     [self.stem setNoteHeadXBoundsBegin:x_begin andEnd:x_end];
 
-//    MNLogDebug(@"Rendering %@ %@", self.isChord ? @"chord :" : @"note :", self.keyStrings);
+    NSString *chordOrNote = self.isChord ? @"chord :" : @"note :";
+    NSString *keysString = [NSString oneLineString:self.keyStrings];
+    MNLogDebug(@"Rendering %@ %@", chordOrNote, keysString);
     MNLogDebug(@"Rendering staffnote at. Beg X: %f,    End X: %f", x_begin, x_end);
 
     // Draw each part of the note
     [self drawLedgerLines:ctx];
-    BOOL render_stem = self.hasStem && !self.beam;   
+    BOOL render_stem = self.hasStem && !self.beam;
     if(render_stem)
     {
         [self drawStem:ctx];

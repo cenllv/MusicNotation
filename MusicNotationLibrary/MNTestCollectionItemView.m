@@ -61,7 +61,7 @@
                       onStaff:(MNStaff*)staff
                   withContext:(CGContextRef)ctx
                           atX:(float)x
-              withBoundingBox:(BOOL)drawBoundingBox;
+              withBoundingBox:(BOOL)drawBoundingBox
 {
     return [((MNRenderLayer*)self.layer)showStaffNote:staffNote
                                             onStaff:staff

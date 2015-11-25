@@ -85,7 +85,7 @@
 {
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
             [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"slide_direction" : @"slideDirection"}];

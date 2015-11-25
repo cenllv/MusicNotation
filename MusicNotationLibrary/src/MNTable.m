@@ -49,6 +49,7 @@
 #import "MNGlyphTabStruct.h"
 #import "MNMacros.h"
 #import "NSArray+MNAdditions.h"
+#import "MNConstants.h"
 
 #pragma mark -  MNTables Implementation
 
@@ -183,7 +184,7 @@ static NSDictionary* _pitchForClefDictionary;
     return nil;
 }
 
-+ (NSString*)articulationCodeForType:(MNArticulationType)type;
++ (NSString*)articulationCodeForType:(MNArticulationType)type
 {
     switch(type)
     {
@@ -232,7 +233,7 @@ static NSDictionary* _pitchForClefDictionary;
     }
 }
 
-+ (NSDictionary*)articulationsDictionary;
++ (NSDictionary*)articulationsDictionary
 {
     if(!_articulationsDictionary)
     {
@@ -1359,7 +1360,7 @@ static NSDictionary* _clefProperties;
 //    return _keyNoteValuesDictionary;
 //}
 
-+ (NSArray*)keyPropertiesArray;
++ (NSArray*)keyPropertiesArray
 {
     _keyPropertiesArray = @[];
     [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
@@ -2134,14 +2135,14 @@ static NSDictionary* _durationCodesDictionary;
 //    return glyph;
 //}
 
-+ (MNTableGlyphStruct*)durationToGlyphStruct:(NSString*)noteDurationString;
++ (MNTableGlyphStruct*)durationToGlyphStruct:(NSString*)noteDurationString
 {
     // assume that using normal note if noteNHSMSString is not specified
     return [MNTable durationToGlyphStruct:noteDurationString withNHMRSNoteString:@"n"];
 }
 
 + (MNTableGlyphStruct*)durationToGlyphStruct:(NSString*)noteDurationString
-                         withNHMRSNoteString:(NSString*)noteNHSMSString;
+                         withNHMRSNoteString:(NSString*)noteNHSMSString
 {
     MNNoteDurationType noteDurationType = [MNEnum typeNoteDurationTypeForString:noteDurationString];
     MNNoteNHMRSType noteNHMRSType = [MNEnum typeNoteNHMRSTypeForString:noteNHSMSString];
@@ -2149,7 +2150,7 @@ static NSDictionary* _durationCodesDictionary;
 }
 
 + (MNTableGlyphStruct*)durationToGlyphStruct:(MNNoteDurationType)noteDurationType
-                               withNHMRSType:(MNNoteNHMRSType)noteNHMRSType;
+                               withNHMRSType:(MNNoteNHMRSType)noteNHMRSType
 {
     NSDictionary* code = MNTable.durationCodesDictionary[@(noteDurationType)];
     if(!code)
@@ -2164,7 +2165,7 @@ static NSDictionary* _durationCodesDictionary;
     return ret;
 }
 
-+ (MNGlyphTabStruct*)glyphForTab:(NSString*)fret;
++ (MNGlyphTabStruct*)glyphForTab:(NSString*)fret
 {
     /*
      Vex.Flow.tabToGlyph = function(fret) {
@@ -2217,7 +2218,7 @@ static NSDictionary* _durationCodesDictionary;
     return nil;
 }
 
-+ (MNKeyProperty*)keyPropertiesForKey:(NSString*)key andClef:(MNClefType)clefType andOptions:(NSDictionary*)params;
++ (MNKeyProperty*)keyPropertiesForKey:(NSString*)key andClef:(MNClefType)clefType andOptions:(NSDictionary*)params
 {
     // TODO: what if params passes in @{@"octave_shift" : @0}; ?
 
@@ -2490,7 +2491,7 @@ Vex.Flow.articulationCodes = function(artic) {
  */
 
 static NSDictionary* _accidentalCodes;
-+ (NSDictionary*)accidentalCodes;
++ (NSDictionary*)accidentalCodes
 {
     if(!_accidentalCodes)
     {
@@ -2555,7 +2556,7 @@ static NSDictionary* _accidentalCodes;
 }
 
 static NSDictionary* _accidentalColumnsTable;
-+ (NSDictionary*)accidentalColumnsTable;
++ (NSDictionary*)accidentalColumnsTable
 {
     if(!_accidentalColumnsTable)
     {
@@ -2586,7 +2587,7 @@ static NSDictionary* _accidentalColumnsTable;
 }
 
 static NSDictionary* _ornamentCodes;
-+ (NSDictionary*)ornamentCodes;
++ (NSDictionary*)ornamentCodes
 {
     if(!_ornamentCodes)
     {
@@ -2728,7 +2729,7 @@ Vex.Flow.keySignature = function(spec) {
 */
 
 // TODO: test this method
-+ (MNTablesNoteStringData*)parseNoteDurationString:(NSString*)noteStringData;
++ (MNTablesNoteStringData*)parseNoteDurationString:(NSString*)noteStringData
 {
     NSString* regexpPattern = @"(\\d*\\/?\\d+|[a-z])(d*)([nrhms]|$)";
     NSArray* matches = [noteStringData match:regexpPattern];
@@ -2766,7 +2767,7 @@ Vex.Flow.keySignature = function(spec) {
     return ret;
 }
 
-+ (MNTablesNoteStringData*)parseNoteData:(MNTableNoteInputData*)noteData;
++ (MNTablesNoteStringData*)parseNoteData:(MNTableNoteInputData*)noteData
 {
     NSString* duration = noteData.durationString;
 
@@ -3017,7 +3018,7 @@ Vex.Flow.durationToTicks = function(duration) {
     return ticks;
 };
  */
-+ (NSUInteger)durationToTicks:(NSString*)duration;
++ (NSUInteger)durationToTicks:(NSString*)duration
 {
     return [[[[self class] durationToTicksDictionary] objectForKey:duration] unsignedIntegerValue];
 }

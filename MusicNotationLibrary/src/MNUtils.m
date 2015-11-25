@@ -39,7 +39,7 @@
  *  @param eq  equality compare
  *  @return sorted and uniqued 'arr'
  */
-+ (NSArray*)sortAndUnique:(NSArray*)arr withCmp:(NSComparator)cmp andEq:(EqualBlock)eq;
++ (NSArray*)sortAndUnique:(NSArray*)arr withCmp:(NSComparator)cmp andEq:(EqualBlock)eq
 {
     if(arr.count > 1)
     {
@@ -79,7 +79,7 @@
     return [self prettyPrintAtLevel:0 isCollection:&isColl];
 }
 
-- (NSString*)prettyPrintAtLevel:(int)level isCollection:(BOOL*)isCollection;
+- (NSString*)prettyPrintAtLevel:(int)level isCollection:(BOOL*)isCollection
 {
     if([self respondsToSelector:@selector(toDictionary)])
     {

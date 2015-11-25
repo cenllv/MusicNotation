@@ -1,9 +1,8 @@
 //
-//  MNCarrierTest.m
+//  MNConstants.m
 //  MusicNotation
 //
-//  Created by Scott on 8/8/15.
-//  Copyright (c) Scott Riccardelli 2015
+//  Created by Scott Riccardelli on 11/24/15.
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,27 +24,4 @@
 //  THE SOFTWARE.
 //
 
-#import "MNTestAction.h"
-
-@implementation MNTestAction
-
-- (instancetype)init
-{
-    self = [super init];
-    if(self)
-    {
-    }
-    return self;
-}
-
-+ (MNTestAction*)testWithName:(NSString*)name andSelector:(SEL)selector andTarget:(id)target andFrame:(CGRect)frame
-{
-    MNTestAction* ret = [[MNTestAction alloc] init];
-    ret.name = name;
-    ret.selector = selector;
-    ret.target = target;
-    ret.frame = frame;
-    return ret;
-}
-
-@end
+NSString* const textBracketFontFamily = @"Verdana";

@@ -62,7 +62,7 @@
     return self;
 }
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -101,17 +101,17 @@
     self.yShift = 0;
     _x_offset = 0;   // Horizontal offset from default
     _y_offset = 0;   // Vertical offset from default
-    self.font = [MNFont fontWithName:@"sans-serif" size:9 weight:@"bold"];
+    self.font = [MNFont fontWithName:@"sans-serif" size:9 bold:YES italic:NO];
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
     return propertiesEntriesMapping;
 }
 
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context;
++ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
     NSMutableArray* nums = modifiers;
     float left_shift = state.left_shift;
@@ -261,7 +261,7 @@
     return self;
 }
 
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
 

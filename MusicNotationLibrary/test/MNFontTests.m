@@ -5,7 +5,6 @@
 //  Created by Scott on 4/15/15.
 //  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
-//  Ported from [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -33,15 +32,86 @@
 - (void)start
 {
     [super start];
-    [self runTest:@"Basic" func:@selector(basic:) frame:CGRectMake(10, 10, 700, 250)];
+    [self runTest:@"Draw Sizes" func:@selector(drawSizes:) frame:CGRectMake(10, 10, 700, 400)];
+    [self runTest:@"All Fonts" func:@selector(drawFonts:) frame:CGRectMake(10, 10, 900, 1100)];
 }
 
-- (MNTestTuple*)basic:(MNTestCollectionItemView*)parent
+- (MNTestTuple*)drawSizes:(MNTestCollectionItemView*)parent
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
-    [MNFont setFont:@"arial"];
 
-    // TODO: finish tests
+    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+      MNFont* font = [MNFont fontWithName:@"verdana" size:12];
+      float x = 30, y = 50;
+
+      NSString* str = @"QWFPGJLUYARSTDHNEIOZXCVBKMqwfpgjluyarstdhneiozxcvbkm";
+
+      [MNText showBoundingBox:YES];
+      [MNText drawText:ctx withFont:font atPoint:MNPointMake(x, y += 50) withText:str];
+
+      font.size += 2;
+      font.italic = YES;
+      [MNText showBoundingBox:NO];
+      [MNText drawText:ctx withFont:font atPoint:MNPointMake(x, y += 50) withText:str];
+
+      font.italic = NO;
+      font.bold = YES;
+      font.size += 2;
+      [MNText showBoundingBox:YES];
+      [MNText drawText:ctx withFont:font atPoint:MNPointMake(x, y += 50) withText:str];
+
+      font.family = @"Times-Roman";
+      font.size += 2;
+      [MNText showBoundingBox:NO];
+      [MNText drawText:ctx withFont:font atPoint:MNPointMake(x, y += 50) withText:str];
+
+      font.family = @"Times-Bold";
+      font.size += 2;
+      [MNText showBoundingBox:YES];
+      [MNText drawText:ctx withFont:font atPoint:MNPointMake(x, y += 50) withText:str];
+    };
+
+    return ret;
+}
+
+- (MNTestTuple*)drawFonts:(MNTestCollectionItemView*)parent
+{
+    MNTestTuple* ret = [MNTestTuple testTuple];
+
+    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+      MNFont* font = [MNFont fontWithName:@"verdana" size:12];
+      float x = 30, y = 50;
+
+      NSString* str = @"QWE123abc";
+      [MNText showBoundingBox:NO];
+
+      BOOL skip = YES;
+      for(NSString* fontFamily in [MNFont availableFonts])
+      {
+          if(skip)
+          {
+              skip = !skip;
+              continue;
+          }
+          else
+          {
+              skip = !skip;
+          }
+          font.family = fontFamily;
+          if(y >= bounds.size.height - 60)
+          {
+              y = 50, x += 100;
+          }
+          NSUInteger len = 8;
+          str = fontFamily.length > len ? [fontFamily substringWithRange:NSMakeRange(0, len)] : fontFamily;
+          [MNText drawText:ctx
+                  withFont:font
+                   atPoint:MNPointMake(x, y += 20)
+                  withText:str];
+      }
+
+    };
+
     return ret;
 }
 

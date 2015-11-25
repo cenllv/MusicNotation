@@ -41,7 +41,7 @@
 
 @implementation MNStringNumber
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -88,7 +88,7 @@
 {
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -180,7 +180,7 @@ setOffsetY: function(y) { self.y_offset = y; return this; },
  *  @param context   modifier context
  *  @return success
  */
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context;
++ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
     NSMutableArray* nums = modifiers;
     float left_shift = state.left_shift;
@@ -325,7 +325,7 @@ setOffsetY: function(y) { self.y_offset = y; return this; },
     return YES;
 }
 
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     CGContextSaveGState(ctx);
 

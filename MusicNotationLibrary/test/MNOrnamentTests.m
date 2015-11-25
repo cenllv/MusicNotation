@@ -69,7 +69,7 @@
     w = w != 0 ? w : 350;
     h = h != 0 ? h : 150;
 
-    [MNFont setFont:@" 10pt Arial"];
+    // [MNFont setFont:@" 10pt Arial"];
 
     // withParent:parent withTitle:title];
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];

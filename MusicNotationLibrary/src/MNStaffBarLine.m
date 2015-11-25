@@ -27,9 +27,6 @@
 //  THE SOFTWARE.
 //
 
-
-
-
 #import "MNBezierPath.h"
 #import "MNStaffBarLine.h"
 #import "MNStaffModifier.h"
@@ -39,6 +36,7 @@
 #import "MNPadding.h"
 #import "MNStaffLineRenderOptions.h"
 #import "MNTable.h"
+#import "MNConstants.h"
 
 @interface MNStaffBarLine ()
 {
@@ -52,7 +50,6 @@
 @implementation MNStaffBarLine
 
 #pragma mark - Initialize
-
 
 - (instancetype)init
 {
@@ -103,7 +100,7 @@
     return [[MNStaffBarLine alloc] initWithType:type AtX:x];
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -147,7 +144,7 @@
  *  @param ctx   graphics context
  *  @param staff the staff to draw to
  */
-- (void)drawWithContext:(CGContextRef)ctx toStaff:(MNStaff*)staff withShiftX:(float)shiftX;
+- (void)drawWithContext:(CGContextRef)ctx toStaff:(MNStaff*)staff withShiftX:(float)shiftX
 {
     [super drawWithContext:ctx toStaff:staff withShiftX:(float)shiftX];
 
@@ -193,7 +190,7 @@
     }
 }
 
-- (void)drawVerticalBar:(CGContextRef)ctx withShiftX:(float)x;
+- (void)drawVerticalBar:(CGContextRef)ctx withShiftX:(float)x
 {
     //    float x = self.point.x;
     float topLine = [self.staff getYForLine:0];
@@ -210,7 +207,7 @@
     [path fill];
 }
 
-- (void)drawVertialEndBar:(CGContextRef)ctx withShiftX:(float)x;
+- (void)drawVertialEndBar:(CGContextRef)ctx withShiftX:(float)x
 {
     float topLine = [self.staff getYForLine:0];
     float bottomLine = [self.staff getYForLine:self.staff.options.numLines - 1] + self.thickness;

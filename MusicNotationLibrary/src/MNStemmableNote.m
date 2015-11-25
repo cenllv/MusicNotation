@@ -36,6 +36,7 @@
 #import "MNMath.h"
 #import "MNTableTypes.h"
 #import "MNRational.h"
+#import "MNConstants.h"
 
 //@implementation StemmableNoteRenderOptions
 //- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
@@ -60,7 +61,7 @@
 
 @implementation MNStemmableNote
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -83,7 +84,7 @@
     return self;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -95,7 +96,7 @@
  *  hhelps create a debug description from the specified string to properties dictionary
  *  @return a dictionary of property names
  */
-- (NSDictionary*)dictionarySerialization;
+- (NSDictionary*)dictionarySerialization
 {
     return [self dictionaryWithValuesForKeyPaths:@[]];
 }

@@ -204,14 +204,14 @@
     //    [invocation getReturnValue:&success];
 }
 
-- (void)runTest:(NSString*)name func:(SEL)selector frame:(CGRect)frame;
+- (void)runTest:(NSString*)name func:(SEL)selector frame:(CGRect)frame
 {
     self.numberOfItems++;
     MNTestAction* testAction = [MNTestAction testWithName:name andSelector:selector andTarget:self andFrame:frame];
     [self.tests addObject:testAction];
 }
 
-- (void)runTest:(NSString*)name func:(SEL)selector params:(NSObject*)params;
+- (void)runTest:(NSString*)name func:(SEL)selector params:(NSObject*)params
 {
     NSMethodSignature* signature = [self methodSignatureForSelector:selector];
     NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:signature];
@@ -224,7 +224,7 @@
     });
 }
 
-- (void)runTest:(NSString*)name func:(SEL)selector frame:(CGRect)frame params:(NSObject*)params;
+- (void)runTest:(NSString*)name func:(SEL)selector frame:(CGRect)frame params:(NSObject*)params
 {
     MNTestAction* testAction = [MNTestAction testWithName:name andSelector:selector andTarget:self andFrame:frame];
     if([params isKindOfClass:[NSDictionary class]])

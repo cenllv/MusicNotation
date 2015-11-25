@@ -28,7 +28,7 @@
 
 @implementation MNVoiceTime
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -38,7 +38,7 @@
     return self;
 }
 
-+ (MNVoiceTime*)timeWithBeats:(NSUInteger)numberOfBeats beatValue:(NSUInteger)beatValue resolution:(NSUInteger)resolution;
++ (MNVoiceTime*)timeWithBeats:(NSUInteger)numberOfBeats beatValue:(NSUInteger)beatValue resolution:(NSUInteger)resolution
 {
     MNVoiceTime* ret = [[MNVoiceTime alloc] initWithDictionary:nil];
     ret.numBeats = numberOfBeats;

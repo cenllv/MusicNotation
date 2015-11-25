@@ -51,7 +51,7 @@
     float _width;
 }
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -117,7 +117,7 @@
     return [[MNOrnament alloc] initWithType:type];
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -167,24 +167,24 @@
 //    return YES;
 //}
 
-- (id)setDelayed:(BOOL)delayed;
+- (id)setDelayed:(BOOL)delayed
 {
     _delayed = delayed;
     return self;
 }
 
-- (BOOL)delayed;
+- (BOOL)delayed
 {
     return _delayed;
 }
 
-- (id)setUpperAccidental:(NSString*)accidental;
+- (id)setUpperAccidental:(NSString*)accidental
 {
     _accidental_upper = accidental;
     return self;
 }
 
-- (id)setLowerAccidental:(NSString*)accidental;
+- (id)setLowerAccidental:(NSString*)accidental
 {
     _accidental_lower = accidental;
     return self;
@@ -231,7 +231,7 @@ static NSDictionary* _acc_mods;
     return self.state.right_shift;
 }
 
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context;
++ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
     NSMutableArray* ornaments = modifiers;
     if(!ornaments || ornaments.count == 0)
@@ -270,7 +270,7 @@ static NSDictionary* _acc_mods;
 }
 
 // Render ornament in position next to note.
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
 

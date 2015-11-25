@@ -33,7 +33,7 @@
 #elif TARGET_OS_MAC
 @implementation MNImage
 
-- (void)drawAtPoint:(CGPoint)point;
+- (void)drawAtPoint:(CGPoint)point
 {
     [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
     abort();
@@ -41,7 +41,7 @@
 
 - (CGImageRef)CGImageForProposedRect:(NSRect*)proposedDestRect
                              context:(NSGraphicsContext*)referenceContext
-                               hints:(NSDictionary*)hints;
+                               hints:(NSDictionary*)hints
 {
     [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
     abort();

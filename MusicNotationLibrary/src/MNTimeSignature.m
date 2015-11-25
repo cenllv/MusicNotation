@@ -106,7 +106,7 @@
     return self;
 }
 
-- (instancetype)initWithTimeSpec:(NSString*)timeSpec andPadding:(float)padding;
+- (instancetype)initWithTimeSpec:(NSString*)timeSpec andPadding:(float)padding
 {
     self = [self initWithDictionary:@{@"timeSpec" : timeSpec}];
     if(self)
@@ -133,12 +133,12 @@
     return [[MNTimeSignature alloc] initWithTimeType:MNTime4_4];
 }
 
-+ (MNTimeSignature*)timeSignatureWithType:(MNTimeType)type;
++ (MNTimeSignature*)timeSignatureWithType:(MNTimeType)type
 {
     return [[MNTimeSignature alloc] initWithTimeType:type];
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];

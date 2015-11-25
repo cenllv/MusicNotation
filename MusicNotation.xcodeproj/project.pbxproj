@@ -516,6 +516,8 @@
 		6B5645061BF44680006FDFD9 /* SenTestRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56447B1BF44680006FDFD9 /* SenTestRun.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 		6B5645071BF44680006FDFD9 /* SenTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56447D1BF44680006FDFD9 /* SenTestSuite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 		6B5645081BF44680006FDFD9 /* SenTestSuiteRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56447F1BF44680006FDFD9 /* SenTestSuiteRun.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6B5D4AC21C04E66A00AA250A /* MNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D4AC11C04E66A00AA250A /* MNConstants.m */; };
+		6B5D4AC31C04E66A00AA250A /* MNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D4AC11C04E66A00AA250A /* MNConstants.m */; };
 		6B8480A81B6D7A0900FB2B48 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8480A71B6D7A0900FB2B48 /* TableViewController.m */; };
 		6B8480AC1B6D7CD800FB2B48 /* MNTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8480AB1B6D7CD800FB2B48 /* MNTestViewController.m */; };
 		6B8480B21B6FC4C300FB2B48 /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8480B11B6FC4C300FB2B48 /* TestView.m */; };
@@ -1346,6 +1348,8 @@
 		6B5BD2351BF5CDFA00B16659 /* vibrato.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = vibrato.js; sourceTree = "<group>"; };
 		6B5BD2361BF5CDFA00B16659 /* voice.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = voice.js; sourceTree = "<group>"; };
 		6B5BD2371BF5CDFA00B16659 /* voicegroup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = voicegroup.js; sourceTree = "<group>"; };
+		6B5D4AC01C04E4CF00AA250A /* MNConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MNConstants.h; path = MusicNotationLibrary/src/MNConstants.h; sourceTree = SOURCE_ROOT; };
+		6B5D4AC11C04E66A00AA250A /* MNConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNConstants.m; sourceTree = "<group>"; };
 		6B60CDFA1BFBB4E90086B343 /* MusicNotation.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = MusicNotation.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		6B60CDFB1BFBBBB90086B343 /* License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		6B60CDFC1BFBCEE90086B343 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -1733,6 +1737,8 @@
 				6B4AA5091BF459B200E56C1A /* MNChordTest.m */,
 				6B4AA50A1BF459B200E56C1A /* MNClefTests.h */,
 				6B4AA50B1BF459B200E56C1A /* MNClefTests.m */,
+				6B5D4AC01C04E4CF00AA250A /* MNConstants.h */,
+				6B5D4AC11C04E66A00AA250A /* MNConstants.m */,
 				6B4AA50C1BF459B200E56C1A /* MNCurveTests.h */,
 				6B4AA50D1BF459B200E56C1A /* MNCurveTests.m */,
 				6B4AA50E1BF459B200E56C1A /* MNDotTests.h */,
@@ -2994,6 +3000,7 @@
 				6B4AA4681BF4591500E56C1A /* MNMath.m in Sources */,
 				6B4AA42A1BF4591500E56C1A /* MNBezierPath.m in Sources */,
 				6B4AA4441BF4591500E56C1A /* MNExtentStruct.m in Sources */,
+				6B5D4AC31C04E66A00AA250A /* MNConstants.m in Sources */,
 				6B4AA6561BF45B0800E56C1A /* PairEnumerator.m in Sources */,
 				6B4AA65E1BF45B0800E56C1A /* Range.m in Sources */,
 				6BAF42751C027FD500C82A4A /* MNNoteAccidentalStruct.m in Sources */,
@@ -3232,6 +3239,7 @@
 				6B5644C11BF44680006FDFD9 /* HCIsEqualIgnoringCase.m in Sources */,
 				6B4AA43B1BF4591500E56C1A /* MNCurve.m in Sources */,
 				6B4AA5971BF459B200E56C1A /* MNTextNoteTests.m in Sources */,
+				6B5D4AC21C04E66A00AA250A /* MNConstants.m in Sources */,
 				6B4AA4F51BF4591600E56C1A /* MNVoiceGroup.m in Sources */,
 				6B4AA4C11BF4591500E56C1A /* MNSymbol.m in Sources */,
 				6B4AA4551BF4591500E56C1A /* MNGraceNoteGroup.m in Sources */,

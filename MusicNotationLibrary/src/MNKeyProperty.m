@@ -42,7 +42,7 @@
  */
 @implementation MNKeyProperty
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -52,7 +52,7 @@
     return self;
 }
 
-- (instancetype)initWithKey:(NSString*)key andClefType:(MNClefType)clefType andOptionsDict:(NSDictionary*)optionsDict;
+- (instancetype)initWithKey:(NSString*)key andClefType:(MNClefType)clefType andOptionsDict:(NSDictionary*)optionsDict
 {
     self = [self initWithDictionary:optionsDict];
     if(self)
@@ -77,7 +77,7 @@
 {
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -121,7 +121,7 @@
 //    return ret;
 //}
 
-- (NSDictionary*)dictionarySerialization;
+- (NSDictionary*)dictionarySerialization
 {
     return [self dictionaryWithValuesForKeyPaths:@[
         @"key",

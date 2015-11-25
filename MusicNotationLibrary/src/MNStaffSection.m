@@ -40,12 +40,12 @@
 
 @implementation MNStaffSection
 
-+ (MNStaffSection*)staffSectionWithSection:(NSString*)section withX:(float)x yShift:(float)yShift;
++ (MNStaffSection*)staffSectionWithSection:(NSString*)section withX:(float)x yShift:(float)yShift
 {
     return [[MNStaffSection alloc] initWithSection:section withX:x yShift:yShift];
 }
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -54,7 +54,7 @@
     return self;
 }
 
-- (instancetype)initWithSection:(NSString*)section withX:(float)x yShift:(float)yShift;
+- (instancetype)initWithSection:(NSString*)section withX:(float)x yShift:(float)yShift
 {
     self = [self initWithDictionary:@{}];
     if(self)
@@ -66,7 +66,8 @@
         //        self.x = x;
         self.xShift = 0;
         self.yShift = yShift;
-        self.font = (MNFont*)[MNFont boldSystemFontOfSize:12];
+        self.font = [MNFont systemFontWithSize:12];
+        [self.font setBold:YES];
     }
     return self;
 }
@@ -87,7 +88,7 @@
  *  @param shiftX amount to shift x from init position to match current measure
  */
 //- (void)draw:(CGContextRef)ctx withStaff:(MNStaff*)staff withShiftX:(float)shiftX;
-- (void)drawWithContext:(CGContextRef)ctx toStaff:(MNStaff*)staff withShiftX:(float)shiftX;
+- (void)drawWithContext:(CGContextRef)ctx toStaff:(MNStaff*)staff withShiftX:(float)shiftX
 {
     float x = self.point.x + shiftX;
     float textWidth = self.section.length;

@@ -53,7 +53,7 @@ static float kCLEF_SIZE_SMALL = 16;     // 32;
 
 #pragma mark - Initialization
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -146,27 +146,27 @@ static float kCLEF_SIZE_SMALL = 16;     // 32;
     }
 }
 
-+ (MNClef*)clefWithName:(NSString*)clefName;
++ (MNClef*)clefWithName:(NSString*)clefName
 {
     return [[MNClef alloc] initWithName:clefName size:@"default" annotation:nil];
 }
 
-+ (MNClef*)clefWithName:(NSString*)clefName size:(NSString*)size;
++ (MNClef*)clefWithName:(NSString*)clefName size:(NSString*)size
 {
     return [[MNClef alloc] initWithName:clefName size:size annotation:nil];
 }
 
-+ (MNClef*)clefWithName:(NSString*)clefName size:(NSString*)size annotationName:(NSString*)annotationName;
++ (MNClef*)clefWithName:(NSString*)clefName size:(NSString*)size annotationName:(NSString*)annotationName
 {
     return [[MNClef alloc] initWithName:clefName size:size annotationName:annotationName];
 }
 
-+ (MNClef*)clefWithName:(NSString*)clefName size:(NSString*)size annotation:(MNClefAnnotation*)annotation;
++ (MNClef*)clefWithName:(NSString*)clefName size:(NSString*)size annotation:(MNClefAnnotation*)annotation
 {
     return [[MNClef alloc] initWithName:clefName size:size annotation:annotation];
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -514,7 +514,7 @@ static NSDictionary* _annotations;
  *  Add this clef to the start of the given `staff`.
  *  @param staff the staff to add this modifier to
  */
-- (void)addModifierToStaff:(MNStaff*)staff;
+- (void)addModifierToStaff:(MNStaff*)staff
 {
     MNMetrics* metrics = self->_metrics;
     self.glyph = [MNGlyph glyphWithCode:metrics.code withPointSize:1];
@@ -537,7 +537,7 @@ static NSDictionary* _annotations;
  *  Add this clef to the end of the given `staff`.
  *  @param staff the staff to add this modifier to
  */
-- (void)addEndModifierToStaff:(MNStaff*)staff;
+- (void)addEndModifierToStaff:(MNStaff*)staff
 {
     MNMetrics* metrics = self->_metrics;
     self.glyph = [MNGlyph glyphWithCode:metrics.code withPointSize:1];

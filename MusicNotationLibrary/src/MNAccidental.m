@@ -55,7 +55,7 @@
 @end
 
 @implementation AccListStruct
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -77,7 +77,7 @@
 @end
 
 @implementation LineListStruct
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -167,7 +167,7 @@
     return self;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     [propertiesEntriesMapping
@@ -198,7 +198,7 @@
  *  sets the note for this accidental
  *  @param note parent note of accidental
  */
-- (void)setNote:(MNStaffNote*)note;
+- (void)setNote:(MNStaffNote*)note
 {
     if(!note)
     {
@@ -251,7 +251,7 @@
  *  @param context   the modifier context container
  *  @return YES if succussful
  */
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context;
++ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
     NSMutableArray* accidentals = modifiers;
     float left_shift = state.left_shift;
@@ -638,7 +638,7 @@
  *  @param voices       a collection of voices
  *  @param keySignature the key signature
  */
-+ (void)applyAccidentals:(NSArray*)voices withKeySignature:(NSString*)keySignature;
++ (void)applyAccidentals:(NSArray*)voices withKeySignature:(NSString*)keySignature
 {
     NSMutableArray* tickPositions = [NSMutableArray array];
     NSMutableDictionary* tickNoteMap = [NSMutableDictionary dictionary];
@@ -736,7 +736,7 @@
  *  Render accidental onto canvas.
  *  @param ctx graphics context
  */
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
 

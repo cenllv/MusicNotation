@@ -60,13 +60,14 @@
 #import "MNStaffVolta.h"
 #import "MNStaffRepetition.h"
 #import "NSObject+AutoDescription.h"
+#import "MNConstants.h"
 
 @implementation StaffOptions
 {
     NSUInteger _numLines;
 }
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -126,7 +127,7 @@ static MNStaff* _currentStaff;
 
 #pragma mark - Initialization
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -138,7 +139,7 @@ static MNStaff* _currentStaff;
     return self;
 }
 
-+ (MNStaff*)currentStaff;
++ (MNStaff*)currentStaff
 {
     if(!_currentStaff)
     {
@@ -151,7 +152,7 @@ static MNStaff* _currentStaff;
                     atY:(float)y
                   width:(float)width
                  height:(float)height
-            optionsDict:(NSDictionary*)optionsDict;
+            optionsDict:(NSDictionary*)optionsDict
 {
     self = [self initWithDictionary:optionsDict];
     if(self)
@@ -208,12 +209,12 @@ static MNStaff* _currentStaff;
     return self;
 }
 
-+ (MNStaff*)staffWithBoundingBox:(MNBoundingBox*)frame;
++ (MNStaff*)staffWithBoundingBox:(MNBoundingBox*)frame
 {
     return [MNStaff staffWithRect:frame.rect];
 }
 
-+ (MNStaff*)staffWithRect:(CGRect)rect;
++ (MNStaff*)staffWithRect:(CGRect)rect
 {
     return [MNStaff staffAtX:CGRectGetMinX(rect)
                          atY:CGRectGetMinY(rect)
@@ -221,12 +222,12 @@ static MNStaff* _currentStaff;
                       height:CGRectGetHeight(rect)];
 }
 
-+ (MNStaff*)staffAtX:(float)x atY:(float)y width:(float)width height:(float)height;
++ (MNStaff*)staffAtX:(float)x atY:(float)y width:(float)width height:(float)height
 {
     return [[MNStaff alloc] initAtX:x atY:y width:width height:height optionsDict:nil];
 }
 
-+ (MNStaff*)staffWithRect:(CGRect)rect optionsDict:(NSDictionary*)optionsDict;
++ (MNStaff*)staffWithRect:(CGRect)rect optionsDict:(NSDictionary*)optionsDict
 {
     return [[MNStaff alloc] initAtX:CGRectGetMinX(rect)
                                 atY:CGRectGetMinY(rect)
@@ -235,7 +236,7 @@ static MNStaff* _currentStaff;
                         optionsDict:optionsDict];
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -252,7 +253,7 @@ static MNStaff* _currentStaff;
  * Get the current configuration for the staff.
  * @return {Array} An array of NSDictionaries configuration objects.
  */
-- (NSMutableArray*)getConfigForLines;
+- (NSMutableArray*)getConfigForLines
 {
     return self.options.lineConfig;
 }
@@ -263,7 +264,7 @@ static MNStaff* _currentStaff;
  *  @param lineConfig An configuration object for the specified line.
  *  @return this object
  */
-- (id)setConfigForLine:(NSInteger)lineNumber withConfig:(NSDictionary*)lineConfig;
+- (id)setConfigForLine:(NSInteger)lineNumber withConfig:(NSDictionary*)lineConfig
 {
     // are there a valid number of lines
     if(lineNumber >= self.options.numLines || lineNumber < 0.0)
@@ -298,7 +299,7 @@ static MNStaff* _currentStaff;
  *   The caller can set null for any line config entry if it is desired that the default be used
  *  @return this object
  */
-- (id)setConfigForLines:(NSArray*)linesConfiguration;
+- (id)setConfigForLines:(NSArray*)linesConfiguration
 {
     NSMutableArray* tmpLinesConfiguration = [NSMutableArray arrayWithCapacity:linesConfiguration.count];
     for(int i = 0; i < linesConfiguration.count; ++i)
@@ -343,7 +344,7 @@ static MNStaff* _currentStaff;
 
 #pragma mark - Properties
 
-- (NSString*)description;
+- (NSString*)description
 {
     // TODO: figure this out
     return [self autoDescription];
@@ -510,7 +511,7 @@ static MNStaff* _currentStaff;
  *  @param begBarType beginning bar type
  *  @return this object
  */
-- (id)setBegBarType:(MNBarLineType)begBarType;
+- (id)setBegBarType:(MNBarLineType)begBarType
 {
     // only valid bar types at beginning of Staff is `none`, `single` or `begin repeat`
     if(begBarType == MNBarLineSingle || begBarType == MNBarLineRepeatBegin || begBarType == MNBarLineNone)
@@ -531,7 +532,7 @@ static MNStaff* _currentStaff;
  *  @param endBarType ending bar type
  *  @return this object
  */
-- (id)setEndBarType:(MNBarLineType)endBarType;
+- (id)setEndBarType:(MNBarLineType)endBarType
 {
     // repeat end not valid at end of staff
     if(endBarType != MNBarLineRepeatBegin)
@@ -559,7 +560,7 @@ static MNStaff* _currentStaff;
  *  @param index The index from which to determine the shift
  *  @return The amount of pixels shifted
  */
-- (float)getModifierXShift:(NSInteger)index;
+- (float)getModifierXShift:(NSInteger)index
 {
     if(index < 0)
     {
@@ -592,7 +593,7 @@ static MNStaff* _currentStaff;
  *  @param y    y position relative to staff origin
  *  @return this object
  */
-- (id)setRepetitionTypeLeft:(MNRepetitionType)type atY:(float)y;
+- (id)setRepetitionTypeLeft:(MNRepetitionType)type atY:(float)y
 {
     [self.modifiers push:[[MNStaffRepetition alloc] initWithType:type x:self.x y_shift:y]];
     return self;
@@ -604,7 +605,7 @@ static MNStaff* _currentStaff;
  *  @param y    y position relative to staff origin
  *  @return this object
  */
-- (id)setRepetitionTypeRight:(MNRepetitionType)type atY:(float)y;
+- (id)setRepetitionTypeRight:(MNRepetitionType)type atY:(float)y
 {
     [self.modifiers push:[[MNStaffRepetition alloc] initWithType:type x:self.x y_shift:y]];
     return self;
@@ -617,7 +618,7 @@ static MNStaff* _currentStaff;
  *  @param y       y position relative to staff origin
  *  @return this object
  */
-- (id)setVoltaType:(MNVoltaType)type withNumber:(NSString*)numberT atY:(float)y;
+- (id)setVoltaType:(MNVoltaType)type withNumber:(NSString*)numberT atY:(float)y
 {
     [self.modifiers push:[[MNStaffVolta alloc] initWithType:type number:numberT atX:self.x yShift:y]];
     return self;
@@ -629,7 +630,7 @@ static MNStaff* _currentStaff;
  *  @param y       shift up from staff origin
  *  @return this object
  */
-- (id)setSectionWithSection:(NSString*)section atY:(float)y;
+- (id)setSectionWithSection:(NSString*)section atY:(float)y
 {
     [self.modifiers push:[MNStaffSection staffSectionWithSection:section withX:self.x yShift:y]];
     return self;
@@ -642,7 +643,7 @@ static MNStaff* _currentStaff;
  *  @param y     y position relative to staff origin
  *  @return this object
  */
-- (id)setTempoWithTempo:(TempoOptionsStruct*)tempo atY:(float)y;
+- (id)setTempoWithTempo:(TempoOptionsStruct*)tempo atY:(float)y
 {
     [self.modifiers push:[[MNStaffTempo alloc] initWithTempo:tempo atX:self.x withShiftY:y]];
     return self;
@@ -658,7 +659,7 @@ static MNStaff* _currentStaff;
  *                      `justification`
  *  @return this object
  */
-- (id)setTextWithText:(NSString*)text atPosition:(MNPositionType)position withOptions:(NSDictionary*)options;
+- (id)setTextWithText:(NSString*)text atPosition:(MNPositionType)position withOptions:(NSDictionary*)options
 {
     [self.modifiers push:[[MNStaffText alloc] initWithText:text atPosition:position WithOptions:options]];
     return self;
@@ -671,7 +672,7 @@ static MNStaff* _currentStaff;
  *  @param options  the following options to set text position:
  *  @return this object
  */
-- (id)setTextWithText:(NSString*)text atPosition:(MNPositionType)position;
+- (id)setTextWithText:(NSString*)text atPosition:(MNPositionType)position
 {
     return [self setTextWithText:text atPosition:position withOptions:nil];
 }
@@ -947,7 +948,7 @@ static MNStaff* _currentStaff;
  *  gets the bottom y coordinate in global space
  *  @return the bottom y coordinate
  */
-- (float)getBottomY;
+- (float)getBottomY
 {
     StaffOptions* options = self.options;
     float spacing = options.pointsBetweenLines;
@@ -965,7 +966,7 @@ static MNStaff* _currentStaff;
  *  @param line staff line
  *  @return y position
  */
-- (float)getYForLine:(float)line;
+- (float)getYForLine:(float)line
 {
     //    line = [self translateLine:line];
 
@@ -981,7 +982,7 @@ static MNStaff* _currentStaff;
  *  @param line staff line
  *  @return y position
  */
-- (float)getYForTopTextWithLine:(float)line;
+- (float)getYForTopTextWithLine:(float)line
 {
     return [self getYForLine:(-line - self.options.topTextPosition)];
 }
@@ -990,7 +991,7 @@ static MNStaff* _currentStaff;
  *  gets absolute y position for top text line
  *  @return y position
  */
-- (float)getYForTopText;
+- (float)getYForTopText
 {
     return [self getYForTopTextWithLine:0];
 }
@@ -1000,7 +1001,7 @@ static MNStaff* _currentStaff;
  *  @param line staff line
  *  @return y position
  */
-- (float)getYForBottomTextWithLine:(float)line;
+- (float)getYForBottomTextWithLine:(float)line
 {
     return [self getYForLine:(self.options.bottomTextPosition + line)];
 }
@@ -1009,7 +1010,7 @@ static MNStaff* _currentStaff;
  *  gets absolute y position for top text line
  *  @return y position
  */
-- (float)getYForBottomText;
+- (float)getYForBottomText
 {
     return [self getYForBottomTextWithLine:0];
 }
@@ -1019,7 +1020,7 @@ static MNStaff* _currentStaff;
  *  @param line staff line
  *  @return y position
  */
-- (float)getYForNoteWithLine:(float)line;
+- (float)getYForNoteWithLine:(float)line
 {
     StaffOptions* options = _options;
     float spacing = options.pointsBetweenLines;
@@ -1032,7 +1033,7 @@ static MNStaff* _currentStaff;
  *  gets absolute y position for glyphs
  *  @return y position
  */
-- (float)getYForGlyphs;
+- (float)getYForGlyphs
 {
     return [self getYForLine:3];
 }
@@ -1048,7 +1049,7 @@ static MNStaff* _currentStaff;
  *  @param glyph the glyph object
  *  @return this object
  */
-- (id)addGlyph:(MNGlyph*)glyph;
+- (id)addGlyph:(MNGlyph*)glyph
 {
     if((!glyph.metrics.code || glyph.metrics.code.length == 0) && !glyph.drawBlock)
     {
@@ -1066,7 +1067,7 @@ static MNStaff* _currentStaff;
  *  @param glyph the glyph object
  *  @return this object
  */
-- (id)addEndGlyph:(MNGlyph*)glyph;
+- (id)addEndGlyph:(MNGlyph*)glyph
 {
     glyph.parent = self;
     [self.endGlyphs push:glyph];
@@ -1094,7 +1095,7 @@ static MNStaff* _currentStaff;
  *  @param modifier a staff modifier
  *  @return this object
  */
-- (id)addModifier:(MNStaffModifier*)modifier;
+- (id)addModifier:(MNStaffModifier*)modifier
 {
     [self.modifiers push:modifier];
     modifier.staff = self;   // CHANGE
@@ -1107,7 +1108,7 @@ static MNStaff* _currentStaff;
  *  @param modifier a staff modifier
  *  @return this object
  */
-- (id)addEndModifier:(MNStaffModifier*)modifier;
+- (id)addEndModifier:(MNStaffModifier*)modifier
 {
     [self.modifiers push:modifier];
     modifier.staff = self;   // CHANGE
@@ -1120,13 +1121,13 @@ static MNStaff* _currentStaff;
  *  @param signature the specifier for the signature
  *  @return this object
  */
-- (id)addKeySignature:(NSString*)signature;
+- (id)addKeySignature:(NSString*)signature
 {
     [self addModifier:[MNKeySignature keySignatureWithKey:signature]];
     return self;
 }
 
-- (id)addKeySignatureWithKeySignature:(MNKeySignature*)keySignature;
+- (id)addKeySignatureWithKeySignature:(MNKeySignature*)keySignature
 {
     [self addModifier:keySignature];
     return self;
@@ -1142,7 +1143,7 @@ static MNStaff* _currentStaff;
  *              'AB', 'ABB', 'B', 'BN', 'B#', 'B##', 'BB', 'BBB', 'R', 'X'
  *  @return this object
  */
-- (id)addKeySignatureWithSpec:(NSString*)keySpec;
+- (id)addKeySignatureWithSpec:(NSString*)keySpec
 {
     // TODO: this is possibly broken
     [self addModifier:[MNTable keySignatureWithString:keySpec]];
@@ -1153,7 +1154,7 @@ static MNStaff* _currentStaff;
  *  adds a treble clef to the start of this staff
  *  @return this object
  */
-- (id)addTrebleGlyph;
+- (id)addTrebleGlyph
 {
     self.clefType = MNClefTreble;
     //     MNClef* clef =  [MNClef clefWithType:self.clefType];
@@ -1166,7 +1167,7 @@ static MNStaff* _currentStaff;
  *  @param clefType the clef type enum value
  *  @return this object
  */
-- (id)addClefWithType:(MNClefType)clefType;
+- (id)addClefWithType:(MNClefType)clefType
 {
     self.clefType = clefType;
     MNClef* clef = [MNClef clefWithType:clefType];
@@ -1182,7 +1183,7 @@ static MNStaff* _currentStaff;
  *                      `subbass`, `tenor`
  *  @return this object
  */
-- (id)addClefWithName:(NSString*)clefName;
+- (id)addClefWithName:(NSString*)clefName
 {
     self.clefName = clefName;
     MNClef* clef = [MNClef clefWithName:clefName];
@@ -1211,7 +1212,7 @@ static MNStaff* _currentStaff;
  *  @param clef the clef object
  *  @return thix object
  */
-- (id)addClef:(MNClef*)clef;
+- (id)addClef:(MNClef*)clef
 {
     self.clefName = clef.clefName;
     [self addModifier:clef];
@@ -1226,7 +1227,7 @@ static MNStaff* _currentStaff;
  *  @param size     the size of the clef
  *  @return this object
  */
-- (id)addClefWithName:(NSString*)clefName size:(NSString*)size;
+- (id)addClefWithName:(NSString*)clefName size:(NSString*)size
 {
     self.clefName = clefName;
     MNClef* clef = [MNClef clefWithName:clefName size:size];
@@ -1243,7 +1244,7 @@ static MNStaff* _currentStaff;
  *  @param annotation a clef annotation
  *  @return this object
  */
-- (id)addClefWithName:(NSString*)clefName size:(NSString*)size annotation:(NSString*)annotation;
+- (id)addClefWithName:(NSString*)clefName size:(NSString*)size annotation:(NSString*)annotation
 {
     self.clefName = clefName;
     MNClef* clef = [MNClef clefWithName:clefName size:size annotationName:annotation];
@@ -1259,7 +1260,7 @@ static MNStaff* _currentStaff;
  *  @param size     the size of the clef
  *  @return this object
  */
-- (id)addEndClefWithName:(NSString*)clefName size:(NSString*)size;
+- (id)addEndClefWithName:(NSString*)clefName size:(NSString*)size
 {
     self.clefName = clefName;
     [self addEndModifier:[MNClef clefWithName:clefName size:size]];
@@ -1275,7 +1276,7 @@ static MNStaff* _currentStaff;
  *  @param annotation an annotation
  *  @return this object
  */
-- (id)addEndClefWithName:(NSString*)clefName size:(NSString*)size annotation:(NSString*)annotation;
+- (id)addEndClefWithName:(NSString*)clefName size:(NSString*)size annotation:(NSString*)annotation
 {
     self.clefName = clefName;
     [self addEndModifier:[MNClef clefWithName:clefName size:size annotationName:annotation]];
@@ -1287,7 +1288,7 @@ static MNStaff* _currentStaff;
  *  @param signature time signature name
  *  @return this object
  */
-- (id)addTimeSignatureWithName:(NSString*)signature;
+- (id)addTimeSignatureWithName:(NSString*)signature
 {
     //[self addModifier:[[MNTimeSignature alloc] initWithTimeSpec:signature andPadding:0]];
 
@@ -1303,7 +1304,7 @@ static MNStaff* _currentStaff;
  *  @param signature time signature name
  *  @return this object
  */
-- (id)addEndTimeSignatureWithName:(NSString*)signature;
+- (id)addEndTimeSignatureWithName:(NSString*)signature
 {
     float padding = 5;
     MNTimeSignature* timeSignature = [[MNTimeSignature alloc] initWithTimeSpec:signature andPadding:padding];
@@ -1318,7 +1319,7 @@ static MNStaff* _currentStaff;
  *  @param padding   amount of space between time siganture and next glyph
  *  @return this object
  */
-- (id)addTimeSignatureWithName:(NSString*)signature padding:(float)padding;
+- (id)addTimeSignatureWithName:(NSString*)signature padding:(float)padding
 {
     MNTimeSignature* timeSignature = [[MNTimeSignature alloc] initWithTimeSpec:signature andPadding:padding];
     [self addModifier:timeSignature];
@@ -1332,7 +1333,7 @@ static MNStaff* _currentStaff;
  *  @param padding   amount of space between time siganture and next glyph
  *  @return this object
  */
-- (id)addTimeSignature:(MNTimeSignature*)signature padding:(float)padding;
+- (id)addTimeSignature:(MNTimeSignature*)signature padding:(float)padding
 {
     signature.padding = padding;
     [self addModifier:signature];
@@ -1345,7 +1346,7 @@ static MNStaff* _currentStaff;
  *  @param signature     time signature object
  *  @return this object
  */
-- (id)addEndTimeSignature:(MNTimeSignature*)signature;
+- (id)addEndTimeSignature:(MNTimeSignature*)signature
 {
     [self addEndModifier:signature];
     return self;

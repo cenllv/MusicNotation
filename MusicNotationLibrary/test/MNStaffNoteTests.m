@@ -160,7 +160,7 @@
     w = w != 0 ? w : 350;
     h = h != 0 ? h : 150;
 
-    [MNFont setFont:@" 10pt Arial"];
+    // [MNFont setFont:@" 10pt Arial"];
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
     return [MNViewStaffStruct contextWithStaff:staff andView:nil];
@@ -840,7 +840,6 @@
     NSString* clefName = @"bass";
     MNClef* clef = [MNClef clefWithName:clefName];
     staff.clef = clef;
-    [staff draw:ctx];
 
     // NOTE: changed @{ @"clef" -> @{ @"clefName"
 

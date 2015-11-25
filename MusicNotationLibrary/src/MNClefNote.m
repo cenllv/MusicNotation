@@ -63,26 +63,26 @@
     return self;
 }
 
-+ (MNClefNote*)clefNoteWithClef:(NSString*)clef;
++ (MNClefNote*)clefNoteWithClef:(NSString*)clef
 {
     [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
     abort();
     return nil;
 }
 
-+ (MNClefNote*)clefNoteWithClef:(NSString*)clef size:(NSString*)size;
++ (MNClefNote*)clefNoteWithClef:(NSString*)clef size:(NSString*)size
 {
     return [[MNClefNote alloc] initWithDictionary:@{@"clefName" : clef, @"clefSize" : size, @"duration" : @"b"}];
 }
 
-+ (MNClefNote*)clefNoteWithClef:(NSString*)clef size:(NSString*)size annotation:(NSString*)annotation;
++ (MNClefNote*)clefNoteWithClef:(NSString*)clef size:(NSString*)size annotation:(NSString*)annotation
 {
     return [[MNClefNote alloc]
         initWithDictionary:
             @{@"clefName" : clef, @"clefSize" : size, @"annotationName" : annotation, @"duration" : @"b"}];
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];

@@ -26,6 +26,7 @@
 //
 
 #import "NSString+MNAdditions.h"
+#import "NSString+Ruby.h"
 
 @implementation NSString (MNAdditions)
 
@@ -46,14 +47,29 @@
     return [NSString stringWithString:titleCaseString];
 }
 
-- (BOOL)isNotEqualToString:(NSString*)other;
+- (BOOL)isNotEqualToString:(NSString*)other
 {
     return ![self isEqualToString:other];
 }
 
 - (NSString*)removeNewLinesAndExcessWhiteSpace
 {
-    
+    NSString* original = self;
+
+    NSString* squashed = [original stringByReplacingOccurrencesOfString:@"[ ]+"
+                                                             withString:@" "
+                                                                options:NSRegularExpressionSearch
+                                                                  range:NSMakeRange(0, original.length)];
+
+    NSString* final = [squashed stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    return [final substituteAll:@{ @"\n" : @"|", @"\r" : @"" }];
+}
+
++ (NSString*)oneLineString:(NSArray*)array
+{
+    NSString *ret = [[array description] removeNewLinesAndExcessWhiteSpace];
+    return ret;
 }
 
 @end

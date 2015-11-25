@@ -64,7 +64,7 @@
     return self;
 }
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -123,7 +123,7 @@
     return [[MNSymbol alloc] initWithCode:code withPointSize:pointSize];
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -216,7 +216,7 @@
  *  hhelps create a debug description from the specified string to properties dictionary
  *  @return a dictionary of property names
  */
-- (NSDictionary*)dictionarySerialization;
+- (NSDictionary*)dictionarySerialization
 {
     //    return [self dictionaryWithValuesForKeyPaths:@[]];
     return [self dictionaryWithValuesForKeyPaths:@[]];
@@ -288,7 +288,7 @@
     return self.symbolMetrics.code;
 }
 
-- (float)absoluteX;
+- (float)absoluteX
 {
     MNMetrics* metrics = _metrics;
     return metrics.point.x;
@@ -307,13 +307,13 @@
 }
 
 #pragma mark - Methods
-- (void)reset;
+- (void)reset
 {
     _preFormatted = NO;
     _postFormatted = NO;
 }
 
-- (BOOL)preFormat;
+- (BOOL)preFormat
 {
     if(!_preFormatted)
     {
@@ -323,7 +323,7 @@
     return YES;
 }
 
-- (void)load;
+- (void)load
 {
     //    if([self.symbolMetrics.code isEqualToString:@""])
     //    {
@@ -344,12 +344,12 @@
     }
 }
 
-- (BOOL)postFormat;
+- (BOOL)postFormat
 {
     return YES;
 }
 
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     if(!ctx)
     {

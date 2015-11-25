@@ -44,7 +44,7 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -57,7 +57,7 @@
     return self;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -163,7 +163,7 @@
  *  @param firstGlyph if this is the first glyph
  *  @return this object
  */
-- (id)addToStaff:(MNStaff*)staff firstGlyph:(BOOL)firstGlyph;
+- (id)addToStaff:(MNStaff*)staff firstGlyph:(BOOL)firstGlyph
 {
     if(firstGlyph)
     {
@@ -178,7 +178,7 @@
  *  @param staff      the staff to add this modifier to
  *  @param firstGlyph if this is the first glyph
  */
-- (void)addToStaffEnd:(MNStaff*)staff firstGlyph:(BOOL)firstGlyph;
+- (void)addToStaffEnd:(MNStaff*)staff firstGlyph:(BOOL)firstGlyph
 {
     if(!firstGlyph)
     {
@@ -234,12 +234,12 @@
  *  @param ctx   graphics context
  *  @param staff the staff to draw to
  */
-- (void)drawWithContext:(CGContextRef)ctx toStaff:(MNStaff*)staff withShiftX:(float)shiftX;
+- (void)drawWithContext:(CGContextRef)ctx toStaff:(MNStaff*)staff withShiftX:(float)shiftX
 {
     [super draw:ctx];
 }
 
-- (void)drawWithContext:(CGContextRef)ctx toStaff:(MNStaff*)staff;
+- (void)drawWithContext:(CGContextRef)ctx toStaff:(MNStaff*)staff
 {
     [super draw:ctx];
 }

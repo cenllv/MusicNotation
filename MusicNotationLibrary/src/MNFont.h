@@ -5,7 +5,6 @@
 //  Created by Scott Riccardelli on 1/1/15.
 //  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
-//  Ported from [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,37 +25,46 @@
 //  THE SOFTWARE.
 //
 
-
 #if TARGET_OS_IPHONE
 
 //#import <UIKit/UIKit.h>
 #elif TARGET_OS_MAC
 
-
 #endif
 
 /*! The `MNFont` class
  */
-#if TARGET_OS_IPHONE
-@interface  MNFont : UIFont
-#elif TARGET_OS_MAC
-@interface MNFont : NSFont
-#endif
+@interface MNFont : NSObject
 {
    @private
+#if TARGET_OS_IPHONE
+    UIFont* _font;
+#elif TARGET_OS_MAC
+    NSFont* _font;
+#endif
+    BOOL _bold;
+    BOOL _italic;
+    float _fontSize;
+    NSString* _family;
 }
 #pragma mark - Properties
-@property (assign, nonatomic) BOOL bold;
-@property (assign, nonatomic) BOOL italic;
-@property (assign, nonatomic, readonly) float size;
+#if TARGET_OS_IPHONE
+@property (strong, atomic) UIFont* font;
+#elif TARGET_OS_MAC
+@property (strong, atomic) NSFont* font;
+#endif
+@property (assign, atomic) BOOL bold;
+@property (assign, atomic) BOOL italic;
+@property (assign, atomic) float size;
+@property (strong, atomic) NSString* family;
 
 #pragma mark - Methods
-+ (NSArray*)fontNames;
-+ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize;
-+ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize weight:(NSString*)weight;
 
-+ (id)setFont:(NSString*)fontName;
-+ (id)setStrokeStyle:(NSString*)strokeStyle;
-+ (id)setFillStyle:(NSString*)fillStyle;
++ (MNFont*)systemFontWithSize:(CGFloat)fontSize;
++ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize;
++ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize bold:(BOOL)bold italic:(BOOL)italic;
+
++ (NSArray<NSString*>*)fontNames;
++ (NSArray<NSString*>*)availableFonts;
 
 @end

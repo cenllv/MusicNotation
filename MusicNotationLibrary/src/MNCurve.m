@@ -58,20 +58,20 @@
  *  @param toNote   end note
  *  @return a curve object
  */
-+ (MNCurve*)curveFromNote:(MNNote*)fromNote toNote:(MNNote*)toNote;
++ (MNCurve*)curveFromNote:(MNNote*)fromNote toNote:(MNNote*)toNote
 {
     MNCurve* ret = [[MNCurve alloc] initWithDictionary:@{@"fromNote" : fromNote, @"toNote" : toNote}];
     return ret;
 }
 
-+ (MNCurve*)curveFromNote:(MNNote*)fromNote toNote:(MNNote*)toNote withDictionary:(NSDictionary*)optionsDict;
++ (MNCurve*)curveFromNote:(MNNote*)fromNote toNote:(MNNote*)toNote withDictionary:(NSDictionary*)optionsDict
 {
     MNCurve* ret = [[MNCurve alloc] initWithDictionary:@{@"fromNote" : fromNote, @"toNote" : toNote}];
     //    [ret setValuesForKeyPathsWithDictionary:optionsDict];
     return ret;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -84,7 +84,7 @@
  *  @param toNote   end note
  *  @return this object
  */
-- (id)setNotesFrom:(MNStaffNote*)fromNote toNote:(MNStaffNote*)toNote;
+- (id)setNotesFrom:(MNStaffNote*)fromNote toNote:(MNStaffNote*)toNote
 {
     if(!fromNote && !toNote)
     {

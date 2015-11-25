@@ -5,7 +5,6 @@
 //  Created by Scott Riccardelli on 1/1/15.
 //  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
-//  Ported from [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -27,9 +26,7 @@
 //
 
 #import "MNText.h"
-
-//
-#import <CoreText/CoreText.h>
+//#import <CoreText/CoreText.h>
 #import "MNFont.h"
 #import "MNColor.h"
 #import "MNUtils.h"
@@ -38,9 +35,18 @@
 
 @interface MNText ()
 @property (strong, nonatomic) MNFont* font;
+//@property (strong, nonatomic, readonly)  MNFont *font;
+//@property (strong, nonatomic) MNColor* color;
+//@property (strong, nonatomic) NSString *fontName;
+//@property (assign, nonatomic) NSUInteger fontSize;
+//@property (assign, nonatomic) BOOL fontItalic;
+//@property (assign, nonatomic) BOOL fontBold;
+@property (assign, nonatomic) MNTextAlignment alignment;
+@property (assign, nonatomic) MNTextVerticalAlignment verticalAlignment;
 @end
 
 static BOOL _dirty;   // update font prop
+static BOOL _showBoundingBox = NO;
 
 @implementation MNText
 {
@@ -53,41 +59,44 @@ static BOOL _dirty;   // update font prop
 
 + (MNText*)sharedText
 {
-    static MNText* sharedMNText = nil;
+    static MNText* _sharedMNText = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-      sharedMNText = [[self alloc] init];
+      _sharedMNText = [[self alloc] init];
     });
-    return sharedMNText;
-}
-
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
-{
-    self = [super initWithDictionary:optionsDict];
-    if(self)
-    {
-    }
-    return self;
+    return _sharedMNText;
 }
 
 - (instancetype)init
 {
-    if(self = [self initWithDictionary:@{}])
+    if(self = [super init])
     {
         _dirty = YES;
         self.font = [MNFont fontWithName:@"times" size:12];
         self.color = MNColor.blackColor;
+        self.verticalAlignment = MNTextAlignmentTop;
     }
     return self;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
++ (void)setAlignment:(MNTextAlignment)alignment
 {
-    NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
-    //        [propertiesEntriesMapping
-    //        addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" :
-    //        @"realName"}];
-    return propertiesEntriesMapping;
+    [[MNText sharedText] setAlignment:alignment];
+}
+
+- (void)setAlignment:(MNTextAlignment)alignment
+{
+    _alignment = alignment;
+}
+
++ (void)setVerticalAlignment:(MNTextVerticalAlignment)alignment
+{
+    [[MNText sharedText] setVerticalAlignment:alignment];
+}
+
+- (void)setVerticalAlignment:(MNTextVerticalAlignment)alignment
+{
+    _verticalAlignment = alignment;
 }
 
 - (void)setColor:(MNColor*)color
@@ -120,59 +129,102 @@ static BOOL _dirty;   // update font prop
     _fontBold = fontBold;
 }
 
-+ (void)setFont:(MNFont*)font;
++ (void)setFont:(MNFont*)font
 {
     [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
     abort();
 }
 
-
-+ (void)setBold:(BOOL)bold;
++ (void)setBold:(BOOL)bold
 {
     [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
     abort();
 }
 
-+ (void)setItalic:(BOOL)italic;
++ (void)setItalic:(BOOL)italic
 {
     [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
     abort();
 }
 
-+ (void)setColor:(MNColor*)color;
++ (void)setColor:(MNColor*)color
 {
     [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
     abort();
 }
 
-+ (void)drawSimpleText:(CGContextRef)ctx atPoint:(MNPoint*)point withText:(NSString*)text;
++ (void)drawText:(CGContextRef)ctx atPoint:(MNPoint*)point withText:(NSString*)text
 {
     [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
     abort();
 }
 
-+ (void)drawSimpleText:(CGContextRef)ctx withFont:(MNFont*)font atPoint:(MNPoint*)point withText:(NSString*)text;
++ (void)showBoundingBox:(BOOL)showBoundingBox
 {
-    //     [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+    _showBoundingBox = showBoundingBox;
+}
 
++ (void)drawBoundingBox:(CGContextRef)ctx title:(NSAttributedString*)title point:(MNPoint*)point
+{
+    if(_showBoundingBox)
+    {
+        MNBoundingBox* bb =
+            [MNBoundingBox boundingBoxAtX:point.x atY:point.y withWidth:title.size.width andHeight:title.size.height];
+        [bb draw:ctx];
+    }
+}
+
++ (void)drawBoundingBox:(CGContextRef)ctx title:(NSAttributedString*)title rect:(CGRect)rect
+{
+    if(_showBoundingBox)
+    {
+        MNBoundingBox* bb = [MNBoundingBox boundingBoxWithRect:rect];
+        [bb draw:ctx];
+    }
+}
+
++ (void)drawText:(CGContextRef)ctx withFont:(MNFont*)font atPoint:(MNPoint*)point withText:(NSString*)text
+{
     NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.alignment = kCTTextAlignmentLeft;
+    paragraphStyle.alignment = [[MNText sharedText] alignment];
 
     NSAttributedString* title = [[NSAttributedString alloc]
         initWithString:text
-            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font}];
+            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font.font}];
 
     [title drawAtPoint:point.CGPoint];
+
+    [self drawBoundingBox:ctx title:title point:point];
 }
 
-+ (void)drawSimpleText:(CGContextRef)ctx atPoint:(MNPoint*)point withHeight:(float)h withText:(NSString*)text;
++ (void)drawText:(CGContextRef)ctx withFont:(MNFont*)font atRect:(CGRect)rect withText:(NSString*)text
+{
+    NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.alignment = [[MNText sharedText] alignment];
+
+    NSAttributedString* title = [[NSAttributedString alloc]
+        initWithString:text
+            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font.font}];
+
+    if ([[MNText sharedText] verticalAlignment] == MNTextAlignmentTop) {
+        [title drawInRect:rect];
+    } else if ([[MNText sharedText] verticalAlignment] == MNTextAlignmentMiddle) {
+        [title drawInRect:CGRectMake(rect.origin.x, CGRectGetMidY(rect) - title.size.height/2, rect.size.width, rect.size.height)];
+    } else {
+        [title drawInRect:CGRectMake(rect.origin.x, CGRectGetMaxY(rect) - title.size.height, rect.size.width, rect.size.height)];
+    }
+
+    [self drawBoundingBox:ctx title:title rect:rect];
+}
+
++ (void)drawText:(CGContextRef)ctx atPoint:(MNPoint*)point withHeight:(float)h withText:(NSString*)text
 {
     [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
     abort();
 }
 
 // draw text with core text
-+ (void)drawSimpleText:(CGContextRef)ctx atPoint:(MNPoint*)point withBounds:(CGRect)bounds withText:(NSString*)text;
++ (void)drawText:(CGContextRef)ctx atPoint:(MNPoint*)point withBounds:(CGRect)bounds withText:(NSString*)text
 {
     // http://www.raywenderlich.com/4147/core-text-tutorial-for-ios-making-a-magazine-app
 
@@ -209,7 +261,7 @@ static BOOL _dirty;   // update font prop
                  withBounds:(MNBoundingBox*)bounds
                    withText:(NSString*)text
                withFontName:(NSString*)fontName
-                   fontSize:(NSUInteger)fontSize;
+                   fontSize:(NSUInteger)fontSize
 {
     // write the text at the top
     NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -236,6 +288,7 @@ static BOOL _dirty;   // update font prop
     //                   range:NSMakeRange(0, title.length)];
 
     //    title boundingRectWithSize:(NSSize) options:(NSStringDrawingOptions)
+    
     [title drawInRect:bounds.rect];
 
     //
@@ -243,7 +296,7 @@ static BOOL _dirty;   // update font prop
     //    [title drawAtPoint:point.CGPoint];
 }
 
-+ (CGSize)measureText:(NSString*)text;
++ (CGSize)measureText:(NSString*)text
 {
     // TODO: incorrect implementation
     return CGSizeMake(text.length, 1);
@@ -355,13 +408,13 @@ static BOOL _dirty;   // update font prop
     return self;
 }
 
-- (NSString*)randomWord;
+- (NSString*)randomWord
 {
     NSUInteger randomIndex = random() % [_words count];
     return [_words objectAtIndex:randomIndex];
 }
 
-- (NSString*)words:(NSUInteger)count;
+- (NSString*)words:(NSUInteger)count
 {
     if(count == 0)
         return @"";
@@ -382,7 +435,7 @@ static BOOL _dirty;   // update font prop
     return words;
 }
 
-- (NSString*)sentences:(NSUInteger)count;
+- (NSString*)sentences:(NSUInteger)count
 {
     NSMutableString* result = [NSMutableString string];
     for(NSUInteger i = 0; i < count; i++)

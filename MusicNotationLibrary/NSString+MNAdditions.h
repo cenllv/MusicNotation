@@ -30,5 +30,6 @@
 - (NSString*)camelCaseToTitleCase;
 - (BOOL)isNotEqualToString:(NSString*)other;
 - (NSString*)removeNewLinesAndExcessWhiteSpace;
++ (NSString*)oneLineString:(NSArray*)array;
 
 @end

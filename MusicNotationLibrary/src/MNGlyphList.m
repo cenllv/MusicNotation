@@ -35,10 +35,11 @@
 #import "MNSize.h"
 #import "MNPoint.h"
 #import "MNTable.h"
+#import "MNConstants.h"
 
 @implementation MNGlyphStruct
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -56,7 +57,7 @@
 
 @implementation MNGlyphList
 #pragma mark - Initialization
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -65,7 +66,7 @@
     return self;
 }
 
-+ (instancetype)sharedInstance;
++ (instancetype)sharedInstance
 {
     static MNGlyphList* sharedInstance = nil;
     static dispatch_once_t onceToken;
@@ -84,7 +85,7 @@
 
 static NSMutableDictionary* _dimensionsDictionary;
 static NSMutableDictionary* _anchorPointForGlyphNameDictionary;
-- (NSDictionary*)dimensionsDictionary;
+- (NSDictionary*)dimensionsDictionary
 {
     if(!_dimensionsDictionary)
     {
@@ -179,7 +180,7 @@ static NSMutableDictionary* _anchorPointForGlyphNameDictionary;
 }
 
 static NSUInteger _numberOfGlyphStructs = 0;
-- (NSUInteger)numberOfAvailableGlpyhStucts;
+- (NSUInteger)numberOfAvailableGlpyhStucts
 {
     if(_numberOfGlyphStructs == 0)
     {
@@ -189,7 +190,7 @@ static NSUInteger _numberOfGlyphStructs = 0;
 }
 
 static NSArray* _availableGlyphStructsArray = nil;
-- (NSArray*)availableGlyphStructsArray;
+- (NSArray*)availableGlyphStructsArray
 {
     if(!_availableGlyphStructsArray)
     {
@@ -272,7 +273,7 @@ static NSArray* _availableGlyphStructsArray = nil;
 }
 
 static NSDictionary* _availableGlyphsDictionary = nil;
-- (NSDictionary*)availableGlyphStructsDictionary;
+- (NSDictionary*)availableGlyphStructsDictionary
 {
     // http://stackoverflow.com/q/3199194/629014
     if(!_availableGlyphsDictionary)
@@ -288,7 +289,7 @@ static NSDictionary* _availableGlyphsDictionary = nil;
     return _availableGlyphsDictionary;
 }
 
-- (NSUInteger)indexForName:(NSString*)name;
+- (NSUInteger)indexForName:(NSString*)name
 {
     unsigned int retIndex = 0;
     NSScanner* scanner = [NSScanner scannerWithString:name];
@@ -297,7 +298,7 @@ static NSDictionary* _availableGlyphsDictionary = nil;
     return retIndex;
 }
 
-- (NSArray*)getOutlineForName:(NSString*)name;
+- (NSArray*)getOutlineForName:(NSString*)name
 {
     if(!name || name.length == 0)
     {

@@ -40,6 +40,7 @@
 #import "OCTotallyLazy.h"
 #import "MNTable.h"
 #import "MNTickContext.h"
+#import "MNConstants.h"
 
 @implementation MNGraceNoteGroup
 /*
@@ -52,7 +53,7 @@ Vex.Flow.GraceNoteGroup = (function(){
     // To enable logging for this class. Set `Vex.Flow.GraceNoteGroup.DEBUG` to `YES`.
     function L() { if (GraceNoteGroup.DEBUG) Vex.L("Vex.Flow.GraceNoteGroup", arguments); }
  */
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -105,7 +106,7 @@ Vex.Flow.GraceNoteGroup = (function(){
     return self;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -124,7 +125,7 @@ Vex.Flow.GraceNoteGroup = (function(){
 // ## Static Methods
 //
 // Format groups inside a ModifierContext. Arrange groups inside a `ModifierContext`
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context;
++ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
     NSMutableArray* gracenote_groups = modifiers;
 
@@ -221,7 +222,7 @@ Vex.Flow.GraceNoteGroup = (function(){
     return self;
 }
 
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
 

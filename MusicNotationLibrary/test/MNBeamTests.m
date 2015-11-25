@@ -81,7 +81,7 @@
     w = w != 0 ? w : 450;
     h = h != 0 ? h : 140;
 
-    //     [MNFont setFont:@" 10pt Arial"];
+    //     // [MNFont setFont:@" 10pt Arial"];
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(50, 50, w, 0)] addTrebleGlyph];
     return [MNViewStaffStruct contextWithStaff:staff andView:nil];

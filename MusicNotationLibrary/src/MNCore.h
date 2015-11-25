@@ -29,16 +29,15 @@
 #ifndef MusicNotation_MNCore_Header_h
 #define MusicNotation_MNCore_Header_h
 
-
 #if TARGET_OS_IPHONE
 
 //#import <UIKit/UIKit.h>
 #elif TARGET_OS_MAC
 
-
 #endif
 
 #import "MNMacros.h"
+#import "MNConstants.h"
 
 #import "MNAccidental.h"
 #import "MNAnnotation.h"

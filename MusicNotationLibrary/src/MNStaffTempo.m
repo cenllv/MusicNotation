@@ -36,6 +36,7 @@
 #import "MNTable.h"
 #import "MNGlyph.h"
 #import "MNTableTypes.h"
+#import "MNConstants.h"
 
 @implementation TempoOptions
 
@@ -76,7 +77,7 @@
     return self;
 }
 
-- (instancetype)initWithTempo:(TempoOptionsStruct*)tempo atX:(float)x withShiftY:(float)shiftY;
+- (instancetype)initWithTempo:(TempoOptionsStruct*)tempo atX:(float)x withShiftY:(float)shiftY
 {
     self = [self initWithDictionary:nil];
     if(self)
@@ -102,7 +103,7 @@
     self.font = [MNFont fontWithName:self.fontFamily size:self.fontSize];
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -130,7 +131,7 @@
 }
 
 //- (void)draw:(CGContextRef)ctx toStaff:(MNStaff*)staff withShiftX:(float)shiftX
-- (void)drawWithContext:(CGContextRef)ctx toStaff:(MNStaff*)staff withShiftX:(float)shiftX;
+- (void)drawWithContext:(CGContextRef)ctx toStaff:(MNStaff*)staff withShiftX:(float)shiftX
 {
     [super draw:ctx];
 
@@ -148,7 +149,7 @@
     if(name)
     {
         //         [MNText setFont:font];
-        //         [MNText drawSimpleText:ctx atPoint:MNPointMake(x, y) withText:name];
+        //         [MNText drawText:ctx atPoint:MNPointMake(x, y) withText:name];
 
         //        CTTextAlignment justification = kCTTextAlignmentLeft;
         NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -169,7 +170,7 @@
         if(name)
         {
             x += [MNText measureText:@" "].width;
-            //             [MNText drawSimpleText:ctx atPoint:MNPointMake(x, y) withText:@"("];
+            //             [MNText drawText:ctx atPoint:MNPointMake(x, y) withText:@"("];
 
             //            CTTextAlignment justification = kCTTextAlignmentLeft;
             NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -239,7 +240,7 @@
         {
             text = [NSString stringWithFormat:@" = %.0f", bpm];
         }
-        //         [MNText drawSimpleText:ctx atPoint:MNPointMake(x + 3 * scale, y) withText:text];
+        //         [MNText drawText:ctx atPoint:MNPointMake(x + 3 * scale, y) withText:text];
 
         //        CTTextAlignment justification = kCTTextAlignmentLeft;
         NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];

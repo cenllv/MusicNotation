@@ -233,7 +233,7 @@ static NSMutableDictionary *suiteForBundleCache = nil;
 }
 
 
-- (void) addTestsEnumeratedBy:(NSEnumerator *) anEnumerator;
+- (void) addTestsEnumeratedBy:(NSEnumerator *) anEnumerator
 {
 	id each;
 	while (nil != (each = [anEnumerator nextObject])) {

@@ -5,7 +5,6 @@
 //  Created by Scott on 3/9/15.
 //  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
-//  Ported from [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -28,80 +27,87 @@
 
 #import "MNTextTests.h"
 
-#import "MNFont.h"
-#import "MNText.h"
-#import "NSString+Ruby.h"
-
 @implementation MNTextTests
 
 - (void)start
 {
     [super start];
-    [self runTest:@"Draw Text" func:@selector(drawText:) frame:CGRectMake(10, 10, 700, 250)];
+    [self runTest:@"Draw Sizes" func:@selector(drawFonts:) frame:CGRectMake(10, 10, 650, 400)];
+    [self runTest:@"Draw Alignment" func:@selector(drawAlignment:) frame:CGRectMake(10, 10, 600, 550)];
 }
 
-- (MNTestTuple*)drawText:(NSView*)parent
+- (MNTestTuple*)drawFonts:(MNTestCollectionItemView*)parent
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
-    //    TestCollectionItemView* test =
-    //        self.currentCell;   //  MNTestView* test =  [MNTestView createCanvasTest:CGSizeMake(850, 1200)
-    //        withParent:parent];
+
+    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+      MNFont* font = [MNFont fontWithName:@"times" size:12];
+      float y = 50;
+
+      NSString* str = @"QWFPGJLUYARSTDHNEIOZXCVBKMqwfpgjluyarstdhneiozxcvbkm";
+
+      [MNText showBoundingBox:YES];
+      [MNText drawText:ctx withFont:font atPoint:MNPointMake(50, y += 50) withText:str];
+      font.size += 2;
+      [MNText showBoundingBox:NO];
+      [MNText drawText:ctx withFont:font atPoint:MNPointMake(50, y += 50) withText:str];
+      font.size += 2;
+      [MNText showBoundingBox:YES];
+      [MNText drawText:ctx withFont:font atPoint:MNPointMake(50, y += 50) withText:str];
+      font.size += 2;
+      [MNText showBoundingBox:NO];
+      [MNText drawText:ctx withFont:font atPoint:MNPointMake(50, y += 50) withText:str];
+      font.size += 2;
+      [MNText showBoundingBox:YES];
+      [MNText drawText:ctx withFont:font atPoint:MNPointMake(50, y += 50) withText:str];
+    };
+
+    return ret;
+}
+
+- (MNTestTuple*)drawAlignment:(MNTestCollectionItemView*)parent
+{
+    MNTestTuple* ret = [MNTestTuple testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      // draw an outline of the frame
-      //        NSBezierPath *outline = [NSBezierPath bezierPathWithRect:CGRectMake(bounds.origin.x,
-      //                                                                            bounds.origin.y,
-      //                                                                            bounds.size.width,
-      //                                                                            bounds.size.height)];
-      //        [outline setLineWidth:1.0];
-      //        [SHEET_MUSIC_COLOR setFill];
-      //        [MNColor.blackColor setStroke];
-      //        [outline fill];
-      //        [outline setLineWidth:3.0];
-      //        [outline stroke];
+      MNFont* font = [MNFont fontWithName:@"times" size:12];
+      font.bold = YES;
+      float y = 50, x = 40, w = 500, h = 30, step = 50;
 
-      //         [MNText drawSimpleText:ctx atPoint:MNPointMake(0, 0) withBounds:bounds withText:@"Hello core text
-      //        world!"];
-      //         [MNText drawSimpleText:ctx atPoint:MNPointMake(30, 30) withBounds:bounds withText:@"Hello core text
-      //        world!"];
-      //         [MNText drawSimpleText:ctx atPoint:MNPointMake(60, 60) withBounds:bounds withText:@"Hello core text
-      //        world!"];
-      //         [MNText drawSimpleText:ctx atPoint:MNPointMake(0, 100) withBounds:bounds withText:@"Hello core text
-      //        world!"];
+      [MNText showBoundingBox:YES];
+      [MNText setAlignment:MNTextAlignmentRight];
+      [MNText drawText:ctx withFont:font atRect:CGRectMake(x, y, w, h) withText:@"MNTextAlignmentRight"];
 
-      //      LoremIpsum* loremIpsum = [[LoremIpsum alloc] init];
-      //      float x = 20;
-      //      float y = 200;
-      //      NSString* text = [NSString stringWithFormat:@"font count: %lu", (unsigned long)MNFont.fontNames.count];
-      //      MNBoundingBox* boundingBox = MNBoundingBoxMake(x, y, 500, 30);
-      //       [MNText drawTextWithContext:ctx
-      //                          atPoint:MNPointMake(0, 0)
-      //                       withBounds:boundingBox
-      //                         withText:text
-      //                     withFontName:@"TimesNewRomanPS-ItalicMT"
-      //                         fontSize:12];
-      //      NSUInteger i = 0;
-      //      for(NSString* fontName in  MNFont.fontNames)
-      //      {
-      //          NSString* text = [loremIpsum words:3];
-      //          text = [text concat:[NSString stringWithFormat:@" %lu", (unsigned long)i]];
-      //          y += 15;
-      //          MNBoundingBox* boundingBox = MNBoundingBoxMake(x, y, 400, 30);
-      //           [MNText drawTextWithContext:ctx
-      //                              atPoint:MNPointMake(0, 0)
-      //                           withBounds:boundingBox
-      //                             withText:text
-      //                         withFontName:fontName
-      //                             fontSize:12];
-      //          if(y > 1150)
-      //          {
-      //              x += 200;
-      //              y = 15;
-      //              //                break;
-      //          }
-      //          ++i;
-      //      }
+      [MNText setAlignment:MNTextAlignmentLeft];
+      [MNText drawText:ctx withFont:font atRect:CGRectMake(x, y += step, w, h) withText:@"MNTextAlignmentLeft"];
+
+      [MNText setAlignment:MNTextAlignmentCenter];
+      [MNText drawText:ctx withFont:font atRect:CGRectMake(x, y += step, w, h) withText:@"MNTextAlignmentCenter"];
+
+      [MNText setAlignment:MNTextAlignmentJustified];
+      [MNText drawText:ctx withFont:font atRect:CGRectMake(x, y += step, w, h) withText:@"MNTextAlignmentJustified"];
+
+      [MNText setAlignment:MNTextAlignmentNatural];
+      [MNText drawText:ctx withFont:font atRect:CGRectMake(x, y += step, w, h) withText:@"MNTextAlignmentNatural"];
+
+      [MNText setVerticalAlignment:MNTextAlignmentTop];
+      [MNText drawText:ctx
+              withFont:font
+                atRect:CGRectMake(x, y += step, w, h)
+              withText:@"MNTextAlignmentCenter | MNTextAlignmentTop"];
+
+      [MNText setVerticalAlignment:MNTextAlignmentBottom];
+      [MNText drawText:ctx
+              withFont:font
+                atRect:CGRectMake(x, y += step, w, h)
+              withText:@"MNTextAlignmentCenter | MNTextAlignmentBottom"];
+
+      [MNText setVerticalAlignment:MNTextAlignmentMiddle];
+      [MNText drawText:ctx
+              withFont:font
+                atRect:CGRectMake(x, y += step, w, h)
+              withText:@"MNTextAlignmentCenter | MNTextAlignmentMiddle"];
     };
     return ret;
 }

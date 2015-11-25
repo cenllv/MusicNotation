@@ -51,12 +51,12 @@
                                 height:CGRectGetHeight(rect)];
 }
 
-+ (MNTabStaff*)staffAtX:(float)x atY:(float)y width:(float)width height:(float)height;
++ (MNTabStaff*)staffAtX:(float)x atY:(float)y width:(float)width height:(float)height
 {
     return [[MNTabStaff alloc] initAtX:x atY:y width:width height:height];
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];

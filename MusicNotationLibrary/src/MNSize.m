@@ -29,7 +29,7 @@
 
 @implementation MNFloatSize
 
-+ (MNFloatSize*)sizeWithWidth:(float)width andHeight:(float)height;
++ (MNFloatSize*)sizeWithWidth:(float)width andHeight:(float)height
 {
     MNFloatSize* ret = [[MNFloatSize alloc] init];
     ret.width = width;
@@ -37,7 +37,7 @@
     return ret;
 }
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -81,7 +81,7 @@
 
 @implementation MNUIntSize
 
-+ (MNUIntSize*)sizeWithWidth:(NSUInteger)width andHeight:(NSUInteger)height;
++ (MNUIntSize*)sizeWithWidth:(NSUInteger)width andHeight:(NSUInteger)height
 {
     MNUIntSize* ret = [[MNUIntSize alloc] init];
     ret.width = width;
@@ -89,7 +89,7 @@
     return ret;
 }
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)

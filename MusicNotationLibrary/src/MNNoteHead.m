@@ -26,8 +26,6 @@
 //  THE SOFTWARE.
 //
 
-//
-
 #import "MNNoteHead.h"
 #import "MNBoundingBox.h"
 #import "MNUtils.h"
@@ -37,9 +35,10 @@
 #import "MNGlyph.h"
 #import "MNTableGlyphStruct.h"
 #import "MNTable.h"
+#import "MNConstants.h"
 
 @implementation NoteHeadRenderOptions
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -65,7 +64,7 @@
 //    return [[MNNoteHead alloc]initWithCustomGlyphCode:code];
 //}
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -134,7 +133,7 @@
 //    return self;
 //}
 
-+ (MNNoteHead*)noteHeadWithOptionsDict:(NSDictionary*)optionsDict;
++ (MNNoteHead*)noteHeadWithOptionsDict:(NSDictionary*)optionsDict
 {
     return [[MNNoteHead alloc] initWithDictionary:optionsDict];
 }
@@ -143,11 +142,11 @@
 {
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
-    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"note_type" : @"noteTypeString"}];
+    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{ @"note_type" : @"noteTypeString" }];
     return propertiesEntriesMapping;
 }
 
@@ -332,7 +331,7 @@
                  duration:(NSString*)duration
                         x:(float)x
                         y:(float)y
-            stemDirection:(MNStemDirectionType)stemDirection;
+            stemDirection:(MNStemDirectionType)stemDirection
 {
     float width = 15 + kSTEM_WIDTH / 2;
     CGContextSaveGState(ctx);
@@ -383,7 +382,7 @@
 }
 
 // Draw the notehead
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
 

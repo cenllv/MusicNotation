@@ -43,7 +43,7 @@
     }
     return self;
 }
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     [propertiesEntriesMapping addEntriesFromDictionary:@{
@@ -55,7 +55,7 @@
 
 @implementation MNTablesNoteStringData
 
-- (id)initWithDictionary:(NSDictionary*)optionsDict;
+- (id)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -66,7 +66,7 @@
     return self;
 }
 
-- (NSDictionary*)dictionarySerialization;
+- (NSDictionary*)dictionarySerialization
 {
     return [self dictionaryWithValuesForKeyPaths:@[
         @"durationString",

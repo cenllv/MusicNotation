@@ -40,7 +40,7 @@
     return self;
 }
 
-+ (MNExtentStruct*)extentWithTopY:(float)topY andBaseY:(float)baseY;
++ (MNExtentStruct*)extentWithTopY:(float)topY andBaseY:(float)baseY
 {
     return [[MNExtentStruct alloc] initWithTopY:topY andBaseY:baseY];
 }

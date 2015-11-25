@@ -5,7 +5,6 @@
 //  Created by Scott Riccardelli on 1/1/15.
 //  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
-//  Ported from [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -28,16 +27,17 @@
 
 #import "MNFont.h"
 #import "MNUtils.h"
+#import "OCTotallyLazy.h"
 
 @implementation MNFont
 
-- (float)size;
-{
-    return self.pointSize;
-}
+//- (float)size
+//{
+//    return self.pointSize;
+//}
 
-static NSArray* _fontNames;
-+ (NSArray*)fontNames;
+static NSArray<NSString*>* _fontNames;
++ (NSArray<NSString*>*)fontNames
 {
     if(!_fontNames)
     {
@@ -334,49 +334,138 @@ static NSArray* _fontNames;
     return _fontNames;
 }
 
+static NSArray<NSString*>* _availableFonts;
+
++ (NSArray<NSString*>*)availableFonts
+{
+    if(!_availableFonts)
+    {
+#if TARGET_OS_MAC
+        _availableFonts = [[NSFontManager sharedFontManager] availableFonts];
+// availableFontFamilies];
+#elif TARGET_OS_IPHONE
+        NSMutableArray* arr = [NSMutableArray array];
+        for(NSString* familyName in [UIFont familyNames])
+        {
+            //        NSLog(@"Family name: %@", familyName);
+            for(NSString* fontName in [UIFont fontNamesForFamilyName:familyName])
+            {
+                //            NSLog(@"--Font name: %@", fontName);
+                [arr addObject:fontName];
+            }
+        }
+        _availableFonts = arr;
+#endif
+    }
+    return _availableFonts;
+}
+
 #if TARGET_OS_IPHONE
 
-+ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize;
++ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize
 {
     return (MNFont*)[UIFont fontWithName:fontName size:fontSize];
 }
 
-+ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize weight:(NSString*)weight;
++ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize weight:(NSString*)weight
 {
     return (MNFont*)[UIFont fontWithName:fontName size:fontSize];   // TODO: not using weight
 }
 
 #elif TARGET_OS_MAC
 
-+ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize;
+- (instancetype)init
 {
-    return (MNFont*)[NSFont fontWithName:fontName size:fontSize];
+    self = [super init];
+    if(self)
+    {
+        _fontSize = 12;
+        _font = [NSFont systemFontOfSize:_fontSize];
+        _bold = NO;
+        _italic = NO;
+        _family = _font.familyName;
+    }
+    return self;
 }
 
-+ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize weight:(NSString*)weight;
++ (MNFont*)systemFontWithSize:(CGFloat)fontSize
 {
-    return (MNFont*)[NSFont fontWithName:fontName size:fontSize];   // TODO: not using weight
+    MNFont* ret = [[MNFont alloc] init];
+    [ret setSize:fontSize];
+    return ret;
+}
+
++ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize
+{
+    MNFont* ret = [[MNFont alloc] init];
+    ret.font = [NSFont fontWithName:fontName size:fontSize];
+    return ret;
+}
+
++ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize bold:(BOOL)bold italic:(BOOL)italic
+{
+    MNFont* ret = [MNFont fontWithName:fontName size:fontSize];
+    if(bold)
+    {
+        [ret setBold:YES];
+    }
+    if(italic)
+    {
+        [ret setItalic:YES];
+    }
+    return ret;
 }
 
 #endif
 
-+ (id)setFont:(NSString*)fontName;
+- (void)setBold:(BOOL)bold
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
-    abort();
-    return [self class];
+    _bold = bold;
+    [[NSFontManager sharedFontManager] convertWeight:YES ofFont:_font];
 }
-+ (id)setStrokeStyle:(NSString*)strokeStyle;
+
+- (void)setItalic:(BOOL)italic
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
-    abort();
-    return [self class];
+    if(italic != _italic)
+    {
+        if(italic)
+        {
+            _font = [[NSFontManager sharedFontManager] convertFont:_font toHaveTrait:NSFontItalicTrait];
+        }
+        else
+        {
+            _font = [[NSFontManager sharedFontManager] convertFont:_font toNotHaveTrait:NSFontItalicTrait];
+        }
+    }
+    _italic = italic;
 }
-+ (id)setFillStyle:(NSString*)fillStyle;
+
+- (void)setSize:(float)size
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
-    abort();
-    return [self class];
+    if(size != _fontSize)
+    {
+        _font = [[NSFontManager sharedFontManager] convertFont:_font toSize:size];
+        _fontSize = size;
+    }
+}
+
+- (float)size
+{
+    return _fontSize;
+}
+
+- (void)setFamily:(NSString*)family
+{
+    if([[[self class] availableFonts] containsObject:family])
+    {
+        _family = family;
+        //        _font = [[NSFontManager sharedFontManager] convertFont:_font toFamily:_family];
+        _font = [[MNFont fontWithName:family size:self.size bold:self.bold italic:self.italic] font];
+    }
+    else
+    {
+        MNLogError(@"Unknown fontFamily: %@", family);
+    }
 }
 
 @end

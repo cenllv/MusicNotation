@@ -45,6 +45,7 @@
 #import "MNCarrierLayer.h"
 #import "MNGlyphLayer.h"
 #import "NSBezierPath+MNAdditions.h"
+#import "MNConstants.h"
 
 @implementation GlyphMetrics
 
@@ -59,7 +60,7 @@
     return self;
 }
 
-- (NSString*)description;
+- (NSString*)description
 {
     return [super description];
 }
@@ -68,7 +69,7 @@
  *  helps create a debug description from the specified string to properties dictionary
  *  @return a dictionary of property names
  */
-- (NSDictionary*)dictionarySerialization;
+- (NSDictionary*)dictionarySerialization
 {
     return [NSMutableDictionary merge:[super dictionarySerialization]
                                  with:[self dictionaryWithValuesForKeyPaths:@[
@@ -82,7 +83,7 @@
 
 #pragma mark - Initialization
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -170,17 +171,17 @@
     return self;
 }
 
-+ (MNGlyph*)glyphWithCode:(NSString*)code withRect:(CGRect)rect;
++ (MNGlyph*)glyphWithCode:(NSString*)code withRect:(CGRect)rect
 {
     return [[MNGlyph alloc] initWithCode:code withRect:rect];
 }
 
-+ (MNGlyph*)glyphWithCode:(NSString*)code withPointSize:(float)point;
++ (MNGlyph*)glyphWithCode:(NSString*)code withPointSize:(float)point
 {
     return [[MNGlyph alloc] initWithCode:code withPointSize:point];
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -189,7 +190,7 @@
 
 #pragma mark - Properties
 
-- (NSDictionary*)dictionarySerialization;
+- (NSDictionary*)dictionarySerialization
 {
     //    return [NSMutableDictionary merge:[super dictionarySerialization]
     //                                 with:[self dictionaryWithValuesForKeyPaths:@[
@@ -210,7 +211,7 @@
     return _metrics;
 }
 
-- (NSString*)code_head;
+- (NSString*)code_head
 {
     //    Metrics* metrics = (Metrics*)_metrics;
     return self.metrics.code;
@@ -229,7 +230,7 @@
  return self.context; }
  */
 
-- (NSString*)category;
+- (NSString*)category
 {
     return [MNGlyph CATEGORY];
 }
@@ -238,7 +239,7 @@
  *  category of this modifier
  *  @return class name
  */
-+ (NSString*)CATEGORY;
++ (NSString*)CATEGORY
 {
     return @"glyphs";
 }
@@ -249,25 +250,25 @@ static BOOL _debugMode = NO;
     _debugMode = mode;
 }
 
-- (BOOL)hasStem;
+- (BOOL)hasStem
 {
     MNMetrics* metrics = (MNMetrics*)_metrics;
     return [metrics.code isEqualToString:@"vb"];
 }
 
-- (BOOL)rest;
+- (BOOL)rest
 {
     MNMetrics* metrics = (MNMetrics*)_metrics;
     return [metrics.code isEqualToString:@"vc"] || [metrics.code isEqualToString:@"v7c"];
 }
 
-- (BOOL)flag;
+- (BOOL)flag
 {
     MNMetrics* metrics = (MNMetrics*)_metrics;
     return [metrics.code isEqualToString:@"vb"];
 }
 
-- (float)headWidth;
+- (float)headWidth
 {
     [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
     abort();
@@ -344,7 +345,7 @@ static BOOL _debugMode = NO;
  * ---------------------------------------------------------------------------------------------------------------------
  */
 
-- (void)renderWithCG:(CGContextRef)ctx;
+- (void)renderWithCG:(CGContextRef)ctx
 {
     MNMetrics* metrics = (MNMetrics*)_metrics;
     CGFloat x = metrics.point.x;
@@ -418,7 +419,7 @@ static BOOL _debugMode = NO;
     CGContextDrawPath(ctx, kCGPathFill);
 }
 
-+ (MNCarrierLayer*)createCarrierLayerWithCode:(NSString*)code withScale:(CGFloat)scale hasCross:(BOOL)hasCross;
++ (MNCarrierLayer*)createCarrierLayerWithCode:(NSString*)code withScale:(CGFloat)scale hasCross:(BOOL)hasCross
 {
     MNCarrierLayer* carrierLayer = [MNCarrierLayer layer];
 
@@ -526,7 +527,7 @@ static BOOL _debugMode = NO;
 + (void)renderIntoArray:(NSMutableArray*)paths
               transform:(CGAffineTransform*)transform
                withCode:(NSString*)code
-              withScale:(float)scale;
+              withScale:(float)scale
 {
     scale *= kSCALE;
 
@@ -701,7 +702,7 @@ static BOOL _debugMode = NO;
     }
 }
 
-+ (void)renderGlyph:(CGContextRef)ctx withMetrics:(MNMetrics*)metrics;
++ (void)renderGlyph:(CGContextRef)ctx withMetrics:(MNMetrics*)metrics
 {
 }
 
@@ -709,7 +710,7 @@ static BOOL _debugMode = NO;
                 atX:(CGFloat)x
                 atY:(CGFloat)y
           withScale:(CGFloat)scale
-       forGlyphCode:(NSString*)gCode;
+       forGlyphCode:(NSString*)gCode
 {
     [MNGlyph renderGlyph:ctx atX:x atY:y withScale:scale forGlyphCode:gCode renderBoundingBox:NO];
 }
@@ -719,7 +720,7 @@ static BOOL _debugMode = NO;
                 atY:(CGFloat)y
           withScale:(CGFloat)scale
        forGlyphCode:(NSString*)gCode
-  renderBoundingBox:(BOOL)renderBoundingBox;
+  renderBoundingBox:(BOOL)renderBoundingBox
 {
     MNGlyphStruct* glyphStruct =
         (MNGlyphStruct*)[[MNGlyphList sharedInstance].availableGlyphStructsDictionary objectForKey:gCode];
@@ -798,7 +799,7 @@ static BOOL _debugMode = NO;
     }
 }
 
-- (void)renderWithContext:(CGContextRef)ctx toStaff:(MNStaff*)staff atX:(CGFloat)x;
+- (void)renderWithContext:(CGContextRef)ctx toStaff:(MNStaff*)staff atX:(CGFloat)x
 {
     /*
      Vex.Flow.Glyph.prototype.renderToStaff = function(x) {

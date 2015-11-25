@@ -145,7 +145,7 @@
 }
 
 #pragma mark - Methods
-+ (MNBoundingBox*)boundingBoxAtX:(float)x atY:(float)y withWidth:(float)width andHeight:(float)height;
++ (MNBoundingBox*)boundingBoxAtX:(float)x atY:(float)y withWidth:(float)width andHeight:(float)height
 {
     return [[MNBoundingBox alloc] initAtX:x atY:y withWidth:width andHeight:height];
 }
@@ -166,7 +166,7 @@
                                       self.width, self.height];
 }
 
-- (void)mergeWithBox:(MNBoundingBox*)box;
+- (void)mergeWithBox:(MNBoundingBox*)box
 {   // andDrawWthContext:(CGContextRef)ctx; {
     [self setRect:CGRectUnion(self.rect, box.rect)];
 
@@ -202,7 +202,7 @@
         initWithString:[NSString stringWithFormat:@"%.00f\n%.00f\n", self.xPosition, self.yPosition]
             attributes:@{
                 NSParagraphStyleAttributeName : paragraphStyle,
-                NSFontAttributeName : descriptionFont,
+                NSFontAttributeName : descriptionFont.font,
                 NSForegroundColorAttributeName : [MNColor blueColor]
             }];
     float x = CGRectGetMinX(self.rect) - 15;
@@ -214,7 +214,7 @@
                                                   self.yPosition + self.height]
             attributes:@{
                 NSParagraphStyleAttributeName : paragraphStyle,
-                NSFontAttributeName : descriptionFont,
+                NSFontAttributeName : descriptionFont.font,
                 NSForegroundColorAttributeName : [MNColor blueColor]
             }];
     x = CGRectGetMinX(self.rect) + 15;

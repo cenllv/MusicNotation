@@ -38,7 +38,7 @@
 
 @synthesize font = _font;
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -48,7 +48,7 @@
     return self;
 }
 
-+ (MNAnnotation*)annotationWithText:(NSString*)text;
++ (MNAnnotation*)annotationWithText:(NSString*)text
 {
     return [[MNAnnotation alloc] initWithText:text];
 }
@@ -70,7 +70,7 @@
 
     _justification = MNJustifyCENTER;
     _verticalJustification = MNVerticalJustifyTOP;
-    self.font = [MNFont fontWithName:@"Arial" size:10 weight:@""];
+    self.font = [MNFont fontWithName:@"Arial" size:10];
 
     // The default width is calculated from the text.
     self.width = [MNText measureText:self.text].width;
@@ -85,45 +85,45 @@
     return @"annotations";
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
     return propertiesEntriesMapping;
 }
 
-- (id)setFontName:(NSString*)fontName withSize:(NSUInteger)size;
+- (id)setFontName:(NSString*)fontName withSize:(NSUInteger)size
 {
     [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
     abort();
     return self;
 }
 
-- (id)setFontName:(NSString*)fontName withSize:(NSUInteger)size withStyle:(NSString*)style;
+- (id)setFontName:(NSString*)fontName withSize:(NSUInteger)size withStyle:(NSString*)style
 {
     [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
     abort();
     return self;
 }
 
-- (id)setJustification:(MNJustiticationType)justification;
+- (id)setJustification:(MNJustiticationType)justification
 {
     _justification = justification;
     return self;
 }
 
-- (id)setVerticalJustification:(MNVerticalJustifyType)verticalJustification;
+- (id)setVerticalJustification:(MNVerticalJustifyType)verticalJustification
 {
     _verticalJustification = verticalJustification;
     return self;
 }
 
-- (MNJustiticationType)justification;
+- (MNJustiticationType)justification
 {
     return _justification;
 }
 
-- (MNVerticalJustifyType)vert_justification;
+- (MNVerticalJustifyType)vert_justification
 {
     return _verticalJustification;
 }
@@ -142,7 +142,7 @@
 }
 
 // Arrange annotations within a `ModifierContext`
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context;
++ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
     NSMutableArray* annotations = modifiers;
     if(!annotations || annotations.count == 0)
@@ -170,7 +170,7 @@
 }
 
 // Render text beside the note.
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
 

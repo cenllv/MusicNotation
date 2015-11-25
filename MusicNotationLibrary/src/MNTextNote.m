@@ -85,7 +85,7 @@
     return self;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -93,7 +93,7 @@
 }
 
 static NSDictionary* _textNoteGlyphs;
-- (NSDictionary*)textNoteGlyphs;
+- (NSDictionary*)textNoteGlyphs
 {
     if(!_textNoteGlyphs)
     {

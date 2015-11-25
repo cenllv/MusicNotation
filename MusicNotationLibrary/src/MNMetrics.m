@@ -40,7 +40,7 @@
 
 @implementation MNMetrics
 #pragma mark - Initialization
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -148,7 +148,7 @@
  *  helps create a debug description from the specified string to properties dictionary
  *  @return a dictionary of property names
  */
-- (NSDictionary*)dictionarySerialization;
+- (NSDictionary*)dictionarySerialization
 {
     return [self dictionaryWithValuesForKeyPaths:@[
         @"name",

@@ -35,6 +35,7 @@
 #import "MNTuplet.h"
 #import "MNTable.h"
 #import "MNPoint.h"
+#import "MNConstants.h"
 
 @implementation MNTickable
 
@@ -44,7 +45,7 @@
 @synthesize extraLeftPx = _extraLeftPx;
 @synthesize extraRightPx = _extraRightPx;
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -63,14 +64,14 @@
     return self;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
     return propertiesEntriesMapping;
 }
 
-- (void)setupTickable;
+- (void)setupTickable
 {
     _intrinsicTicks = 0;
     _tickMultiplier = [MNRational rationalWithNumerator:1 andDenominator:1];
@@ -104,13 +105,13 @@
     return _metrics;
 }
 
-- (MNBoundingBox*)boundingBox;
+- (MNBoundingBox*)boundingBox
 {
     MNTickableMetrics* metrics = _metrics;
     return [MNBoundingBox boundingBoxAtX:metrics.modLeftPx atY:metrics.modRightPx withWidth:self.width andHeight:0];
 }
 
-- (float)getCenterXShift;
+- (float)getCenterXShift
 {
     if([self isCenterAligned])
     {
@@ -119,12 +120,12 @@
     return 0;
 }
 
-- (BOOL)isCenterAligned;
+- (BOOL)isCenterAligned
 {
     return self.align_center;
 }
 
-- (void)setCenterAlignment:(BOOL)align_center;
+- (void)setCenterAlignment:(BOOL)align_center
 {
     self.align_center = align_center;
 }
@@ -140,7 +141,7 @@
     return _voice;
 }
 
-- (void)setTuplet:(MNTuplet*)tuplet;
+- (void)setTuplet:(MNTuplet*)tuplet
 {
     // Detach from previous tuplet
     NSUInteger noteCount, beatsOccupied;
@@ -167,7 +168,7 @@
 }
 
 // optional, if tickable has modifiers
-- (void)addToModifierContext:(MNModifierContext*)mc;
+- (void)addToModifierContext:(MNModifierContext*)mc
 {
     self.modifierContext = mc;
     // Add modifiers to modifier context (if any)
@@ -175,19 +176,19 @@
 }
 
 // optional, if tickable has modifiers
-- (void)addModifiersObject:(MNModifier*)mod;
+- (void)addModifiersObject:(MNModifier*)mod
 {
     [self.modifiers addObject:mod];
     self.preFormatted = NO;
 }
 
-- (void)setTickContext:(MNTickContext*)tickContext;
+- (void)setTickContext:(MNTickContext*)tickContext
 {
     _tickContext = tickContext;
     self.preFormatted = NO;
 }
 
-- (BOOL)preFormat;
+- (BOOL)preFormat
 {
     if(self.preFormatted)
     {
@@ -201,7 +202,7 @@
     return YES;
 }
 
-- (BOOL)postFormat;
+- (BOOL)postFormat
 {
     if(self.postFormatted)
     {
@@ -211,96 +212,96 @@
     return YES;
 }
 
-- (void)setIntrinsicTicks:(NSUInteger)intrinsicTicks;
+- (void)setIntrinsicTicks:(NSUInteger)intrinsicTicks
 {
     _intrinsicTicks = intrinsicTicks;
     self.ticks = [[self.tickMultiplier clone] mult:intrinsicTicks];
 }
 
-- (void)applyTickMultiplier:(NSUInteger)numerator denominator:(NSUInteger)denominator;
+- (void)applyTickMultiplier:(NSUInteger)numerator denominator:(NSUInteger)denominator
 {
     [self.tickMultiplier multiply:[MNRational rationalWithNumerator:numerator andDenominator:denominator]];
     self.ticks = [[self.tickMultiplier clone] mult:self.intrinsicTicks];
 }
 
-- (void)setTickDuration:(MNRational*)duration;
+- (void)setTickDuration:(MNRational*)duration
 {
     NSUInteger ticks = duration.numerator * (kRESOLUTION / duration.denominator);
     self.ticks = [[self.tickMultiplier clone] mult:ticks];
     _intrinsicTicks = [_ticks floatValue];
 }
 
-- (MNRational*)getTicks;
+- (MNRational*)getTicks
 {
     return _ticks;
 }
 
-- (id)setTicks:(MNRational*)ticks;
+- (id)setTicks:(MNRational*)ticks
 {
     _ticks = ticks;
     return self;
 }
 
-- (BOOL)getIgnoreTicks;
+- (BOOL)getIgnoreTicks
 {
     return _ignore_ticks;
 }
 
-- (id)setIgnoreTicks:(BOOL)ignoreTicks;
+- (id)setIgnoreTicks:(BOOL)ignoreTicks
 {
     _ignore_ticks = ignoreTicks;
     return self;
 }
 
-- (void)addModifier:(MNModifier*)modifier;
+- (void)addModifier:(MNModifier*)modifier
 {
     [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
     abort();
 }
 
-- (float)getExtraLeftPx;
-{
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
-    abort();
-    return 0;
-}
-
-- (float)getExtraRightPx;
+- (float)getExtraLeftPx
 {
     [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
     abort();
     return 0;
 }
 
-- (id)setExtraLeftPx:(float)extraLeftPx;
+- (float)getExtraRightPx
+{
+    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    abort();
+    return 0;
+}
+
+- (id)setExtraLeftPx:(float)extraLeftPx
 {
     [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
     abort();
     return self;
 }
 
-- (id)setExtraRightPx:(float)extraRightPx;
+- (id)setExtraRightPx:(float)extraRightPx
 {
     [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
     abort();
     return self;
 }
 
-- (MNRational*)ticks;
+- (MNRational*)ticks
 {
     [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
     abort();
     return nil;
 }
 
-- (id)setXShift:(float)xShift;
+- (id)setXShift:(float)xShift
 {
     [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
     abort();
     return self;
 }
 
-- (float)xShift;
+- (float)xShift
 {
     [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
     abort();

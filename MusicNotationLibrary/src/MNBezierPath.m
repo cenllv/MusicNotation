@@ -36,34 +36,34 @@
                   radius:(CGFloat)radius
               startAngle:(CGFloat)startAngle
                 endAngle:(CGFloat)endAngle
-               clockwise:(BOOL)clockwise;
+               clockwise:(BOOL)clockwise
 {
 }
 + (MNBezierPath*)bezierPathWithArcCenter:(CGPoint)center
                                   radius:(CGFloat)radius
                               startAngle:(CGFloat)startAngle
                                 endAngle:(CGFloat)endAngle
-                               clockwise:(BOOL)clockwise;
+                               clockwise:(BOOL)clockwise
 {
     return nil;
 }
-- (void)addLineToPoint:(CGPoint)point;
+- (void)addLineToPoint:(CGPoint)point
 {
     [self addLineToPoint:point];
 }
-+ (MNBezierPath*)bezierPath;
++ (MNBezierPath*)bezierPath
 {
     return (MNBezierPath*)[UIBezierPath bezierPath];
 }
-+ (MNBezierPath*)bezierPathWithRect:(CGRect)rect;
++ (MNBezierPath*)bezierPathWithRect:(CGRect)rect
 {
     return (MNBezierPath*)[UIBezierPath bezierPathWithRect:rect];
 }
-- (void)addQuadCurveToPoint:(CGPoint)endPoint controlPoint:(CGPoint)controlPoint;
+- (void)addQuadCurveToPoint:(CGPoint)endPoint controlPoint:(CGPoint)controlPoint
 {
     [self addQuadCurveToPoint:endPoint controlPoint:controlPoint];
 }
-- (void)addCurveToPoint:(CGPoint)endPoint controlPoint1:(CGPoint)controlPoint1 controlPoint2:(CGPoint)controlPoint2;
+- (void)addCurveToPoint:(CGPoint)endPoint controlPoint1:(CGPoint)controlPoint1 controlPoint2:(CGPoint)controlPoint2
 {
     [self addCurveToPoint:endPoint controlPoint1:controlPoint1 controlPoint2:controlPoint2];
 }
@@ -113,12 +113,12 @@
     return [[MNBezierPath alloc] init];
 }
 
-+ (MNBezierPath*)bezierPathWithRect:(NSRect)rect;
++ (MNBezierPath*)bezierPathWithRect:(NSRect)rect
 {
     return (MNBezierPath*)[NSBezierPath bezierPathWithRect:rect];
 }
 
-- (void)addQuadCurveToPoint:(CGPoint)endPoint controlPoint:(CGPoint)controlPoint;
+- (void)addQuadCurveToPoint:(CGPoint)endPoint controlPoint:(CGPoint)controlPoint
 {
     CGPoint QP0 = [self currentPoint];
     CGPoint QP2 = endPoint;
@@ -136,7 +136,7 @@
     [self curveToPoint:CP3 controlPoint1:CP1 controlPoint2:CP2];
 }
 
-- (void)addCurveToPoint:(CGPoint)endPoint controlPoint1:(CGPoint)controlPoint1 controlPoint2:(CGPoint)controlPoint2;
+- (void)addCurveToPoint:(CGPoint)endPoint controlPoint1:(CGPoint)controlPoint1 controlPoint2:(CGPoint)controlPoint2
 {
     [self curveToPoint:endPoint controlPoint1:controlPoint1 controlPoint2:controlPoint2];
 }

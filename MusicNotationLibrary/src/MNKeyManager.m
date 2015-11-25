@@ -38,7 +38,7 @@ Vex.Flow.KeyManager = (function() {
         self.init(key);
     }
  */
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -86,14 +86,14 @@ static NSDictionary* _scales;
     return self;
 }
 
-+ (MNKeyManager*)keyManagerWithKey:(NSString*)key;
++ (MNKeyManager*)keyManagerWithKey:(NSString*)key
 {
     MNKeyManager* ret = [[MNKeyManager alloc] init];
     ret.key = key;
     return ret;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];

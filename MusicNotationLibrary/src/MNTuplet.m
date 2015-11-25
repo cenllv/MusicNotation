@@ -44,7 +44,7 @@
 
 #pragma mark - Initialize
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -65,7 +65,7 @@
 
 // Create a new tuplet from the specified notes. The notes must
 // be part of the same line, and have the same duration (in ticks).
-- (instancetype)initWithNotes:(NSArray*)notes andOptionsDict:(NSDictionary*)optionsDict;
+- (instancetype)initWithNotes:(NSArray*)notes andOptionsDict:(NSDictionary*)optionsDict
 {
     self = [self initWithDictionary:optionsDict];
     if(self)
@@ -86,7 +86,7 @@
     return self;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -247,7 +247,7 @@
     }
 }
 
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     if(!ctx)
     {

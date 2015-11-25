@@ -65,7 +65,7 @@ static NSDictionary* _pedalMarkingDictionary;
     return _pedalMarkingDictionary;
 }
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -106,7 +106,7 @@ static NSDictionary* _pedalMarkingDictionary;
     self.color = MNColor.blackColor;
 }
 
-+ (MNPedalMarking*)pedalMarkingWithNotes:(NSArray*)notes;
++ (MNPedalMarking*)pedalMarkingWithNotes:(NSArray*)notes
 {
     return [[MNPedalMarking alloc] initWithNotes:notes];
 }
@@ -136,7 +136,7 @@ static NSDictionary* _pedalMarkingDictionary;
     return pedal;
 }
 
-- (void)setCustomText:(NSString*)text;
+- (void)setCustomText:(NSString*)text
 {
     [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
     abort();
@@ -219,7 +219,7 @@ static NSDictionary* _pedalMarkingDictionary;
               {
                   // If we have custom text, use instead of the default "Ped" glyph
                   float text_width = [MNText measureText:pedal.custom_depress_text].width;
-                  [MNText drawSimpleText:ctx
+                  [MNText drawText:ctx
                                  atPoint:MNPointMake(x - (text_width / 2), y)
                                 withText:pedal.custom_depress_text];
                   x_shift = (text_width / 2) + pedal.text_margin_right;
@@ -288,7 +288,7 @@ static NSDictionary* _pedalMarkingDictionary;
           if(pedal.custom_depress_text)
           {
               text_width = [MNText measureText:pedal.custom_depress_text].width;
-              [MNText drawSimpleText:ctx
+              [MNText drawText:ctx
                              atPoint:MNPointMake(x - (text_width / 2), y)
                             withText:pedal.custom_depress_text];
           }
@@ -302,7 +302,7 @@ static NSDictionary* _pedalMarkingDictionary;
           if(pedal.custom_depress_text)
           {
               text_width = [MNText measureText:pedal.custom_release_text].width;
-              [MNText drawSimpleText:ctx
+              [MNText drawText:ctx
                              atPoint:MNPointMake(x - (text_width / 2), y)
                             withText:pedal.custom_release_text];
           }
@@ -315,7 +315,7 @@ static NSDictionary* _pedalMarkingDictionary;
 }
 
 // Render the pedal marking in position on the rendering context
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     //    [super draw:ctx];
     if(!ctx)

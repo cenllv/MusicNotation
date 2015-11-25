@@ -41,7 +41,7 @@
     return self;
 }
 
-+ (MNTestTuple*)testTuple;
++ (MNTestTuple*)testTuple
 {
     return [[MNTestTuple alloc] init];
 }

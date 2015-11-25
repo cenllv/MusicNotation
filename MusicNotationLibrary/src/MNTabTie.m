@@ -31,7 +31,7 @@
 
 @implementation MNTabTie
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -47,7 +47,7 @@
  *  @param text  <#text description#>
  *  @return <#return value description#>
  */
-- (instancetype)initWithNotes:(MNNoteTie*)notes andText:(NSString*)text;
+- (instancetype)initWithNotes:(MNNoteTie*)notes andText:(NSString*)text
 {
     self = [self initWithDictionary:@{}];
     if(self)
@@ -65,7 +65,7 @@
     return self;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -82,7 +82,7 @@
     return [[MNTabTie alloc] initWithNotes:notes andText:@"P"];
 }
 
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     float first_x_px, last_x_px;
     NSArray* first_ys;

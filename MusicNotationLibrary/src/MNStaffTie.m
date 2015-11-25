@@ -56,7 +56,7 @@
 //    return self;
 //}
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -68,7 +68,7 @@
     return self;
 }
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict andText:(NSString*)text;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict andText:(NSString*)text
 {
     self = [self initWithDictionary:optionsDict];
     if(self)
@@ -92,7 +92,7 @@
     return self;
 }
 
-- (instancetype)initWithNoteTie:(MNNoteTie*)noteTie andText:(NSString*)text;
+- (instancetype)initWithNoteTie:(MNNoteTie*)noteTie andText:(NSString*)text
 {
     self = [self initWithNoteTie:noteTie];
     if(self)
@@ -102,7 +102,7 @@
     return self;
 }
 
-- (instancetype)initWithNotes:(MNNoteTie*)notes andText:(NSString*)text;
+- (instancetype)initWithNotes:(MNNoteTie*)notes andText:(NSString*)text
 {
     self = [self initWithDictionary:nil];
     if(self)
@@ -154,7 +154,7 @@
     self.font = [MNFont fontWithName:@"Arial" size:10];
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{
@@ -245,7 +245,7 @@
     }
 }
 
-- (void)renderText:(CGContextRef)ctx first_x_px:(float)first_x_px last_x_px:(float)last_x_px;
+- (void)renderText:(CGContextRef)ctx first_x_px:(float)first_x_px last_x_px:(float)last_x_px
 {
     if(self.text == nil)
     {
@@ -260,7 +260,7 @@
 
     //     [MNText setFont:[MNFont fontWithName:self.font_family size:self.font_size]];
     //     [MNText setBold:YES];
-    //     [MNText drawSimpleText:ctx atPoint:point withText:self.text];
+    //     [MNText drawText:ctx atPoint:point withText:self.text];
 
     self.font = [MNFont fontWithName:self.font_family size:self.font_size];
 
@@ -279,7 +279,7 @@
     [title drawAtPoint:CGPointMake(point.x - title.size.width / 2, point.y - title.size.height / 2)];
 }
 
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     //    [super draw:ctx];
     //    if(!ctx)

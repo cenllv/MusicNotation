@@ -39,7 +39,7 @@
 
 @implementation MNArticulation
 
-- (instancetype)init;
+- (instancetype)init
 {
     self = [self initWithDictionary:nil];
     if(self)
@@ -49,7 +49,7 @@
     return self;
 }
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -60,7 +60,7 @@
     return self;
 }
 
-- (instancetype)initWithType:(MNArticulationType)articulationType;
+- (instancetype)initWithType:(MNArticulationType)articulationType
 {
     self =
         [self initWithDictionary:MNTable.articulationsDictionary[[MNTable articulationCodeForType:articulationType]]];
@@ -83,7 +83,7 @@
     return self;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{
@@ -136,7 +136,7 @@ init: function(type) {
     return @"articulations";
 }
 
-+ (MNArticulation*)articulationWithOptionsDict:(NSDictionary*)optionsDict;
++ (MNArticulation*)articulationWithOptionsDict:(NSDictionary*)optionsDict
 {
     MNArticulation* ret = [[MNArticulation alloc] initWithDictionary:optionsDict];
     return ret;
@@ -160,7 +160,7 @@ init: function(type) {
     _articulationType = articulationType;
 }
 
-- (id)setPosition:(MNPositionType)positionType;
+- (id)setPosition:(MNPositionType)positionType
 {
     _positionType = positionType;
     return self;
@@ -168,7 +168,7 @@ init: function(type) {
 
 // ## Static Methods
 // Arrange articulations inside `ModifierContext`
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context;
++ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
     NSMutableArray* articulations = modifiers;
     if(!articulations || articulations.count == 0)
@@ -201,13 +201,13 @@ init: function(type) {
     return YES;
 }
 
-- (void)draw:(CGContextRef)ctx withStaff:(MNStaff*)staff withShiftX:(float)shiftX;
+- (void)draw:(CGContextRef)ctx withStaff:(MNStaff*)staff withShiftX:(float)shiftX
 {
     [super draw:ctx withStaff:staff withShiftX:shiftX];
 }
 
 // Render articulation in position next to note.
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
 

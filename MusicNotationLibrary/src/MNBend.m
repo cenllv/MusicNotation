@@ -39,7 +39,7 @@
 
 @implementation MNBend
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -48,7 +48,7 @@
     return self;
 }
 
-- (instancetype)initWithText:(NSString*)text;
+- (instancetype)initWithText:(NSString*)text
 {
     self = [self initWithDictionary:nil];
     if(self)
@@ -58,7 +58,7 @@
     return self;
 }
 
-- (instancetype)initWithPhrase:(NSArray*)phrase;
+- (instancetype)initWithPhrase:(NSArray*)phrase
 {
     self = [self initWithDictionary:nil];
     if(self)
@@ -68,7 +68,7 @@
     return self;
 }
 
-- (instancetype)initWithText:(NSString*)text release:(BOOL)release phrase:(NSArray*)phrase;
+- (instancetype)initWithText:(NSString*)text release:(BOOL)release phrase:(NSArray*)phrase
 {
     self = [self initWithDictionary:nil];
     if(self)
@@ -78,7 +78,7 @@
     return self;
 }
 
-+ (MNBend*)bendWithText:(NSString*)text;
++ (MNBend*)bendWithText:(NSString*)text
 {
     return [[MNBend alloc] initWithText:text release:NO phrase:nil];
 }
@@ -117,7 +117,7 @@
     [self updateWidth];
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
@@ -134,7 +134,7 @@
 }
 
 // Arrange bends in `ModifierContext`
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context;
++ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
     NSMutableArray* bends = modifiers;
     if(!bends || bends.count == 0)
@@ -160,7 +160,7 @@
     return YES;
 }
 
-- (id)setXShift:(float)x_shift;
+- (id)setXShift:(float)x_shift
 {
     /*
         setX_shift: function(value) {
@@ -264,7 +264,7 @@
     return self;
 }
 
-- (void)draw:(CGContextRef)ctx;
+- (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
 
@@ -404,7 +404,7 @@
       CGContextSaveGState(ctx);
 
       float render_x = x - ([MNText measureText:text].width / 2);
-      //       [MNText drawSimpleText:ctx atPoint:MNPointMake(render_x, annotation_y) withText:text];
+      //       [MNText drawText:ctx atPoint:MNPointMake(render_x, annotation_y) withText:text];
 
       MNPoint* point = MNPointMake(render_x, annotation_y);
 

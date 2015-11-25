@@ -32,19 +32,10 @@
 #import "MNTableNoteGlyphStruct.h"
 
 @class MNGlyph, MNAccidental, MNNote, MNKeyProperty, MNRational, MNClef, MNKeySignature, MNStaffNote;
-@class MNTableOrnamentCodes, MNTableAccidentalCodes, MNTableNoteInputData, MNTableGlyphStruct,
-    MNTablesNoteStringData;
+@class MNTableOrnamentCodes, MNTableAccidentalCodes, MNTableNoteInputData, MNTableGlyphStruct, MNTablesNoteStringData;
 @class MNGlyphTabStruct;
 
-static const NSUInteger kRESOLUTION = 16384;   // ticks per measure
-static const float kSCALE = 0.025f;
-static const float kSTEM_WIDTH = 1.5;
-static const float kSTEM_HEIGHT = 32.f;
-static const float kSTAFF_LINE_THICKNESS = 1.f;
-static const float kPI = 3.14159f;
-static float kTHICKNESS = 2.f;
-
-/*! 
+/*!
     The `MNTables` class has lots data and formatting of music objects.
     It is a singleton but has a dealloc to free resources of C objects
  */
@@ -111,9 +102,9 @@ static float kTHICKNESS = 2.f;
 //+ (MNGlyph*)durationToGlyph:(MNNoteDurationType)noteDurationType withNHMRSType:(MNNoteNHMRSType)noteNHMRSType;
 + (MNTableGlyphStruct*)durationToGlyphStruct:(NSString*)noteDurationString;
 + (MNTableGlyphStruct*)durationToGlyphStruct:(NSString*)noteDurationString
-                          withNHMRSNoteString:(NSString*)noteNHSMSString;
+                         withNHMRSNoteString:(NSString*)noteNHSMSString;
 + (MNTableGlyphStruct*)durationToGlyphStruct:(MNNoteDurationType)noteDurationType
-                                withNHMRSType:(MNNoteNHMRSType)noteNHMRSType;
+                               withNHMRSType:(MNNoteNHMRSType)noteNHMRSType;
 
 + (MNGlyphTabStruct*)glyphForTab:(NSString*)fret;
 

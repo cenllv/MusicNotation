@@ -50,10 +50,11 @@
 #import "MNBeam.h"
 #import "MNNoteHead.h"
 #import "MNTuplet.h"
+#import "MNConstants.h"
 
 @implementation NoteRenderOptions
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -75,7 +76,7 @@
 @end
 
 @implementation NoteMetrics
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -91,7 +92,7 @@
 //@synthesize center_x_shift = _center_x_shift;
 @synthesize shouldIgnoreTicks = _shouldIgnoreTicks;
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
@@ -101,7 +102,7 @@
     return self;
 }
 
-- (instancetype)init;
+- (instancetype)init
 {
     self = [self initWithDictionary:nil];
     if(self)
@@ -110,7 +111,7 @@
     return self;
 }
 
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
+- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     [propertiesEntriesMapping addEntriesFromDictionary:@{
@@ -139,7 +140,7 @@
  *      duration_override
  *      align_center
  */
-- (void)setupNote:(NSDictionary*)optionsDict;
+- (void)setupNote:(NSDictionary*)optionsDict
 {
     // set up  MNTickableDelegate vars
     self.intrinsicTicks = 0;
@@ -226,8 +227,10 @@
     }
 
     _staff = nil;
-    self->_renderOptions =
-        [[NoteRenderOptions alloc] initWithDictionary:@{@"annotation_spacing" : @5, @"stave_padding" : @12}];
+    self->_renderOptions = [[NoteRenderOptions alloc] initWithDictionary:@{
+        @"annotation_spacing" : @5,
+        @"stave_padding" : @12
+    }];
 }
 
 #pragma mark - Properties
@@ -262,7 +265,7 @@
  *  hhelps create a debug description from the specified string to properties dictionary
  *  @return a dictionary of property names
  */
-- (NSDictionary*)dictionarySerialization;
+- (NSDictionary*)dictionarySerialization
 {
     return [self dictionaryWithValuesForKeyPaths:@[]];
 }
@@ -371,7 +374,7 @@
  *  @param ignoreTicks YES if no duration
  *  @return this object
  */
-- (id)setIgnoreTicks:(BOOL)ignoreTicks;
+- (id)setIgnoreTicks:(BOOL)ignoreTicks
 {
     _ignoreTicks = ignoreTicks;
     return self;
@@ -407,7 +410,7 @@
  *  get the ticks occupied
  *  @return ticks
  */
-- (MNRational*)ticks;
+- (MNRational*)ticks
 {
     return _ticks;
 }
@@ -417,7 +420,7 @@
  *  @param ticks amount of ticks
  *  @return this object
  */
-- (id)setTicks:(MNRational*)ticks;
+- (id)setTicks:(MNRational*)ticks
 {
     _ticks = ticks;
     return self;
@@ -438,7 +441,7 @@
  *  Set the tick duration
  *  @param duration ticks
  */
-- (void)setTickDuration:(MNRational*)duration;
+- (void)setTickDuration:(MNRational*)duration
 {
     NSUInteger ticks = duration.numerator * (kRESOLUTION / duration.denominator);
     self.ticks = [[self.tickMultiplier clone] mult:ticks];
@@ -523,7 +526,6 @@
     return self;
 }
 
-
 /*!
  *  Set the `TickContext` for self note.
  *  @param tickContext the tick context
@@ -606,7 +608,7 @@
  *   @"n"
  *   @"m"
  */
-- (NSString*)noteTypeString;
+- (NSString*)noteTypeString
 {
     if(!_noteNHMRSString)
     {
@@ -655,7 +657,7 @@
  *  @param index    index of the key that we're modifying
  *  @return this object
  */
-- (id)addModifier:(MNModifier*)modifier atIndex:(NSUInteger)index;
+- (id)addModifier:(MNModifier*)modifier atIndex:(NSUInteger)index
 {
     //    [modifier setNote:self];
     modifier.note = self;
@@ -694,7 +696,7 @@
  *  @param modifier the modifier to add to this note
  *  @return this object
  */
-- (id)addModifier:(MNModifier*)modifier;
+- (id)addModifier:(MNModifier*)modifier
 {
     modifier.note = self;
     modifier.parent = self;
@@ -725,7 +727,7 @@
  *  @param index    if there's more than one modifier, then which index to occupy
  *  @return an xy point
  */
-- (MNPoint*)getModifierstartXYforPosition:(MNPositionType)position andIndex:(NSUInteger)index;
+- (MNPoint*)getModifierstartXYforPosition:(MNPositionType)position andIndex:(NSUInteger)index
 {
     if(!self.preFormatted)
     {

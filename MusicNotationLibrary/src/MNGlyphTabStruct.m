@@ -29,7 +29,7 @@
 #import "MNGlyphTabStruct.h"
 
 @implementation MNGlyphTabStruct
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)

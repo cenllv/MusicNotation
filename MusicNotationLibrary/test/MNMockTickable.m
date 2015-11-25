@@ -70,7 +70,7 @@ resolution: kRESOLUTION
     return self;
 }
 
-+ (MockTickable*)mockTickableWithTimeType:(MNTimeType)timeType;
++ (MockTickable*)mockTickableWithTimeType:(MNTimeType)timeType
 {
     return [[MockTickable alloc] initWithTimeType:timeType];
 }
@@ -104,38 +104,38 @@ Vex.Flow.Test.MockTickable.prototype.shouldIgnoreTicks = function() {
 Vex.Flow.Test.MockTickable.prototype.preFormat = function() {}
 */
 
-- (float)getX;
+- (float)getX
 {
     return self.tickContext.x;
 }
-- (MNRational*)getIntrinsicTicks;
+- (MNRational*)getIntrinsicTicks
 {
     return _ticks;
 }
 
-- (MNRational*)getTicks;
+- (MNRational*)getTicks
 {
     return _ticks;
 }
 
-- (id)setTicks:(MNRational*)ticks;
+- (id)setTicks:(MNRational*)ticks
 {
     _ticks = ticks;
     return self;
 }
 
-- (BOOL)getIgnoreTicks;
+- (BOOL)getIgnoreTicks
 {
     return _ignore_ticks;
 }
 
-- (id)setIgnoreTicks:(BOOL)ignoreTicks;
+- (id)setIgnoreTicks:(BOOL)ignoreTicks
 {
     _ignore_ticks = ignoreTicks;
     return self;
 }
 
-- (NSDictionary*)getMetrics;
+- (NSDictionary*)getMetrics
 {
     return @{
         @"noteWidth" : @(self.width),
@@ -155,94 +155,94 @@ Vex.Flow.Test.MockTickable.prototype.preFormat = function() {}
 //- (float)getWidth; {
 //    return self.width;
 //}
-- (id)setWidth:(float)w;
+- (id)setWidth:(float)w
 {
     _width = w;
     return self;
 }
-- (void)setVoice:(MNVoice*)v;
+- (void)setVoice:(MNVoice*)v
 {
     _voice = v;
 }
-- (void)setstaff:(MNStaff*)staff;
+- (void)setstaff:(MNStaff*)staff
 {
     _staff = staff;
 }
-- (void)setTickContext:(MNTickContext*)tc;
+- (void)setTickContext:(MNTickContext*)tc
 {
     _tickContext = tc;
 }
 
-- (BOOL)shouldIgnoreTicks;
+- (BOOL)shouldIgnoreTicks
 {
     return _ignore_ticks;
 }
 
-- (BOOL)preFormat;
+- (BOOL)preFormat
 {
     return YES;
 }
 
-- (MockTickable*)setCustomTicks:(MNRational*)t;
+- (MockTickable*)setCustomTicks:(MNRational*)t
 {
     [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
     abort();
 }
 
-- (void)getWidth;
+- (void)getWidth
 {
     [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
     abort();
 }
 
-- (id)setXShift:(float)xShift;
+- (id)setXShift:(float)xShift
 {
     [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
     abort();
 }
 
-- (float)xShift;
+- (float)xShift
 {
     [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
     abort();
 }
 
-- (MockTickable*)setCustomWidth:(float)w;
+- (MockTickable*)setCustomWidth:(float)w
 {
     [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
     abort();
 }
 
-- (MNRational*)ticks;
+- (MNRational*)ticks
 {
     return _ticks;
 }
 
-- (void)addToModifierContext:(MNModifierContext*)mc;
+- (void)addToModifierContext:(MNModifierContext*)mc
 {
     [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
     abort();
 }
 
-- (id)addModifier:(MNModifier*)modifier;
+- (id)addModifier:(MNModifier*)modifier
 {
     [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
     abort();
 }
 
-- (BOOL)postFormat;
+- (BOOL)postFormat
 {
     [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
     abort();
 }
 
-- (void)applyTickMultiplier:(NSUInteger)numerator denominator:(NSUInteger)denominator;
+- (void)applyTickMultiplier:(NSUInteger)numerator denominator:(NSUInteger)denominator
 {
     [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
     abort();
 }
 
-- (void)setTickDuration:(MNRational*)duration;
+- (void)setTickDuration:(MNRational*)duration
 {
     [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
     abort();
