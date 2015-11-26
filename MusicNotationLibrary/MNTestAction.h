@@ -33,7 +33,7 @@
 @property (strong, nonatomic) id target;
 @property (strong, nonatomic) NSString* name;
 @property (assign, nonatomic) CGRect frame;
-@property (strong, nonatomic) NSDictionary* params;
+@property (strong, nonatomic) NSObject* params;
 //@property (assign, nonatomic) BOOL cached;
 
 + (MNTestAction*)testWithName:(NSString*)name andSelector:(SEL)selector andTarget:(id)target andFrame:(CGRect)frame;

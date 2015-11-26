@@ -45,6 +45,11 @@
     [self runTest:@"Scale Intervals" func:@selector(scaleIntervals)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
 {
     /*

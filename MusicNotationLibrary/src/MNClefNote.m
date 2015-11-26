@@ -113,12 +113,12 @@
 
 + (NSString*)CATEGORY
 {
-    return @"clefnote";
+    return NSStringFromClass([self class]); //return @"clefnote";
 }
 
 - (NSString*)category
 {
-    return @"clefnote";
+    return NSStringFromClass([self class]); //return @"clefnote";
 }
 
 - (id)setClefWithClefName:(NSString*)clefName size:(NSString*)size annotationName:(NSString*)annotationName

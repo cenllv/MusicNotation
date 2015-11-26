@@ -86,7 +86,7 @@ Vex.Flow.TextDynamics = (function(){
 /*
     // ## Prototype Methods
     //
-    // A `TextDynamics` object inherits from `Note` so that it can be formatted
+    // A `TextDynamics` object inherits from `MNNote` so that it can be formatted
     // within a `Voice`.
     Vex.Inherit(TextDynamics, Vex.Flow.Note, {
         // Create the dynamics marking. `text_struct` is an object

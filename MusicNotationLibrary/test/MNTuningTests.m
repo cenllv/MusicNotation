@@ -37,6 +37,11 @@
     [self runTest:@"Return note for fret" func:@selector(noteForFret)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
 {
     /*

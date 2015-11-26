@@ -71,8 +71,12 @@
             frame:CGRectMake(10, 10, 750, 160)];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
+- (void)tearDown
+{
+    [super tearDown];
+}
 
+- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
 {
     /*
      Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
@@ -168,22 +172,37 @@
 
     [[note setStaff:staff] draw:ctx];
 
-    [note.boundingBox draw:ctx];
+    MNBoundingBox* bb = note.boundingBox;
+    [bb draw:ctx];
 
-    //    CGContextSaveGState(ctx);
-    //    // TODO: the following lines do nothing
-    //     [MNFont setFont:@"10pt Arial"];
-    //     [MNFont setStrokeStyle:@"#579"];
-    //     [MNFont setFillStyle:@"#345"];
-    //     [MNText drawText:ctx
-    //                   atPoint:MNPointMake(note.absoluteX - 25, 200 / 1.5)
-    //                  withText:[NSString stringWithFormat:@"w: %f", note.width]];
-    //
-    //    CGContextBeginPath(ctx);
+    CGFloat y_shift = 50;
+    static BOOL toggle = NO;
+    if(toggle)
+    {
+        y_shift += 20;
+    }
+    else
+    {
+        y_shift -= 20;
+    }
+    toggle = !toggle;
+
+    CGContextSaveGState(ctx);
+    MNFont* font = [MNFont fontWithName:@"Arial" size:10];
+    font.strokeColor = [MNColor colorWithHexString:@"579"];
+    font.fillColor = [MNColor colorWithHexString:@"345"];
+    [MNText drawText:ctx
+            withFont:font
+             atPoint:MNPointMake(note.absoluteX - 25, 200 / 1.5 + y_shift + 10)
+            withText:[NSString stringWithFormat:@"w: %f", note.width]];
+
+    CGContextBeginPath(ctx);
     //    CGContextMoveToPoint(ctx, note.absoluteX - note.width / 2, 210 / 1.5);
     //    CGContextAddLineToPoint(ctx, note.absoluteX + note.width / 2, 210 / 1.5);
-    //    CGContextStrokePath(ctx);
-    //    CGContextRestoreGState(ctx);
+    CGContextMoveToPoint(ctx, bb.xPosition, 210 / 1.5 + y_shift);
+    CGContextAddLineToPoint(ctx, bb.xPosition + bb.width, 210 / 1.5 + y_shift);
+    CGContextStrokePath(ctx);
+    CGContextRestoreGState(ctx);
 
     return note;
 }
@@ -248,7 +267,7 @@
                                    atIndex:5],
     ];
 
-    [ret.staves addObject:staff];
+    //    [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       for(uint i = 0; i < notes.count; ++i)

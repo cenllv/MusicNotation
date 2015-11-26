@@ -40,6 +40,7 @@
 @property (assign, nonatomic) float notePoints;
 @property (assign, nonatomic) float width;
 @property (assign, nonatomic) MNPoint* point;
+
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
 @end

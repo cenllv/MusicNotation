@@ -39,6 +39,11 @@
     [self runTest:@"Slide Down" func:@selector(slideDown:) frame:CGRectMake(10, 10, w, h)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 + (void)tieNotes:(NSArray*)notes withIndices:(NSArray*)indices staff:(MNTabStaff*)staff context:(CGContextRef)ctx
 {
     MNVoice* voice = [[MNVoice voiceWithTimeSignature:MNTime4_4] addTickables:notes];

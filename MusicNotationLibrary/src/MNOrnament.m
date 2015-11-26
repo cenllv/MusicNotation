@@ -196,7 +196,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"ornaments";
+    return NSStringFromClass([self class]); //return @"ornaments";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 static NSDictionary* _acc_mods;

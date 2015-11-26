@@ -36,8 +36,7 @@
 @class MNGlyphTabStruct;
 
 /*!
-    The `MNTables` class has lots data and formatting of music objects.
-    It is a singleton but has a dealloc to free resources of C objects
+    The `MNTables` class has lots of data and formatting tables for `MNClasses`.
  */
 @interface MNTable : NSObject
 {
@@ -48,118 +47,27 @@
 
 + (NSDictionary*)accidentalColumnsTable;
 + (NSDictionary*)accidentalCodes;
-
 + (NSDictionary*)accidentalsDictionary;
-
 + (NSDictionary*)articulationsDictionary;
-
-//+ (NSDictionary *)clefPropertiesDictionary;
-
-+ (NSDictionary*)durationAliasesDictionary;
-
-//+ (NSDictionary *)durationCodesDictionary;
-
-/*! note that this is a dictionary of float values
- */
-+ (NSDictionary*)durationToTicksDictionary;
-
-/*! piano key frequencies LUT
-    http://en.wikipedia.org/wiki/Piano_key_frequencies
- */
-+ (float*)frequenciesArray;
-
-/*! the labels on the piano keys LUT
- */
-+ (NSArray*)pianoLabels;
-
-+ (NSArray*)integerToNoteArray;
-
-+ (NSDictionary*)integerToNoteDictionary;
-
-//+ (NSDictionary*)keyNoteValuesDictionary;
-
-+ (NSArray*)keyPropertiesArray;
-
 + (NSDictionary*)keySpecsDictionary;
-
-+ (NSDictionary*)noteGlyphsDictionary;
-
-+ (NSDictionary*)noteTypesDictionary;
-
-//+ (NSDictionary *)pianoKeyForNoteDictionary;
++ (NSDictionary*)ornamentCodes;
++ (NSDictionary*)textNoteGlyphs;
 
 #pragma mark - Class Methods
-/*!---------------------------------------------------------------------------------------------------------------------
- * @name Class Methods
- * ---------------------------------------------------------------------------------------------------------------------
- */
 
-+ (NSArray*)accidentalListForAcc:(NSString*)accidental;
-
-+ (void)configureStaffNoteForNote:(MNStaffNote*)note;
-
-//+ (MNGlyph*)durationToGlyph:(NSString*)noteDurationString withNHMRSNoteType:(NSString*)noteTypeString;
-//+ (MNGlyph*)durationToGlyph:(MNNoteDurationType)noteDurationType withNHMRSType:(MNNoteNHMRSType)noteNHMRSType;
 + (MNTableGlyphStruct*)durationToGlyphStruct:(NSString*)noteDurationString;
 + (MNTableGlyphStruct*)durationToGlyphStruct:(NSString*)noteDurationString
                          withNHMRSNoteString:(NSString*)noteNHSMSString;
 + (MNTableGlyphStruct*)durationToGlyphStruct:(MNNoteDurationType)noteDurationType
                                withNHMRSType:(MNNoteNHMRSType)noteNHMRSType;
-
 + (MNGlyphTabStruct*)glyphForTab:(NSString*)fret;
-
-/*!  Take a note in the format "Key/Octave" (e.g., "C/5") and return properties.
- */
 + (MNKeyProperty*)keyPropertiesForKey:(NSString*)key andClef:(MNClefType)clefType andOptions:(NSDictionary*)params;
-
 + (MNKeySignature*)keySignatureWithString:(NSString*)key;
-
 + (NSMutableArray*)keySignatureForSpec:(NSString*)spec;
-
-+ (MNTableAccidentalCodes*)objectForAccidental:(NSString*)accidental;
-
-+ (MNMetrics*)metricForArticulation:(NSString*)articulation;
-
-+ (MNNote*)noteForIndex:(NSUInteger)index;
-
-//+ (MNNoteType)noteTypeForTypeString:(NSString *)type;
-
-//+ (MNNote *)parseNoteDurationString:(NSString *)durationString;
-
-//+ (NSString *)noteStringTypeForNoteType:(MNNoteType)noteType;
-
 + (MNTablesNoteStringData*)parseNoteData:(MNTableNoteInputData*)noteData;
-
-//+ (MNTablesNoteStringData*)parseNoteDurationString:(NSString*)noteStringData;
-
-+ (NSUInteger)textWidthForText:(NSString*)text;
-
-/*! determines the Fraction object for the given duration
- */
-+ (MNRational*)ticksForDuration:(NSString*)duration;
-
-/*! determines the note type for the given duration
- */
-+ (MNNoteDurationType)noteDurationTypeForDurationString:(NSString*)duration;
-
-+ (BOOL)duration:(NSString*)a greaterThanDuration:(NSString*)b;
-
-/*!
- *   Used to convert duration aliases to the number based duration.
- *    If the input isn't an alias, simply return the input.
- *    example: 'q' -> '4', '8' -> '8'
- *  @param duration note duration
- *  @return duration note duration
- */
-+ (NSString*)sanitizeDuration:(NSString*)duration;
 + (NSNumber*)durationToNumber:(NSString*)duration;
 + (MNRational*)durationToFraction:(NSString*)duration;
-
 + (NSUInteger)durationToTicks:(NSString*)duration;
-
-+ (NSDictionary*)ornamentCodes;
-
 + (NSString*)articulationCodeForType:(MNArticulationType)type;
-//+ (NSDictionary *)articulationsDictionary;
 
 @end

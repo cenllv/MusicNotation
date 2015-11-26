@@ -69,6 +69,8 @@
     float _xShift;
     BOOL _centerAlign;
     float _center_x_shift;
+    
+    MNFont* _font;
 
     __weak MNStaff* _staff;
 }
@@ -89,7 +91,7 @@
 - (MNTuplet*)tuplet;
 - (id)setTuplet:(MNTuplet*)tuplet;
 
-// Get and set attached note (`StaveNote`, `TabNote`, etc.)
+// Get and set attached note (`MNStaffNote`, `MNTabNote`, etc.)
 //@property (weak, nonatomic)  MNNote *note;
 @property (strong, nonatomic, readonly) NSString* category;
 

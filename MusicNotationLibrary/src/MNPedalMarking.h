@@ -26,13 +26,10 @@
 //  THE SOFTWARE.
 //
 
-
-
-
 #import "MNEnum.h"
 #import "IAModelBase.h"
 
-@class MNColor;
+@class MNColor, MNFont;
 
 /*! The `MNPedalMarking` class performs implements different types of pedal markings. These notation
       elements indicate to the performer when to depress and release the a pedal.
@@ -54,14 +51,13 @@
 @property (assign, nonatomic) float fontSize;
 @property (assign, nonatomic) BOOL fontBold;
 @property (assign, nonatomic) BOOL fontItalic;
+@property (strong, nonatomic) MNFont* font;
 
 @property (assign, nonatomic) float bracket_height;
 @property (assign, nonatomic) float text_margin_right;
 @property (assign, nonatomic) float bracket_line_width;
 @property (assign, nonatomic) float glyph_point_size;
 @property (strong, nonatomic) MNColor* color;
-
-@property (assign, nonatomic) CGContextRef graphicsContext;
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;

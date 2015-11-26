@@ -37,6 +37,11 @@
     [self runTest:@"Modifier Management" func:@selector(management)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
 {
     /*

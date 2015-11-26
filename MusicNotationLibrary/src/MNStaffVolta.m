@@ -67,7 +67,11 @@
 
 + (NSString*)CATEGORY
 {
-    return @"voltas";
+    return NSStringFromClass([self class]); //return @"voltas";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 //- (void)draw:(CGContextRef)ctx staff:(MNStaff*)staff atX:(float)x;

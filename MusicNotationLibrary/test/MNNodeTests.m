@@ -35,6 +35,11 @@
     [super start];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (void)basicHeirarchy:(MNTestCollectionItemView*)parent
 {
     // draw symbol with sub symbols

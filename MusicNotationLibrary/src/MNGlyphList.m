@@ -78,10 +78,7 @@
 }
 
 #pragma mark - Class methods
-/*!---------------------------------------------------------------------------------------------------------------------
- * @name Class Methods
- * ---------------------------------------------------------------------------------------------------------------------
- */
+
 
 static NSMutableDictionary* _dimensionsDictionary;
 static NSMutableDictionary* _anchorPointForGlyphNameDictionary;

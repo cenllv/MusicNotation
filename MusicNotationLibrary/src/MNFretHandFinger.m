@@ -88,7 +88,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"frethandfingers";
+    return NSStringFromClass([self class]); //return @"frethandfingers";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 - (void)setupFretHandFinger
@@ -260,6 +264,8 @@
     }
     return self;
 }
+
+
 
 - (void)draw:(CGContextRef)ctx
 {

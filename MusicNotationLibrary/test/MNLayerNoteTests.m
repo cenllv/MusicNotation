@@ -160,6 +160,12 @@
     [self setUp];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+    [_audioController stop];
+}
+
 - (void)setUp
 {
     //     Create an instance of the audio controller, set it up and start it running

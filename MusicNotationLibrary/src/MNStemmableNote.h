@@ -33,7 +33,7 @@
 @class MNStem, MNBeam, MNExtentStruct, MNTableGlyphStruct;
 
 /*! The `MNStemmableNote`  is an abstract interface for notes with optional stems.
-    Examples of stemmable notes are `StaveNote` and `TabNote` and `ghostnote`
+    Examples of stemmable notes are `MNStaffNote` and `MNTabNote` and `ghostnote`
  */
 @interface MNStemmableNote : MNNote
 {
@@ -52,20 +52,13 @@
 @property (assign, nonatomic) BOOL hasStem;
 @property (assign, nonatomic) BOOL drawStem;
 @property (weak, nonatomic) MNBeam* beam;
-/*! up or down depending on position on staff and relation to other notes
- */
 @property (assign, nonatomic) MNStemDirectionType stemDirection;
 @property (assign, nonatomic) float stemExtension;
 @property (assign, nonatomic) float stem_extension_override;
 @property (strong, nonatomic) MNExtentStruct* stemExtents;
-//@property (assign, nonatomic) BOOL postFormatted;
-//@property (strong, nonatomic) StemmableNoteRenderOptions *renderOptions;
 @property (assign, nonatomic) float shift_x;
-//@property (assign, nonatomic, readonly) float stemX;
 @property (assign, nonatomic, readonly) float centerGlyphX;
 @property (assign, nonatomic, readonly, getter=getStemLength) float height;
-//@property (strong, nonatomic)  MNTablesGlyphStruct* glyphStruct;
-//@property (strong, nonatomic) MNGlyph* glyph;
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
@@ -125,7 +118,7 @@
 
 /*!
  *  Get the `x` coordinate for the center of the glyph.
- *  Used for `TabNote` stems and stemlets over rests
+ *  Used for `MNTabNote` stems and stemlets over rests
  *  @return the center of the x coordinate glyph in global pixels
  */
 - (float)centerGlyphX;
@@ -141,11 +134,13 @@
  *  @param height stem height in pixels
  */
 - (void)setStemLength:(float)height;
+
 /*!
  *  Get the top and bottom `y` values of the stem.
  *  @return pixels struct
  */
 - (MNExtentStruct*)stemExtents;
+
 /*!
  *  Sets the current note's beam
  *  @param beam the beam for this note
@@ -174,7 +169,7 @@
 
 /*!
  *  Render the stem onto the canvas
- *  @param ctx  graphics context
+ *  @param ctx  the core graphics opaque type drawing environment
  *  @param stem stem object to draw
  */
 - (void)drawStem:(CGContextRef)ctx withStem:(MNStem*)stem;

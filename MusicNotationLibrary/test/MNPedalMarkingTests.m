@@ -47,6 +47,11 @@
     [self runTest:@"Custom Text" func:@selector(customTextMixed:) frame:CGRectMake(10, 10, w, h)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
 {
     /*

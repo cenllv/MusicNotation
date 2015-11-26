@@ -47,6 +47,11 @@
     //            frame:CGRectMake(10, 10, 920, 250)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
 {
     /*
@@ -177,9 +182,9 @@
       [voice addTickables:notes];
       [voice1 addTickables:notes1];
       [voice2 addTickables:notes2];
-//            NSArray* beams = [MNBeam applyAndGetBeams:voice direction:MNStemDirectionUp groups:nil];
-            NSArray* beams1 = [MNBeam applyAndGetBeams:voice1 direction:MNStemDirectionDown groups:nil];
-//            NSArray* beams2 = [MNBeam applyAndGetBeams:voice2 direction:MNStemDirectionDown groups:nil];
+      //            NSArray* beams = [MNBeam applyAndGetBeams:voice direction:MNStemDirectionUp groups:nil];
+      NSArray* beams1 = [MNBeam applyAndGetBeams:voice1 direction:MNStemDirectionDown groups:nil];
+      //            NSArray* beams2 = [MNBeam applyAndGetBeams:voice2 direction:MNStemDirectionDown groups:nil];
 
       // Set option to position rests near the notes in each voice
       //      MNFormatter* formatter =
@@ -189,18 +194,18 @@
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [voice1 draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staff];
-//            for(NSUInteger i = 0; i < beams.count; i++)
-//            {
-//                [beams[i] draw:ctx];
-//            }
-            for(NSUInteger i = 0; i < beams1.count; i++)
-            {
-                [beams1[i] draw:ctx];
-            }
-//            for(NSUInteger i = 0; i < beams2.count; i++)
-//            {
-//                [beams2[i] draw:ctx];
-//            }
+      //            for(NSUInteger i = 0; i < beams.count; i++)
+      //            {
+      //                [beams[i] draw:ctx];
+      //            }
+      for(NSUInteger i = 0; i < beams1.count; i++)
+      {
+          [beams1[i] draw:ctx];
+      }
+      //            for(NSUInteger i = 0; i < beams2.count; i++)
+      //            {
+      //                [beams2[i] draw:ctx];
+      //            }
 
       ok(YES, @"Three Voices - Test #1");
     };

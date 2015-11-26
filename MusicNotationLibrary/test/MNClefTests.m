@@ -43,6 +43,11 @@
     [self runTest:@"Clef Change Test" func:@selector(drawClefChange:withTitle:) frame:CGRectMake(10, 10, 800, 250)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
 {
     /*

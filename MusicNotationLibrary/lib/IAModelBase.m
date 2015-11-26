@@ -339,7 +339,7 @@
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
     for(NSString* keyPath in keyPaths)
     {
-        // TODO: crashes if self does not have value
+        // NOTE: crashes if self does not have value
         [dict setObject:[self valueForKeyPath:keyPath] forKey:keyPath];
     }
     return [NSDictionary dictionaryWithDictionary:dict];

@@ -50,6 +50,8 @@
 #import "MNMacros.h"
 #import "NSArray+MNAdditions.h"
 #import "MNConstants.h"
+#import "MNText.h"
+#import "MNFont.h"
 
 #pragma mark -  MNTables Implementation
 
@@ -1618,10 +1620,6 @@ static NSDictionary* _clefProperties;
 }
 
 #pragma mark - Class Methods
-/*!---------------------------------------------------------------------------------------------------------------------
- * @name Class Methods
- * ---------------------------------------------------------------------------------------------------------------------
- */
 
 + (NSArray*)accidentalListForAcc:(NSString*)accidental
 {
@@ -2196,7 +2194,11 @@ static NSDictionary* _durationCodesDictionary;
     }
     else
     {
-        width = [MNTable textWidthForText:fret];   // Vex.Flow.textWidth(fret.toString());
+        //        width = [MNTable textWidthForText:fret];   // Vex.Flow.textWidth(fret.toString());
+        //[MNFont fontWithName:@"ArialMT" size:12];
+
+        // TODO: this hardcoded font may change
+        width = [MNText measureText:fret withFont:[MNFont fontWithName:@"ArialMT" size:12]].width;
     }
 
     MNGlyphTabStruct* ret = [[MNGlyphTabStruct alloc] initWithDictionary:@{
@@ -2226,7 +2228,7 @@ static NSDictionary* _durationCodesDictionary;
     {
         if(![params.allKeys containsObject:@"octave_shift"])
         {
-            NSDictionary* options = @{@"octave_shift" : @0};
+            NSDictionary* options = @{ @"octave_shift" : @0 };
             params = [NSMutableDictionary merge:options with:params];
         }
     }
@@ -2916,11 +2918,6 @@ static NSDictionary* _noteDurationTypeForDurationStringDictionary;
     return 0;
 }
 
-+ (NSUInteger)textWidthForText:(NSString*)text
-{
-    return 6 * text.length;
-}
-
 + (NSArray*)durationsArray
 {
     if(!_durationsArray)
@@ -3021,6 +3018,74 @@ Vex.Flow.durationToTicks = function(duration) {
 + (NSUInteger)durationToTicks:(NSString*)duration
 {
     return [[[[self class] durationToTicksDictionary] objectForKey:duration] unsignedIntegerValue];
+}
+
+static NSDictionary* _textNoteGlyphs;
++ (NSDictionary*)textNoteGlyphs
+{
+    if(!_textNoteGlyphs)
+    {
+        _textNoteGlyphs = @{
+
+            @"segno" : @{
+                @"code" : @"v8c",
+                @"point" : @40,
+                @"x_shift" : @0,
+                @"y_shift" : @(-10)
+                // width: 10 // optional
+            },
+            @"tr" : @{
+                @"code" : @"v1f",
+                @"point" : @40,
+                @"x_shift" : @0,
+                @"y_shift" : @0
+                // width: 10 // optional
+            },
+            @"mordent" : @{
+                @"code" : @"v1e",
+                @"point" : @40,
+                @"x_shift" : @0,
+                @"y_shift" : @0
+                // width: 10 // optional
+            },
+            @"f" : @{
+                @"code" : @"vba",
+                @"point" : @40,
+                @"x_shift" : @0,
+                @"y_shift" : @0
+                // width: 10 // optional
+            },
+            @"p" : @{
+                @"code" : @"vbf",
+                @"point" : @40,
+                @"x_shift" : @0,
+                @"y_shift" : @0
+                // width: 10 // optional
+            },
+            @"m" : @{
+                @"code" : @"v62",
+                @"point" : @40,
+                @"x_shift" : @0,
+                @"y_shift" : @0
+                // width: 10 // optional
+            },
+            @"s" : @{
+                @"code" : @"v4a",
+                @"point" : @40,
+                @"x_shift" : @0,
+                @"y_shift" : @0
+                // width: 10 // optional
+            },
+            @"coda" : @{
+                @"code" : @"v4d",
+                @"point" : @40,
+                @"x_shift" : @0,
+                @"y_shift" : @(-8)
+                // width: 10 // optional
+            }
+        };
+    }
+    return _textNoteGlyphs;
 }
 
 @end

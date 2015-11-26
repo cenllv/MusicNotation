@@ -108,7 +108,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"none";
+    return NSStringFromClass([self class]); //return @"none";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 // Every modifier has a category. The `ModifierContext` uses this to determine
@@ -174,10 +178,13 @@
     return _index;
 }
 
-// Render the modifier onto the canvas.
-- (void)draw:(CGContextRef)ctx withStaff:(MNStaff*)staff withShiftX:(float)shiftX
+- (MNFont*)font
 {
-    // abstract ?
+    if(!_font)
+    {
+        self.font = [MNFont fontWithName:@"Helvetica" size:12];
+    }
+    return _font;
 }
 
 - (void)setupTickable
@@ -380,6 +387,12 @@
     NSUInteger ticks = duration.numerator * (kRESOLUTION / duration.denominator);
     _ticks = [[self.tickMultiplier clone] mult:ticks];
     _intrinsicTicks = [self.ticks floatValue];
+}
+
+// Render the modifier onto the canvas.
+- (void)draw:(CGContextRef)ctx withStaff:(MNStaff*)staff withShiftX:(float)shiftX
+{
+    // abstract ?
 }
 
 @end

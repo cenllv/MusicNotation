@@ -50,6 +50,7 @@ typedef NSButton MNButton;
 #endif
 
 - (void)start;
+- (void)tearDown;
 
 //- (CGRect)frameAtIndex:(NSUInteger)index;
 

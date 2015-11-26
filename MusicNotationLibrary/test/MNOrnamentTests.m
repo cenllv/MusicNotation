@@ -47,9 +47,14 @@
             frame:CGRectMake(10, 10, 700, 250)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size
-                              withParent:(MNTestCollectionItemView*)parent
-                               withTitle:(NSString*)title
+                                withParent:(MNTestCollectionItemView*)parent
+                                 withTitle:(NSString*)title
 {
     /*
      Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {

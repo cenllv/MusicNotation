@@ -72,7 +72,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"staffmodifier";
+    return NSStringFromClass([self class]); //return @"staffmodifier";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 - (NSMutableArray*)subModifiers
@@ -231,7 +235,7 @@
 
 /*!
  *  draw this modifier
- *  @param ctx   graphics context
+ *  @param ctx   the core graphics opaque type drawing environment
  *  @param staff the staff to draw to
  */
 - (void)drawWithContext:(CGContextRef)ctx toStaff:(MNStaff*)staff withShiftX:(float)shiftX

@@ -71,6 +71,8 @@
 #import "MNShapeLayer.h"
 #import "MNStroke.h"
 #import "NSString+MNAdditions.h"
+#import "MNStaffNoteRenderOptions.h"
+#import "MNNoteHeadBounds.h"
 
 @interface FormatNote : IAModelBase
 @property (assign, nonatomic) float line;       // note/rest base line
@@ -86,30 +88,6 @@
 @end
 
 @implementation FormatNote
-@end
-
-@implementation StaffNoteRenderOptions
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
-{
-    self = [super initWithDictionary:optionsDict];
-    if(self)
-    {
-        [self setValuesForKeyPathsWithDictionary:optionsDict];
-    }
-    return self;
-}
-
-- (instancetype)init
-{
-    self = [self initWithDictionary:nil];
-    if(self)
-    {
-    }
-    return self;
-}
-@end
-
-@implementation NoteHeadBounds
 @end
 
 #pragma mark -  MNStaffNote Implementation
@@ -272,7 +250,7 @@
     //    self.octaveShift = 0;
 
     self.preFormatted = NO;
-    self->_renderOptions = [[StaffNoteRenderOptions alloc] init];
+    self->_renderOptions = [[MNStaffNoteRenderOptions alloc] init];
 }
 
 - (void)setupStaffNoteWithOptions:(NSDictionary*)options
@@ -303,7 +281,7 @@
     }
 
     self->_renderOptions =
-        [[StaffNoteRenderOptions alloc] initWithDictionary:[self->_renderOptions propertiesToDictionaryEntriesMapping]];
+        [[MNStaffNoteRenderOptions alloc] initWithDictionary:[self->_renderOptions propertiesToDictionaryEntriesMapping]];
     // font size for note heads and rests
     [self->_renderOptions setGlyphFontScale:35];
     // number of stroke px to the left and right of head
@@ -885,7 +863,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"staffnote";
+    return NSStringFromClass([self class]); //return @"staffnote";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 - (NSString*)category
@@ -1001,7 +983,7 @@
 
 // Gets the line number of the top or bottom note in the chord.
 // If `is_top_note` is `YES` then get the top note
-- (NSUInteger)getLineNumber:(BOOL)is_top_note
+- (float)getLineNumber:(BOOL)is_top_note
 {
     if(!self.keyProps.count)
     {
@@ -1082,7 +1064,7 @@
 //    return  _staff;
 //}
 
-// Sets the current note to the provided `Staff`. This applies
+// Sets the current note to the provided `MNStaff`. This applies
 // `y` values to the `NoteHeads`.
 - (id)setStaff:(MNStaff*)staff
 {
@@ -1097,7 +1079,7 @@
 
     self.ys = ys;
 
-    NoteHeadBounds* bounds = [self getNoteHeadBounds];   // .noteHeadBounds;
+    MNNoteHeadBounds* bounds = [self getNoteHeadBounds];   // .noteHeadBounds;
 
     if(!self.beam)
     {
@@ -1147,7 +1129,7 @@
  *  Get the Staff line on which to place a rest
  *  @return <#return value description#>
  */
-- (NSUInteger)lineForRest
+- (float)lineForRest
 {
     float restLine = [((MNKeyProperty*)[self.keyProps objectAtIndex:0])line];
     if(self.keyProps.count > 1)
@@ -1491,7 +1473,7 @@ addModifier: function(index, modifier) {
 }
 
 // Gets the staff line and y value for the highest and lowest notehead
-- (NoteHeadBounds*)getNoteHeadBounds
+- (MNNoteHeadBounds*)getNoteHeadBounds
 {
     if(self.note_heads.count == 0)
     {
@@ -1524,7 +1506,7 @@ addModifier: function(index, modifier) {
 
     }];
 
-    NoteHeadBounds* ret = [[NoteHeadBounds alloc] init];
+    MNNoteHeadBounds* ret = [[MNNoteHeadBounds alloc] init];
     ret.y_top = y_top;
     ret.y_bottom = y_bottom;
     ret.highest_line = highest_line;
@@ -1553,7 +1535,7 @@ addModifier: function(index, modifier) {
 
 /*!
  *  Draw the ledger lines between the Staff and the highest/lowest keys
- *  @param ctx the graphics context
+ *  @param ctx the core graphics opaque type drawing environment
  */
 - (void)drawLedgerLines:(CGContextRef)ctx
 {
@@ -1562,7 +1544,7 @@ addModifier: function(index, modifier) {
         return;
     }
 
-    NoteHeadBounds* bounds = [self getNoteHeadBounds];
+    MNNoteHeadBounds* bounds = [self getNoteHeadBounds];
     float highest_line = bounds.highest_line;
     float lowest_line = bounds.lowest_line;
     // TODO: absoluteX broken
@@ -1597,7 +1579,7 @@ addModifier: function(index, modifier) {
 
 /*!
  *  Draw all key modifiers
- *  @param ctx the graphics context
+ *  @param ctx the core graphics opaque type drawing environment
  */
 - (void)drawModifiers:(CGContextRef)ctx
 {
@@ -1622,13 +1604,13 @@ addModifier: function(index, modifier) {
 
 /*!
  *  Draw the flag for the note
- *  @param ctx the graphics context
+ *  @param ctx the core graphics opaque type drawing environment
  */
 - (void)drawFlag:(CGContextRef)ctx
 {
     MNTableGlyphStruct* glyph = self.glyphStruct;   // self.glyphStruct;
     BOOL render_flag = self.beam == nil;
-    NoteHeadBounds* bounds = [self getNoteHeadBounds];   //.noteHeadBounds;
+    MNNoteHeadBounds* bounds = [self getNoteHeadBounds];   //.noteHeadBounds;
 
     float x_begin = [self getNoteHeadBeginX];
     float x_end = [self getNoteHeadEndX];
@@ -1665,7 +1647,7 @@ addModifier: function(index, modifier) {
 
 /*!
  *  Draw the NoteHeads
- *  @param ctx the graphics context
+ *  @param ctx the core graphics opaque type drawing environment
  */
 - (void)drawNoteHeads:(CGContextRef)ctx
 {
@@ -1688,7 +1670,7 @@ addModifier: function(index, modifier) {
 
 /*!
  *  Render the stem onto the canvas
- *  @param ctx the graphics context
+ *  @param ctx the core graphics opaque type drawing environment
  */
 - (void)drawStem:(CGContextRef)ctx
 {
@@ -1697,8 +1679,8 @@ addModifier: function(index, modifier) {
 }
 
 /*!
- *  Draws all the `StaffNote` parts. This is the main drawing method.
- *  @param ctx the graphics context
+ *  Draws all the `MNStaffNote` parts. This is the main drawing method.
+ *  @param ctx the core graphics opaque type drawing environment
  */
 - (void)draw:(CGContextRef)ctx
 {

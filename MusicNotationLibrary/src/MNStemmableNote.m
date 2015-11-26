@@ -296,7 +296,7 @@
 }
 
 // Get the `x` coordinate for the center of the glyph.
-// Used for `TabNote` stems and stemlets over rests
+// Used for `MNTabNote` stems and stemlets over rests
 - (float)centerGlyphX
 {
     return self.absoluteX + self.shift_x + self.glyphStruct.headWidth / 2;
@@ -379,6 +379,11 @@
     _beam = beam;
 }
 
+- (MNNoteRenderOptions*)renderOptions
+{
+    return [super renderOptions];
+}
+
 /*!
  *  Get the `y` value for the top modifiers at a specific `text_line`
  *  @param textLine line number on staff for text
@@ -436,7 +441,7 @@
 
 /*!
  *  Render the stem onto the canvas
- *  @param ctx  graphics context
+ *  @param ctx  the core graphics opaque type drawing environment
  *  @param stem stem object to draw
  */
 - (void)drawStem:(CGContextRef)ctx withStem:(MNStem*)stem

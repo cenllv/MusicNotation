@@ -37,7 +37,7 @@
 @class NoteHeadRenderOptions, MNTableGlyphStruct;
 
 /*! The `MNNoteHead` implements `NoteHeads`. `NoteHeads` are typically not manipulated
-  directly, but used internally in `StaffNote`.
+  directly, but used internally in `MNStaffNote`.
  */
 @interface MNNoteHead : MNNote
 {
@@ -111,7 +111,7 @@
 
 @end
 
-@interface NoteHeadRenderOptions : NoteRenderOptions
+@interface NoteHeadRenderOptions : MNNoteRenderOptions
 
 @property (assign, nonatomic) float glyphFontScale;
 @property (assign, nonatomic) float strokePx;

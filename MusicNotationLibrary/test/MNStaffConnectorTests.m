@@ -82,6 +82,11 @@ static NSUInteger staff_LINE_THICKNESS;
             frame:CGRectMake(10, 10, w, 750)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
 {
     /*

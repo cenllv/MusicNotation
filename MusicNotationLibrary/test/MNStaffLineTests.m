@@ -37,6 +37,11 @@
     [self runTest:@"StaffLine Arrow Options" func:@selector(simple1:withTitle:) frame:CGRectMake(10, 10, 700, 250)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNTestTuple*)simple0:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
 {
     MNTestTuple* ret = [MNTestTuple testTuple];

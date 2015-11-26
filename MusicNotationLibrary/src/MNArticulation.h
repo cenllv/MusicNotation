@@ -26,7 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNModifier.h"
 #import "MNEnum.h"
 
@@ -39,11 +38,8 @@
 @interface MNArticulation : MNModifier
 {
    @private
-    MNModifierState* _state;
-    MNArticulation* _articulation;
     MNArticulationType _articulationType;
-    __unsafe_unretained NSString* _articulationCode;
-
+    NSString* _articulationCode;
     float _shiftRight;
     float _shiftUp;
     float _shiftDown;
@@ -51,14 +47,8 @@
 }
 
 #pragma mark - Properties
-//@property (weak, nonatomic)  MNStaffNote *note;
-//@property (strong, nonatomic)  MNModifierState* state;
-//@property (assign, nonatomic) NSUInteger index;
-@property (strong, nonatomic) MNArticulation* articulation;
 @property (assign, nonatomic) MNArticulationType articulationType;
-//@property (assign, nonatomic) MNPositionType position;
-@property (assign, nonatomic, readonly) NSString* articulationCode;
-
+@property (strong, nonatomic) NSString* articulationCode;
 @property (assign, nonatomic) float shiftRight;
 @property (assign, nonatomic) float shiftUp;
 @property (assign, nonatomic) float shiftDown;
@@ -67,9 +57,6 @@
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithType:(MNArticulationType)articulationType;
-
-//+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state;
-
 - (id)setPosition:(MNPositionType)positionType;
 
 @end

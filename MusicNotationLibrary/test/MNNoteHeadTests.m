@@ -39,6 +39,11 @@
     [self runTest:@"Bounding Boxes" func:@selector(basicBoundingBox:) frame:CGRectMake(10, 10, w, h)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
 {
     /*

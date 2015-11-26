@@ -140,7 +140,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"dots";
+    return NSStringFromClass([self class]); //return @"dots";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 // Arrange dots inside a ModifierContext.

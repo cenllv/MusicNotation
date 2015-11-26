@@ -94,7 +94,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"repetitions";
+    return NSStringFromClass([self class]); //return @"repetitions";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 - (void)drawWithContext:(CGContextRef)ctx toStaff:(MNStaff*)staff withShiftX:(float)shiftX

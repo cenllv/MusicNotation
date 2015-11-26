@@ -63,6 +63,11 @@
             frame:CGRectMake(10, 10, 700, 250)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 + (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
 {
     /*

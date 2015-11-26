@@ -49,6 +49,11 @@
     [self runTest:@"TabNote Stems with Dots" func:@selector(drawStemsDotted:) frame:CGRectMake(10, 10, 700, 250)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
 {
     /*
@@ -99,11 +104,11 @@
         @"duration" : @"w"
     }];
     NSArray* positions = note.positions;
-    assertThatUnsignedInteger(((TabNotePositionsStruct*)positions[0]).str,
+    assertThatUnsignedInteger(((MNTabNotePositionsStruct*)positions[0]).str,
                               describedAs(@"String 6, Fret 6", equalToUnsignedInteger(6), nil));
     //    assertThatUnsignedInteger(((TabNotePositionsStruct*)positions[0]).fret,
     //                              describedAs(@"String 6, Fret 6", equalToUnsignedInteger(6), nil));
-    assertThatUnsignedInteger(((TabNotePositionsStruct*)positions[1]).str,
+    assertThatUnsignedInteger(((MNTabNotePositionsStruct*)positions[1]).str,
                               describedAs(@"String 4, Fret 5", equalToUnsignedInteger(4), nil));
     //    assertThatUnsignedInteger(((TabNotePositionsStruct*)positions[1]).fret,
     //                              describedAs(@"String 4, Fret 5", equalToUnsignedInteger(5), nil));
@@ -170,37 +175,38 @@
       [staff draw:ctx];
 
       NSArray* notes = @[
-          @{@"positions" : @[ @{@"str" : @(6), @"fret" : @"6"} ], @"duration" : @"q"},
+          @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"6"} ],
+             @"duration" : @"q" },
           @{
-             @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
-             @"duration" : @"q"
+              @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
+              @"duration" : @"q"
           },
           @{
-             @"positions" : @[ @{@"str" : @(2), @"fret" : @"x"}, @{@"str" : @(5), @"fret" : @"15"} ],
-             @"duration" : @"q"
+              @"positions" : @[ @{@"str" : @(2), @"fret" : @"x"}, @{@"str" : @(5), @"fret" : @"15"} ],
+              @"duration" : @"q"
           },
           @{
-             @"positions" : @[ @{@"str" : @(2), @"fret" : @"x"}, @{@"str" : @(5), @"fret" : @"5"} ],
-             @"duration" : @"q"
+              @"positions" : @[ @{@"str" : @(2), @"fret" : @"x"}, @{@"str" : @(5), @"fret" : @"5"} ],
+              @"duration" : @"q"
           },
           @{
-             @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
-             @"duration" : @"q"
+              @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
+              @"duration" : @"q"
           },
           @{
-             @"positions" : @[
-                 @{@"str" : @(6), @"fret" : @"0"},
-                 @{@"str" : @(5), @"fret" : @"5"},
-                 @{@"str" : @(4), @"fret" : @"5"},
-                 @{@"str" : @(3), @"fret" : @"4"},
-                 @{@"str" : @(2), @"fret" : @"3"},
-                 @{@"str" : @(1), @"fret" : @"0"}
-             ],
-             @"duration" : @"q"
+              @"positions" : @[
+                  @{@"str" : @(6), @"fret" : @"0"},
+                  @{@"str" : @(5), @"fret" : @"5"},
+                  @{@"str" : @(4), @"fret" : @"5"},
+                  @{@"str" : @(3), @"fret" : @"4"},
+                  @{@"str" : @(2), @"fret" : @"3"},
+                  @{@"str" : @(1), @"fret" : @"0"}
+              ],
+              @"duration" : @"q"
           },
           @{
-             @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-             @"duration" : @"q"
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+              @"duration" : @"q"
           }
       ];
 
@@ -226,18 +232,33 @@
     MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 30, 550, 0)];
 
     NSArray* specs = @[
-        @{@"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ], @"duration" : @"4"},
         @{
-           @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
-           @"duration" : @"8"
+            @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
+            @"duration" : @"4"
         },
-        @{@"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ], @"duration" : @"8"},
-        @{@"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ], @"duration" : @"16"},
-        @{@"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ], @"duration" : @"32"},
-        @{@"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ], @"duration" : @"64"},
         @{
-           @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-           @"duration" : @"128"
+            @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
+            @"duration" : @"8"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"8"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"16"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"32"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"64"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"128"
         }
     ];
 
@@ -275,32 +296,32 @@
 
       NSArray* specs = @[
           @{
-             @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
-             @"duration" : @"4"
+              @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
+              @"duration" : @"4"
           },
           @{
-             @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
-             @"duration" : @"8"
+              @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
+              @"duration" : @"8"
           },
           @{
-             @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-             @"duration" : @"8"
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+              @"duration" : @"8"
           },
           @{
-             @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-             @"duration" : @"16"
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+              @"duration" : @"16"
           },
           @{
-             @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-             @"duration" : @"32"
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+              @"duration" : @"32"
           },
           @{
-             @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-             @"duration" : @"64"
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+              @"duration" : @"64"
           },
           @{
-             @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-             @"duration" : @"128"
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+              @"duration" : @"128"
           }
       ];
 
@@ -339,32 +360,32 @@
 
       NSArray* specs = @[
           @{
-             @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
-             @"duration" : @"4"
+              @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
+              @"duration" : @"4"
           },
           @{
-             @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
-             @"duration" : @"8"
+              @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
+              @"duration" : @"8"
           },
           @{
-             @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-             @"duration" : @"8"
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+              @"duration" : @"8"
           },
           @{
-             @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-             @"duration" : @"16"
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+              @"duration" : @"16"
           },
           @{
-             @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-             @"duration" : @"32"
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+              @"duration" : @"32"
           },
           @{
-             @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-             @"duration" : @"64"
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+              @"duration" : @"64"
           },
           @{
-             @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-             @"duration" : @"128"
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+              @"duration" : @"128"
           }
       ];
 
@@ -404,41 +425,41 @@
 
       NSArray* specs = @[
           @{
-             @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
-             @"duration" : @"4"
+              @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
+              @"duration" : @"4"
           },
           @{
-             @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
-             @"duration" : @"8"
+              @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
+              @"duration" : @"8"
           },
           @{
-             @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-             @"duration" : @"8"
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+              @"duration" : @"8"
           },
           @{
-             @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-             @"duration" : @"16"
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+              @"duration" : @"16"
           },
           @{
-             @"positions" : @[
-                 @{@"str" : @(1), @"fret" : @"6"},
-                 @{@"str" : @(4), @"fret" : @"5"},
-                 @{@"str" : @(6), @"fret" : @"10"}
-             ],
-             @"duration" : @"32"
+              @"positions" : @[
+                  @{@"str" : @(1), @"fret" : @"6"},
+                  @{@"str" : @(4), @"fret" : @"5"},
+                  @{@"str" : @(6), @"fret" : @"10"}
+              ],
+              @"duration" : @"32"
           },
           @{
-             @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-             @"duration" : @"64"
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+              @"duration" : @"64"
           },
           @{
-             @"positions" : @[
-                 @{@"str" : @(1), @"fret" : @"6"},
-                 @{@"str" : @(3), @"fret" : @"5"},
-                 @{@"str" : @(5), @"fret" : @"5"},
-                 @{@"str" : @(7), @"fret" : @"5"}
-             ],
-             @"duration" : @"128"
+              @"positions" : @[
+                  @{@"str" : @(1), @"fret" : @"6"},
+                  @{@"str" : @(3), @"fret" : @"5"},
+                  @{@"str" : @(5), @"fret" : @"5"},
+                  @{@"str" : @(7), @"fret" : @"5"}
+              ],
+              @"duration" : @"128"
           }
       ];
 
@@ -479,22 +500,22 @@
 
       NSArray* specs = @[
           @{
-             @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
-             @"duration" : @"4d"
+              @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
+              @"duration" : @"4d"
           },
           @{
-             @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
-             @"duration" : @"8"
+              @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
+              @"duration" : @"8"
           },
           @{
-             @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-             @"duration" : @"4dd",
-             @"stem_direction" : @(-1)
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+              @"duration" : @"4dd",
+              @"stem_direction" : @(-1)
           },
           @{
-             @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-             @"duration" : @"16",
-             @"stem_direction" : @(-1)
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+              @"duration" : @"16",
+              @"stem_direction" : @(-1)
           },
       ];
 

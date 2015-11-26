@@ -98,7 +98,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"gracenotes";
+    return NSStringFromClass([self class]); //return @"gracenotes";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 - (void)draw:(CGContextRef)ctx

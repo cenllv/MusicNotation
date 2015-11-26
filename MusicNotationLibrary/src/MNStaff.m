@@ -1398,7 +1398,7 @@ static MNStaff* _currentStaff;
 
 /*!
  *  draw everything
- *  @param ctx graphics context
+ *  @param ctx the core graphics opaque type drawing environment
  */
 - (void)draw:(CGContextRef)ctx
 {

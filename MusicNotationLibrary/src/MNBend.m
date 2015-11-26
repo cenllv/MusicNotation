@@ -130,7 +130,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"bends";
+    return NSStringFromClass([self class]); //return @"bends";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 // Arrange bends in `ModifierContext`
@@ -236,7 +240,7 @@
       MNFont* font1 = [MNFont fontWithName:@"times" /*self.fontFamily*/ size:12];
       NSAttributedString* title = [[NSAttributedString alloc]
           initWithString:text
-              attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
+              attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
       text_width = title.size.width;
       return text_width;
     };
@@ -403,7 +407,7 @@
     renderText = ^void(float x, NSString* text) {
       CGContextSaveGState(ctx);
 
-      float render_x = x - ([MNText measureText:text].width / 2);
+      float render_x = x - ([MNText measureText:text withFont:self.font].width / 2);
       //       [MNText drawText:ctx atPoint:MNPointMake(render_x, annotation_y) withText:text];
 
       MNPoint* point = MNPointMake(render_x, annotation_y);
@@ -414,8 +418,9 @@
       MNFont* font1 = [MNFont fontWithName:@"times" /*self.fontFamily*/ size:12];
       NSAttributedString* title = [[NSAttributedString alloc]
           initWithString:text
-              attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
-      float h = title.size.height;
+              attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
+      CGSize size = [MNText measureText:title withFont:font1];
+      float h = size.height;
       //      float w = title.size.width;
       [title drawAtPoint:CGPointMake(point.x, point.y - h)];
 

@@ -243,6 +243,7 @@ static MNBrowserLogger* _browserLogger = nil;
 #endif
 
     //     [MNLog LogMessage:prefix withLevel:error];
+    abort();
 }
 
 + (void)logVexDump:(NSString*)msg

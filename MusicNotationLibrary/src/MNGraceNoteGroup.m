@@ -100,7 +100,6 @@ Vex.Flow.GraceNoteGroup = (function(){
     if(self)
     {
         [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
-        abort();
         self.graceNotes = graceNotes;
     }
     return self;
@@ -119,7 +118,11 @@ Vex.Flow.GraceNoteGroup = (function(){
  */
 + (NSString*)CATEGORY
 {
-    return @"gracenotegroups";
+    return NSStringFromClass([self class]); //return @"gracenotegroups";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 // ## Static Methods

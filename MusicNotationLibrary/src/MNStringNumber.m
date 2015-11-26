@@ -103,7 +103,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"stringnumber";
+    return NSStringFromClass([self class]); //return @"stringnumber";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 /*

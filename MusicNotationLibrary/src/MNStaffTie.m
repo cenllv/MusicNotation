@@ -133,7 +133,6 @@
     if(self)
     {
         [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
-        abort();
         [self setupStaffTie];
     }
     return self;
@@ -252,7 +251,7 @@
         return;
     }
     float center_x = (first_x_px + last_x_px) / 2;
-    center_x -= [MNText measureText:self.text].width / 2;
+    center_x -= [MNText measureText:self.text withFont:self.font].width / 2;
 
     MNStaff* staff = (self.firstNote.staff != nil ? self.firstNote.staff : self.lastNote.staff);
 

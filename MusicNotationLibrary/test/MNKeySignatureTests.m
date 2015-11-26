@@ -95,6 +95,11 @@ static NSArray* _MINOR_KEYS;
             frame:CGRectMake(10, 10, 830, 350)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
 {
     /*

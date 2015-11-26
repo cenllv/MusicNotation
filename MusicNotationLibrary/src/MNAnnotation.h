@@ -49,7 +49,7 @@
 
 //@property (assign, nonatomic) MNVerticalJustifyType vert_justification;
 @property (strong, nonatomic) NSString* text;
-@property (strong, nonatomic) MNFont* font;
+//@property (strong, nonatomic) MNFont* font;
 //@property (assign, nonatomic) MNJustiticationType justification;
 //@property (assign, nonatomic) MNVerticalJustifyType vert_justification;
 

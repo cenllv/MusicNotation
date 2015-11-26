@@ -128,7 +128,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"strokes";
+    return NSStringFromClass([self class]); //return @"strokes";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping

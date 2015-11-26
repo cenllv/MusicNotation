@@ -26,18 +26,12 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNMetrics.h"
 //#import "MNDelegates.h"
 #import "MNModifier.h"
 #import "MNRenderOptions.h"
 #import "MNEnum.h"
-
-@interface NoteRenderOptions : MNRenderOptions
-@property (assign, nonatomic) float annotation_spacing;
-@property (assign, nonatomic) float staff_padding;
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-@end
+#import "MNNoteRenderOptions.h"
 
 @interface NoteMetrics : MNMetrics <TickableMetrics>
 //@property (assign, nonatomic) float width;      // The total width of the note (including modifiers.)
@@ -52,8 +46,8 @@
 
 typedef void (^StyleBlock)(CGContextRef);
 
-@class MNVoice, MNStaff, MNNote, MNClef, MNTableGlyphStruct;   //, MNBoundingBox;
-@class MNPlayNote, MNModifier, MNRational, MNTickContext, MNStroke, MNBeam;
+@class MNVoice, MNStaff, MNNote, MNClef, MNTableGlyphStruct;                  //, MNBoundingBox;
+@class MNPlayNote, MNModifier, MNRational, MNTickContext, MNStroke, MNBeam;   //, MNNoteRenderOptions;
 
 /*! The `MNNote` class  implements an abstract interface for notes and chords that
       are rendered on a stave. Notes have some common properties: All of them
@@ -191,7 +185,7 @@ typedef void (^StyleBlock)(CGContextRef);
  *  Render options
  *  @return render options object
  */
-- (NoteRenderOptions*)renderOptions;
+- (MNNoteRenderOptions*)renderOptions;
 
 /*!
  *   Gets the play note, which is arbitrary data that can be used by an
@@ -270,13 +264,14 @@ typedef void (^StyleBlock)(CGContextRef);
 /*!
  *  Get the staff line number for the note.
  */
-- (NSUInteger)lineForNote;
+- (float)lineForNote;
+- (float)getLineNumber;
 
 /*!
  *  Get the staff line number for rest.
  *  @return line number
  */
-- (NSUInteger)lineForRest;
+- (float)lineForRest;
 
 /*!
  *  Get the glyph struct associated with this note.
@@ -330,7 +325,7 @@ typedef void (^StyleBlock)(CGContextRef);
  *  @param text_line the staff line
  *  @return the y coordinate on the staff
  */
-- (float)yForTopText:(NSUInteger)text_line;
+- (float)yForTopText:(float)text_line;
 
 /*!
  *  Get a `BoundingBox` for self note.

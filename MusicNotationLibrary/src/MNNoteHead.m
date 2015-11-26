@@ -196,15 +196,12 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"notehead";
+    return NSStringFromClass([self class]); //return @"notehead";
 }
-
-//- (NoteHeadRenderOptions *)renderOptions {
-//    if (!renderOptions) {
-//        _renderOptions = [[NoteHeadRenderOptions alloc]init];
-//    }
-//    return renderOptions;
-//}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
+}
 
 - (MNStaff*)staff
 {

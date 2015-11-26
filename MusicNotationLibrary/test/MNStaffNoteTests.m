@@ -140,6 +140,11 @@
             frame:CGRectMake(0, 0, 500, 150)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
 {
     /*
@@ -687,7 +692,7 @@
     MNTestTuple* ret = [MNTestTuple testTuple];
     MNLogInfo(@"");
 
-    CGContextRef ctx =  MNGraphicsContext();
+    CGContextRef ctx = MNGraphicsContext();
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 30, 750, 0)];
 
@@ -700,7 +705,7 @@
     staff.clef = clef;
 
     staff.clef = clef;
-//    [staff draw:ctx];
+    //    [staff draw:ctx];
 
     NSMutableArray* lowerKeys = [@[ @"c/", @"e/", @"a/" ] mutableCopy];
     NSMutableArray* higherKeys = [@[ @"c/", @"e/", @"a/" ] mutableCopy];
@@ -834,7 +839,7 @@
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
     MNLogInfo(@"");
-    CGContextRef ctx =  MNGraphicsContext();
+    CGContextRef ctx = MNGraphicsContext();
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 30, 650, 0)];
     NSString* clefName = @"bass";
@@ -1339,7 +1344,7 @@
     MNTestTuple* ret = [MNTestTuple testTuple];
     MNLogInfo(@"");
 
-    CGContextRef ctx =  MNGraphicsContext();
+    CGContextRef ctx = MNGraphicsContext();
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 975, 0)];
 
     //        [staff draw:ctx];

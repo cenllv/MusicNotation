@@ -30,6 +30,7 @@
 #import "MNWrappedLayout.h"
 #import "MNTestCollectionItem.h"
 #import "NSString+MNAdditions.h"
+#import "MNOutlineViewController.h"
 
 @interface MNBrowserWindowController () <NSSplitViewDelegate>
 
@@ -337,6 +338,11 @@
         Class clazz = [self.classForType objectForKey:@(_testType)];
         if([clazz isSubclassOfClass:[MNTestViewController class]])
         {
+            if(self.testViewController)
+            {
+                [self.testViewController tearDown];
+            }
+
             self.testViewController = [[clazz alloc] init];
             [self.testViewController start];
             _collectionView.delegate = self.testViewController;
@@ -347,6 +353,12 @@
             layout.collectionView.delegate = self;
             layout.testViewController = self.testViewController;
             _collectionView.collectionViewLayout = layout;
+            NSOutlineView* outlinView = [[MNOutlineViewController sharedInstance] outlineView];
+            if(outlinView)
+            {
+                [outlinView selectRowIndexes:[NSIndexSet indexSetWithIndex:_testType] byExtendingSelection:NO];
+                [outlinView scrollRowToVisible:_testType];
+            }
         }
         else
         {

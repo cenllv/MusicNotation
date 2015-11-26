@@ -122,7 +122,7 @@
 
 - (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)ctx
 {
-//    CGContextSaveGState(ctx);
+    //    CGContextSaveGState(ctx);
 
     CGRect dirtyRect = self.bounds;
 
@@ -131,8 +131,15 @@
     [NSGraphicsContext setCurrentContext:gc];
 
     MNBezierPath* outline = [MNBezierPath bezierPathWithRect:dirtyRect];
-    [SHEET_MUSIC_COLOR setFill];
-    //    [[MNColor randomBGColor:YES] setFill];
+    if(self.testTuple.backgroundColor)
+    {
+        [self.testTuple.backgroundColor setFill];
+    }
+    else
+    {
+        [SHEET_MUSIC_COLOR setFill];
+        //    [[MNColor randomBGColor:YES] setFill];
+    }
 
     [outline fill];
 
@@ -215,7 +222,7 @@
 
     [NSGraphicsContext restoreGraphicsState];
 
-//    CGContextRestoreGState(ctx);
+    //    CGContextRestoreGState(ctx);
 }
 
 - (MNStaffNote*)showStaffNote:(MNStaffNote*)ret

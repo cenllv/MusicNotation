@@ -191,7 +191,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"accidentals";
+    return NSStringFromClass([self class]); //return @"accidentals";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 /*!
@@ -734,7 +738,7 @@
 
 /*!
  *  Render accidental onto canvas.
- *  @param ctx graphics context
+ *  ctx the core graphics opaque type drawing environment
  */
 - (void)draw:(CGContextRef)ctx
 {

@@ -60,13 +60,13 @@
  */
 + (MNCurve*)curveFromNote:(MNNote*)fromNote toNote:(MNNote*)toNote
 {
-    MNCurve* ret = [[MNCurve alloc] initWithDictionary:@{@"fromNote" : fromNote, @"toNote" : toNote}];
+    MNCurve* ret = [[MNCurve alloc] initWithDictionary:@{ @"fromNote" : fromNote, @"toNote" : toNote }];
     return ret;
 }
 
 + (MNCurve*)curveFromNote:(MNNote*)fromNote toNote:(MNNote*)toNote withDictionary:(NSDictionary*)optionsDict
 {
-    MNCurve* ret = [[MNCurve alloc] initWithDictionary:@{@"fromNote" : fromNote, @"toNote" : toNote}];
+    MNCurve* ret = [[MNCurve alloc] initWithDictionary:@{ @"fromNote" : fromNote, @"toNote" : toNote }];
     //    [ret setValuesForKeyPathsWithDictionary:optionsDict];
     return ret;
 }
@@ -106,7 +106,7 @@
 
 /*!
  *  actually renders the curve
- *  @param ctx            the graphics context
+ *  @param ctx            the core graphics opaque type drawing environment
  *  @param firstPoint     the starting point
  *  @param lastPoint      the ending point
  *  @param curveDirection up or down

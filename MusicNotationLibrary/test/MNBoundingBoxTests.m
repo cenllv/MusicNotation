@@ -37,6 +37,11 @@
     [self runTest:@"Merging Text" func:@selector(merging)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (void)initialization
 {
     MNBoundingBox* bb = MNBoundingBoxMake(4, 5, 6, 7);

@@ -67,9 +67,9 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 
 | Status    | Count   |
 |-----------|---------|
-| pass      | 11      |
-| almost    | 25      |
-| works     | 8       |
+| pass      | 13      |
+| almost    | 23      |
+| works     | 7       |
 | fail      | 4       |
 | unknown   | 5       |
 
@@ -77,9 +77,9 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | Test                  | Status    | Issues | Demonstration |
 |-----------------------|-----------|--------|---------------|
 | Accidental            | almost    | order of multiple modifiers different from vexflow  | accidentals |
-| Animation             | almost    | was working, needs updating | animation of basic notations |
+| Animation             | pass      |  | animation of basic notations |
 | Annotation            | pass      |  | annotations for tabs, harmonics, fingerpicking |
-| Articulation          | works     | a lot of minor inccorect articulations  | articulations like staccato, accent, marcato, fermata, etc |
+| Articulation          | pass      |  | articulations like staccato, accent, marcato, fermata, etc |
 | AutoBeamFormatting    | almost    | Guessing Default Beam Groups bug & More Simple Tuplet Auto Beaming bug | auto beams for even/odd, breaks, offsets, etc |
 | Beam                  | almost    | very minor issues | beams for simple, multi, mixed, insane, tabnotes, complex, etc |
 | Bend                  | almost    | down arrow missing, text clobbered, static format method bug | bends for double, reverse, phrase, with release |
@@ -96,8 +96,8 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | Layer Note            | almost    |  | click/push calayer note for pop animation & aae audio |
 | Modifier              | fail      | not rendering | modifier width, management |
 | Music                 | unknown   |  | valid notes, keys, notes, intervals, canonical notes, scales |
-| NoteHead              | pass      | not rendering any notes | basic head & bounding box render |
-| NotationsGrid         | pass      | ensure that app window is very wide else will not show | grid of most basic notations |
+| NoteHead              | pass      |  | basic head & bounding box render |
+| NotationsGrid         | pass      |  | grid of most basic notations |
 | Ornament              | pass      |  | vertically shifted, delayed turns, stacked, w/ accidentals |
 | Parse                 | unknown   |  | parser for notation language |
 | PlayNote              | fail      | not implemented | plays notes for click/tap of calayer notes |

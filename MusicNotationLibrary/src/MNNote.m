@@ -51,29 +51,7 @@
 #import "MNNoteHead.h"
 #import "MNTuplet.h"
 #import "MNConstants.h"
-
-@implementation NoteRenderOptions
-
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
-{
-    self = [super initWithDictionary:optionsDict];
-    if(self)
-    {
-        [self setValuesForKeyPathsWithDictionary:optionsDict];
-    }
-    return self;
-}
-
-- (instancetype)init
-{
-    self = [self initWithDictionary:nil];
-    if(self)
-    {
-    }
-    return self;
-}
-
-@end
+#import "MNNoteRenderOptions.h"
 
 @implementation NoteMetrics
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict
@@ -130,7 +108,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"note";
+    return NSStringFromClass([self class]); //return @"note";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 /*!
@@ -227,7 +209,7 @@
     }
 
     _staff = nil;
-    self->_renderOptions = [[NoteRenderOptions alloc] initWithDictionary:@{
+    self->_renderOptions = [[MNNoteRenderOptions alloc] initWithDictionary:@{
         @"annotation_spacing" : @5,
         @"stave_padding" : @12
     }];
@@ -239,11 +221,11 @@
  *  Render options
  *  @return render options object
  */
-- (NoteRenderOptions*)renderOptions
+- (MNNoteRenderOptions*)renderOptions
 {
     if(!self->_renderOptions)
     {
-        self->_renderOptions = [[NoteRenderOptions alloc] initWithDictionary:@{
+        self->_renderOptions = [[MNNoteRenderOptions alloc] initWithDictionary:@{
             @"annotation_spacing" : @5,
             @"staff_padding" : @12
         }];
@@ -252,7 +234,7 @@
 }
 
 /*!
- *   `Note` is not really a modifier, but is used in
+ *   `MNNote` is not really a modifier, but is used in
  *    a `ModifierContext`.
  *  @return the note category
  */
@@ -383,7 +365,13 @@
 /*!
  *  Get the staff line number for the note.
  */
-- (NSUInteger)lineForNote
+- (float)lineForNote
+{
+    return 0;
+}
+
+// TODO: needs refactoring, redundant w/ - (float)lineForNote
+- (float)getLineNumber
 {
     return 0;
 }
@@ -392,7 +380,7 @@
  *  Get the staff line number for rest.
  *  @return line number
  */
-- (NSUInteger)lineForRest
+- (float)lineForRest
 {
     return 0;
 }
@@ -483,7 +471,7 @@
  *  @param text_line the staff line
  *  @return the y coordinate on the staff
  */
-- (float)yForTopText:(NSUInteger)text_line
+- (float)yForTopText:(float)text_line
 {
     if(!self.staff)
     {
@@ -897,7 +885,7 @@
     float x = _tickContext.x;
     if(_staff)
     {
-        x += _staff.noteStartX + ((NoteRenderOptions*)self.renderOptions).staff_padding;
+        x += _staff.noteStartX + ((MNNoteRenderOptions*)self.renderOptions).staff_padding;
     }
 
     if(self.centerAlign)

@@ -31,9 +31,14 @@
 #import "MNGlyph.h"
 #import "MNTable.h"
 #import "MNStaff.h"
+#import "MNText.h"
+#import "MNTextNoteStruct.h"
+#import "MNFont.h"
 
 @interface MNTextNote ()
-@property (strong, nonatomic) NSDictionary* glyphTextNoteStruct;
+
+@property (strong, nonatomic) MNTextNoteStruct* glyphTextNoteStruct;
+
 @end
 
 @implementation MNTextNote
@@ -57,25 +62,25 @@
 
         if(self.glyph_type)
         {
-            NSDictionary* textNoteglyphTextNoteStruct = [[self class] textNoteGlyphs][self.glyph_type];
+            NSDictionary* textNoteglyphTextNoteDictionary = [MNTable textNoteGlyphs][self.glyph_type];
             //            if (!struct) throw new Vex.RERR("Invalid glyph type: " + self.glyph_type);
-            if(!textNoteglyphTextNoteStruct)
+            if(!textNoteglyphTextNoteDictionary)
             {
                 MNLogError(@"Invalid glyph type: %@", self.glyph_type);
             }
 
-            NSString* code = textNoteglyphTextNoteStruct[@"code"];
-            float pointSize = [textNoteglyphTextNoteStruct[@"point"] floatValue];
+            NSString* code = textNoteglyphTextNoteDictionary[@"code"];
+            float pointSize = [textNoteglyphTextNoteDictionary[@"point"] floatValue];
             self.glyph = [[MNGlyph alloc] initWithCode:code withPointSize:pointSize];
 
             //            if(struct.width)
             //                self.setWidth(struct.width) else self.setWidth(self.glyph.getMetrics().width);
 
-            self.glyphTextNoteStruct = textNoteglyphTextNoteStruct;
+            self.glyphTextNoteStruct = [[MNTextNoteStruct alloc] initWithDictionary:textNoteglyphTextNoteDictionary];
         }
         else
         {
-            self.width = [MNTable textWidthForText:self.text];
+            self.width = [MNText measureText:self.text withFont:self.font].width;
         }
         self.line = optionsDict[@"line"] ? [optionsDict[@"line"] floatValue] : 0;
         self.smooth = optionsDict[@"smooth"] ? [optionsDict[@"smooth"] boolValue] : NO;
@@ -92,72 +97,18 @@
     return propertiesEntriesMapping;
 }
 
-static NSDictionary* _textNoteGlyphs;
-- (NSDictionary*)textNoteGlyphs
+- (MNFont*)font
 {
-    if(!_textNoteGlyphs)
+    if(!_font)
     {
-        _textNoteGlyphs = @{
-
-            @"segno" : @{
-                @"code" : @"v8c",
-                @"point" : @40,
-                @"x_shift" : @0,
-                @"y_shift" : @-10
-                // width: 10 // optional
-            },
-            @"tr" : @{
-                @"code" : @"v1f",
-                @"point" : @40,
-                @"x_shift" : @0,
-                @"y_shift" : @0
-                // width: 10 // optional
-            },
-            @"mordent" : @{
-                @"code" : @"v1e",
-                @"point" : @40,
-                @"x_shift" : @0,
-                @"y_shift" : @0
-                // width: 10 // optional
-            },
-            @"f" : @{
-                @"code" : @"vba",
-                @"point" : @40,
-                @"x_shift" : @0,
-                @"y_shift" : @0
-                // width: 10 // optional
-            },
-            @"p" : @{
-                @"code" : @"vbf",
-                @"point" : @40,
-                @"x_shift" : @0,
-                @"y_shift" : @0
-                // width: 10 // optional
-            },
-            @"m" : @{
-                @"code" : @"v62",
-                @"point" : @40,
-                @"x_shift" : @0,
-                @"y_shift" : @0
-                // width: 10 // optional
-            },
-            @"s" : @{
-                @"code" : @"v4a",
-                @"point" : @40,
-                @"x_shift" : @0,
-                @"y_shift" : @0
-                // width: 10 // optional
-            },
-            @"coda" : @{
-                @"code" : @"v4d",
-                @"point" : @40,
-                @"x_shift" : @0,
-                @"y_shift" : @-8
-                // width: 10 // optional
-            }
-        };
+        _font = [MNFont fontWithName:@"Arial" size:12];
     }
-    return _textNoteGlyphs;
+    return _font;
+}
+
+- (void)setFont:(MNFont*)font
+{
+    _font = font;
 }
 
 // Pre-render formatting
@@ -232,25 +183,27 @@ static NSDictionary* _textNoteGlyphs;
     if(self.glyph)
     {
         [self.glyph renderWithContext:ctx
-                                  atX:(x + [self.glyphTextNoteStruct[@"x_shift"] floatValue])
-                                  atY:(x + [self.glyphTextNoteStruct[@"y_shift"] floatValue])];
+                                  atX:(x + self.glyphTextNoteStruct.x_shift)
+                                  atY:(x + self.glyphTextNoteStruct.y_shift)];
     }
     else
     {
         float y = [self.staff getYForLine:self.line + (-3)];
-        NSFont* descriptionFont = [MNFont fontWithName:@"ArialMT" size:8];
+        MNFont* font = [MNFont fontWithName:@"ArialMT" size:8];
 
-        NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        paragraphStyle.alignment = kCTTextAlignmentCenter;
-        NSAttributedString* description;
-
-        description = [[NSAttributedString alloc] initWithString:self.text
-                                                      attributes:@{
-                                                          NSParagraphStyleAttributeName : paragraphStyle,
-                                                          NSFontAttributeName : descriptionFont,
-                                                          NSForegroundColorAttributeName : MNColor.blackColor
-                                                      }];
-        [description drawAtPoint:CGPointMake(x, y)];
+        //        NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        //        paragraphStyle.alignment = kCTTextAlignmentCenter;
+        NSAttributedString* description = [[NSAttributedString alloc]
+            initWithString:self.text
+                attributes:@{
+                    //                                                          NSParagraphStyleAttributeName :
+                    //                                                          paragraphStyle,
+                    NSFontAttributeName : font.font,
+                    //                                                          NSForegroundColorAttributeName :
+                    //                                                          MNColor.blackColor
+                }];
+        // description drawAtPoint:CGPointMake(x, y)];
+        [MNText drawText:ctx withFont:font atPoint:MNPointMake(x, y) withText:description];
     }
 }
 

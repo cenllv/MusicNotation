@@ -73,7 +73,11 @@
 
 + (NSString*)CATEGORY
 {
-    return @"stafftext";
+    return NSStringFromClass([self class]); //return @"stafftext";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 #pragma mark - Methods

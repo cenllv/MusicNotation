@@ -79,6 +79,8 @@ static BOOL _showBoundingBox = NO;
     return self;
 }
 
+#pragma mark - Properties
+
 + (void)setAlignment:(MNTextAlignment)alignment
 {
     [[MNText sharedText] setAlignment:alignment];
@@ -153,16 +155,12 @@ static BOOL _showBoundingBox = NO;
     abort();
 }
 
-+ (void)drawText:(CGContextRef)ctx atPoint:(MNPoint*)point withText:(NSString*)text
-{
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
-    abort();
-}
-
 + (void)showBoundingBox:(BOOL)showBoundingBox
 {
     _showBoundingBox = showBoundingBox;
 }
+
+#pragma mark - Methods
 
 + (void)drawBoundingBox:(CGContextRef)ctx title:(NSAttributedString*)title point:(MNPoint*)point
 {
@@ -183,129 +181,117 @@ static BOOL _showBoundingBox = NO;
     }
 }
 
-+ (void)drawText:(CGContextRef)ctx withFont:(MNFont*)font atPoint:(MNPoint*)point withText:(NSString*)text
++ (NSAttributedString*)getAttributedStringWith:(MNFont*)font text:(id)text
 {
-    NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.alignment = [[MNText sharedText] alignment];
+    NSString* str = @"";
+    NSAttributedString* title = nil;
+    if([text isKindOfClass:[NSAttributedString class]])
+    {
+        str = ((NSAttributedString*)text).string;
+        title = text;
+    }
+    else if([text isKindOfClass:[NSString class]])
+    {
+        str = text;
+        NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.alignment = (NSTextAlignment)[[MNText sharedText] alignment];
 
-    NSAttributedString* title = [[NSAttributedString alloc]
-        initWithString:text
-            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font.font}];
+        NSMutableDictionary* attributesDictionary = [NSMutableDictionary dictionary];
+        [attributesDictionary addEntriesFromDictionary:@{
+            NSParagraphStyleAttributeName : paragraphStyle,
+            NSFontAttributeName : font.font,
+            NSForegroundColorAttributeName : font.fillColor,
+        }];
+        if(font.backColor)
+        {
+            [attributesDictionary addEntriesFromDictionary:@{
+                NSBackgroundColorAttributeName : font.backColor,
+            }];
+        }
+        if(font.strokeColor)
+        {
+            [attributesDictionary addEntriesFromDictionary:@{
+                NSStrokeColorAttributeName : font.strokeColor,
+                NSStrokeWidthAttributeName : [NSNumber numberWithFloat:-4.0],
+            }];
+        }
+
+        title = [[NSAttributedString alloc] initWithString:str attributes:attributesDictionary];
+    }
+    else
+    {
+        MNLogError(@"ExpectedNSStringTypeException, Text must be either a NSString* or NSAttributedString*");
+    }
+    return title;
+}
+
++ (void)drawText:(CGContextRef)ctx atPoint:(MNPoint*)point withText:(id)text
+{
+    MNFont* font = [MNFont fontWithName:@"times" size:12];
+    [MNText drawText:ctx withFont:font atPoint:point withText:text];
+}
+
++ (void)drawText:(CGContextRef)ctx withFont:(MNFont*)font atPoint:(MNPoint*)point withText:(id)text
+{
+    //    NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    //    paragraphStyle.alignment = (NSTextAlignment)[[MNText sharedText] alignment];
+    //
+    //    NSAttributedString* title = [[NSAttributedString alloc]
+    //        initWithString:text
+    //            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font.font}];
+    NSAttributedString* title = [self getAttributedStringWith:font text:text];
 
     [title drawAtPoint:point.CGPoint];
 
     [self drawBoundingBox:ctx title:title point:point];
 }
 
-+ (void)drawText:(CGContextRef)ctx withFont:(MNFont*)font atRect:(CGRect)rect withText:(NSString*)text
++ (void)drawText:(CGContextRef)ctx withFont:(MNFont*)font atRect:(CGRect)rect withText:(id)text
 {
-    NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.alignment = [[MNText sharedText] alignment];
+    NSAttributedString* title = [self getAttributedStringWith:font text:text];
 
-    NSAttributedString* title = [[NSAttributedString alloc]
-        initWithString:text
-            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font.font}];
-
-    if ([[MNText sharedText] verticalAlignment] == MNTextAlignmentTop) {
+    if([[MNText sharedText] verticalAlignment] == MNTextAlignmentTop)
+    {
         [title drawInRect:rect];
-    } else if ([[MNText sharedText] verticalAlignment] == MNTextAlignmentMiddle) {
-        [title drawInRect:CGRectMake(rect.origin.x, CGRectGetMidY(rect) - title.size.height/2, rect.size.width, rect.size.height)];
-    } else {
-        [title drawInRect:CGRectMake(rect.origin.x, CGRectGetMaxY(rect) - title.size.height, rect.size.width, rect.size.height)];
+    }
+    else if([[MNText sharedText] verticalAlignment] == MNTextAlignmentMiddle)
+    {
+        [title drawInRect:CGRectMake(rect.origin.x, CGRectGetMidY(rect) - title.size.height / 2, rect.size.width,
+                                     rect.size.height)];
+    }
+    else
+    {
+        [title drawInRect:CGRectMake(rect.origin.x, CGRectGetMaxY(rect) - title.size.height, rect.size.width,
+                                     rect.size.height)];
     }
 
     [self drawBoundingBox:ctx title:title rect:rect];
 }
 
-+ (void)drawText:(CGContextRef)ctx atPoint:(MNPoint*)point withHeight:(float)h withText:(NSString*)text
-{
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
-    abort();
-}
-
-// draw text with core text
-+ (void)drawText:(CGContextRef)ctx atPoint:(MNPoint*)point withBounds:(CGRect)bounds withText:(NSString*)text
-{
-    // http://www.raywenderlich.com/4147/core-text-tutorial-for-ios-making-a-magazine-app
-
-    CGContextSaveGState(ctx);
-
-    // Flip the coordinate system
-    CGContextSetTextMatrix(ctx, CGAffineTransformIdentity);
-    CGContextTranslateCTM(ctx, 0, bounds.size.height);
-    CGContextScaleCTM(ctx, 1.0, -1.0);
-
-    CGMutablePathRef path = CGPathCreateMutable();
-    CGPathAddRect(path, NULL, CGRectMake(bounds.origin.x + point.x, bounds.origin.y - point.y, bounds.size.width,
-                                         bounds.size.height));
-
-    NSAttributedString* attString = [[NSAttributedString alloc] initWithString:text];
-
-    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)attString);
-    CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, [attString length]), path, NULL);
-
-    CTFrameDraw(frame, ctx);
-
-    CFRelease(frame);
-    CFRelease(path);
-    CFRelease(framesetter);
-
-    CGContextRestoreGState(ctx);
-}
-
-// draw text with app kit
-// app kit drawing is simpler than core text but offers fewer options
-// http://iosfonts.com/
-+ (void)drawTextWithContext:(CGContextRef)ctx
-                    atPoint:(MNPoint*)point
-                 withBounds:(MNBoundingBox*)bounds
-                   withText:(NSString*)text
-               withFontName:(NSString*)fontName
-                   fontSize:(NSUInteger)fontSize
-{
-    // write the text at the top
-    NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.alignment = kCTTextAlignmentJustified;   // kCTTextAlignmentLeft;//
-                                                            // kCTTextAlignmentCenter;
-
-    // http://proquest.safaribooksonline.com.ezproxy.lib.utah.edu/book/programming/mobile/9781449365783/vdot-interface/ch23_html?query=((nsattributedstring))#X2ludGVybmFsX0h0bWxWaWV3P3htbGlkPTk3ODE0NDkzNjU3ODMlMkZjaDIzczAxX2h0bWwmcXVlcnk9KChuc2F0dHJpYnV0ZWRzdHJpbmcpKQ==
-
-    MNFont* font1 = [MNFont fontWithName:fontName size:fontSize];
-    //     MNFont *font1 =  [MNFont fontWithName:@"TimesNewRomanPS-BoldMT" size:25];
-    NSMutableAttributedString* title =
-        [[NSMutableAttributedString alloc] initWithString:text
-                                               attributes:@{
-                                                   NSParagraphStyleAttributeName : paragraphStyle,
-                                                   NSFontAttributeName : font1,
-                                               }];
-    [title addAttribute:NSUnderlineStyleAttributeName
-                  value:[NSNumber numberWithInt:NSUnderlineStyleSingle]
-                  range:NSMakeRange(6, 9)];
-
-    //    [title  addAttribute:NSBackgroundColorAttributeName
-    //                   value:[MNColor colorWithRed:0.803 green:0.805 blue:0.892
-    //                   alpha:0.500]
-    //                   range:NSMakeRange(0, title.length)];
-
-    //    title boundingRectWithSize:(NSSize) options:(NSStringDrawingOptions)
-    
-    [title drawInRect:bounds.rect];
-
-    //
-    //    CGContextSetLineWidth(ctx, 1.0f);
-    //    [title drawAtPoint:point.CGPoint];
-}
-
-+ (CGSize)measureText:(NSString*)text
++ (CGSize)measureText:(id)text withFont:(MNFont*)font
 {
     // TODO: incorrect implementation
-    return CGSizeMake(text.length, 1);
-}
+    //    return CGSizeMake(text.length, 1);
+    //    paragraphStyle.alignment = NSTextAlignmentLeft;   // justification;
 
-+ (CGSize)measureText:(NSString*)text withFont:(MNFont*)font
-{
-    // TODO: incorrect implementation
-    return CGSizeMake(text.length, 1);
+    NSString* str = @"";
+    if([text isKindOfClass:[NSAttributedString class]])
+    {
+        str = ((NSAttributedString*)text).string;
+    }
+    else if([text isKindOfClass:[NSString class]])
+    {
+        str = text;
+    }
+    else
+    {
+        MNLogError(@"ExpectedNSStringTypeException, Text must be either a NSString* or NSAttributedString*");
+    }
+
+    MNFont* font1 = [MNFont fontWithName:@"times" /*self.fontFamily*/ size:12];
+    NSAttributedString* title =
+        [[NSAttributedString alloc] initWithString:str attributes:@{NSFontAttributeName : font1.font}];
+    return title.size;
 }
 
 @end

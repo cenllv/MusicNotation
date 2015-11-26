@@ -260,14 +260,14 @@ typedef void (^AddFunction)(MNTickable*, id);
     return ret;
 }
 
-// STATIC Methods
+#pragma mark - STATIC Methods
 
 /*!
  *  Helper function to format and draw a single voice. Returns a bounding
  *  box for the notation.
- *  @param ctx    The rendering context
- *  @param staff  The staff to which to draw (`staff` or `Tabstaff`)
- *  @param notes  Array of `Note` instances (`staffNote`, `TextNote`, `TabNote`, etc.)
+ *  @param ctx    the core graphics opaque type drawing environment
+ *  @param staff  The staff to which to draw (`MNStaff` or `MNTabStaff`)
+ *  @param notes  Array of `MNNote` instances (`MNStaffNote`, `MNTextNote`, `MNTabNote`, etc.)
  *  @param params One of below:
  *                  Setting `autobeam` only `(context, staff, notes, YES)` or `(ctx, staff, notes, {autobeam: YES})`
  *                  Setting `align_rests` a struct is needed `(context, staff, notes, {align_rests: YES})`
@@ -294,8 +294,6 @@ typedef void (^AddFunction)(MNTickable*, id);
     NSArray* beams = nil;
     if([options[@"auto_beam"] boolValue])
     {
-        //        beams = [MNBeam applyAndGetBeams:voice];
-        // TODO: test this
         beams = [MNBeam applyAndGetBeams:voice direction:MNStemDirectionNone groups:nil];
     }
 
@@ -335,8 +333,6 @@ typedef void (^AddFunction)(MNTickable*, id);
     NSArray* beams = nil;
     if([options[@"auto_beam"] boolValue])
     {
-        //        beams = [MNBeam applyAndGetBeams:voice];
-        // TODO: test this
         beams = [MNBeam applyAndGetBeams:voice direction:MNStemDirectionNone groups:nil];
     }
 
@@ -382,11 +378,11 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  Helper function to format and draw aligned tab and staff notes in two
  *  separate staffs.
  *
- *  @param ctx      The rendering context
- *  @param staff    A `Tabstaff` instance on which to render `TabNote`s.
- *  @param tabStaff A `staff` instance on which to render `Note`s.
- *  @param tabNotes Array of `TabNote` instances for the tab staff (`TabNote`, `BarNote`, etc.)
- *  @param notes    Array of `Note` instances for the staff (`staffNote`, `BarNote`, etc.)
+ *  @param ctx      the core graphics opaque type drawing environment
+ *  @param staff    A `MNTabStaff` instance on which to render `MNTabNote`s.
+ *  @param tabStaff A `MNStaff` instance on which to render `MNNote`s.
+ *  @param tabNotes Array of `MNTabNote` instances for the tab staff (`MNTabNote`, `BarNote`, etc.)
+ *  @param notes    Array of `MNNote` instances for the staff (`MNStaffNote`, `BarNote`, etc.)
  *  @param autobeam Automatically generate beams.
  *  @param params   A configuration object:
  *                      `autobeam` automatically generates beams for the notes.
@@ -420,8 +416,6 @@ typedef void (^AddFunction)(MNTickable*, id);
     NSArray* beams = nil;
     if([opts[@"auto_beam"] boolValue])
     {
-        //        beams = [MNBeam applyAndGetBeams:notevoice];
-        // TODO: test this
         beams = [MNBeam applyAndGetBeams:notevoice direction:MNStemDirectionNone groups:nil];
     }
 
@@ -945,7 +939,7 @@ typedef void (^AddFunction)(MNTickable*, id);
 
 /*!
  *  this method is just like `format` except that the `justifyWidth` is inferred
- *  from the `staff`.
+ *  from the `MNStaff`.
  *  @param voices  the collection of voices
  *  @param staff   <#staff description#>
  *  @param options the collection of voices

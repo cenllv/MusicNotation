@@ -41,6 +41,11 @@
     [self runTest:@"No Start Note" func:@selector(noStartNote:) frame:CGRectMake(10, 10, w, h)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
 {
     NSUInteger w = size.width;

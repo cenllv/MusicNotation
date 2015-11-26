@@ -115,7 +115,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"barlines";
+    return NSStringFromClass([self class]); //return @"barlines";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 - (void)setX:(float)x
@@ -141,7 +145,7 @@
 
 /*!
  *  draw this modifier
- *  @param ctx   graphics context
+ *  @param ctx   the core graphics opaque type drawing environment
  *  @param staff the staff to draw to
  */
 - (void)drawWithContext:(CGContextRef)ctx toStaff:(MNStaff*)staff withShiftX:(float)shiftX

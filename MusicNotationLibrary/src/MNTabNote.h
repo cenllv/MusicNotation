@@ -26,38 +26,10 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNStemmableNote.h"
-#import "MNOptions.h"
-
-@interface TabNoteRenderOptions : NoteRenderOptions
-{
-   @private
-    float _glyph_font_scale;
-    BOOL _draw_stem;
-    BOOL _draw_dots;
-    float _draw_stem_through_staff;
-}
-@property (assign, nonatomic) float glyph_font_scale;
-@property (assign, nonatomic) BOOL draw_stem;
-@property (assign, nonatomic) BOOL draw_dots;
-// Flag to extend the main stem through the staff and fret positions
-@property (assign, nonatomic) float draw_stem_through_staff;
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-@end
-
-@interface TabNotePositionsStruct : IAModelBase
-{
-   @private
-    NSUInteger _str;
-    NSString* _fret;
-    //    NSUInteger _fret;
-}
-@property (assign, nonatomic) NSUInteger str;
-@property (strong, nonatomic) NSString* fret;
-//@property (assign, nonatomic) NSUInteger fret;
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-@end
+//#import "MNOptions.h"
+#import "MNTabNoteRenderOptions.h"
+#import "MNTabNotePositionsStruct.h"
 
 @class MNGhostNote, MNTabStaff, MNAnnotation;
 
@@ -81,11 +53,12 @@
 //@property (weak, nonatomic) MNTabStaff* staff; //FIXME:rename to tabStaff?
 @property (weak, nonatomic) MNTabStaff* tabStaff;
 //@property (strong, nonatomic)  MNTablesGlyphStruct* glyphStruct;
+//@property (strong, nonatomic) MNFont* font;
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
-- (TabNoteRenderOptions*)renderOptions;
+- (MNTabNoteRenderOptions*)renderOptions;
 
 //- (void)setGhost:(MNGhostNote*)ghost;
 //- (BOOL)hasStem;

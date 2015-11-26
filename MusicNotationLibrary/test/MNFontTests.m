@@ -36,6 +36,11 @@
     [self runTest:@"All Fonts" func:@selector(drawFonts:) frame:CGRectMake(10, 10, 900, 1100)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNTestTuple*)drawSizes:(MNTestCollectionItemView*)parent
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
@@ -104,10 +109,7 @@
           }
           NSUInteger len = 8;
           str = fontFamily.length > len ? [fontFamily substringWithRange:NSMakeRange(0, len)] : fontFamily;
-          [MNText drawText:ctx
-                  withFont:font
-                   atPoint:MNPointMake(x, y += 20)
-                  withText:str];
+          [MNText drawText:ctx withFont:font atPoint:MNPointMake(x, y += 20) withText:str];
       }
 
     };

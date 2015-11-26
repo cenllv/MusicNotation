@@ -88,9 +88,14 @@
     [self runTest:@"More Automatic Beaming" func:@selector(moreBeaming:withTitle:) frame:CGRectMake(0, 0, 600, 200)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 + (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size
-                              withParent:(MNTestCollectionItemView*)parent
-                               withTitle:(NSString*)title
+                                withParent:(MNTestCollectionItemView*)parent
+                                 withTitle:(NSString*)title
 {
     NSUInteger w = size.width;
     NSUInteger h = size.height;
@@ -98,7 +103,7 @@
     w = w != 0 ? w : 450;
     h = h != 0 ? h : 140;
 
-//    // [MNFont setFont:@" 10pt Arial"];
+    //    // [MNFont setFont:@" 10pt Arial"];
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, w, 0)] addTrebleGlyph];
     return [MNViewStaffStruct contextWithStaff:staff andView:nil];
@@ -1017,7 +1022,8 @@
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(450, 200) withParent:parent withTitle:title];
+    MNViewStaffStruct* c =
+        [[self class] setupContextWithSize:MNUIntSizeMake(450, 200) withParent:parent withTitle:title];
 
     NSArray* notes = @[
         newNote(
@@ -1121,7 +1127,8 @@
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(450, 200) withParent:parent withTitle:title];
+    MNViewStaffStruct* c =
+        [[self class] setupContextWithSize:MNUIntSizeMake(450, 200) withParent:parent withTitle:title];
 
     NSArray* notes = @[
         newNote(
@@ -1225,7 +1232,8 @@
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(450, 200) withParent:parent withTitle:title];
+    MNViewStaffStruct* c =
+        [[self class] setupContextWithSize:MNUIntSizeMake(450, 200) withParent:parent withTitle:title];
 
     [c.staff addTimeSignatureWithName:@"2/2"];
 
@@ -1292,7 +1300,8 @@
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(450, 200) withParent:parent withTitle:title];
+    MNViewStaffStruct* c =
+        [[self class] setupContextWithSize:MNUIntSizeMake(450, 200) withParent:parent withTitle:title];
 
     [c.staff addTimeSignatureWithName:@"6/8"];
 

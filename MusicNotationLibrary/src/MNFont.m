@@ -28,13 +28,198 @@
 #import "MNFont.h"
 #import "MNUtils.h"
 #import "OCTotallyLazy.h"
+#import "MNColor.h"
 
 @implementation MNFont
 
-//- (float)size
-//{
-//    return self.pointSize;
-//}
+static NSArray<NSString*>* _availableFonts;
+
++ (NSArray<NSString*>*)availableFonts
+{
+    if(!_availableFonts)
+    {
+#if TARGET_OS_MAC
+        _availableFonts = [[NSFontManager sharedFontManager] availableFonts];
+// availableFontFamilies];
+#elif TARGET_OS_IPHONE
+        NSMutableArray* arr = [NSMutableArray array];
+        for(NSString* familyName in [UIFont familyNames])
+        {
+            //        NSLog(@"Family name: %@", familyName);
+            for(NSString* fontName in [UIFont fontNamesForFamilyName:familyName])
+            {
+                //            NSLog(@"--Font name: %@", fontName);
+                [arr addObject:fontName];
+            }
+        }
+        _availableFonts = arr;
+#endif
+    }
+    return _availableFonts;
+}
+
+#if TARGET_OS_IPHONE
+
++ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize
+{
+    return (MNFont*)[UIFont fontWithName:fontName size:fontSize];
+}
+
++ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize weight:(NSString*)weight
+{
+    return (MNFont*)[UIFont fontWithName:fontName size:fontSize];   // TODO: not using weight
+}
+
+#elif TARGET_OS_MAC
+
+- (instancetype)init
+{
+    self = [super init];
+    if(self)
+    {
+        _fontSize = 12;
+        _font = [NSFont systemFontOfSize:_fontSize];
+        _bold = NO;
+        _italic = NO;
+        _family = _font.familyName;
+    }
+    return self;
+}
+
++ (MNFont*)systemFontWithSize:(CGFloat)fontSize
+{
+    MNFont* ret = [[MNFont alloc] init];
+    [ret setSize:fontSize];
+    return ret;
+}
+
++ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize
+{
+    MNFont* ret = [[MNFont alloc] init];
+    ret.font = [NSFont fontWithName:fontName size:fontSize];
+    return ret;
+}
+
++ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize bold:(BOOL)bold italic:(BOOL)italic
+{
+    MNFont* ret = [MNFont fontWithName:fontName size:fontSize];
+    if(bold)
+    {
+        [ret setBold:YES];
+    }
+    if(italic)
+    {
+        [ret setItalic:YES];
+    }
+    return ret;
+}
+
+#endif
+
+#pragma mark - Properties
+
+- (MNColor*)fillColor
+{
+    if(!_fillColor)
+    {
+        _fillColor = MNColor.blackColor;
+    }
+    return _fillColor;
+}
+
+- (void)setFillColor:(MNColor*)fillColor
+{
+    _fillColor = fillColor;
+}
+
+- (MNColor*)strokeColor
+{
+    //    if(!_strokeColor)
+    //    {
+    //        _strokeColor = MNColor.blackColor;
+    //    }
+    return _strokeColor;
+}
+
+- (void)setStrokeColor:(MNColor*)strokeColor
+{
+    _strokeColor = strokeColor;
+}
+
+- (MNColor*)backColor
+{
+    return _backColor;
+}
+
+- (void)setBackColor:(MNColor*)backColor
+{
+    _backColor = backColor;
+}
+
+- (BOOL)bold
+{
+    return _bold;
+}
+
+- (void)setBold:(BOOL)bold
+{
+    _bold = bold;
+    [[NSFontManager sharedFontManager] convertWeight:YES ofFont:_font];
+}
+
+- (BOOL)italic
+{
+    return _italic;
+}
+
+- (void)setItalic:(BOOL)italic
+{
+    if(italic != _italic)
+    {
+        if(italic)
+        {
+            _font = [[NSFontManager sharedFontManager] convertFont:_font toHaveTrait:NSFontItalicTrait];
+        }
+        else
+        {
+            _font = [[NSFontManager sharedFontManager] convertFont:_font toNotHaveTrait:NSFontItalicTrait];
+        }
+    }
+    _italic = italic;
+}
+
+- (void)setSize:(float)size
+{
+    if(size != _fontSize)
+    {
+        _font = [[NSFontManager sharedFontManager] convertFont:_font toSize:size];
+        _fontSize = size;
+    }
+}
+
+- (float)size
+{
+    return _fontSize;
+}
+
+- (NSString*)family
+{
+    return _family;
+}
+
+- (void)setFamily:(NSString*)family
+{
+    if([[[self class] availableFonts] containsObject:family])
+    {
+        _family = family;
+        //        _font = [[NSFontManager sharedFontManager] convertFont:_font toFamily:_family];
+        _font = [[MNFont fontWithName:family size:self.size bold:self.bold italic:self.italic] font];
+    }
+    else
+    {
+        MNLogError(@"Unknown fontFamily: %@", family);
+    }
+}
 
 static NSArray<NSString*>* _fontNames;
 + (NSArray<NSString*>*)fontNames
@@ -332,140 +517,6 @@ static NSArray<NSString*>* _fontNames;
         ];
     }
     return _fontNames;
-}
-
-static NSArray<NSString*>* _availableFonts;
-
-+ (NSArray<NSString*>*)availableFonts
-{
-    if(!_availableFonts)
-    {
-#if TARGET_OS_MAC
-        _availableFonts = [[NSFontManager sharedFontManager] availableFonts];
-// availableFontFamilies];
-#elif TARGET_OS_IPHONE
-        NSMutableArray* arr = [NSMutableArray array];
-        for(NSString* familyName in [UIFont familyNames])
-        {
-            //        NSLog(@"Family name: %@", familyName);
-            for(NSString* fontName in [UIFont fontNamesForFamilyName:familyName])
-            {
-                //            NSLog(@"--Font name: %@", fontName);
-                [arr addObject:fontName];
-            }
-        }
-        _availableFonts = arr;
-#endif
-    }
-    return _availableFonts;
-}
-
-#if TARGET_OS_IPHONE
-
-+ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize
-{
-    return (MNFont*)[UIFont fontWithName:fontName size:fontSize];
-}
-
-+ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize weight:(NSString*)weight
-{
-    return (MNFont*)[UIFont fontWithName:fontName size:fontSize];   // TODO: not using weight
-}
-
-#elif TARGET_OS_MAC
-
-- (instancetype)init
-{
-    self = [super init];
-    if(self)
-    {
-        _fontSize = 12;
-        _font = [NSFont systemFontOfSize:_fontSize];
-        _bold = NO;
-        _italic = NO;
-        _family = _font.familyName;
-    }
-    return self;
-}
-
-+ (MNFont*)systemFontWithSize:(CGFloat)fontSize
-{
-    MNFont* ret = [[MNFont alloc] init];
-    [ret setSize:fontSize];
-    return ret;
-}
-
-+ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize
-{
-    MNFont* ret = [[MNFont alloc] init];
-    ret.font = [NSFont fontWithName:fontName size:fontSize];
-    return ret;
-}
-
-+ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize bold:(BOOL)bold italic:(BOOL)italic
-{
-    MNFont* ret = [MNFont fontWithName:fontName size:fontSize];
-    if(bold)
-    {
-        [ret setBold:YES];
-    }
-    if(italic)
-    {
-        [ret setItalic:YES];
-    }
-    return ret;
-}
-
-#endif
-
-- (void)setBold:(BOOL)bold
-{
-    _bold = bold;
-    [[NSFontManager sharedFontManager] convertWeight:YES ofFont:_font];
-}
-
-- (void)setItalic:(BOOL)italic
-{
-    if(italic != _italic)
-    {
-        if(italic)
-        {
-            _font = [[NSFontManager sharedFontManager] convertFont:_font toHaveTrait:NSFontItalicTrait];
-        }
-        else
-        {
-            _font = [[NSFontManager sharedFontManager] convertFont:_font toNotHaveTrait:NSFontItalicTrait];
-        }
-    }
-    _italic = italic;
-}
-
-- (void)setSize:(float)size
-{
-    if(size != _fontSize)
-    {
-        _font = [[NSFontManager sharedFontManager] convertFont:_font toSize:size];
-        _fontSize = size;
-    }
-}
-
-- (float)size
-{
-    return _fontSize;
-}
-
-- (void)setFamily:(NSString*)family
-{
-    if([[[self class] availableFonts] containsObject:family])
-    {
-        _family = family;
-        //        _font = [[NSFontManager sharedFontManager] convertFont:_font toFamily:_family];
-        _font = [[MNFont fontWithName:family size:self.size bold:self.bold italic:self.italic] font];
-    }
-    else
-    {
-        MNLogError(@"Unknown fontFamily: %@", family);
-    }
 }
 
 @end

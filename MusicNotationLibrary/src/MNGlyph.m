@@ -241,7 +241,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"glyphs";
+    return NSStringFromClass([self class]); //return @"glyphs";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 static BOOL _debugMode = NO;

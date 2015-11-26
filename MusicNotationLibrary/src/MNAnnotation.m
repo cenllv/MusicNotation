@@ -36,8 +36,6 @@
 
 @implementation MNAnnotation
 
-@synthesize font = _font;
-
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
@@ -70,10 +68,10 @@
 
     _justification = MNJustifyCENTER;
     _verticalJustification = MNVerticalJustifyTOP;
-    self.font = [MNFont fontWithName:@"Arial" size:10];
+    //    self.font = [MNFont fontWithName:@"Arial" size:10];
 
     // The default width is calculated from the text.
-    self.width = [MNText measureText:self.text].width;
+    self.width = [MNText measureText:self.text withFont:self.font].width;
 }
 
 /*!
@@ -82,7 +80,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"annotations";
+    return NSStringFromClass([self class]); //return @"annotations";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
@@ -90,6 +92,22 @@
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
     return propertiesEntriesMapping;
+}
+
+#pragma mark - Properties
+
+- (MNFont*)font
+{
+    if(!_font)
+    {
+        _font = [MNFont fontWithName:@"Arial" size:10];
+    }
+    return _font;
+}
+
+- (void)setFont:(MNFont*)font
+{
+    _font = font;
 }
 
 - (id)setFontName:(NSString*)fontName withSize:(NSUInteger)size
@@ -101,8 +119,18 @@
 
 - (id)setFontName:(NSString*)fontName withSize:(NSUInteger)size withStyle:(NSString*)style
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
-    abort();
+    //    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+    //    abort();
+    [self.font setFamily:fontName];
+    [self.font setSize:size];
+    if([style isEqualToString:@"italic"])
+    {
+        [self.font setItalic:YES];
+    }
+    else if([style isEqualToString:@"bold"])
+    {
+        [self.font setBold:YES];
+    }
     return self;
 }
 
@@ -132,6 +160,7 @@
 {
     _text = text;
 }
+
 - (NSString*)text
 {
     if(!_text)
@@ -183,19 +212,15 @@
 
     CGContextSaveGState(ctx);
 
-    NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.alignment = kCTTextAlignmentLeft;
-    if(!_font)
-    {
-        self.font = [MNFont fontWithName:@"Helvetica" size:12];
-    }
+    //    NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    //    paragraphStyle.alignment = kCTTextAlignmentLeft;
+    NSAttributedString* title =
+        [[NSAttributedString alloc] initWithString:self.text attributes:@{NSFontAttributeName : self.font.font}];
+    
+    CGSize size = [MNText measureText:title withFont:self.font];
 
-    NSAttributedString* title = [[NSAttributedString alloc]
-        initWithString:self.text
-            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : self.font}];
-
-    float text_width = title.size.width;
-    float text_height = title.size.height;
+    float text_width = size.width;
+    float text_height = size.height;
     float x, y;
 
     if(self.justification == MNJustifyLEFT)
@@ -275,9 +300,19 @@
     }
 
     //    [title drawInRect:CGRectMake(self.x, y - 3, 50, 100)];
-    [title drawAtPoint:CGPointMake(x, y - text_height)];
+    //    [title drawAtPoint:CGPointMake(x, y - text_height)];
+//    [MNText showBoundingBox:YES];
+//    [MNText drawText:ctx
+//             atPoint:MNPointMake(x, YES)
+//          withBounds:CGRectMake(self.x, y - 3, 50, 100)
+//            withText:title.string];
+    
+    [MNText drawText:ctx withFont:self.font atPoint:MNPointMake(x, y - 3) withText:title];
+    
+    
+//    [MNText showBoundingBox:NO];
 
-    self.width = title.size.width;
+    self.width = size.width;
     self.point = MNPointMake(x, y);
 
     //    // uncomment to display boundind box

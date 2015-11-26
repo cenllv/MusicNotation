@@ -39,6 +39,11 @@
     [self runTest:@"Staff Helper" func:@selector(staffHelper:withTitle:) frame:CGRectMake(10, 10, 700, 250)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 static NSDictionary* _ClefKeySignature;
 
 static NSArray* _MAJOR_KEYS;

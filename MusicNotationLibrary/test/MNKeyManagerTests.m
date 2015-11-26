@@ -37,6 +37,11 @@
     [self runTest:@"Select Notes" func:@selector(selectNotes)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (void)works
 {
     expect(@"1");

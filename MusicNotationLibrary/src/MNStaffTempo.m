@@ -112,7 +112,11 @@
 
 + (NSString*)CATEGORY
 {
-    return @"stavetempo";
+    return NSStringFromClass([self class]); //return @"stavetempo";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 - (void)setTempo:(TempoOptionsStruct*)tempo
@@ -169,7 +173,7 @@
     {
         if(name)
         {
-            x += [MNText measureText:@" "].width;
+            x += [MNText measureText:@" " withFont:self.font].width;
             //             [MNText drawText:ctx atPoint:MNPointMake(x, y) withText:@"("];
 
             //            CTTextAlignment justification = kCTTextAlignmentLeft;
@@ -185,7 +189,7 @@
 
             [title drawAtPoint:CGPointMake(x, y)];
 
-            x += [MNText measureText:@")"].width;
+            x += [MNText measureText:@")" withFont:self.font].width;
         }
 
         MNTableGlyphStruct* glyphStruct = [MNTable durationToGlyphStruct:duration];

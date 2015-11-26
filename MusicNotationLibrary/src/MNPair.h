@@ -35,5 +35,7 @@
 #pragma mark - Properties
 @property (assign, nonatomic) float item1;
 @property (assign, nonatomic) float item2;
+
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+
 @end

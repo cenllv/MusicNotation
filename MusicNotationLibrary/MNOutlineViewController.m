@@ -34,20 +34,26 @@
 
 @interface MNOutlineViewController ()
 
-@property (weak) IBOutlet NSOutlineView* outlineView;
-
 @end
 
 @implementation MNOutlineViewController
+
+static id _sharedInstance;
 
 - (instancetype)init
 {
     self = [super init];
     if(self)
     {
+        _sharedInstance = self;
         [self load];
     }
     return self;
+}
+
++ (MNOutlineViewController*)sharedInstance
+{
+    return _sharedInstance;
 }
 
 - (void)load

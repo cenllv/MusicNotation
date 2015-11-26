@@ -33,6 +33,15 @@
 
 @implementation MNTabStaff
 
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
+{
+    self = [super initWithDictionary:optionsDict];
+    if(self)
+    {
+    }
+    return self;
+}
+
 - (instancetype)initAtX:(float)x atY:(float)y width:(float)width height:(float)height
 {
     self = [super initAtX:x atY:y width:width height:height optionsDict:@{}];
@@ -62,38 +71,6 @@
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
     return propertiesEntriesMapping;
 }
-
-//- (instancetype)initAtX:(float)x
-//         andY:(float)y
-//    withWidth:(float)width
-//   andOptions:(Options *)options {
-//
-//    /*
-//     Vex.Flow.TabStaff.prototype.init = function(x, y, width, options) {
-//     var superclass = Vex.Flow.TabStaff.superclass;
-//
-//
-//     Vex.Merge(tab_options, options);
-//     superclass.init.call(this, x, y, width, tab_options);
-//     }
-//     */
-//
-//    self = [super in initAtX:x atY:y withWidth:width andHeight:0];
-//    if (self) {
-//        [self setupTabStaff];
-//
-//        //TODO: do a merge here of options
-//    }
-//    return self;
-//}
-//
-//- (instancetype)initWithBoundingBox:(MNBoundingBox *)frame {
-//    self = [super initWithBoundingBox:frame];
-//    if (self) {
-//        [self setupTabStaff];
-//    }
-//    return self;
-//}
 
 - (void)setupTabStaff
 {

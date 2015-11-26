@@ -133,7 +133,11 @@ init: function(type) {
  */
 + (NSString*)CATEGORY
 {
-    return @"articulations";
+    return NSStringFromClass([self class]);   // @"articulations";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 + (MNArticulation*)articulationWithOptionsDict:(NSDictionary*)optionsDict
@@ -206,7 +210,10 @@ init: function(type) {
     [super draw:ctx withStaff:staff withShiftX:shiftX];
 }
 
-// Render articulation in position next to note.
+/*!
+ *  Render articulation in position next to note.
+ *  @param ctx the core graphics opaque type drawing environment
+ */
 - (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
@@ -283,7 +290,15 @@ init: function(type) {
     }
 
     BOOL is_above = (self.position == MNPositionAbove) ? YES : NO;
-    NSUInteger note_line = [((MNStaffNote*)self.note)getLineNumber:is_above];
+    float note_line = 0;
+    if([self.note isKindOfClass:[MNStaffNote class]])
+    {
+        note_line = [(MNStaffNote*)self.note getLineNumber:is_above];
+    }
+    else
+    {
+        note_line = [self.note getLineNumber];
+    }
 
     // Beamed stems are longer than quarter note stems.
     if(!is_on_head && [((MNStemmableNote*)self.note)beam])
@@ -296,30 +311,30 @@ init: function(type) {
     float glyph_y_between_lines;
     if(self.position == MNPositionAbove)
     {
-        shiftY = self.articulation.shiftUp;
+        shiftY = self.shiftUp;
         glyph_y_between_lines = (top - 7) - (spacing * (self.text_line + line_spacing));
 
-        if(self.articulation.betweenLines)
+        if(self.betweenLines)
             glyph_y = glyph_y_between_lines;
         else
             glyph_y = MIN([staff getYForTopTextWithLine:(self.text_line)] - 3, glyph_y_between_lines);
     }
     else
     {
-        shiftY = self.articulation.shiftDown - 10;
+        shiftY = self.shiftDown - 10;
 
         glyph_y_between_lines = bottom + 10 + spacing * (self.text_line + line_spacing);
-        if(self.articulation.betweenLines)
+        if(self.betweenLines)
             glyph_y = glyph_y_between_lines;
         else
             glyph_y = MAX([staff getYForBottomTextWithLine:(self.text_line)], glyph_y_between_lines);
     }
 
-    float glyph_x = start.x + self.articulation.shiftRight;
+    float glyph_x = start.x + self.shiftRight;
     glyph_y += shiftY + self.yShift;
 
     [MNLog
-        logInfo:[NSString stringWithFormat:@"Rendering articulation: %@ %f %f", self.articulation, glyph_x, glyph_y]];
+        logInfo:[NSString stringWithFormat:@"Rendering articulation: %lu %f %f", self.articulationType, glyph_x, glyph_y]];
     [MNGlyph renderGlyph:ctx
                      atX:glyph_x
                      atY:glyph_y

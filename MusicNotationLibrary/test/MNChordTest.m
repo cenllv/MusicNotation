@@ -171,6 +171,11 @@
     [self shapeChart:keys_A shapes:shapes_A shape:@"A"];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 + (MNChordBox*)createChord:(ChordStruct*)chordStruct
 {
     float y = 50;

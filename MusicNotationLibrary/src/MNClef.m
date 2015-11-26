@@ -179,7 +179,11 @@ static float kCLEF_SIZE_SMALL = 16;     // 32;
  */
 + (NSString*)CATEGORY
 {
-    return @"clef";
+    return NSStringFromClass([self class]); //return @"clef";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 #pragma mark - Setup
@@ -511,7 +515,7 @@ static NSDictionary* _annotations;
 #pragma mark - Methods
 
 /*!
- *  Add this clef to the start of the given `staff`.
+ *  Add this clef to the start of the given `MNStaff`.
  *  @param staff the staff to add this modifier to
  */
 - (void)addModifierToStaff:(MNStaff*)staff
@@ -534,7 +538,7 @@ static NSDictionary* _annotations;
 }
 
 /*!
- *  Add this clef to the end of the given `staff`.
+ *  Add this clef to the end of the given `MNStaff`.
  *  @param staff the staff to add this modifier to
  */
 - (void)addEndModifierToStaff:(MNStaff*)staff

@@ -25,3 +25,4 @@
 //
 
 NSString* const textBracketFontFamily = @"Verdana";
+NSString* const annotationFontFamily = @"Helvetica";

@@ -81,7 +81,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"vibratos";
+    return NSStringFromClass([self class]); //return @"vibratos";
 }
 
 // Arrange vibratos inside a `ModifierContext`.

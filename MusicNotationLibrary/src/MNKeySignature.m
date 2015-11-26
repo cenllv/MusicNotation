@@ -168,7 +168,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"keysignature";
+    return NSStringFromClass([self class]); //return @"keysignature";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 static NSDictionary* _accidentalSpacing;
@@ -189,7 +193,7 @@ static NSDictionary* _accidentalSpacing;
 #pragma mark - Methods
 
 /*!
- *  Add an accidental glyph to the `staff`. `acc` is the data of the
+ *  Add an accidental glyph to the `MNStaff`. `acc` is the data of the
  *  accidental to add. If the `next` accidental is also provided, extra
  *  width will be added to the initial accidental for optimal spacing.
  *  @param staff   staff
@@ -275,7 +279,7 @@ static NSDictionary* _accidentalSpacing;
 }
 
 /*!
- *  Add the key signature to the `staff`. You probably want to use the
+ *  Add the key signature to the `MNStaff`. You probably want to use the
  *  helper method `.addToStave()` instead
  *  @param staff the staff to add the modifier to
  */
@@ -296,7 +300,7 @@ static NSDictionary* _accidentalSpacing;
 }
 
 /*!
- *  Add the key signature to the `staff`, if it's the not the `firstGlyph`
+ *  Add the key signature to the `MNStaff`, if it's the not the `firstGlyph`
  *  a spacer will be added as well.
  *  @param staff      the staff
  *  @param firstGlyph if this is the first glyph

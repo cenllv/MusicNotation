@@ -197,7 +197,7 @@
 
 /*!
  *  Apply the style of the `StaveLine` to the context
- *  @param ctx the graphics context
+ *  @param ctx the core graphics opaque type drawing environment
  */
 - (void)applyLineStyle:(CGContextRef)ctx
 {
@@ -248,7 +248,7 @@
 
 /*!
  *  Renders the `StaveLine` on the context
- *  @param ctx the graphics context
+ *  @param ctx the core graphics opaque type drawing environment
  */
 - (void)draw:(CGContextRef)ctx
 {
@@ -362,7 +362,7 @@
     description = [[NSAttributedString alloc] initWithString:self.text
                                                   attributes:@{
                                                       NSParagraphStyleAttributeName : paragraphStyle,
-                                                      NSFontAttributeName : descriptionFont,
+                                                      NSFontAttributeName : descriptionFont.font,
                                                       NSForegroundColorAttributeName : MNColor.blueColor
                                                   }];
 
@@ -371,11 +371,11 @@
     CGContextRestoreGState(ctx);
 }
 
-// ## Private Helpers
+#pragma mark - Private Helpers
 
 /*!
  *  Draw an arrow head that connects between 3 coordinates
- *  @param ctx    the graphics context
+ *  @param ctx    the core graphics opaque type drawing environment
  *  @param points an array of 3 mnpoints
  *  @attribution  Arrow rendering implementations based off of
  *                  Patrick Horgan's article, "Drawing lines and arcs with

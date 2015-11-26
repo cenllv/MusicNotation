@@ -42,6 +42,8 @@ typedef void (^DrawTest)(CGRect dirtyRect, CGRect bounds, CGContextRef ctx);
 
 @property (strong, nonatomic) DrawTest drawBlock;
 
+@property (strong, nonatomic) NSColor* backgroundColor;
+
 + (MNTestTuple*)testTuple;
 
 // test.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {

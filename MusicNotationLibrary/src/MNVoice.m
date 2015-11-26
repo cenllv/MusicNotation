@@ -104,8 +104,8 @@
 
 + (MNVoice*)voiceWithBeats:(NSUInteger)numberOfBeats beatValue:(NSUInteger)beatValue resolution:(NSUInteger)resolution
 {
-    return
-        [[MNVoice alloc] initWithTime:[MNVoiceTime timeWithBeats:numberOfBeats beatValue:beatValue resolution:resolution]];
+    return [[MNVoice alloc]
+        initWithTime:[MNVoiceTime timeWithBeats:numberOfBeats beatValue:beatValue resolution:resolution]];
 }
 
 + (MNVoice*)voiceWithTimeSignature:(MNTimeType)timeType
@@ -158,7 +158,7 @@
     // Recalculate total ticks.
 
     _totalTicks = [MNRational rationalWithNumerator:(self.time.numBeats * self.time.resolution / self.time.beatValue)
-                                   andDenominator:1];
+                                     andDenominator:1];
     _resolutionMultiplier = 1;
 
     // Set defaults
@@ -357,6 +357,7 @@
         if((self.mode == MNModeStrict || self.mode == MNModeFull) && [self.ticksUsed gt:self.totalTicks])
         {
             [self.totalTicks subtract:ticks];
+            MNLogError(@"BadArgument, Too many ticks.");
         }
 
         // track the smallest tickable for formatting

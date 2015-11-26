@@ -604,7 +604,7 @@
 /*!
  *  Render the stems for each notes
  *
- *  @param ctx the graphics context
+ *  @param ctx the core graphics opaque type drawing environment
  */
 - (void)drawStems:(CGContextRef)ctx
 {
@@ -620,7 +620,7 @@
 /*!
  *  Render the beam lines
  *
- *  @param ctx the graphics context
+ *  @param ctx the core graphics opaque type drawing environment
  */
 - (void)drawBeamLines:(CGContextRef)ctx
 {
@@ -711,7 +711,7 @@
 /*!
  *  Render the beam to the canvas context
  *
- *  @param ctx the graphics context
+ *  @param ctx the core graphics opaque type drawing environment
  */
 - (void)draw:(CGContextRef)ctx
 {

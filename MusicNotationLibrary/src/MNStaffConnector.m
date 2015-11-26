@@ -107,7 +107,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"staffconnector";
+    return NSStringFromClass([self class]); //return @"staffconnector";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 - (void)setConnectorType:(MNStaffConnectorType)connectorType

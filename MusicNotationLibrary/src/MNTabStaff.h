@@ -40,7 +40,9 @@
 //@property (assign, nonatomic) float y;
 //@property (assign, nonatomic) float width;
 
-#pragma mark - Methods//- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+#pragma mark - Methods//
+
+//- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
 + (MNTabStaff*)staffWithRect:(CGRect)rect;
 //+ (MNTabStaff*)tabStaffWithBoundingBox:(MNBoundingBox*)boundingBox;

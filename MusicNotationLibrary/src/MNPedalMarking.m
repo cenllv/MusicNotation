@@ -34,7 +34,6 @@
 #import "MNStaff.h"
 #import "MNText.h"
 #import "MNFont.h"
-//#import "MNGlyph.h"
 #import "MNTableTypes.h"
 
 @implementation MNPedalMarking
@@ -103,7 +102,7 @@ static NSDictionary* _pedalMarkingDictionary;
     self.text_margin_right = 6;
     self.bracket_line_width = 1;
     self.glyph_point_size = 40;
-    self.color = MNColor.blackColor;
+    self.color = (MNColor*)MNColor.blackColor;
 }
 
 + (MNPedalMarking*)pedalMarkingWithNotes:(NSArray*)notes
@@ -218,10 +217,9 @@ static NSDictionary* _pedalMarkingDictionary;
               if(pedal.custom_depress_text)
               {
                   // If we have custom text, use instead of the default "Ped" glyph
-                  float text_width = [MNText measureText:pedal.custom_depress_text].width;
-                  [MNText drawText:ctx
-                                 atPoint:MNPointMake(x - (text_width / 2), y)
-                                withText:pedal.custom_depress_text];
+                  CGSize text_size = [MNText measureText:pedal.custom_depress_text withFont:self.font];
+                  float text_width = text_size.width;
+                  [MNText drawText:ctx atPoint:MNPointMake(x - (text_width / 2), y) withText:pedal.custom_depress_text];
                   x_shift = (text_width / 2) + pedal.text_margin_right;
               }
               else
@@ -287,10 +285,10 @@ static NSDictionary* _pedalMarkingDictionary;
       {
           if(pedal.custom_depress_text)
           {
-              text_width = [MNText measureText:pedal.custom_depress_text].width;
-              [MNText drawText:ctx
-                             atPoint:MNPointMake(x - (text_width / 2), y)
-                            withText:pedal.custom_depress_text];
+              CGSize text_size = [MNText measureText:pedal.custom_depress_text withFont:self.font];
+              //              text_width = [MNText measureText:pedal.custom_depress_text].width;
+              text_width = text_size.width;
+              [MNText drawText:ctx atPoint:MNPointMake(x - (text_width / 2), y) withText:pedal.custom_depress_text];
           }
           else
           {
@@ -301,10 +299,10 @@ static NSDictionary* _pedalMarkingDictionary;
       {
           if(pedal.custom_depress_text)
           {
-              text_width = [MNText measureText:pedal.custom_release_text].width;
-              [MNText drawText:ctx
-                             atPoint:MNPointMake(x - (text_width / 2), y)
-                            withText:pedal.custom_release_text];
+              CGSize text_size = [MNText measureText:pedal.custom_release_text withFont:self.font];
+              //              text_width = [MNText measureText:pedal.custom_release_text].width;
+              text_width = text_size.width;
+              [MNText drawText:ctx atPoint:MNPointMake(x - (text_width / 2), y) withText:pedal.custom_release_text];
           }
           else
           {
@@ -312,6 +310,15 @@ static NSDictionary* _pedalMarkingDictionary;
           }
       }
     }];
+}
+
+- (MNFont*)font
+{
+    if(!_font)
+    {
+        self.font = [MNFont fontWithName:self.fontFamily size:self.fontSize];
+    }
+    return _font;
 }
 
 // Render the pedal marking in position on the rendering context
@@ -324,11 +331,12 @@ static NSDictionary* _pedalMarkingDictionary;
     }
 
     CGContextSaveGState(ctx);
-    CGContextSetStrokeColorWithColor(ctx, self.color.CGColor);
-    CGContextSetFillColorWithColor(ctx, self.color.CGColor);
+//    CGContextSetStrokeColorWithColor(ctx, self.color.CGColor);
+//    CGContextSetFillColorWithColor(ctx, self.color.CGColor);
 
     //         ctx.setFont(self.font.family, self.font.size, self.font.weight);
-    [MNText setFont:[MNFont fontWithName:self.fontFamily size:self.fontSize]];
+    [self.font setFillColor:self.color];
+    [MNText setFont:self.font];   //[MNFont fontWithName:self.fontFamily size:self.fontSize]];
     [MNText setBold:self.fontBold];
 
     MNLogDebug(@"Rendering Pedal Marking");

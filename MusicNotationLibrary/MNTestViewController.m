@@ -52,6 +52,12 @@
     self.numberOfItems = 0;
     self.tests = [NSMutableArray array];
     self.testItems = [NSMutableDictionary dictionary];
+    [MNText showBoundingBox:NO];
+}
+
+- (void)tearDown
+{
+    
 }
 
 #if TARGET_OS_IPHONE
@@ -227,7 +233,7 @@
 - (void)runTest:(NSString*)name func:(SEL)selector frame:(CGRect)frame params:(NSObject*)params
 {
     MNTestAction* testAction = [MNTestAction testWithName:name andSelector:selector andTarget:self andFrame:frame];
-    if([params isKindOfClass:[NSDictionary class]])
+    if([params isKindOfClass:[NSDictionary class]] || [params isKindOfClass:[NSArray class]])
     {
         testAction.params = (NSDictionary*)params;
     }

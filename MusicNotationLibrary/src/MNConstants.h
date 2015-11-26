@@ -37,5 +37,6 @@ static const float kPI = 3.14159f;
 static float kTHICKNESS = 2.f;
 
 extern NSString* const textBracketFontFamily;
+extern NSString* const annotationFontFamily;
 
 #endif /* MNConstants_h */

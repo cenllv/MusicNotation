@@ -154,6 +154,24 @@
     return (MNColor*)NSColor.blackColor;
 }
 
+//+ (MNColor*)darkGrayColor;
+//+ (MNColor*)lightGrayColor;
+//+ (MNColor*)whiteColor;
+//+ (MNColor*)grayColor;
+//+ (MNColor*)redColor;
+//{
+//    return (MNColor*)NSColor.redColor;
+//}
+//+ (MNColor*)greenColor;
+//+ (MNColor*)blueColor;
+//+ (MNColor*)cyanColor;
+//+ (MNColor*)yellowColor;
+//+ (MNColor*)magentaColor;
+//+ (MNColor*)orangeColor;
+//+ (MNColor*)purpleColor;
+//+ (MNColor*)brownColor;
+//+ (MNColor*)clearColor;
+
 + (MNColor*)colorWithHexString:(NSString*)hexString
 {
     return [[self class] colorWithHexString:hexString alpha:1.0];
@@ -235,6 +253,7 @@
 
     return value;
 }
+
 #endif
 
 + (instancetype)crayolaAbsoluteZeroColor

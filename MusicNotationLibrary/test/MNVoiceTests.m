@@ -39,6 +39,11 @@
     [self runTest:@"Full Voice Mode Test" func:@selector(full:withTitle:) frame:CGRectMake(0, 0, 550, 200)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 //- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestView*)parent
 //{
 //    /*

@@ -40,9 +40,8 @@ typedef NS_ENUM(NSUInteger, MNTextAlignment)
     MNTextAlignmentRight = NSTextAlignmentRight,
     MNTextAlignmentCenter = NSCenterTextAlignment,
 #endif
-    MNTextAlignmentJustified =
-        NSTextAlignmentJustified,
-    MNTextAlignmentNatural = NSTextAlignmentNatural,  
+    MNTextAlignmentJustified = NSTextAlignmentJustified,
+    MNTextAlignmentNatural = NSTextAlignmentNatural,
 };
 
 typedef NS_ENUM(NSUInteger, MNTextVerticalAlignment)
@@ -67,26 +66,12 @@ typedef NS_ENUM(NSUInteger, MNTextVerticalAlignment)
 
 #pragma mark - Methods
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+//- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
++ (void)drawText:(CGContextRef)ctx atPoint:(MNPoint*)point withText:(id)text;
++ (void)drawText:(CGContextRef)ctx withFont:(MNFont*)font atPoint:(MNPoint*)point withText:(id)text;
++ (void)drawText:(CGContextRef)ctx withFont:(MNFont*)font atRect:(CGRect)rect withText:(id)text;
 
-//+ (void)drawText:(CGContextRef)ctx atPoint:(CGPoint)point withHeight:(float)h withText:(NSString *)text;
-+ (void)drawText:(CGContextRef)ctx atPoint:(MNPoint*)point withBounds:(CGRect)bounds withText:(NSString*)text;
-
-+ (void)drawText:(CGContextRef)ctx withFont:(MNFont*)font atPoint:(MNPoint*)point withText:(NSString*)text;
-+ (void)drawText:(CGContextRef)ctx withFont:(MNFont*)font atRect:(CGRect)rect withText:(NSString*)text;
-
-+ (void)drawText:(CGContextRef)ctx atPoint:(MNPoint*)point withText:(NSString*)text;
-+ (void)drawText:(CGContextRef)ctx atPoint:(MNPoint*)point withHeight:(float)h withText:(NSString*)text;
-
-+ (void)drawTextWithContext:(CGContextRef)ctx
-                    atPoint:(MNPoint*)point
-                 withBounds:(MNBoundingBox*)bounds
-                   withText:(NSString*)text
-               withFontName:(NSString*)fontName
-                   fontSize:(NSUInteger)fontSize;
-
-+ (CGSize)measureText:(NSString*)text;
-+ (CGSize)measureText:(NSString*)text withFont:(MNFont*)font;
++ (CGSize)measureText:(id)text withFont:(MNFont*)font;
 
 @end
 

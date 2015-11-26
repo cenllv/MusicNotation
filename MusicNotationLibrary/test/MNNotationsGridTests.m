@@ -47,6 +47,11 @@
             frame:CGRectMake(10, 10, 1000, 1900)];   // params:@(NO)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNTestTuple*)grid:(MNTestCollectionItemView*)parent drawBoundingBox:(NSNumber*)drawBoundingBox
 {
     MNTestTuple* ret = [MNTestTuple testTuple];

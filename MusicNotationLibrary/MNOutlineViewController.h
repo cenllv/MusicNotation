@@ -30,6 +30,10 @@
 
 @interface MNOutlineViewController : NSObject <NSOutlineViewDataSource, NSOutlineViewDelegate>
 
+@property (weak) IBOutlet NSOutlineView* outlineView;
+
 @property (strong, nonatomic) NSMutableArray* tests;
+
++ (MNOutlineViewController*)sharedInstance;
 
 @end

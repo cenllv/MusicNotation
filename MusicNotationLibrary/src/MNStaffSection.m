@@ -78,12 +78,16 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"stavesection";
+    return NSStringFromClass([self class]); //return @"stavesection";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 /*!
  *  draws this modifier
- *  @param ctx    graphics context
+ *  @param ctx    the core graphics opaque type drawing environment
  *  @param staff  staff to draw to
  *  @param shiftX amount to shift x from init position to match current measure
  */

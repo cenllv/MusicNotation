@@ -34,43 +34,49 @@
 - (void)start
 {
     [super start];
+    float w = 530, h = 150;
     [self runTest:@"Articulation - Staccato/Staccatissimo" @"a." @"av"
-             func:@selector(drawArticulations:params:withTitle:)
-            frame:CGRectMake(10, 10, 700, 250)
+             func:@selector(drawArticulations:params:)
+            frame:CGRectMake(10, 10, w, h)
            params:@[ @"a.", @"av" ]];
     [self runTest:@"Articulation - Accent/Tenuto" @"a>" @"a-"
-             func:@selector(drawArticulations:params:withTitle:)
-            frame:CGRectMake(10, 10, 700, 250)
+             func:@selector(drawArticulations:params:)
+            frame:CGRectMake(10, 10, w, h)
            params:@[ @"a>", @"a-" ]];
     [self runTest:@"Articulation - Marcato/L.H. Pizzicato" @"a^" @"a+"
-             func:@selector(drawArticulations:params:withTitle:)
-            frame:CGRectMake(10, 10, 700, 250)
+             func:@selector(drawArticulations:params:)
+            frame:CGRectMake(10, 10, w, h)
            params:@[ @"a^", @"a+" ]];
     [self runTest:@"Articulation - Snap Pizzicato/Fermata" @"ao" @"ao"
-             func:@selector(drawArticulations:params:withTitle:)
-            frame:CGRectMake(10, 10, 700, 250)
+             func:@selector(drawArticulations:params:)
+            frame:CGRectMake(10, 10, w, h)
            params:@[ @"ao", @"ao" ]];
     [self runTest:@"Articulation - Up-stroke/Down-Stroke" @"a|" @"am"
-             func:@selector(drawArticulations:params:withTitle:)
-            frame:CGRectMake(10, 10, 700, 250)
+             func:@selector(drawArticulations:params:)
+            frame:CGRectMake(10, 10, w, h)
            params:@[ @"a|", @"am" ]];
     [self runTest:@"Articulation - Fermata Above/Below" @"a@a" @"a@u"
              func:@selector(drawFermata:params:withTitle:)
-            frame:CGRectMake(10, 10, 700, 250)
+            frame:CGRectMake(10, 10, w, 250)
            params:@[ @"a@a", @"a@u" ]];
     [self runTest:@"Articulation - Inline/Multiple" @"a." @"a."
              func:@selector(drawArticulations2:params:withTitle:)
-            frame:CGRectMake(10, 10, 700, 250)
+            frame:CGRectMake(10, 10, 750, 200)
            params:@[ @"a.", @"a." ]];
     [self runTest:@"TabNote Articulation" @"a." @"a."
              func:@selector(tabNotes:params:withTitle:)
-            frame:CGRectMake(10, 10, 700, 250)
+            frame:CGRectMake(10, 10, 650, 250)
            params:@[ @"a.", @"a." ]];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size
-                              withParent:(MNTestCollectionItemView*)parent
-                               withTitle:(NSString*)title
+                                withParent:(MNTestCollectionItemView*)parent
+                                 withTitle:(NSString*)title
 {
     /*
      Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
@@ -96,7 +102,8 @@
     return [MNViewStaffStruct contextWithStaff:staff andView:nil];
 }
 
-- (MNTestTuple*)drawArticulations:(MNTestCollectionItemView*)parent params:(NSArray*)params withTitle:(NSString*)title
+- (MNTestTuple*)drawArticulations:(MNTestCollectionItemView*)parent
+                           params:(NSArray*)params   // withTitle:(NSString*)title
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
     NSString* sym1 = params[0];
@@ -267,7 +274,7 @@
       expect(@"0");
 
       // bar 1
-      MNStaff* staffBar1 = [MNStaff staffWithRect:CGRectMake(50, 30, 150, 0)];
+      MNStaff* staffBar1 = [MNStaff staffWithRect:CGRectMake(50, 70, 150, 0)];
       [staffBar1 draw:ctx];
       NSArray* notesBar1 = @[
           [[MNStaffNote alloc] initWithDictionary:@{
@@ -631,25 +638,25 @@
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 10, 550, 0)];
+      MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 50, 550, 0)];
 
       [staff draw:ctx];
 
       NSArray* specs = @[
           @{
-              @"positions" : @[ @{@"str" : @(3), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(25)} ],
+              @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
               @"duration" : @"8"
           },
           @{
-              @"positions" : @[ @{@"str" : @(2), @"fret" : @(10)}, @{@"str" : @(5), @"fret" : @(12)} ],
+              @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
               @"duration" : @"8"
           },
           @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(3), @"fret" : @(5)} ],
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(3), @"fret" : @"5"} ],
               @"duration" : @"8"
           },
           @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(3), @"fret" : @(5)} ],
+              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(3), @"fret" : @"5"} ],
               @"duration" : @"8"
           }
       ];

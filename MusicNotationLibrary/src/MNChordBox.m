@@ -171,7 +171,7 @@
         MNFont* font1 = [MNFont fontWithName:@"Verdana" size:12];
         NSAttributedString* title = [[NSAttributedString alloc]
             initWithString:_positionText
-                attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
+                attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
         [title drawAtPoint:CGPointMake(
                                self.x - (self.spacing / 2) - self.textShiftX,
                                self.y + (self.fretSpacing / 2) + self.textShiftY + (self.fretSpacing * _position))];
@@ -210,7 +210,7 @@
             MNFont* font1 = [MNFont fontWithName:@"Verdana" size:12];
             NSAttributedString* title = [[NSAttributedString alloc]
                 initWithString:tuning[i]
-                    attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
+                    attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
             [title drawAtPoint:CGPointMake(self.x + (self.spacing * i) - title.size.width / 2,
                                            self.y + ((_numFrets) * (self.fretSpacing)))];
         }
@@ -297,7 +297,7 @@
         MNFont* font1 = [MNFont fontWithName:@"TimesNewRomanPS-BoldMT" size:18];
         NSAttributedString* title = [[NSAttributedString alloc]
             initWithString:@"X"
-                attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
+                attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
         [title drawAtPoint:CGPointMake(x - title.size.width / 2,
                                        y - (self.fretSpacing - 18) - title.size.height / 1.5)];   // self.fontSize))];
     }

@@ -35,7 +35,7 @@
 
 @class MNAccidental, MNArticulation, MNPoint;
 @class MNAnnotation, MNModifierContext, MNTuplet, MNTableGlyphStruct;
-@class NoteHeadBounds, StaffNoteRenderOptions;
+@class MNNoteHeadBounds, MNStaffNoteRenderOptions;
 
 /*! The `MNStaffNote` class calculates the position and renders a note to a staff.
 
@@ -141,7 +141,7 @@
 
 @property (assign, nonatomic) float yForBottomText;
 
-@property (strong, nonatomic) NoteHeadBounds* noteHeadBounds;
+@property (strong, nonatomic) MNNoteHeadBounds* noteHeadBounds;
 
 /*! the staff parent that this note object is drawn to
  *  @note when the staff is set the ys array for the notes is configured
@@ -218,7 +218,7 @@
 - (MNPoint*)getModifierstartXYforPosition:(MNPositionType)position andIndex:(NSUInteger)index;
 
 - (void)setKeyLine:(NSUInteger)index withLine:(NSUInteger)line;
-- (NSUInteger)getLineNumber:(BOOL)is_top_note;
+- (float)getLineNumber:(BOOL)is_top_note;
 
 - (float)tieRightX;
 - (float)tieLeftX;
@@ -254,20 +254,4 @@
 + (UIImage*)imageForNote:(MNStaffNote*)note rect:(CGRect)rect;
 #endif
 
-@end
-
-@interface StaffNoteRenderOptions : NoteRenderOptions
-@property (assign, nonatomic) float glyphFontScale;
-@property (assign, nonatomic) float stemHeight;
-@property (assign, nonatomic) float strokeSpacing;
-@property (assign, nonatomic) float strokePx;
-//@property (assign, nonatomic) float annotation_spacing;
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-@end
-
-@interface NoteHeadBounds : NSObject
-@property (assign, nonatomic) float y_top;
-@property (assign, nonatomic) float y_bottom;
-@property (assign, nonatomic) float highest_line;
-@property (assign, nonatomic) float lowest_line;
 @end

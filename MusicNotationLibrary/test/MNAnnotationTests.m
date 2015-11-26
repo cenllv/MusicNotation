@@ -54,9 +54,14 @@ static NSUInteger testFontSize;
     [self runTest:@"TabNote Annotations" func:@selector(tabNotes:withTitle:) frame:CGRectMake(10, 10, w + 100, 300)];
 }
 
+- (void)tearDown
+{
+    [super tearDown];
+}
+
 - (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size
-                              withParent:(MNTestCollectionItemView*)parent
-                               withTitle:(NSString*)title
+                                withParent:(MNTestCollectionItemView*)parent
+                                 withTitle:(NSString*)title
 {
     /*
      Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
@@ -76,7 +81,7 @@ static NSUInteger testFontSize;
     w = w != 0 ? w : 350;
     h = h != 0 ? h : 150;
 
-//    // [MNFont setFont:@" 10pt Arial"];
+    //    // [MNFont setFont:@" 10pt Arial"];
 
     // withParent:parent withTitle:title];
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
@@ -238,9 +243,10 @@ static NSUInteger testFontSize;
         MNAnnotation* ret = [MNAnnotation annotationWithText:text];
         //         MNFont* font =  [MNFont fontWithName:@"Times" size:testFontSize];
         //        font.italic = YES;
-        NSFontManager* fontManager = [NSFontManager sharedFontManager];
-        NSFont* font = [fontManager fontWithFamily:@"Times" traits:NSItalicFontMask weight:5 size:12];
-        [ret setFont:(MNFont*)font];
+        //        NSFontManager* fontManager = [NSFontManager sharedFontManager];
+        //        NSFont* font = [fontManager fontWithFamily:@"Times" traits:NSItalicFontMask weight:5 size:12];
+        MNFont* font = [MNFont fontWithName:@"Times" size:12 bold:NO italic:YES];
+        [ret setFont:font];
         return ret;
     };
 
@@ -494,7 +500,7 @@ static NSUInteger testFontSize;
 
     NSArray* notes2 = [specs oct_map:^MNTabNote*(NSDictionary* tab_struct) {
       MNTabNote* tabNote = [[MNTabNote alloc] initWithDictionary:tab_struct];
-      [tabNote->_renderOptions setDraw_stem:YES];
+      [tabNote.renderOptions setDraw_stem:YES];
       [tabNote setStemDirection:MNStemDirectionDown];
       return tabNote;
     }];

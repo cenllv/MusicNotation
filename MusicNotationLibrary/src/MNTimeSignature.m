@@ -151,7 +151,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"timesignature";
+    return NSStringFromClass([self class]); //return @"timesignature";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 #pragma mark - Properties
@@ -462,7 +466,7 @@ static NSDictionary* _standardTimeSignatures;
 }
 
 /*!
- *  Add the key signature to the `staff`. You probably want to use the
+ *  Add the key signature to the `MNStaff`. You probably want to use the
  *  helper method `.addToStaff()` instead
  *  @param staff the staff to add the modifier to
  */
@@ -481,7 +485,7 @@ static NSDictionary* _standardTimeSignatures;
 }
 
 /*!
- *  Add the key signature to the `staff`. You probably want to use the
+ *  Add the key signature to the `MNStaff`. You probably want to use the
  *  helper method `.addToStaff()` instead
  *  @param modifier the staff to add the modifier to
  */

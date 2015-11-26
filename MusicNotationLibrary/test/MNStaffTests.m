@@ -26,8 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
-
 #import "MNStaffTests.h"
 #import "MNUtils.h"
 
@@ -54,6 +52,11 @@
     [self runTest:@"Multiple Line staff Text Test"
              func:@selector(drawStaffTextMultiLine:)
             frame:CGRectMake(10, 10, 600, 250)];
+}
+
+- (void)tearDown
+{
+    [super tearDown];
 }
 
 static float w = 700;

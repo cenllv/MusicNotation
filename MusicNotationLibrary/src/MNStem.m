@@ -114,7 +114,11 @@
  */
 + (NSString*)CATEGORY
 {
-    return @"stem";
+    return NSStringFromClass([self class]); //return @"stem";
+}
+- (NSString*)CATEGORY
+{
+    return NSStringFromClass([self class]);
 }
 
 // Set the x bounds for the default notehead

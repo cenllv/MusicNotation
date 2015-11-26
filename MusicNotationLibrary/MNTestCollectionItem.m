@@ -157,12 +157,14 @@ NSString* const kTestCollectionItemid = @"testCollectionItemid";
     //    {
     //        [subView removeFromSuperview];
     //    }
-    for(CALayer* layer in self.view.layer.sublayers)
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-          [layer removeFromSuperlayer];
-        });
-    }
+
+//    for(CALayer* layer in self.view.layer.sublayers)
+//    {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//          [layer removeFromSuperlayer];
+//        });
+//    }
+
     //
     //    [self.view addSubview:self.textLabel];
 

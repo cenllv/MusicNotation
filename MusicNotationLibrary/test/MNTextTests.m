@@ -34,6 +34,12 @@
     [super start];
     [self runTest:@"Draw Sizes" func:@selector(drawFonts:) frame:CGRectMake(10, 10, 650, 400)];
     [self runTest:@"Draw Alignment" func:@selector(drawAlignment:) frame:CGRectMake(10, 10, 600, 550)];
+    [self runTest:@"Draw Colors" func:@selector(drawColors:) frame:CGRectMake(10, 10, 600, 450)];
+}
+
+- (void)tearDown
+{
+    [super tearDown];
 }
 
 - (MNTestTuple*)drawFonts:(MNTestCollectionItemView*)parent
@@ -109,6 +115,44 @@
                 atRect:CGRectMake(x, y += step, w, h)
               withText:@"MNTextAlignmentCenter | MNTextAlignmentMiddle"];
     };
+    return ret;
+}
+
+- (MNTestTuple*)drawColors:(MNTestCollectionItemView*)parent
+{
+    MNTestTuple* ret = [MNTestTuple testTuple];
+
+    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+      MNFont* font = [MNFont fontWithName:@"times" size:26];
+
+      float y = 50;
+
+      NSString* str = @"QWFPGJLUYARSTDHNEIOZXCVBKMqwfpgjl";
+
+      [MNText showBoundingBox:NO];
+
+      //        font.fillColor = MNColor.greenColor;
+      //        font.strokeColor = MNColor.redColor;
+      [MNText drawText:ctx withFont:font atPoint:MNPointMake(50, y += 30) withText:str];
+      font.fillColor = nil;
+      font.strokeColor = (MNColor*)MNColor.redColor;
+      [MNText drawText:ctx withFont:font atPoint:MNPointMake(50, y += 30) withText:str];
+      font.fillColor = nil;
+      font.strokeColor = (MNColor*)MNColor.greenColor;
+      [MNText drawText:ctx withFont:font atPoint:MNPointMake(50, y += 30) withText:str];
+      font.fillColor = (MNColor*)MNColor.greenColor;
+      font.strokeColor = (MNColor*)MNColor.redColor;
+      [MNText drawText:ctx withFont:font atPoint:MNPointMake(50, y += 30) withText:str];
+      font.fillColor = nil;
+      font.strokeColor = nil;
+      [MNText drawText:ctx withFont:font atPoint:MNPointMake(50, y += 30) withText:str];
+      //        font.fillColor = ;
+      //        font.strokeColor = nil;
+      font.strokeColor = [MNColor colorWithHexString:@"579"];
+      font.fillColor = [MNColor colorWithHexString:@"345"];
+      [MNText drawText:ctx withFont:font atPoint:MNPointMake(50, y += 30) withText:str];
+    };
+
     return ret;
 }
 
