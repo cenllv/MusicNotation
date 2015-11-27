@@ -249,11 +249,6 @@
 
 - (void)draw:(CGContextRef)ctx
 {
-    if(!ctx)
-    {
-        MNLogError(@"NoCanvasContext, Can't draw without a canvas context.");
-    }
-
     // determine x value of left bound of tuplet
     MNStaffNote* firstNote = [self.notes objectAtIndex:0];
     MNStaffNote* lastNote = [self.notes lastObject];

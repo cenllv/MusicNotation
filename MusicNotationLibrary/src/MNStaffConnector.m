@@ -289,7 +289,7 @@ static BOOL _debugMode = NO;
 
     NSAttributedString* titleString = [[NSAttributedString alloc]
         initWithString:text
-            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
+            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
     [titleString drawInRect:CGRectMake(point.x, point.y, 2 * width, 30)];
     //    [titleString drawAtPoint:CGPointMake(point.x, point.y))];
 

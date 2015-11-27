@@ -293,7 +293,7 @@
 
     if(self.note == nil || self.index == -1)
     {
-        [MNLog logError:@"NoAttachedNote, Can't draw dot without a note and index."];
+        MNLogError(@"NoAttachedNote, Can't draw dot without a note and index.");
     }
 
     float line_space = self.note.staff.spacingBetweenLines;

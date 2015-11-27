@@ -1,8 +1,8 @@
 //
-//  MNChordTest.h
+//  MNTableChords.h
 //  MusicNotation
 //
-//  Created by Scott on 4/17/15.
+//  Created by Scott Riccardelli on 11/26/15.
 //  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
 //
@@ -25,11 +25,10 @@
 //  THE SOFTWARE.
 //
 
-#import "MNTestViewController.h"
+@interface MNTableChords : NSObject
 
-/*!
- *  The `MNChordTest` class tests chords
- */
-@interface MNChordTest : MNTestViewController
++ (NSArray*)chordChart;
++ (NSDictionary*)chordShapes;
++ (NSDictionary*)positions;
 
 @end

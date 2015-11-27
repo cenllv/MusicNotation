@@ -68,13 +68,13 @@
 + (MNPedalMarking*)createSustain:(NSArray*)notes;
 + (MNPedalMarking*)createSostenuto:(NSArray*)notes;
 
-- (void)setCustomText:(NSString*)text;
-- (void)setCustomTextDepress:(NSString*)depressText release:(NSString*)releaseText;
+- (id)setCustomText:(NSString*)depressText;
+- (id)setCustomTextDepress:(NSString*)depressText release:(NSString*)releaseText;
 - (void)setStyle:(MNPedalMarkingType)style;
 - (void)setLine:(float)line;
 
-- (void)drawBracketed:(CGContextRef)ctx;
-- (void)drawText:(CGContextRef)ctx;
+//- (void)drawBracketed:(CGContextRef)ctx;
+//- (void)drawText:(CGContextRef)ctx;
 
 - (void)draw:(CGContextRef)ctx;
 

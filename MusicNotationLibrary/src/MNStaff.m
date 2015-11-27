@@ -1480,7 +1480,7 @@ static MNStaff* _currentStaff;
         NSString* text = [NSString stringWithFormat:@"%lu", self.measure];
         NSAttributedString* title = [[NSAttributedString alloc]
             initWithString:text
-                attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
+                attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
         [title drawInRect:CGRectMake(self.x, y - 3, 50, 100)];
     }
 }
@@ -1497,10 +1497,6 @@ static MNStaff* _currentStaff;
 
 - (void)drawVerticalFixed:(CGContextRef)ctx x:(float)x isDouble:(BOOL)isDouble
 {
-    if(!ctx)
-    {
-        [MNLog logError:@"NoCanvasContext, Can't draw Staff without canvas context."];
-    }
     float top_line = [self getYForLine:0];
     float bottom_line = [self getYForLine:(self.options.numLines - 1)];
     if(isDouble)
@@ -1533,10 +1529,6 @@ static MNStaff* _currentStaff;
 
 - (void)drawVerticalBarFixed:(CGContextRef)ctx x:(float)x
 {
-    if(!ctx)
-    {
-        [MNLog logError:@"NoCanvasContext, Can't draw Staff without canvas context."];
-    }
     float top_line = [self getYForLine:0];
     float bottom_line = [self getYForLine:(self.options.numLines - 1)];
     CGMutablePathRef path = CGPathCreateMutable();

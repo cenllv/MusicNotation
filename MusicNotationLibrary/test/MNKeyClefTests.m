@@ -33,10 +33,11 @@
 - (void)start
 {
     [super start];
+    float w = 550, h = 370;
     //    [self runTest:@"Key Parser Test"  func:@selector(parser)];
-    [self runTest:@"Major Key Clef Test" func:@selector(majorKeys:withTitle:) frame:CGRectMake(10, 10, 700, 250)];
-    [self runTest:@"Minor Key Clef Test" func:@selector(minorKeys:withTitle:) frame:CGRectMake(10, 10, 700, 250)];
-    [self runTest:@"Staff Helper" func:@selector(staffHelper:withTitle:) frame:CGRectMake(10, 10, 700, 250)];
+    [self runTest:@"Major Key Clef Test" func:@selector(majorKeys:withTitle:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Minor Key Clef Test" func:@selector(minorKeys:withTitle:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Staff Helper" func:@selector(staffHelper:withTitle:) frame:CGRectMake(10, 10, w, h)];
 }
 
 - (void)tearDown

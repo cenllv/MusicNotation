@@ -161,7 +161,7 @@
         MNFont* font1 = [MNFont fontWithName:self.fontFamily size:self.fontSize];
         NSAttributedString* title = [[NSAttributedString alloc]
             initWithString:name
-                attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
+                attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
 
         //            NSUInteger text_width = title.size.width;
         //            NSUInteger textHeight = title.size.height / 2;
@@ -252,7 +252,7 @@
         MNFont* font1 = [MNFont fontWithName:self.fontFamily size:self.fontSize];
         NSAttributedString* title = [[NSAttributedString alloc]
             initWithString:text
-                attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
+                attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
 
         //            NSUInteger text_width = title.size.width;
         //            NSUInteger textHeight = title.size.height / 2;

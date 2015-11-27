@@ -377,7 +377,7 @@ addEndNote: function(note) { self.note_end = note; return this; },
         MNFont* font1 = [MNFont fontWithName:@"Helvetica" size:12];
         NSAttributedString* r = [[NSAttributedString alloc]
             initWithString:@"R"
-                attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
+                attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
         [r drawAtPoint:CGPointMake(x + text_shift_x, text_y - r.size.height / 1.2)];
         MNLogInfo(@"Rendering stroke: %@ %f %f", @"R", x + text_shift_x, text_y);
     }

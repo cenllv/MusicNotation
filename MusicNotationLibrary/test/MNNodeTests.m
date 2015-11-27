@@ -33,6 +33,15 @@
 - (void)start
 {
     [super start];
+    [self runTest:@"ABCxyz" func:@selector(basicHeirarchy:)];
+    [self runTest:@"ABCxyz" func:@selector(rotational:)];
+    [self runTest:@"ABCxyz" func:@selector(scale:)];
+    [self runTest:@"ABCxyz" func:@selector(skew:)];
+    [self runTest:@"ABCxyz" func:@selector(transform:)];
+    [self runTest:@"ABCxyz" func:@selector(affineInverse:)];
+    [self runTest:@"ABCxyz" func:@selector(cascadeColor:)];
+    [self runTest:@"ABCxyz" func:@selector(cascadeOpacity:)];
+    [self runTest:@"ABCxyz" func:@selector(cascadeScale:)];
 }
 
 - (void)tearDown

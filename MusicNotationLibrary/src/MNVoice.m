@@ -420,11 +420,6 @@
 // already set.
 - (void)draw:(CGContextRef)ctx dirtyRect:(CGRect)dirtyRect toStaff:(MNStaff*)staff
 {
-    if(!ctx)
-    {
-        MNLogError(@"NoCanvasContext, Can't draw without a canvas context.");
-    }
-
     //    MNBoundingBox *boundingBox = ((MNStaffNote *)self.tickables[0]).boundingBox;
     //    for (MNStaffNote *tickable in self.tickables) {
     for(id<MNTickableDelegate> tickable in self.tickables)

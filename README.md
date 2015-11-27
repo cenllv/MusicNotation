@@ -67,11 +67,10 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 
 | Status    | Count   |
 |-----------|---------|
-| pass      | 13      |
-| almost    | 23      |
-| works     | 7       |
-| fail      | 4       |
-| unknown   | 5       |
+| pass      | 18      |
+| almost    | 25      |
+| fail      | 5       |
+| unknown   | 3       |
 
 
 | Test                  | Status    | Issues | Demonstration |
@@ -80,29 +79,28 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | Animation             | pass      |  | animation of basic notations |
 | Annotation            | pass      |  | annotations for tabs, harmonics, fingerpicking |
 | Articulation          | pass      |  | articulations like staccato, accent, marcato, fermata, etc |
-| AutoBeamFormatting    | almost    | Guessing Default Beam Groups bug & More Simple Tuplet Auto Beaming bug | auto beams for even/odd, breaks, offsets, etc |
+| AutoBeamFormatting    | almost    | Guessing Default Beam Groups bug & More Simple Tuplet Auto Beaming bug | auto beams for even/odd, breaks, etc |
 | Beam                  | almost    | very minor issues | beams for simple, multi, mixed, insane, tabnotes, complex, etc |
 | Bend                  | almost    | down arrow missing, text clobbered, static format method bug | bends for double, reverse, phrase, with release |
 | BoundingBox           | pass      |  | bounding box object init and merge |
-| Chord                 | almost    |  |  |
+| Chord                 | almost    | bug with number on left side of bar chart |  |
 | Clef                  | almost    | keysignote x posn incorrect | clef start, end small, clef change |
 | Curve                 | almost    | beams upside down, thick/thin curve not correct | simple, rounded, thick/thin, top curves |
 | Dot                   | almost    | multiple dots clobber | basic and multi-voice |
-| Formatter             | works     | notes clobbered | staff notes, tab notes, multi-staffs |
-| GraceNote             | works     | notes clobbered on left, auto beams failing | grace note basic, with slurs, multi-voices |
-| KeyClef               | fail      | crashes | major/minor clef |
+| Font                  | pass      |  |   |
+| Formatter             | fail      | notes clobbered | staff notes, tab notes, multi-staffs |
+| GraceNote             | fail      | notes clobbered on left, auto beams failing | grace note basic, with slurs, multi-voices |
+| KeyClef               | pass      |  | major/minor clef |
 | KeyManager            | unknown   | not rendering | valid/select notes |
-| KeySignature          | works     | cancelled key test incorrect, staff helper missing | key parser, major/minor, cancelled key |
+| KeySignature          | fail      | cancelled key test incorrect, staff helper missing | key parser, major/minor, cancelled key |
 | Layer Note            | almost    |  | click/push calayer note for pop animation & aae audio |
-| Modifier              | fail      | not rendering | modifier width, management |
+| Modifier              | pass      | not rendering | modifier width, management |
 | Music                 | unknown   |  | valid notes, keys, notes, intervals, canonical notes, scales |
 | NoteHead              | pass      |  | basic head & bounding box render |
 | NotationsGrid         | pass      |  | grid of most basic notations |
 | Ornament              | pass      |  | vertically shifted, delayed turns, stacked, w/ accidentals |
-| Parse                 | unknown   |  | parser for notation language |
-| PlayNote              | fail      | not implemented | plays notes for click/tap of calayer notes |
-| PedalMarking          | works     | does not render pedal glyphs | pedal for simple, release, depress, text, etc |
-| Percussion            | works     | does not render any notes | percussion clef, notes, basic, snare |
+| PedalMarking          | almost    |  | pedal for simple, release, depress, text, etc |
+| Percussion            | fail      | does not render any notes | percussion clef, notes, basic, snare |
 | Rests                 | almost    | minor dot errors, rest x posn errors | rests dotted, auto align beamed, tuplets, single & multi voice |
 | Rhythm                | almost    | rests out of place, missing one staff glyph not fully rendered | rhythm draw slash, beamed, rests, 16th, 32nd, etc  |
 | Staff                 | pass      |  | draw basic, vertical bar, mutli bar, barlines, repeats, tempo, single lines, etc |
@@ -110,9 +108,9 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | StaffHairpin          | almost    | minor note modifier clobber | simple, horizontal, vertical, height |
 | StaffLine             | almost    | minor bug with mismatched lines and colors | simple, staffline arrow |
 | StaffModifier         | almost    | may be complete | staff draw, vertical bar |
-| StaffNote             | almost    | slash notes clobber, tab notes incomplete, modifiers clobber | tick, stem, auto, staffline, width, boundingbox, treble, alto, tenor, bass, etc |
+| StaffNote             | almost    | slash notes clobber, tab notes incomplete, modifiers clobber | tick, stem, auto, staffline, width, boundingbox, etc |
 | StaffTie              | pass      |  | simple, chord, stem up, no end, no start |
-| StringNumber          | almost    | not rendering string numbers, needs test callback optimizing | string number in notation, fred hand finger, multi voice, complex measure |
+| StringNumber          | almost    | not rendering string numbers, needs test callback optimizing | string number in notation, fred hand finger, etc |
 | Strokes               | almost    | incorrect strokes rendering | brush/arpeggiate/etc, multi, notation/tab, etc |
 | Table                 | unknown   | n/a | clef, key, etc number constants and ratios, etc |
 | TabNote               | almost    | TabNote Stems with Dots error | tick, tabstaff, tickcontext, tabnote, etc |
@@ -120,13 +118,13 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | TabStaff              | pass      |  | tabstaff draw, bar |
 | TabTie                | pass      |  | tabtie, simple, hammerons, pulloffs, tapping, continuous |
 | TextBracket           | almost    |  | textbracket simple, styles |
-| TextNote              | works     | not rendering all notations | textnote formatting, super/sub scripts formatting glyphs, crescendo, etc |
-| Text                  | fail      | crashes | drawing basic attributed string text, ns/ui labels |
+| TextNote              | fail      | not rendering all notations | textnote formatting, super/sub scripts formatting glyphs, crescendo, etc |
+| Text                  | pass      |  | drawing basic attributed string text, ns/ui labels |
 | ThreeVoice            | almost    | beam placement issues, rest collisions | three voiecs, auto adjust rest, etc |
-| TickContext           | unknown      | no output | current and tracking tick |
+| TickContext           | pass      | no output | current and tracking tick |
 | TimeSignature         | almost    | last test clobbers notations | parser basic, big time sigs |
-| Tuning                | works     |  | tuning standard, return note for fret |
-| Tuplet                | almost    | voices out of sync, tuplet ratios render errors, one tuplet ratio incorrect | simple, beamed, ratioed, bottom, awkward, complex, mixed stem, etc |
+| Tuning                | almost    |  | tuning standard, return note for fret |
+| Tuplet                | almost    | voices out of sync, tuplet ratios render errors, one tuplet ratio incorrect | simple, beamed, ratioed, bottom, etc |
 | Vibrato               | almost    | vibrato clobbering bend | simple vibrato, harsh, with bend |
 | Voice                 | pass      |  | strict, ignore, full voice |
 

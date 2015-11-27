@@ -26,7 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
 #import "IAModelBase.h"
 
 @class MNTuningNames;
@@ -37,14 +36,16 @@
 @interface MNTuning : IAModelBase
 
 #pragma mark - Properties
-@property (strong, nonatomic) NSArray* tuningValues;
+@property (strong, nonatomic) NSMutableArray* tuningValues;
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithTuningString:(NSString*)tuningString;
-+ (MNTuningNames*)tuningNames;
+
+- (NSUInteger)noteToInteger:(NSString*)noteString;
 - (void)setTuning:(NSString*)noteString;
 - (NSUInteger)getValueForString:(NSUInteger)stringNum;
-- (NSString*)getNoteForFret:(NSUInteger)fretNum andStringNum:(NSUInteger)stringNum;
+- (NSUInteger)getValueForFret:(NSInteger)fretNum andStringNum:(NSUInteger)stringNum;
+- (NSString*)getNoteForFret:(NSInteger)fretNum andStringNum:(NSUInteger)stringNum;
 
 @end

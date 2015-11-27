@@ -134,7 +134,7 @@
         MNFont* font1 = [MNFont fontWithName:@"times" /*self.fontFamily*/ size:self.fontSize];
         NSAttributedString* title = [[NSAttributedString alloc]
             initWithString:self.number
-                attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
+                attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
         float h = title.size.height;
         [title drawAtPoint:CGPointMake(_x + x + 5, top_y + 15 - h)];
         CGContextRestoreGState(ctx);

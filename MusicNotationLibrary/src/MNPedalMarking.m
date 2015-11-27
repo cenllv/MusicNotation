@@ -35,34 +35,9 @@
 #import "MNText.h"
 #import "MNFont.h"
 #import "MNTableTypes.h"
+#import "MNGlyph.h"
 
 @implementation MNPedalMarking
-
-static NSDictionary* _pedalMarkingDictionary;
-
-+ (NSDictionary*)pedalMarkingDictionary
-{
-    if(!_pedalMarkingDictionary)
-    {
-        NSMutableDictionary* tmpDict = [[NSMutableDictionary alloc] init];
-        MNTableGlyphStruct* tmp = [[MNTableGlyphStruct alloc] init];
-        tmp.metrics.code = @"v36";
-        tmp.metrics.name = @"pedal_depress";
-        //        tmp.category = @"pedalmarking";
-        //        tmp.metrics.shift =  [MNPoint pointWithX:-10 andY:0];
-        [tmpDict setObject:tmp forKey:tmp.metrics.code];
-
-        tmp = [[MNTableGlyphStruct alloc] init];
-        tmp.metrics.code = @"v5d";
-        tmp.metrics.name = @"pedal_release";
-        //        tmp.category = @"pedalmarking";
-        //        tmp.metrics.shift =  [MNPoint pointWithX:-2 andY:3];
-        [tmpDict setObject:tmp forKey:tmp.metrics.code];
-
-        _pedalMarkingDictionary = [NSDictionary dictionaryWithDictionary:tmpDict];
-    }
-    return _pedalMarkingDictionary;
-}
 
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
@@ -90,10 +65,10 @@ static NSDictionary* _pedalMarkingDictionary;
     self.line = 0;
 
     // Custom text for the release/depress markings
-    self.custom_depress_text = @"";
-    self.custom_release_text = @"";
+    _custom_depress_text = nil;
+    _custom_release_text = nil;
 
-    self.fontFamily = @"Times New Roman";
+    self.fontFamily = @"TimesNewRomanPSMT";
     self.fontSize = 12;
     self.fontBold = YES;
     self.fontItalic = YES;
@@ -110,14 +85,22 @@ static NSDictionary* _pedalMarkingDictionary;
     return [[MNPedalMarking alloc] initWithNotes:notes];
 }
 
-// Create a sustain pedal marking. Returns the defaults PedalMarking.
-// Which uses the traditional "Ped" and "*"" markings.
+/*!
+ *   Create a sustain pedal marking. Returns the defaults PedalMarking.
+ *   Which uses the traditional "Ped" and "*"" markings.mn
+ *  @param notes <#notes description#>
+ *  @return <#return value description#>
+ */
 + (MNPedalMarking*)createSustain:(NSArray*)notes
 {
     return [[MNPedalMarking alloc] initWithNotes:notes];
 }
 
-// Create a sostenuto pedal marking
+/*!
+ *  Create a sostenuto pedal marking
+ *  @param notes <#notes description#>
+ *  @return <#return value description#>
+ */
 + (MNPedalMarking*)createSostenuto:(NSArray*)notes
 {
     MNPedalMarking* pedal = [[MNPedalMarking alloc] initWithNotes:notes];
@@ -126,7 +109,11 @@ static NSDictionary* _pedalMarkingDictionary;
     return pedal;
 }
 
-// Create an una corda pedal marking
+/*!
+ *  Create an una corda pedal marking
+ *  @param notes <#notes description#>
+ *  @return <#return value description#>
+ */
 + (MNPedalMarking*)createUnaCorda:(NSArray*)notes
 {
     MNPedalMarking* pedal = [[MNPedalMarking alloc] initWithNotes:notes];
@@ -135,43 +122,118 @@ static NSDictionary* _pedalMarkingDictionary;
     return pedal;
 }
 
-- (void)setCustomText:(NSString*)text
+static NSDictionary* _pedalMarkingDictionary;
+
++ (NSDictionary*)pedalMarkingDictionary
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
-    abort();
+    if(!_pedalMarkingDictionary)
+    {
+        _pedalMarkingDictionary = @{
+            @"pedal_depress" : @{@"code" : @"v36", @"x_shift" : @-10, @"y_shift" : @0},
+            @"pedal_release" : @{@"code" : @"v5d", @"x_shift" : @-2, @"y_shift" : @3},
+        };
+    }
+    return _pedalMarkingDictionary;
 }
 
-// Set custom text for the `depress`/`release` pedal markings. No text is
-// set if the parameter is falsy.
-- (void)setCustomTextDepress:(NSString*)depressText release:(NSString*)releaseText
+#pragma mark - properties
+
+/*!
+ *  Set custom text for the `depress`/`release` pedal markings. No text is
+ *  set if the parameter is falsy.
+ *  @param depressText the depress text
+ */
+- (id)setCustomText:(NSString*)depressText
+{
+    id ret = [self setCustomTextDepress:depressText release:nil];
+    return ret;
+}
+
+/*!
+ *  Set custom text for the `depress`/`release` pedal markings. No text is
+ *  set if the parameter is falsy.
+ *  @param depressText the depress text
+ *  @param releaseText the release text
+ */
+- (id)setCustomTextDepress:(NSString*)depressText release:(NSString*)releaseText
 {
     self.custom_depress_text = depressText == nil ? @"" : depressText;
     self.custom_release_text = releaseText == nil ? @"" : releaseText;
+    return self;
 }
 
-// Set the pedal marking style
+/*!
+ *  Set the pedal marking style
+ *  @param style <#style description#>
+ */
 - (void)setStyle:(MNPedalMarkingType)style
 {
     if(style < 1 && style > 3)
     {
-        [MNLog logError:@"InvalidParameter, The style must be one found in PedalMarking.Styles"];
+        MNLogError(@"InvalidParameter, The style must be one found in PedalMarking.Styles");
     }
     _style = style;
 }
 
-// Set the staff line to render the markings on
+/*!
+ *  Set the staff line to render the markings on
+ *  @param line <#line description#>
+ */
 - (void)setLine:(float)line
 {
     _line = line;
 }
 
-// Set the rendering context
-//- (void)setContext:(CGContextRef)ctx
-//{
-//    _graphicsContext = ctx;
-//}
+- (MNFont*)font
+{
+    if(!_font)
+    {
+        self.font = [MNFont fontWithName:self.fontFamily size:self.fontSize];
+    }
+    return _font;
+}
 
-// Draw the bracket based pedal markings
+#pragma mark - methods
+
+/*!
+ *  Render the pedal marking in position on the rendering context
+ *  @param ctx the core graphics opaque type drawing environment
+ */
+- (void)draw:(CGContextRef)ctx
+{
+    //        [super draw:ctx];
+
+    CGContextSaveGState(ctx);
+    //    CGContextSetStrokeColorWithColor(ctx, self.color.CGColor);
+    //    CGContextSetFillColorWithColor(ctx, self.color.CGColor);
+
+    //         ctx.setFont(self.font.family, self.font.size, self.font.weight);
+    [self.font setFillColor:self.color];
+    //    [MNText setFont:self.font];   //[MNFont fontWithName:self.fontFamily size:self.fontSize]];
+    //    [MNText setBold:self.fontBold];
+    [self.font setBold:self.fontBold];
+
+    MNLogDebug(@"Rendering Pedal Marking");
+
+    if(self.style == MNPedalMarkingBracket || self.style == MNPedalMarkingMixed)
+    {
+        CGContextSetLineWidth(ctx, self.bracket_line_width);
+        [self drawBracketed:ctx];
+    }
+    else if(self.style == MNPedalMarkingText)
+    {
+        [self drawText:ctx];
+    }
+
+    CGContextRestoreGState(ctx);
+}
+
+#pragma mark private
+
+/*!
+ *  Draw the bracket based pedal markings
+ *  @param ctx the core graphics opaque type drawing environment
+ */
 - (void)drawBracketed:(CGContextRef)ctx
 {
     //    if(ctx == NULL)
@@ -196,7 +258,7 @@ static NSDictionary* _pedalMarkingDictionary;
       // Throw if current note is positioned before the previous note
       if(x < prev_x)
       {
-          [MNLog logError:@"InvalidConfiguration, The notes provided must be in order of ascending x positions"];
+          MNLogError(@"InvalidConfiguration, The notes provided must be in order of ascending x positions");
       }
 
       // Determine if the previous or next note are the same
@@ -225,7 +287,7 @@ static NSDictionary* _pedalMarkingDictionary;
               else
               {
                   // Render the Ped glyph in position
-                  [self drawPedalGlyph:ctx withName:@"pedal_dpress" atX:x atY:y withPointSize:self.glyph_point_size];
+                  [self drawPedalGlyph:ctx withName:@"pedal_depress" atX:x atY:y withPointSize:self.glyph_point_size];
                   x_shift = 20 + pedal.text_margin_right;
               }
           }
@@ -236,7 +298,7 @@ static NSDictionary* _pedalMarkingDictionary;
               CGContextMoveToPoint(ctx, x, y - pedal.bracket_height);
               CGContextAddLineToPoint(ctx, x + x_shift, y);
               CGContextStrokePath(ctx);
-              CGContextClosePath(ctx);
+              //              CGContextClosePath(ctx);
           }
       }
       else
@@ -250,7 +312,7 @@ static NSDictionary* _pedalMarkingDictionary;
           CGContextAddLineToPoint(ctx, x + x_shift, y);
           CGContextAddLineToPoint(ctx, x, y - pedal.bracket_height);
           CGContextStrokePath(ctx);
-          CGContextClosePath(ctx);
+          //          CGContextClosePath(ctx);
       }
 
       // Store previous coordinates
@@ -259,13 +321,16 @@ static NSDictionary* _pedalMarkingDictionary;
     }];
 }
 
-// Draw the text based pedal markings. This defaults to the traditional
-// "Ped" and "*"" symbols if no custom text has been provided.
+/*!
+ *  Draw the text based pedal markings. This defaults to the traditional
+ *  "Ped" and "*"" symbols if no custom text has been provided.
+ *  @param ctx the core graphics opaque type drawing environment
+ */
 - (void)drawText:(CGContextRef)ctx
 {
     if(ctx == NULL)
     {
-        [MNLog logError:@"NoContext, Can't draw PedalMarking without a context."];
+        MNLogError(@"NoContext, Can't draw PedalMarking without a context.");
     }
     __block BOOL is_pedal_depressed = NO;
     MNPedalMarking* pedal = self;
@@ -312,70 +377,22 @@ static NSDictionary* _pedalMarkingDictionary;
     }];
 }
 
-- (MNFont*)font
-{
-    if(!_font)
-    {
-        self.font = [MNFont fontWithName:self.fontFamily size:self.fontSize];
-    }
-    return _font;
-}
-
-// Render the pedal marking in position on the rendering context
-- (void)draw:(CGContextRef)ctx
-{
-    //    [super draw:ctx];
-    if(!ctx)
-    {
-        MNLogError(@"NoCanvasContext, Can't draw without a canvas context.");
-    }
-
-    CGContextSaveGState(ctx);
-//    CGContextSetStrokeColorWithColor(ctx, self.color.CGColor);
-//    CGContextSetFillColorWithColor(ctx, self.color.CGColor);
-
-    //         ctx.setFont(self.font.family, self.font.size, self.font.weight);
-    [self.font setFillColor:self.color];
-    [MNText setFont:self.font];   //[MNFont fontWithName:self.fontFamily size:self.fontSize]];
-    [MNText setBold:self.fontBold];
-
-    MNLogDebug(@"Rendering Pedal Marking");
-
-    if(self.style == MNPedalMarkingBracket || self.style == MNPedalMarkingMixed)
-    {
-        CGContextSetLineWidth(ctx, self.bracket_line_width);
-        [self drawBracketed:ctx];
-    }
-    else if(self.style == MNPedalMarkingText)
-    {
-        [self drawText:ctx];
-    }
-
-    CGContextRestoreGState(ctx);
-}
-
-// private
-
-/*
-    // ## Private Helper
-    function drawPedalGlyph(name, context, x, y, point) {
-        var glyph_data = PedalMarking.GLYPHS[name];
-        var glyph = new Vex.Flow.Glyph(glyph_data.code, point);
-        glyph.render(context, x + glyph_data.x_shift, y + glyph_data.y_shift);
-    }
-
-    return PedalMarking;
-}());
-*/
-
-// Draws a pedal glyph with the provided `name` on a rendering `context`
-// at the coordinates `x` and `y. Takes into account the glyph data
-// coordinate shifts.
+/*!
+ *  Draws a pedal glyph with the provided `name` on a rendering `context`
+ *  at the coordinates `x` and `y. Takes into account the glyph data
+ *  coordinate shifts.
+ *  @param ctx the core graphics opaque type drawing environment
+ *  @param name <#name description#>
+ *  @param x    <#x description#>
+ *  @param y    <#y description#>
+ *  @param pts  <#pts description#>
+ */
 - (void)drawPedalGlyph:(CGContextRef)ctx withName:(NSString*)name atX:(float)x atY:(float)y withPointSize:(float)pts
 {
-    //     MNTablesGlyphStruct *glyph = [[MNPedalMarking pedalMarkingDictionary] objectForKey:name];
-    //    glyph.metrics.point = [[MNPoint alloc]initWithX:x andY:y];
-    //    [glyph renderWithMNKit];
+    NSDictionary* glyph_data = [[[self class] pedalMarkingDictionary] objectForKey:name];
+    MNGlyph* glyph = [[MNGlyph alloc] initWithCode:glyph_data[@"code"]];
+    //    glyph.point = MNPointMake(x, y);
+    [glyph renderWithContext:ctx atX:x atY:y];
 }
 
 @end

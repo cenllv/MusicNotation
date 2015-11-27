@@ -117,7 +117,7 @@
     MNFont* font1 = [MNFont fontWithName:@"TimesNewRomanPS-BoldMT" size:16];   // self.fontSize];
     NSAttributedString* title = [[NSAttributedString alloc]
         initWithString:self.section
-            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
+            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
     //    [title drawInRect:CGRectMake(x, y, 50, 100)];
     [title drawAtPoint:CGPointMake(x, y)];
 }

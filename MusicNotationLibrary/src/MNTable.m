@@ -2211,13 +2211,9 @@ static NSDictionary* _durationCodesDictionary;
     return ret;
 }
 
-// http://www.angelfire.com/in2/yala/t4scales.htm
-
-+ (MNKeyProperty*)keyPropertiesForKey:(NSString*)key andClefString:(NSString*)clefTypeString
++ (MNKeyProperty*)keyPropertiesForKey:(NSString*)key
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
-    abort();
-    return nil;
+    return [[self class] keyPropertiesForKey:key andClef:MNClefNone andOptions:nil];
 }
 
 + (MNKeyProperty*)keyPropertiesForKey:(NSString*)key andClef:(MNClefType)clefType andOptions:(NSDictionary*)params
@@ -2283,9 +2279,7 @@ static NSDictionary* _durationCodesDictionary;
     //    value.int_val : null;
 
     // integer value for note arithmetic
-    NSInteger intValue = (value[@"int_val"] == [NSNull null])
-                             ? ([value[@"octave"] integerValue] * 12) + [value[@"int_Val"] integerValue]
-                             : 0;
+    NSInteger intValue = (value[@"int_val"] != [NSNull null]) ? (o * 12) + [value[@"int_Val"] integerValue] : 0;
 
     //   * Check if the user specified a glyph. *
     NSString* code = value[@"code"];

@@ -75,7 +75,7 @@
 
     if(self.staff == nil)
     {
-        [MNLog logError:@"NoStaff, Can't draw without a staff."];
+        MNLogError(@"NoStaff, Can't draw without a staff.");
     }
 
     for(NSUInteger i = 0; i < self.modifiers.count; ++i)

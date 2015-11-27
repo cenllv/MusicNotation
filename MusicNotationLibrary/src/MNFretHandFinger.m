@@ -311,7 +311,7 @@
     description = [[NSAttributedString alloc] initWithString:self.finger
                                                   attributes:@{
                                                       NSParagraphStyleAttributeName : paragraphStyle,
-                                                      NSFontAttributeName : descriptionFont,
+                                                      NSFontAttributeName : descriptionFont.font,
                                                       NSForegroundColorAttributeName : MNColor.blackColor
                                                   }];
     [description drawAtPoint:CGPointMake(dot_x, dot_y)];

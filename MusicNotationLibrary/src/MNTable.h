@@ -52,6 +52,7 @@
 + (NSDictionary*)keySpecsDictionary;
 + (NSDictionary*)ornamentCodes;
 + (NSDictionary*)textNoteGlyphs;
++ (NSArray*)integerToNoteArray;
 
 #pragma mark - Class Methods
 
@@ -61,6 +62,7 @@
 + (MNTableGlyphStruct*)durationToGlyphStruct:(MNNoteDurationType)noteDurationType
                                withNHMRSType:(MNNoteNHMRSType)noteNHMRSType;
 + (MNGlyphTabStruct*)glyphForTab:(NSString*)fret;
++ (MNKeyProperty*)keyPropertiesForKey:(NSString*)key;
 + (MNKeyProperty*)keyPropertiesForKey:(NSString*)key andClef:(MNClefType)clefType andOptions:(NSDictionary*)params;
 + (MNKeySignature*)keySignatureWithString:(NSString*)key;
 + (NSMutableArray*)keySignatureForSpec:(NSString*)spec;

@@ -52,8 +52,8 @@
     {
         //        static const int ddLogLevel = LOG_LEVEL_ALL;
 
-        [DDLog addLogger:[DDTTYLogger sharedInstance]];
-        [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
+        //        [DDLog addLogger:[DDTTYLogger sharedInstance]];
+        //        [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
 
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(receiveTestNotification:)
@@ -176,6 +176,8 @@
     [self appendText:attributedString];
     [self appendText:attributedString];
     [self appendText:attributedString];
+
+    [MNLog setup];
 }
 
 - (void)appendText:(NSAttributedString*)attributedString
@@ -218,7 +220,6 @@
             @(ClefTestType) : [MNClefTests class],
             @(CurveTestType) : [MNCurveTests class],
             @(DotTestType) : [MNDotTests class],
-            @(EveryThingTestType) : [NSNull null],
             @(FontTestType) : [MNFontTests class],
             @(FormatterTestType) : [MNFormatterTests class],
             @(GraceNoteTestType) : [MNGraceNoteTests class],
@@ -226,17 +227,14 @@
             @(KeyManagerTestType) : [MNKeyManagerTests class],
             @(KeySignatureTestType) : [MNKeySignatureTests class],
             @(LayerNoteTestsTestType) : [MNLayerNoteTests class],
-            @(MocksType) : [NSNull null],
-            @(ModifierTestType) : [NSNull null],
-            @(MusicTestType) : [NSNull null],
-            @(NodeTestType) : [NSNull null],
+            @(ModifierTestType) : [MNModifierTests class],
+            @(MusicTestType) : [MNMusicTests class],
+            @(NodeTestType) : [MNNodeTests class],
             @(NoteHeadTestType) : [MNNoteHeadTests class],
             @(NotationsGridTestType) : [MNNotationsGridTests class],
             @(OrnamentTestType) : [MNOrnamentTests class],
-            @(ParseTestType) : [NSNull null],
             @(PedalMarkingTestType) : [MNPedalMarkingTests class],
             @(PercussionTestType) : [MNPercussionTests class],
-            @(PlayNoteTestType) : [NSNull null],
             @(RestsTestType) : [MNRestsTest class],
             @(RhythmTestType) : [MNRhythmTests class],
             @(StaffTestType) : [MNStaffTests class],

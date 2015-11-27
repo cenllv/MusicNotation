@@ -135,31 +135,18 @@ Vex.Flow.Test.MockTickable.prototype.preFormat = function() {}
     return self;
 }
 
-- (NSDictionary*)getMetrics
+- (MNTickableMetrics*)metrics
 {
-    return @{
-        @"noteWidth" : @(self.width),
-        @"left_shift" : @0,
-        @"modLeftPx" : @0,
-        @"modRightPx" : @0,
-        @"extraLeftPx" : @0,
-        @"extraRightPx" : @0
-    };
-    //    Metrics *ret = [Metrics metricsZero];
-    //    ret.noteWidth = self.width;
-    //    ret.modLeftPx = 0;
-    //    ret.modRightPx = 0;
-    //    ret.extraLeftPx = 0;
-    //    ret.extraRightPx = 0;
+    MNTickableMetrics* ret = [[MNTickableMetrics alloc] init];
+    ret.width = self.width;
+    ret.noteWidth = self.width;
+    ret.modLeftPx = 0;
+    ret.modRightPx = 0;
+    ret.extraLeftPx = 0;
+    ret.extraRightPx = 0;
+    return ret;
 }
-//- (float)getWidth; {
-//    return self.width;
-//}
-- (id)setWidth:(float)w
-{
-    _width = w;
-    return self;
-}
+
 - (void)setVoice:(MNVoice*)v
 {
     _voice = v;
@@ -189,10 +176,15 @@ Vex.Flow.Test.MockTickable.prototype.preFormat = function() {}
     abort();
 }
 
-- (void)getWidth
+- (float)getWidth
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
-    abort();
+    return _width;
+}
+
+- (id)setWidth:(float)w
+{
+    _width = w;
+    return self;
 }
 
 - (id)setXShift:(float)xShift

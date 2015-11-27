@@ -202,12 +202,14 @@ static float w = 700;
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
+        
+        [staffBar1 draw:ctx];
+        [staffBar2 draw:ctx];
+        
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staffBar1];
 
       [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staffBar2];
 
-      [staffBar1 draw:ctx];
-      [staffBar2 draw:ctx];
 
       [beam1 draw:ctx];
       [beam2 draw:ctx];

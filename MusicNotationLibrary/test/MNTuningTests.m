@@ -86,13 +86,17 @@
     }
      */
     assertThatUnsignedInteger([tuning getValueForString:6],
-                              describedAs(@"Low E string", equalToUnsignedInteger(40), nil));
-    assertThatUnsignedInteger([tuning getValueForString:5], describedAs(@"A string", equalToUnsignedInteger(45), nil));
-    assertThatUnsignedInteger([tuning getValueForString:4], describedAs(@"D string", equalToUnsignedInteger(50), nil));
-    assertThatUnsignedInteger([tuning getValueForString:3], describedAs(@"G string", equalToUnsignedInteger(55), nil));
-    assertThatUnsignedInteger([tuning getValueForString:2], describedAs(@"B string", equalToUnsignedInteger(59), nil));
+                              describedAs(@"Low E string 40", equalToUnsignedInteger(40), nil));
+    assertThatUnsignedInteger([tuning getValueForString:5],
+                              describedAs(@"A string 45", equalToUnsignedInteger(45), nil));
+    assertThatUnsignedInteger([tuning getValueForString:4],
+                              describedAs(@"D string 50", equalToUnsignedInteger(50), nil));
+    assertThatUnsignedInteger([tuning getValueForString:3],
+                              describedAs(@"G string 55", equalToUnsignedInteger(55), nil));
+    assertThatUnsignedInteger([tuning getValueForString:2],
+                              describedAs(@"B string 59", equalToUnsignedInteger(59), nil));
     assertThatUnsignedInteger([tuning getValueForString:1],
-                              describedAs(@"High E string", equalToUnsignedInteger(64), nil));
+                              describedAs(@"High E string 64", equalToUnsignedInteger(64), nil));
 }
 
 - (void)standard

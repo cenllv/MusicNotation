@@ -411,7 +411,7 @@ setOffsetY: function(y) { self.y_offset = y; return this; },
     MNFont* font1 = [MNFont fontWithName:@"times" /*self.fontFamily*/ size:14];
     NSAttributedString* title = [[NSAttributedString alloc]
         initWithString:self.stringNumber
-            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
+            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
     float x = dot_x - title.size.width / 2;
     [title drawAtPoint:CGPointMake(x, dot_y + 4.5 - title.size.height / 1.2)];
 

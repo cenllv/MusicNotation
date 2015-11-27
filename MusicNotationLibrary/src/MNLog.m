@@ -29,7 +29,6 @@
 
 #import <objc/runtime.h>
 
-
 #import "MNColor.h"
 #import "OCTotallyLazy.h"
 #import "NSString+Ruby.h"
@@ -100,8 +99,14 @@ static MNBrowserLogger* _browserLogger = nil;
 
 + (void)setup
 {
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
-    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
+    static BOOL _hasBeenSetup = NO;
+    if(_hasBeenSetup)
+    {
+        return;
+    }
+    _hasBeenSetup = YES;
+//    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+//    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
     [[DDTTYLogger sharedInstance] setForegroundColor:[MNColor redColor]
                                      backgroundColor:[MNColor clearColor]
                                              forFlag:DDLogFlagError];
@@ -118,9 +123,10 @@ static MNBrowserLogger* _browserLogger = nil;
     [[DDTTYLogger sharedInstance] setForegroundColor:[MNColor blueColor]
                                      backgroundColor:[MNColor greenColor]
                                              forFlag:DDLogFlagVerbose];
-    
-    _browserLogger = [[MNBrowserLogger alloc]init];
+
+    _browserLogger = [[MNBrowserLogger alloc] init];
     [DDLog addLogger:_browserLogger];
+    [DDLog setLevel:DDLogLevelAll forClass:[MNBrowserLogger class]];
 }
 
 #pragma mark - Logging
@@ -139,7 +145,6 @@ static MNBrowserLogger* _browserLogger = nil;
     {
         _initialized = YES;
         [MNLog setup];
-
     }
 
     if([messenger isKindOfClass:[NSString class]])
@@ -183,28 +188,28 @@ static MNBrowserLogger* _browserLogger = nil;
 + (void)logDebug:(NSString*)format, ...
 {
     NSString* msg = [[self class] convertFormat:format];
-//     [MNLog LogMessage:msg withLevel:LOG_FLAG_DEBUG];
+    //     [MNLog LogMessage:msg withLevel:LOG_FLAG_DEBUG];
     NSLog(@"%@", msg);
 }
 
 + (void)logInfo:(NSString*)format, ...
 {
     NSString* msg = [[self class] convertFormat:format];
-//     [MNLog LogMessage:msg withLevel:LOG_FLAG_INFO];
+    //     [MNLog LogMessage:msg withLevel:LOG_FLAG_INFO];
     NSLog(@"%@", msg);
 }
 
 + (void)logWarn:(NSString*)format, ...
 {
     NSString* msg = [[self class] convertFormat:format];
-//     [MNLog LogMessage:msg withLevel:LOG_FLAG_WARN];
+    //     [MNLog LogMessage:msg withLevel:LOG_FLAG_WARN];
     NSLog(@"%@", msg);
 }
 
 + (void)logError:(NSString*)format, ...
 {
     NSString* msg = [[self class] convertFormat:format];
-//     [MNLog LogMessage:msg withLevel:LOG_FLAG_ERROR];
+    //     [MNLog LogMessage:msg withLevel:LOG_FLAG_ERROR];
     NSLog(@"%@", msg);
 }
 
@@ -218,24 +223,25 @@ static MNBrowserLogger* _browserLogger = nil;
 
 + (void)logNotYetImplementedForClass:(id)obj andSelector:(SEL)sel
 {
-    //    Method method = class_getInstanceMethod([obj class], sel);
+//    Method method = class_getInstanceMethod([obj class], sel);
 
-    //    const char *cStr = method_copyReturnType(method) == NULL ? "(null)" : method_copyReturnType(method);
-    //    NSString *tmp = [NSString stringWithCString:cStr encoding:NSASCIIStringEncoding]; //[NSString
-    //    stringWithCString:];
-    //    NSString *returnType =  [tmp isEqualToString:@"(null)"] ? @"(void)" : tmp;
+//    const char *cStr = method_copyReturnType(method) == NULL ? "(null)" : method_copyReturnType(method);
+//    NSString *tmp = [NSString stringWithCString:cStr encoding:NSASCIIStringEncoding]; //[NSString
+//    stringWithCString:];
+//    NSString *returnType =  [tmp isEqualToString:@"(null)"] ? @"(void)" : tmp;
 
-    //    NSString *formattedPolymorphicHierachyObj =  [MNVex FormatObject:[NSString stringWithFormat:@"%@",
-    //                                                  [obj description]]];
-    //    NSString *formattedPolymorphicHierachyObj = [obj prettyPrint];
-    //            withLevel:error];
-    //    NSString *prefix = [NSString stringWithFormat:@"NotYetImplemented: -%@%s => \n",
-    //                        returnType,
-    //                        sel_getName(sel)//,
-    //                        /*class_getName([obj class]),*/];
-    //    ////     [MNLog LogMessage:[prefix concat:formattedPolymorphicHierachyObj] withLevel:error];
+//    NSString *formattedPolymorphicHierachyObj =  [MNVex FormatObject:[NSString stringWithFormat:@"%@",
+//                                                  [obj description]]];
+//    NSString *formattedPolymorphicHierachyObj = [obj prettyPrint];
+//            withLevel:error];
+//    NSString *prefix = [NSString stringWithFormat:@"NotYetImplemented: -%@%s => \n",
+//                        returnType,
+//                        sel_getName(sel)//,
+//                        /*class_getName([obj class]),*/];
+//    ////     [MNLog LogMessage:[prefix concat:formattedPolymorphicHierachyObj] withLevel:error];
 #if TARGET_OS_IPHONE
-     [MNLog LogMessage:[NSString stringWithFormat:@"not yet implemented:\n  [%@ %s] ", NSStringFromClass([obj class]), sel_getName(sel)]
+    [MNLog LogMessage:[NSString stringWithFormat:@"not yet implemented:\n  [%@ %s] ", NSStringFromClass([obj class]),
+                                                 sel_getName(sel)]
             withLevel:error];
 #elif TARGET_OS_MAC
     [MNLog LogMessage:[NSString stringWithFormat:@"not yet implemented:\n  [%@ %s] ", [obj className], sel_getName(sel)]

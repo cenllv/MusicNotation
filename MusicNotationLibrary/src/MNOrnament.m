@@ -283,8 +283,7 @@ static NSDictionary* _acc_mods;
     //    self.graphicsContext = ctx;
     if(!(self.note && (self.index != -1)))
     {
-        [MNLog logError:[NSString
-                            stringWithFormat:@"NoAttachedNote %@", @"Can't draw Ornament without a note and index."]];
+        MNLogError(@"NoAttachedNote, Can't draw Ornament without a note and index.");
     }
 
     MNNote* note = self.note;

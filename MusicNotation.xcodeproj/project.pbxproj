@@ -575,6 +575,12 @@
 		6BB7EC151C062AAD00E09252 /* MNNoteHeadBounds.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB7EC131C062AAD00E09252 /* MNNoteHeadBounds.m */; };
 		6BB7EC181C062F4000E09252 /* MNTextNoteStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB7EC171C062F4000E09252 /* MNTextNoteStruct.m */; };
 		6BB7EC191C062F4000E09252 /* MNTextNoteStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB7EC171C062F4000E09252 /* MNTextNoteStruct.m */; };
+		6BB7EC1C1C07C91A00E09252 /* MNTableChords.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB7EC1B1C07C91A00E09252 /* MNTableChords.m */; };
+		6BB7EC1D1C07C91A00E09252 /* MNTableChords.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB7EC1B1C07C91A00E09252 /* MNTableChords.m */; };
+		6BB7EC201C07CA3B00E09252 /* MNChordTestStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB7EC1F1C07CA3B00E09252 /* MNChordTestStruct.m */; };
+		6BB7EC211C07CA3B00E09252 /* MNChordTestStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB7EC1F1C07CA3B00E09252 /* MNChordTestStruct.m */; };
+		6BB7EC2A1C08D02600E09252 /* Polnomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB7EC291C08D02600E09252 /* Polnomial.swift */; };
+		6BB7EC2B1C08D02600E09252 /* Polnomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB7EC291C08D02600E09252 /* Polnomial.swift */; };
 		6BBB49D31B667EE70036081B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BBB49D21B667EE70036081B /* main.m */; };
 		6BBB49D61B667EE70036081B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BBB49D51B667EE70036081B /* AppDelegate.m */; };
 		6BBB49DC1B667EE70036081B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BBB49DA1B667EE70036081B /* Main.storyboard */; };
@@ -1433,6 +1439,12 @@
 		6BB7EC131C062AAD00E09252 /* MNNoteHeadBounds.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNNoteHeadBounds.m; sourceTree = "<group>"; };
 		6BB7EC161C062F4000E09252 /* MNTextNoteStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTextNoteStruct.h; sourceTree = "<group>"; };
 		6BB7EC171C062F4000E09252 /* MNTextNoteStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTextNoteStruct.m; sourceTree = "<group>"; };
+		6BB7EC1A1C07C91A00E09252 /* MNTableChords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTableChords.h; sourceTree = "<group>"; };
+		6BB7EC1B1C07C91A00E09252 /* MNTableChords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTableChords.m; sourceTree = "<group>"; };
+		6BB7EC1E1C07CA3B00E09252 /* MNChordTestStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNChordTestStruct.h; sourceTree = "<group>"; };
+		6BB7EC1F1C07CA3B00E09252 /* MNChordTestStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNChordTestStruct.m; sourceTree = "<group>"; };
+		6BB7EC271C08D02600E09252 /* MusicNotationDesktop-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MusicNotationDesktop-Bridging-Header.h"; sourceTree = "<group>"; };
+		6BB7EC291C08D02600E09252 /* Polnomial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polnomial.swift; sourceTree = "<group>"; };
 		6BBB49CF1B667EE70036081B /* MusicNotationMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicNotationMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BBB49D21B667EE70036081B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6BBB49D41B667EE70036081B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1504,7 +1516,6 @@
 		6B4AA3281BF4591500E56C1A /* src */ = {
 			isa = PBXGroup;
 			children = (
-				6B4AA40C1BF4591500E56C1A /* MNCore.h */,
 				6B4AA3331BF4591500E56C1A /* MNAccidental.h */,
 				6B4AA3341BF4591500E56C1A /* MNAccidental.m */,
 				6BAF42821C02845D00C82A4A /* MNAccidentalRenderOptions.h */,
@@ -1540,6 +1551,7 @@
 				6B5D4AC01C04E4CF00AA250A /* MNConstants.h */,
 				6B5D4AC11C04E66A00AA250A /* MNConstants.m */,
 				6B4AA34F1BF4591500E56C1A /* MNContextDelegate.h */,
+				6B4AA40C1BF4591500E56C1A /* MNCore.h */,
 				6B4AA3501BF4591500E56C1A /* MNCrescendo.h */,
 				6B4AA3511BF4591500E56C1A /* MNCrescendo.m */,
 				6B4AA3521BF4591500E56C1A /* MNCurve.h */,
@@ -1610,6 +1622,8 @@
 				6BAF42731C027FD500C82A4A /* MNNoteAccidentalStruct.m */,
 				6B4AA3941BF4591500E56C1A /* MNNoteHead.h */,
 				6B4AA3951BF4591500E56C1A /* MNNoteHead.m */,
+				6BB7EC121C062AAD00E09252 /* MNNoteHeadBounds.h */,
+				6BB7EC131C062AAD00E09252 /* MNNoteHeadBounds.m */,
 				6BB7EC0A1C06299600E09252 /* MNNoteRenderOptions.h */,
 				6BB7EC0B1C06299600E09252 /* MNNoteRenderOptions.m */,
 				6B4AA3961BF4591500E56C1A /* MNNoteTie.h */,
@@ -1646,8 +1660,6 @@
 				6B4AA3C31BF4591500E56C1A /* MNStaffModifier.m */,
 				6B4AA3C41BF4591500E56C1A /* MNStaffNote.h */,
 				6B4AA3C51BF4591500E56C1A /* MNStaffNote.m */,
-				6BB7EC121C062AAD00E09252 /* MNNoteHeadBounds.h */,
-				6BB7EC131C062AAD00E09252 /* MNNoteHeadBounds.m */,
 				6BB7EC0E1C062A6800E09252 /* MNStaffNoteRenderOptions.h */,
 				6BB7EC0F1C062A6800E09252 /* MNStaffNoteRenderOptions.m */,
 				6B4AA3C61BF4591500E56C1A /* MNStaffRepetition.h */,
@@ -1676,20 +1688,22 @@
 				6B4AA3DB1BF4591500E56C1A /* MNSymbol.m */,
 				6B4AA3DC1BF4591500E56C1A /* MNTable.h */,
 				6B4AA3DD1BF4591500E56C1A /* MNTable.m */,
-				6BAF42AA1C02B04900C82A4A /* MNTableNoteValueStruct.h */,
-				6BAF42AB1C02B04900C82A4A /* MNTableNoteValueStruct.m */,
-				6BAF42A61C02B03F00C82A4A /* MNTableNoteGlyphStruct.h */,
-				6BAF42A71C02B03F00C82A4A /* MNTableNoteGlyphStruct.m */,
 				6B4AA3DE1BF4591500E56C1A /* MNTableAccidentalCodes.h */,
 				6B4AA3DF1BF4591500E56C1A /* MNTableAccidentalCodes.m */,
 				6B4AA3E01BF4591500E56C1A /* MNTableAccListStruct.h */,
 				6B4AA3E11BF4591500E56C1A /* MNTableAccListStruct.m */,
+				6BB7EC1A1C07C91A00E09252 /* MNTableChords.h */,
+				6BB7EC1B1C07C91A00E09252 /* MNTableChords.m */,
 				6B4AA3E21BF4591500E56C1A /* MNTableGlyphStruct.h */,
 				6B4AA3E31BF4591500E56C1A /* MNTableGlyphStruct.m */,
-				6B4AA3E41BF4591500E56C1A /* MNTablesNoteData.h */,
-				6B4AA3E51BF4591500E56C1A /* MNTablesNoteData.m */,
+				6BAF42A61C02B03F00C82A4A /* MNTableNoteGlyphStruct.h */,
+				6BAF42A71C02B03F00C82A4A /* MNTableNoteGlyphStruct.m */,
+				6BAF42AA1C02B04900C82A4A /* MNTableNoteValueStruct.h */,
+				6BAF42AB1C02B04900C82A4A /* MNTableNoteValueStruct.m */,
 				6B4AA3E61BF4591500E56C1A /* MNTableOrnamentCodes.h */,
 				6B4AA3E71BF4591500E56C1A /* MNTableOrnamentCodes.m */,
+				6B4AA3E41BF4591500E56C1A /* MNTablesNoteData.h */,
+				6B4AA3E51BF4591500E56C1A /* MNTablesNoteData.m */,
 				6B4AA3E81BF4591500E56C1A /* MNTableTypes.h */,
 				6B4AA3E91BF4591500E56C1A /* MNTabNote.h */,
 				6B4AA3EA1BF4591500E56C1A /* MNTabNote.m */,
@@ -1743,10 +1757,10 @@
 				6BAF42931C028A2800C82A4A /* MNVibratoRenderOptions.m */,
 				6B4AA40F1BF4591500E56C1A /* MNVoice.h */,
 				6B4AA4101BF4591500E56C1A /* MNVoice.m */,
-				6BAF42961C028AB800C82A4A /* MNVoiceTime.h */,
-				6BAF42971C028AB800C82A4A /* MNVoiceTime.m */,
 				6B4AA4111BF4591500E56C1A /* MNVoiceGroup.h */,
 				6B4AA4121BF4591500E56C1A /* MNVoiceGroup.m */,
+				6BAF42961C028AB800C82A4A /* MNVoiceTime.h */,
+				6BAF42971C028AB800C82A4A /* MNVoiceTime.m */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -1773,6 +1787,8 @@
 				6B4AA5071BF459B200E56C1A /* MNBoundingBoxTests.m */,
 				6B4AA5081BF459B200E56C1A /* MNChordTest.h */,
 				6B4AA5091BF459B200E56C1A /* MNChordTest.m */,
+				6BB7EC1E1C07CA3B00E09252 /* MNChordTestStruct.h */,
+				6BB7EC1F1C07CA3B00E09252 /* MNChordTestStruct.m */,
 				6B4AA50A1BF459B200E56C1A /* MNClefTests.h */,
 				6B4AA50B1BF459B200E56C1A /* MNClefTests.m */,
 				6B4AA50C1BF459B200E56C1A /* MNCurveTests.h */,
@@ -2589,6 +2605,15 @@
 			name = "test libs";
 			sourceTree = "<group>";
 		};
+		6BB7EC221C08CFEE00E09252 /* lily */ = {
+			isa = PBXGroup;
+			children = (
+				6BB7EC291C08D02600E09252 /* Polnomial.swift */,
+				6BB7EC271C08D02600E09252 /* MusicNotationDesktop-Bridging-Header.h */,
+			);
+			name = lily;
+			sourceTree = "<group>";
+		};
 		6BBB49D01B667EE70036081B /* MusicNotationMobile */ = {
 			isa = PBXGroup;
 			children = (
@@ -2662,6 +2687,7 @@
 		D278F5161A8689AE000C57C1 /* MusicNotationDesktop */ = {
 			isa = PBXGroup;
 			children = (
+				6BB7EC221C08CFEE00E09252 /* lily */,
 				6B4AA5A11BF45B0800E56C1A /* lib */,
 				6BA6F0351B1F73A100EC950C /* test libs */,
 				6B4AA3281BF4591500E56C1A /* src */,
@@ -2745,7 +2771,7 @@
 		D278F50C1A8689AE000C57C1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = feedbacksoftware.com;
 				TargetAttributes = {
@@ -2920,6 +2946,7 @@
 				6B4AA6241BF45B0800E56C1A /* NSString+Ruby.m in Sources */,
 				6B4AA4C81BF4591500E56C1A /* MNTableAccListStruct.m in Sources */,
 				6B4AA47C1BF4591500E56C1A /* MNNoteHead.m in Sources */,
+				6BB7EC1D1C07C91A00E09252 /* MNTableChords.m in Sources */,
 				6B4AA65C1BF45B0800E56C1A /* Queue.m in Sources */,
 				6B4AA44C1BF4591500E56C1A /* MNGhostNote.m in Sources */,
 				6B4AA63C1BF45B0800E56C1A /* MemoisedEnumerator.m in Sources */,
@@ -2959,6 +2986,7 @@
 				6B4AA45A1BF4591500E56C1A /* MNKeyManager.m in Sources */,
 				6B4AA4141BF4591500E56C1A /* MNExtraPoints.m in Sources */,
 				6B4AA41A1BF4591500E56C1A /* MNStaffLineRenderOptions.m in Sources */,
+				6BB7EC211C07CA3B00E09252 /* MNChordTestStruct.m in Sources */,
 				6B4AA4661BF4591500E56C1A /* MNLog.m in Sources */,
 				6B4AA6581BF45B0800E56C1A /* PartitionEnumerator.m in Sources */,
 				6B4AA4521BF4591500E56C1A /* MNGlyphTabStruct.m in Sources */,
@@ -3011,6 +3039,7 @@
 				6B4AA6461BF45B0800E56C1A /* NSArray+OCTotallyLazy.m in Sources */,
 				6B4AA4B21BF4591500E56C1A /* MNStaffTempo.m in Sources */,
 				6B4AA6141BF45B0800E56C1A /* NSArray+MNAdditions.m in Sources */,
+				6BB7EC2B1C08D02600E09252 /* Polnomial.swift in Sources */,
 				6B4AA6121BF45B0800E56C1A /* JSONKit.m in Sources */,
 				6B4AA4881BF4591500E56C1A /* MNPedalMarking.m in Sources */,
 				6B4AA4E01BF4591600E56C1A /* MNTickable.m in Sources */,
@@ -3243,6 +3272,7 @@
 				6B4AA4431BF4591500E56C1A /* MNExtentStruct.m in Sources */,
 				6B4AA4DF1BF4591600E56C1A /* MNTickable.m in Sources */,
 				6B5644BC1BF44680006FDFD9 /* HCIsInstanceOf.m in Sources */,
+				6BB7EC1C1C07C91A00E09252 /* MNTableChords.m in Sources */,
 				6B5644A91BF44680006FDFD9 /* HCIsDictionaryContainingValue.m in Sources */,
 				6B4AA4691BF4591500E56C1A /* MNMetrics.m in Sources */,
 				6B4AA57D1BF459B200E56C1A /* MNMockTickable.m in Sources */,
@@ -3412,8 +3442,10 @@
 				6BAF42841C02845D00C82A4A /* MNAccidentalRenderOptions.m in Sources */,
 				6B4AA5761BF459B200E56C1A /* MNFormatterTests.m in Sources */,
 				6BAF427C1C0280F900C82A4A /* MNClefAnnotation.m in Sources */,
+				6BB7EC201C07CA3B00E09252 /* MNChordTestStruct.m in Sources */,
 				6BE115641BFE7B0700961E35 /* MNBendRenderOptions.m in Sources */,
 				6B5644FB1BF44680006FDFD9 /* SenInterfaceTestCase.m in Sources */,
+				6BB7EC2A1C08D02600E09252 /* Polnomial.swift in Sources */,
 				6B5644F81BF44680006FDFD9 /* StringEndsWithTest.m in Sources */,
 				6B4AA4391BF4591500E56C1A /* MNCrescendo.m in Sources */,
 				6B4AA60F1BF45B0800E56C1A /* IAModelCollectionBase.m in Sources */,
@@ -3513,6 +3545,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
@@ -3541,6 +3574,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.slcott.MusicNotationMobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "MusicNotationLibrary/MusicNotationMobile-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -3551,6 +3586,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -3578,6 +3614,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.slcott.MusicNotationMobile;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "MusicNotationLibrary/MusicNotationMobile-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3683,6 +3720,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
@@ -3711,6 +3749,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fbs.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = MusicNotationLibraryCatalog;
+				SWIFT_OBJC_BRIDGING_HEADER = "MusicNotationLibrary/MusicNotationDesktop-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Debug;
@@ -3722,6 +3762,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
@@ -3750,6 +3791,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "fbs.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = MusicNotationLibraryCatalog;
+				SWIFT_OBJC_BRIDGING_HEADER = "MusicNotationLibrary/MusicNotationDesktop-Bridging-Header.h";
 				USER_HEADER_SEARCH_PATHS = "";
 			};
 			name = Release;

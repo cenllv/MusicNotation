@@ -335,7 +335,7 @@ static NSUInteger _testFontSize;
       // create the beams for 8th notes in 2nd measure
       MNBeam* beam1 = [[MNBeam alloc] initWithNotes:notesBar1_part1];
       MNBeam* beam2 = [[MNBeam alloc] initWithNotes:notesBar1_part2];
-      NSArray* notesBar1 = [notesBar1_part1 concat:notesBar1_part2];
+      NSArray* notesBar1 = [notesBar1_part1 arrayByAddingObjectsFromArray:notesBar1_part2];
 
       // Helper function to justify and draw a 4/4 voice
       [MNFormatter formatAndDrawWithContext:ctx dirtyRect:CGRectZero toStaff:staffBar1 withNotes:notesBar1];
@@ -423,7 +423,7 @@ static NSUInteger _testFontSize;
       [MNFormatter formatAndDrawWithContext:ctx
                                   dirtyRect:CGRectZero
                                     toStaff:staffBar1
-                                  withNotes:[notesBar1_part1 concat:notesBar1_part2]];
+                                  withNotes:[notesBar1_part1 arrayByAddingObjectsFromArray:notesBar1_part2]];
 
       // Render beams
       [beam1 draw:ctx];
@@ -525,7 +525,7 @@ static NSUInteger _testFontSize;
       [MNFormatter formatAndDrawWithContext:ctx
                                   dirtyRect:CGRectZero
                                     toStaff:staffBar1
-                                  withNotes:[notesBar1_part1 concat:notesBar1_part2]];
+                                  withNotes:[notesBar1_part1 arrayByAddingObjectsFromArray:notesBar1_part2]];
 
       // Render beams
       [beam1 draw:ctx];
@@ -597,7 +597,7 @@ static NSUInteger _testFontSize;
       ];
 
       [notesBar1_part1[0]
-          addModifier:[[MNAnnotation annotationWithText:@"C7"] setFontName:@"Times" withSize:_testFontSize + 3]
+          addModifier:[[MNAnnotation annotationWithText:@"C7"] setFontName:@"Verdana" withSize:_testFontSize + 3]
               atIndex:0];
 
       // create the beams for 8th notes in 2nd measure

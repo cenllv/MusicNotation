@@ -158,7 +158,7 @@
 
     NSAttributedString* title = [[NSAttributedString alloc]
         initWithString:self.text
-            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font}];
+            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font.font}];
 
     //    font.bold = self.fontBold;
     // TODO: cannot set font size
@@ -182,7 +182,7 @@
 
     title = [[NSAttributedString alloc]
         initWithString:self.superscript
-            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font}];
+            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font.font}];
 
     // Get the width and height for the octave number
     float mainWidth = title.size.width;
@@ -252,7 +252,7 @@
             CGContextAddLineToPoint(ctx, end_x, line_y + bracketHeight);
         }
         CGContextStrokePath(ctx);
-        CGContextClosePath(ctx);
+//        CGContextClosePath(ctx);
     }
     else
     {

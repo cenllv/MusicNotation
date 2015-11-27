@@ -34,6 +34,7 @@
 @interface MNLog : NSObject
 
 #pragma mark - Methods
++ (void)setup;
 + (void)drawDotWithContext:(CGContextRef)ctx atX:(CGFloat)x atY:(CGFloat)y withColor:(MNColor*)color;
 + (void)logDebug:(NSString*)format, ...;
 + (void)logInfo:(NSString*)format, ...;

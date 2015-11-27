@@ -112,8 +112,8 @@
 
 - (id)setFontName:(NSString*)fontName withSize:(NSUInteger)size
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
-    abort();
+    [self.font setFamily:fontName];
+    [self.font setSize:size];
     return self;
 }
 

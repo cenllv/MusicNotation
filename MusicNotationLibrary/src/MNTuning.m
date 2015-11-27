@@ -29,6 +29,14 @@
 #import "MNTuning.h"
 #import "MNLog.h"
 #import "MNTuningNames.h"
+#import "MNTable.h"
+#import "MNKeyProperty.h"
+#import "NSString+Ruby.h"
+
+@interface MNTuning ()
+@property (assign, nonatomic) NSUInteger numStrings;
+@property (strong, nonatomic) NSString* tuningString;
+@end
 
 @implementation MNTuning
 
@@ -54,6 +62,7 @@
 
 - (void)setupTuning
 {
+    [self setTuning:@"E/5,B/4,G/4,D/4,A/3,E/3,B/2,E/2"];
 }
 
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
@@ -63,125 +72,117 @@
     return propertiesEntriesMapping;
 }
 
-/*
-Vex.Flow.Tuning.names = {
-    "standard": "E/5,B/4,G/4,D/4,A/3,E/3",
-    "dagdad": "D/5,A/4,G/4,D/4,A/3,D/3",
-    "dropd": "E/5,B/4,G/4,D/4,A/3,D/3",
-    "eb": "Eb/5,Bb/4,Gb/4,Db/4,Ab/3,Db/3"
-}
- */
-
-static MNTuningNames* _tuningNames;
-+ (MNTuningNames*)tuningNames
+static NSDictionary* _tuningNames;
++ (NSDictionary*)tuningNames
 {
     if(!_tuningNames)
     {
-        _tuningNames = [[MNTuningNames alloc] initWithDictionary:@{
+        //        _tuningNames = [[MNTuningNames alloc] initWithDictionary:@{
+        _tuningNames = @{
             @"standard" : @[ @"E/5", @"B/4", @"G/4", @"D/4", @"A/3", @"E/3" ],
             @"dagdad" : @[ @"D/5", @"A/4", @"G/4", @"D/4", @"A/3", @"D/3" ],
             @"dropd" : @[ @"E/5", @"B/4", @"G/4", @"D/4", @"A/3", @"D/3" ],
             @"eb" : @[ @"Eb/5", @"Bb/4", @"Gb/4", @"Db/4", @"Ab/3", @"Db/3" ],
-        }];
+        };
+        //];
     }
     return _tuningNames;
 }
 
-/*
-Vex.Flow.Tuning.prototype.init = function(tuningString) {
-    // Default to standard tuning.
-    self.setTuning(tuningString || "E/5,B/4,G/4,D/4,A/3,E/3");
-}
- */
 - (instancetype)initWithTuningString:(NSString*)tuningString
 {
     self = [self initWithDictionary:nil];
     if(self)
     {
-        [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
-        abort();
+        if(tuningString)
+        {
+            [self setTuning:tuningString];
+        }
+        else
+        {
+            // Default to standard tuning.
+            [self setTuning:@"E/5,B/4,G/4,D/4,A/3,E/3"];
+        }
     }
     return self;
 }
 
-/*
-Vex.Flow.Tuning.prototype.noteToInteger = function(noteString) {
-    return Vex.Flow.keyProperties(noteString).int_value;
+- (NSMutableArray*)tuningValues
+{
+    if(!_tuningValues)
+    {
+        _tuningValues = [NSMutableArray array];
+    }
+    return _tuningValues;
 }
- */
 
-/*
-Vex.Flow.Tuning.prototype.setTuning = function(noteString) {
-    if (Vex.Flow.Tuning.names[noteString])
-        noteString = Vex.Flow.Tuning.names[noteString];
-    
-    self.tuningString = noteString;
-    self.tuningValues = [];
-    self.numStrings = 0;
-//    
-// *    var keys = noteString.split(/\s*,\s*/   //);*/
-//    if (keys.count == 0)
-//        throw new Vex.RERR("BadArguments", "Invalid tuning string: " + noteString);
-//
-//    self.numStrings = keys.count;
-//    for (var i = 0; i < self.numStrings; ++i) {
-//        self.tuningValues[i] = self.noteToInteger(keys[i]);
-//    }
-//}
-//*/
+#pragma mark - Methods
+
+- (NSUInteger)noteToInteger:(NSString*)noteString
+{
+    MNKeyProperty* tmp = [MNTable keyPropertiesForKey:noteString];
+    return [tmp intValue];
+}
+
 - (void)setTuning:(NSString*)noteString
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
-    abort();
+    NSArray* keys = nil;
+    if([[[self class] tuningNames] objectForKey:noteString])
+    {
+        keys = [[[self class] tuningNames] objectForKey:noteString];
+    }
+    else
+    {
+        self.tuningValues = [NSMutableArray array];
+        self.numStrings = 0;
+
+        keys = [noteString split:@","];   // @"/\\s*,\\s*/"];   // TODO: <- test this
+    }
+    if(keys.count == 0)
+    {
+        MNLogError("BadArguments, Invalid tuning string: %@", noteString);
+    }
+
+    self.tuningString = noteString;
+    self.numStrings = keys.count;
+    for(NSUInteger i = 0; i < self.numStrings; ++i)
+    {
+        self.tuningValues[i] = [NSNumber numberWithInteger:[self noteToInteger:keys[i]]];
+    }
 }
 
-/*
-//Vex.Flow.Tuning.prototype.getValueForString = function(stringNum) {
-//    var s = parseInt(stringNum);
-//    if (s < 1 || s > self.numStrings)
-//        throw new Vex.RERR("BadArguments", "String number must be between 1 and " +
-//                           self.numStrings + ": " + stringNum);
-//
-//    return self.tuningValues[s - 1];
-//}
- //*/
 - (NSUInteger)getValueForString:(NSUInteger)stringNum
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
-    abort();
-    return 0;
+    //    NSInteger s = [stringNum integerValue];
+    NSUInteger s = stringNum;
+    if(s < 1 || s > self.numStrings)
+    {
+        MNLogError(@"BadArguments, String number must be between 1 and %lu : %lu", self.numStrings, stringNum);
+    }
+
+    return [self.tuningValues[s - 1] unsignedIntegerValue];
 }
 
-/*
-//Vex.Flow.Tuning.prototype.getValueForFret = function(fretNum, stringNum) {
-//    var stringValue = self.getValueForString(stringNum);
-//    var f = parseInt(fretNum);
-//
-//    if (f < 0) {
-//        throw new Vex.RERR("BadArguments", "Fret number must be 0 or higher: " +
-//                           fretNum);
-//    }
-//
-//    return stringValue + f;
-//}
- //*/
-
-/*
-//Vex.Flow.Tuning.prototype.getNoteForFret = function(fretNum, stringNum) {
-//    var noteValue = self.getValueForFret(fretNum, stringNum);
-//
-//    var octave = Math.floor(noteValue / 12);
-//    var value = noteValue % 12;
-//
-//    return Vex.Flow.integerToNote(value) + "/" + octave;
-//}
-//
-// */
-- (NSString*)getNoteForFret:(NSUInteger)fretNum andStringNum:(NSUInteger)stringNum
+- (NSUInteger)getValueForFret:(NSInteger)fretNum andStringNum:(NSUInteger)stringNum
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
-    abort();
-    return @"";
+    NSUInteger stringValue = 0;
+
+    NSInteger f = fretNum;
+
+    if(f < 0)
+    {
+        MNLogError("BadArguments, Fret number must be 0 or higher: %lu", fretNum);
+    }
+
+    return stringValue + f;
+}
+
+- (NSString*)getNoteForFret:(NSInteger)fretNum andStringNum:(NSUInteger)stringNum
+{
+    float noteValue = (float)[self getValueForFret:fretNum andStringNum:stringNum];
+    NSUInteger octave = floorf(fmodf(noteValue, 12));
+    NSString* i = [[MNTable integerToNoteArray] objectAtIndex:octave];
+    return [NSString stringWithFormat:@"%@/%lu", i, octave];
 }
 
 @end

@@ -365,7 +365,7 @@ static BOOL _debugMode = NO;
         // attempt to lookup code
         if(metrics.code.length == 0)
         {
-            [MNLog logError:@"SymbolCodeEmptyException, code for symbol is empty."];
+            MNLogError(@"SymbolCodeEmptyException, code for symbol is empty.");
         }
         metrics.arrayOutline = [[MNGlyphList sharedInstance].availableGlyphStructsDictionary objectForKey:metrics.code];
     }
@@ -634,7 +634,7 @@ static BOOL _debugMode = NO;
         // attempt to lookup code
         if(metrics.code.length == 0)
         {
-            [MNLog logError:@"SymbolCodeEmptyException, code for symbol is empty."];
+            MNLogError(@"SymbolCodeEmptyException, code for symbol is empty.");
         }
         metrics.arrayOutline = [[MNGlyphList sharedInstance].availableGlyphStructsDictionary objectForKey:metrics.code];
     }

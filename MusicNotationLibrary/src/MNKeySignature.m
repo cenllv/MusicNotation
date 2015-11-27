@@ -37,7 +37,7 @@
 #import "MNPoint.h"
 #import "MNTableAccListStruct.h"
 
-@interface AccidentalCodesStruct : IAModelBase
+@interface MNAccidentalCodesStruct : IAModelBase
 @property (strong, nonatomic) NSString* code;
 @property (assign, nonatomic) float width;
 @property (assign, nonatomic) float gracenoteWidth;
@@ -46,7 +46,7 @@
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 @end
 
-@implementation AccidentalCodesStruct
+@implementation MNAccidentalCodesStruct
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
@@ -68,13 +68,13 @@
 @end
 
 // accidentalSpacing
-@interface AccidentalSpacingStruct : IAModelBase
+@interface MNAccidentalSpacingStruct : IAModelBase
 @property (assign, nonatomic) NSUInteger above;
 @property (assign, nonatomic) NSUInteger below;
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 @end
 
-@implementation AccidentalSpacingStruct
+@implementation MNAccidentalSpacingStruct
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
@@ -95,6 +95,7 @@
     if(self)
     {
         //        [self->_metrics setCode:self.code];
+        self.padding = 10;
     }
     return self;
 }
@@ -202,8 +203,8 @@ static NSDictionary* _accidentalSpacing;
  */
 - (void)addAccToStaff:(MNStaff*)staff acc:(MNTableAccListStruct*)acc nextAcc:(MNTableAccListStruct*)nextAcc
 {
-    AccidentalCodesStruct* glyph_data =
-        [[AccidentalCodesStruct alloc] initWithDictionary:MNTable.accidentalCodes[acc.type]];
+    MNAccidentalCodesStruct* glyph_data =
+        [[MNAccidentalCodesStruct alloc] initWithDictionary:MNTable.accidentalCodes[acc.type]];
     MNGlyph* glyph = [[MNGlyph alloc] initWithCode:glyph_data.code withScale:1];
 
     // Determine spacing between current accidental and the next accidental
@@ -211,8 +212,8 @@ static NSDictionary* _accidentalSpacing;
     if([acc.type isEqualToString:@"n"] && nextAcc)
     {
         BOOL above = nextAcc.line >= acc.line;
-        AccidentalSpacingStruct* space =
-            [[AccidentalSpacingStruct alloc] initWithDictionary:[self class].accidentalSpacing[nextAcc.type]];
+        MNAccidentalSpacingStruct* space =
+            [[MNAccidentalSpacingStruct alloc] initWithDictionary:[self class].accidentalSpacing[nextAcc.type]];
         extra_width = above ? space.above : space.below;
     }
     glyph.width = glyph_data.width + extra_width;

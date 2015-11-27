@@ -224,7 +224,7 @@
 
     if(!self.code)
     {
-        [MNLog logError:@"EmptyCodeEception, no code set for this metrics object."];
+        MNLogError(@"EmptyCodeEception, no code set for this metrics object.");
     }
 
     if(!self.cached)

@@ -272,7 +272,7 @@
 
     NSAttributedString* title = [[NSAttributedString alloc]
         initWithString:self.text
-            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : self.font}];
+            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : self.font.font}];
 
     // FIXME: kCTTextAlignmentCenter does nothing
     [title drawAtPoint:CGPointMake(point.x - title.size.width / 2, point.y - title.size.height / 2)];
@@ -281,10 +281,6 @@
 - (void)draw:(CGContextRef)ctx
 {
     //    [super draw:ctx];
-    //    if(!ctx)
-    //    {
-    //        MNLogError(@"NoCanvasContext, Can't draw without a canvas context.");
-    //    }
 
     float first_x_px, last_x_px;
     NSArray* first_ys;

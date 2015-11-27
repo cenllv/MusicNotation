@@ -170,7 +170,7 @@
     MNFont* font1 = [MNFont fontWithName:@"times" /*self.fontFamily*/ size:self.fontSize];
     NSAttributedString* title = [[NSAttributedString alloc]
         initWithString:text
-            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
+            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
 
     CGContextSaveGState(ctx);
     // Default to right symbol

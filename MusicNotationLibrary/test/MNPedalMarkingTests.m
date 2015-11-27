@@ -33,7 +33,7 @@
 - (void)start
 {
     [super start];
-    float w = 600, h = 150;
+    float w = 600, h = 200;
     [self runTest:@"Simple Pedal" func:@selector(simpleText:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"Simple Pedal" func:@selector(simpleBracket:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"Simple Pedal" func:@selector(simpleMixed:) frame:CGRectMake(10, 10, w, h)];

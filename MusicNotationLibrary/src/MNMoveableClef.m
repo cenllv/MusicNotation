@@ -93,7 +93,7 @@
     // additional drawing code here...
     if([((MNMetrics*)self->_metrics)line] == INT32_MAX)
     {
-        [MNLog logError:@"MNClefMovableCException, remember to set the line number."];
+        MNLogError(@"MNClefMovableCException, remember to set the line number.");
     }
 
     [super draw:ctx];

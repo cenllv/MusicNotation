@@ -36,7 +36,7 @@
 
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
-    self = [super init];
+    self = [super initWithDictionary:optionsDict];
     if(self)
     {
         [self setupTabSlide];

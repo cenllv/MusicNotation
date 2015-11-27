@@ -109,8 +109,8 @@
 - (MNRational*)getIntrinsicTicks;
 //- (Rational*)getTicks;
 - (MockTickable*)setCustomTicks:(MNRational*)t;
-- (NSDictionary*)getMetrics;
-- (void)getWidth;
+//- (NSDictionary*)getMetrics;
+- (float)getWidth;
 - (MockTickable*)setCustomWidth:(float)w;
 - (id)setWidth:(float)w;
 - (void)setVoice:(MNVoice*)v;

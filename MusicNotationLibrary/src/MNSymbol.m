@@ -25,7 +25,6 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNColor.h"
 #import "MNBezierPath.h"
 #import "MNSymbol.h"
@@ -351,10 +350,6 @@
 
 - (void)draw:(CGContextRef)ctx
 {
-    if(!ctx)
-    {
-        MNLogError(@"NoCanvasContext, Can't draw without a canvas context.");
-    }
     //    if (!self.metrics.graphicsContext) {
     //         [MNLog LogError:@"NoCanvasContext: Can't draw without a canvas context."];
     //        return;

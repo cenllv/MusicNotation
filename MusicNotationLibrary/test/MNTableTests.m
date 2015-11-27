@@ -28,6 +28,8 @@
 
 #import "MNTableTests.h"
 
+//#define deepequal()
+
 @implementation MNTableTests
 
 - (void)start

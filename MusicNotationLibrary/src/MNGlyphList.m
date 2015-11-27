@@ -106,7 +106,7 @@ static NSMutableDictionary* _anchorPointForGlyphNameDictionary;
                 // attempt to lookup name
                 if(glyphStruct.name.length == 0)
                 {
-                    [MNLog logError:@"SymbolnameEmptyException, name for symbol is empty."];
+                    MNLogError(@"SymbolnameEmptyException, name for symbol is empty.");
                 }
                 glyphStruct.arrayOutline = [self.availableGlyphStructsDictionary objectForKey:glyphStruct.name];
             }
