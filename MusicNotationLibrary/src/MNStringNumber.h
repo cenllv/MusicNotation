@@ -40,8 +40,8 @@
     NSArray* _nums;
     MNStaffNote* _lastNote;
     //    MNLineEndType _lineEndType;
-    float _y_offset;
-    float _x_offset;
+    float _yOffset;
+    float _xOffset;
     BOOL _dashed;
     MNLineEndType _leg;
     NSString* _stringNumber;
@@ -49,24 +49,23 @@
 
 #pragma mark - Properties
 @property (strong, nonatomic) NSArray* nums;
-//@property (weak, nonatomic) MNStaffNote* lastNote;
 //@property (assign, nonatomic) MNRendererLineEndType lineEndType;
-@property (assign, nonatomic) float yOffset;
-@property (assign, nonatomic) float xOffset;
+//@property (assign, nonatomic) float yOffset;
+//@property (assign, nonatomic) float xOffset;
 @property (assign, nonatomic) float radius;
-//@property (strong, nonatomic) MNStaffNote* lastNote;
 @property (assign, nonatomic) MNLineEndType leg;
 @property (strong, nonatomic) NSString* stringNumber;
 //@property (assign, nonatomic) BOOL dashed;
-//@property (strong, nonatomic) MNStaffNote* lastNote;
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithNums:(NSArray*)nums;
 - (instancetype)initWithString:(NSString*)nums;
 
-- (MNStringNumber*)setOffsetY:(NSUInteger)y;
-- (MNStringNumber*)setOffsetX:(NSUInteger)x;
+- (MNStringNumber*)setYOffset:(float)y;
+- (float)yOffset;
+- (MNStringNumber*)setXOffset:(float)x;
+- (float)xOffset;
 
 - (id)setPosition:(MNPositionType)position;
 - (id)setLineEndType:(MNLineEndType)leg;

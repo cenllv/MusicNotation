@@ -469,6 +469,9 @@ static NSDictionary* _typeClefTypeForString;
         case MNTime4_8:
             ret = @"4/8";
             break;
+        case MNTime5_8:
+            ret = @"5/8";
+            break;
         case MNTime1_16:
             ret = @"1/16";
             break;
@@ -480,6 +483,9 @@ static NSDictionary* _typeClefTypeForString;
             break;
         case MNTime4_16:
             ret = @"4/16";
+            break;
+        case MNTime13_16:
+            ret = @"13/16";
             break;
         case MNTime5_4:
             ret = @"5/4";

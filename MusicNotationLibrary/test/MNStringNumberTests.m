@@ -34,12 +34,12 @@
 - (void)start
 {
     [super start];
-    [self runTest:@"String Number In Notation"
-             func:@selector(drawMultipleMeasures:)
-            frame:CGRectMake(10, 10, 760, 180)];
-    [self runTest:@"Fret Hand Finger In Notation"
-             func:@selector(drawFretHandFingers:)
-            frame:CGRectMake(10, 10, 700, 200)];
+    //    [self runTest:@"String Number In Notation"
+    //             func:@selector(drawMultipleMeasures:)
+    //            frame:CGRectMake(10, 10, 760, 180)];
+    //    [self runTest:@"Fret Hand Finger In Notation"
+    //             func:@selector(drawFretHandFingers:)
+    //            frame:CGRectMake(10, 10, 700, 200)];
     [self runTest:@"Multi Voice With Strokes, String & Finger Numbers"
              func:@selector(multi:)
             frame:CGRectMake(10, 10, 600, 200)];
@@ -140,15 +140,15 @@
     [[[notesBar1[3]
 
         // Position string 5 below default
-        addModifier:[newStringNumber(@"5", MNPositionRight) setOffsetY:7]
+        addModifier:[newStringNumber(@"5", MNPositionRight) setYOffset:7]
             atIndex:0]
 
         // Position string 4 below default
-        addModifier:[newStringNumber(@"4", MNPositionRight) setOffsetY:6]
+        addModifier:[newStringNumber(@"4", MNPositionRight) setYOffset:6]
             atIndex:1]
 
         // Position string 3 above default
-        addModifier:[newStringNumber(@"3", MNPositionRight) setOffsetY:-6]
+        addModifier:[newStringNumber(@"3", MNPositionRight) setYOffset:-6]
             atIndex:2];
 
     // bar 2 - juxtaposing second bar next to first bar
@@ -193,15 +193,15 @@
     [[[notesBar2[3]
 
         // Position string 5 below default
-        addModifier:[newStringNumber(@"5", MNPositionRight) setOffsetY:7]
+        addModifier:[newStringNumber(@"5", MNPositionRight) setYOffset:7]
             atIndex:0]
 
         // Position string 4 below default
-        addModifier:[newStringNumber(@"4", MNPositionRight) setOffsetY:6]
+        addModifier:[newStringNumber(@"4", MNPositionRight) setYOffset:6]
             atIndex:1]
 
         // Position string 5 above default
-        addModifier:[newStringNumber(@"3", MNPositionRight) setOffsetY:-6]
+        addModifier:[newStringNumber(@"3", MNPositionRight) setYOffset:-6]
             atIndex:2];
 
     // bar 3 - juxtaposing third bar next to second bar
@@ -303,17 +303,17 @@
 
       [[[[[[notesBar1[3] addModifier:newFinger(@"3", MNPositionRight) atIndex:0]
           // Position string 5 below default
-          addModifier:[newStringNumber(@"5", MNPositionRight) setOffsetY:7]
+          addModifier:[newStringNumber(@"5", MNPositionRight) setYOffset:7]
               atIndex:0] addModifier:newFinger(@"4", MNPositionRight)
                              atIndex:1]
           // Position String 4 below default
-          addModifier:[newStringNumber(@"4", MNPositionRight) setOffsetY:6]
+          addModifier:[newStringNumber(@"4", MNPositionRight) setYOffset:6]
               atIndex:1]
           // Position finger 0 above default
-          addModifier:[newFinger(@"0", MNPositionRight) setOffsetY:-5]
+          addModifier:[newFinger(@"0", MNPositionRight) setYOffset:-5]
               atIndex:2]
           // Position string 3 above default
-          addModifier:[newStringNumber(@"3", MNPositionRight) setOffsetY:-6]
+          addModifier:[newStringNumber(@"3", MNPositionRight) setYOffset:-6]
               atIndex:2];
 
       // Helper function to justify and draw a 4/4 voice
@@ -370,19 +370,19 @@
 
       [[[[[[notesBar2[3] addModifier:newFinger(@"3", MNPositionRight) atIndex:0]
           // position string 5 below default
-          addModifier:[newStringNumber(@"5", MNPositionRight) setOffsetY:7]
+          addModifier:[newStringNumber(@"5", MNPositionRight) setYOffset:7]
               atIndex:0]
           // position finger 4 below default
           addModifier:newFinger(@"4", MNPositionRight)
               atIndex:1]
           // position string 4 below default
-          addModifier:[newStringNumber(@"4", MNPositionRight) setOffsetY:6]
+          addModifier:[newStringNumber(@"4", MNPositionRight) setYOffset:6]
               atIndex:1]
           // position finger 1 above default
-          addModifier:[newFinger(@"1", MNPositionRight) setOffsetY:-6]
+          addModifier:[newFinger(@"1", MNPositionRight) setYOffset:-6]
               atIndex:2]
           // position string 3 above default
-          addModifier:[newStringNumber(@"3", MNPositionRight) setOffsetY:-6]
+          addModifier:[newStringNumber(@"3", MNPositionRight) setYOffset:-6]
               atIndex:2];
 
       // Helper function to justify and draw a 4/4 voice
@@ -418,109 +418,106 @@
         return ret;
     };
 
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 30, 600, 0)];
+
+    NSArray* notes = @[
+        newNote(
+            @{ @"keys" : @[ @"c/4", @"e/4", @"g/4" ],
+               @"duration" : @"q" }),
+        newNote(
+            @{ @"keys" : @[ @"e/4", @"a/3", @"g/4" ],
+               @"duration" : @"q" }),
+        newNote(
+            @{ @"keys" : @[ @"c/4", @"d/4", @"a/4" ],
+               @"duration" : @"q" }),
+        newNote(
+            @{ @"keys" : @[ @"c/4", @"d/4", @"a/4" ],
+               @"duration" : @"q" })
+    ];
+    // Create the strokes
+    MNStroke* stroke1 = [MNStroke strokeWithType:5];
+    MNStroke* stroke2 = [MNStroke strokeWithType:6];
+    MNStroke* stroke3 = [MNStroke strokeWithType:2];
+    MNStroke* stroke4 = [MNStroke strokeWithType:1];
+    [notes[0] addStroke:stroke1 atIndex:0];
+    [notes[0] addModifier:newFinger(@"3", MNPositionLeft) atIndex:0];
+    [notes[0] addModifier:newFinger(@"2", MNPositionLeft) atIndex:1];
+    [notes[0] addModifier:newFinger(@"0", MNPositionLeft) atIndex:2];
+    [notes[0] addModifier:newStringNumber(@"4", MNPositionLeft) atIndex:1];
+    [notes[0] addModifier:newStringNumber(@"3", MNPositionAbove) atIndex:2];
+
+    [notes[1] addStroke:stroke2 atIndex:0];
+    [notes[1] addModifier:newStringNumber(@"4", MNPositionRight) atIndex:1];
+    [notes[1] addModifier:newStringNumber(@"3", MNPositionAbove) atIndex:1];
+    [notes[1] addAccidental:newAcc(@"#") atIndex:0];
+    [notes[1] addAccidental:newAcc(@"#") atIndex:1];
+    [notes[1] addAccidental:newAcc(@"#") atIndex:2];
+
+    [notes[2] addStroke:stroke3 atIndex:0];
+    [notes[2] addModifier:newFinger(@"3", MNPositionLeft) atIndex:0];
+    [notes[2] addModifier:newFinger(@"0", MNPositionRight) atIndex:1];
+    [notes[2] addModifier:newStringNumber(@"4", MNPositionRight) atIndex:1];
+    [notes[2] addModifier:newFinger(@"1", MNPositionLeft) atIndex:2];
+    [notes[2] addModifier:newStringNumber(@"3", MNPositionRight) atIndex:2];
+
+    [notes[3] addStroke:stroke4 atIndex:0];
+    [notes[3] addModifier:newStringNumber(@"3", MNPositionLeft) atIndex:2];
+    [notes[3] addModifier:newStringNumber(@"4", MNPositionRight) atIndex:1];
+
+    NSArray* notes2 = @[
+        newNote(
+            @{ @"keys" : @[ @"e/3" ],
+               @"stem_direction" : @(-1),
+               @"duration" : @"8" }),
+        newNote(
+            @{ @"keys" : @[ @"e/3" ],
+               @"stem_direction" : @(-1),
+               @"duration" : @"8" }),
+        newNote(
+            @{ @"keys" : @[ @"e/3" ],
+               @"stem_direction" : @(-1),
+               @"duration" : @"8" }),
+        newNote(
+            @{ @"keys" : @[ @"e/3" ],
+               @"stem_direction" : @(-1),
+               @"duration" : @"8" }),
+        newNote(
+            @{ @"keys" : @[ @"e/3" ],
+               @"stem_direction" : @(-1),
+               @"duration" : @"8" }),
+        newNote(
+            @{ @"keys" : @[ @"e/3" ],
+               @"stem_direction" : @(-1),
+               @"duration" : @"8" }),
+        newNote(
+            @{ @"keys" : @[ @"e/3" ],
+               @"stem_direction" : @(-1),
+               @"duration" : @"8" }),
+        newNote(
+            @{ @"keys" : @[ @"e/3" ],
+               @"stem_direction" : @(-1),
+               @"duration" : @"8" })
+    ];
+
+    [notes2[0] addModifier:newFinger(@"0", MNPositionLeft) atIndex:0];
+    [notes2[0] addModifier:newStringNumber(@"6", MNPositionBelow) atIndex:0];
+    [notes2[2] addAccidental:newAcc(@"#") atIndex:0];
+    [notes2[4] addModifier:newFinger(@"0", MNPositionLeft) atIndex:0];
+    // Position string number 6 beneath the strum arrow: left (15) and down (18)
+    [notes2[4] addModifier:[[newStringNumber(@"6", MNPositionLeft) setXOffset:15] setYOffset:18] atIndex:0];
+
+    MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
+    MNVoice* voice2 = [MNVoice voiceWithTimeSignature:MNTime4_4];
+    [voice addTickables:notes];
+    [voice2 addTickables:notes2];
+
+    //      MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice, voice2 ]] formatWith:@[ voice, voice2 ] withJustifyWidth:500];
+
+    MNBeam* beam2_1 = [MNBeam beamWithNotes:[notes2 slice:[@0:4]]];
+    MNBeam* beam2_2 = [MNBeam beamWithNotes:[notes2 slice:[@4:8]]];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 30, 500, 0)];
-
       [staff draw:ctx];
-
-      NSArray* notes = @[
-          newNote(
-              @{ @"keys" : @[ @"c/4", @"e/4", @"g/4" ],
-                 @"duration" : @"q" }),
-          newNote(
-              @{ @"keys" : @[ @"e/4", @"a/3", @"g/4" ],
-                 @"duration" : @"q" }),
-          newNote(
-              @{ @"keys" : @[ @"c/4", @"d/4", @"a/4" ],
-                 @"duration" : @"q" }),
-          newNote(
-              @{ @"keys" : @[ @"c/4", @"d/4", @"a/4" ],
-                 @"duration" : @"q" })
-      ];
-      // Create the strokes
-      MNStroke* stroke1 = [MNStroke strokeWithType:5];
-      MNStroke* stroke2 = [MNStroke strokeWithType:6];
-      MNStroke* stroke3 = [MNStroke strokeWithType:2];
-      MNStroke* stroke4 = [MNStroke strokeWithType:1];
-      [notes[0] addStroke:stroke1 atIndex:0];
-      [notes[0] addModifier:newFinger(@"3", MNPositionLeft) atIndex:0];
-      [notes[0] addModifier:newFinger(@"2", MNPositionLeft) atIndex:1];
-      [notes[0] addModifier:newFinger(@"0", MNPositionLeft) atIndex:2];
-      [notes[0] addModifier:newStringNumber(@"4", MNPositionLeft) atIndex:1];
-      [notes[0] addModifier:newStringNumber(@"3", MNPositionAbove) atIndex:2];
-
-      [notes[1] addStroke:stroke2 atIndex:0];
-      [notes[1] addModifier:newStringNumber(@"4", MNPositionRight) atIndex:1];
-      [notes[1] addModifier:newStringNumber(@"3", MNPositionAbove) atIndex:1];
-      [notes[1] addAccidental:newAcc(@"#") atIndex:0];
-      [notes[1] addAccidental:newAcc(@"#") atIndex:1];
-      [notes[1] addAccidental:newAcc(@"#") atIndex:2];
-
-      [notes[2] addStroke:stroke3 atIndex:0];
-      [notes[2] addModifier:newFinger(@"3", MNPositionLeft) atIndex:0];
-      [notes[2] addModifier:newFinger(@"0", MNPositionRight) atIndex:1];
-      [notes[2] addModifier:newStringNumber(@"4", MNPositionRight) atIndex:1];
-      [notes[2] addModifier:newFinger(@"1", MNPositionLeft) atIndex:2];
-      [notes[2] addModifier:newStringNumber(@"3", MNPositionRight) atIndex:2];
-
-      [notes[3] addStroke:stroke4 atIndex:0];
-      [notes[3] addModifier:newStringNumber(@"3", MNPositionLeft) atIndex:2];
-      [notes[3] addModifier:newStringNumber(@"4", MNPositionRight) atIndex:1];
-
-      NSArray* notes2 = @[
-          newNote(
-              @{ @"keys" : @[ @"e/3" ],
-                 @"stem_direction" : @(-1),
-                 @"duration" : @"8" }),
-          newNote(
-              @{ @"keys" : @[ @"e/3" ],
-                 @"stem_direction" : @(-1),
-                 @"duration" : @"8" }),
-          newNote(
-              @{ @"keys" : @[ @"e/3" ],
-                 @"stem_direction" : @(-1),
-                 @"duration" : @"8" }),
-          newNote(
-              @{ @"keys" : @[ @"e/3" ],
-                 @"stem_direction" : @(-1),
-                 @"duration" : @"8" }),
-          newNote(
-              @{ @"keys" : @[ @"e/3" ],
-                 @"stem_direction" : @(-1),
-                 @"duration" : @"8" }),
-          newNote(
-              @{ @"keys" : @[ @"e/3" ],
-                 @"stem_direction" : @(-1),
-                 @"duration" : @"8" }),
-          newNote(
-              @{ @"keys" : @[ @"e/3" ],
-                 @"stem_direction" : @(-1),
-                 @"duration" : @"8" }),
-          newNote(
-              @{ @"keys" : @[ @"e/3" ],
-                 @"stem_direction" : @(-1),
-                 @"duration" : @"8" })
-      ];
-
-      [notes2[0] addModifier:newFinger(@"0", MNPositionLeft) atIndex:0];
-      [notes2[0] addModifier:newStringNumber(@"6", MNPositionBelow) atIndex:0];
-      [notes2[2] addAccidental:newAcc(@"#") atIndex:0];
-      [notes2[4] addModifier:newFinger(@"0", MNPositionLeft) atIndex:0];
-      // Position string number 6 beneath the strum arrow: left (15) and down (18)
-      [notes2[4] addModifier:[[newStringNumber(@"6", MNPositionLeft) setOffsetX:15] setOffsetY:18] atIndex:0];
-
-      MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
-      MNVoice* voice2 = [MNVoice voiceWithTimeSignature:MNTime4_4];
-      [voice addTickables:notes];
-      [voice2 addTickables:notes2];
-
-      //      MNFormatter* formatter =
-      [[[MNFormatter formatter] joinVoices:@[ voice, voice2 ]] formatWith:@[ voice, voice2 ] withJustifyWidth:400];
-
-      MNBeam* beam2_1 = [MNBeam beamWithNotes:[notes2 slice:[@0:4]]];
-      MNBeam* beam2_2 = [MNBeam beamWithNotes:[notes2 slice:[@4:8]]];
-
       [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [beam2_1 draw:ctx];
       [beam2_2 draw:ctx];

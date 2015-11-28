@@ -33,18 +33,18 @@
 - (void)start
 {
     [super start];
-    [self runTest:@"Three Voices - #1" func:@selector(threevoices:) frame:CGRectMake(10, 10, 600, 200)];
-    //    [self runTest:@"Three Voices - #2 Complex" func:@selector(threevoices2:) frame:CGRectMake(10, 10, 600, 200)];
-    //    [self runTest:@"Three Voices - #3" func:@selector(threevoices3:) frame:CGRectMake(10, 10, 600, 200)];
-    //    [self runTest:@"Auto Adjust Rest Positions - Two Voices"
-    //             func:@selector(autoresttwovoices:)
-    //            frame:CGRectMake(10, 10, 900, 250)];
-    //    [self runTest:@"Auto Adjust Rest Positions - Three Voices #1"
-    //             func:@selector(autorestthreevoices:)
-    //            frame:CGRectMake(10, 10, 850, 250)];
-    //    [self runTest:@"Auto Adjust Rest Positions - Three Voices #2"
-    //             func:@selector(autorestthreevoices2:)
-    //            frame:CGRectMake(10, 10, 920, 250)];
+//    [self runTest:@"Three Voices - #1" func:@selector(threevoices:) frame:CGRectMake(10, 10, 600, 200)];
+//    [self runTest:@"Three Voices - #2 Complex" func:@selector(threevoices2:) frame:CGRectMake(10, 10, 600, 200)];
+//    [self runTest:@"Three Voices - #3" func:@selector(threevoices3:) frame:CGRectMake(10, 10, 600, 200)];
+    [self runTest:@"Auto Adjust Rest Positions - Two Voices"
+             func:@selector(autoresttwovoices:)
+            frame:CGRectMake(10, 10, 900, 250)];
+    [self runTest:@"Auto Adjust Rest Positions - Three Voices #1"
+             func:@selector(autorestthreevoices:)
+            frame:CGRectMake(10, 10, 850, 250)];
+    [self runTest:@"Auto Adjust Rest Positions - Three Voices #2"
+             func:@selector(autorestthreevoices2:)
+            frame:CGRectMake(10, 10, 920, 250)];
 }
 
 - (void)tearDown
@@ -97,115 +97,112 @@
         return ret;
     };
 
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(50, 30, 500, 0)] addTrebleGlyph];
+    [staff addTimeSignatureWithName:@"4/4"];
+
+    NSArray* notes = @[
+        newNote(
+            @{ @"keys" : @[ @"e/5" ],
+               @"stem_direction" : @(1),
+               @"duration" : @"h" }),
+        newNote(
+            @{ @"keys" : @[ @"e/5" ],
+               @"stem_direction" : @(1),
+               @"duration" : @"h" }),
+    ];
+    [notes[0] addModifier:newFinger(@"0", MNPositionLeft) atIndex:0];
+
+    NSArray* notes1 = @[
+        newNote(
+            @{ @"keys" : @[ @"d/5", @"a/4", @"d/4" ],
+               @"stem_direction" : @(1),
+               @"duration" : @"8" }),
+        newNote(
+            @{ @"keys" : @[ @"b/4" ],
+               @"stem_direction" : @(1),
+               @"duration" : @"8" }),
+        newNote(
+            @{ @"keys" : @[ @"c/5", @"a/4", @"d/4" ],
+               @"stem_direction" : @(1),
+               @"duration" : @"8" }),
+        newNote(
+            @{ @"keys" : @[ @"b/4" ],
+               @"stem_direction" : @(1),
+               @"duration" : @"8" }),
+        newNote(
+            @{ @"keys" : @[ @"c/5", @"a/4", @"d/4" ],
+               @"stem_direction" : @(1),
+               @"duration" : @"8" }),
+        newNote(
+            @{ @"keys" : @[ @"b/4" ],
+               @"stem_direction" : @(1),
+               @"duration" : @"8" }),
+        newNote(
+            @{ @"keys" : @[ @"c/5", @"a/4", @"d/4" ],
+               @"stem_direction" : @(1),
+               @"duration" : @"8" }),
+        newNote(
+            @{ @"keys" : @[ @"b/4" ],
+               @"stem_direction" : @(1),
+               @"duration" : @"8" }),
+    ];
+    [[[[notes1[0] addAccidental:newAcc(@"#") atIndex:2] addModifier:newFinger(@"0", MNPositionLeft) atIndex:0]
+        addModifier:newFinger(@"2", MNPositionLeft)
+            atIndex:1] addModifier:newFinger(@"4", MNPositionRight)
+                           atIndex:2];
+
+    NSArray* notes2 = @[
+        newNote(
+            @{ @"keys" : @[ @"e/3" ],
+               @"stem_direction" : @(-1),
+               @"duration" : @"q" }),
+        newNote(
+            @{ @"keys" : @[ @"e/3" ],
+               @"stem_direction" : @(-1),
+               @"duration" : @"q" }),
+        newNote(
+            @{ @"keys" : @[ @"f/3" ],
+               @"stem_direction" : @(-1),
+               @"duration" : @"q" }),
+        newNote(
+            @{ @"keys" : @[ @"a/3" ],
+               @"stem_direction" : @(-1),
+               @"duration" : @"q" }),
+    ];
+
+    MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
+    MNVoice* voice1 = [MNVoice voiceWithTimeSignature:MNTime4_4];
+    MNVoice* voice2 = [MNVoice voiceWithTimeSignature:MNTime4_4];
+    [voice addTickables:notes];
+    [voice1 addTickables:notes1];
+    [voice2 addTickables:notes2];
+    //    NSArray<MNBeam*>* beams = [MNBeam applyAndGetBeams:voice direction:MNStemDirectionUp groups:nil];
+    NSArray<MNBeam*>* beams1 = [MNBeam applyAndGetBeams:voice1 direction:MNStemDirectionDown groups:nil];
+    //    NSArray<MNBeam*>* beams2 = [MNBeam applyAndGetBeams:voice2 direction:MNStemDirectionDown groups:nil];
+
+    // Set option to position rests near the notes in each voice
+    //      MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice, voice1, voice2 ]] formatWith:@[ voice, voice1, voice2 ]
+                                                               withJustifyWidth:400];
+
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-
-      MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(50, 30, 500, 0)] addTrebleGlyph];
-
       [staff draw:ctx];
-
-      [staff addTimeSignatureWithName:@"4/4"];
-      [staff draw:ctx];
-
-      NSArray* notes = @[
-          newNote(
-              @{ @"keys" : @[ @"e/5" ],
-                 @"stem_direction" : @(1),
-                 @"duration" : @"h" }),
-          newNote(
-              @{ @"keys" : @[ @"e/5" ],
-                 @"stem_direction" : @(1),
-                 @"duration" : @"h" }),
-      ];
-      [notes[0] addModifier:newFinger(@"0", MNPositionLeft) atIndex:0];
-
-      NSArray* notes1 = @[
-          newNote(
-              @{ @"keys" : @[ @"d/5", @"a/4", @"d/4" ],
-                 @"stem_direction" : @(1),
-                 @"duration" : @"8" }),
-          newNote(
-              @{ @"keys" : @[ @"b/4" ],
-                 @"stem_direction" : @(1),
-                 @"duration" : @"8" }),
-          newNote(
-              @{ @"keys" : @[ @"c/5", @"a/4", @"d/4" ],
-                 @"stem_direction" : @(1),
-                 @"duration" : @"8" }),
-          newNote(
-              @{ @"keys" : @[ @"b/4" ],
-                 @"stem_direction" : @(1),
-                 @"duration" : @"8" }),
-          newNote(
-              @{ @"keys" : @[ @"c/5", @"a/4", @"d/4" ],
-                 @"stem_direction" : @(1),
-                 @"duration" : @"8" }),
-          newNote(
-              @{ @"keys" : @[ @"b/4" ],
-                 @"stem_direction" : @(1),
-                 @"duration" : @"8" }),
-          newNote(
-              @{ @"keys" : @[ @"c/5", @"a/4", @"d/4" ],
-                 @"stem_direction" : @(1),
-                 @"duration" : @"8" }),
-          newNote(
-              @{ @"keys" : @[ @"b/4" ],
-                 @"stem_direction" : @(1),
-                 @"duration" : @"8" }),
-      ];
-      [[[[notes1[0] addAccidental:newAcc(@"#") atIndex:2] addModifier:newFinger(@"0", MNPositionLeft) atIndex:0]
-          addModifier:newFinger(@"2", MNPositionLeft)
-              atIndex:1] addModifier:newFinger(@"4", MNPositionRight)
-                             atIndex:2];
-
-      NSArray* notes2 = @[
-          newNote(
-              @{ @"keys" : @[ @"e/3" ],
-                 @"stem_direction" : @(-1),
-                 @"duration" : @"q" }),
-          newNote(
-              @{ @"keys" : @[ @"e/3" ],
-                 @"stem_direction" : @(-1),
-                 @"duration" : @"q" }),
-          newNote(
-              @{ @"keys" : @[ @"f/3" ],
-                 @"stem_direction" : @(-1),
-                 @"duration" : @"q" }),
-          newNote(
-              @{ @"keys" : @[ @"a/3" ],
-                 @"stem_direction" : @(-1),
-                 @"duration" : @"q" }),
-      ];
-
-      MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
-      MNVoice* voice1 = [MNVoice voiceWithTimeSignature:MNTime4_4];
-      MNVoice* voice2 = [MNVoice voiceWithTimeSignature:MNTime4_4];
-      [voice addTickables:notes];
-      [voice1 addTickables:notes1];
-      [voice2 addTickables:notes2];
-      //            NSArray* beams = [MNBeam applyAndGetBeams:voice direction:MNStemDirectionUp groups:nil];
-      NSArray* beams1 = [MNBeam applyAndGetBeams:voice1 direction:MNStemDirectionDown groups:nil];
-      //            NSArray* beams2 = [MNBeam applyAndGetBeams:voice2 direction:MNStemDirectionDown groups:nil];
-
-      // Set option to position rests near the notes in each voice
-      //      MNFormatter* formatter =
-      [[[MNFormatter formatter] joinVoices:@[ voice, voice1, voice2 ]] formatWith:@[ voice, voice1, voice2 ]
-                                                                 withJustifyWidth:400];
-
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [voice1 draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staff];
-      //            for(NSUInteger i = 0; i < beams.count; i++)
-      //            {
-      //                [beams[i] draw:ctx];
-      //            }
-      for(NSUInteger i = 0; i < beams1.count; i++)
+      //      for(MNBeam* beam in beams)
+      //      {
+      //          [beam draw:ctx];
+      //      }
+
+      for(MNBeam* beam in beams1)
       {
-          [beams1[i] draw:ctx];
+          [beam draw:ctx];
       }
-      //            for(NSUInteger i = 0; i < beams2.count; i++)
-      //            {
-      //                [beams2[i] draw:ctx];
-      //            }
+      //      for(MNBeam* beam in beams2)
+      //      {
+      //          [beam draw:ctx];
+      //      }
 
       ok(YES, @"Three Voices - Test #1");
     };

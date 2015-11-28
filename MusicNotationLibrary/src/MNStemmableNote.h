@@ -48,17 +48,10 @@
 }
 
 #pragma mark - Properties
-@property (strong, nonatomic) MNStem* stem;
 @property (assign, nonatomic) BOOL hasStem;
 @property (assign, nonatomic) BOOL drawStem;
 @property (weak, nonatomic) MNBeam* beam;
-@property (assign, nonatomic) MNStemDirectionType stemDirection;
-@property (assign, nonatomic) float stemExtension;
 @property (assign, nonatomic) float stem_extension_override;
-@property (strong, nonatomic) MNExtentStruct* stemExtents;
-@property (assign, nonatomic) float shift_x;
-@property (assign, nonatomic, readonly) float centerGlyphX;
-@property (assign, nonatomic, readonly, getter=getStemLength) float height;
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
@@ -72,8 +65,9 @@
 /*!
  *  sets the stem
  *  @param stem the stem of this note
+ *  @return this object
  */
-- (void)setStem:(MNStem*)stem;
+- (id)setStem:(MNStem*)stem;
 
 /*!
  *  Builds and sets a new stem
@@ -160,12 +154,6 @@
  *  @return y position on canvas
  */
 - (float)yForBottomText:(float)textLine;
-
-/*!
- *  Post format the note
- *  @return YES if successful
- */
-- (BOOL)postFormat;
 
 /*!
  *  Render the stem onto the canvas

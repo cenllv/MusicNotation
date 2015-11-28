@@ -26,7 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNModifier.h"
 
 @class MNStaffNote;
@@ -47,25 +46,20 @@
 {
    @private
     NSString* _finger;
-    float _x_offset;
-    float _y_offset;
+    float _xOffset;
+    float _yOffset;
 }
 
 #pragma mark - Properties
 
 @property (strong, nonatomic) NSString* finger;
-//@property (assign, nonatomic) NSUInteger x_offset;
-//@property (assign, nonatomic) NSUInteger y_offset;
-//@property (assign, nonatomic) NSInteger index;
-//@property (strong, nonatomic) NSArray* nums;
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithFingerNumber:(NSString*)fingerNumber;
 - (instancetype)initWithFingerNumber:(NSString*)fingerNumber andPosition:(MNPositionType)position;
-//+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state;
-- (id)setOffsetY:(float)y;
 
+- (id)setYOffset:(float)y;
+- (float)yOffset;
 - (id)setPosition:(MNPositionType)position;
 
 @end

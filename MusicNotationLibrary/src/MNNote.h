@@ -46,7 +46,7 @@
 
 typedef void (^StyleBlock)(CGContextRef);
 
-@class MNVoice, MNStaff, MNNote, MNClef, MNTableGlyphStruct;                  //, MNBoundingBox;
+@class MNVoice, MNStaff, MNNote, MNClef, MNTableGlyphStruct, MNKeyProperty;                  //, MNBoundingBox;
 @class MNPlayNote, MNModifier, MNRational, MNTickContext, MNStroke, MNBeam;   //, MNNoteRenderOptions;
 
 /*! The `MNNote` class  implements an abstract interface for notes and chords that
@@ -120,7 +120,7 @@ typedef void (^StyleBlock)(CGContextRef);
 @property (strong, nonatomic) NSMutableArray* ys;
 
 // Collection of KeyProperty objects
-@property (strong, nonatomic) NSMutableArray* keyProps;
+@property (strong, nonatomic) NSMutableArray<MNKeyProperty*>* keyProps;
 
 //@property (strong, nonatomic) NoteMetrics* metrics;
 
@@ -513,7 +513,7 @@ typedef void (^StyleBlock)(CGContextRef);
  *  Get the absolute `X` position of self note relative to the staff.
  *  @return absolut x position
  */
-- (float)absoluteX;
+//- (float)absoluteX;
 - (BOOL)preFormat;
 - (BOOL)postFormat;
 - (void)setPreFormatted:(BOOL)preFormatted;

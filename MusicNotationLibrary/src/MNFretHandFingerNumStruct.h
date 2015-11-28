@@ -32,14 +32,14 @@
 @interface MNFretHandFingerNumStruct : IAModelBase
 {
    @private
-    NSUInteger _line;
+    float _line;
     MNPositionType _pos;
     NSUInteger _shiftL;
     NSUInteger _shiftR;
     MNStaffNote* _note;
     MNFretHandFinger* _num;
 }
-@property (assign, nonatomic) NSUInteger line;
+@property (assign, nonatomic) float line;
 @property (assign, nonatomic) MNPositionType pos;
 @property (assign, nonatomic) NSUInteger shiftL;
 @property (assign, nonatomic) NSUInteger shiftR;

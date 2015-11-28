@@ -26,7 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNModifier.h"
 
 @class MNStaffNote, MNModifierState;
@@ -64,7 +63,6 @@
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 + (MNDot*)dotWithType:(NSString*)type;
-//- (void)setNote:(MNNote *)note;
 //+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state;
 - (void)setDotShiftY:(float)dotShiftY;
 

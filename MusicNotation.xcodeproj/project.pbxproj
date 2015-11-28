@@ -593,6 +593,10 @@
 		6BC86D2F1B76A3D100C6D20B /* MNViewStaffStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D2E1B76A3D100C6D20B /* MNViewStaffStruct.m */; };
 		6BC86D351B77D75C00C6D20B /* NSString+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D341B77D75C00C6D20B /* NSString+MNAdditions.m */; };
 		6BE115641BFE7B0700961E35 /* MNBendRenderOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE115631BFE7B0700961E35 /* MNBendRenderOptions.m */; };
+		6BF09E4B1C0910B9008590D3 /* MNAccListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09E4A1C0910B9008590D3 /* MNAccListStruct.m */; };
+		6BF09E4C1C0910B9008590D3 /* MNAccListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09E4A1C0910B9008590D3 /* MNAccListStruct.m */; };
+		6BF09E4F1C0910C9008590D3 /* MNLineListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09E4E1C0910C9008590D3 /* MNLineListStruct.m */; };
+		6BF09E501C0910C9008590D3 /* MNLineListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09E4E1C0910C9008590D3 /* MNLineListStruct.m */; };
 		7FAB1E1F1FAA31FEC7F0088E /* Pods_MusicNotationDesktop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4244BC4459D5DA3A8CE96C5 /* Pods_MusicNotationDesktop.framework */; };
 		D278F51B1A8689AE000C57C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D278F51A1A8689AE000C57C1 /* AppDelegate.m */; };
 		D278F51D1A8689AE000C57C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D278F51C1A8689AE000C57C1 /* main.m */; };
@@ -1468,6 +1472,10 @@
 		6BE115611BFE4FFD00961E35 /* MNPadding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MNPadding.h; sourceTree = "<group>"; };
 		6BE115621BFE7B0700961E35 /* MNBendRenderOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNBendRenderOptions.h; sourceTree = "<group>"; };
 		6BE115631BFE7B0700961E35 /* MNBendRenderOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNBendRenderOptions.m; sourceTree = "<group>"; };
+		6BF09E491C0910B9008590D3 /* MNAccListStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNAccListStruct.h; sourceTree = "<group>"; };
+		6BF09E4A1C0910B9008590D3 /* MNAccListStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNAccListStruct.m; sourceTree = "<group>"; };
+		6BF09E4D1C0910C9008590D3 /* MNLineListStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNLineListStruct.h; sourceTree = "<group>"; };
+		6BF09E4E1C0910C9008590D3 /* MNLineListStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNLineListStruct.m; sourceTree = "<group>"; };
 		9A231678812A50C99C54D6FF /* Pods-MusicNotationMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationMobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationMobile/Pods-MusicNotationMobile.release.xcconfig"; sourceTree = "<group>"; };
 		AD3A7B682A9706ED5A80A0B0 /* Pods-MusicNotationDesktop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationDesktop.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationDesktop/Pods-MusicNotationDesktop.release.xcconfig"; sourceTree = "<group>"; };
 		C2798E94B3196775A40A4928 /* Pods_MusicNotationMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicNotationMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1518,6 +1526,10 @@
 			children = (
 				6B4AA3331BF4591500E56C1A /* MNAccidental.h */,
 				6B4AA3341BF4591500E56C1A /* MNAccidental.m */,
+				6BF09E4D1C0910C9008590D3 /* MNLineListStruct.h */,
+				6BF09E4E1C0910C9008590D3 /* MNLineListStruct.m */,
+				6BF09E491C0910B9008590D3 /* MNAccListStruct.h */,
+				6BF09E4A1C0910B9008590D3 /* MNAccListStruct.m */,
 				6BAF42821C02845D00C82A4A /* MNAccidentalRenderOptions.h */,
 				6BAF42831C02845D00C82A4A /* MNAccidentalRenderOptions.m */,
 				6B4AA3351BF4591500E56C1A /* MNAnnotation.h */,
@@ -2969,6 +2981,7 @@
 				6B4AA47A1BF4591500E56C1A /* MNNote.m in Sources */,
 				6BAF42791C02804C00C82A4A /* MNChordBarStruct.m in Sources */,
 				6B4AA4781BF4591500E56C1A /* MNMusicScales.m in Sources */,
+				6BF09E4C1C0910B9008590D3 /* MNAccListStruct.m in Sources */,
 				6B4AA48A1BF4591500E56C1A /* MNPlayNote.m in Sources */,
 				6B4AA4A21BF4591500E56C1A /* MNStaffBarLine.m in Sources */,
 				6B4AA4BA1BF4591500E56C1A /* MNStem.m in Sources */,
@@ -2993,6 +3006,7 @@
 				6B4AA4481BF4591500E56C1A /* MNFormatter.m in Sources */,
 				6B4AA4501BF4591500E56C1A /* MNGlyphList.m in Sources */,
 				6B4AA6541BF45B0800E56C1A /* Pair.m in Sources */,
+				6BF09E501C0910C9008590D3 /* MNLineListStruct.m in Sources */,
 				6B4AA4AA1BF4591500E56C1A /* MNStaffModifier.m in Sources */,
 				6B4AA4421BF4591500E56C1A /* MNEnum.m in Sources */,
 				6B4AA4741BF4591500E56C1A /* MNMusicDiatonicAccidentals.m in Sources */,
@@ -3190,6 +3204,7 @@
 				6B4AA44B1BF4591500E56C1A /* MNGhostNote.m in Sources */,
 				6B4AA59B1BF459B200E56C1A /* MNTimeSignatureTests.m in Sources */,
 				6B4AA4C91BF4591500E56C1A /* MNTableGlyphStruct.m in Sources */,
+				6BF09E4B1C0910B9008590D3 /* MNAccListStruct.m in Sources */,
 				6B4AA5951BF459B200E56C1A /* MNTabTieTests.m in Sources */,
 				6B4AA57A1BF459B200E56C1A /* MNKeyManagerTests.m in Sources */,
 				6B4AA59A1BF459B200E56C1A /* MNTickContextTests.m in Sources */,
@@ -3424,6 +3439,7 @@
 				6BAF426C1C027D6900C82A4A /* MNStringNumberFormatStruct.m in Sources */,
 				6B56448B1BF44680006FDFD9 /* HCCharReturnGetter.m in Sources */,
 				6B4AA5931BF459B200E56C1A /* MNTabSlideTests.m in Sources */,
+				6BF09E4F1C0910C9008590D3 /* MNLineListStruct.m in Sources */,
 				6B4AA5751BF459B200E56C1A /* MNFontTests.m in Sources */,
 				6B4AA4731BF4591500E56C1A /* MNMusicDiatonicAccidentals.m in Sources */,
 				6B4AA4A91BF4591500E56C1A /* MNStaffModifier.m in Sources */,

@@ -102,31 +102,30 @@ typedef void (^AddFunction)(MNTickable*, id);
     //    self.mContexts = nil;
 }
 
-// PRIVATE Methods
+#pragma mark PRIVATE Methods
 
-// private
 /*!
  *  Helper function to locate the next non-rest note(s).
  *  @param notes          <#notes description#>
  *  @param restLine       <#restLine description#>
  *  @param lookAheadIndex <#lookAheadIndex description#>
  *  @param shouldCompare  <#shouldCompare description#>
- *  @return <#return value description#>
+ *  @return the next rest line
  */
-+ (NSUInteger)lookAhead:(NSArray*)notes
-            andRestLine:(NSUInteger)restLine
-                     by:(NSUInteger)lookAheadIndex
-        makeComparisons:(BOOL)shouldCompare
++ (float)lookAhead:(NSArray*)notes
+       andRestLine:(float)restLine
+                by:(NSUInteger)lookAheadIndex
+   makeComparisons:(BOOL)shouldCompare
 {
     // If no valid next note group, next_rest_line is same as current.
-    NSUInteger next_rest_line = restLine;
+    float next_rest_line = restLine;
     NSUInteger i = lookAheadIndex;
     ++i;
     while(i < notes.count)
     {
         if(!((MNStaffNote*)notes[i]).isRest && !((MNStaffNote*)notes[i]).shouldIgnoreTicks)
         {
-            next_rest_line = [((MNStaffNote*)notes[i])getLineForRest];
+            next_rest_line = [((MNStaffNote*)notes[i])lineForRest];
             break;
         }
         i++;
@@ -135,8 +134,8 @@ typedef void (^AddFunction)(MNTickable*, id);
     // Locate the mid point between two lines.
     if(shouldCompare && restLine != next_rest_line)
     {
-        NSUInteger top = MAX(restLine, next_rest_line);
-        NSUInteger bot = MIN(restLine, next_rest_line);
+        float top = MAX(restLine, next_rest_line);
+        float bot = MIN(restLine, next_rest_line);
         next_rest_line = mnmidline(top, bot);
     }
 
@@ -283,7 +282,7 @@ typedef void (^AddFunction)(MNTickable*, id);
                                  withNotes:(NSArray*)notes
                                 withParams:(NSDictionary*)params
 {
-    NSDictionary* options = [NSMutableDictionary merge:@{@"auto_beam" : @NO, @"align_rests" : @NO} with:params];
+    NSDictionary* options = [NSMutableDictionary merge:@{ @"auto_beam" : @NO, @"align_rests" : @NO } with:params];
 
     // Start by creating a voice and adding all the notes to it.
     MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
@@ -299,8 +298,8 @@ typedef void (^AddFunction)(MNTickable*, id);
 
     // Instantiate a `Formatter` and format the notes.
     MNFormatter* formatter = [[MNFormatter alloc] init];
-    [formatter joinVoices:@[ voice ] params:@{@"align_rests" : options[@"align_rests"]}];
-    [formatter formatToStaff:@[ voice ] staff:staff options:@{@"align_rests" : options[@"align_rests"]}];
+    [formatter joinVoices:@[ voice ] params:@{ @"align_rests" : options[@"align_rests"] }];
+    [formatter formatToStaff:@[ voice ] staff:staff options:@{ @"align_rests" : options[@"align_rests"] }];
 
     // Render the voice and beams to the staff.
     [voice setStaff:staff];
@@ -321,8 +320,7 @@ typedef void (^AddFunction)(MNTickable*, id);
                                  withNotes:(NSArray*)notes
                           withJustifyWidth:(float)justifyWidth
 {
-
-    NSDictionary* options = [NSMutableDictionary merge:@{@"auto_beam" : @NO, @"align_rests" : @NO} with:@{}];
+    NSDictionary* options = [NSMutableDictionary merge:@{ @"auto_beam" : @NO, @"align_rests" : @NO } with:@{}];
 
     // Start by creating a voice and adding all the notes to it.
     MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
@@ -338,10 +336,12 @@ typedef void (^AddFunction)(MNTickable*, id);
 
     // Instantiate a `Formatter` and format the notes.
     MNFormatter* formatter = [[MNFormatter alloc] init];
-    [formatter joinVoices:@[ voice ] params:@{@"align_rests" : options[@"align_rests"]}];
+    [formatter joinVoices:@[ voice ] params:@{ @"align_rests" : options[@"align_rests"] }];
     [formatter formatWith:@[ voice ]
          withJustifyWidth:justifyWidth
-               andOptions:@{@"align_rests" : options[@"align_rests"]}];
+               andOptions:@{
+                   @"align_rests" : options[@"align_rests"]
+               }];
 
     // Render the voice and beams to the staff.
     [voice setStaff:staff];
@@ -398,7 +398,7 @@ typedef void (^AddFunction)(MNTickable*, id);
                             andBeam:(BOOL)autobeam
                          withParams:(NSDictionary*)params
 {
-    NSDictionary* opts = @{@"auto_beam" : @(autobeam), @"align_rests" : @NO};
+    NSDictionary* opts = @{ @"auto_beam" : @(autobeam), @"align_rests" : @NO };
 
     opts = [NSMutableDictionary merge:opts with:params];
 
@@ -421,9 +421,9 @@ typedef void (^AddFunction)(MNTickable*, id);
 
     // Instantiate a `Formatter` and align tab and staff notes.
     MNFormatter* formatter = [[MNFormatter alloc] init];
-    [formatter joinVoices:@[ notevoice ] params:@{@"align_rests" : opts[@"align_rests"]}];
+    [formatter joinVoices:@[ notevoice ] params:@{ @"align_rests" : opts[@"align_rests"] }];
     [formatter joinVoices:@[ tabvoice ]];
-    [formatter formatToStaff:@[ notevoice, tabvoice ] staff:staff options:@{@"align_rests" : opts[@"align_rests"]}];
+    [formatter formatToStaff:@[ notevoice, tabvoice ] staff:staff options:@{ @"align_rests" : opts[@"align_rests"] }];
 
     // Render voices and beams to staffs.
     [notevoice draw:ctx dirtyRect:dirtyRect toStaff:staff];
@@ -480,7 +480,7 @@ typedef void (^AddFunction)(MNTickable*, id);
                 else if(i > 0 && i < notes.count)
                 {
                     // If previous note is a rest, use its line number.
-                    NSUInteger rest_line;
+                    float rest_line;
                     if(((MNStaffNote*)notes[i - 1]).isRest)
                     {
                         rest_line = ((MNKeyProperty*)((MNStaffNote*)notes[i - 1]).keyProps[0]).line;
@@ -488,7 +488,7 @@ typedef void (^AddFunction)(MNTickable*, id);
                     }
                     else
                     {
-                        rest_line = [((MNStaffNote*)notes[i - 1])getLineForRest];
+                        rest_line = [((MNStaffNote*)notes[i - 1])lineForRest];
                         // Get the rest line for next valid non-rest note group.
                         props.line = [self lookAhead:notes andRestLine:rest_line by:i makeComparisons:YES];
                     }
@@ -916,7 +916,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  */
 - (id)formatWith:(NSArray*)voices withJustifyWidth:(float)justifyWidth andOptions:(NSDictionary*)options
 {
-    NSDictionary* opts = @{@"align_rests" : @(NO), @"context" : [NSNull null]};
+    NSDictionary* opts = @{ @"align_rests" : @(NO), @"context" : [NSNull null] };
     opts = [NSMutableDictionary merge:opts with:options];
     [self alignRests:voices alignAllNotes:[opts[@"align_rests"] boolValue]];
     [self createTickContexts:voices];
@@ -951,7 +951,7 @@ typedef void (^AddFunction)(MNTickable*, id);
     float justifyWidth = staff.noteEndX - staff.noteStartX - 10;
     MNLogInfo(@"Formatting voices to width: %f", justifyWidth);
     //    NSDictionary* opts = @{@"context" : [NSValue valueWithPointer:staff.graphicsContext]};
-    NSDictionary* params = [NSMutableDictionary merge:options with:@{@"staff" : staff}];
+    NSDictionary* params = [NSMutableDictionary merge:options with:@{ @"staff" : staff }];
     return [self formatWith:voices withJustifyWidth:justifyWidth andOptions:params];
 }
 

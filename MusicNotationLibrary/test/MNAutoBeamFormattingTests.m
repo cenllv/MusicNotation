@@ -34,58 +34,56 @@
 - (void)start
 {
     [super start];
-    [self runTest:@"Simple Auto Beaming" func:@selector(simpleAuto:withTitle:) frame:CGRectMake(0, 0, 600, 150)];
+    float w = 500;
+    //    float h = 200;
+    [self runTest:@"Simple Auto Beaming" func:@selector(simpleAuto:withTitle:) frame:CGRectMake(0, 0, w, 150)];
     [self runTest:@"Even Group Stem Directions"
              func:@selector(evenGroupStemDirections:withTitle:)
-            frame:CGRectMake(0, 0, 600, 200)];
+            frame:CGRectMake(0, 0, w, 200)];
     [self runTest:@"Odd Group Stem Directions"
              func:@selector(oddGroupStemDirections:withTitle:)
-            frame:CGRectMake(0, 0, 600, 200)];
+            frame:CGRectMake(0, 0, w, 200)];
     [self runTest:@"Odd Beam Groups Auto Beaming"
              func:@selector(oddBeamGroups:withTitle:)
-            frame:CGRectMake(0, 0, 600, 200)];
-    [self runTest:@"More Simple Auto Beaming 0"
-             func:@selector(moreSimple0:withTitle:)
-            frame:CGRectMake(0, 0, 600, 200)];
-    [self runTest:@"More Simple Auto Beaming 1"
-             func:@selector(moreSimple1:withTitle:)
-            frame:CGRectMake(0, 0, 600, 200)];
-    [self runTest:@"Break Beams on Rest" func:@selector(breakBeamsOnRests:withTitle:) frame:CGRectMake(0, 0, 600, 200)];
+            frame:CGRectMake(0, 0, w, 200)];
+    [self runTest:@"More Simple Auto Beaming 0" func:@selector(moreSimple0:withTitle:) frame:CGRectMake(0, 0, w, 200)];
+    [self runTest:@"More Simple Auto Beaming 1" func:@selector(moreSimple1:withTitle:) frame:CGRectMake(0, 0, w, 200)];
+    [self runTest:@"Break Beams on Rest" func:@selector(breakBeamsOnRests:withTitle:) frame:CGRectMake(0, 0, w, 200)];
     [self runTest:@"Beam Across All Rests"
              func:@selector(beamAcrossAllRests:withTitle:)
-            frame:CGRectMake(0, 0, 600, 200)];
+            frame:CGRectMake(0, 0, w, 200)];
     [self runTest:@"Beam Across All Rests with Stemlets"
              func:@selector(beamAcrossAllRestsWithStemlets:withTitle:)
-            frame:CGRectMake(0, 0, 600, 200)];
+            frame:CGRectMake(0, 0, w, 200)];
     [self runTest:@"Break Beams on Middle Rests Only"
              func:@selector(beamAcrossMiddleRests:withTitle:)
-            frame:CGRectMake(0, 0, 600, 200)];
-    [self runTest:@"Break Beams on Rest 2"
-             func:@selector(breakBeamsOnRests2:withTitle:)
-            frame:CGRectMake(0, 0, 600, 200)];
+            frame:CGRectMake(0, 0, w, 200)];
+    //    [self runTest:@"Break Beams on Rest 2"
+    //             func:@selector(breakBeamsOnRests2:withTitle:)
+    // frame:CGRectMake(0, 0, w, 200)];
     [self runTest:@"Maintain Stem Directions"
              func:@selector(maintainStemDirections:withTitle:)
-            frame:CGRectMake(0, 0, 600, 200)];
+            frame:CGRectMake(0, 0, w, 200)];
     [self runTest:@"Maintain Stem Directions - Beam Over Rests"
              func:@selector(maintainStemDirectionsBeamAcrossRests:withTitle:)
-            frame:CGRectMake(0, 0, 600, 200)];
+            frame:CGRectMake(0, 0, w, 200)];
     [self runTest:@"Beat group with unbeamable note - 2/2"
              func:@selector(groupWithUnbeamableNote:withTitle:)
-            frame:CGRectMake(0, 0, 600, 200)];
+            frame:CGRectMake(0, 0, w, 200)];
     [self runTest:@"Offset beat grouping - 6/8 "
              func:@selector(groupWithUnbeamableNote1:withTitle:)
-            frame:CGRectMake(0, 0, 600, 200)];
+            frame:CGRectMake(0, 0, w, 200)];
     [self runTest:@"Odd Time - Guessing Default Beam Groups"
              func:@selector(autoOddBeamGroups:withTitle:)
-            frame:CGRectMake(0, 0, 600, 400)];
-    [self runTest:@"Custom Beam Groups" func:@selector(customBeamGroups:withTitle:) frame:CGRectMake(0, 0, 600, 400)];
+            frame:CGRectMake(0, 0, w, 400)];
+    [self runTest:@"Custom Beam Groups" func:@selector(customBeamGroups:withTitle:) frame:CGRectMake(0, 0, w, 400)];
     [self runTest:@"Simple Tuplet Auto Beaming"
              func:@selector(simpleTuplets:withTitle:)
-            frame:CGRectMake(0, 0, 600, 200)];
+            frame:CGRectMake(0, 0, w, 200)];
     [self runTest:@"More Simple Tuplet Auto Beaming"
              func:@selector(moreSimpleTuplets:withTitle:)
-            frame:CGRectMake(0, 0, 600, 200)];
-    [self runTest:@"More Automatic Beaming" func:@selector(moreBeaming:withTitle:) frame:CGRectMake(0, 0, 600, 200)];
+            frame:CGRectMake(0, 0, w, 200)];
+    [self runTest:@"More Automatic Beaming" func:@selector(moreBeaming:withTitle:) frame:CGRectMake(0, 0, w, 200)];
 }
 
 - (void)tearDown
@@ -256,18 +254,18 @@
 
     MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
 
-    [ret.staves addObject:c.staff];
-    [ret.voices addObject:voice];
+    //    [ret.staves addObject:c.staff];
+    //    [ret.voices addObject:voice];
     [ret.formatters addObject:formatter];
-    [ret.beams addObject:beams];
+    //    [ret.beams addObject:beams];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      //      [c.staff draw:ctx];
-      //      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      //
-      //      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
+      [c.staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
 
       ok(YES, @"Auto Beaming Applicator Test");
     };
@@ -1368,7 +1366,7 @@
     MNStaff* staff1 = [[MNStaff staffWithRect:CGRectMake(10, 10, 450, 0)] addTrebleGlyph];
     [staff1 addTimeSignatureWithName:@"5/4"];
 
-    MNStaff* staff2 = [[MNStaff staffWithRect:CGRectMake(40, 150, 450, 0)] addTrebleGlyph];
+    MNStaff* staff2 = [[MNStaff staffWithRect:CGRectMake(10, 150, 450, 0)] addTrebleGlyph];
     [staff2 addTimeSignatureWithName:@"5/8"];
 
     MNStaff* staff3 = [[MNStaff staffWithRect:CGRectMake(10, 290, 450, 0)] addTrebleGlyph];
@@ -1496,32 +1494,30 @@
     MNFormatter* formatter2 = [[MNFormatter formatter] formatToStaff:@[ voice2 ] staff:staff2];
     MNFormatter* formatter3 = [[MNFormatter formatter] formatToStaff:@[ voice3 ] staff:staff3];
 
-    [ret.staves addObjectsFromArray:@[ staff1, staff2, staff3 ]];
-    [ret.voices addObjectsFromArray:@[ voice1, voice2, voice3 ]];
-    [ret.formatters addObjectsFromArray:@[ formatter1, formatter2, formatter3 ]];
-    [ret.beams addObjectsFromArray:@[ beams, beams2, beams3 ]];
+    //    [ret.staves addObjectsFromArray:@[ staff1, staff2, staff3 ]];
+    //    [ret.voices addObjectsFromArray:@[ voice1, voice2, voice3 ]];
+    //    [ret.formatters addObjectsFromArray:@[ formatter1, formatter2, formatter3 ]];
+    //    [ret.beams addObjectsFromArray:@[ beams, beams2, beams3 ]];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      /*
-    [staff1 draw:ctx];
-    [staff2 draw:ctx];
-    [staff3 draw:ctx];
+      [staff1 draw:ctx];
+      [staff2 draw:ctx];
+      [staff3 draw:ctx];
 
-    [voice1 draw:ctx dirtyRect:CGRectZero toStaff:staff1];
-    [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staff2];
-    [voice3 draw:ctx dirtyRect:CGRectZero toStaff:staff3];
+      [voice1 draw:ctx dirtyRect:CGRectZero toStaff:staff1];
+      [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staff2];
+      [voice3 draw:ctx dirtyRect:CGRectZero toStaff:staff3];
 
-    [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      [beam draw:ctx];
-    }];
-    [beams2 foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      [beam draw:ctx];
-    }];
-    [beams3 foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      [beam draw:ctx];
-    }];
-       */
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
+      [beams2 foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
+      [beams3 foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
 
       ok(YES, @"Auto Beam Applicator Test");
     };

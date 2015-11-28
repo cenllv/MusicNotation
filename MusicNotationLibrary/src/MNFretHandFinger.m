@@ -88,7 +88,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"frethandfingers";
+    return NSStringFromClass([self class]);   // return @"frethandfingers";
 }
 - (NSString*)CATEGORY
 {
@@ -103,8 +103,8 @@
     self.position = MNPositionLeft;   // Default position above stem or note head
     self.xShift = 0;
     self.yShift = 0;
-    _x_offset = 0;   // Horizontal offset from default
-    _y_offset = 0;   // Vertical offset from default
+    _xOffset = 0;   // Horizontal offset from default
+    _yOffset = 0;   // Vertical offset from default
     self.font = [MNFont fontWithName:@"sans-serif" size:9 bold:YES italic:NO];
 }
 
@@ -117,7 +117,7 @@
 
 + (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
-    NSMutableArray* nums = modifiers;
+    NSMutableArray<MNFretHandFinger*>* nums = modifiers;
     float left_shift = state.left_shift;
     float right_shift = state.right_shift;
     NSUInteger num_spacing = 1;
@@ -250,10 +250,15 @@
     setOffsetY: function(y) { self.y_offset = y; return this; },
  */
 
-- (id)setOffsetY:(float)y
+- (id)setYOffset:(float)y
 {
-    _y_offset = y;
+    _yOffset = y;
     return self;
+}
+
+- (float)yOffset
+{
+    return _yOffset;
 }
 
 - (id)setPosition:(MNPositionType)position
@@ -265,8 +270,6 @@
     return self;
 }
 
-
-
 - (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
@@ -277,8 +280,8 @@
     }
 
     MNPoint* start = [self->_note getModifierstartXYforPosition:self.position andIndex:self.index];
-    float dot_x = (start.x + self.xShift + _x_offset);
-    float dot_y = start.y + self.yShift + _y_offset + 5;
+    float dot_x = (start.x + self.xShift + _xOffset);
+    float dot_y = start.y + self.yShift + _yOffset + 5;
 
     MNPositionType position = self.position;
     switch(position)
@@ -314,7 +317,7 @@
                                                       NSFontAttributeName : descriptionFont.font,
                                                       NSForegroundColorAttributeName : MNColor.blackColor
                                                   }];
-    [description drawAtPoint:CGPointMake(dot_x, dot_y)];
+    [description drawAtPoint:CGPointMake(dot_x, dot_y - description.size.height / 1.2)];
 }
 
 @end

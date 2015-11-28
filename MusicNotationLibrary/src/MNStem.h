@@ -38,9 +38,15 @@ typedef void (^StyleBlock)(CGContextRef);
 
  */
 @interface MNStem : MNModifier
+{
+   @private
+    MNStemDirectionType _stemDirection;
+}
 
 #pragma mark - Properties
-@property (assign, nonatomic) MNStemDirectionType stemDirection;
+//@property (assign, nonatomic) MNStemDirectionType stemDirection;
+- (id)setStemDirection:(MNStemDirectionType)direction;
+- (MNStemDirectionType)stemDirection;
 @property (assign, nonatomic) float extension;
 
 @property (strong, nonatomic) DrawStyle drawStyle;

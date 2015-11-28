@@ -113,7 +113,7 @@
 
 /*! the line that this key will place rests
  */
-@property (assign, nonatomic) NSUInteger restLine;
+@property (assign, nonatomic) float restLine;
 
 /*! stroke
  */

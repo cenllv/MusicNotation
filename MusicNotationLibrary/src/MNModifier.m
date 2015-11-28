@@ -108,7 +108,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"none";
+    return NSStringFromClass([self class]);   // return @"none";
 }
 - (NSString*)CATEGORY
 {
@@ -254,6 +254,17 @@
         MNLogError(@"NoVoice, Tickable has no voice.");
     }
     return _voice;
+}
+
+- (MNNote*)note
+{
+    return _note;
+}
+
+- (id)setNote:(MNNote*)note
+{
+    _note = note;
+    return self;
 }
 
 - (MNTuplet*)tuplet

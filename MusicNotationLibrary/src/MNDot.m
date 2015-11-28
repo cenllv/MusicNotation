@@ -41,7 +41,7 @@
 #import "MNTable.h"
 #import "MNNoteHead.h"
 #import "MNExtentStruct.h"
-
+#import "MNGraceNote.h"
 
 @interface DotStruct : NSObject
 @property (strong, nonatomic) MNNote* note;
@@ -71,7 +71,6 @@
     return self.line < otherDot.line;
 }
 @end
-
 
 @interface MNDot ()
 @property (strong, nonatomic) NSString* type;
@@ -124,14 +123,15 @@
     return propertiesEntriesMapping;
 }
 
-- (void)setNote:(MNStaffNote*)note
+- (id)setNote:(MNNote*)note
 {
     _note = note;
-    if([self.note.category isEqualToString:@"gracenotes"])
+    if([self.note.category isEqualToString:[MNGraceNote CATEGORY]])
     {
         self.radius *= 0.5;
         self.width = 3;
     }
+    return self;
 }
 
 /*!
@@ -140,7 +140,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"dots";
+    return NSStringFromClass([self class]);   // return @"dots";
 }
 - (NSString*)CATEGORY
 {
@@ -169,10 +169,15 @@
     for(int i = 0; i < dots.count; ++i)
     {
         MNDot* dot = [dots objectAtIndex:i];
-        MNStaffNote* note;
+        MNNote* note;
         if([dot.note isKindOfClass:[MNStaffNote class]])
         {
             note = (MNStaffNote*)dot.note;
+        }
+        else if([dot.note isKindOfClass:[MNTabNote class]])
+        {
+            // TODO: needs refactoring
+             note = (MNTabNote*)dot.note;
         }
         else
         {
@@ -300,7 +305,7 @@
 
     MNPoint* start = [self.note getModifierstartXYforPosition:self.position andIndex:self.index];
 
-    if([self.note.category isEqualToString:@"tabnotes"])
+    if([self.note.category isEqualToString:[MNTabNote CATEGORY]])
     {
         start.y = ((MNStemmableNote*)self.note).stemExtents.baseY;
     }

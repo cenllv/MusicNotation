@@ -67,8 +67,8 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 
 | Status    | Count   |
 |-----------|---------|
-| pass      | 18      |
-| almost    | 25      |
+| pass      | 19      |
+| almost    | 24      |
 | fail      | 5       |
 | unknown   | 3       |
 
@@ -79,7 +79,7 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | Animation             | pass      |  | animation of basic notations |
 | Annotation            | pass      |  | annotations for tabs, harmonics, fingerpicking |
 | Articulation          | pass      |  | articulations like staccato, accent, marcato, fermata, etc |
-| AutoBeamFormatting    | almost    | Guessing Default Beam Groups bug & More Simple Tuplet Auto Beaming bug | auto beams for even/odd, breaks, etc |
+| AutoBeamFormatting    | pass      | Guessing Default Beam Groups bug & More Simple Tuplet Auto Beaming bug | auto beams for even/odd, breaks, etc |
 | Beam                  | almost    | very minor issues | beams for simple, multi, mixed, insane, tabnotes, complex, etc |
 | Bend                  | almost    | down arrow missing, text clobbered, static format method bug | bends for double, reverse, phrase, with release |
 | BoundingBox           | pass      |  | bounding box object init and merge |
@@ -101,7 +101,7 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | Ornament              | pass      |  | vertically shifted, delayed turns, stacked, w/ accidentals |
 | PedalMarking          | almost    |  | pedal for simple, release, depress, text, etc |
 | Percussion            | fail      | does not render any notes | percussion clef, notes, basic, snare |
-| Rests                 | almost    | minor dot errors, rest x posn errors | rests dotted, auto align beamed, tuplets, single & multi voice |
+| Rests                 | pass      |  | rests dotted, auto align beamed, tuplets, single & multi voice |
 | Rhythm                | almost    | rests out of place, missing one staff glyph not fully rendered | rhythm draw slash, beamed, rests, 16th, 32nd, etc  |
 | Staff                 | pass      |  | draw basic, vertical bar, mutli bar, barlines, repeats, tempo, single lines, etc |
 | StaffConnector        | almost    | minor formatting bugs | connectors single, double , bold, thin brace, bracket, combined, etc |
@@ -120,7 +120,7 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | TextBracket           | almost    |  | textbracket simple, styles |
 | TextNote              | fail      | not rendering all notations | textnote formatting, super/sub scripts formatting glyphs, crescendo, etc |
 | Text                  | pass      |  | drawing basic attributed string text, ns/ui labels |
-| ThreeVoice            | almost    | beam placement issues, rest collisions | three voiecs, auto adjust rest, etc |
+| ThreeVoice            | almost    | auto adjust missing some rests and not repositioning correctly  | three voiecs, auto adjust rest, etc |
 | TickContext           | pass      | no output | current and tracking tick |
 | TimeSignature         | almost    | last test clobbers notations | parser basic, big time sigs |
 | Tuning                | almost    |  | tuning standard, return note for fret |

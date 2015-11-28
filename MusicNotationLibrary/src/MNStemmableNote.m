@@ -88,7 +88,7 @@
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
-    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"stem_direction" : @"stemDirection"}];
+    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{ @"stem_direction" : @"stemDirection" }];
     return propertiesEntriesMapping;
 }
 
@@ -115,10 +115,12 @@
 /*!
  *  sets the stem
  *  @param stem the stem of this note
+ *  @return this object
  */
-- (void)setStem:(MNStem*)stem
+- (id)setStem:(MNStem*)stem
 {
     _stem = stem;
+    return self;
 }
 
 /*!
@@ -263,7 +265,6 @@
         MNLogError(@"BadArgument, Invalid stem direction: %li", stemDirection);
     }
     _stemDirection = stemDirection;
-    self.stem.stemDirection = _stemDirection;
     if(self.stem != nil)
     {
         self.stem.stemDirection = stemDirection;
@@ -285,7 +286,7 @@
 {
     float x_begin, x_end;
 
-    x_begin = self.absoluteX + self.shift_x;
+    x_begin = self.absoluteX + self.xShift;
     x_end = x_begin + self.glyphStruct.headWidth;
 
     float stem_x = self.stemDirection == MNStemDirectionDown ? x_begin : x_end;
@@ -299,7 +300,7 @@
 // Used for `MNTabNote` stems and stemlets over rests
 - (float)centerGlyphX
 {
-    return self.absoluteX + self.shift_x + self.glyphStruct.headWidth / 2;
+    return self.absoluteX + self.xShift + self.glyphStruct.headWidth / 2;
 }
 
 // Get the stem extension for the current duration

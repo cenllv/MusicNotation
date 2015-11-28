@@ -53,8 +53,8 @@
         self.position = MNPositionAbove;   // Default position above stem or note head
         self.xShift = 0;
         self.yShift = 0;
-        self.xOffset = 0;   // Horizontal offset from default
-        self.yOffset = 0;   // Vertical offset from default
+        _xOffset = 0;   // Horizontal offset from default
+        _yOffset = 0;   // Vertical offset from default
         self.dashed = YES;
         self.leg = MNLineEndTypeNONE;
         self.radius = 8;
@@ -91,7 +91,10 @@
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
-    //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
+    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{
+        @"y_offset" : @"yOffset",
+        @"x_offset" : @"xOffset"
+    }];
     return propertiesEntriesMapping;
 }
 
@@ -103,7 +106,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"stringnumber";
+    return NSStringFromClass([self class]);   // return @"stringnumber";
 }
 - (NSString*)CATEGORY
 {
@@ -113,6 +116,23 @@
 /*
 getNote: function() { return self.note; },
 setNote: function(note) { self.note = note; return this; },
+ */
+- (MNNote*)note
+{
+    return _note;
+}
+
+- (id)setNote:(MNNote*)note
+{
+    if(note != nil)
+    {
+        _note = note;
+    }
+
+    return self;
+}
+
+/*
 getIndex: function() { return self.index; },
 setIndex: function(index) { self.index = index; return this; },
 setLineEndType: function(leg) {
@@ -151,16 +171,26 @@ setOffsetY: function(y) { self.y_offset = y; return this; },
     return self;
 }
 
-- (MNStringNumber*)setOffsetX:(NSUInteger)x
+- (MNStringNumber*)setYOffset:(float)y;
 {
-    _x_offset = x;
+    _yOffset = y;
     return self;
 }
 
-- (MNStringNumber*)setOffsetY:(NSUInteger)y
+- (float)yOffset
 {
-    _y_offset = y;
+    return _yOffset;
+}
+
+- (MNStringNumber*)setXOffset:(float)x;
+{
+    _xOffset = x;
     return self;
+}
+
+- (float)xOffset
+{
+    return _xOffset;
 }
 
 - (id)setLastNote:(MNStaffNote*)lastNote
@@ -186,7 +216,7 @@ setOffsetY: function(y) { self.y_offset = y; return this; },
  */
 + (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
-    NSMutableArray* nums = modifiers;
+    NSMutableArray<MNStringNumber*>* nums = modifiers;
     float left_shift = state.left_shift;
     float right_shift = state.right_shift;
     float num_spacing = 1;
@@ -194,7 +224,7 @@ setOffsetY: function(y) { self.y_offset = y; return this; },
     if(!nums || nums.count == 0)
         return YES;   // self;
 
-    NSMutableArray* nums_list = [NSMutableArray array];
+    NSMutableArray<MNStringNumberFormatStruct*>* nums_list = [NSMutableArray array];
     MNStaffNote* prev_note = nil;
     float shift_left = 0;
     float shift_right = 0;
@@ -213,50 +243,34 @@ setOffsetY: function(y) { self.y_offset = y; return this; },
 
         for(NSUInteger j = 0; j < nums.count; ++j)
         {
-            num = nums[j];
-
-            num = nums[i];
-            if([num.note isKindOfClass:[MNStaffNote class]])
-            {
-                note = (MNStaffNote*)num.note;
-            }
+            num = nums[j];   // num = nums[i];
+                             //            if([num.note isKindOfClass:[MNStaffNote class]])
+                             //            {
+            note = (MNStaffNote*)num.note;
+            //            }
             pos = num.position;
-            //            NSArray* props = note.keyProps[num.index];
+            MNKeyProperty* props = note.keyProps[num.index];
             if(note != prev_note)
             {
                 for(NSUInteger n = 0; n < note.keyStrings.count; ++n)
                 {
-                    num = nums[i];
-                    if([num.note isKindOfClass:[MNStaffNote class]])
-                    {
-                        note = (MNStaffNote*)num.note;
-                    }
-                    pos = num.position;
-                    MNKeyProperty* props = note.keyProps[num.index];
+                    props_tmp = note.keyProps[n];
 
-                    if(note != prev_note)
-                    {
-                        for(NSUInteger m = 0; m < note.keyStrings.count; ++m)
-                        {
-                            props_tmp = note.keyProps[n];
-
-                            if(left_shift == 0)
-                                shift_left = (props_tmp.displaced ? note.extraLeftPx : shift_left);
-                            if(right_shift == 0)
-                                shift_right = (props_tmp.displaced ? note.extraRightPx : shift_right);
-                        }
-                        prev_note = note;
-                    }
-                    [nums_list push:[[MNStringNumberFormatStruct alloc] initWithDictionary:@{
-                                   @"line" : @(props.line),
-                                   @"pos" : @(pos),
-                                   @"shiftL" : @(shift_left),
-                                   @"shiftR" : @(shift_right),
-                                   @"note" : note,
-                                   @"num" : num,
-                               }]];
+                    if(left_shift == 0)
+                        shift_left = (props_tmp.displaced ? note.extraLeftPx : shift_left);
+                    if(right_shift == 0)
+                        shift_right = (props_tmp.displaced ? note.extraRightPx : shift_right);
                 }
+                prev_note = note;
             }
+            [nums_list push:[[MNStringNumberFormatStruct alloc] initWithDictionary:@{
+                           @"line" : @(props.line),
+                           @"pos" : @(pos),
+                           @"shiftL" : @(shift_left),
+                           @"shiftR" : @(shift_right),
+                           @"note" : note,
+                           @"num" : num,
+                       }]];
         }
     }
 
@@ -335,7 +349,7 @@ setOffsetY: function(y) { self.y_offset = y; return this; },
 
     [super draw:ctx];
 
-    if(!(self.note && (!self.index)))
+    if(!self.note && !self.index)
     {
         MNLogError(@"NoAttachedNote, Can't draw string number without a note and index.");
     }

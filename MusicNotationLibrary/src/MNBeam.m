@@ -34,6 +34,7 @@
 #import "MNMetrics.h"
 #import "MNStemmableNote.h"
 #import "MNStaffNote.h"
+#import "MNTabNote.h"
 #import "MNNote.h"
 #import "MNStem.h"
 #import "MNRational.h"
@@ -149,7 +150,6 @@
     self = [self initWithNotes:notes autoStem:NO];
     if(self)
     {
-        _notes = notes;
         [self setupBeam];
     }
     return self;
@@ -160,7 +160,7 @@
     if(self)
     {
         _notes = notes;
-        _autoStem = YES;
+        _autoStem = NO;
         [self setupBeam];
     }
     return self;
@@ -205,11 +205,11 @@
 
     MNStemDirectionType stem_direction = _stemDirection;
     // Figure out optimal stem direction based on given notes
-    if(_autoStem && [((MNStemmableNote*)_notes[0]).category isEqualToString:@"staffnotes"])
+    if(_autoStem && [_notes[0] isKindOfClass:[MNStaffNote class]])
     {
         stem_direction = [MNBeam calculateStemDirection:_notes];
     }
-    else if(_autoStem && [((MNStemmableNote*)_notes[0]).category isEqualToString:@"tabnotes"])
+    else if(_autoStem && [((MNStemmableNote*)_notes[0]).category isEqualToString:[MNTabNote CATEGORY]])
     {
         // Auto Stem TabNotes
         float stem_weight = [[_notes reduce:^NSNumber*(NSNumber* memo, MNStemmableNote* note) {
@@ -738,16 +738,16 @@
  */
 + (MNStemDirectionType)calculateStemDirection:(NSArray*)notes
 {
-    __block NSInteger lineSum = 0;
+    __block float lineSum = 0.f;
     [notes foreach:^(MNStaffNote* note, NSUInteger index, BOOL* stop) {
       if(note.keyProps)
       {
           [note.keyProps foreach:^(MNKeyProperty* keyProp, NSUInteger index, BOOL* stop) {
-            lineSum += (keyProp.line - 3);
+            lineSum += (keyProp.line - 3.f);
           }];
       }
     }];
-    if(lineSum >= 0)
+    if(lineSum >= 0.f)
     {
         return MNStemDirectionDown;
     }
@@ -832,23 +832,26 @@
     return nil;
 }
 
-// A helper function to automatically build basic beams for a voice. For more
-// complex auto-beaming use `Beam.generateBeams()`.
-//
-// Parameters:
-// * `voice` - The voice to generate the beams for
-// * `stem_direction` - A stem direction to apply to the entire voice
-// * `groups` - An array of `Fraction` representing beat groupings for the beam
-+ (NSArray*)applyAndGetBeams:(MNVoice*)voice direction:(MNStemDirectionType)stem_direction groups:(NSArray*)groups
+/*!
+ *  A helper function to automatically build basic beams for a voice. For more
+ *  complex auto-beaming use `Beam.generateBeams()`.
+ *  @param voice          The voice to generate the beams for
+ *  @param stem_direction A stem direction to apply to the entire voice
+ *  @param groups         An array of `MNRational` representing beat groupings for the beam
+ *  @return an array of `MNBeam`
+ */
++ (NSArray<MNBeam*>*)applyAndGetBeams:(MNVoice*)voice
+                            direction:(MNStemDirectionType)stem_direction
+                               groups:(NSArray*)groups
 {
     return [self generateBeams:voice.tickables
                         config:[[MNBeamConfig alloc] initWithDictionary:@{
-                            @"groups" : (groups ? groups : [NSNull null]),
+                            @"groups" : (groups ? groups : @[]),
                             @"stem_direction" : @(stem_direction)
                         }]];
 }
 
-+ (NSArray*)applyAndGetBeams:(MNVoice*)voice groups:(NSArray*)groups
++ (NSArray<MNBeam*>*)applyAndGetBeams:(MNVoice*)voice groups:(NSArray*)groups
 {
     return
         [self generateBeams:voice.tickables config:[[MNBeamConfig alloc] initWithDictionary:@{
@@ -856,7 +859,7 @@
                                             }]];
 }
 
-+ (NSArray*)applyAndGetBeams:(MNVoice*)voice
++ (NSArray<MNBeam*>*)applyAndGetBeams:(MNVoice*)voice
 {
     return [self generateBeams:voice.tickables config:nil];
 }
@@ -889,19 +892,19 @@
  *
  *  @return generated beams
  */
-+ (NSArray*)generateBeams:(NSArray*)notes withDictionary:(NSDictionary*)config
++ (NSArray<MNBeam*>*)generateBeams:(NSArray*)notes withDictionary:(NSDictionary*)config
 {
     return [[self class] generateBeams:notes config:[[MNBeamConfig alloc] initWithDictionary:config]];
 }
 
-+ (NSArray*)generateBeams:(NSArray*)notes config:(MNBeamConfig*)config
++ (NSArray<MNBeam*>*)generateBeams:(NSArray*)notes config:(MNBeamConfig*)config
 {
     if(!config)
     {
         config = [[MNBeamConfig alloc] initWithDictionary:nil];
     }
 
-    if(!config.groups || [config.groups isNotEqualTo:[NSNull class]] || config.groups.count == 0)
+    if(!config.groups || config.groups.count == 0)
     {
         config.groups = [NSMutableArray arrayWithArray:@[ Rational(2, 8) ]];
     }

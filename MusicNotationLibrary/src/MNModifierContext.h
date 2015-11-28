@@ -59,7 +59,7 @@
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 + (MNModifierContext*)modifierContext;
-- (NSString*)description;
+//- (NSString*)description;
 - (void)addModifier:(MNModifier*)modifier;
 //- (NSArray *)getModifiersForType:(NSString *)modifierType;
 

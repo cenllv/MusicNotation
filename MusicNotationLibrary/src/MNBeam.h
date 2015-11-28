@@ -26,57 +26,53 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNModifier.h"
 #import "MNStaffNote.h"
 
-@class MNModifierContext, MNVoice, MNRational;
-
-@class MNBeamConfig;
+@class MNModifierContext, MNVoice, MNRational, MNBeamConfig;
 
 /*! The `MNBeam` class
  *  creates a new beam from the specified notes. The notes must
  *  be part of the same line, and have the same duration (in ticks).
  */
 @interface MNBeam : MNModifier
+{
+   @private
+    NSArray* _notes;
+    BOOL _unbeamable;
+    BOOL _autoStem;
+    MNStemDirectionType _stemDirection;
+    NSUInteger _beamCount;
+    float _beamWidth;
+    float _partialBeamLength;
+}
 
 #pragma mark - Properties
-//@property (assign, nonatomic) NSUInteger ticks;
 @property (strong, nonatomic) NSArray* notes;
 @property (assign, nonatomic) BOOL unbeamable;
 @property (assign, nonatomic) BOOL autoStem;
 @property (assign, nonatomic) MNStemDirectionType stemDirection;
 @property (assign, nonatomic, getter=getBeamCount) NSUInteger beamCount;
-@property (assign, nonatomic) float beamWidth;           // TODO: is this hooked up?
-@property (assign, nonatomic) float partialBeamLength;   // TODO: is this hooked up?
-//@property (assign, nonatomic) NSUInteger minLine;
+@property (assign, nonatomic) float beamWidth;
+@property (assign, nonatomic) float partialBeamLength;
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithNotes:(NSArray*)notes;
 - (instancetype)initWithNotes:(NSArray*)notes autoStem:(BOOL)autoStem;
+
 + (MNBeam*)beamWithNotes:(NSArray*)notes;
 + (MNBeam*)beamWithNotes:(NSArray*)notes autoStem:(BOOL)autoStem;
 - (id)breakSecondaryAt:(NSArray*)indices;
-- (float)getSlopeYForX:(float)x first_x_px:(float)first_x_px first_y_px:(float)first_y_px slope:(float)slope;
-- (void)calculateSlope;
-- (void)applyStemExtensions;
-- (NSArray*)getBeamLines:(NSString*)duration;
-- (void)drawStems:(CGContextRef)ctx;
-- (void)drawBeamLines:(CGContextRef)ctx;
-//- (void)preFormat;
-//- (BOOL)postFormat;
-- (void)draw:(CGContextRef)ctx;
-+ (MNStemDirectionType)calculateStemDirection:(NSArray*)notes;
+
 + (NSArray*)getDefaultBeamGroupsForTimeSignatureType:(MNTimeType)timeType;
-+ (NSArray*)getDefaultBeamGroupsForTimeSignatureName:(NSString*)timeType;
-//+ (NSArray *)applyAndGetBeams:(MNVoice *)voice;
-+ (NSArray*)applyAndGetBeams:(MNVoice*)voice;
-+ (NSArray*)applyAndGetBeams:(MNVoice*)voice groups:(NSArray*)groups;
-+ (NSArray*)applyAndGetBeams:(MNVoice*)voice direction:(MNStemDirectionType)stem_direction groups:(NSArray*)groups;
-+ (NSArray*)generateBeams:(NSArray*)notes withDictionary:(NSDictionary*)config;
-+ (NSArray*)generateBeams:(NSArray*)notes config:(MNBeamConfig*)config;
+//+ (NSArray*)getDefaultBeamGroupsForTimeSignatureName:(NSString*)timeType;
+
++ (NSArray<MNBeam*>*)applyAndGetBeams:(MNVoice*)voice;
++ (NSArray<MNBeam*>*)applyAndGetBeams:(MNVoice*)voice groups:(NSArray*)groups;
++ (NSArray<MNBeam*>*)applyAndGetBeams:(MNVoice*)voice
+                            direction:(MNStemDirectionType)stem_direction
+                               groups:(NSArray*)groups;
++ (NSArray<MNBeam*>*)generateBeams:(NSArray*)notes withDictionary:(NSDictionary*)config;
 
 @end
-
-

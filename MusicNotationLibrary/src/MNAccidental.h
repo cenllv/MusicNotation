@@ -67,9 +67,9 @@
     BOOL _cautionary;
 }
 #pragma mark - Properties
-@property (assign, nonatomic) NSUInteger line;
-@property (assign, nonatomic) NSUInteger flat_line;
-@property (assign, nonatomic) NSUInteger dbl_sharp_line;
+@property (assign, nonatomic) float line;
+@property (assign, nonatomic) float flat_line;
+@property (assign, nonatomic) float dbl_sharp_line;
 @property (assign, nonatomic) NSUInteger num_acc;
 @property (assign, nonatomic) NSUInteger column;
 @property (strong, nonatomic) NSDictionary* accidental;

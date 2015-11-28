@@ -26,8 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
-
 #import "MNDelegates.h"
 #import "MNEnum.h"
 #import "MNSymbol.h"
@@ -69,7 +67,7 @@
     float _xShift;
     BOOL _centerAlign;
     float _center_x_shift;
-    
+
     MNFont* _font;
 
     __weak MNStaff* _staff;
@@ -77,7 +75,9 @@
 
 #pragma mark - Properties
 @property (weak, nonatomic) MNStaff* staff;
-@property (weak, nonatomic) MNNote* note;
+//@property (weak, nonatomic) MNNote* note;
+- (MNNote*)note;
+- (id)setNote:(MNNote*)note;
 
 @property (assign, nonatomic) NSUInteger intrinsicTicks;
 @property (strong, nonatomic) MNRational* tickMultiplier;

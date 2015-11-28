@@ -46,29 +46,29 @@
 {
     [super start];
     [self runTest:@"Basic" func:@selector(basic:) frame:CGRectMake(10, 10, 700, 250)];
-    [self runTest:@"Stem Down" func:@selector(basicStemDown:) frame:CGRectMake(10, 10, 700, 250)];
-    [self runTest:@"Accidental Arrangement Special Cases"
-             func:@selector(specialCases:)
-            frame:CGRectMake(10, 10, 700, 250)];
-    [self runTest:@"Multi Voice" func:@selector(multiVoice:) frame:CGRectMake(10, 10, 700, 250)];
-    [self runTest:@"Microtonal" func:@selector(microtonal:) frame:CGRectMake(10, 10, 700, 250)];
-    [self runTest:@"Automatic Accidentals - Simple Tests" func:@selector(autoAccidentalWorking:)];
-    [self runTest:@"Automatic Accidentals - Simple Tests"
-             func:@selector(automaticAccidentals0:)
-            frame:CGRectMake(10, 10, 700, 250)];
-    [self runTest:@"Automatic Accidentals" func:@selector(automaticAccidentals0:) frame:CGRectMake(10, 10, 750, 210)];
-    [self runTest:@"Automatic Accidentals - C major scale in Ab"
-             func:@selector(automaticAccidentals1:)
-            frame:CGRectMake(10, 10, 750, 160)];
-    [self runTest:@"Automatic Accidentals - No Accidentals Necessary"
-             func:@selector(automaticAccidentals2:)
-            frame:CGRectMake(10, 10, 750, 160)];
-    [self runTest:@"Automatic Accidentals - Multi Voice Inline"
-             func:@selector(automaticAccidentalsMultiVoiceInline:)
-            frame:CGRectMake(10, 10, 750, 160)];
-    [self runTest:@"Automatic Accidentals - Multi Voice Offset"
-             func:@selector(automaticAccidentalsMultiVoiceOffset:)
-            frame:CGRectMake(10, 10, 750, 160)];
+//    [self runTest:@"Stem Down" func:@selector(basicStemDown:) frame:CGRectMake(10, 10, 700, 250)];
+//    [self runTest:@"Accidental Arrangement Special Cases"
+//             func:@selector(specialCases:)
+//            frame:CGRectMake(10, 10, 700, 250)];
+//    [self runTest:@"Multi Voice" func:@selector(multiVoice:) frame:CGRectMake(10, 10, 700, 250)];
+//    [self runTest:@"Microtonal" func:@selector(microtonal:) frame:CGRectMake(10, 10, 700, 250)];
+//    [self runTest:@"Automatic Accidentals - Simple Tests" func:@selector(autoAccidentalWorking:)];
+//    [self runTest:@"Automatic Accidentals - Simple Tests"
+//             func:@selector(automaticAccidentals0:)
+//            frame:CGRectMake(10, 10, 700, 250)];
+//    [self runTest:@"Automatic Accidentals" func:@selector(automaticAccidentals0:) frame:CGRectMake(10, 10, 750, 210)];
+//    [self runTest:@"Automatic Accidentals - C major scale in Ab"
+//             func:@selector(automaticAccidentals1:)
+//            frame:CGRectMake(10, 10, 750, 160)];
+//    [self runTest:@"Automatic Accidentals - No Accidentals Necessary"
+//             func:@selector(automaticAccidentals2:)
+//            frame:CGRectMake(10, 10, 750, 160)];
+//    [self runTest:@"Automatic Accidentals - Multi Voice Inline"
+//             func:@selector(automaticAccidentalsMultiVoiceInline:)
+//            frame:CGRectMake(10, 10, 750, 160)];
+//    [self runTest:@"Automatic Accidentals - Multi Voice Offset"
+//             func:@selector(automaticAccidentalsMultiVoiceOffset:)
+//            frame:CGRectMake(10, 10, 750, 160)];
 }
 
 - (void)tearDown

@@ -703,7 +703,7 @@
 {
     if(!self.preFormatted)
     {
-        MNLogError(@"UnformattedNote %@", @"Can't call GetModifierStartXY on an unformatted note");
+        MNLogError(@"UnformattedNote, Can't call GetModifierStartXY on an unformatted note");
     }
 
     return [MNPoint pointWithX:self.absoluteX andY:[self.ys[0] floatValue]];
@@ -722,7 +722,7 @@
         MNLogError(@"UnformattedNote %@", @"Can't call GetModifierStartXY on an unformatted note");
     }
 
-    MNLogError(@"ModifierstartXYforPositionError, better to call method that takes not args.");
+    MNLogDebug(@"ModifierstartXYforPositionError, better to call method that takes no args.");
 
     return [MNPoint pointWithX:self.absoluteX andY:[self.ys[0] floatValue]];
 }

@@ -171,17 +171,17 @@
     {
         _POSTFORMAT = @[
             [MNStaffNote class],
-            //             [MNDot class],
+            //            [MNDot class],
             //            [MNFretHandFinger class],
-            //             [MNAccidental class],
+            //            [MNAccidental class],
             //            [MNGraceNoteGroup class],
-            //             [MNStroke class],
-            //             [MNStringNumber class],
-            //             [MNArticulation class],
+            //            [MNStroke class],
+            //            [MNStringNumber class],
+            //            [MNArticulation class],
             //            [MNOrnament class],
-            //             [MNAnnotation class],
-            //             [MNBend class],
-            //             [MNVibrato class]
+            //            [MNAnnotation class],
+            //            [MNBend class],
+            //            [MNVibrato class]
         ];
     }
     return _POSTFORMAT;
@@ -189,24 +189,11 @@
 
 #pragma mark - Properties
 
-- (NSString*)description
-{
-    //    //prolog
-    //    NSString *ret = [NSString stringWithFormat:@"<%p> : { \n", self];
-    //    //guts
-    //    //epilog
-    //    ret = [ret concat:@"}"];
-    //    return  [MNLog FormatObject:ret];
-    return @"";
-}
-
 - (NSMutableDictionary*)modifiersDict
 {
     if(!_modifiersDict)
     {
-        _modifiersDict = [@
-            {
-            } mutableCopy];
+        _modifiersDict = [NSMutableDictionary dictionary];
     }
     return _modifiersDict;
 }

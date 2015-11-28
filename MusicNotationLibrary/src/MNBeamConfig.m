@@ -25,6 +25,7 @@
 //
 
 #import "MNBeamConfig.h"
+#import "MNRational.h"
 
 @implementation MNBeamConfig
 
@@ -48,6 +49,25 @@
         @"maintain_stem_directions" : @"maintainStemDirections",
     }];
     return propertiesEntriesMapping;
+}
+
+- (NSMutableDictionary*)classesForArrayEntries
+{
+    NSMutableDictionary* classesForArrayEntries = [super classesForArrayEntries];
+    [classesForArrayEntries
+        addEntriesFromDictionaryWithoutReplacing:@{
+                                                     //        @"groups" : NSStringFromClass([MNRational class])
+                                                 }];
+    return classesForArrayEntries;
+}
+
+- (NSMutableArray*)groups
+{
+    if(!_groups)
+    {
+        _groups = [NSMutableArray array];
+    }
+    return _groups;
 }
 
 @end

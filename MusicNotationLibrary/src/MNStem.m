@@ -66,35 +66,6 @@
     return self;
 }
 
-//- (instancetype)initWithRect:(MNRect*)rect
-//                 withYExtend:(float)yExtend
-//           withStemExtension:(float)stemExtension
-//            andStemDirection:(MNStemDirectionType)stemDirection
-//{
-//    self = [self initWithDictionary:nil];
-//    if(self)
-//    {
-//        // Default notehead x bounds
-//        self.x_begin = rect.xPosition;   // options.x_begin || 0;
-//        self.x_end = rect.xEnd;          // options.x_end || 0;
-//
-//        // Y bounds for top/bottom most notehead
-//        self.y_top = rect.yPosition;   // options.y_top || 0;
-//        self.y_bottom = rect.yEnd;     // options.y_bottom || 0;
-//
-//        // Stem base extension
-//        self.y_extend = yExtend;   // options.y_extend || 0;
-//        // Stem top extension
-//        self.stem_extension = stemExtension;   // options.stem_extension || 0;
-//
-//        // Direction of the stem
-//        self.stemDirection = stemDirection;   // options.stem_direction || 0;
-//
-//        [self setupStem];
-//    }
-//    return self;
-//}
-
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
@@ -114,7 +85,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"stem";
+    return NSStringFromClass([self class]);   // return @"stem";
 }
 - (NSString*)CATEGORY
 {
@@ -129,9 +100,15 @@
 }
 
 // Set the direction of the stem in relation to the noteheads
-- (void)setDirection:(MNStemDirectionType)direction
+- (id)setStemDirection:(MNStemDirectionType)direction
 {
-    self.stemDirection = direction;
+    _stemDirection = direction;
+    return self;
+}
+
+- (MNStemDirectionType)stemDirection
+{
+    return _stemDirection;
 }
 
 // Set the extension for the stem, generally for flags or beams

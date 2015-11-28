@@ -51,24 +51,12 @@
     [self runTest:@"Auto Align Rests - Single Voice (Align All)"
              func:@selector(staffRestsAll:)
             frame:CGRectMake(10, 10, 700, 200)];
-    [self runTest:@"Auto Align Rests - Multi Voice" func:@selector(multi:) frame:CGRectMake(10, 10, 700, 150)];
+    [self runTest:@"Auto Align Rests - Multi Voice" func:@selector(multi:) frame:CGRectMake(10, 10, 700, 250)];
 }
 
 - (void)tearDown
 {
     [super tearDown];
-}
-
-- (void)draw:(MNTestCollectionItemView*)parent
-{
-    //    test.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-    {
-        //        CGContextRef ctx =  MNGraphicsContext();
-
-        //  MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 10, 300, 0)];
-
-        // ok(YES, @"all pass");
-    };
 }
 
 // TODO: does this belong in superclass?
@@ -168,7 +156,7 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 60, 600, 160)];
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 60, 600, 160)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -226,7 +214,6 @@
 
     MNVoice* voice1 = [MNVoice voiceWithTimeSignature:MNTime4_4];
     MNBeam* beam1 = [MNBeam beamWithNotes:[notes slice:[@0:4]]];
-
     MNBeam* beam2 = [MNBeam beamWithNotes:[notes slice:[@4:8]]];
     MNBeam* beam3 = [MNBeam beamWithNotes:[notes slice:[@8:12]]];
 
@@ -354,7 +341,7 @@
 
     // MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(600, 160) withParent:parent];
 
-    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 70, 600, 160)];
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 70, 600, 160)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -852,9 +839,10 @@
       [staff draw:ctx];
 
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+      [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
       [beam2_1 draw:ctx];
       [beam2_2 draw:ctx];
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
       ok(YES, @"Strokes Test Multi Voice");
     };

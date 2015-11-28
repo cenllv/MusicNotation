@@ -38,7 +38,7 @@
  */
 @interface MNBeamConfig : IAModelBase
 
-@property (strong, nonatomic) NSArray* groups;
+@property (strong, nonatomic) NSMutableArray* groups;
 @property (assign, nonatomic) MNStemDirectionType stemDirection;
 @property (assign, nonatomic) BOOL beamRests;
 @property (assign, nonatomic) BOOL beamMiddleOnly;

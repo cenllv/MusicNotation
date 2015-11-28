@@ -26,7 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNStemmableNote.h"
 #import "MNModifier.h"
 #import "MNStaff.h"
@@ -55,7 +54,7 @@
  */
 @interface MNStaffNote : MNStemmableNote
 {
-//    __weak MNStaff* _staff;
+    //    __weak MNStaff* _staff;
 
     NSString* _category;
     NSString* _positionString;
@@ -166,7 +165,8 @@
 
 /*! the line on the staff that this rest object occupies
  */
-@property (assign, nonatomic) NSUInteger getLineForRest;
+@property (assign, nonatomic) float lineForRest;
+//- (float)getLineForRest;
 
 /*!
  */
@@ -217,7 +217,7 @@
 - (float)getYForBottomText:(float)textLine;
 - (MNPoint*)getModifierstartXYforPosition:(MNPositionType)position andIndex:(NSUInteger)index;
 
-- (void)setKeyLine:(NSUInteger)index withLine:(NSUInteger)line;
+- (void)setKeyLine:(NSUInteger)index withLine:(float)line;
 - (float)getLineNumber:(BOOL)is_top_note;
 
 - (float)tieRightX;

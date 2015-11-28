@@ -43,50 +43,9 @@
 #import "MNRational.h"
 #import "MNPoint.h"
 #import "MNAccidentalRenderOptions.h"
-
-
-@interface AccListStruct : IAModelBase
-@property (assign, nonatomic) float y;
-@property (assign, nonatomic) NSInteger line;      // line: acc_line,
-@property (assign, nonatomic) float shift;         // shift: shiftL,
-@property (strong, nonatomic) MNAccidental* acc;   // acc: acc,
-@property (assign, nonatomic) float lineSpace;     // lineSpace: line_space
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-@end
-
-@implementation AccListStruct
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
-{
-    self = [super initWithDictionary:optionsDict];
-    if(self)
-    {
-    }
-    return self;
-}
-@end
-
-
-@interface LineListStruct : IAModelBase
-@property (assign, nonatomic) NSInteger line;             //@"line" : acc[@"line"],
-@property (assign, nonatomic) NSInteger flat_line;        //@"flat_line" : @YES,
-@property (assign, nonatomic) NSInteger dbl_sharp_line;   //@"dbl_sharp_line" : @YES,
-@property (assign, nonatomic) NSInteger num_acc;          //@"num_acc" : @0,
-@property (assign, nonatomic) float width;                //@"width" : @0
-@property (assign, nonatomic) NSInteger column;
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-@end
-
-@implementation LineListStruct
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
-{
-    self = [super initWithDictionary:optionsDict];
-    if(self)
-    {
-    }
-    return self;
-}
-@end
-
+#import "MNLineListStruct.h"
+#import "MNAccListStruct.h"
+#import "MNGraceNote.h"
 
 @implementation MNAccidental
 
@@ -170,9 +129,11 @@
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
-    [propertiesEntriesMapping
-        addEntriesFromDictionaryWithoutReplacing:
-            @{@"shift_right" : @"shiftRight", @"shift_down" : @"shiftDown", @"gracenote_width" : @"gracenoteWidth"}];
+    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{
+        @"shift_right" : @"shiftRight",
+        @"shift_down" : @"shiftDown",
+        @"gracenote_width" : @"gracenoteWidth"
+    }];
     return propertiesEntriesMapping;
 }
 
@@ -191,7 +152,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"accidentals";
+    return NSStringFromClass([self class]);   // return @"accidentals";
 }
 - (NSString*)CATEGORY
 {
@@ -210,7 +171,7 @@
     }
     _note = note;
     // Accidentals attached to grace notes are rendered smaller.
-    if([((MNNote*)self.note).category isEqualToString:@"gracenotes"])
+    if([((MNNote*)self.note).category isEqualToString:[MNGraceNote CATEGORY]])
     {
         ((MNAccidentalRenderOptions*)self->_renderOptions).fontScale = 25;
         [self setWidth:[self.accidental[@"gracenote_width"] unsignedIntegerValue]];
@@ -259,7 +220,7 @@
 {
     NSMutableArray* accidentals = modifiers;
     float left_shift = state.left_shift;
-    NSUInteger accidental_spacing = 2;
+    float accidental_spacing = 2.f;
 
     // If there are no accidentals, we needn't format their positions
     if(!accidentals || accidentals.count == 0)
@@ -285,7 +246,7 @@
         }
         else
         {
-            MNLogError(@"acc note not a  MNStaffNote");
+            MNLogError(@"acc note not a MNStaffNote");
             abort();
         }
 
@@ -307,7 +268,7 @@
             float line_space = staff.spacingBetweenLines;
             NSUInteger y = [staff getYForLine:props.line];
             float acc_line = roundf(((float)y) / line_space * 2) / 2;
-            [acc_list push:[[AccListStruct alloc] initWithDictionary:@{
+            [acc_list push:[[MNAccListStruct alloc] initWithDictionary:@{
                           @"y" : @(y),
                           @"line" : @(acc_line),
                           @"shift" : @(shiftL),
@@ -317,15 +278,18 @@
         }
         else
         {
-            [acc_list push:[[AccListStruct alloc]
-                               initWithDictionary:@{@"line" : @(props.line), @"shift" : @(shiftL), @"acc" : acc}]];
+            [acc_list push:[[MNAccListStruct alloc] initWithDictionary:@{
+                          @"line" : @(props.line),
+                          @"shift" : @(shiftL),
+                          @"acc" : acc
+                      }]];
         }
     }
 
     // Sort accidentals by line number.
-    [acc_list sortUsingComparator:^NSComparisonResult(AccListStruct* obj1, AccListStruct* obj2) {
-      NSUInteger a = obj1.line;
-      NSUInteger b = obj2.line;
+    [acc_list sortUsingComparator:^NSComparisonResult(MNAccListStruct* obj1, MNAccListStruct* obj2) {
+      float a = obj1.line;
+      float b = obj2.line;
       if(a < b)
       {
           return NSOrderedAscending;
@@ -344,22 +308,26 @@
     NSMutableArray* line_list = [NSMutableArray array];   // an array of LineListStruct
     float acc_shift = 0;   // amount by which all accidentals must be shifted right or left for stem flipping, notehead
     // shifting concerns.
-    NSInteger previous_line = NSUIntegerMax;
+    float previous_line = FLT_MAX;
 
     for(NSUInteger i = 0; i < acc_list.count; i++)
     {
-        AccListStruct* acc = acc_list[i];
+        MNAccListStruct* acc = acc_list[i];
 
         // if this is the first line, or a new line, add a line_list
         if((previous_line == NSUIntegerMax) || (previous_line != acc.line))
         {
-            [line_list push:[[LineListStruct alloc] initWithDictionary:@{
+            [line_list push:[[MNLineListStruct alloc] initWithDictionary:@{
                            @"line" : @(acc.line),
                            @"flat_line" : @YES,
                            @"dbl_sharp_line" : @YES,
                            @"num_acc" : @0,
                            @"width" : @0
                        }]];
+        }
+        else
+        {
+            MNLogError(@"hello");
         }
         // if this accidental is not a flat, the accidental needs 3.0 lines lower
         // clearance instead of 2.5 lines for b or bb.
@@ -374,13 +342,13 @@
         }
 
         // Track how many accidentals are on this line:
-        ((LineListStruct*)line_list[line_list.count - 1]).num_acc++;
+        ((MNLineListStruct*)line_list[line_list.count - 1]).num_acc++;
 
         // Track the total x_offset needed for this line which will be needed
         // for formatting lines w/ multiple accidentals:
 
         // width = accidental width + universal spacing between accidentals
-        ((LineListStruct*)line_list[line_list.count - 1]).width += acc.acc.width + accidental_spacing;
+        ((MNLineListStruct*)line_list[line_list.count - 1]).width += acc.acc.width + accidental_spacing;
 
         // if this acc_shift is larger, use it to keep first column accidentals in the same line
         acc_shift = ((acc.shift > acc_shift) ? acc.shift : acc_shift);
@@ -389,26 +357,27 @@
     }
 
     // Helper function to determine whether two lines of accidentals collide vertically
-    BOOL (^checkCollision)(LineListStruct*, LineListStruct*) = ^(LineListStruct* line_1, LineListStruct* line_2) {
-      float clearance = line_2.line - line_1.line;
-      float clearance_required = 3;
-      // But less clearance is required for certain accidentals: b, bb and ##.
-      if(clearance > 0)
-      {   // then line 2 is on top
-          clearance_required = (line_2.flat_line || line_2.dbl_sharp_line) ? 2.5 : 3.0;
-          if(line_1.dbl_sharp_line)
-              clearance -= 0.5;
-      }
-      else
-      {   // line 1 is on top
-          clearance_required = (line_1.flat_line || line_1.dbl_sharp_line) ? 2.5 : 3.0;
-          if(line_2.dbl_sharp_line)
-              clearance -= 0.5;
-      }
-      BOOL colission = (ABS(clearance) < clearance_required);
-      MNLogDebug(@"Line_1: %tu Line_2: %tu Collision: %@", line_1.line, line_2.line, TF(colission));
-      return (colission);
-    };
+    BOOL (^checkCollision)(MNLineListStruct*, MNLineListStruct*) =
+        ^(MNLineListStruct* line_1, MNLineListStruct* line_2) {
+          float clearance = line_2.line - line_1.line;
+          float clearance_required = 3;
+          // But less clearance is required for certain accidentals: b, bb and ##.
+          if(clearance > 0)
+          {   // then line 2 is on top
+              clearance_required = (line_2.flat_line || line_2.dbl_sharp_line) ? 2.5 : 3.0;
+              if(line_1.dbl_sharp_line)
+                  clearance -= 0.5;
+          }
+          else
+          {   // line 1 is on top
+              clearance_required = (line_1.flat_line || line_1.dbl_sharp_line) ? 2.5 : 3.0;
+              if(line_2.dbl_sharp_line)
+                  clearance -= 0.5;
+          }
+          BOOL collision = (ABS(clearance) < clearance_required);
+          MNLogDebug(@"Line_1: %.2f Line_2: %.2f Collision: %@", line_1.line, line_2.line, TF(collision));
+          return (collision);
+        };
 
     // ### Place Accidentals in Columns
     //
@@ -460,49 +429,49 @@
         switch(group_length)
         {
             case 3:
-                if(([end_case isEqualToString:@"a"]) && (((LineListStruct*)line_list[group_start + 1]).line -
-                                                             ((LineListStruct*)line_list[group_start + 2]).line ==
+                if(([end_case isEqualToString:@"a"]) && (((MNLineListStruct*)line_list[group_start + 1]).line -
+                                                             ((MNLineListStruct*)line_list[group_start + 2]).line ==
                                                          0.5) &&
-                   (((LineListStruct*)line_list[group_start]).line -
-                        ((LineListStruct*)line_list[group_start + 1]).line !=
+                   (((MNLineListStruct*)line_list[group_start]).line -
+                        ((MNLineListStruct*)line_list[group_start + 1]).line !=
                     0.5))
                     end_case = @"second_on_bottom";
                 break;
             case 4:
-                if((!checkCollision(((LineListStruct*)line_list[group_start]),
-                                    ((LineListStruct*)line_list[group_start + 2]))) &&
-                   (!checkCollision(((LineListStruct*)line_list[group_start + 1]),
-                                    ((LineListStruct*)line_list[group_start + 3]))))
+                if((!checkCollision(((MNLineListStruct*)line_list[group_start]),
+                                    ((MNLineListStruct*)line_list[group_start + 2]))) &&
+                   (!checkCollision(((MNLineListStruct*)line_list[group_start + 1]),
+                                    ((MNLineListStruct*)line_list[group_start + 3]))))
                     end_case = @"spaced_out_tetrachord";
                 break;
             case 5:
                 if(([end_case isEqualToString:@"b"]) &&
-                   (!checkCollision(((LineListStruct*)line_list[group_start + 1]),
-                                    ((LineListStruct*)line_list[group_start + 3]))))
+                   (!checkCollision(((MNLineListStruct*)line_list[group_start + 1]),
+                                    ((MNLineListStruct*)line_list[group_start + 3]))))
                     end_case = @"spaced_out_pentachord";
                 if(([end_case isEqualToString:@"spaced_out_pentachord"]) &&
-                   (!checkCollision(((LineListStruct*)line_list[group_start]),
-                                    ((LineListStruct*)line_list[group_start + 2]))) &&
-                   (!checkCollision(((LineListStruct*)line_list[group_start + 2]),
-                                    ((LineListStruct*)line_list[group_start + 4]))))
+                   (!checkCollision(((MNLineListStruct*)line_list[group_start]),
+                                    ((MNLineListStruct*)line_list[group_start + 2]))) &&
+                   (!checkCollision(((MNLineListStruct*)line_list[group_start + 2]),
+                                    ((MNLineListStruct*)line_list[group_start + 4]))))
                     end_case = @"very_spaced_out_pentachord";
                 break;
             case 6:
-                if((!checkCollision(((LineListStruct*)line_list[group_start]),
-                                    ((LineListStruct*)line_list[group_start + 3]))) &&
-                   (!checkCollision(((LineListStruct*)line_list[group_start + 1]),
-                                    ((LineListStruct*)line_list[group_start + 4]))) &&
-                   (!checkCollision(((LineListStruct*)line_list[group_start + 2]),
-                                    ((LineListStruct*)line_list[group_start + 5]))))
+                if((!checkCollision(((MNLineListStruct*)line_list[group_start]),
+                                    ((MNLineListStruct*)line_list[group_start + 3]))) &&
+                   (!checkCollision(((MNLineListStruct*)line_list[group_start + 1]),
+                                    ((MNLineListStruct*)line_list[group_start + 4]))) &&
+                   (!checkCollision(((MNLineListStruct*)line_list[group_start + 2]),
+                                    ((MNLineListStruct*)line_list[group_start + 5]))))
                     end_case = @"spaced_out_hexachord";
-                if((!checkCollision(((LineListStruct*)line_list[group_start]),
-                                    ((LineListStruct*)line_list[group_start + 2]))) &&
-                   (!checkCollision(((LineListStruct*)line_list[group_start + 2]),
-                                    ((LineListStruct*)line_list[group_start + 4]))) &&
-                   (!checkCollision(((LineListStruct*)line_list[group_start + 1]),
-                                    ((LineListStruct*)line_list[group_start + 3]))) &&
-                   (!checkCollision(((LineListStruct*)line_list[group_start + 3]),
-                                    ((LineListStruct*)line_list[group_start + 5]))))
+                if((!checkCollision(((MNLineListStruct*)line_list[group_start]),
+                                    ((MNLineListStruct*)line_list[group_start + 2]))) &&
+                   (!checkCollision(((MNLineListStruct*)line_list[group_start + 2]),
+                                    ((MNLineListStruct*)line_list[group_start + 4]))) &&
+                   (!checkCollision(((MNLineListStruct*)line_list[group_start + 1]),
+                                    ((MNLineListStruct*)line_list[group_start + 3]))) &&
+                   (!checkCollision(((MNLineListStruct*)line_list[group_start + 3]),
+                                    ((MNLineListStruct*)line_list[group_start + 5]))))
                     end_case = @"very_spaced_out_hexachord";
                 break;
         }
@@ -515,31 +484,17 @@
         {
             // First, determine how many columns to use:
             NSUInteger pattern_length = 2;
-            BOOL colission_detected = YES;
-            /*while(colission_detected === true) {
-                colission_detected = false;
-                colission_detecter : for(var line = 0; line + pattern_length < line_list.length; line++) {
-                    if(this.checkCollision(line_list[line], line_list[line+pattern_length])) {
-                        colission_detected = true;
-                        pattern_length++;
-                        break colission_detecter;
-                    }
-                }
-            }*/
-
-            while(colission_detected == YES)
+            BOOL collision_detected = YES;
+            while(collision_detected == YES)
             {
-                colission_detected = NO;
-                // TODO: check/test the following 6 lines
-                //                    colission_detecter :
+                collision_detected = NO;
                 for(NSUInteger line = 0; line + pattern_length < line_list.count; ++line)
                 {
-                    if(checkCollision(((LineListStruct*)line_list[line]),
-                                      ((LineListStruct*)line_list[line + pattern_length])))
+                    if(checkCollision(((MNLineListStruct*)line_list[line]),
+                                      ((MNLineListStruct*)line_list[line + pattern_length])))
                     {
-                        colission_detected = YES;
+                        collision_detected = YES;
                         pattern_length++;
-                        //                            break colission_detecter;
                         break;
                     }
                 }
@@ -548,7 +503,7 @@
             for(NSUInteger group_member = i; group_member <= group_end; group_member++)
             {
                 column = ((group_member - i) % pattern_length) + 1;
-                ((LineListStruct*)line_list[group_member]).column = column;
+                ((MNLineListStruct*)line_list[group_member]).column = column;
                 total_columns = (total_columns > column) ? total_columns : column;
             }
 
@@ -562,7 +517,7 @@
                 NSDictionary* table = MNTable.accidentalColumnsTable;
                 NSString* gl = [NSString stringWithFormat:@"%tu", group_length];
                 column = [((((NSDictionary*)table[gl])[end_case])[group_member - i])unsignedIntegerValue];
-                ((LineListStruct*)line_list[group_member]).column = column;
+                ((MNLineListStruct*)line_list[group_member]).column = column;
                 total_columns = (total_columns > column) ? total_columns : column;
             }
         }
@@ -598,10 +553,10 @@
 
     // Fill column_widths with widest needed x-space;
     // this is what keeps the columns parallel.
-    [line_list foreach:^(LineListStruct* line, NSUInteger index, BOOL* stop) {
-      if(((LineListStruct*)line).width > [column_widths[((LineListStruct*)line).column] unsignedIntegerValue])
+    [line_list foreach:^(MNLineListStruct* line, NSUInteger index, BOOL* stop) {
+      if(((MNLineListStruct*)line).width > [column_widths[((MNLineListStruct*)line).column] unsignedIntegerValue])
       {
-          column_widths[((LineListStruct*)line).column] = @(((LineListStruct*)line).width);
+          column_widths[((MNLineListStruct*)line).column] = @(((MNLineListStruct*)line).width);
       };
     }];
 
@@ -614,17 +569,17 @@
 
     // Set the x_shift for each accidental according to column offsets:
     __block NSUInteger acc_count = 0;
-    [line_list foreach:^(LineListStruct* line, NSUInteger index, BOOL* stop) {
+    [line_list foreach:^(MNLineListStruct* line, NSUInteger index, BOOL* stop) {
       float line_width = 0;
       float last_acc_on_line = acc_count + line.num_acc;
       // handle all of the accidentals on a given line:
       for(; acc_count < last_acc_on_line; ++acc_count)
       {
           float x_shift = ([column_x_offsets[line.column - 1] floatValue] + line_width);
-          [((AccListStruct*)acc_list[acc_count]).acc setXShift:x_shift];
+          [((MNAccListStruct*)acc_list[acc_count]).acc setXShift:x_shift];
           // keep track of the width of accidentals we've added so far, so that when
           // we loop, we add space for them.
-          line_width += ((AccListStruct*)acc_list[acc_count]).acc.width + accidental_spacing;
+          line_width += ((MNAccListStruct*)acc_list[acc_count]).acc.width + accidental_spacing;
           MNLogDebug(@"Line: %tu, acc_count: %tu, shift: %f", line.line, acc_count, x_shift);
       }
     }];

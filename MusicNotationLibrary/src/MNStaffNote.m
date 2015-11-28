@@ -73,6 +73,7 @@
 #import "NSString+MNAdditions.h"
 #import "MNStaffNoteRenderOptions.h"
 #import "MNNoteHeadBounds.h"
+#import "MNConstants.h"
 
 @interface FormatNote : IAModelBase
 @property (assign, nonatomic) float line;       // note/rest base line
@@ -280,8 +281,8 @@
         self.clef = [MNClef clefWithName:self.clefName];
     }
 
-    self->_renderOptions =
-        [[MNStaffNoteRenderOptions alloc] initWithDictionary:[self->_renderOptions propertiesToDictionaryEntriesMapping]];
+    self->_renderOptions = [[MNStaffNoteRenderOptions alloc]
+        initWithDictionary:[self->_renderOptions propertiesToDictionaryEntriesMapping]];
     // font size for note heads and rests
     [self->_renderOptions setGlyphFontScale:35];
     // number of stroke px to the left and right of head
@@ -321,6 +322,12 @@
     {
         y_extend = -4;
     }
+
+    MNStem* stem = [[MNStem alloc] initWithDictionary:@{}];
+    //    stem.y_extend = y_extend;
+
+    [self setStem:stem];
+
     if(self.isRest)
     {
         self.stem.hide = YES;
@@ -458,7 +465,7 @@
  */
 - (void)calculateKeyProps
 {
-    __block NSInteger last_line = -999;
+    __block float last_line = FLT_MAX;
     [self.keyStrings foreach:^(NSString* key, NSUInteger index, BOOL* stop) {
       // All rests use the same position on the line.
       // if (self.glyph.rest) key = self.glyph.position;
@@ -470,13 +477,14 @@
       MNKeyProperty* props = [MNTable keyPropertiesForKey:key andClef:self.clef.type andOptions:options];
       if(!props)
       {
-          MNLogError(@"BadArguments %@%@", @"Invalid key for note properties: ", key);
+          MNLogError(@"BadArguments, Invalid key for note properties: %@", key);
       }
 
       // Override line placement for default rests
-      if([props.key isEqualToString:@"R"])
+      if([[props.key capitalizedString] isEqualToString:@"R"])
       {
-          if([self.durationString isEqualToString:@"1"] || [self.durationString isEqualToString:@"w"])
+          if([self.durationString isEqualToString:@"1"] ||
+             [[self.durationString capitalizedString] isEqualToString:@"W"])
           {
               props.line = 4;
           }
@@ -488,7 +496,7 @@
 
       // Calculate displacement of this note
       float line = props.line;
-      if(last_line == -999)
+      if(last_line == NSIntegerMin)
       {
           last_line = line;
       }
@@ -863,7 +871,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"staffnote";
+    return NSStringFromClass([self class]);   // return @"staffnote";
 }
 - (NSString*)CATEGORY
 {
@@ -992,12 +1000,12 @@
                                              @"Can't get bottom note line, because note is not initialized properly."]];
     }
 
-    NSUInteger result_line = ((MNKeyProperty*)self.keyProps[0]).line;
+    float result_line = ((MNKeyProperty*)self.keyProps[0]).line;
 
     // No precondition assumed for sortedness of keyProps array
     for(MNKeyProperty* kp in self.keyProps)
     {
-        NSUInteger this_line = kp.line;
+        float this_line = kp.line;
         if(is_top_note)
         {
             if(this_line > result_line)
@@ -1034,27 +1042,28 @@
     return self.glyphStruct.stem && !self.isRest;
 }
 
-- (void)setStem:(MNStem*)stem
-{
+//- (void)setStem:(MNStem*)stem
+//{
     //    self.glyphStruct.stem = stem;
-    _stem = stem;
-}
+//    _stem = stem;
+//}
 
 // TODO: superclass should create the stem
-- (MNStem*)stem
-{
-    if(self.isRest)
-    {
-        //        MNLogInfo(@"setting stem on a rest. why? possibly an error");
-    }
-    if(!_stem)
-    {
-        _stem = [[MNStem alloc] initWithDictionary:nil];
-        _stem.stemDirection = MNStemDirectionNone;
-    }
-    _stem.stemDirection = self.stemDirection;   // HACK
-    return _stem;
-}
+//- (MNStem*)stem
+//{
+//    if(self.isRest)
+//    {
+//        //        MNLogInfo(@"setting stem on a rest. why? possibly an error");
+//    }
+//    if(!super getStem)
+//    {
+//        _stem = [[MNStem alloc] initWithDictionary:nil];
+//        _stem.stemDirection = MNStemDirectionNone;
+//    }
+////    _stem.stemDirection = self.stemDirection;   // HACK
+////    return _stem;
+//    return super.stem;
+//}
 
 //- (MNStaff *)staff {
 //    if (!_staff) {
@@ -1169,7 +1178,7 @@
     else if(position == MNPositionRight)
     {
         // extra_right_px
-        x = self.glyphStruct.headWidth + self.shift_x + 2;
+        x = self.glyphStruct.headWidth + self.xShift + 2;
     }
     else if(position == MNPositionAbove || position == MNPositionBelow)
     {
@@ -1268,7 +1277,7 @@
     ((MNNoteHead*)self.note_heads[index]).styleBlock = styleBlock;
 }
 
-- (void)setKeyLine:(NSUInteger)index withLine:(NSUInteger)line
+- (void)setKeyLine:(NSUInteger)index withLine:(float)line
 {
     ((MNKeyProperty*)self.keyProps[index]).line = line;
     ((MNNoteHead*)self.note_heads[index]).line = line;
@@ -1530,7 +1539,7 @@ addModifier: function(index, modifier) {
 - (float)getNoteHeadEndX
 {
     float x_begin = [self getNoteHeadBeginX];
-    return x_begin + self.glyphStruct.headWidth;   // - (kSTEM_WIDTH / 2);
+    return x_begin + self.glyphStruct.headWidth - (kSTEM_WIDTH / 2);
 }
 
 /*!
@@ -1675,7 +1684,10 @@ addModifier: function(index, modifier) {
 - (void)drawStem:(CGContextRef)ctx
 {
     [self.stem setStyleBlock:self.styleBlock];
-    [self.stem draw:ctx];
+    if(self.stem)
+    {
+        [self.stem draw:ctx];
+    }
 }
 
 /*!
@@ -1707,8 +1719,8 @@ addModifier: function(index, modifier) {
     // Format stem x positions
     [self.stem setNoteHeadXBoundsBegin:x_begin andEnd:x_end];
 
-    NSString *chordOrNote = self.isChord ? @"chord :" : @"note :";
-    NSString *keysString = [NSString oneLineString:self.keyStrings];
+    NSString* chordOrNote = self.isChord ? @"chord :" : @"note :";
+    NSString* keysString = [NSString oneLineString:self.keyStrings];
     MNLogDebug(@"Rendering %@ %@", chordOrNote, keysString);
     MNLogDebug(@"Rendering staffnote at. Beg X: %f,    End X: %f", x_begin, x_end);
 

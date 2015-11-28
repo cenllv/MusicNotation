@@ -180,7 +180,7 @@ init: function(type) {
         return NO;
     }
 
-    NSUInteger text_line = state.text_line;
+    float text_line = state.text_line;
     float max_width = 0;
 
     // Format Articulations

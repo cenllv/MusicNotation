@@ -32,6 +32,7 @@
 #import "MNTable.h"
 #import "MNAccidental.h"
 #import "MNStaffNote.h"
+#import "MNTabNote.h"
 #import "MNExtentStruct.h"
 #import "MNMath.h"
 #import "MNTickContext.h"
@@ -311,7 +312,7 @@ static NSDictionary* _acc_mods;
 
     // TabNotes don't have stems attached to them. Tab stems are rendered
     // outside the staff.
-    BOOL is_tabnote = [note.category isEqualToString:@"tabnotes"];
+    BOOL is_tabnote = [note.category isEqualToString:[MNTabNote CATEGORY]];
     if(is_tabnote)
     {
         if(note.hasStem)
