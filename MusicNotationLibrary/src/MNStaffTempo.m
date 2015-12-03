@@ -29,40 +29,13 @@
 
 #import "MNStaffTempo.h"
 #import "MNStaff.h"
-#import "MNUtils.h"
 #import "MNText.h"
-#import "MNFont.h"
-#import "MNTempo.h"
 #import "MNTable.h"
 #import "MNGlyph.h"
 #import "MNTableTypes.h"
 #import "MNConstants.h"
-
-@implementation TempoOptions
-
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
-{
-    self = [super initWithDictionary:optionsDict];
-    if(self)
-    {
-    }
-    return self;
-}
-
-@end
-
-@implementation TempoOptionsStruct
-
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
-{
-    self = [super initWithDictionary:optionsDict];
-    if(self)
-    {
-    }
-    return self;
-}
-
-@end
+#import "MNStaffTempoOptionsStruct.h"
+#import "MNStaffTempoRenderOptions.h"
 
 @implementation MNStaffTempo
 
@@ -77,7 +50,7 @@
     return self;
 }
 
-- (instancetype)initWithTempo:(TempoOptionsStruct*)tempo atX:(float)x withShiftY:(float)shiftY
+- (instancetype)initWithTempo:(MNStaffTempoOptionsStruct*)tempo atX:(float)x withShiftY:(float)shiftY
 {
     self = [self initWithDictionary:nil];
     if(self)
@@ -97,7 +70,7 @@
     self.fontFamily = @"times";
     self.fontSize = 14;
     self.fontWeightBold = YES;
-    self->_renderOptions = [[TempoOptions alloc] initWithDictionary:@{ @"glyphFontScale" : @(1) }];   // 30) }];
+    self->_renderOptions = [[MNStaffTempoRenderOptions alloc] initWithDictionary:@{ @"glyphFontScale" : @(1) }];   // 30) }];
     //    self.options.glyphFontScale = 30;
 
     self.font = [MNFont fontWithName:self.fontFamily size:self.fontSize];
@@ -110,16 +83,20 @@
     return propertiesEntriesMapping;
 }
 
+/*!
+ *  category of this modifier
+ *  @return class name
+ */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"stavetempo";
+    return NSStringFromClass([self class]);   // return @"stavetempo";
 }
 - (NSString*)CATEGORY
 {
     return NSStringFromClass([self class]);
 }
 
-- (void)setTempo:(TempoOptionsStruct*)tempo
+- (void)setTempo:(MNStaffTempoOptionsStruct*)tempo
 {
     _tempo = tempo;
 }
@@ -139,7 +116,7 @@
 {
     [super draw:ctx];
 
-    TempoOptions* options = self->_renderOptions;
+    MNStaffTempoRenderOptions* options = self->_renderOptions;
     float scale = 1;   // options.glyphFontScale / 38;
     NSString* name = self.tempo.name;
     NSString* duration = self.tempo.duration;

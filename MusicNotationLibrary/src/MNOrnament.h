@@ -46,7 +46,7 @@
     NSString* _accidental_lower;
     float _font_scale;
 
-    float _shiftRight;
+//    float _shiftRight;
     float _shift_y;
     float _shiftUp;
 

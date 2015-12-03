@@ -30,17 +30,11 @@
 #import "MNClef.h"
 #import <objc/runtime.h>
 #import "MNUtils.h"
-#import "MNTable.h"
-#import "MNModifier.h"
-#import "MNStaffModifier.h"
-#import "MNMetrics.h"
 #import "MNBoundingBox.h"
 #import "MNPoint.h"
 #import "MNStaff.h"
 #import "MNMoveableClef.h"
-#import "MNTable.h"
 #import "MNGlyph.h"
-#import "MNPadding.h"
 #import "MNClefAnnotation.h"
 
 @implementation MNClef

@@ -115,7 +115,7 @@ static NSMutableDictionary* _anchorPointForGlyphNameDictionary;
 
             for(NSUInteger i = 0; i < outline.count;)
             {
-                CGPoint pt;
+                CGPoint pt = CGPointZero;
                 NSString* action = (NSString*)[outline objectAtIndex:i++];
 
 #pragma clang diagnostic push

@@ -27,7 +27,6 @@
 //
 
 #import "MNFormatter.h"
-#import "MNUtils.h"
 #import "MNEnum.h"
 #import "MNRational.h"
 #import "MNMetrics.h"
@@ -37,23 +36,14 @@
 #import "MNVoice.h"
 #import "MNTabStaff.h"
 #import "MNTextNote.h"
-#import "MNUtils.h"
-#import "MNVoice.h"
 #import "MNBeam.h"
-#import "MNOptions.h"
-#import "MNStaffNote.h"
-#import "MNGlyph.h"
-#import "MNTickable.h"
-#import "MNContextDelegate.h"
-#import "NSString+Ruby.h"
-#import "OCTotallyLazy.h"
 #import "MNTickable.h"
 #import "MNStaffConnector.h"
 #import "MNKeyProperty.h"
-#import "MNDelegates.h"
-#import "NSMutableArray+MNAdditions.h"
 #import "MNFormatterContext.h"
 #import "MNBoundingBox.h"
+#import "MNStemmableNote.h"
+#import "MNStaffNote.h"
 
 typedef void (^AddFunction)(MNTickable*, id);
 
@@ -152,7 +142,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param add_fn      Function to add tickable to context.
  *  @return <#return value description#>
  */
-- (MNFormatterContext*)createContexts:(NSArray*)voices
+- (MNFormatterContext*)createContexts:(NSArray<MNVoice*>*)voices
                       withContextType:(Class)contextType
                        andAddFunction:(AddFunction)add_fn
 {
@@ -371,6 +361,10 @@ typedef void (^AddFunction)(MNTickable*, id);
                                  withNotes:(NSArray*)notes
                           withJustifyWidth:(float)justifyWidth
 {
+    if(justifyWidth == 0)
+    {
+        justifyWidth = staff.width;
+    }
     return [MNFormatter formatAndDrawWithContext:ctx toStaff:staff withNotes:notes withJustifyWidth:justifyWidth];
 }
 
@@ -507,7 +501,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param voices        the collection of voices
  *  @param alignAllNotes <#alignAllNotes description#>
  */
-- (void)alignRests:(NSArray*)voices alignAllNotes:(BOOL)alignAllNotes
+- (void)alignRests:(NSArray<MNVoice*>*)voices alignAllNotes:(BOOL)alignAllNotes
 {
     /*
     // ## Prototype Methods
@@ -538,7 +532,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param voices the collection of voices
  *  @return <#return value description#>
  */
-- (float)preCalculateMinTotalWidth:(NSArray*)voices
+- (float)preCalculateMinTotalWidth:(NSArray<MNVoice*>*)voices
 {
     // Cache results.
     if(self.hasMinTotalWidth)
@@ -611,7 +605,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param voices the collection of voices
  *  @return <#return value description#>
  */
-- (MNFormatterContext*)createModifierContexts:(NSArray*)voices
+- (MNFormatterContext*)createModifierContexts:(NSArray<MNVoice*>*)voices
 {
     /*
     createModifierContexts: function(voices) {
@@ -641,7 +635,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param voices the collection of voices
  *  @return <#return value description#>
  */
-- (MNFormatterContext*)createTickContexts:(NSArray*)voices
+- (MNFormatterContext*)createTickContexts:(NSArray<MNVoice*>*)voices
 {
     /*
     createTickContexts: function(voices) {
@@ -681,7 +675,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param staff  the staff being drawn onto
  *  @return YES if successful
  */
-- (BOOL)preFormatWithContext:(CGContextRef)ctx voices:(NSArray*)voices staff:(MNStaff*)staff
+- (BOOL)preFormatWithContext:(CGContextRef)ctx voices:(NSArray<MNVoice*>*)voices staff:(MNStaff*)staff
 {
     return [self preFormatWith:0 voices:voices staff:staff];
 }
@@ -689,7 +683,7 @@ typedef void (^AddFunction)(MNTickable*, id);
 {
     return [self preFormatWith:0 voices:@[] staff:nil];
 }
-- (BOOL)preFormatWith:(float)justifyWidth voices:(NSArray*)voices staff:(MNStaff*)staff
+- (BOOL)preFormatWith:(float)justifyWidth voices:(NSArray<MNVoice*>*)voices staff:(MNStaff*)staff
 {
     // Initialize context maps.
     MNFormatterContext* contexts = self.tContexts;
@@ -748,10 +742,10 @@ typedef void (^AddFunction)(MNTickable*, id);
         float width = context.width;
         self.minTotalWidth += width;
         float min_x = 0;
-        float pixels_used = width;
+        float points_used = width;
 
         // Calculate space between last note and next note.
-        tick_space = MIN((tickValue - prev_tick_value) * self.pixelsPerTick, pixels_used);
+        tick_space = MIN((tickValue - prev_tick_value) * self.pixelsPerTick, points_used);
 
         // Shift next note up `tick_space` pixels.
         float set_x = x + tick_space;
@@ -807,7 +801,7 @@ typedef void (^AddFunction)(MNTickable*, id);
         // Set the `x` value for the context, which sets the `x` value for all
         // tickables in self context.
         context.x = set_x;                  //.setX(set_x);
-        context.pixelsUsed = pixels_used;   //.setPixelsUsed(pixels_used);  // ??? Remove self if nothing breaks
+        context.pointsUsed = points_used;   //.setPixelsUsed(pixels_used);  // ??? Remove self if nothing breaks
 
         lastMetrics = selfMetrics;
         prev_width = width;
@@ -855,7 +849,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param voices the collection of voices
  *  @return <#return value description#>
  */
-- (BOOL)postFormat   //:(NSArray*)voices
+- (BOOL)postFormat   //:(NSArray<MNVoice*>*)voices
 {
     // Postformat modifier contexts
     [self.mContexts.list foreach:^(NSNumber* mContext, NSUInteger index, BOOL* stop) {
@@ -869,7 +863,7 @@ typedef void (^AddFunction)(MNTickable*, id);
     return YES;
 }
 
-- (id)joinVoices:(NSArray*)voices
+- (id)joinVoices:(NSArray<MNVoice*>*)voices
 {
     [self joinVoices:voices params:nil];
     return self;
@@ -882,19 +876,19 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param voices the collection of voices
  *  @param params <#params description#>
  */
-- (void)joinVoices:(NSArray*)voices params:(NSDictionary*)params
+- (void)joinVoices:(NSArray<MNVoice*>*)voices params:(NSDictionary*)params
 {
     [self createModifierContexts:voices];
     self.hasMinTotalWidth = NO;
 }
 
-- (id)formatWith:(NSArray*)voices
+- (id)formatWith:(NSArray<MNVoice*>*)voices
 {
     [self formatWith:voices withJustifyWidth:0];
     return self;
 }
 
-- (id)formatWith:(NSArray*)voices withJustifyWidth:(float)justifyWidth
+- (id)formatWith:(NSArray<MNVoice*>*)voices withJustifyWidth:(float)justifyWidth
 {
     return [self formatWith:voices withJustifyWidth:justifyWidth andOptions:@{}];
 }
@@ -914,7 +908,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param options      <#options description#>
  *  @return this formatter object
  */
-- (id)formatWith:(NSArray*)voices withJustifyWidth:(float)justifyWidth andOptions:(NSDictionary*)options
+- (id)formatWith:(NSArray<MNVoice*>*)voices withJustifyWidth:(float)justifyWidth andOptions:(NSDictionary*)options
 {
     NSDictionary* opts = @{ @"align_rests" : @(NO), @"context" : [NSNull null] };
     opts = [NSMutableDictionary merge:opts with:options];
@@ -932,7 +926,7 @@ typedef void (^AddFunction)(MNTickable*, id);
     return self;
 }
 
-- (id)formatToStaff:(NSArray*)voices staff:(MNStaff*)staff
+- (id)formatToStaff:(NSArray<MNVoice*>*)voices staff:(MNStaff*)staff
 {
     return [self formatToStaff:voices staff:staff options:nil];
 }
@@ -945,7 +939,7 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param options the collection of voices
  *  @return <#return value description#>
  */
-- (id)formatToStaff:(NSArray*)voices staff:(MNStaff*)staff options:(NSDictionary*)options
+- (id)formatToStaff:(NSArray<MNVoice*>*)voices staff:(MNStaff*)staff options:(NSDictionary*)options
 {
     // TODO: this could be one spot to reduce width from clefs, time sigs, etc.
     float justifyWidth = staff.noteEndX - staff.noteStartX - 10;

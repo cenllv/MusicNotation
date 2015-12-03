@@ -33,8 +33,6 @@
 #import "MNModifierContext.h"
 #import "MNBoundingBox.h"
 #import "MNTuplet.h"
-#import "MNTable.h"
-#import "MNPoint.h"
 #import "MNConstants.h"
 
 @implementation MNTickable

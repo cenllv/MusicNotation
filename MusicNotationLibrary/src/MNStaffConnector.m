@@ -107,7 +107,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"staffconnector";
+    return NSStringFromClass([self class]);   // return @"staffconnector";
 }
 - (NSString*)CATEGORY
 {
@@ -174,15 +174,15 @@
             cpy7 = y2 - (0.135 * attachment_height);
             cpx8 = cpx5;
             cpy8 = cpy1;
-            CGPoint cp1, cp2, cp3, cp4, cp5, cp6, cp7, cp8;
-            cp1 = CGPointMake(cpx1, cpy1);
-            cp2 = CGPointMake(cpx2, cpy2);
-            cp3 = CGPointMake(cpx3, cpy3);
-            cp4 = CGPointMake(cpx4, cpy4);
-            cp5 = CGPointMake(cpx5, cpy5);
-            cp6 = CGPointMake(cpx6, cpy6);
-            cp7 = CGPointMake(cpx7, cpy7);
-            cp8 = CGPointMake(cpx8, cpy8);
+//            CGPoint cp1, cp2, cp3, cp4, cp5, cp6, cp7, cp8;
+            //            cp1 = CGPointMake(cpx1, cpy1);
+            //            cp2 = CGPointMake(cpx2, cpy2);
+            //            cp3 = CGPointMake(cpx3, cpy3);
+            //            cp4 = CGPointMake(cpx4, cpy4);
+            //            cp5 = CGPointMake(cpx5, cpy5);
+            //            cp6 = CGPointMake(cpx6, cpy6);
+            //            cp7 = CGPointMake(cpx7, cpy7);
+            //            cp8 = CGPointMake(cpx8, cpy8);
             //            MNBezierPath* bPath =  [MNBezierPath bezierPath];
             //            [bPath setLineWidth:1.0];
             //            [MNColor.blackColor setStroke];

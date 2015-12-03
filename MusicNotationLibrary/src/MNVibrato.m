@@ -27,7 +27,6 @@
 //
 
 #import "MNVibrato.h"
-#import "MNModifierContext.h"
 #import "MNBend.h"
 #import "MNLog.h"
 #import "MNStaffNote.h"
@@ -83,12 +82,22 @@
 {
     return NSStringFromClass([self class]); //return @"vibratos";
 }
-
-// Arrange vibratos inside a `ModifierContext`.
-// TODO: this prototype differs from the other  MNModifiers
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
+- (NSString*)CATEGORY
 {
-    NSMutableArray* vibratos = modifiers;
+    return NSStringFromClass([self class]);
+}
+
+
+/*!
+ *  Arrange vibratos inside a `ModifierContext`.
+ *  @param modifiers collection of `Modifier`
+ *  @param state     state of the `ModifierContext`
+ *  @param context   the calling `ModifierContext`
+ *  @return YES if succussful
+ */
++ (BOOL)format:(NSMutableArray<MNModifier*>*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
+{
+    NSMutableArray<MNVibrato*>* vibratos = (NSMutableArray<MNVibrato*>*)modifiers;
     if(!vibratos || vibratos.count == 0)
     {
         return NO;

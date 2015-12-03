@@ -153,12 +153,13 @@
 //    self.graphicsContext = ctx;
 //}
 
-- (void)setPosition:(MNPositionType)position
+- (id)setPosition:(MNPositionType)position
 {
     if(position == MNPositionAbove || position == MNPositionBelow)
     {
         _position = position;
     }
+    return self;
 }
 
 - (void)setRenderOptions:(NSDictionary*)renderOptions

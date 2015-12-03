@@ -39,10 +39,9 @@
     [self runTest:@"Time Signature multiple staffs alignment test"
              func:@selector(multiStaff:withTitle:)
             frame:CGRectMake(10, 10, 600, 350)];
-
     [self runTest:@"Time Signature Change Test"
              func:@selector(timeSigNote:withTitle:)
-            frame:CGRectMake(10, 10, 900, 150)];
+            frame:CGRectMake(10, 10, 900, 350)];
 }
 
 - (void)tearDown
@@ -65,10 +64,10 @@
      }
      */
     NSUInteger w = size.width;
-    NSUInteger h = size.height;
+    //    NSUInteger h = size.height;
 
     w = w != 0 ? w : 350;
-    h = h != 0 ? h : 150;
+    //    h = h != 0 ? h : 150;
 
     // [MNFont setFont:@" 10pt Arial"];
 
@@ -95,13 +94,13 @@
 {
     expect(@"6");
 
-    // Invalid time signatures
-    [[self class] catchError:@"asdf"];
-    [[self class] catchError:@"123/"];
-    [[self class] catchError:@"/10"];
-    [[self class] catchError:@"/"];
-    [[self class] catchError:@"4567"];
-    [[self class] catchError:@"C+"];
+    //    // Invalid time signatures
+    //    [[self class] catchError:@"asdf"];
+    //    [[self class] catchError:@"123/"];
+    //    [[self class] catchError:@"/10"];
+    //    [[self class] catchError:@"/"];
+    //    [[self class] catchError:@"4567"];
+    //    [[self class] catchError:@"C+"];
 
     //    [MNTimeSignature parseTimeSpec:@"4/4"];
     //    [MNTimeSignature parseTimeSpec:@"10/12"];
@@ -179,7 +178,7 @@
 
       [staff addClefWithName:@"percussion"];
       // passing the custom padding as second parameter (in pixels)
-      [staff addTimeSignatureWithName:@"4/4" padding:25];
+      [staff addTimeSignatureWithName:@"4/4" padding:15];
       [staff draw:ctx];
 
       MNStaff* staff2 = [MNStaff staffWithRect:CGRectMake(45, 110, 300, 0)];
@@ -213,7 +212,7 @@
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
 
-    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 800, 0)];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 800, 0)];
 
     NSArray* notes = @[
         [[MNStaffNote alloc] initWithDictionary:@{
@@ -254,7 +253,7 @@
     [voice addTickables:notes];
 
     //    MNFormatter* formatter =
-    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatWith:@[ voice ] withJustifyWidth:800];
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatWith:@[ voice ] withJustifyWidth:500];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [[[staff addClefWithName:@"treble"] addTimeSignatureWithName:@"C|"] draw:ctx];

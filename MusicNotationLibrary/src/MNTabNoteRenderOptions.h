@@ -1,5 +1,5 @@
 //
-//  TabNoteRenderOptions.h
+//  MNTabNoteRenderOptions.h
 //  MusicNotation
 //
 //  Created by Scott Riccardelli on 11/25/15.
@@ -26,6 +26,9 @@
 
 #import "MNNoteRenderOptions.h"
 
+/*!
+ *  ``
+ */
 @interface MNTabNoteRenderOptions : MNNoteRenderOptions
 {
    @private

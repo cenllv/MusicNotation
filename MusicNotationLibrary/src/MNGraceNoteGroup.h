@@ -26,10 +26,9 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNModifier.h"
 
-@class MNVoice, MNFormatter, MNStaffTie, MNBeam;
+@class MNVoice, MNFormatter, MNStaffTie, MNBeam, MNGraceNote;
 
 /*! The `MNGraceNoteGroup` class implements `GraceNoteGroup` which is used to format and
       render grace notes.
@@ -74,7 +73,7 @@
 @interface MNGraceNoteGroup : MNModifier
 #pragma mark - Properties
 //@property (weak, nonatomic) MNStaff* staff;
-@property (strong, nonatomic) NSArray* graceNotes;
+@property (strong, nonatomic) NSArray<MNGraceNote*>* graceNotes;
 //@property (strong, nonatomic)  MNVoice* voice;
 @property (strong, nonatomic) MNFormatter* formatter;
 @property (assign, nonatomic) BOOL showSlur;
@@ -84,11 +83,9 @@
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithGraceNoteGroups:(NSArray*)groups;
-- (instancetype)initWithGraceNoteGroups:(NSArray*)groups state:(BOOL)state;
+- (instancetype)initWithGraceNoteGroups:(NSArray<MNGraceNote*>*)groups;
+- (instancetype)initWithGraceNoteGroups:(NSArray<MNGraceNote*>*)graceNotes showSlur:(BOOL)showSlur;
 
 - (id)beamNotes;
-
-//+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state;
 
 @end

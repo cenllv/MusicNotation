@@ -26,8 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
-
 #import "MNModifier.h"
 #import "MNEnum.h"
 
@@ -38,6 +36,10 @@
 
  */
 @interface MNStaffHairpin : MNModifier
+{
+   @private
+    MNPositionType _position;
+}
 
 #pragma mark - Properties
 @property (strong, nonatomic) NSArray* notes;
@@ -45,7 +47,7 @@
 @property (strong, nonatomic) MNStaffNote* first_note;
 @property (strong, nonatomic) MNStaffNote* last_note;
 @property (assign, nonatomic) MNStaffHairpinType hairpin;
-@property (assign, nonatomic) MNPositionType position;
+//@property (assign, nonatomic) MNPositionType position;
 
 // render options
 @property (assign, nonatomic) float height;
@@ -73,7 +75,7 @@
                       height:(float)height
                       yShift:(float)yShift;
 
-- (void)setPosition:(MNPositionType)position;
+//- (void)setPosition:(MNPositionType)position;
 
 - (void)setRenderOptions:(NSDictionary*)renderOptions;
 

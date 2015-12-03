@@ -29,7 +29,6 @@
 
 #import "MNStaffVolta.h"
 #import "MNStaff.h"
-#import "MNText.h"
 
 @implementation MNStaffVolta
 
@@ -65,6 +64,10 @@
     return propertiesEntriesMapping;
 }
 
+/*!
+ *  category of this modifier
+ *  @return class name
+ */
 + (NSString*)CATEGORY
 {
     return NSStringFromClass([self class]); //return @"voltas";

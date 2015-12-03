@@ -26,8 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
-
 #import "MNEnum.h"
 #import "MNDelegates.h"
 #import "MNModifier.h"
@@ -61,7 +59,7 @@
  https://en.wikipedia.org/wiki/Tuplet
 
  */
-@interface MNTuplet : MNModifier  
+@interface MNTuplet : MNModifier
 {
    @private
     BOOL _bracketed;
@@ -87,7 +85,7 @@
 @property (strong, nonatomic) NSMutableArray* notes;
 
 @property (assign, nonatomic) float points;
-@property (strong, nonatomic) MNPoint* position;
+@property (strong, nonatomic) MNPoint* position; //TODO: refactor maybe? redefinition from Modifier.position
 //@property (assign, nonatomic) float width;
 
 @property (strong, nonatomic) NSMutableArray* numeratorGlyphs;

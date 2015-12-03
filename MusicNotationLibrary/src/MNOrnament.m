@@ -236,9 +236,16 @@ static NSDictionary* _acc_mods;
     return self.state.right_shift;
 }
 
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
+/*!
+ *  Arrange ornaments within a `ModifierContext`
+ *  @param modifiers collection of `Modifier`
+ *  @param state     state of the `ModifierContext`
+ *  @param context   the calling `ModifierContext`
+ *  @return YES if succussful
+ */
++ (BOOL)format:(NSMutableArray<MNModifier*>*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
-    NSMutableArray* ornaments = modifiers;
+    NSMutableArray<MNOrnament*>* ornaments = (NSMutableArray<MNOrnament*>*)modifiers;
     if(!ornaments || ornaments.count == 0)
     {
         return NO;
@@ -298,16 +305,16 @@ static NSDictionary* _acc_mods;
 
     // Get stem extents
     MNExtentStruct* stem_ext = ((MNStaffNote*)note).stemExtents;
-    float top, bottom;
+    float top; // , bottom;
     if(stem_direction == MNStemDirectionDown)
     {
         top = stem_ext.baseY;
-        bottom = stem_ext.topY;
+        // bottom = stem_ext.topY;
     }
     else
     {
         top = stem_ext.topY;
-        bottom = stem_ext.baseY;
+        // bottom = stem_ext.baseY;
     }
 
     // TabNotes don't have stems attached to them. Tab stems are rendered
@@ -319,7 +326,7 @@ static NSDictionary* _acc_mods;
         {
             if(stem_direction == MNStemDirectionUp)
             {
-                bottom = [staff getYForBottomTextWithLine:self.text_line - 2];
+                // bottom = [staff getYForBottomTextWithLine:self.text_line - 2];
             }
             else if(stem_direction == MNStrokeDirectionDown)
             {
@@ -329,7 +336,7 @@ static NSDictionary* _acc_mods;
         else
         {   // Without a stem
             top = [staff getYForTopTextWithLine:(self.text_line - 1)];
-            bottom = [staff getYForBottomTextWithLine:(self.text_line - 2)];
+            // bottom = [staff getYForBottomTextWithLine:(self.text_line - 2)];
         }
     }
 

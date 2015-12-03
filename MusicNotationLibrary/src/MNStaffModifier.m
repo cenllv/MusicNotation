@@ -30,15 +30,6 @@
 #import "MNStaffModifier.h"
 #import "MNStaff.h"
 #import "MNGlyph.h"
-#import "MNMetrics.h"
-#import "MNGlyphList.h"
-#import "MNLog.h"
-#import "MNTableGlyphStruct.h"
-#import "MNPadding.h"
-#import "MNPoint.h"
-#import "MNBoundingBox.h"
-
-#import "MNClef.h"
 
 @implementation MNStaffModifier
 
@@ -210,7 +201,7 @@
     //                            withWidth:padding
     //                            andHeight:50];
     //  NOTE: the height is arbitrary, perhaps there's a better way
-    ret.drawBlock = ^(CGContextRef context, float x, float y) {
+    ret.drawBlock = ^(CGContextRef context, MNStaff* staff, float x, float y) {
     };
     return ret;
 }

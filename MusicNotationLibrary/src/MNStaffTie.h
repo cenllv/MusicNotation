@@ -56,19 +56,9 @@
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict andText:(NSString*)text;
 - (instancetype)initWithNoteTie:(MNNoteTie*)noteTie andText:(NSString*)text;
 - (instancetype)initWithNoteTie:(MNNoteTie*)noteTie;
-- (instancetype)initWithLastNote:(MNNote*)last_note
-                       firstNote:(MNNote*)first_note
-                    firstIndices:(NSArray*)first_indices
-                     lastIndices:(NSArray*)last_indices;
-- (void)setupStaffTie;
-- (void)setupNotes:(MNNoteTie*)notes;
-
-- (void)renderText:(CGContextRef)ctx first_x_px:(float)first_x_px last_x_px:(float)last_x_px;
-- (void)renderTieWithContext:(CGContextRef)ctx
-                     firstYs:(NSArray*)first_ys
-                      lastYs:(NSArray*)last_ys
-                     lastXpx:(float)last_x_px
-                    firstXpx:(float)first_x_px
-                   direction:(MNStemDirectionType)direction;
+- (instancetype)initWithLastNote:(MNNote*)lastNote
+                       firstNote:(MNNote*)firstNote
+                    firstIndices:(NSArray*)firstIndices
+                     lastIndices:(NSArray*)lastIndices;
 
 @end

@@ -65,7 +65,7 @@
 @interface MNKeySignature : MNStaffModifier
 {
    @private
-    NSString* _code;
+//    NSString* _code;
 }
 
 #pragma mark - Properties

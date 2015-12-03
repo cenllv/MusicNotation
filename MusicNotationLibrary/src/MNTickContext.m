@@ -32,13 +32,7 @@
 #import "MNTickable.h"
 #import "MNModifier.h"
 #import "MNRational.h"
-#import "MNModifierContext.h"
-#import "MNMetrics.h"
 #import "MNPadding.h"
-#import "MNExtraPoints.h"
-#import "OCTotallyLazy.h"
-#import "MNUtils.h"
-#import "MNPoint.h"
 
 @interface MNTickContext (private)
 @property (assign, nonatomic) BOOL preFormatted;
@@ -73,7 +67,7 @@
     _minTicks = nil;
     _width = 0;
     _padding = [MNPadding paddingWith:3];   // padding on each side (width += padding * 2)
-    _pixelsUsed = 0;
+    _pointsUsed = 0;
     _x = 0;
     _tickables = [NSMutableArray array];   // Notes, tabs, chords, lyrics.
     _notePx = 0;                           // width of widest note in self context
@@ -126,15 +120,15 @@
     return _shouldIgnoreTicks;
 }
 
-- (float)getWidth
-{
-    return _width + (self.padding.width * 2);
-}
+//- (float)getWidth
+//{
+//    return _width + (self.padding.width * 2);
+//}
 
 - (float)width
 {
-    //    return self.metrics.width;
-    return _width;
+//        return self.metrics.width;
+    return _width + (self.padding.width * 2);
 }
 
 - (void)setWidth:(float)width
@@ -153,14 +147,14 @@
     _x = x;
 }
 
-- (float)getPixelsUsed
+- (float)getPointsUsed
 {
-    return _pixelsUsed;
+    return _pointsUsed;
 }
 
-- (void)setPixelsUsed:(float)pixelsUsed
+- (void)setPointsUsed:(float)pixelsUsed
 {
-    _pixelsUsed = pixelsUsed;
+    _pointsUsed = pixelsUsed;
 }
 
 - (void)setPadding:(MNPadding*)padding

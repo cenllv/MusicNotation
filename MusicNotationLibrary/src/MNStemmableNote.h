@@ -38,7 +38,7 @@
 @interface MNStemmableNote : MNNote
 {
    @private
-    NSDictionary* _stemMinimumLengthsDictionary;
+    //NSDictionary* _stemMinimumLengthsDictionary;
 
    @protected
     __weak MNBeam* _beam;
@@ -50,7 +50,7 @@
 #pragma mark - Properties
 @property (assign, nonatomic) BOOL hasStem;
 @property (assign, nonatomic) BOOL drawStem;
-@property (weak, nonatomic) MNBeam* beam;
+//@property (weak, nonatomic) MNBeam* beam;
 @property (assign, nonatomic) float stem_extension_override;
 
 #pragma mark - Methods
@@ -138,8 +138,10 @@
 /*!
  *  Sets the current note's beam
  *  @param beam the beam for this note
+ *  @return this object
  */
-- (void)setBeam:(MNBeam*)beam;
+- (id)setBeam:(MNBeam*)beam;
+- (MNBeam*)beam;
 
 /*!
  *  Get the `y` value for the top modifiers at a specific `text_line`

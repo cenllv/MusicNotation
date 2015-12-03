@@ -29,29 +29,16 @@
 #import "MNNote.h"
 #import "MNUtils.h"
 #import "MNStaff.h"
-#import "MNModifier.h"
-#import "MNTickable.h"
-#import "MNModifierContext.h"
 #import "MNTickContext.h"
 #import "MNTable.h"
 #import "MNPlayNote.h"
-#import "MNClef.h"
-#import "MNTickable.h"
-#import "MNTable.h"
-#import "MNGlyph.h"
-#import "MNKeyProperty.h"
-#import "NSObject+MNAdditions.h"
-#import "MNStroke.h"
-#import "MNExtraPoints.h"
 #import "MNTablesNoteData.h"
 #import "MNRational.h"
 #import "MNPoint.h"
 #import "MNTableGlyphStruct.h"
 #import "MNBeam.h"
-#import "MNNoteHead.h"
 #import "MNTuplet.h"
 #import "MNConstants.h"
-#import "MNNoteRenderOptions.h"
 
 @implementation NoteMetrics
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict
@@ -108,7 +95,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"note";
+    return NSStringFromClass([self class]);   // return @"note";
 }
 - (NSString*)CATEGORY
 {
@@ -131,7 +118,7 @@
     self.width = 0;
     _x_shift = 0;   // Shift from tick context
     self.voice = nil;
-    self.tickContext = nil;
+//    self.tickContext = nil;
     self.modifierContext = nil;
     self.modifiers = [NSMutableArray array];
     self.preFormatted = NO;
@@ -187,7 +174,7 @@
     self.playNote = nil;
 
     // Positioning contexts used by the Formatter.
-    self.tickContext = nil;   // The current tick context.
+//    self.tickContext = nil;   // The current tick context.
     self.modifierContext = nil;
     //    _ignore_ticks = NO;
 
@@ -238,9 +225,13 @@
  *    a `ModifierContext`.
  *  @return the note category
  */
++ (NSString*)category
+{
+    return NSStringFromClass([self class]);
+}
 - (NSString*)category
 {
-    return MNNote.CATEGORY;
+    return NSStringFromClass([self class]);
 }
 
 /*!
@@ -606,16 +597,17 @@
     return _noteNHMRSString;
 }
 
-/*!
- *  sets the beam for this note
- *  @param beam beam to set
- *  @return this object
- *  @note ignores parameters
- */
-- (id)setBeam:(MNBeam*)beam
-{
-    return self;
-}
+///*!
+// *  sets the beam for this note
+// *  @param beam beam to set
+// *  @return this object
+// *  @note ignores parameters
+// */
+//- (id)setBeam:(MNBeam*)beam
+//{
+//    abort();
+//    return self;
+//}
 
 #pragma mark - Methods
 

@@ -28,10 +28,9 @@
 
 @interface MNStaffNoteRenderOptions : MNNoteRenderOptions
 
-@property (assign, nonatomic) float glyphFontScale;
 @property (assign, nonatomic) float stemHeight;
 @property (assign, nonatomic) float strokeSpacing;
-@property (assign, nonatomic) float strokePx;
+@property (assign, nonatomic) float strokePoints;
 //@property (assign, nonatomic) float annotation_spacing;
 
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;

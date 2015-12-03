@@ -26,6 +26,9 @@
 
 #import "IAModelBase.h"
 
+/*!
+ *  ``
+ */
 @interface MNChordBarStruct : IAModelBase
 
 @property (assign, nonatomic) NSUInteger fromString;

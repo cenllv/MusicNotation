@@ -91,10 +91,10 @@
      }
      */
     NSUInteger w = size.width;
-    NSUInteger h = size.height;
+//    NSUInteger h = size.height;
 
     w = w != 0 ? w : 350;
-    h = h != 0 ? h : 150;
+//    h = h != 0 ? h : 150;
 
     // [MNFont setFont:@" 10pt Arial"];
 
@@ -612,11 +612,11 @@
       for(NSUInteger i = 0; i < 4; i++)
       {
           NSUInteger position1 = 3;
-          NSUInteger position2 = 4;
+//          NSUInteger position2 = 4;
           if(i > 1)
           {
               position1 = 4;
-              position2 = 3;
+//              position2 = 3;
           }
           [notesBar4[i] addArticulation:[newArticulation(@"a-") setPosition:position1]];
       }
@@ -663,13 +663,13 @@
 
       NSArray* notes = [specs oct_map:^MNTabNote*(NSDictionary* tab_struct) {
         MNTabNote* tabNote = [[MNTabNote alloc] initWithDictionary:tab_struct];
-        [tabNote->_renderOptions setDraw_stem:YES];
+        [[tabNote renderOptions] setDraw_stem:YES];
         return tabNote;
       }];
 
       NSArray* notes2 = [specs oct_map:^MNTabNote*(NSDictionary* tab_struct) {
         MNTabNote* tabNote = [[MNTabNote alloc] initWithDictionary:tab_struct];
-        [tabNote->_renderOptions setDraw_stem:YES];
+        [[tabNote renderOptions] setDraw_stem:YES];
         [tabNote setStemDirection:-1];
         return tabNote;
       }];

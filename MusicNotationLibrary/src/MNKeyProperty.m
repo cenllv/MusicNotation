@@ -28,12 +28,9 @@
 
 #import "MNKeyProperty.h"
 #import "MNTable.h"
-#import "MNEnum.h"
 #import "MNAccidental.h"
 #import "MNUtils.h"
-#import "NSString+Ruby.h"
 #import "MNStaff.h"
-#import "MNClef.h"
 
 #pragma mark -  MNKeyProperties Implementation
 /*!---------------------------------------------------------------------------------------------------------------------

@@ -26,15 +26,14 @@
 //  THE SOFTWARE.
 //
 
-
-
 #import "MNNote.h"
 
-/*! The `MNCrescendo` implements the `Crescendo` object which draws crescendos and
-      decrescendo dynamics markings. A `Crescendo` is initialized with a
-      duration and formatted as part of a `Voice` like any other `MNNote`
-      type. This object would most likely be formatted in a Voice
-      with `TextNotes` - which are used to represent other dynamics markings.
+/*!
+ *  The `MNCrescendo` implements the `Crescendo` object which draws crescendos and
+ *  decrescendo dynamics markings. A `Crescendo` is initialized with a
+ *  duration and formatted as part of a `Voice` like any other `MNNote`
+ *  type. This object would most likely be formatted in a Voice
+ *  with `TextNotes` - which are used to represent other dynamics markings.
  */
 @interface MNCrescendo : MNNote
 

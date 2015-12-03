@@ -490,6 +490,12 @@ static NSDictionary* _typeClefTypeForString;
         case MNTime5_4:
             ret = @"5/4";
             break;
+        case MNTimeC:
+            ret = @"C";
+            break;
+        case MNTimeCBAR:
+            ret = @"C|";
+            break;
         default:
             MNLogError(@"Unrecognized Time Signature type");
             ret = @"0/0";

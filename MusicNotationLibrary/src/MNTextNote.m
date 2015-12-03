@@ -33,7 +33,6 @@
 #import "MNStaff.h"
 #import "MNText.h"
 #import "MNTextNoteStruct.h"
-#import "MNFont.h"
 
 @interface MNTextNote ()
 

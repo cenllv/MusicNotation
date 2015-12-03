@@ -29,19 +29,11 @@
 #import "MNGlyph.h"
 #import "MNGlyphList.h"
 #import "MNUtils.h"
-#import "MNStaffModifier.h"
-#import "MNGlyphList.h"
-#import "MNMetrics.h"
-#import "MNOptions.h"
-#import "MNSymbol.h"
 #import "MNPoint.h"
-#import "MNGlyphList.h"
 #import "MNBezierPath.h"
 #import "MNSize.h"
 #import "MNBoundingBox.h"
 #import "MNStaff.h"
-#import "MNTable.h"
-#import "NSString+Ruby.h"
 #import "MNCarrierLayer.h"
 #import "MNGlyphLayer.h"
 #import "NSBezierPath+MNAdditions.h"
@@ -71,11 +63,12 @@
  */
 - (NSDictionary*)dictionarySerialization
 {
-    return [NSMutableDictionary merge:[super dictionarySerialization]
-                                 with:[self dictionaryWithValuesForKeyPaths:@[
-                                     @"x_shift",
-                                     @"y_shift",
-                                 ]]];
+    //    return [NSMutableDictionary merge:[super dictionarySerialization]
+    //                                 with:[self dictionaryWithValuesForKeyPaths:@[
+    //                                     @"x_shift",
+    //                                     @"y_shift",
+    //                                 ]]];
+    return nil;
 }
 @end
 
@@ -241,7 +234,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"glyphs";
+    return NSStringFromClass([self class]);   // return @"glyphs";
 }
 - (NSString*)CATEGORY
 {
@@ -440,6 +433,7 @@ static BOOL _debugMode = NO;
         immutablePath = CGPathCreateCopy(mutablePath);
         CGPathRelease(mutablePath);
         crossLayer.path = immutablePath;
+        CGPathRelease(immutablePath);
         crossLayer.lineCap = kCALineCapRound;
         crossLayer.lineWidth = 1;
         crossLayer.strokeColor = MNColor.blackColor.CGColor;
@@ -790,7 +784,7 @@ static BOOL _debugMode = NO;
 
     if(self.drawBlock)
     {
-        self.drawBlock(ctx, x, y);
+        self.drawBlock(ctx, nil, x, y);
     }
     else
     {
@@ -830,7 +824,7 @@ static BOOL _debugMode = NO;
 
     if(self.drawBlock)
     {
-        self.drawBlock(ctx, x + self.x_shift, [staff getYForGlyphs] + self.y_shift);
+        self.drawBlock(ctx, staff, x + self.x_shift, [staff getYForGlyphs] + self.y_shift);
     }
     else
     {

@@ -31,26 +31,36 @@
 #import "MNUtils.h"
 #import "MNBoundingBox.h"
 #import "MNTimeSignature.h"
+#import "MNTimeSigStruct.h"
+#import "MNGlyph.h"
+#import "MNStaff.h"
 
 @interface MNTimeSigNote ()
 @property (strong, nonatomic) MNTimeSignature* timeSignature;
+@property (strong, nonatomic) MNTimeSigStruct* timeSig;
 @end
 
 @implementation MNTimeSigNote
 
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
-    self = [super initWithDictionary:optionsDict];
+    //    NSMutableDictionary* tmp_dict = [NSMutableDictionary dictionary];
+    //    [tmp_dict addEntriesFromDictionary:optionsDict];
+    //    tmp_dict[@"duration"] = @"8";
+    //    self = [super initWithDictionary:tmp_dict];
+    self = [super initWithDictionary:@{ @"duration" : @"b", @"ignore_ticks" : @(0) }];
     if(self)
     {
-        self->_ignoreTicks = YES;
+        //        self->_ignoreTicks =YES;
+        //        self.ignoreTicks = YES;
+        //        self.durationString = @"b";
     }
     return self;
 }
 
 - (instancetype)initWithTimeSpec:(NSString*)timeSpec andCustomPadding:(float)customPadding
 {
-    self = [self initWithDictionary:@{ @"duration" : @"b" }];
+    self = [self initWithDictionary:@{ @"duration" : @"8" }];
     if(self)
     {
         self.padding = customPadding;
@@ -69,6 +79,8 @@
         self.timeSignature = [[MNTimeSignature alloc] initWithTimeSpec:timeSpec andPadding:customPadding];
         //        self.timeSignature get
         //        self->_ignoreTicks = YES;
+        self.timeSig = self.timeSignature.timeSig;
+        [self setWidth:self.timeSig.glyph.width];
     }
     return self;
 }
@@ -78,6 +90,12 @@
     MNTimeSigNote* ret;
     ret = [[MNTimeSigNote alloc] initWithDictionary:nil];
     ret.timeSignature = [MNTimeSignature timeSignatureWithType:timeType];
+    ret.timeSig = ret.timeSignature.timeSig;
+    if(ret.timeSignature.glyph)
+    {
+        ret.timeSig.glyph = ret.timeSignature.glyph;
+    }
+    [ret setWidth:ret.timeSig.glyph.width];
     return ret;
 }
 
@@ -88,10 +106,10 @@
     return propertiesEntriesMapping;
 }
 
-- (void)setStaff:(MNStaff*)staff
-{
-    [super setStaff:staff];
-}
+//- (id)setStaff:(MNStaff*)staff
+//{
+//    return [super setStaff:staff];
+//}
 
 - (MNBoundingBox*)boundingBox
 {
@@ -101,7 +119,7 @@
 - (id)addToModifierContext:(MNModifierContext*)modifierContext
 {
     // overridden to ignore
-    return self;
+    return [super addToModifierContext:modifierContext];
 }
 
 - (BOOL)preFormat
@@ -113,11 +131,11 @@
 - (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
-    /*
-
-    if (!self.timeSig.glyph.getContext()) {
-        self.timeSig.glyph.setContext(self.context);
+    if(!self.staff)
+    {
+        MNLogError(@"NoStave, Can't draw without a stave.");
     }
+    /*
 
     self.timeSig.glyph.setStave(self.stave);
     self.timeSig.glyph.setYShift(
@@ -125,10 +143,11 @@
     self.timeSig.glyph.renderToStave(self.getAbsoluteX());
 
     */
-    if(!self.staff)
-    {
-        MNLogError(@"NoStave, Can't draw without a stave.");
-    }
+    //    self.timeSig.staff = self.staff;
+    //    float y_shift = [self.staff getYForLine:self.timeSig.line] - [self.staff getYForGlyphs];
+    //    [self.timeSig.glyph setY_shift:y_shift];
+    [self.timeSig.glyph renderWithContext:ctx toStaff:self.staff atX:self.absoluteX];
+    //    [self.timeSig.glyph renderWithContext:ctx atX:self.absoluteX atY:100];
 }
 
 @end

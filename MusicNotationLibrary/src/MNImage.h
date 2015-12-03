@@ -25,10 +25,7 @@
 //  THE SOFTWARE.
 //
 
-
-
 #if TARGET_OS_IPHONE
-
 
 /*! The `MNImage` class
  */
@@ -36,7 +33,6 @@
 //
 //@end
 #elif TARGET_OS_MAC
-
 
 /*! The `MNImage` class
 

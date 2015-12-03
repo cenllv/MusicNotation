@@ -57,10 +57,10 @@
      }
      */
     NSUInteger w = size.width;
-    NSUInteger h = size.height;
+//    NSUInteger h = size.height;
 
     w = w != 0 ? w : 350;
-    h = h != 0 ? h : 150;
+//    h = h != 0 ? h : 150;
 
     // [MNFont setFont:@" 10pt Arial"];
 
@@ -80,7 +80,7 @@
     [tickContext addTickable:note];
     [tickContext preFormat];
     [tickContext setX:x];
-    [tickContext setPixelsUsed:65];
+    [tickContext setPointsUsed:65];
 
     note.staff = staff;
     [note draw:ctx];
@@ -217,7 +217,7 @@
     [[tickContext addTickable:note1] addTickable:note2];
     [tickContext preFormat];
     [tickContext setX:x];
-    [tickContext setPixelsUsed:65];
+    [tickContext setPointsUsed:65];
 
     note1.staff = staff;
     [note1 draw:ctx];

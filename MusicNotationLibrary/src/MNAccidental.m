@@ -29,13 +29,9 @@
 
 #import "MNAccidental.h"
 #import "MNUtils.h"
-#import "MNNote.h"
 #import "MNStaffNote.h"
-#import "MNStaff.h"
 #import "MNTable.h"
-#import "NSMutableArray+MNAdditions.h"
 #import "MNKeyProperty.h"
-#import "OCTotallyLazy.h"
 #import "MNGlyph.h"
 #import "MNVoice.h"
 #import "MNMusic.h"
@@ -68,15 +64,27 @@
         //        self.type = type;
         self.position = MNPositionLeft;
 
-        self->_renderOptions = [[MNAccidentalRenderOptions alloc] initWithDictionary:@{
-            // Font size for glyphs
-            @"font_scale" : @38,
-            // Length of stroke across heads above or below the staff.
-            @"stroke_px" : @3
-        }];
+        
+        MNAccidentalRenderOptions* renderOptions = [[MNAccidentalRenderOptions alloc] initWithDictionary:@{}];
+        [renderOptions merge:self->_renderOptions];
+        self->_renderOptions = renderOptions;
+        
+        //        self->_renderOptions = [[MNAccidentalRenderOptions alloc] initWithDictionary:@{
+        //            // Font size for glyphs
+        //            @"font_scale" : @38,
+        //            // Length of stroke across heads above or below the staff.
+        //            @"stroke_px" : @3
+        //        }];
+        
+        // font size for note heads and rests
+        [renderOptions setFontScale:38.f/35.f];   // 35];
+        // number of stroke px to the left and right of head
+        [renderOptions setStrokePoints:3];
+        
 
-        self.accidental = MNTable.accidentalCodes[self.type];
-        if(!self.accidental)
+
+        self.accidentalDict = MNTable.accidentalCodes[self.type];
+        if(!self.accidentalDict)
         {
             MNLogError(@"ArgumentError, Unknown accidental type: %@", self.type);
         }
@@ -87,7 +95,7 @@
         self.paren_right = nil;
 
         // Initial width is set from table.
-        [self setWidth:[self.accidental[@"width"] floatValue]];
+        [self setWidth:[self.accidentalDict[@"width"] floatValue]];
 
         //        [self setValuesForKeyPathsWithDictionary:optionsDict];
     }
@@ -120,7 +128,7 @@
     if(self)
     {
         NSDictionary* codes = MNTable.accidentalCodes[self.type];
-        self.accidental = codes;
+        self.accidentalDict = codes;
         [self setValuesForKeyPathsWithDictionary:codes];
     }
     return self;
@@ -162,8 +170,9 @@
 /*!
  *  sets the note for this accidental
  *  @param note parent note of accidental
+ *  @return this object
  */
-- (void)setNote:(MNStaffNote*)note
+- (id)setNote:(MNStaffNote*)note
 {
     if(!note)
     {
@@ -171,11 +180,12 @@
     }
     _note = note;
     // Accidentals attached to grace notes are rendered smaller.
-    if([((MNNote*)self.note).category isEqualToString:[MNGraceNote CATEGORY]])
+    if([(MNNote*)self.note isKindOfClass:[MNGraceNote class]])
     {
-        ((MNAccidentalRenderOptions*)self->_renderOptions).fontScale = 25;
-        [self setWidth:[self.accidental[@"gracenote_width"] unsignedIntegerValue]];
+        ((MNAccidentalRenderOptions*)self->_renderOptions).fontScale = 25.f/38.f;
+        [self setWidth:[self.accidentalDict[@"gracenote_width"] floatValue]];
     }
+    return self;
 }
 
 /*!
@@ -189,7 +199,7 @@
 - (id)setAsCautionary:(BOOL)cautionary
 {
     _cautionary = cautionary;
-    ((MNAccidentalRenderOptions*)self->_renderOptions).fontScale = 28;
+    ((MNAccidentalRenderOptions*)self->_renderOptions).fontScale = 28.f/38.f;
     self.paren_left = (NSDictionary*)MNTable.accidentalCodes[@"{"];
     self.paren_right = (NSDictionary*)MNTable.accidentalCodes[@"}"];
 
@@ -197,7 +207,7 @@
 
     // Make sure `width` accomodates for parentheses.
     [self
-        setWidth:([self.paren_left[@"width"] unsignedIntegerValue] + [self.accidental[@"width"] unsignedIntegerValue] +
+        setWidth:([self.paren_left[@"width"] unsignedIntegerValue] + [self.accidentalDict[@"width"] unsignedIntegerValue] +
                   [self.paren_right[@"width"] integerValue] - width_adjust)];
 
     return self;
@@ -211,14 +221,14 @@
 
 /*!
  *  Arrange accidentals inside a ModifierContext.
- *  @param modifiers collection of accidentals
- *  @param state     state of the accidentals
- *  @param context   the modifier context container
+ *  @param modifiers collection of `Modifier`
+ *  @param state     state of the `ModifierContext`
+ *  @param context   the calling `ModifierContext`
  *  @return YES if succussful
  */
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
++ (BOOL)format:(NSMutableArray<MNModifier*>*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
-    NSMutableArray* accidentals = modifiers;
+    NSMutableArray<MNAccidental*>* accidentals = (NSMutableArray<MNAccidental*>*)modifiers;
     float left_shift = state.left_shift;
     float accidental_spacing = 2.f;
 
@@ -229,7 +239,7 @@
     }
 
     NSMutableArray* acc_list = [NSMutableArray array];   // array of AccListStruct
-    BOOL hasStaff = NO;
+    // BOOL hasStaff = NO;
     MNStaffNote* prev_note = nil;
     float shiftL = 0;
 
@@ -264,7 +274,7 @@
         }
         if(staff)
         {
-            hasStaff = YES;
+            // hasStaff = YES;
             float line_space = staff.spacingBetweenLines;
             NSUInteger y = [staff getYForLine:props.line];
             float acc_line = roundf(((float)y) / line_space * 2) / 2;
@@ -718,8 +728,8 @@
         [MNGlyph renderGlyph:ctx
                          atX:acc_x
                          atY:acc_y
-                   withScale:1   // renderOptions.fontScale
-                forGlyphCode:self.accidental[@"code"]];
+                   withScale:((MNAccidentalRenderOptions*)self->_renderOptions).fontScale
+                forGlyphCode:self.accidentalDict[@"code"]];
     }
     else
     {
@@ -728,15 +738,15 @@
         [MNGlyph renderGlyph:ctx
                          atX:acc_x
                          atY:acc_y
-                   withScale:1   // renderOptions.fontScale
+                   withScale:((MNAccidentalRenderOptions*)self->_renderOptions).fontScale
                 forGlyphCode:self.paren_left[@"code"]];
         acc_x += 2;
         [MNGlyph renderGlyph:ctx
                          atX:acc_x
                          atY:acc_y
-                   withScale:1   // renderOptions.fontScale
-                forGlyphCode:self.accidental[@"code"]];
-        acc_x += [self.accidental[@"width"] unsignedIntegerValue] - 2;
+                   withScale:((MNAccidentalRenderOptions*)self->_renderOptions).fontScale
+                forGlyphCode:self.accidentalDict[@"code"]];
+        acc_x += [self.accidentalDict[@"width"] unsignedIntegerValue] - 2;
         if([self.type isEqualToString:@"##"] || [self.type isEqualToString:@"bb"])
         {
             acc_x -= 2;
@@ -744,7 +754,7 @@
         [MNGlyph renderGlyph:ctx
                          atX:acc_x
                          atY:acc_y
-                   withScale:1   // renderOptions.fontScale
+                   withScale:((MNAccidentalRenderOptions*)self->_renderOptions).fontScale
                 forGlyphCode:self.paren_right[@"code"]];
     }
 }
@@ -755,16 +765,16 @@
     CGMutablePathRef path = [super pathConvertPoint:convertPoint];
 
     MNPoint* start = [self.note getModifierstartXYforPosition:self.position andIndex:self.index];
-    float acc_x = (start.x + self.xShift) - self.width;
+    //    float acc_x = (start.x + self.xShift) - self.width;
     float acc_y = start.y + self.yShift;
 
-    acc_x -= convertPoint.x;
+    //    acc_x -= convertPoint.x;
     acc_y -= convertPoint.y;
 
-    acc_x = -self.width;
+    float acc_x = -self.width;
 
     CGPathRef subPath =
-        [MNGlyph createPathwithCode:self.accidental[@"code"] withScale:1 atPoint:CGPointMake(acc_x, acc_y)];
+        [MNGlyph createPathwithCode:self.accidentalDict[@"code"] withScale:1 atPoint:CGPointMake(acc_x, acc_y)];
     //    CGAffineTransform t = CGAffineTransformMakeTranslation(-convertPoint.x, 0);
     //    subPath = CGPathCreateCopyByTransformingPath(subPath, &t);
 

@@ -27,8 +27,6 @@
 //
 
 #import "MNTabStaff.h"
-#import "MNUtils.h"
-#import "MNStaff.h"
 #import "MNGlyph.h"
 
 @implementation MNTabStaff
@@ -105,6 +103,7 @@
 
     switch(self.options.numLines)
     {
+        // TODO: update scale values
         case 8:
             glyphScale = 55;
             glyphOffset = 14;

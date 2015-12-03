@@ -41,6 +41,7 @@
 @implementation SenTestCase
 - (id)init
 {
+    self = [super init];
     [self initWithInvocation:nil];
     return self;
 }

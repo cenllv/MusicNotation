@@ -30,7 +30,6 @@
 #import "MNFont.h"
 #import "MNColor.h"
 #import "MNUtils.h"
-#import "MNPoint.h"
 #import "MNBoundingBox.h"
 
 @interface MNText ()
@@ -187,7 +186,7 @@ static BOOL _showBoundingBox = NO;
     NSAttributedString* title = nil;
     if([text isKindOfClass:[NSAttributedString class]])
     {
-        str = ((NSAttributedString*)text).string;
+        //        str = ((NSAttributedString*)text).string;
         title = text;
     }
     else if([text isKindOfClass:[NSString class]])

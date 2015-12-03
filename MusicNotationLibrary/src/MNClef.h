@@ -31,7 +31,8 @@
 
 @class MNClefAnnotation;
 
-/*! The `MNClef` class performs
+/*! 
+ *  The `MNClef` class performs
  */
 @interface MNClef : MNStaffModifier
 {

@@ -28,7 +28,8 @@
 
 #import "IAModelBase.h"
 
-/*! The `MNChordBox` class implements vertical chord notations for 6 string guitar
+/*! 
+ *  The `MNChordBox` class implements vertical chord notations for 6 string guitar
  */
 @interface MNChordBox : IAModelBase
 {

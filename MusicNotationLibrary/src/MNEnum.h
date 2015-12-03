@@ -174,6 +174,7 @@ typedef NS_ENUM(NSUInteger, MNTimeType)
     MNTime5_4 = 21,
     MNTime5_8 = 22,
     MNTime13_16 = 23,
+    MNTimeCBAR = 24,
 };
 
 /*! stroke direction

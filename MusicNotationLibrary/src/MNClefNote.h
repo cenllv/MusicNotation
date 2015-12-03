@@ -30,8 +30,8 @@
 
 @class MNClef, MNGlyph;
 
-/*! The `MNClefNote` class
-
+/*! 
+ *  The `MNClefNote` class
  */
 @interface MNClefNote : MNNote
 #pragma mark - Properties

@@ -28,11 +28,7 @@
 //
 
 #import "MNStaffText.h"
-#import "MNBoundingBox.h"
-#import "MNEnum.h"
 #import "MNStaff.h"
-#import "MNUtils.h"
-#import "MNFont.h"
 
 @implementation MNStaffText
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict
@@ -71,6 +67,10 @@
 
 #pragma mark - Properties
 
+/*!
+ *  category of this modifier
+ *  @return class name
+ */
 + (NSString*)CATEGORY
 {
     return NSStringFromClass([self class]); //return @"stafftext";
@@ -96,7 +96,7 @@
     NSUInteger text_width = title.size.width;
     NSUInteger textHeight = title.size.height / 2;
 
-    float x, y;
+    float x = 0, y = 0;
     switch(self.position)
     {
         case MNPositionLeft:

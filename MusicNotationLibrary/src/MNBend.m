@@ -27,13 +27,8 @@
 //
 
 #import "MNBend.h"
-#import "MNEnum.h"
-#import "MNColor.h"
 #import "MNStaffNote.h"
-#import "MNModifierContext.h"
-#import "NSMutableArray+MNAdditions.h"
 #import "MNText.h"
-#import "MNBezierPath.h"
 #import "MNBendRenderOptions.h"
 #import "MNBendStruct.h"
 
@@ -137,10 +132,16 @@
     return NSStringFromClass([self class]);
 }
 
-// Arrange bends in `ModifierContext`
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
+/*!
+ *  Arrange bends in `ModifierContext`
+ *  @param modifiers collection of `Modifier`
+ *  @param state     state of the `ModifierContext`
+ *  @param context   the calling `ModifierContext`
+ *  @return YES if succussful
+ */
++ (BOOL)format:(NSMutableArray<MNModifier*>*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
-    NSMutableArray* bends = modifiers;
+    NSMutableArray<MNBend*>* bends = (NSMutableArray<MNBend*>*)modifiers;
     if(!bends || bends.count == 0)
     {
         return NO;
@@ -272,7 +273,7 @@
 {
     [super draw:ctx];
 
-    MNStaffNote* note = (MNStaffNote*)self->_note;
+    MNNote* note = (MNNote*)self.note;
     MNPoint* start = [note getModifierstartXYforPosition:MNPositionRight andIndex:self.index];
 
     start.x += 3;

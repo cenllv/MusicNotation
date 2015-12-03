@@ -208,7 +208,9 @@
         if(render_options.lineDashLengths.count > 0)
         {
             CGFloat* lengths;
-            malloc(sizeof(CGFloat) * render_options.lineDashLengths.count);
+            NSUInteger cnt = render_options.lineDashLengths.count;
+            malloc(sizeof(CGFloat) * cnt);
+            memset (lengths, 0, sizeof (CGFloat) * cnt);
             [render_options.lineDashLengths foreach:^(NSNumber* element, NSUInteger index, BOOL* stop) {
               lengths[index] = (CGFloat)[element floatValue];
             }];

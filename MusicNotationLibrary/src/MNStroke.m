@@ -29,10 +29,8 @@
 
 #import "MNStroke.h"
 #import "MNUtils.h"
-#import "MNFont.h"
-#import "MNEnum.h"
 #import "MNStaffNote.h"
-#import "MNModifierContext.h"
+#import "MNTabNote.h"
 #import "MNGlyph.h"
 #import "MNKeyProperty.h"
 #import "MNPoint.h"
@@ -44,7 +42,7 @@
     self = [super initWithDictionary:optionsDict];
     if(self)
     {
-        [self setValuesForKeyPathsWithDictionary:optionsDict];
+//        [self setValuesForKeyPathsWithDictionary:optionsDict];
         [self setupStrokesithDictionary:optionsDict];
     }
     return self;
@@ -59,9 +57,9 @@
 
 + (MNStroke*)strokeWithType:(MNStrokeType)type allVoices:(BOOL)allVoices
 {
-    MNStroke* ret = [[MNStroke alloc] initWithDictionary:nil];
+    MNStroke* ret = [[MNStroke alloc] initWithDictionary:@{ @"allVoices" : @(allVoices) }];
     ret.type = type;
-    ret.allVoices = allVoices;
+//    ret.allVoices = allVoices;
     return ret;
 }
 
@@ -106,11 +104,11 @@
     //    self.options = Vex.Merge({}, options);
 
     // multi voice - span stroke across all voices if YES
-    self.allVoices = [optionsDict.allKeys containsObject:@"all_voices"] ? [optionsDict[@"all_voices"] boolValue] : YES;
+    self.allVoices = [optionsDict.allKeys containsObject:@"allVoices"] ? [optionsDict[@"allVoices"] boolValue] : YES;
 
     // multi voice - end note of stroke, set in draw()
     self.noteEnd = nil;
-    self.index = -999;   // nil;
+    self.index = NSUIntegerMax;   // nil;
                          //    self.type = type;
     self.position = MNPositionLeft;
 
@@ -128,7 +126,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"strokes";
+    return NSStringFromClass([self class]);   // return @"strokes";
 }
 - (NSString*)CATEGORY
 {
@@ -138,20 +136,20 @@
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
-    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"note_end" : @"noteEnd"}];
+    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{ @"note_end" : @"noteEnd" }];
     return propertiesEntriesMapping;
 }
 
 /*!
  *  Arrange strokes inside `ModifierContext`
- *  @param modifiers <#modifiers description#>
- *  @param state     <#state description#>
- *  @param context   <#context description#>
- *  @return <#return value description#>
+ *  @param modifiers collection of `Modifier`
+ *  @param state     state of the `ModifierContext`
+ *  @param context   the calling `ModifierContext`
+ *  @return YES if succussful
  */
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
++ (BOOL)format:(NSMutableArray<MNModifier*>*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
-    NSMutableArray* strokes = modifiers;
+    NSMutableArray<MNStroke*>* strokes = (NSMutableArray<MNStroke*>*)modifiers;
 
     float left_shift = state.left_shift;
     float stroke_spacing = 0;
@@ -174,7 +172,7 @@
         {
             props = note.keyProps[str.index];
             shift = (props.displaced ? note.extraLeftPx : 0);
-            [str_list push:@{@"line" : @(props.line), @"shift" : @(shift), @"str" : str}];
+            [str_list push:@{ @"line" : @(props.line), @"shift" : @(shift), @"str" : str }];
         }
         else
         {
@@ -217,17 +215,14 @@ addEndNote: function(note) { self.note_end = note; return this; },
 {
     [super draw:ctx];
 
-    if(!(self.note && (self.index != -999)))
+    if(!(self.note && (self.index != NSUIntegerMax)))
     {
         MNLogError("NoAttachedNote, Can't draw stroke without a note and index.");
     }
-    if(![self.note isKindOfClass:[MNStaffNote class]])
-    {
-        MNLogError(@"StrokeNoteError, not yet ready for tabnotes.");
-    }
-    MNStaffNote* note = note;
+
+    //    MNStaffNote* note = nil; //note;
     MNPoint* start = [self.note getModifierstartXYforPosition:self.position andIndex:self.index];
-    NSArray* ys = self.note.ys;
+    NSArray* ys = nil;   // self.note.ys;
     float topY = start.y;
     float botY = start.y;
     float x = start.x - 5.f;
@@ -308,7 +303,7 @@ addEndNote: function(note) { self.note_end = note; return this; },
             text_shift_x = self.xShift + arrow_shift_x - 1;
             if([self.note isKindOfClass:[MNStaffNote class]])
             {
-                arrow_y = line_space / 2;
+                //                arrow_y = line_space / 2;
                 topY += 0.5 * line_space;
                 if(fmodf((botY - topY), 2) == 0.f)
                 {
@@ -369,7 +364,7 @@ addEndNote: function(note) { self.note_end = note; return this; },
             forGlyphCode:arrow];
 
     // Draw the rasquedo "R"
-    if(self.type == MNStrokeRasquedoDown || self.type == MNStrokeRasquedoDown)
+    if(self.type == MNStrokeRasquedoDown || self.type == MNStrokeRasquedoUp)
     {
         // TODO:  update the font    self.context.setFont(self.font.family, self.font.size, self.font.weight);
         NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];

@@ -27,7 +27,7 @@
 - (NSArray*)concat:(id<Enumerable>)toJoin;
 - (id)mapWithIndex:(id (^)(id, NSInteger))funcBlock;
 - (Pair*)partition:(PREDICATE)toJoin;
-- (id)reduce:(id (^)(id, id))functorBlock;
+- (id)oct_reduce:(id (^)(id, id))functorBlock;
 - (NSArray*)reverse;
 - (Pair*)splitAt:(NSUInteger)splitIndex;
 - (Pair*)splitOn:(id)splitItem;

@@ -28,6 +28,7 @@
 
 #import "MNStaffTests.h"
 #import "MNUtils.h"
+#import "MNStaffTempoOptionsStruct.h"
 
 @implementation MNStaffTests
 
@@ -76,10 +77,10 @@ static float w = 700;
      }
      */
     NSUInteger w = size.width;
-    NSUInteger h = size.height;
+//    NSUInteger h = size.height;
 
     w = w != 0 ? w : 350;
-    h = h != 0 ? h : 150;
+//    h = h != 0 ? h : 150;
 
     // [MNFont setFont:@" 10pt Arial"];
 
@@ -434,7 +435,7 @@ static float w = 700;
             [staffBar addClefWithName:@"treble"];
         }
 
-        [staffBar setTempoWithTempo:[[TempoOptionsStruct alloc] initWithDictionary:tempoDict] atY:tempo_y];
+        [staffBar setTempoWithTempo:[[MNStaffTempoOptionsStruct alloc] initWithDictionary:tempoDict] atY:tempo_y];
         [staffBar draw:ctx];
 
         NSArray* notesBar = notes != nil ? notes : @[

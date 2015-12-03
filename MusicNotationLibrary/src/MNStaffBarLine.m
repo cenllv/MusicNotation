@@ -115,7 +115,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"barlines";
+    return NSStringFromClass([self class]);   // return @"barlines";
 }
 - (NSString*)CATEGORY
 {
@@ -263,9 +263,8 @@
     // calculate the y offset based on number of staff lines
     float yOffset = (self.staff.options.numLines - 1) * self.staff.options.pointsBetweenLines;
     yOffset = (yOffset / 2) - (self.staff.options.pointsBetweenLines / 2);
-
-    //    float dotY = topY - yOffset + (dotRadius / 2);
-    float dotY = [self.staff getYForLine:1.5];
+    float dotY = topY - yOffset + (dotRadius / 2);
+    //    float dotY = [self.staff getYForLine:1.5];
 
     // draw the top repeat dot
     CGContextSaveGState(ctx);

@@ -28,9 +28,14 @@
 
 #import "MNTabSlide.h"
 #import "MNLog.h"
-#import "MNMacros.h"
 #import "MNFont.h"
 #import "MNColor.h"
+
+@interface MNTabSlide ()
+
+//- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+
+@end
 
 @implementation MNTabSlide
 
@@ -88,7 +93,7 @@
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
-            [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"slide_direction" : @"slideDirection"}];
+    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{ @"slide_direction" : @"slideDirection" }];
     return propertiesEntriesMapping;
 }
 

@@ -41,6 +41,7 @@
 #import "MNTable.h"
 #import "MNTickContext.h"
 #import "MNConstants.h"
+#import "MNGraceNoteGroupListStruct.h"
 
 @implementation MNGraceNoteGroup
 /*
@@ -67,43 +68,41 @@ Vex.Flow.GraceNoteGroup = (function(){
         self.formatter = [MNFormatter formatter];
         self.voice = [MNVoice voiceWithNumBeats:4 beatValue:4 resolution:kRESOLUTION];
         [self.voice setStrict:NO];
-        [self.voice addTickables:self.graceNotes];
-        [self setValuesForKeyPathsWithDictionary:optionsDict];
+        //        [self.voice addTickables:self.graceNotes];
+        //        [self setValuesForKeyPathsWithDictionary:optionsDict];
     }
     return self;
 }
 
-- (instancetype)initWithGraceNoteGroups:(NSArray*)graceNotes showSlur:(BOOL)showSlur
+- (instancetype)initWithGraceNoteGroups:(NSArray<MNGraceNote*>*)graceNotes showSlur:(BOOL)showSlur
 {
     self = [self initWithDictionary:nil];
     if(self)
     {
         self.graceNotes = graceNotes;
         self.showSlur = showSlur;
+        [self.voice addTickables:self.graceNotes];
     }
     return self;
 }
 
-- (instancetype)initWithGraceNoteGroups:(NSArray*)graceNotes
+- (instancetype)initWithGraceNoteGroups:(NSArray<MNGraceNote*>*)graceNotes
 {
-    self = [self initWithDictionary:nil];
+    self = [self initWithGraceNoteGroups:graceNotes showSlur:NO];
     if(self)
     {
-        self.graceNotes = graceNotes;
     }
     return self;
 }
 
-- (instancetype)initWithGraceNoteGroups:(NSArray*)graceNotes state:(BOOL)state
-{
-    self = [self initWithDictionary:nil];
-    if(self)
-    {
-        [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
-        self.graceNotes = graceNotes;
-    }
-    return self;
-}
+//- (instancetype)initWithGraceNoteGroups:(NSArray<MNGraceNote*>*)graceNotes state:(BOOL)state
+//{
+//    self = [self initWithGraceNoteGroups:graceNotes showSlur:NO];
+//    if(self)
+//    {
+//    }
+//    return self;
+//}
 
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
@@ -118,19 +117,23 @@ Vex.Flow.GraceNoteGroup = (function(){
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"gracenotegroups";
+    return NSStringFromClass([self class]);   // return @"gracenotegroups";
 }
 - (NSString*)CATEGORY
 {
     return NSStringFromClass([self class]);
 }
 
-// ## Static Methods
-//
-// Format groups inside a ModifierContext. Arrange groups inside a `ModifierContext`
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
+/*!
+ *  Format groups inside a ModifierContext. Arrange groups inside a `ModifierContext`
+ *  @param modifiers collection of `Modifier`
+ *  @param state     state of the `ModifierContext`
+ *  @param context   the calling `ModifierContext`
+ *  @return YES if succussful
+ */
++ (BOOL)format:(NSMutableArray<MNModifier*>*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
-    NSMutableArray* gracenote_groups = modifiers;
+    NSMutableArray<MNGraceNoteGroup*>* gracenote_groups = (NSMutableArray<MNGraceNoteGroup*>*)modifiers;
 
     float gracenote_spacing = 4;
 
@@ -140,7 +143,7 @@ Vex.Flow.GraceNoteGroup = (function(){
     }
 
     NSMutableArray* group_list = [NSMutableArray array];
-    BOOL hasStaff = NO;
+    //    BOOL hasStaff = NO;
     MNNote* prev_note = nil;
     float shiftL = 0;
 
@@ -174,22 +177,21 @@ Vex.Flow.GraceNoteGroup = (function(){
         }
         if(staff != nil)
         {
-            hasStaff = YES;
-            [group_list push:[[MNGraceNoteGroup alloc]
-                                 initWithDictionary:@{@"shift" : @(shiftL), @"gracenote_group" : gracenote_group}]];
+            //            hasStaff = YES;
+
+            [group_list push:[[MNGraceNoteGroupListStruct alloc] initWithShift:shiftL graceNoteGroup:gracenote_group]];
         }
         else
         {
-            [group_list push:[[MNGraceNoteGroup alloc]
-                                 initWithDictionary:@{@"shift" : @(shiftL), @"gracenote_group" : gracenote_group}]];
+            [group_list push:[[MNGraceNoteGroupListStruct alloc] initWithShift:shiftL graceNoteGroup:gracenote_group]];
         }
     }
 
     // If first note left shift in case it is displaced
-    float group_shift = ((MNGraceNoteGroup*)group_list[0]).shift;
+    float group_shift = ((MNGraceNoteGroupListStruct*)group_list[0]).shift;
     for(i = 0; i < group_list.count; ++i)
     {
-        gracenote_group = group_list[i];   //[@"gracenote_group"];
+        gracenote_group = [group_list[i] graceNoteGroup];   //[@"gracenote_group"];
         [gracenote_group preFormat];
         group_shift = gracenote_group.width + gracenote_spacing;
     }
@@ -207,6 +209,7 @@ Vex.Flow.GraceNoteGroup = (function(){
     }
     [[self.formatter joinVoices:@[ self.voice ]] formatWith:@[ self.voice ] withJustifyWidth:0];
     self.width = [self.formatter getMinTotalWidth];
+    self.preFormatted = YES;
 
     return self.preFormatted;
 }
@@ -217,14 +220,18 @@ Vex.Flow.GraceNoteGroup = (function(){
     {
         MNBeam* beam = [MNBeam beamWithNotes:self.graceNotes];
 
-        beam.beamWidth = 3;
-        beam.partialBeamLength = 4;
+        beam.renderOptions.beam_width = 3;
+        beam.renderOptions.partial_beam_length = 4;
 
         self.beam = beam;
     }
     return self;
 }
 
+/*!
+ *  Render gracenote onto canvas.
+ *  ctx the core graphics opaque type drawing environment
+ */
 - (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
@@ -250,20 +257,21 @@ Vex.Flow.GraceNoteGroup = (function(){
      *  Shift over the tick contexts of each note
      *  So that they are aligned with the note
      *  @param NSArray     array of grace notes
-     *  @param  MNStaffNote the note to align with
+     *  @param MNStaffNote the note to align with
      *  @note this block seems a little unnecessary
      */
-    void (^alignGraceNotesWithNote)(NSArray*, MNStaffNote*) = ^void(NSArray* grace_notes, MNStaffNote* note) {
-      MNTickContext* tickContext = note.tickContext;
-      MNExtraPoints* extraPx = [tickContext getExtraPx];
-      float x = tickContext.x - extraPx.left - extraPx.extraLeft;
-      [grace_notes foreach:^(MNGraceNote* graceNote, NSUInteger index, BOOL* stop) {
-        MNTickContext* tick_context = graceNote.tickContext;
-        float x_offset = tick_context.x;
-        graceNote.staff = note.staff;
-        tick_context.x = x + x_offset;
-      }];
-    };
+    void (^alignGraceNotesWithNote)(NSArray<MNGraceNote*>*, MNStaffNote*) =
+        ^void(NSArray<MNGraceNote*>* grace_notes, MNStaffNote* note) {
+          MNTickContext* tickContext = note.tickContext;
+          MNExtraPoints* extraPx = [tickContext getExtraPx];
+          float x = tickContext.x - extraPx.left - extraPx.extraLeft;
+          [grace_notes foreach:^(MNGraceNote* graceNote, NSUInteger index, BOOL* stop) {
+            MNTickContext* tick_context = graceNote.tickContext;
+            float x_offset = tick_context.x;
+            graceNote.staff = note.staff;
+            tick_context.x = x + x_offset;
+          }];
+        };
 
     alignGraceNotesWithNote(self.graceNotes, note);
 

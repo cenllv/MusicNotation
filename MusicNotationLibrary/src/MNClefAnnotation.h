@@ -26,6 +26,9 @@
 
 #import "IAModelBase.h"
 
+/*!
+ *  ``
+ */
 @interface MNClefAnnotation : IAModelBase
 
 @property (strong, nonatomic) NSString* code;

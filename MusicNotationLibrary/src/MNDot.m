@@ -147,10 +147,16 @@
     return NSStringFromClass([self class]);
 }
 
-// Arrange dots inside a ModifierContext.
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
+/*!
+ *  Arrange dots inside a ModifierContext.
+ *  @param modifiers collection of `Modifier`
+ *  @param state     state of the `ModifierContext`
+ *  @param context   the calling `ModifierContext`
+ *  @return YES if succussful
+ */
++ (BOOL)format:(NSMutableArray<MNModifier*>*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
-    NSMutableArray* dots = modifiers;
+    NSMutableArray<MNDot*>* dots = (NSMutableArray<MNDot*>*)modifiers;
     float right_shift = state.right_shift;
     float dot_spacing = 1;
 

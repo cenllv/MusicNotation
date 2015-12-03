@@ -160,10 +160,10 @@
      }
      */
     NSUInteger w = size.width;
-    NSUInteger h = size.height;
+//    NSUInteger h = size.height;
 
     w = w != 0 ? w : 350;
-    h = h != 0 ? h : 150;
+//    h = h != 0 ? h : 150;
 
     // [MNFont setFont:@" 10pt Arial"];
 
@@ -692,7 +692,7 @@
     MNTestTuple* ret = [MNTestTuple testTuple];
     MNLogInfo(@"");
 
-    CGContextRef ctx = MNGraphicsContext();
+
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 30, 750, 0)];
 
@@ -839,7 +839,7 @@
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
     MNLogInfo(@"");
-    CGContextRef ctx = MNGraphicsContext();
+
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 30, 650, 0)];
     NSString* clefName = @"bass";
@@ -1282,7 +1282,7 @@
       MNTickContext* tickContext = [[MNTickContext alloc] init];
       [[tickContext addTickable:note] preFormat];
       tickContext.x = 25;
-      tickContext.pixelsUsed = 20;
+      tickContext.pointsUsed = 20;
       note.staff = staff;
       [note draw:ctx];
 
@@ -1311,7 +1311,7 @@
       MNTickContext* tickContext = [[MNTickContext alloc] init];
       [[tickContext addTickable:note] preFormat];
       tickContext.x = 25;
-      tickContext.pixelsUsed = 20;
+      tickContext.pointsUsed = 20;
       note.staff = staff;
       [note draw:ctx];
 
@@ -1333,7 +1333,7 @@
     MNTickContext* tickContext = [[MNTickContext alloc] init];
     [[tickContext addTickable:note] preFormat];
     tickContext.x = x;
-    tickContext.pixelsUsed = 65;
+    tickContext.pointsUsed = 65;
     note.staff = staff;
     [note draw:ctx];
     return note;
@@ -1344,7 +1344,7 @@
     MNTestTuple* ret = [MNTestTuple testTuple];
     MNLogInfo(@"");
 
-    CGContextRef ctx = MNGraphicsContext();
+
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 975, 0)];
 
     //        [staff draw:ctx];
@@ -1911,7 +1911,7 @@
     [voice1 setStrict:NO];
     [voice1 addTickables:notes1];
 
-    MNFormatter* formatter =
+//    MNFormatter* formatter =
         [[[MNFormatter formatter] joinVoices:@[ voice0, voice1 ]] formatToStaff:@[ voice0, voice1 ] staff:staff];
 
     //    [ret.voices addObjectsFromArray:@[ voice0, voice1 ]];

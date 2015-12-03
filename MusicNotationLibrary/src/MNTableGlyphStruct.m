@@ -42,6 +42,7 @@
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
     [propertiesEntriesMapping addEntriesFromDictionary:@{
+        @"beam_count" : @"beamCount",
         @"head_width" : @"headWidth",
         @"stem_offset" : @"stemOffset",
         @"code_flag_upstem" : @"codeFlagUpstem",

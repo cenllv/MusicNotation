@@ -1,5 +1,5 @@
 //
-//  TabNoteRenderOptions.m
+//  MNTabNoteRenderOptions.m
 //  MusicNotation
 //
 //  Created by Scott Riccardelli on 11/25/15.

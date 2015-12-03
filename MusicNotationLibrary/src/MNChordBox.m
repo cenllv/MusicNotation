@@ -334,6 +334,7 @@
     CGContextClosePath(ctx);
     //    CGContextStrokePath(ctx);
     CGContextFillPath(ctx);
+    CGPathRelease(path);
 
     return self;
 }

@@ -29,14 +29,10 @@
 
 #import <objc/runtime.h>
 #import "MNStaff.h"
-#import "MNColor.h"
-#import "MNFont.h"
 #import "MNBezierPath.h"
-#import "MNUtils.h"
 #import "MNMetrics.h"
 #import "MNOptions.h"
 #import "MNBoundingBox.h"
-#import "MNEnum.h"
 #import "MNGlyph.h"
 #import "MNModifier.h"
 #import "MNStaffModifier.h"
@@ -44,17 +40,9 @@
 #import "MNClef.h"
 #import "MNTimeSignature.h"
 #import "MNStaffBarLine.h"
-#import "OCTotallyLazy.h"
-#import "NSString+Ruby.h"
-#import "MNShift.h"
-#import "MNStaffModifier.h"
 #import "MNStaffSection.h"
-#import "MNPadding.h"
-#import "NSObject+MNAdditions.h"
-#import "NSMutableArray+MNAdditions.h"
 #import "MNPoint.h"
 #import "MNTable.h"
-#import "NSMutableArray+MNAdditions.h"
 #import "MNStaffText.h"
 #import "MNStaffTempo.h"
 #import "MNStaffVolta.h"
@@ -62,7 +50,7 @@
 #import "NSObject+AutoDescription.h"
 #import "MNConstants.h"
 
-@implementation StaffOptions
+@implementation MNStaffOptions
 {
     NSUInteger _numLines;
 }
@@ -85,9 +73,9 @@
     return self;
 }
 
-+ (StaffOptions*)staffOptions
++ (MNStaffOptions*)staffOptions
 {
-    return [[StaffOptions alloc] initWithDictionary:nil];
+    return [[MNStaffOptions alloc] initWithDictionary:nil];
 }
 
 - (NSMutableArray*)lineConfig
@@ -108,7 +96,8 @@
     _numLines = numLines;
     if(_numLines > self.lineConfig.count)
     {
-        for(NSUInteger i = 0; i < (_numLines - self.lineConfig.count); ++i)
+        NSUInteger cnt = _numLines - self.lineConfig.count;
+        for(NSUInteger i = 0; i < cnt; ++i)
         {
             [_lineConfig addObject:[NSMutableDictionary dictionaryWithDictionary:@{ @"visible" : @(YES) }]];
         }
@@ -120,7 +109,7 @@
 static MNStaff* _currentStaff;
 
 @interface MNStaff (private)
-@property (strong, nonatomic) StaffOptions* options;
+@property (strong, nonatomic) MNStaffOptions* options;
 @end
 
 @implementation MNStaff
@@ -391,11 +380,11 @@ static MNStaff* _currentStaff;
     return _timeSignature;
 }
 
-- (StaffOptions*)options
+- (MNStaffOptions*)options
 {
     if(!_options)
     {
-        _options = [StaffOptions staffOptions];
+        _options = [MNStaffOptions staffOptions];
     }
     return _options;
 }
@@ -643,7 +632,7 @@ static MNStaff* _currentStaff;
  *  @param y     y position relative to staff origin
  *  @return this object
  */
-- (id)setTempoWithTempo:(TempoOptionsStruct*)tempo atY:(float)y
+- (id)setTempoWithTempo:(MNStaffTempoOptionsStruct*)tempo atY:(float)y
 {
     [self.modifiers push:[[MNStaffTempo alloc] initWithTempo:tempo atX:self.x withShiftY:y]];
     return self;
@@ -950,7 +939,7 @@ static MNStaff* _currentStaff;
  */
 - (float)getBottomY
 {
-    StaffOptions* options = self.options;
+    MNStaffOptions* options = self.options;
     float spacing = options.pointsBetweenLines;
     float score_bottom = [self getYForLine:options.numLines] + (options.spaceBelowStaffLine * spacing);
     return score_bottom;
@@ -1022,7 +1011,7 @@ static MNStaff* _currentStaff;
  */
 - (float)getYForNoteWithLine:(float)line
 {
-    StaffOptions* options = _options;
+    MNStaffOptions* options = _options;
     float spacing = options.pointsBetweenLines;
     float headroom = options.spaceAboveStaffLine;
     float y = self.yPosition + ((headroom * spacing) + (5. * spacing) - (line * spacing));
@@ -1086,7 +1075,7 @@ static MNStaff* _currentStaff;
 {
     MNGlyph* ret = [[MNGlyph alloc] init];
     ret.metrics.width = padding;
-    ret.drawBlock = ^(CGContextRef context, float x, float y) { /* do nothing */ };
+    ret.drawBlock = ^(CGContextRef context, MNStaff* staff, float x, float y) { /* do nothing */ };
     return ret;
 }
 

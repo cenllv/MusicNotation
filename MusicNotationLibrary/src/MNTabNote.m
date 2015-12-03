@@ -59,6 +59,7 @@
         renderOptions.glyph_font_scale = 30;
         //        renderOptions.draw_stem = [tabStruct[@"draw_stem"] boolValue];
         renderOptions.draw_dots = [tabStruct[@"draw_stem"] boolValue];
+        renderOptions.draw_stem = [tabStruct[@"draw_stem"] boolValue];
         renderOptions.draw_stem_through_staff = NO;
 
         //        renderOptions.draw_stem
@@ -71,9 +72,9 @@
 
         [self buildStem];
 
-        if(!tabStruct[@"stem_direction"])
+        if(tabStruct[@"stem_direction"])
         {
-            [self setStemDirection:MNStemDirectionUp];
+            [self setStemDirection:[tabStruct[@"stem_direction"] integerValue]];
         }
         else
         {
@@ -89,6 +90,10 @@
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
+    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{
+        @"draw_stem" : @"drawStem",
+
+    }];
     return propertiesEntriesMapping;
 }
 
@@ -120,7 +125,7 @@
 + (NSString*)CATEGORY
 {
     //    return @"tabnotes";
-    return NSStringFromClass([self class]); //return NSStringFromClass([self class]);
+    return NSStringFromClass([self class]);
 }
 - (NSString*)CATEGORY
 {
@@ -249,7 +254,9 @@
             CGSize size = [MNText measureText:text withFont:self.font];
             glyph.width = size.width;
         }
-        self.width = (glyph.width > self.width) ? glyph.width : self.width;
+        // CHANGE:
+        //        self.width = (glyph.width > self.width) ? glyph.width : self.width;
+        self.width = glyph.width;
     }
 
     NSMutableArray* ys = [NSMutableArray array];
@@ -285,7 +292,7 @@
     {
         [self.modifierContext addModifier:self.modifiers[i]];
     }
-    //    [self.modifierContext addModifier:self];
+    [self.modifierContext addModifier:self];
     self.preFormatted = NO;
     return self;
 }
@@ -467,7 +474,7 @@
     [self.modifiers foreach:^(MNModifier* modifier, NSUInteger index, BOOL* stop) {
       // Only draw the dots if enabled
       //        if ([modifier.category isEqualToString:@"dots"]) {
-      if([modifier isKindOfClass:[MNDot class]] && self.renderOptions.draw_dots)
+      if([modifier isKindOfClass:[MNDot class]] && !self.renderOptions.draw_dots)
       {
           return;
       }

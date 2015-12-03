@@ -29,7 +29,7 @@
 #import "MNUtils.h"
 #import "IAModelBase.h"
 
-@class MNRational, MNStaff, MNTabStaff, MNBoundingBox, MNFormatterContext;
+@class MNRational, MNStaff, MNTabStaff, MNBoundingBox, MNFormatterContext, MNVoice;
 
 /*! The `MNFormatter` class implements the formatting and layout algorithms that are used
       to position notes in a voice. The algorithm can align multiple voices both
@@ -99,31 +99,31 @@
 
 + (void)alignRestsToNotes:(NSArray*)notes withNoteAlignment:(BOOL)alignAllNotes andTupletAlignment:(BOOL)alignTuplets;
 
-- (void)alignRests:(NSArray*)voices alignAllNotes:(BOOL)alignAllNotes;
+- (void)alignRests:(NSArray<MNVoice*>*)voices alignAllNotes:(BOOL)alignAllNotes;
 
-- (float)preCalculateMinTotalWidth:(NSArray*)voices;
+- (float)preCalculateMinTotalWidth:(NSArray<MNVoice*>*)voices;
 
 - (float)getMinTotalWidth;
 
-- (MNFormatterContext*)createModifierContexts:(NSArray*)voices;
-- (MNFormatterContext*)createTickContexts:(NSArray*)voices;
+- (MNFormatterContext*)createModifierContexts:(NSArray<MNVoice*>*)voices;
+- (MNFormatterContext*)createTickContexts:(NSArray<MNVoice*>*)voices;
 
-- (BOOL)preFormatWithContext:(CGContextRef)ctx voices:(NSArray*)voices staff:(MNStaff*)staff;
+- (BOOL)preFormatWithContext:(CGContextRef)ctx voices:(NSArray<MNVoice*>*)voices staff:(MNStaff*)staff;
 
 - (BOOL)preFormat;
 
-//- (BOOL)preFormatWith:(float)justifyWidth andContext:(CGContextRef)ctx voices:(NSArray*)voices staff:(MNStaff*)staff;
+//- (BOOL)preFormatWith:(float)justifyWidth andContext:(CGContextRef)ctx voices:(NSArray<MNVoice*>*)voices staff:(MNStaff*)staff;
 
 - (BOOL)postFormat;
 
-- (id)joinVoices:(NSArray*)voices;
+- (id)joinVoices:(NSArray<MNVoice*>*)voices;
 
-- (id)formatWith:(NSArray*)voices;
-- (id)formatWith:(NSArray*)voices withJustifyWidth:(float)justifyWidth;
-- (id)formatWith:(NSArray*)voices withJustifyWidth:(float)justifyWidth andOptions:(NSDictionary*)options;
+- (id)formatWith:(NSArray<MNVoice*>*)voices;
+- (id)formatWith:(NSArray<MNVoice*>*)voices withJustifyWidth:(float)justifyWidth;
+- (id)formatWith:(NSArray<MNVoice*>*)voices withJustifyWidth:(float)justifyWidth andOptions:(NSDictionary*)options;
 
-- (id)formatToStaff:(NSArray*)voices staff:(MNStaff*)staff;
-- (id)formatToStaff:(NSArray*)voices staff:(MNStaff*)staff options:(NSDictionary*)options;
+- (id)formatToStaff:(NSArray<MNVoice*>*)voices staff:(MNStaff*)staff;
+- (id)formatToStaff:(NSArray<MNVoice*>*)voices staff:(MNStaff*)staff options:(NSDictionary*)options;
 
 - (void)draw:(CGContextRef)ctx;
 

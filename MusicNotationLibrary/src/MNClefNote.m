@@ -115,7 +115,6 @@
 {
     return NSStringFromClass([self class]); //return @"clefnote";
 }
-
 - (NSString*)category
 {
     return NSStringFromClass([self class]); //return @"clefnote";

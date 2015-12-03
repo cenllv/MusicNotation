@@ -34,7 +34,7 @@
 #import "MNPoint.h"
 
 @class MNBoundingBox, MNColor, MNStaffNote, MNStaff;
-@class NoteHeadRenderOptions, MNTableGlyphStruct;
+@class MNNoteHeadRenderOptions, MNTableGlyphStruct;
 
 /*! The `MNNoteHead` implements `NoteHeads`. `NoteHeads` are typically not manipulated
   directly, but used internally in `MNStaffNote`.
@@ -108,14 +108,5 @@
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
 + (MNNoteHead*)noteHeadWithOptionsDict:(NSDictionary*)optionsDict;
-
-@end
-
-@interface NoteHeadRenderOptions : MNNoteRenderOptions
-
-@property (assign, nonatomic) float glyphFontScale;
-@property (assign, nonatomic) float strokePx;
-
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
 @end

@@ -28,6 +28,7 @@
 
 @interface MNNoteRenderOptions : MNRenderOptions
 
+@property (assign, nonatomic) float glyphFontScale;
 @property (assign, nonatomic) float annotation_spacing;
 @property (assign, nonatomic) float staff_padding;
 

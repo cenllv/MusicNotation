@@ -31,10 +31,8 @@
 #import "MNUtils.h"
 #import "MNColor.h"
 #import "MNText.h"
-#import "MNFont.h"
 #import "MNStaff.h"
 #import "MNStaffNote.h"
-#include "MNGlyph.h"
 
 @implementation MNTextBracket
 

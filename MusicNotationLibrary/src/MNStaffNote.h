@@ -213,8 +213,8 @@
 
 //+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state;
 
-- (float)getYForTopText:(float)textLine;
-- (float)getYForBottomText:(float)textLine;
+- (float)getYForTopTextWithLine:(float)textLine;
+- (float)getYForBottomTextWithLine:(float)textLine;
 - (MNPoint*)getModifierstartXYforPosition:(MNPositionType)position andIndex:(NSUInteger)index;
 
 - (void)setKeyLine:(NSUInteger)index withLine:(float)line;
@@ -238,6 +238,8 @@
 + (BOOL)postFormat:(NSMutableArray*)modifiers;
 
 - (NSArray*)getDots;
+
+- (void)buildNoteHeads;
 
 //- (void)drawStem:(CGContextRef)ctx withStem:(MNStem*)stemStruct;
 

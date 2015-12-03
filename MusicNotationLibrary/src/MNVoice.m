@@ -35,11 +35,7 @@
 #import "MNVoiceGroup.h"
 #import "MNBoundingBox.h"
 #import "MNTable.h"
-#import "MNEnum.h"
-#import "MNDelegates.h"
 #import "MNStaffNote.h"
-#import "NSString+Ruby.h"
-#import "OCTotallyLazy.h"
 #import "MNConstants.h"
 
 @interface MNVoice ()
@@ -162,7 +158,7 @@
     _resolutionMultiplier = 1;
 
     // Set defaults
-    _tickables = [NSMutableArray array];
+//    _tickables = [NSMutableArray array];
     _ticksUsed = RationalZero();
     self.smallestTickCount = [self.totalTicks clone];
     _largestTickWidth = 0;

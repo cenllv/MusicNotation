@@ -31,7 +31,8 @@
 
 @class MNStaff;
 
-/*! The `MNBarNote` class
+/*! 
+ *  The `MNBarNote` class
  */
 @interface MNBarNote : MNNote
 

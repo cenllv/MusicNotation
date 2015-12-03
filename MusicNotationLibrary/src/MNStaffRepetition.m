@@ -29,11 +29,7 @@
 
 #import "MNStaffRepetition.h"
 #import "MNStaff.h"
-#import "MNText.h"
 #import "MNGlyph.h"
-
-@interface MNStaffRepetition ()
-@end
 
 @implementation MNStaffRepetition
 
@@ -94,7 +90,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"repetitions";
+    return NSStringFromClass([self class]);   // return @"repetitions";
 }
 - (NSString*)CATEGORY
 {
@@ -158,11 +154,7 @@
     [MNGlyph renderGlyph:ctx atX:x atY:y withScale:1 forGlyphCode:@"v8c"];
 }
 
-- (void)drawSymbolText:(CGContextRef)ctx
-                 staff:(MNStaff*)staff
-                     x:(float)x
-              withText:(NSString*)text
-                isCoda:(BOOL)drawCoda
+- (void)drawSymbolText:(CGContextRef)ctx staff:(MNStaff*)staff x:(float)x withText:(NSString*)text isCoda:(BOOL)drawCoda
 {
     //    CTTextAlignment justification = kCTTextAlignmentLeft;
     NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -174,8 +166,8 @@
 
     CGContextSaveGState(ctx);
     // Default to right symbol
-    float text_x = 0 + self.xShift;
-    float symbol_x = x + self.xShift;
+    float text_x;     // = 0 + self.xShift;
+    float symbol_x;   // = x + self.xShift;
     if(self.symbol_type == MNRepCodaLeft)
     {
         // Offset Coda text to right of stave beginning

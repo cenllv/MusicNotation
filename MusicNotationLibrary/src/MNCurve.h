@@ -29,8 +29,8 @@
 #import "MNModifier.h"
 #import "MNEnum.h"
 
-/*! The `MNCurve` class implements curves (for slurs)
- 
+/*!
+ *  The `MNCurve` class implements curves (for slurs)
  */
 @interface MNCurve : MNModifier
 #pragma mark - Properties

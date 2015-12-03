@@ -26,7 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNEnum.h"
 #import "IAModelBase.h"
 

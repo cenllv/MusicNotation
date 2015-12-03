@@ -26,12 +26,12 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNStaffModifier.h"
 #import "MNEnum.h"
 #import "MNOptions.h"
 #import "MNTimeSignatureOptions.h"
 
+@class MNTimeSigStruct;
 
 /*! The `MNTimeSignature` class performs
     Implements time signatures glyphs for staffs
@@ -47,30 +47,25 @@
     float _topLine;
     float _bottomLine;
     NSMutableArray* _topGlyphs;
-    NSMutableArray* _bottomGlyphs;
+    //    NSMutableArray* _bottomGlyphs;
     BOOL _num;
     NSArray* _topCodes;
     NSArray* _bottomCodes;
     NSArray* _topNumbers;
     NSArray* _bottomNumbers;
+
+    MNTimeSigStruct* _timeSig;
 }
 
 #pragma mark - Properties
 @property (strong, nonatomic) NSString* timeSpec;
 @property (assign, nonatomic) MNTimeType timeType;
 @property (strong, nonatomic) MNTimeSignatureOptions* options;
-//@property (assign, nonatomic) float topLine;
-//@property (assign, nonatomic) float bottomLine;
-//@property (strong, nonatomic) NSMutableArray* topGlyphs;
-//@property (strong, nonatomic) NSMutableArray* bottomGlyphs;
-//@property (assign, nonatomic) NSUInteger num;
-//@property (strong, nonatomic) NSArray* topCodes;
-//@property (strong, nonatomic) NSArray* bottomCodes;
-//@property (strong, nonatomic) NSMutableArray* topNumbers;
-//@property (strong, nonatomic) NSMutableArray* bottomNumbers;
+@property (strong, nonatomic, readonly) MNTimeSigStruct* timeSig;
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+
 - (instancetype)initWithTimeSpec:(NSString*)timeSpec andPadding:(float)padding;
 + (MNTimeSignature*)timeSignatureWithType:(MNTimeType)type;
 

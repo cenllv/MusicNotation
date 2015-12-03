@@ -29,10 +29,7 @@
 #import "MNStem.h"
 #import "MNBoundingBox.h"
 #import "MNUtils.h"
-#import "MNBezierPath.h"
-#import "MNRenderOptions.h"
 #import "MNExtentStruct.h"
-#import "MNTable.h"
 #import "MNPoint.h"
 #import "MNStaff.h"
 #import "MNConstants.h"
@@ -205,7 +202,7 @@ applyStyle: function(context) {
         return;
     }
 
-    float stem_x, stem_y;
+    float stem_x = 0, stem_y = 0;
 
     if(self.stemDirection == MNStemDirectionDown)
     {
@@ -259,7 +256,7 @@ applyStyle: function(context) {
         return path;
     }
 
-    float stem_x, stem_y;
+    float stem_x = 0, stem_y = 0;
 
     if(self.stemDirection == MNStemDirectionDown)
     {

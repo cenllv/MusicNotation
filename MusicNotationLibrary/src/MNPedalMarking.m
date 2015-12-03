@@ -29,12 +29,7 @@
 #import "MNPedalMarking.h"
 #import "MNUtils.h"
 #import "MNStaffNote.h"
-#import "MNColor.h"
-#import "OCTotallyLazy.h"
-#import "MNStaff.h"
 #import "MNText.h"
-#import "MNFont.h"
-#import "MNTableTypes.h"
 #import "MNGlyph.h"
 
 @implementation MNPedalMarking

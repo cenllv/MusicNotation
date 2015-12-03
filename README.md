@@ -67,8 +67,8 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 
 | Status    | Count   |
 |-----------|---------|
-| pass      | 19      |
-| almost    | 24      |
+| pass      | 24      |
+| almost    | 19      |
 | fail      | 5       |
 | unknown   | 3       |
 
@@ -89,15 +89,15 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | Dot                   | almost    | multiple dots clobber | basic and multi-voice |
 | Font                  | pass      |  |   |
 | Formatter             | fail      | notes clobbered | staff notes, tab notes, multi-staffs |
-| GraceNote             | fail      | notes clobbered on left, auto beams failing | grace note basic, with slurs, multi-voices |
+| GraceNote             | pass      |  | grace note basic, with slurs, multi-voices |
 | KeyClef               | pass      |  | major/minor clef |
 | KeyManager            | unknown   | not rendering | valid/select notes |
 | KeySignature          | fail      | cancelled key test incorrect, staff helper missing | key parser, major/minor, cancelled key |
-| Layer Note            | almost    |  | click/push calayer note for pop animation & aae audio |
+| Layer Note            | pass      |  | click/push calayer note for pop animation & aae audio |
 | Modifier              | pass      | not rendering | modifier width, management |
 | Music                 | unknown   |  | valid notes, keys, notes, intervals, canonical notes, scales |
 | NoteHead              | pass      |  | basic head & bounding box render |
-| NotationsGrid         | pass      |  | grid of most basic notations |
+| NotationsGrid         | almost    | teardown not removing all labels  | grid of most basic notations |
 | Ornament              | pass      |  | vertically shifted, delayed turns, stacked, w/ accidentals |
 | PedalMarking          | almost    |  | pedal for simple, release, depress, text, etc |
 | Percussion            | fail      | does not render any notes | percussion clef, notes, basic, snare |
@@ -111,9 +111,9 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | StaffNote             | almost    | slash notes clobber, tab notes incomplete, modifiers clobber | tick, stem, auto, staffline, width, boundingbox, etc |
 | StaffTie              | pass      |  | simple, chord, stem up, no end, no start |
 | StringNumber          | almost    | not rendering string numbers, needs test callback optimizing | string number in notation, fred hand finger, etc |
-| Strokes               | almost    | incorrect strokes rendering | brush/arpeggiate/etc, multi, notation/tab, etc |
+| Strokes               | pass      | had to hack tabnote setStaff method | brush/arpeggiate/etc, multi, notation/tab, etc |
 | Table                 | unknown   | n/a | clef, key, etc number constants and ratios, etc |
-| TabNote               | almost    | TabNote Stems with Dots error | tick, tabstaff, tickcontext, tabnote, etc |
+| TabNote               | pass      |  | tick, tabstaff, tickcontext, tabnote, etc |
 | TabSlide              | pass      |  | tabslide simple, up, down  |
 | TabStaff              | pass      |  | tabstaff draw, bar |
 | TabTie                | pass      |  | tabtie, simple, hammerons, pulloffs, tapping, continuous |
@@ -122,7 +122,7 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | Text                  | pass      |  | drawing basic attributed string text, ns/ui labels |
 | ThreeVoice            | almost    | auto adjust missing some rests and not repositioning correctly  | three voiecs, auto adjust rest, etc |
 | TickContext           | pass      | no output | current and tracking tick |
-| TimeSignature         | almost    | last test clobbers notations | parser basic, big time sigs |
+| TimeSignature         | pass      | passes but needs refactoring | parser basic, big time sigs |
 | Tuning                | almost    |  | tuning standard, return note for fret |
 | Tuplet                | almost    | voices out of sync, tuplet ratios render errors, one tuplet ratio incorrect | simple, beamed, ratioed, bottom, etc |
 | Vibrato               | almost    | vibrato clobbering bend | simple vibrato, harsh, with bend |

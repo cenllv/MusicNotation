@@ -235,7 +235,7 @@
     MNTickContext* tickContext = [[MNTickContext alloc] init];
     [[tickContext addTickable:ret] preFormat];
     tickContext.x = x;
-    tickContext.pixelsUsed = 20;
+    tickContext.pointsUsed = 20;
     ret.staff = staff;
     [ret draw:ctx];
     if(drawBoundingBox)

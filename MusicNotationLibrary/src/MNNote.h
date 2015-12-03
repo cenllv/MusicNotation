@@ -409,13 +409,13 @@ typedef void (^StyleBlock)(CGContextRef);
  */
 - (NSString*)noteTypeString;
 
-/*!
- *  sets the beam for this note
- *  @param beam beam to set
- *  @return this object
- *  @note ignores parameters
- */
-- (id)setBeam:(MNBeam*)beam;
+///*!
+// *  sets the beam for this note
+// *  @param beam beam to set
+// *  @return this object
+// *  @note ignores parameters
+// */
+//- (id)setBeam:(MNBeam*)beam;
 
 ///*!
 // *  Attach self note to a modifier context.

@@ -26,16 +26,8 @@
 //  THE SOFTWARE.
 //
 
-#import "MNColor.h"
-#import "MNBezierPath.h"
 #import "MNBeam.h"
-#import "MNUtils.h"
-#import "MNEnum.h"
-#import "MNMetrics.h"
-#import "MNStemmableNote.h"
-#import "MNStaffNote.h"
 #import "MNTabNote.h"
-#import "MNNote.h"
 #import "MNStem.h"
 #import "MNRational.h"
 #import "MNTable.h"
@@ -44,42 +36,13 @@
 #import "MNGlyph.h"
 #import "MNVoice.h"
 #import "MNTickable.h"
-#import "OCTotallyLazy.h"
 #import "MNExtentStruct.h"
 #import "NSString+Ruby.h"
-#import "NSMutableArray+MNAdditions.h"
 #import "MNTuplet.h"
 #import "MNBeamConfig.h"
 #import "MNConstants.h"
-
-@interface MNBeamRenderOptions : MNOptions
-@property (assign, nonatomic) float beam_width;
-@property (assign, nonatomic) float max_slope;
-@property (assign, nonatomic) float min_slope;
-@property (assign, nonatomic) float slope_iterations;
-@property (assign, nonatomic) float slope_cost;
-@property (assign, nonatomic) BOOL show_stemlets;
-@property (assign, nonatomic) float stemlet_extension;
-@property (assign, nonatomic) float partial_beam_length;
-@end
-@implementation MNBeamRenderOptions
-- (instancetype)init
-{
-    self = [super init];
-    if(self)
-    {
-        _beam_width = 0;
-        _max_slope = 0;
-        _min_slope = 0;
-        _slope_iterations = 0;
-        _slope_cost = 0;
-        _show_stemlets = NO;
-        _stemlet_extension = 0;
-        _partial_beam_length = 0;
-    }
-    return self;
-}
-@end
+#import "MNMacros.h"
+#import "MNStaffNote.h"
 
 @interface MNBeamLine : IAModelBase
 // TODO: is this data type a float or nsuiniteger
@@ -120,15 +83,14 @@
 
 @interface MNBeam ()
 {
-    BOOL _preFormatted;
-    BOOL _postFormatted;
+    //    BOOL _preFormatted;
+    //    BOOL _postFormatted;
 
+    // re-declare ivar from superclass MNSymbol
     MNBeamRenderOptions* _renderOptions;
-    //    float _slope;
 }
 @property (assign, nonatomic) float slope;
-@property (strong, nonatomic) MNBeamRenderOptions* renderOptions;
-@property (strong, nonatomic) NSArray* break_on_indices;   // nsarray<nsnumber> //indices where there are no beams
+@property (strong, nonatomic) NSArray<NSNumber*>* break_on_indices;
 @end
 
 @implementation MNBeam
@@ -212,7 +174,7 @@
     else if(_autoStem && [((MNStemmableNote*)_notes[0]).category isEqualToString:[MNTabNote CATEGORY]])
     {
         // Auto Stem TabNotes
-        float stem_weight = [[_notes reduce:^NSNumber*(NSNumber* memo, MNStemmableNote* note) {
+        float stem_weight = [[_notes oct_reduce:^NSNumber*(NSNumber* memo, MNStemmableNote* note) {
           return [NSNumber numberWithFloat:([memo floatValue] + note.stemDirection)];
         }] floatValue];
         stem_direction = stem_weight > -1 ? MNStemDirectionUp : MNStemDirectionDown;
@@ -232,15 +194,16 @@
     //    _notes = notes; //already set in init
     _beamCount = [self getBeamCount];
     _break_on_indices = [NSMutableArray array];
-    _renderOptions = [[MNBeamRenderOptions alloc] init];
-    _renderOptions.beam_width = 5.0;   // 0.5;
-    _renderOptions.max_slope = 0.25;
-    _renderOptions.min_slope = -0.25;
-    _renderOptions.slope_iterations = 20;
-    _renderOptions.slope_cost = 100;
-    _renderOptions.show_stemlets = NO;
-    _renderOptions.stemlet_extension = 7;
-    _renderOptions.partial_beam_length = 10;
+    MNBeamRenderOptions* renderOptions = [[MNBeamRenderOptions alloc] initWithDictionary:@{}];
+    renderOptions.beam_width = 5.0;   // 0.5;
+    renderOptions.max_slope = 0.25;
+    renderOptions.min_slope = -0.25;
+    renderOptions.slope_iterations = 20;
+    renderOptions.slope_cost = 100;
+    renderOptions.show_stemlets = NO;
+    renderOptions.stemlet_extension = 7;
+    renderOptions.partial_beam_length = 10;
+    self.renderOptions = renderOptions;
 
     _slope = 0;
 }
@@ -258,46 +221,24 @@
 
 #pragma mark - Properties
 
-/*
-       // The the rendering `context`
-   setContext: function(context) { self.context = context; return this; },
-
-       // Get the notes in this beam
-   getNotes: function() { return self.notes; },
-      */
-
-- (MNBeamRenderOptions*)renderOptions
-{
-    if(!_renderOptions)
-    {
-        _renderOptions = [[MNBeamRenderOptions alloc] init];
-    }
-    return _renderOptions;
-}
-
-//
 /*!
  *  Get the max number of beams in the set of notes
- *
  *  @return a count of possible beams
  */
 - (NSUInteger)getBeamCount
 {
-    NSArray* beamCounts = [self.notes oct_map:^NSNumber*(MNStemmableNote* note) {
-      return [NSNumber numberWithUnsignedInteger:note.glyph.beamCount];
+    NSArray<NSNumber*>* beamCounts = [self.notes oct_map:^NSNumber*(MNNote* note) {
+      return [NSNumber numberWithUnsignedInteger:note.glyphStruct.beamCount];
     }];
-    NSNumber* maxBeamCount = [beamCounts reduce:^NSNumber*(NSNumber* max, NSNumber* beamCount) {
-      return beamCount > max ? beamCount : max;
-    }];
-    return [maxBeamCount unsignedIntegerValue];
+    NSUInteger maxBeamCount = [[beamCounts oct_reduce:^NSNumber*(NSNumber* max, NSNumber* beamCount) {
+      return [beamCount unsignedIntegerValue] > [max unsignedIntegerValue] ? beamCount : max;
+    }] unsignedIntegerValue];
+    return maxBeamCount;
 }
 
-//
 /*!
  *  Set which note `indices` to break the secondary beam at
- *
  *  @param indices which beams brean on
- *
  *  @return this object
  */
 - (id)breakSecondaryAt:(NSArray*)indices
@@ -306,15 +247,12 @@
     return self;
 }
 
-//
 /*!
  *  Return the y coordinate for linear function
- *
  *  @param x          variable x coordinate
  *  @param first_x_px first x coordinade
  *  @param first_y_px first y coordinade
  *  @param slope      rise over run, slope m
- *
  *  @return the y coordinate for the given x and other variables
  */
 - (float)getSlopeYForX:(float)x first_x_px:(float)first_x_px first_y_px:(float)first_y_px slope:(float)slope
@@ -495,7 +433,7 @@
  *  @param duration <#duration description#>
  *  @return an array of BeamLine objects
  */
-- (NSArray*)getBeamLines:(NSString*)duration
+- (NSArray<MNBeamLine*>*)getBeamLines:(NSString*)duration
 {
     NSMutableArray* beam_lines = [NSMutableArray array];
     BOOL beam_started = NO;
@@ -521,7 +459,6 @@
 
     for(NSUInteger i = 0; i < self.notes.count; ++i)
     {
-        // TODO: should these be  MNStaffNote instead?
         MNStemmableNote* note = self.notes[i];
         MNStemmableNote* prev_note = i == 0 ? nil : self.notes[i - 1];
         MNStemmableNote* next_note = i == self.notes.count - 1 ? nil : self.notes[i + 1];
@@ -596,10 +533,6 @@
 }
 
 #pragma mark - Rendering Methods
-/*!---------------------------------------------------------------------------------------------------------------------
- * @name Rendering Methods
- * ---------------------------------------------------------------------------------------------------------------------
- */
 
 /*!
  *  Render the stems for each notes
@@ -624,10 +557,10 @@
  */
 - (void)drawBeamLines:(CGContextRef)ctx
 {
-    NSArray* valid_beam_durations = @[ @"4", @"8", @"16", @"32", @"64" ];
+    NSArray<NSString*>* valid_beam_durations = @[ @"4", @"8", @"16", @"32", @"64" ];
 
-    NSString* first_note = self.notes[0];
-    NSString* last_note = self.notes.lastObject;   //[self.notes.count - 1];
+    MNStemmableNote* first_note = self.notes[0];
+    MNStemmableNote* last_note = self.notes.lastObject;   //[self.notes.count - 1];
 
     float first_y_px = ([((MNStaffNote*)first_note)stemExtents]).topY;
     float last_y_px = ([((MNStaffNote*)last_note)stemExtents]).topY;
@@ -640,7 +573,7 @@
     for(NSUInteger i = 0; i < valid_beam_durations.count; ++i)
     {
         NSString* duration = valid_beam_durations[i];
-        NSArray* beam_lines = [self getBeamLines:duration];
+        NSArray<MNBeamLine*>* beam_lines = [self getBeamLines:duration];
 
         for(uint j = 0; j < beam_lines.count; ++j)
         {
@@ -707,7 +640,6 @@
     return YES;
 }
 
-//
 /*!
  *  Render the beam to the canvas context
  *
@@ -757,11 +689,15 @@
     }
 }
 
-// ## Static Methods
-//
-// Gets the default beam groups for a provided time signature.
-// Attempts to guess if the time signature is not found in table.
-// Currently this is fairly naive.
+#pragma mark - Static Methods
+
+/*!
+ *  Gets the default beam groups for a provided time signature.
+ *  Attempts to guess if the time signature is not found in table.
+ *  Currently this is fairly naive.
+ *  @param timeType <#timeType description#>
+ *  @return <#return value description#>
+ */
 + (NSArray*)getDefaultBeamGroupsForTimeSignatureType:(MNTimeType)timeType
 {
     NSString* ret = [MNEnum simplNameForTimeType:timeType];

@@ -27,9 +27,12 @@
 
 #import "MNRenderOptions.h"
 
+/*!
+ *  `MNAccidentalRenderOptions`
+ */
 @interface MNAccidentalRenderOptions : MNRenderOptions
 
-@property (assign, nonatomic) NSUInteger fontScale;
+@property (assign, nonatomic) float fontScale;
 @property (assign, nonatomic) float strokePoints;
 @property (assign, nonatomic) float strokeSpacing;
 

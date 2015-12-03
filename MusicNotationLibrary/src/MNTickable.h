@@ -26,7 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNDelegates.h"
 #import "MNSymbol.h"
 #import "IAModelBase.h"

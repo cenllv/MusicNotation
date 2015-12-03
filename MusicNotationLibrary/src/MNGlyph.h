@@ -40,7 +40,7 @@
 - (NSDictionary*)dictionarySerialization;
 @end
 
-typedef void (^DrawCustom)(CGContextRef context, float x, float y);
+typedef void (^DrawCustom)(CGContextRef context, MNStaff* staff, float x, float y);
 
 /*! The `MNGlyph` class is a static glyph renderer.
 

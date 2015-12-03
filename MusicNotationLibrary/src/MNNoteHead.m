@@ -33,30 +33,9 @@
 #import "MNStaff.h"
 #import "MNStaffNote.h"
 #import "MNGlyph.h"
-#import "MNTableGlyphStruct.h"
 #import "MNTable.h"
 #import "MNConstants.h"
-
-@implementation NoteHeadRenderOptions
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
-{
-    self = [super initWithDictionary:optionsDict];
-    if(self)
-    {
-        //        [self setValuesForKeyPathsWithDictionary:optionsDict];
-    }
-    return self;
-}
-
-- (instancetype)init
-{
-    self = [self initWithDictionary:nil];
-    if(self)
-    {
-    }
-    return self;
-}
-@end
+#import "MNNoteHeadRenderOptions.h"
 
 @implementation MNNoteHead
 
@@ -93,22 +72,24 @@
         }
         self.glyph_code = self.glyphStruct.codeHead;
         self.xShift = [optionsDict[@"x_shift"] floatValue];
-        if(optionsDict[@"custom_glyph_code"])
+        if(optionsDict[@"customGlyphCode"])
         {
             self.custom_glyph = YES;
-            self.glyph_code = optionsDict[@"custom_glyph_code"];
+            self.glyph_code = optionsDict[@"customGlyphCode"];
         }
 
         self.style = optionsDict[@"style"];
         self.slashed = [optionsDict[@"slashed"] boolValue];
 
-        self->_renderOptions = [[NoteHeadRenderOptions alloc] initWithDictionary:nil];
-        [self->_renderOptions setGlyphFontScale:35];   // font size for note heads
-        [self->_renderOptions setStrokePx:3];          // number of stroke px to the left and right of head
+        MNNoteHeadRenderOptions* renderOptions = [[MNNoteHeadRenderOptions alloc] initWithDictionary:nil];
+        [renderOptions merge:self->_renderOptions];
+        self->_renderOptions = renderOptions;
+        [renderOptions setGlyphFontScale:35.f / 35.f];   // font size for note heads
+        [renderOptions setStrokePoints:3];               // number of stroke px to the left and right of head
 
         if(optionsDict[@"glyph_font_scale"])
         {
-            [self->_renderOptions setGlyphFontScale:[optionsDict[@"glyph_font_scale"] floatValue]];
+            [renderOptions setGlyphFontScale:[optionsDict[@"glyph_font_scale"] floatValue]];
         }
 
         // TODO: perhaps widths should be taken from calculated widths (MNGlyphList)
@@ -196,7 +177,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"notehead";
+    return NSStringFromClass([self class]);   // return @"notehead";
 }
 - (NSString*)CATEGORY
 {
@@ -416,8 +397,9 @@
         }
         if(self.noteNHMRSType != MNNoteRest)
         {
-            CGContextFillRect(ctx, CGRectMake(head_x - [self->_renderOptions strokePx], line_y,
-                                              (self.glyphStruct.headWidth) + ([self->_renderOptions strokePx] * 2), 1));
+            CGContextFillRect(ctx,
+                              CGRectMake(head_x - [self->_renderOptions strokePoints], line_y,
+                                         (self.glyphStruct.headWidth) + ([self->_renderOptions strokePoints] * 2), 1));
         }
     }
 
@@ -427,17 +409,20 @@
     }
     else
     {
+        float glyphFontScale = [[self renderOptions] glyphFontScale];
         if(self.style)
         {
             CGContextSaveGState(ctx);
-            [self applyStyle:ctx];   // TODO: this needs updated to latest styling method. see:  MNStaffNote.m -
-                                     // (void)drawModifiers:(CGContextRef)ctx
-            [MNGlyph renderGlyph:ctx atX:head_x atY:y withScale:1 forGlyphCode:self.glyph_code];
+            [self applyStyle:ctx];
+            // TODO: this needs updated to latest styling method. see:  MNStaffNote.m -
+            // (void)drawModifiers:(CGContextRef)ctx
+
+            [MNGlyph renderGlyph:ctx atX:head_x atY:y withScale:glyphFontScale forGlyphCode:self.glyph_code];
             CGContextRestoreGState(ctx);
         }
         else
         {
-            [MNGlyph renderGlyph:ctx atX:head_x atY:y withScale:1 forGlyphCode:self.glyph_code];
+            [MNGlyph renderGlyph:ctx atX:head_x atY:y withScale:glyphFontScale forGlyphCode:self.glyph_code];
         }
     }
 }

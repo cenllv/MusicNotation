@@ -33,8 +33,8 @@
 - (void)start
 {
     [super start];
-    [self runTest:@"Valid Notes" func:@selector(works)];
-    [self runTest:@"Select Notes" func:@selector(selectNotes)];
+//    [self runTest:@"Valid Notes" func:@selector(works)];
+//    [self runTest:@"Select Notes" func:@selector(selectNotes)];
 }
 
 - (void)tearDown

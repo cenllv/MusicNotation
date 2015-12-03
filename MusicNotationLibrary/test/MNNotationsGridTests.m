@@ -33,7 +33,7 @@
 
 @interface MNNotationsGridTests ()
 
-//@property (strong, nonatomic) NSMutableArray* glyphLayers;
+@property (strong, nonatomic) NSMutableArray<NSTextField*>* labels;
 
 @end
 
@@ -50,6 +50,19 @@
 - (void)tearDown
 {
     [super tearDown];
+    for(id label in self.labels)
+    {
+        [label removeFromSuperview];
+    }
+}
+
+- (NSMutableArray<NSTextField*>*)labels
+{
+    if(!_labels)
+    {
+        _labels = [NSMutableArray array];
+    }
+    return _labels;
 }
 
 - (MNTestTuple*)grid:(MNTestCollectionItemView*)parent drawBoundingBox:(NSNumber*)drawBoundingBox
@@ -72,7 +85,7 @@
     NSString* titleMessage = @"Vex Glyphs";
     NSAttributedString* title = [[NSAttributedString alloc]
         initWithString:titleMessage
-            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
+            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
 
     NSTextField* textLabel = [[NSTextField alloc] initWithFrame:CGRectMake(CGRectGetMidX(parent.bounds), 5, 0, 0)];
     textLabel.editable = NO;
@@ -92,7 +105,7 @@
     NSString* subTitleMessage = @"Cross indicates render coordinates.";
     NSAttributedString* subtitle = [[NSAttributedString alloc]
         initWithString:subTitleMessage
-            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font2}];
+            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font2.font}];
 
     textLabel = [[NSTextField alloc] initWithFrame:CGRectMake(CGRectGetMidX(parent.bounds), 35, 0, 0)];
     textLabel.editable = NO;
@@ -107,6 +120,7 @@
     textLabel.frame = frame;
     dispatch_async(dispatch_get_main_queue(), ^{
       [parent addSubview:textLabel];
+      [self.labels add:textLabel];
     });
 
     __block NSUInteger y = 70;
@@ -170,8 +184,10 @@
       for(NSTextField* textLabel in textLabels)
       {
           [parent addSubview:textLabel];
+          [self.labels add:textLabel];
       }
       [parent addSubview:textLabel];
+      [self.labels add:textLabel];
     });
 
     return ret;

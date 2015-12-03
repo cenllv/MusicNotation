@@ -35,10 +35,6 @@
 #import "MNGlyph.h"
 #import "MNBezierPath.h"
 #import "MNExtentStruct.h"
-#import "MNGlyph.h"
-#import "MNMetrics.h"
-#import "NSObject+MNAdditions.h"
-#import "MNTableTypes.h"
 
 @implementation MNTuplet
 
@@ -200,19 +196,19 @@
     return _denominatorGlyphs;
 }
 
-- (void)setPosition:(MNPoint*)pointPosn
-{
-    _position = pointPosn;
-}
-
-- (MNPoint*)pointPosition
-{
-    if(!_position)
-    {
-        _position = [MNPoint pointZero];
-    }
-    return _position;
-}
+//- (void)setPosition:(MNPoint*)pointPosn
+//{
+//    _position = pointPosn;
+//}
+//
+//- (MNPoint*)pointPosition
+//{
+//    if(!_position)
+//    {
+//        _position = [MNPoint pointZero];
+//    }
+//    return _position;
+//}
 
 #pragma mark - Methods
 - (void)attach

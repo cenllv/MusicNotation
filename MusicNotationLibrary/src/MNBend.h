@@ -32,7 +32,8 @@
 
 @class MNColor;
 
-/*! The `MNBend` class makes tablature bends
+/*! 
+ *  The `MNBend` class makes tablature bends
  */
 @interface MNBend : MNModifier
 {

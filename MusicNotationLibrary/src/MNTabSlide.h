@@ -26,13 +26,12 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNTabTie.h"
 
 @class MNNoteTie;
 
-/*! The `MNTabSlide` class
-
+/*!
+ *  The `MNTabSlide` class
  */
 @interface MNTabSlide : MNTabTie
 
@@ -41,7 +40,6 @@
 @property (assign, nonatomic) MNTabSlideType slideDirection;
 
 #pragma mark - Methods
-//- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithNoteTie:(MNNoteTie*)notes direction:(MNTabSlideType)direction;
 
 + (MNTabSlide*)createSlideUp:(MNNoteTie*)notes;

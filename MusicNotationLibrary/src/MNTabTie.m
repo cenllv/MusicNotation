@@ -29,6 +29,24 @@
 #import "MNTabTie.h"
 #import "MNStaffNote.h"
 
+/*!
+ *  `MNStaffTie` category provides protected methods to `MNTabTie` from superclass `MNStaffTie`
+ */
+@interface MNStaffTie (Protected)
+
+- (void)setupStaffTie;
+- (void)setupNotes:(MNNoteTie*)notes;
+
+- (void)renderText:(CGContextRef)ctx first_x_px:(float)first_x_px last_x_px:(float)last_x_px;
+- (void)renderTieWithContext:(CGContextRef)ctx
+                     firstYs:(NSArray*)first_ys
+                      lastYs:(NSArray*)last_ys
+                     lastXpx:(float)last_x_px
+                    firstXpx:(float)first_x_px
+                   direction:(MNStemDirectionType)direction;
+
+@end
+
 @implementation MNTabTie
 
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict
@@ -87,12 +105,12 @@
     float first_x_px, last_x_px;
     NSArray* first_ys;
     NSArray* last_ys;
-    MNStemDirectionType stem_direction = MNStemDirectionNone;
+    // MNStemDirectionType stem_direction = MNStemDirectionNone;
 
     if(self.firstNote)
     {
         first_x_px = self.firstNote.tieRightX + self.tie_spacing;
-        stem_direction = self.firstNote.stemDirection;
+        // stem_direction = self.firstNote.stemDirection;
         first_ys = self.firstNote.ys;
     }
     else
@@ -105,7 +123,7 @@
     if(self.lastNote)
     {
         last_x_px = self.lastNote.tieLeftX + [self->_renderOptions tie_spacing];
-        stem_direction = self.lastNote.stemDirection;
+        // stem_direction = self.lastNote.stemDirection;
         last_ys = self.lastNote.ys;
     }
     else

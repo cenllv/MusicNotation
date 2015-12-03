@@ -170,11 +170,16 @@ init: function(type) {
     return self;
 }
 
-// ## Static Methods
-// Arrange articulations inside `ModifierContext`
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
+/*!
+ *  Arrange articulations inside `ModifierContext`
+ *  @param modifiers collection of `Modifier`
+ *  @param state     state of the `ModifierContext`
+ *  @param context   the calling `ModifierContext`
+ *  @return YES if succussful
+ */
++ (BOOL)format:(NSMutableArray<MNModifier*>*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
-    NSMutableArray* articulations = modifiers;
+    NSMutableArray<MNArticulation*>* articulations = (NSMutableArray<MNArticulation*>*)modifiers;
     if(!articulations || articulations.count == 0)
     {
         return NO;

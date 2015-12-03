@@ -8,9 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		54CBE4AB84A5D676A7096F32 /* Pods_MusicNotationMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2798E94B3196775A40A4928 /* Pods_MusicNotationMobile.framework */; };
+		6B182C731C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C721C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m */; };
+		6B182C741C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C721C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m */; };
+		6B182C771C0E57C1006F0981 /* MNGraceNoteRenderOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C761C0E57C1006F0981 /* MNGraceNoteRenderOptions.m */; };
+		6B182C781C0E57C1006F0981 /* MNGraceNoteRenderOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C761C0E57C1006F0981 /* MNGraceNoteRenderOptions.m */; };
+		6B182C7D1C0E8B3E006F0981 /* DPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C7A1C0E8B3E006F0981 /* DPObject.m */; };
+		6B182C7E1C0E8B3E006F0981 /* DPObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C7A1C0E8B3E006F0981 /* DPObject.m */; };
+		6B182C7F1C0E8B3E006F0981 /* DPObjectProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C7C1C0E8B3E006F0981 /* DPObjectProperty.m */; };
+		6B182C801C0E8B3E006F0981 /* DPObjectProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C7C1C0E8B3E006F0981 /* DPObjectProperty.m */; };
+		6B182C831C0F6CBB006F0981 /* MNNoteHeadRenderOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C821C0F6CBB006F0981 /* MNNoteHeadRenderOptions.m */; };
+		6B182C841C0F6CBB006F0981 /* MNNoteHeadRenderOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C821C0F6CBB006F0981 /* MNNoteHeadRenderOptions.m */; };
+		6B182C871C0F717C006F0981 /* MNBeamRenderOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C861C0F717C006F0981 /* MNBeamRenderOptions.m */; };
+		6B182C881C0F717C006F0981 /* MNBeamRenderOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C861C0F717C006F0981 /* MNBeamRenderOptions.m */; };
+		6B182C8B1C0FDD62006F0981 /* MNStaffNoteFormatNoteStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C8A1C0FDD62006F0981 /* MNStaffNoteFormatNoteStruct.m */; };
+		6B182C8C1C0FDD62006F0981 /* MNStaffNoteFormatNoteStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C8A1C0FDD62006F0981 /* MNStaffNoteFormatNoteStruct.m */; };
+		6B182C8F1C0FDE60006F0981 /* MNStaffTempoOptionsStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C8E1C0FDE60006F0981 /* MNStaffTempoOptionsStruct.m */; };
+		6B182C901C0FDE60006F0981 /* MNStaffTempoOptionsStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C8E1C0FDE60006F0981 /* MNStaffTempoOptionsStruct.m */; };
+		6B182C931C0FDE77006F0981 /* MNStaffTempoRenderOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C921C0FDE77006F0981 /* MNStaffTempoRenderOptions.m */; };
+		6B182C941C0FDE77006F0981 /* MNStaffTempoRenderOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C921C0FDE77006F0981 /* MNStaffTempoRenderOptions.m */; };
 		6B2C00611B716B150036AA76 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B2C00601B716B150036AA76 /* MainMenu.xib */; };
 		6B2C00641B72ADB20036AA76 /* MNWrappedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2C00631B72ADB20036AA76 /* MNWrappedLayout.m */; };
 		6B2C00671B72B1600036AA76 /* MNTestCollectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2C00661B72B1600036AA76 /* MNTestCollectionItem.m */; };
+		6B2DB7D11C09F48E00498848 /* MNTimeSignatureGlyphMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2DB7D01C09F48E00498848 /* MNTimeSignatureGlyphMetrics.m */; };
+		6B2DB7D21C09F48E00498848 /* MNTimeSignatureGlyphMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2DB7D01C09F48E00498848 /* MNTimeSignatureGlyphMetrics.m */; };
+		6B2DB7D51C0A2A7F00498848 /* MNTimeSigStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2DB7D41C0A2A7F00498848 /* MNTimeSigStruct.m */; };
+		6B2DB7D61C0A2A7F00498848 /* MNTimeSigStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B2DB7D41C0A2A7F00498848 /* MNTimeSigStruct.m */; };
 		6B3185001B71315500CCB182 /* BrowserWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B3184FF1B71315500CCB182 /* BrowserWindow.xib */; };
 		6B4AA4131BF4591500E56C1A /* MNExtraPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA32A1BF4591500E56C1A /* MNExtraPoints.m */; };
 		6B4AA4141BF4591500E56C1A /* MNExtraPoints.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA32A1BF4591500E56C1A /* MNExtraPoints.m */; };
@@ -20,8 +42,6 @@
 		6B4AA4181BF4591500E56C1A /* MNRational.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA32E1BF4591500E56C1A /* MNRational.m */; };
 		6B4AA4191BF4591500E56C1A /* MNStaffLineRenderOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA3301BF4591500E56C1A /* MNStaffLineRenderOptions.m */; };
 		6B4AA41A1BF4591500E56C1A /* MNStaffLineRenderOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA3301BF4591500E56C1A /* MNStaffLineRenderOptions.m */; };
-		6B4AA41B1BF4591500E56C1A /* MNTempo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA3321BF4591500E56C1A /* MNTempo.m */; };
-		6B4AA41C1BF4591500E56C1A /* MNTempo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA3321BF4591500E56C1A /* MNTempo.m */; };
 		6B4AA41D1BF4591500E56C1A /* MNAccidental.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA3341BF4591500E56C1A /* MNAccidental.m */; };
 		6B4AA41E1BF4591500E56C1A /* MNAccidental.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA3341BF4591500E56C1A /* MNAccidental.m */; };
 		6B4AA41F1BF4591500E56C1A /* MNAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA3361BF4591500E56C1A /* MNAnnotation.m */; };
@@ -619,12 +639,34 @@
 /* Begin PBXFileReference section */
 		360E7C61C35C112CEDE34238 /* Pods-MusicNotationMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationMobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationMobile/Pods-MusicNotationMobile.debug.xcconfig"; sourceTree = "<group>"; };
 		4A564D528C47A9F716C29CA5 /* Pods-MusicNotationDesktop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationDesktop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationDesktop/Pods-MusicNotationDesktop.debug.xcconfig"; sourceTree = "<group>"; };
+		6B182C711C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNGraceNoteGroupListStruct.h; sourceTree = "<group>"; };
+		6B182C721C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNGraceNoteGroupListStruct.m; sourceTree = "<group>"; };
+		6B182C751C0E57C1006F0981 /* MNGraceNoteRenderOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNGraceNoteRenderOptions.h; sourceTree = "<group>"; };
+		6B182C761C0E57C1006F0981 /* MNGraceNoteRenderOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNGraceNoteRenderOptions.m; sourceTree = "<group>"; };
+		6B182C791C0E8B3E006F0981 /* DPObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPObject.h; sourceTree = "<group>"; };
+		6B182C7A1C0E8B3E006F0981 /* DPObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPObject.m; sourceTree = "<group>"; };
+		6B182C7B1C0E8B3E006F0981 /* DPObjectProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPObjectProperty.h; sourceTree = "<group>"; };
+		6B182C7C1C0E8B3E006F0981 /* DPObjectProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPObjectProperty.m; sourceTree = "<group>"; };
+		6B182C811C0F6CBB006F0981 /* MNNoteHeadRenderOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNNoteHeadRenderOptions.h; sourceTree = "<group>"; };
+		6B182C821C0F6CBB006F0981 /* MNNoteHeadRenderOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNNoteHeadRenderOptions.m; sourceTree = "<group>"; };
+		6B182C851C0F717C006F0981 /* MNBeamRenderOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNBeamRenderOptions.h; sourceTree = "<group>"; };
+		6B182C861C0F717C006F0981 /* MNBeamRenderOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNBeamRenderOptions.m; sourceTree = "<group>"; };
+		6B182C891C0FDD62006F0981 /* MNStaffNoteFormatNoteStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNStaffNoteFormatNoteStruct.h; sourceTree = "<group>"; };
+		6B182C8A1C0FDD62006F0981 /* MNStaffNoteFormatNoteStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNStaffNoteFormatNoteStruct.m; sourceTree = "<group>"; };
+		6B182C8D1C0FDE60006F0981 /* MNStaffTempoOptionsStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNStaffTempoOptionsStruct.h; sourceTree = "<group>"; };
+		6B182C8E1C0FDE60006F0981 /* MNStaffTempoOptionsStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNStaffTempoOptionsStruct.m; sourceTree = "<group>"; };
+		6B182C911C0FDE77006F0981 /* MNStaffTempoRenderOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNStaffTempoRenderOptions.h; sourceTree = "<group>"; };
+		6B182C921C0FDE77006F0981 /* MNStaffTempoRenderOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNStaffTempoRenderOptions.m; sourceTree = "<group>"; };
 		6B1F00821BF4F2ED00E752BD /* OCHamcrest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCHamcrest.h; sourceTree = "<group>"; };
 		6B2C00601B716B150036AA76 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		6B2C00621B72ADB20036AA76 /* MNWrappedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNWrappedLayout.h; sourceTree = "<group>"; };
 		6B2C00631B72ADB20036AA76 /* MNWrappedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNWrappedLayout.m; sourceTree = "<group>"; };
 		6B2C00651B72B1600036AA76 /* MNTestCollectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestCollectionItem.h; sourceTree = "<group>"; };
 		6B2C00661B72B1600036AA76 /* MNTestCollectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTestCollectionItem.m; sourceTree = "<group>"; };
+		6B2DB7CF1C09F48E00498848 /* MNTimeSignatureGlyphMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTimeSignatureGlyphMetrics.h; sourceTree = "<group>"; };
+		6B2DB7D01C09F48E00498848 /* MNTimeSignatureGlyphMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTimeSignatureGlyphMetrics.m; sourceTree = "<group>"; };
+		6B2DB7D31C0A2A7F00498848 /* MNTimeSigStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTimeSigStruct.h; sourceTree = "<group>"; };
+		6B2DB7D41C0A2A7F00498848 /* MNTimeSigStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTimeSigStruct.m; sourceTree = "<group>"; };
 		6B3184FF1B71315500CCB182 /* BrowserWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowserWindow.xib; sourceTree = "<group>"; };
 		6B3EAAF01B7A637F009C0317 /* MNLayerResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNLayerResponder.h; sourceTree = "<group>"; };
 		6B4AA3291BF4591500E56C1A /* MNExtraPoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNExtraPoints.h; sourceTree = "<group>"; };
@@ -635,8 +677,6 @@
 		6B4AA32E1BF4591500E56C1A /* MNRational.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MNRational.m; path = ../src/MNRational.m; sourceTree = "<group>"; };
 		6B4AA32F1BF4591500E56C1A /* MNStaffLineRenderOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNStaffLineRenderOptions.h; sourceTree = "<group>"; };
 		6B4AA3301BF4591500E56C1A /* MNStaffLineRenderOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNStaffLineRenderOptions.m; sourceTree = "<group>"; };
-		6B4AA3311BF4591500E56C1A /* MNTempo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTempo.h; sourceTree = "<group>"; };
-		6B4AA3321BF4591500E56C1A /* MNTempo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTempo.m; sourceTree = "<group>"; };
 		6B4AA3331BF4591500E56C1A /* MNAccidental.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNAccidental.h; sourceTree = "<group>"; };
 		6B4AA3341BF4591500E56C1A /* MNAccidental.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNAccidental.m; sourceTree = "<group>"; };
 		6B4AA3351BF4591500E56C1A /* MNAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNAnnotation.h; sourceTree = "<group>"; };
@@ -1540,6 +1580,8 @@
 				6B4AA33A1BF4591500E56C1A /* MNBarNote.m */,
 				6B4AA33B1BF4591500E56C1A /* MNBeam.h */,
 				6B4AA33C1BF4591500E56C1A /* MNBeam.m */,
+				6B182C851C0F717C006F0981 /* MNBeamRenderOptions.h */,
+				6B182C861C0F717C006F0981 /* MNBeamRenderOptions.m */,
 				6BAF42861C0284D800C82A4A /* MNBeamConfig.h */,
 				6BAF42871C0284D800C82A4A /* MNBeamConfig.m */,
 				6B4AA33D1BF4591500E56C1A /* MNBend.h */,
@@ -1601,6 +1643,10 @@
 				6B4AA36C1BF4591500E56C1A /* MNGraceNote.m */,
 				6B4AA36D1BF4591500E56C1A /* MNGraceNoteGroup.h */,
 				6B4AA36E1BF4591500E56C1A /* MNGraceNoteGroup.m */,
+				6B182C711C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.h */,
+				6B182C721C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m */,
+				6B182C751C0E57C1006F0981 /* MNGraceNoteRenderOptions.h */,
+				6B182C761C0E57C1006F0981 /* MNGraceNoteRenderOptions.m */,
 				6B4AA36F1BF4591500E56C1A /* MNImage.h */,
 				6B4AA3701BF4591500E56C1A /* MNImage.m */,
 				6B4AA3711BF4591500E56C1A /* MNKeyManager.h */,
@@ -1636,6 +1682,8 @@
 				6B4AA3951BF4591500E56C1A /* MNNoteHead.m */,
 				6BB7EC121C062AAD00E09252 /* MNNoteHeadBounds.h */,
 				6BB7EC131C062AAD00E09252 /* MNNoteHeadBounds.m */,
+				6B182C811C0F6CBB006F0981 /* MNNoteHeadRenderOptions.h */,
+				6B182C821C0F6CBB006F0981 /* MNNoteHeadRenderOptions.m */,
 				6BB7EC0A1C06299600E09252 /* MNNoteRenderOptions.h */,
 				6BB7EC0B1C06299600E09252 /* MNNoteRenderOptions.m */,
 				6B4AA3961BF4591500E56C1A /* MNNoteTie.h */,
@@ -1672,6 +1720,8 @@
 				6B4AA3C31BF4591500E56C1A /* MNStaffModifier.m */,
 				6B4AA3C41BF4591500E56C1A /* MNStaffNote.h */,
 				6B4AA3C51BF4591500E56C1A /* MNStaffNote.m */,
+				6B182C891C0FDD62006F0981 /* MNStaffNoteFormatNoteStruct.h */,
+				6B182C8A1C0FDD62006F0981 /* MNStaffNoteFormatNoteStruct.m */,
 				6BB7EC0E1C062A6800E09252 /* MNStaffNoteRenderOptions.h */,
 				6BB7EC0F1C062A6800E09252 /* MNStaffNoteRenderOptions.m */,
 				6B4AA3C61BF4591500E56C1A /* MNStaffRepetition.h */,
@@ -1680,6 +1730,10 @@
 				6B4AA3C91BF4591500E56C1A /* MNStaffSection.m */,
 				6B4AA3CA1BF4591500E56C1A /* MNStaffTempo.h */,
 				6B4AA3CB1BF4591500E56C1A /* MNStaffTempo.m */,
+				6B182C8D1C0FDE60006F0981 /* MNStaffTempoOptionsStruct.h */,
+				6B182C8E1C0FDE60006F0981 /* MNStaffTempoOptionsStruct.m */,
+				6B182C911C0FDE77006F0981 /* MNStaffTempoRenderOptions.h */,
+				6B182C921C0FDE77006F0981 /* MNStaffTempoRenderOptions.m */,
 				6B4AA3CC1BF4591500E56C1A /* MNStaffText.h */,
 				6B4AA3CD1BF4591500E56C1A /* MNStaffText.m */,
 				6B4AA3CE1BF4591500E56C1A /* MNStaffTie.h */,
@@ -1729,8 +1783,6 @@
 				6B4AA3EE1BF4591500E56C1A /* MNTabStaff.m */,
 				6B4AA3EF1BF4591500E56C1A /* MNTabTie.h */,
 				6B4AA3F01BF4591500E56C1A /* MNTabTie.m */,
-				6B4AA3311BF4591500E56C1A /* MNTempo.h */,
-				6B4AA3321BF4591500E56C1A /* MNTempo.m */,
 				6B4AA3F11BF4591500E56C1A /* MNText.h */,
 				6B4AA3F21BF4591500E56C1A /* MNText.m */,
 				6B4AA3F31BF4591500E56C1A /* MNTextBracket.h */,
@@ -1749,10 +1801,14 @@
 				6B4AA3FC1BF4591500E56C1A /* MNTickContext.m */,
 				6B4AA3FD1BF4591500E56C1A /* MNTimeSignature.h */,
 				6B4AA3FE1BF4591500E56C1A /* MNTimeSignature.m */,
+				6B2DB7CF1C09F48E00498848 /* MNTimeSignatureGlyphMetrics.h */,
+				6B2DB7D01C09F48E00498848 /* MNTimeSignatureGlyphMetrics.m */,
 				6BAF429A1C028CD900C82A4A /* MNTimeSignatureOptions.h */,
 				6BAF429B1C028CD900C82A4A /* MNTimeSignatureOptions.m */,
 				6B4AA3FF1BF4591500E56C1A /* MNTimeSigNote.h */,
 				6B4AA4001BF4591500E56C1A /* MNTimeSigNote.m */,
+				6B2DB7D31C0A2A7F00498848 /* MNTimeSigStruct.h */,
+				6B2DB7D41C0A2A7F00498848 /* MNTimeSigStruct.m */,
 				6B4AA4011BF4591500E56C1A /* MNTremulo.h */,
 				6B4AA4021BF4591500E56C1A /* MNTremulo.m */,
 				6B4AA4031BF4591500E56C1A /* MNTuning.h */,
@@ -1904,6 +1960,10 @@
 				6B4AA5A51BF45B0800E56C1A /* IAModelBase.m */,
 				6B4AA5A61BF45B0800E56C1A /* IAModelCollectionBase.h */,
 				6B4AA5A71BF45B0800E56C1A /* IAModelCollectionBase.m */,
+				6B182C791C0E8B3E006F0981 /* DPObject.h */,
+				6B182C7A1C0E8B3E006F0981 /* DPObject.m */,
+				6B182C7B1C0E8B3E006F0981 /* DPObjectProperty.h */,
+				6B182C7C1C0E8B3E006F0981 /* DPObjectProperty.m */,
 				6B4AA5A81BF45B0800E56C1A /* JSONKit.h */,
 				6B4AA5A91BF45B0800E56C1A /* JSONKit.m */,
 				6B4AA5AA1BF45B0800E56C1A /* JSONSerialization.h */,
@@ -2973,7 +3033,9 @@
 				6BAF42A51C02AE0100C82A4A /* NSBezierPath+MNAdditions.m in Sources */,
 				6B4AA62A1BF45B0800E56C1A /* EmptyEnumerator.m in Sources */,
 				6B4AA4561BF4591500E56C1A /* MNGraceNoteGroup.m in Sources */,
+				6B2DB7D61C0A2A7F00498848 /* MNTimeSigStruct.m in Sources */,
 				6B4AA6361BF45B0800E56C1A /* Functions.m in Sources */,
+				6B182C781C0E57C1006F0981 /* MNGraceNoteRenderOptions.m in Sources */,
 				6B4AA4C21BF4591500E56C1A /* MNSymbol.m in Sources */,
 				6B4AA62E1BF45B0800E56C1A /* FilterEnumerator.m in Sources */,
 				6B4AA4581BF4591500E56C1A /* MNImage.m in Sources */,
@@ -2983,6 +3045,7 @@
 				6B4AA4781BF4591500E56C1A /* MNMusicScales.m in Sources */,
 				6BF09E4C1C0910B9008590D3 /* MNAccListStruct.m in Sources */,
 				6B4AA48A1BF4591500E56C1A /* MNPlayNote.m in Sources */,
+				6B182C841C0F6CBB006F0981 /* MNNoteHeadRenderOptions.m in Sources */,
 				6B4AA4A21BF4591500E56C1A /* MNStaffBarLine.m in Sources */,
 				6B4AA4BA1BF4591500E56C1A /* MNStem.m in Sources */,
 				6B4AA64E1BF45B0800E56C1A /* Numbers.m in Sources */,
@@ -2998,6 +3061,7 @@
 				6B4AA66A1BF45B0800E56C1A /* RegexKitLite.m in Sources */,
 				6B4AA45A1BF4591500E56C1A /* MNKeyManager.m in Sources */,
 				6B4AA4141BF4591500E56C1A /* MNExtraPoints.m in Sources */,
+				6B182C801C0E8B3E006F0981 /* DPObjectProperty.m in Sources */,
 				6B4AA41A1BF4591500E56C1A /* MNStaffLineRenderOptions.m in Sources */,
 				6BB7EC211C07CA3B00E09252 /* MNChordTestStruct.m in Sources */,
 				6B4AA4661BF4591500E56C1A /* MNLog.m in Sources */,
@@ -3012,14 +3076,17 @@
 				6B4AA4741BF4591500E56C1A /* MNMusicDiatonicAccidentals.m in Sources */,
 				6BAF42851C02845D00C82A4A /* MNAccidentalRenderOptions.m in Sources */,
 				6B4AA4E61BF4591600E56C1A /* MNTimeSigNote.m in Sources */,
+				6B182C901C0FDE60006F0981 /* MNStaffTempoOptionsStruct.m in Sources */,
 				6BAF42AD1C02B04900C82A4A /* MNTableNoteValueStruct.m in Sources */,
 				6BAF42811C02819E00C82A4A /* MNFormatterContext.m in Sources */,
 				6B4AA4361BF4591500E56C1A /* MNClefNote.m in Sources */,
 				6B4AA6281BF45B0800E56C1A /* EasyEnumerable.m in Sources */,
 				6B4AA6401BF45B0800E56C1A /* MergeEnumerator.m in Sources */,
+				6B182C8C1C0FDD62006F0981 /* MNStaffNoteFormatNoteStruct.m in Sources */,
 				6BB7EC0D1C06299600E09252 /* MNNoteRenderOptions.m in Sources */,
 				6BB7EC111C062A6800E09252 /* MNStaffNoteRenderOptions.m in Sources */,
 				6B4AA47E1BF4591500E56C1A /* MNNoteTie.m in Sources */,
+				6B182C7E1C0E8B3E006F0981 /* DPObject.m in Sources */,
 				6B4AA6601BF45B0800E56C1A /* RepeatEnumerator.m in Sources */,
 				6B4AA6501BF45B0800E56C1A /* OCGroup.m in Sources */,
 				6BB7EC191C062F4000E09252 /* MNTextNoteStruct.m in Sources */,
@@ -3034,9 +3101,11 @@
 				6B4AA63A1BF45B0800E56C1A /* MapEnumerator.m in Sources */,
 				6B4AA6181BF45B0800E56C1A /* NSMutableArray+MNAdditions.m in Sources */,
 				6B4AA4341BF4591500E56C1A /* MNClef.m in Sources */,
+				6B182C881C0F717C006F0981 /* MNBeamRenderOptions.m in Sources */,
 				6B4AA4DE1BF4591600E56C1A /* MNTextNote.m in Sources */,
 				6B4AA4AE1BF4591500E56C1A /* MNStaffRepetition.m in Sources */,
 				6BAF42B11C03467C00C82A4A /* NSNumber+MNAdditions.m in Sources */,
+				6B182C741C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m in Sources */,
 				6B4AA4B41BF4591500E56C1A /* MNStaffText.m in Sources */,
 				6B4AA4D61BF4591600E56C1A /* MNTabTie.m in Sources */,
 				6B4AA4261BF4591500E56C1A /* MNBeam.m in Sources */,
@@ -3064,7 +3133,6 @@
 				6B4AA6101BF45B0800E56C1A /* IAModelCollectionBase.m in Sources */,
 				6B4AA4BE1BF4591500E56C1A /* MNStringNumber.m in Sources */,
 				6BB7EC051C0628E800E09252 /* MNTabNotePositionsStruct.m in Sources */,
-				6B4AA41C1BF4591500E56C1A /* MNTempo.m in Sources */,
 				6B4AA4F01BF4591600E56C1A /* MNUtils.m in Sources */,
 				6B4AA4221BF4591500E56C1A /* MNArticulation.m in Sources */,
 				6B4AA4A81BF4591500E56C1A /* MNStaffLine.m in Sources */,
@@ -3085,6 +3153,7 @@
 				6B4AA4441BF4591500E56C1A /* MNExtentStruct.m in Sources */,
 				6B5D4AC31C04E66A00AA250A /* MNConstants.m in Sources */,
 				6B4AA6561BF45B0800E56C1A /* PairEnumerator.m in Sources */,
+				6B2DB7D21C09F48E00498848 /* MNTimeSignatureGlyphMetrics.m in Sources */,
 				6B4AA65E1BF45B0800E56C1A /* Range.m in Sources */,
 				6BAF42751C027FD500C82A4A /* MNNoteAccidentalStruct.m in Sources */,
 				6B4AA61E1BF45B0800E56C1A /* NSObject+CleanDescription.m in Sources */,
@@ -3098,6 +3167,7 @@
 				6B4AA4F61BF4591600E56C1A /* MNVoiceGroup.m in Sources */,
 				6B4AA43A1BF4591500E56C1A /* MNCrescendo.m in Sources */,
 				6BB7EC091C06292700E09252 /* MNTabNoteRenderOptions.m in Sources */,
+				6B182C941C0FDE77006F0981 /* MNStaffTempoRenderOptions.m in Sources */,
 				6B4AA4E21BF4591600E56C1A /* MNTickContext.m in Sources */,
 				6B4AA4201BF4591500E56C1A /* MNAnnotation.m in Sources */,
 				6B4AA4281BF4591500E56C1A /* MNBend.m in Sources */,
@@ -3186,7 +3256,9 @@
 				D278F5201A8689AE000C57C1 /* MNBrowserWindowController.m in Sources */,
 				6B5644B61BF44680006FDFD9 /* HCOrderingComparison.m in Sources */,
 				6B4AA56B1BF459B200E56C1A /* MNAnnotationTests.m in Sources */,
+				6B182C831C0F6CBB006F0981 /* MNNoteHeadRenderOptions.m in Sources */,
 				6B5644C01BF44680006FDFD9 /* HCThrowsException.m in Sources */,
+				6B182C931C0FDE77006F0981 /* MNStaffTempoRenderOptions.m in Sources */,
 				D278F51D1A8689AE000C57C1 /* main.m in Sources */,
 				6B8631CD1B235C0300786D3D /* MNOutlineViewController.m in Sources */,
 				6B4AA6111BF45B0800E56C1A /* JSONKit.m in Sources */,
@@ -3200,7 +3272,9 @@
 				6B4AA48D1BF4591500E56C1A /* MNPropertyUtil.m in Sources */,
 				6B4AA46D1BF4591500E56C1A /* MNModifierContext.m in Sources */,
 				6B5644A31BF44680006FDFD9 /* HCIsCollectionContainingInAnyOrder.m in Sources */,
+				6B2DB7D51C0A2A7F00498848 /* MNTimeSigStruct.m in Sources */,
 				6B5644AE1BF44680006FDFD9 /* HCAllOf.m in Sources */,
+				6B182C771C0E57C1006F0981 /* MNGraceNoteRenderOptions.m in Sources */,
 				6B4AA44B1BF4591500E56C1A /* MNGhostNote.m in Sources */,
 				6B4AA59B1BF459B200E56C1A /* MNTimeSignatureTests.m in Sources */,
 				6B4AA4C91BF4591500E56C1A /* MNTableGlyphStruct.m in Sources */,
@@ -3237,6 +3311,7 @@
 				6B5644E21BF44680006FDFD9 /* AnyOfTest.m in Sources */,
 				6B4AA4CF1BF4591500E56C1A /* MNTabNote.m in Sources */,
 				6BB7EC101C062A6800E09252 /* MNStaffNoteRenderOptions.m in Sources */,
+				6B182C731C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m in Sources */,
 				6B4AA5991BF459B200E56C1A /* MNThreeVoiceTests.m in Sources */,
 				6B4AA5941BF459B200E56C1A /* MNTabStaffTests.m in Sources */,
 				6B4AA4C71BF4591500E56C1A /* MNTableAccListStruct.m in Sources */,
@@ -3298,6 +3373,7 @@
 				6B4AA57C1BF459B200E56C1A /* MNLayerNoteTests.m in Sources */,
 				6B5644D61BF44680006FDFD9 /* Mismatchable.m in Sources */,
 				6B5644ED1BF44680006FDFD9 /* IsEqualTest.m in Sources */,
+				6B182C7D1C0E8B3E006F0981 /* DPObject.m in Sources */,
 				6B5644D91BF44680006FDFD9 /* AssertThatTest.m in Sources */,
 				6B5644C41BF44680006FDFD9 /* HCStringContainsInOrder.m in Sources */,
 				6B9A37271BF552C500341DF8 /* MNNoneTests.m in Sources */,
@@ -3309,7 +3385,7 @@
 				6B5644911BF44680006FDFD9 /* HCObjectReturnGetter.m in Sources */,
 				6B4AA5831BF459B200E56C1A /* MNOrnamentTests.m in Sources */,
 				6B4AA5771BF459B200E56C1A /* MNGraceNoteTests.m in Sources */,
-				6B4AA41B1BF4591500E56C1A /* MNTempo.m in Sources */,
+				6B182C7F1C0E8B3E006F0981 /* DPObjectProperty.m in Sources */,
 				6B5644D51BF44680006FDFD9 /* IsInTest.m in Sources */,
 				6B4AA4471BF4591500E56C1A /* MNFormatter.m in Sources */,
 				6B5644C61BF44680006FDFD9 /* HCStringStartsWith.m in Sources */,
@@ -3318,6 +3394,7 @@
 				6B5644FC1BF44680006FDFD9 /* SenTest.m in Sources */,
 				6B4AA5881BF459B200E56C1A /* MNStaffConnectorTests.m in Sources */,
 				6B5645081BF44680006FDFD9 /* SenTestSuiteRun.m in Sources */,
+				6B2DB7D11C09F48E00498848 /* MNTimeSignatureGlyphMetrics.m in Sources */,
 				6B5644891BF44680006FDFD9 /* NSInvocation+OCHamcrest.m in Sources */,
 				6BC6F05F1B75774200A582C1 /* MNTestTuple.m in Sources */,
 				6B2C00671B72B1600036AA76 /* MNTestCollectionItem.m in Sources */,
@@ -3399,6 +3476,7 @@
 				6B5644CB1BF44680006FDFD9 /* HasCountTest.m in Sources */,
 				6B4AA5711BF459B200E56C1A /* MNChordTest.m in Sources */,
 				6B4AA5721BF459B200E56C1A /* MNClefTests.m in Sources */,
+				6B182C8B1C0FDD62006F0981 /* MNStaffNoteFormatNoteStruct.m in Sources */,
 				6B5644EA1BF44680006FDFD9 /* ConformsToProtocolTest.m in Sources */,
 				6BB7EC181C062F4000E09252 /* MNTextNoteStruct.m in Sources */,
 				6B5644941BF44680006FDFD9 /* HCShortReturnGetter.m in Sources */,
@@ -3487,6 +3565,7 @@
 				6B5644D31BF44680006FDFD9 /* IsDictionaryContainingValueTest.m in Sources */,
 				6B4AA5871BF459B200E56C1A /* MNRhythmTests.m in Sources */,
 				6BAF42881C0284D800C82A4A /* MNBeamConfig.m in Sources */,
+				6B182C871C0F717C006F0981 /* MNBeamRenderOptions.m in Sources */,
 				6B4AA6371BF45B0800E56C1A /* GroupedEnumerator.m in Sources */,
 				6B4AA59D1BF459B200E56C1A /* MNTuningTests.m in Sources */,
 				6BC86D2C1B76A31B00C6D20B /* MNTestCollectionItemView.m in Sources */,
@@ -3522,6 +3601,7 @@
 				6B4AA45B1BF4591500E56C1A /* MNKeyProperty.m in Sources */,
 				6B5645051BF44680006FDFD9 /* SenTestProbe.m in Sources */,
 				6B4AA5821BF459B200E56C1A /* MNNoteHeadTests.m in Sources */,
+				6B182C8F1C0FDE60006F0981 /* MNStaffTempoOptionsStruct.m in Sources */,
 				6B5644F11BF44680006FDFD9 /* IsTypeOfTest.m in Sources */,
 				6B4AA43F1BF4591500E56C1A /* MNDot.m in Sources */,
 				6BAF428C1C02858500C82A4A /* MNBendStruct.m in Sources */,

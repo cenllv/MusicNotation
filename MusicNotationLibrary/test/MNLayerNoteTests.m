@@ -1,11 +1,10 @@
 //
-//  LayerNoteTests.m
-//  MusicApp
+//  MNLayerNoteTests.m
+//  MusicNotation
 //
 //  Created by Scott on 8/12/15.
 //  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
-//  Ported from [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -138,6 +137,7 @@
 @property (nonatomic, strong) AEAudioFilePlayer* oneshot;
 
 @property (assign, nonatomic) AudioUnit mySamplerUnit;
+@property (strong, nonatomic) NSMutableArray<MNShapeLayer*>* layers;
 @end
 
 @implementation MNLayerNoteTests
@@ -164,13 +164,35 @@
 {
     [super tearDown];
     [_audioController stop];
+    dispatch_async(dispatch_get_main_queue(), ^{
+      for(MNShapeLayer* layer in self.layers)
+      {
+          [layer removeAllAnimations];
+          [layer removeFromSuperlayer];
+      }
+    });
+}
+
+- (NSMutableArray<MNShapeLayer*>*)layers
+{
+    if(!_layers)
+    {
+        _layers = [NSMutableArray array];
+    }
+    return _layers;
 }
 
 - (void)setUp
 {
-    //     Create an instance of the audio controller, set it up and start it running
-    self.audioController = [[AEAudioController alloc]
-        initWithAudioDescription:[AEAudioController nonInterleavedFloatStereoAudioDescription]];
+    static BOOL once = YES;
+    if(once)
+    {
+        //     Create an instance of the audio controller, set it up and start it running
+        self.audioController = [[AEAudioController alloc]
+            initWithAudioDescription:[AEAudioController nonInterleavedFloatStereoAudioDescription]];
+        once = NO;
+    }
+
     _audioController.preferredBufferDuration = 0.005;
     //    _audioController.useMeasurementMode = YES;
     NSError* error = NULL;
@@ -226,7 +248,7 @@
     MNTickContext* tickContext = [[MNTickContext alloc] init];
     [[tickContext addTickable:note] preFormat];
     tickContext.x = 25;
-    tickContext.pixelsUsed = 20;
+    tickContext.pointsUsed = 20;
     note.staff = staff;
 
     MNShapeLayer* staffNoteLayer = (MNShapeLayer*)[note shapeLayer];
@@ -253,9 +275,9 @@
 
     dispatch_async(dispatch_get_main_queue(), ^{
       [parent.layer addSublayer:staffNoteLayer];
+      [self.layers addObject:staffNoteLayer];
     });
 
-    //        return nil;
     return ret;
 }
 

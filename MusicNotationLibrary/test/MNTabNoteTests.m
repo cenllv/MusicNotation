@@ -27,26 +27,26 @@
 //
 
 #import "MNTabNoteTests.h"
+#import "NSMutableDictionary+MNAdditions.h"
 
 @implementation MNTabNoteTests
 
 - (void)start
 {
     [super start];
+    float w = 600, h = 200;
     [self runTest:@"Tick" func:@selector(ticks)];
     [self runTest:@"TabStaff Line" func:@selector(tabStaffLine)];
     [self runTest:@"Width" func:@selector(width)];
     [self runTest:@"TickContext" func:@selector(tickContext)];
-    [self runTest:@"TabNote Draw" func:@selector(draw:) frame:CGRectMake(10, 10, 700, 250)];
-    [self runTest:@"TabNote Stems Up" func:@selector(drawStemsUp:) frame:CGRectMake(10, 10, 700, 250)];
-    [self runTest:@"TabNote Stems Down" func:@selector(drawStemsDown:) frame:CGRectMake(10, 10, 700, 250)];
-    [self runTest:@"TabNote Stems Up Through Staff"
-             func:@selector(drawStemsUpThrough:)
-            frame:CGRectMake(10, 10, 700, 250)];
+    [self runTest:@"TabNote Draw" func:@selector(draw:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"TabNote Stems Up" func:@selector(drawStemsUp:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"TabNote Stems Down" func:@selector(drawStemsDown:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"TabNote Stems Up Through Staff" func:@selector(drawStemsUpThrough:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"TabNote Stems Down Through Staff"
              func:@selector(drawStemsDownThrough:)
-            frame:CGRectMake(10, 10, 700, 250)];
-    [self runTest:@"TabNote Stems with Dots" func:@selector(drawStemsDotted:) frame:CGRectMake(10, 10, 700, 250)];
+            frame:CGRectMake(10, 10, w, h+20)];
+    [self runTest:@"TabNote Stems with Dots" func:@selector(drawStemsDotted:) frame:CGRectMake(10, 10, w, h)];
 }
 
 - (void)tearDown
@@ -69,10 +69,10 @@
      }
      */
     NSUInteger w = size.width;
-    NSUInteger h = size.height;
+    //    NSUInteger h = size.height;
 
     w = w != 0 ? w : 350;
-    h = h != 0 ? h : 150;
+    //    h = h != 0 ? h : 150;
 
     // [MNFont setFont:@" 10pt Arial"];
 
@@ -158,7 +158,7 @@
     MNTickContext* tickContext = [[MNTickContext alloc] init];
     [[tickContext addTickable:note] preFormat];
     tickContext.x = x;
-    tickContext.pixelsUsed = 20;
+    tickContext.pointsUsed = 20;
     note.staff = staff;
     [note draw:ctx];
     return note;
@@ -168,48 +168,47 @@
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
 
+    // ctx.font = "10pt Arial";
+    MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 30, 550, 0)];
+
+    NSArray* notes = @[
+        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"6"} ],
+           @"duration" : @"q" },
+        @{
+            @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
+            @"duration" : @"q"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(2), @"fret" : @"x"}, @{@"str" : @(5), @"fret" : @"15"} ],
+            @"duration" : @"q"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(2), @"fret" : @"x"}, @{@"str" : @(5), @"fret" : @"5"} ],
+            @"duration" : @"q"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
+            @"duration" : @"q"
+        },
+        @{
+            @"positions" : @[
+                @{@"str" : @(6), @"fret" : @"0"},
+                @{@"str" : @(5), @"fret" : @"5"},
+                @{@"str" : @(4), @"fret" : @"5"},
+                @{@"str" : @(3), @"fret" : @"4"},
+                @{@"str" : @(2), @"fret" : @"3"},
+                @{@"str" : @(1), @"fret" : @"0"}
+            ],
+            @"duration" : @"q"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"q"
+        }
+    ];
+
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-
-      // ctx.font = "10pt Arial";
-      MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 30, 550, 0)];
       [staff draw:ctx];
-
-      NSArray* notes = @[
-          @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"6"} ],
-             @"duration" : @"q" },
-          @{
-              @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
-              @"duration" : @"q"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(2), @"fret" : @"x"}, @{@"str" : @(5), @"fret" : @"15"} ],
-              @"duration" : @"q"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(2), @"fret" : @"x"}, @{@"str" : @(5), @"fret" : @"5"} ],
-              @"duration" : @"q"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
-              @"duration" : @"q"
-          },
-          @{
-              @"positions" : @[
-                  @{@"str" : @(6), @"fret" : @"0"},
-                  @{@"str" : @(5), @"fret" : @"5"},
-                  @{@"str" : @(4), @"fret" : @"5"},
-                  @{@"str" : @(3), @"fret" : @"4"},
-                  @{@"str" : @(2), @"fret" : @"3"},
-                  @{@"str" : @(1), @"fret" : @"0"}
-              ],
-              @"duration" : @"q"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-              @"duration" : @"q"
-          }
-      ];
-
       [notes foreach:^(NSDictionary* note, NSUInteger i, BOOL* stop) {
 
         MNTabNote* staffNote = [[self class] showNote:note staff:staff context:ctx x:(i + 1) * 25];
@@ -264,7 +263,7 @@
 
     NSArray* notes = [specs oct_map:^MNTabNote*(NSDictionary* noteSpec) {
       MNTabNote* tabNote = [[MNTabNote alloc] initWithDictionary:noteSpec];
-      [tabNote->_renderOptions setDraw_stem:YES];
+      [[tabNote renderOptions] setDraw_stem:YES];
       return tabNote;
     }];
 
@@ -288,58 +287,57 @@
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
 
+    // ctx.font = "10pt Arial";
+    MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 10, 550, 0)];
+
+    NSArray* specs = @[
+        @{
+            @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
+            @"duration" : @"4"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
+            @"duration" : @"8"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"8"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"16"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"32"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"64"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"128"
+        }
+    ];
+
+    NSArray* notes = [specs oct_map:^MNTabNote*(NSDictionary* noteSpec) {
+      MNTabNote* tabNote = [[MNTabNote alloc] initWithDictionary:noteSpec];
+      [[tabNote renderOptions] setDraw_stem:YES];    // .draw_stem = YES;
+      tabNote.stemDirection = MNStemDirectionDown;   //(-1);
+      return tabNote;
+    }];
+
+    MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
+    voice.mode = MNModeSoft;
+
+    [voice addTickables:notes];
+
+    //      MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
+
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-
-      // ctx.font = "10pt Arial";
-      MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 30, 550, 0)];
       [staff draw:ctx];
-
-      NSArray* specs = @[
-          @{
-              @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
-              @"duration" : @"4"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
-              @"duration" : @"8"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-              @"duration" : @"8"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-              @"duration" : @"16"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-              @"duration" : @"32"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-              @"duration" : @"64"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-              @"duration" : @"128"
-          }
-      ];
-
-      NSArray* notes = [specs oct_map:^MNTabNote*(NSDictionary* noteSpec) {
-        MNTabNote* tabNote = [[MNTabNote alloc] initWithDictionary:noteSpec];
-        [tabNote->_renderOptions setDraw_stem:YES];    // .draw_stem = YES;
-        tabNote.stemDirection = MNStemDirectionDown;   //(-1);
-        return tabNote;
-      }];
-
-      MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
-      voice.mode = MNModeSoft;
-      ;
-
-      [voice addTickables:notes];
-
-      //      MNFormatter* formatter =
-      [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
@@ -352,60 +350,60 @@
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
 
+    // ctx.font = "10pt Arial";
+    MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 30, 550, 0)];
+
+    NSArray* specs = @[
+        @{
+            @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
+            @"duration" : @"4"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
+            @"duration" : @"8"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"8"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"16"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"32"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"64"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"128"
+        }
+    ];
+
+    NSArray* notes = [specs oct_map:^MNTabNote*(NSDictionary* noteSpec) {
+      MNTabNote* tabNote = [[MNTabNote alloc] initWithDictionary:noteSpec];
+      [[tabNote renderOptions] setDraw_stem:YES];
+      [[tabNote renderOptions] setDraw_stem_through_staff:YES];
+      return tabNote;
+    }];
+
+    // ctx.setFont(@"sans-serif", 10, @"bold");
+
+    MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
+    voice.mode = MNModeSoft;
+
+    [voice addTickables:notes];
+
+    // MNFormatter *formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
+
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      // ctx.font = "10pt Arial";
-      MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 30, 550, 0)];
       [staff draw:ctx];
-
-      NSArray* specs = @[
-          @{
-              @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
-              @"duration" : @"4"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
-              @"duration" : @"8"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-              @"duration" : @"8"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-              @"duration" : @"16"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-              @"duration" : @"32"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-              @"duration" : @"64"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-              @"duration" : @"128"
-          }
-      ];
-
-      NSArray* notes = [specs oct_map:^MNTabNote*(NSDictionary* noteSpec) {
-        MNTabNote* tabNote = [[MNTabNote alloc] initWithDictionary:noteSpec];
-        [tabNote->_renderOptions setDraw_stem:YES];
-        [tabNote->_renderOptions setDraw_stem_through_staff:YES];
-        return tabNote;
-      }];
-
-      // ctx.setFont(@"sans-serif", 10, @"bold");
-
-      MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
-      voice.mode = MNModeSoft;
-
-      [voice addTickables:notes];
-
-      // MNFormatter *formatter =
-      [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
-
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
       ok(YES, @"TabNotes successfully drawn");
@@ -417,70 +415,69 @@
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
 
+    // ctx.font = "10pt Arial";
+    MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 10, 550, 0)];
+    staff.numberOfLines = 8;
+
+    NSArray* specs = @[
+        @{
+            @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
+            @"duration" : @"4"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
+            @"duration" : @"8"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"8"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"16"
+        },
+        @{
+            @"positions" : @[
+                @{@"str" : @(1), @"fret" : @"6"},
+                @{@"str" : @(4), @"fret" : @"5"},
+                @{@"str" : @(6), @"fret" : @"10"}
+            ],
+            @"duration" : @"32"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"64"
+        },
+        @{
+            @"positions" : @[
+                @{@"str" : @(1), @"fret" : @"6"},
+                @{@"str" : @(3), @"fret" : @"5"},
+                @{@"str" : @(5), @"fret" : @"5"},
+                @{@"str" : @(7), @"fret" : @"5"}
+            ],
+            @"duration" : @"128"
+        }
+    ];
+
+    NSArray* notes = [specs oct_map:^MNTabNote*(NSDictionary* noteSpec) {
+      MNTabNote* tabNote = [[MNTabNote alloc] initWithDictionary:noteSpec];
+      [[tabNote renderOptions] setDraw_stem:YES];
+      [[tabNote renderOptions] setDraw_stem_through_staff:YES];
+      tabNote.stemDirection = MNStemDirectionDown;   // (-1);
+      return tabNote;
+    }];
+
+    // ctx.setFont(@"Arial", 10, @"bold");
+
+    MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
+    voice.mode = MNModeSoft;
+
+    [voice addTickables:notes];
+
+    // MNFormatter *formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-
-      // ctx.font = "10pt Arial";
-      MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 30, 550, 0)];
       [staff draw:ctx];
-
-      NSArray* specs = @[
-          @{
-              @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
-              @"duration" : @"4"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
-              @"duration" : @"8"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-              @"duration" : @"8"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-              @"duration" : @"16"
-          },
-          @{
-              @"positions" : @[
-                  @{@"str" : @(1), @"fret" : @"6"},
-                  @{@"str" : @(4), @"fret" : @"5"},
-                  @{@"str" : @(6), @"fret" : @"10"}
-              ],
-              @"duration" : @"32"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-              @"duration" : @"64"
-          },
-          @{
-              @"positions" : @[
-                  @{@"str" : @(1), @"fret" : @"6"},
-                  @{@"str" : @(3), @"fret" : @"5"},
-                  @{@"str" : @(5), @"fret" : @"5"},
-                  @{@"str" : @(7), @"fret" : @"5"}
-              ],
-              @"duration" : @"128"
-          }
-      ];
-
-      NSArray* notes = [specs oct_map:^MNTabNote*(NSDictionary* noteSpec) {
-        MNTabNote* tabNote = [[MNTabNote alloc] initWithDictionary:noteSpec];
-        [tabNote->_renderOptions setDraw_stem:YES];
-        [tabNote->_renderOptions setDraw_stem_through_staff:YES];
-        tabNote.stemDirection = MNStemDirectionDown;   // (-1);
-        return tabNote;
-      }];
-
-      // ctx.setFont(@"Arial", 10, @"bold");
-
-      MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
-      voice.mode = MNModeSoft;
-
-      [voice addTickables:notes];
-
-      // MNFormatter *formatter =
-      [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
-
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
       ok(YES, @"All objects have been drawn");
@@ -492,53 +489,50 @@
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
 
+    MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 30, 550, 0)];
+
+    NSArray* specs = @[
+        @{
+            @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
+            @"duration" : @"4d"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
+            @"duration" : @"8"
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"4dd",
+            @"stem_direction" : @(-1)
+        },
+        @{
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
+            @"duration" : @"16",
+            @"stem_direction" : @(-1)
+        },
+    ];
+
+    NSArray<MNTabNote*>* notes = [specs oct_map:^MNTabNote*(NSDictionary* noteSpec) {
+      id tmp_dict = [NSMutableDictionary merge:@{ @"draw_stem" : @(YES) } with:noteSpec];
+      MNTabNote* tabNote = [[MNTabNote alloc] initWithDictionary:tmp_dict];
+      tabNote.drawStem = YES;
+      return tabNote;
+    }];
+
+    [notes[0] addDot];
+    [notes[2] addDot];
+    [notes[2] addDot];
+
+    MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
+    voice.mode = MNModeSoft;
+
+    [voice addTickables:notes];
+
+    // MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-
-      // ctx.font = "10pt Arial";
-      MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 30, 550, 0)];
       [staff draw:ctx];
-
-      NSArray* specs = @[
-          @{
-              @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
-              @"duration" : @"4d"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
-              @"duration" : @"8"
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-              @"duration" : @"4dd",
-              @"stem_direction" : @(-1)
-          },
-          @{
-              @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
-              @"duration" : @"16",
-              @"stem_direction" : @(-1)
-          },
-      ];
-
-      NSArray* notes = [specs oct_map:^MNTabNote*(NSDictionary* noteSpec) {
-        MNTabNote* tabNote = [[MNTabNote alloc] initWithDictionary:noteSpec];
-        tabNote.drawStem = YES;
-        return tabNote;
-      }];
-
-      [notes[0] addDot];
-      [notes[2] addDot];
-      [notes[2] addDot];
-
-      MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
-      voice.mode = MNModeSoft;
-
-      [voice addTickables:notes];
-
-      // MNFormatter* formatter =
-      [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
-
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
-
       ok(YES, @"TabNotes successfully drawn");
     };
     return ret;

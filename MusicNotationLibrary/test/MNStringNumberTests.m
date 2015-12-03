@@ -34,12 +34,12 @@
 - (void)start
 {
     [super start];
-    //    [self runTest:@"String Number In Notation"
-    //             func:@selector(drawMultipleMeasures:)
-    //            frame:CGRectMake(10, 10, 760, 180)];
-    //    [self runTest:@"Fret Hand Finger In Notation"
-    //             func:@selector(drawFretHandFingers:)
-    //            frame:CGRectMake(10, 10, 700, 200)];
+    [self runTest:@"String Number In Notation"
+             func:@selector(drawMultipleMeasures:)
+            frame:CGRectMake(10, 10, 760, 180)];
+    [self runTest:@"Fret Hand Finger In Notation"
+             func:@selector(drawFretHandFingers:)
+            frame:CGRectMake(10, 10, 700, 200)];
     [self runTest:@"Multi Voice With Strokes, String & Finger Numbers"
              func:@selector(multi:)
             frame:CGRectMake(10, 10, 600, 200)];
@@ -68,10 +68,10 @@
      }
      */
     NSUInteger w = size.width;
-    NSUInteger h = size.height;
+    //    NSUInteger h = size.height;
 
     w = w != 0 ? w : 350;
-    h = h != 0 ? h : 150;
+    //    h = h != 0 ? h : 150;
 
     // [MNFont setFont:@" 10pt Arial"];
 

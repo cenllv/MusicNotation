@@ -28,8 +28,9 @@
 
 #import "MNRect.h"
 
-/*! The `MNBoundingBox` class is really just a wrapper around CGRect that allows
-    for drawing boxes for debugging.
+/*! 
+ *  The `MNBoundingBox` class is really just a wrapper around CGRect that allows
+ *  for drawing boxes for debugging.
  */
 @interface MNBoundingBox : MNRect
 

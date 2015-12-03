@@ -182,7 +182,7 @@
     return [Pair left:[partitioned.left asArray] right:[partitioned.right asArray]];
 }
 
-- (id)reduce:(id (^)(id, id))functorBlock
+- (id)oct_reduce:(id (^)(id, id))functorBlock
 {
     return [self isEmpty] ? nil : [[self tail] oct_fold:[self head] with:functorBlock];
 }
@@ -249,7 +249,7 @@
 
 - (NSString*)toString:(NSString*)separator
 {
-    return [self reduce:TL_appendWithSeparator(separator)];
+    return [self oct_reduce:TL_appendWithSeparator(separator)];
 }
 
 - (NSString*)toString:(NSString*)start separator:(NSString*)separator end:(NSString*)end

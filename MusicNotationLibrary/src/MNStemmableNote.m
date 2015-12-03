@@ -1,4 +1,4 @@
-//
+#import "MNStaff.h"//
 //  MNStemmableNote.m
 //  MusicNotation
 //
@@ -37,27 +37,7 @@
 #import "MNTableTypes.h"
 #import "MNRational.h"
 #import "MNConstants.h"
-
-//@implementation StemmableNoteRenderOptions
-//- (instancetype)initWithDictionary:(NSDictionary*)optionsDict;
-//{
-//    self = [super initWithDictionary:optionsDict];
-//    if(self)
-//    {
-//        [self setValuesForKeyPathsWithDictionary:optionsDict];
-//    }
-//    return self;
-//}
-//
-//- (instancetype)init
-//{
-//    self = [self initWithDictionary:nil];
-//    if(self)
-//    {
-//    }
-//    return self;
-//}
-//@end
+#import "MNStaff.h"
 
 @implementation MNStemmableNote
 
@@ -374,10 +354,16 @@
 /*!
  *  Sets the current note's beam
  *  @param beam the beam for this note
+ *  @return this object
  */
-- (void)setBeam:(MNBeam*)beam
+- (id)setBeam:(MNBeam*)beam
 {
     _beam = beam;
+    return self;
+}
+- (MNBeam*)beam
+{
+    return _beam;
 }
 
 - (MNNoteRenderOptions*)renderOptions

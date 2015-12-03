@@ -28,7 +28,9 @@
 
 #import "MNNote.h"
 
-/*! 
+//@class MNTimeSigStruct;
+
+/*!
  *  The `MNTimeSigNote` class c
  */
 @interface MNTimeSigNote : MNNote

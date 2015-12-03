@@ -26,8 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
-
 #import "IAModelBase.h"
 
 @class RootAccidentalTypeStruct, MNMusicScales, /*MNMusicRootIndices,*/ MNMusicDiatonicAccidentals;
@@ -86,7 +84,7 @@
 
 @end
 
-@interface RootAccidentalTypeStruct : IAModelBase 
+@interface RootAccidentalTypeStruct : IAModelBase
 @property (strong, nonatomic) NSString* root;
 @property (strong, nonatomic) NSString* accidental;
 @property (strong, nonatomic) NSString* type;

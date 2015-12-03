@@ -46,7 +46,7 @@
     BOOL _postFormatted;
     float _width;
     float _x;
-    float _pixelsUsed;
+    float _pointsUsed;
 
     //    TickableMetrics* _metrics;
     id<TickableMetrics> _metrics;
@@ -102,18 +102,17 @@
 @property (assign, nonatomic, readonly) BOOL preFormatted;
 @property (assign, nonatomic, readonly) BOOL postFormatted;
 @property (assign, nonatomic) BOOL shouldIgnoreTicks;
-@property (assign, nonatomic) float pixelsUsed;
+@property (assign, nonatomic) float pointsUsed;
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 - (instancetype)init;
 
 - (BOOL)shouldIgnoreTicks;
-- (float)getWidth;
 - (float)x;
 - (void)setX:(float)x;
-- (float)getPixelsUsed;
-- (void)setPixelsUsed:(float)pixelsUsed;
+- (float)getPointsUsed;
+- (void)setPointsUsed:(float)pixelsUsed;
 - (void)setPadding:(MNPadding*)padding;
 - (MNRational*)getMaxTicks;
 - (MNRational*)getMinTicks;

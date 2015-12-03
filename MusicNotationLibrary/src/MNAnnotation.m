@@ -170,10 +170,16 @@
     return _text;
 }
 
-// Arrange annotations within a `ModifierContext`
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
+/*!
+ *  Arrange annotations within a `ModifierContext`
+ *  @param modifiers collection of `Modifier`
+ *  @param state     state of the `ModifierContext`
+ *  @param context   the calling `ModifierContext`
+ *  @return YES if succussful
+ */
++ (BOOL)format:(NSMutableArray<MNModifier*>*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
-    NSMutableArray* annotations = modifiers;
+    NSMutableArray<MNAnnotation*>* annotations = (NSMutableArray<MNAnnotation*>*)modifiers;
     if(!annotations || annotations.count == 0)
     {
         return NO;
@@ -221,7 +227,7 @@
 
     float text_width = size.width;
     float text_height = size.height;
-    float x, y;
+    float x = 0, y = 0;
 
     if(self.justification == MNJustifyLEFT)
     {
@@ -276,7 +282,7 @@
     {
         if([self.note isKindOfClass:[MNStemmableNote class]])
         {
-            float yt = [((MNStaffNote*)self.note)getYForTopText:self.text_line] - 1;
+            float yt = [((MNStaffNote*)self.note)getYForTopTextWithLine:self.text_line] - 1;
             float yb = [staff getYForBottomTextWithLine:self.text_line];
             y = yt + (yb - yt) / 2 + text_height / 2;
         }

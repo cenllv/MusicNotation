@@ -29,21 +29,13 @@
 #import "MNModifier.h"
 #import "MNNote.h"
 #import "MNLog.h"
-#import "MNEnum.h"
-#import "MNModifierContext.h"
-#import "MNMetrics.h"
-#import "MNGlyphList.h"
-#import "MNGlyph.h"
 #import "MNStaff.h"
 //#import "MNNote.h"
 #import "MNTickContext.h"
-#import "MNRenderOptions.h"
 #import <objc/runtime.h>
-#import "NSString+Ruby.h"
 #import "MNRational.h"
 #import "MNBoundingBox.h"
 #import "MNTuplet.h"
-#import "MNTable.h"
 #import "MNTickable.h"
 #import "MNPoint.h"
 #import "MNConstants.h"
@@ -122,7 +114,7 @@
     return [MNModifier CATEGORY];
 }
 
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
++ (BOOL)format:(NSMutableArray<MNModifier*>*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
     return YES;
 }

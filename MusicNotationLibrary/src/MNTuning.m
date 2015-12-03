@@ -28,7 +28,6 @@
 
 #import "MNTuning.h"
 #import "MNLog.h"
-#import "MNTuningNames.h"
 #import "MNTable.h"
 #import "MNKeyProperty.h"
 #import "NSString+Ruby.h"

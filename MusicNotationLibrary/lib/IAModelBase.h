@@ -6,20 +6,10 @@
 //  Copyright (c) 2012 InfusionApps. All rights reserved.
 //
 
-//@import Foundation;
-@import Foundation;
-#import <TargetConditionals.h>
-#ifdef TARGET_OS_IPHONE
-//@import UIKit;
-#elif TARGET_OS_MAC
-@import AppKit;
-#endif
-
 #import "NSMutableDictionary+MNAdditions.h"
+//#import "DPObject.h"
 
-#define CollectionSuffiex @[ @"Array", @"Items", @"List", @"Collection" ];
-
-@interface IAModelBase : NSObject
+@interface IAModelBase : NSObject   // DPObject
 
 @property (strong, nonatomic) NSMutableDictionary* propertiesToDictionaryEntriesMapping;
 @property (strong, nonatomic) NSMutableDictionary* classesForArrayEntries;
@@ -29,13 +19,14 @@
 
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
-
 - (void)setValuesForKeyPathsWithDictionary:(NSDictionary*)keyedValues;
 - (NSMutableDictionary*)dictionaryWithValuesForKeyPaths:(NSArray*)keyPaths;
 
-@end
+- (id)merge:(id)other;
 
-@interface IAModelBase (JSONDescription)
-- (NSString*)description;
-- (NSDictionary*)dictionarySerialization;
 @end
+//
+//@interface IAModelBase (JSONDescription)
+//- (NSString*)description;
+//- (NSDictionary*)dictionarySerialization;
+//@end

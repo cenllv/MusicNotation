@@ -124,16 +124,19 @@
  *  @param last_indices  <#last_indices description#>
  *  @return <#return value description#>
  */
-- (instancetype)initWithLastNote:(MNNote*)last_note
-                       firstNote:(MNNote*)first_note
-                    firstIndices:(NSArray*)first_indices
-                     lastIndices:(NSArray*)last_indices
+- (instancetype)initWithLastNote:(MNNote*)lastNote
+                       firstNote:(MNNote*)firstNote
+                    firstIndices:(NSArray*)firstIndices
+                     lastIndices:(NSArray*)lastIndices
 {
-    self = [self initWithDictionary:@{}];
+    self = [self initWithNoteTie:[[MNNoteTie alloc] initWithDictionary:@{
+                     @"firstNote" : firstNote,
+                     @"lastNote" : lastNote,
+                     @"firstIndices" : firstIndices,
+                     @"lastIndices" : lastIndices,
+                 }]];
     if(self)
     {
-        [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
-        [self setupStaffTie];
     }
     return self;
 }

@@ -177,7 +177,7 @@
 
 - (id)reduce:(id (^)(id, id))functorBlock
 {
-    return [[self asArray] reduce:functorBlock];
+    return [[self asArray] oct_reduce:functorBlock];
 }
 
 - (id)second

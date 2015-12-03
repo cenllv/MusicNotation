@@ -72,7 +72,7 @@
 @property (assign, nonatomic) float dbl_sharp_line;
 @property (assign, nonatomic) NSUInteger num_acc;
 @property (assign, nonatomic) NSUInteger column;
-@property (strong, nonatomic) NSDictionary* accidental;
+@property (strong, nonatomic) NSDictionary* accidentalDict;
 @property (strong, nonatomic) NSString* type;
 @property (strong, nonatomic) NSMutableDictionary* accidentalCodes;
 /*!
@@ -112,17 +112,9 @@
 /*!
  *  sets the staffnote for this accidental
  *  @param note parent note of accidental
+ *  @return this object
  */
-- (void)setNote:(MNStaffNote*)note;
-
-/*!
- *  Arrange accidentals inside a ModifierContext.
- *  @param modifiers collection of accidentals
- *  @param state     state of the accidentals
- *  @param context   the modifier context container
- *  @return YES if succussful
- */
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context;
+- (id)setNote:(MNStaffNote*)note;
 
 /*!
  *  Use this method to automatically apply accidentals to a set of `voices`.

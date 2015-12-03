@@ -32,7 +32,8 @@
 
 @class MNNote, MNFont;
 
-/*! The `MNAnnotation` class implements text annotations.
+/*! 
+ *  The `MNAnnotation` class implements text annotations.
  */
 @interface MNAnnotation : MNModifier
 {

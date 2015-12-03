@@ -1,11 +1,10 @@
 //
-//  Tempo.m
+//  MNStaffTempoOptionsStruct.h
 //  MusicNotation
 //
-//  Created by Scott Riccardelli on 1/1/15.
+//  Created by Scott Riccardelli on 12/2/15.
 //  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
-//  Ported from [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,37 +25,18 @@
 //  THE SOFTWARE.
 //
 
-#import "MNTempo.h"
+#import "IAModelBase.h"
 
-@implementation MNTempo
+/*!
+ *  <#Description#>
+ */
+@interface MNStaffTempoOptionsStruct : IAModelBase
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
-{
-    self = [super initWithDictionary:optionsDict];
-    if(self)
-    {
-    }
-    return self;
-}
+@property (strong, nonatomic) NSString* name;
+@property (assign, nonatomic) NSString* duration;
+@property (assign, nonatomic) NSUInteger dots;
+@property (assign, nonatomic) float bpm;
 
-- (instancetype)initWithName:(NSString*)name withDuration:(NSString*)duration withDots:(float)dots withBpm:(float)bpm
-{
-    self = [self initWithDictionary:@{}];
-    if(self)
-    {
-        self.name = name;
-        self.duration = duration;
-        self.dots = dots;
-        self.bpm = bpm;
-    }
-    return self;
-}
-
-- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
-{
-    NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
-    //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
-    return propertiesEntriesMapping;
-}
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
 @end

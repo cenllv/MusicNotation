@@ -31,7 +31,8 @@
 
 @class MNTickableMetrics;
 
-/*! The `MNContextDelegate` protocol
+/*! 
+ *  The `MNContextDelegate` protocol
  */
 @protocol MNContextDelegate <NSObject>
 
@@ -46,7 +47,7 @@
 @property (assign, nonatomic, readonly) BOOL postFormatted;
 @property (assign, nonatomic) BOOL shouldIgnoreTicks;
 @property (assign, nonatomic) float x;
-@property (assign, nonatomic) float pixelsUsed;
+@property (assign, nonatomic) float pointsUsed;
 
 #pragma mark - Methods
 - (BOOL)preFormat;

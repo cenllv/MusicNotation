@@ -35,12 +35,12 @@
 #import "MNSymbol.h"
 
 @class MNGlyph, MNModifier, MNKeySignature, MNClef, MNStaffText, MNPadding;
-@class  MNLine, MNTimeSignature, MNOptions, MNBoundingBox, MNFont, MNStaffModifier, TempoOptionsStruct;
+@class  MNLine, MNTimeSignature, MNOptions, MNBoundingBox, MNFont, MNStaffModifier, MNStaffTempoOptionsStruct;
 
 /*! The `StaffOptions` class sets many staff-specific 'options'
  *  used to render metrics
  */
-@interface StaffOptions : IAModelBase
+@interface MNStaffOptions : IAModelBase
 @property (assign, nonatomic) float verticalBarWidth;
 @property (assign, nonatomic) float glyphSpacingPoints;
 @property (assign, nonatomic) NSUInteger numLines;
@@ -84,7 +84,7 @@
     NSMutableArray* _glyphs;
     NSMutableArray* _endGlyphs;
 
-    StaffOptions* _options;
+    MNStaffOptions* _options;
 
     float _thickNess;
 }
@@ -114,7 +114,7 @@
 @property (assign, nonatomic, readonly) float start_x;
 @property (assign, nonatomic, readonly) float end_x;
 
-@property (strong, nonatomic, readonly) StaffOptions* options;
+@property (strong, nonatomic, readonly) MNStaffOptions* options;
 
 /*! righmost point position of this staff
  */
@@ -308,7 +308,7 @@
  *  @param y     y position relative to staff origin
  *  @return this object
  */
-- (id)setTempoWithTempo:(TempoOptionsStruct*)tempo atY:(float)y;
+- (id)setTempoWithTempo:(MNStaffTempoOptionsStruct*)tempo atY:(float)y;
 
 /*!
  *  Text functions

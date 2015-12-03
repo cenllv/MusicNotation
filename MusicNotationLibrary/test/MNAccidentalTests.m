@@ -50,7 +50,7 @@
 //    [self runTest:@"Accidental Arrangement Special Cases"
 //             func:@selector(specialCases:)
 //            frame:CGRectMake(10, 10, 700, 250)];
-//    [self runTest:@"Multi Voice" func:@selector(multiVoice:) frame:CGRectMake(10, 10, 700, 250)];
+    [self runTest:@"Multi Voice" func:@selector(multiVoice:) frame:CGRectMake(10, 10, 700, 250)];
 //    [self runTest:@"Microtonal" func:@selector(microtonal:) frame:CGRectMake(10, 10, 700, 250)];
 //    [self runTest:@"Automatic Accidentals - Simple Tests" func:@selector(autoAccidentalWorking:)];
 //    [self runTest:@"Automatic Accidentals - Simple Tests"
@@ -91,10 +91,10 @@
      }
      */
     NSUInteger w = size.width;
-    NSUInteger h = size.height;
+//    NSUInteger h = size.height;
 
     w = w != 0 ? w : 350;
-    h = h != 0 ? h : 150;
+//    h = h != 0 ? h : 150;
 
     //     // [MNFont setFont:@" 10pt Arial"];
 
@@ -168,7 +168,7 @@
     [tickContext addTickable:note];
     [tickContext preFormat];
     [tickContext setX:x];
-    [tickContext setPixelsUsed:65];
+    [tickContext setPointsUsed:65];
 
     [[note setStaff:staff] draw:ctx];
 
@@ -512,7 +512,7 @@
     [[tickContext addTickable:note1] addTickable:note2];
     [tickContext preFormat];
     [tickContext setX:x];
-    [tickContext setPixelsUsed:65];
+    [tickContext setPointsUsed:65];
 
     [[note1 setStaff:staff] draw:ctx];
     [[note2 setStaff:staff] draw:ctx];
@@ -611,8 +611,8 @@
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       [self showNotes:note1 other:note2 staff:staff context:ctx atX:60];
-      [self showNotes:note1 other:note2 staff:staff context:ctx atX:150];
-      [self showNotes:note1 other:note2 staff:staff context:ctx atX:250];
+      [self showNotes:note3 other:note4 staff:staff context:ctx atX:150];
+      [self showNotes:note5 other:note6 staff:staff context:ctx atX:250];
     };
     ok(YES, @"Full Accidental");
 

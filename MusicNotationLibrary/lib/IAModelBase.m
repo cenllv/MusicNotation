@@ -9,28 +9,31 @@
 #import "IAModelBase.h"
 #import <objc/runtime.h>
 #import "NSString+Ruby.h"
+#import "DPObjectProperty.h"
 
-@implementation IAModelBase (JSONDescription)
+//@implementation IAModelBase (JSONDescription)
+//
+//- (NSString*)description
+//{
+//    NSError* writeError = nil;
+//    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:[self dictionarySerialization]
+//                                                       options:NSJSONWritingPrettyPrinted
+//                                                         error:&writeError];
+//    NSString* jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//
+//    //    return jsonString;
+//    return [[NSString stringWithFormat:@"<%@:%p>\n", self.class, self]
+//        concat:[NSString stringWithFormat:@"%@", jsonString]];
+//}
+//
+//- (NSDictionary*)dictionarySerialization
+//{
+//    return [self dictionaryWithValuesForKeyPaths:@[]];
+//}
+//
+//@end
 
-- (NSString*)description
-{
-    NSError* writeError = nil;
-    NSData* jsonData = [NSJSONSerialization dataWithJSONObject:[self dictionarySerialization]
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:&writeError];
-    NSString* jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-
-    //    return jsonString;
-    return [[NSString stringWithFormat:@"<%@:%p>\n", self.class, self]
-        concat:[NSString stringWithFormat:@"%@", jsonString]];
-}
-
-- (NSDictionary*)dictionarySerialization
-{
-    return [self dictionaryWithValuesForKeyPaths:@[]];
-}
-
-@end
+#define CollectionSuffiex @[ @"Array", @"Items", @"List", @"Collection" ];
 
 @interface IAModelBase ()
 @property (nonatomic, strong) NSDictionary* dictionaryOfKeysToKeys;
@@ -160,7 +163,7 @@
     [super setValue:modelObject forKey:key];
 }
 
-- (void)fillArrayWithArray:(NSArray*)array forKey:(NSString*)key withEntryClass:(Class) class
+    - (void)fillArrayWithArray : (NSArray*)array forKey : (NSString*)key withEntryClass : (Class) class
 {
     NSMutableArray* retArray = [[NSMutableArray alloc] init];
 
@@ -173,7 +176,7 @@
     [super setValue:retArray forKey:key];
 }
 
-- (Class)classForKeyInCollection:(NSString*)key
+    - (Class)classForKeyInCollection : (NSString*)key
 {
     NSString* className = [_dictionaryOfKeysClasses objectForKey:key];
 
@@ -317,7 +320,6 @@
     //    return nil;
 }
 
-
 - (void)setValuesForKeyPathsWithDictionary:(NSDictionary*)keyedValues
 {
     for(NSString* key_keyPath in keyedValues.allKeys)
@@ -343,6 +345,60 @@
         [dict setObject:[self valueForKeyPath:keyPath] forKey:keyPath];
     }
     return [NSDictionary dictionaryWithDictionary:dict];
+}
+
+- (id)merge:(id)other
+{
+    if(!other)
+    {
+        return self;
+    }
+    if(![other isKindOfClass:[IAModelBase class]])
+    {
+        abort();
+    }
+
+    if(![self isKindOfClass:[other class]])
+    {
+        abort();
+    }
+
+    NSMutableDictionary* propertyGetters = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* propertySetters = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* propertyDeclarations = [[NSMutableDictionary alloc] init];
+
+    Class class = [other class];
+    while([class isSubclassOfClass:[IAModelBase class]])
+    {
+        unsigned int outCount;
+        objc_property_t* properties = class_copyPropertyList(class, &outCount);
+        for(NSUInteger i = 0; i < outCount; i++)
+        {
+            objc_property_t property = properties[i];
+            const char* propName = property_getName(property);
+            if(propName)
+            {
+                DPObjectProperty* op = [DPObjectProperty propertyWithDeclaration:property];
+                [propertyDeclarations setObject:op forKey:op.name];
+                [propertyGetters setObject:op.name forKey:NSStringFromSelector(op.getterSelector)];
+                if(!op.readonly)
+                {
+                    [propertySetters setObject:op.name forKey:NSStringFromSelector(op.setterSelector)];
+                }
+            }
+        }
+        free(properties);
+        class = class_getSuperclass(class);
+    }
+
+    for(NSString* key in propertyGetters.allKeys)
+    {
+        NSString* str = propertyGetters[key];
+        id value = [other valueForKey:str];
+        [self setValue:value forKey:key];
+    }
+
+    return self;
 }
 
 @end

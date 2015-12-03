@@ -27,9 +27,10 @@
 //
 
 #import "MNModifier.h"
-#import "MNStaffNote.h"
+//#import "MNStaffNote.h"
+#import "MNBeamRenderOptions.h"
 
-@class MNModifierContext, MNVoice, MNRational, MNBeamConfig;
+@class MNModifierContext, MNVoice, MNRational, MNBeamConfig, MNStemmableNote;
 
 /*! The `MNBeam` class
  *  creates a new beam from the specified notes. The notes must
@@ -43,18 +44,20 @@
     BOOL _autoStem;
     MNStemDirectionType _stemDirection;
     NSUInteger _beamCount;
-    float _beamWidth;
+    //    float _beamWidth;
     float _partialBeamLength;
+    
 }
 
 #pragma mark - Properties
-@property (strong, nonatomic) NSArray* notes;
+@property (strong, nonatomic) NSArray<MNStemmableNote*>* notes;
 @property (assign, nonatomic) BOOL unbeamable;
 @property (assign, nonatomic) BOOL autoStem;
 @property (assign, nonatomic) MNStemDirectionType stemDirection;
 @property (assign, nonatomic, getter=getBeamCount) NSUInteger beamCount;
-@property (assign, nonatomic) float beamWidth;
+//@property (assign, nonatomic) float beamWidth;
 @property (assign, nonatomic) float partialBeamLength;
+@property (strong, nonatomic) MNBeamRenderOptions* renderOptions;
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;

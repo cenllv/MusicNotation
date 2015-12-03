@@ -27,7 +27,8 @@
 
 #import "IAModelBase.h"
 
-/*! The `MNExtentStruct` class is a container for top and base of a head or beam
+/*!
+ *  The `MNExtentStruct` class is a container for top and base of a head or beam
  */
 @interface MNExtentStruct : IAModelBase
 #pragma mark - Properties

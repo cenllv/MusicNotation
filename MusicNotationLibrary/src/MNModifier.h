@@ -48,7 +48,8 @@
     NSUInteger _intrinsicTicks;
     MNRational* _tickMultiplier;
     MNRational* _ticks;
-    __weak MNVoice* _voice;
+    //    __weak MNVoice* _voice; // NOTE: weak braeks graceNoteGroups
+    MNVoice* _voice;
 
     MNTuplet* _tuplet;
 
@@ -83,7 +84,8 @@
 @property (strong, nonatomic) MNRational* tickMultiplier;
 @property (strong, nonatomic) MNRational* ticks;
 
-@property (weak, nonatomic) MNVoice* voice;
+@property (strong, nonatomic) MNVoice* voice;
+//@property (weak, nonatomic) MNVoice* voice; // NOTE: weak breaks graceNoteGroups
 
 @property (strong, nonatomic) NSMutableArray* modifiers;
 
@@ -140,7 +142,9 @@
 //- (NSString*)prolog;
 //- (NSString*)epilog:(NSString*)desc;
 
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context;
++ (BOOL)format:(NSMutableArray<MNModifier*>*)modifiers
+         state:(MNModifierState*)state
+       context:(MNModifierContext*)context;
 
 - (id)metrics;
 

@@ -25,9 +25,6 @@
 //  THE SOFTWARE.
 //
 
-
-
-
 #import "IAModelBase.h"
 
 @class MNFloatSize, MNColor;

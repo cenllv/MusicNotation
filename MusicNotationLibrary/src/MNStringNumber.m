@@ -209,14 +209,14 @@ setOffsetY: function(y) { self.y_offset = y; return this; },
 
 /*!
  *  Arrange string numbers inside a `ModifierContext`
- *  @param modifiers string modifiers
- *  @param state     modifier state
- *  @param context   modifier context
- *  @return success
+ *  @param modifiers collection of `Modifier`
+ *  @param state     state of the `ModifierContext`
+ *  @param context   the calling `ModifierContext`
+ *  @return YES if succussful
  */
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
++ (BOOL)format:(NSMutableArray<MNModifier*>*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
-    NSMutableArray<MNStringNumber*>* nums = modifiers;
+    NSMutableArray<MNStringNumber*>* nums = (NSMutableArray<MNStringNumber*>*)modifiers;
     float left_shift = state.left_shift;
     float right_shift = state.right_shift;
     float num_spacing = 1;
@@ -235,11 +235,11 @@ setOffsetY: function(y) { self.y_offset = y; return this; },
     MNKeyProperty* props_tmp;
     for(NSUInteger i = 0; i < nums.count; ++i)
     {
-        num = nums[i];
-        if([num.note isKindOfClass:[MNStaffNote class]])
-        {
-            note = (MNStaffNote*)num.note;
-        }
+        //        num = nums[i];
+        //        if([num.note isKindOfClass:[MNStaffNote class]])
+        //        {
+        //            note = (MNStaffNote*)num.note;
+        //        }
 
         for(NSUInteger j = 0; j < nums.count; ++j)
         {
@@ -294,7 +294,7 @@ setOffsetY: function(y) { self.y_offset = y; return this; },
 
     }];
 
-    float num_shiftL = 0;
+    // float num_shiftL = 0;
     float num_shiftR = 0;
     float x_widthL = 0;
     float x_widthR = 0;
@@ -309,13 +309,13 @@ setOffsetY: function(y) { self.y_offset = y; return this; },
         pos = snfStruct.pos;
         num = snfStruct.num;
         float line = snfStruct.line;
-        float shiftL = snfStruct.shiftL;
+        // float shiftL = snfStruct.shiftL;
         float shiftR = snfStruct.shiftR;
 
         // Reset the position of the string number every line.
         if(line != last_line || note != last_note)
         {
-            num_shiftL = left_shift + shiftL;
+            // num_shiftL = left_shift + shiftL;
             num_shiftR = right_shift + shiftR;
         }
 

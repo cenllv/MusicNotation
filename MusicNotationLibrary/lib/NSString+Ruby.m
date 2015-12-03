@@ -810,7 +810,9 @@
         else if(s[i] >= 97 && s[i] <= 122)
             s[i] = s[i] - 32;
     }
-    return [NSString stringWithCharacters:s length:self.length];
+    NSString *ret = [NSString stringWithCharacters:s length:self.length];
+    free(s);
+    return ret;
 }
 
 #pragma mark - Subscript Protocol Methods

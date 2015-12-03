@@ -50,8 +50,6 @@
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
-//+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context;
-
 - (id)setVibratoWidth:(float)width;
 - (id)setHarsh:(BOOL)harsh;
 - (BOOL)harsh;

@@ -27,7 +27,8 @@
 
 #import "MNOptions.h"
 
-/*! The `MNBendRenderOptions` class
+/*! 
+ *  The `MNBendRenderOptions` class
  */
 @interface MNBendRenderOptions : MNOptions
 @property (assign, nonatomic) float line_width;

@@ -1,11 +1,9 @@
 //
-//  Tempo.h
+//  MNGraceNoteGroupListStruct.h
 //  MusicNotation
 //
-//  Created by Scott Riccardelli on 1/1/15.
-//  Copyright (c) Scott Riccardelli 2015
+//  Created by Scott Riccardelli on 12/1/15.
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
-//  Ported from [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,19 +24,15 @@
 //  THE SOFTWARE.
 //
 
-
 #import "IAModelBase.h"
 
-/*! The `MNTempo` class wraps tempo data for displaying to the staff
- */
-@interface MNTempo : IAModelBase
+@class MNGraceNoteGroup;
 
-#pragma mark - Properties
-@property (strong, nonatomic) NSString* name;
-@property (assign, nonatomic) NSString* duration;
-@property (assign, nonatomic) float dots;
-@property (assign, nonatomic) float bpm;
+@interface MNGraceNoteGroupListStruct : IAModelBase
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+@property (assign, nonatomic) float shift;
+@property (strong, nonatomic) MNGraceNoteGroup* graceNoteGroup;
+
+- (instancetype)initWithShift:(float)shift graceNoteGroup:(MNGraceNoteGroup*)graceNoteGroup;
 
 @end

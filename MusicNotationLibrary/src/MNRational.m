@@ -28,6 +28,8 @@
 //
 
 #import "MNRational.h"
+#import "MNMacros.h"
+#import "MNLog.h"
 
 #pragma mark -  MNrational Implementation
 
@@ -456,6 +458,11 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
 - (MNRational*)divideByValue:(NSUInteger)value
 {
     return [self performOperation:^(NSInteger a, NSInteger b) {
+      if(b == 0)
+      {
+          MNLogError(@"DivisionByZeroException");
+          abort();
+      }
       return a / b;
     } on:self and:[MNRational rationalWithNumerator:value]];
 }

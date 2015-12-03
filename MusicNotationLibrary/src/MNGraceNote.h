@@ -28,8 +28,6 @@
 
 #import "MNStaffNote.h"
 
-@class GraceNoteOptions;
-
 /*! The `MNGraceNote` class
  */
 @interface MNGraceNote : MNStaffNote
@@ -42,13 +40,7 @@
 #pragma mark - Methods
 //- (instancetype)initWithStaffNote:(MNStaffNote *)staffNote;
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-- (float)getStemExtension;
+- (float)stemExtension;
 - (void)draw:(CGContextRef)ctx;
 
-@end
-
-@interface GraceNoteOptions : MNRenderOptions
-@property (assign, nonatomic) NSUInteger glyphFontScale;
-@property (assign, nonatomic) NSUInteger stemHeight;
-@property (assign, nonatomic) NSUInteger strokePoints;
 @end

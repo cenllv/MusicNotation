@@ -29,29 +29,21 @@
 #import "MNTable.h"
 #import "MNUtils.h"
 #import "MNClef.h"
-#import "MNMetrics.h"
-#import "MNEnum.h"
 #import "MNKeyProperty.h"
-#import "MNGlyph.h"
 #import "MNArticulation.h"
 #import "MNAccidental.h"
 #import "MNKeySignature.h"
-#import "MNNote.h"
 #import "MNStaffNote.h"
-#import "RegexKitLite.h"
 #import "NSString+Ruby.h"
 #import "MNRational.h"
 #import "MNTableOrnamentCodes.h"
 #import "MNTableAccidentalCodes.h"
 #import "MNTablesNoteData.h"
 #import "MNTableTypes.h"
-#import "MNTableAccListStruct.h"
 #import "MNGlyphTabStruct.h"
-#import "MNMacros.h"
 #import "NSArray+MNAdditions.h"
 #import "MNConstants.h"
 #import "MNText.h"
-#import "MNFont.h"
 
 #pragma mark -  MNTables Implementation
 
@@ -456,8 +448,8 @@ static NSDictionary* _clefProperties;
             note.stemOffset = 0;
             note.flag = NO;
             note.dotShiftY = 0;
-            [note->_metrics setLineAbove:0];
-            [note->_metrics setLineBelow:0];
+            [[note metrics] setLineAbove:0];
+            [[note metrics] setLineBelow:0];
             break;
         case MNDurationHalfNote:
             note.headWidth = 10.5;
@@ -465,8 +457,8 @@ static NSDictionary* _clefProperties;
             note.stemOffset = 0;
             note.flag = NO;
             note.dotShiftY = 0;
-            [note->_metrics setLineAbove:0];
-            [note->_metrics setLineBelow:0];
+            [[note metrics] setLineAbove:0];
+            [[note metrics] setLineBelow:0];
             break;
         case MNDurationQuarterNote:
             note.headWidth = 10.5;
@@ -474,8 +466,8 @@ static NSDictionary* _clefProperties;
             note.stemOffset = 0;
             note.flag = NO;
             note.dotShiftY = 0;
-            [note->_metrics setLineAbove:0];
-            [note->_metrics setLineBelow:0];
+            [[note metrics] setLineAbove:0];
+            [[note metrics] setLineBelow:0];
             break;
         case MNDurationEighthNote:
             note.headWidth = 10.5;
@@ -486,8 +478,8 @@ static NSDictionary* _clefProperties;
             note.codeFlagUpstem = @"v54";
             note.codeFlagDownstem = @"v9a";
             note.dotShiftY = 0;
-            [note->_metrics setLineAbove:0];
-            [note->_metrics setLineBelow:0];
+            [[note metrics] setLineAbove:0];
+            [[note metrics] setLineBelow:0];
             break;
         case MNDurationSixteenthNote:
             note.headWidth = 10.5;
@@ -498,8 +490,8 @@ static NSDictionary* _clefProperties;
             note.codeFlagUpstem = @"v3f";
             note.codeFlagDownstem = @"v8f";
             note.dotShiftY = 0;
-            [note->_metrics setLineAbove:0];
-            [note->_metrics setLineBelow:0];
+            [[note metrics] setLineAbove:0];
+            [[note metrics] setLineBelow:0];
             break;
         case MNDurationThirtyTwoNote:
             note.headWidth = 10.5;
@@ -510,8 +502,8 @@ static NSDictionary* _clefProperties;
             note.codeFlagUpstem = @"v47";
             note.codeFlagDownstem = @"v2a";
             note.dotShiftY = 0;
-            [note->_metrics setLineAbove:0];
-            [note->_metrics setLineBelow:0];
+            [[note metrics] setLineAbove:0];
+            [[note metrics] setLineBelow:0];
             break;
         case MNDurationSixtyFourNote:
             note.headWidth = 10.5;
@@ -522,8 +514,8 @@ static NSDictionary* _clefProperties;
             note.codeFlagUpstem = @"va9";
             note.codeFlagDownstem = @"v58";
             note.dotShiftY = 0;
-            [note->_metrics setLineAbove:0];
-            [note->_metrics setLineBelow:0];
+            [[note metrics] setLineAbove:0];
+            [[note metrics] setLineBelow:0];
             break;
         case MNDurationNone:
         default:
@@ -538,17 +530,17 @@ static NSDictionary* _clefProperties;
     switch(note.noteDurationType * N + note.noteNHMRSType)
     {
         case(MNDurationWholeNote * N + MNNoteNote):   // Whole note
-            [note->_metrics setCode:@"v1d"];
+            [[note metrics] setCode:@"v1d"];
             break;
         case(MNDurationWholeNote * N + MNNoteHarmonic):   // Whole note harmonic
-            [note->_metrics setCode:@"v46"];
+            [[note metrics] setCode:@"v46"];
             break;
         case(MNDurationWholeNote * N + MNNoteMuted):   // Whole note muted
-            [note->_metrics setCode:@"v92"];
+            [[note metrics] setCode:@"v92"];
             note.stemOffset = -3;
             break;
         case(MNDurationWholeNote * N + MNNoteRest):   // Whole rest
-            [note->_metrics setCode:@"v5c"];
+            [[note metrics] setCode:@"v5c"];
             note.headWidth = 12.5;
             note.rest = YES;
             note.position = @"D/5";
@@ -562,17 +554,17 @@ static NSDictionary* _clefProperties;
             break;
 
         case(MNDurationHalfNote * N + MNNoteNote):   // Half note
-            [note->_metrics setCode:@"v81"];
+            [[note metrics] setCode:@"v81"];
             break;
         case(MNDurationHalfNote * N + MNNoteHarmonic):   // Half note harmonic
-            [note->_metrics setCode:@"v2d"];
+            [[note metrics] setCode:@"v2d"];
             break;
         case(MNDurationHalfNote * N + MNNoteMuted):   // Half note muted
-            [note->_metrics setCode:@"v95"];
+            [[note metrics] setCode:@"v95"];
             note.stemOffset = -3;
             break;
         case(MNDurationHalfNote * N + MNNoteRest):   // Half rest
-            [note->_metrics setCode:@"vc"];
+            [[note metrics] setCode:@"vc"];
             note.headWidth = 12.5;
             note.hasStem = NO;
             note.rest = YES;
@@ -586,24 +578,24 @@ static NSDictionary* _clefProperties;
             break;
 
         case(MNDurationQuarterNote * N + MNNoteNote):   // Quarter note
-            [note->_metrics setCode:@"vb"];
+            [[note metrics] setCode:@"vb"];
             break;
         case(MNDurationQuarterNote * N + MNNoteHarmonic):   // Quarter harmonic
-            [note->_metrics setCode:@"v22"];
+            [[note metrics] setCode:@"v22"];
             break;
         case(MNDurationQuarterNote * N + MNNoteMuted):   // Quarter muted
-            [note->_metrics setCode:@"v3e"];
+            [[note metrics] setCode:@"v3e"];
             note.stemOffset = -3;
             break;
         case(MNDurationQuarterNote * N + MNNoteRest):   // Quarter rest
-            [note->_metrics setCode:@"v7c"];
+            [[note metrics] setCode:@"v7c"];
             note.headWidth = 8;
             note.hasStem = NO;
             note.rest = YES;
             note.position = @"B/4";
             note.dotShiftY = -0.5;
-            [note->_metrics setLineAbove:1.5];
-            [note->_metrics setLineBelow:1.5];
+            [[note metrics] setLineAbove:1.5];
+            [[note metrics] setLineBelow:1.5];
             break;
         case(MNDurationQuarterNote * N + MNNoteSlash):   // Quarter slash
             // Drawn with canvas primitives
@@ -612,23 +604,23 @@ static NSDictionary* _clefProperties;
             break;
 
         case(MNDurationEighthNote * N + MNNoteNote):   // Eighth note
-            [note->_metrics setCode:@"vb"];
+            [[note metrics] setCode:@"vb"];
             break;
         case(MNDurationEighthNote * N + MNNoteHarmonic):   // Eighth note harmonic
-            [note->_metrics setCode:@"v22"];
+            [[note metrics] setCode:@"v22"];
             break;
         case(MNDurationEighthNote * N + MNNoteMuted):   // Eighth note muted
-            [note->_metrics setCode:@"v3e"];
+            [[note metrics] setCode:@"v3e"];
             break;
         case(MNDurationEighthNote * N + MNNoteRest):   // Eighth rest
-            [note->_metrics setCode:@"va5"];
+            [[note metrics] setCode:@"va5"];
             note.hasStem = NO;
             note.flag = NO;
             note.rest = YES;
             note.position = @"B/4";
             note.dotShiftY = -0.5;
-            [note->_metrics setLineAbove:1.0];
-            [note->_metrics setLineBelow:1.0];
+            [[note metrics] setLineAbove:1.0];
+            [[note metrics] setLineBelow:1.0];
             break;
         case(MNDurationEighthNote * N + MNNoteSlash):   // Eighth slash
             // Drawn with canvas primitives
@@ -637,24 +629,24 @@ static NSDictionary* _clefProperties;
             break;
 
         case(MNDurationSixteenthNote * N + MNNoteNote):   // Sixteenth note
-            [note->_metrics setCode:@"vb"];
+            [[note metrics] setCode:@"vb"];
             break;
         case(MNDurationSixteenthNote * N + MNNoteHarmonic):   // Sixteenth note harmonic
-            [note->_metrics setCode:@"v22"];
+            [[note metrics] setCode:@"v22"];
             break;
         case(MNDurationSixteenthNote * N + MNNoteMuted):   // Sixteenth note muted
-            [note->_metrics setCode:@"v3e"];
+            [[note metrics] setCode:@"v3e"];
             break;
         case(MNDurationSixteenthNote * N + MNNoteRest):   // Sixteenth rest
-            [note->_metrics setCode:@"v3c"];
+            [[note metrics] setCode:@"v3c"];
             note.headWidth = 13;
             note.hasStem = NO;
             note.flag = NO;
             note.rest = YES;
             note.position = @"B/4";
             note.dotShiftY = -0.5;
-            [note->_metrics setLineAbove:1.0];
-            [note->_metrics setLineBelow:2.0];
+            [[note metrics] setLineAbove:1.0];
+            [[note metrics] setLineBelow:2.0];
             break;
         case(MNDurationSixteenthNote * N + MNNoteSlash):   // Sixteenth slash
             // Drawn with canvas primitives
@@ -663,24 +655,24 @@ static NSDictionary* _clefProperties;
             break;
 
         case(MNDurationThirtyTwoNote * N + MNNoteNote):   // Thirty-second note
-            [note->_metrics setCode:@"vb"];
+            [[note metrics] setCode:@"vb"];
             break;
         case(MNDurationThirtyTwoNote * N + MNNoteHarmonic):   // Thirty-second note harmonic
-            [note->_metrics setCode:@"v22"];
+            [[note metrics] setCode:@"v22"];
             break;
         case(MNDurationThirtyTwoNote * N + MNNoteMuted):   // Thirty-second note muted
-            [note->_metrics setCode:@"v3e"];
+            [[note metrics] setCode:@"v3e"];
             break;
         case(MNDurationThirtyTwoNote * N + MNNoteRest):   // Thirty-second rest
-            [note->_metrics setCode:@"v55"];
+            [[note metrics] setCode:@"v55"];
             note.headWidth = 16;
             note.hasStem = NO;
             note.flag = NO;
             note.rest = YES;
             note.position = @"B/4";
             note.dotShiftY = -1.5;
-            [note->_metrics setLineAbove:2.0];
-            [note->_metrics setLineBelow:2.0];
+            [[note metrics] setLineAbove:2.0];
+            [[note metrics] setLineBelow:2.0];
             break;
         case(MNDurationThirtyTwoNote * N + MNNoteSlash):   // Thirty-second slash
             // Drawn with canvas primitives
@@ -689,24 +681,24 @@ static NSDictionary* _clefProperties;
             break;
 
         case(MNDurationSixtyFourNote * N + MNNoteNote):   // Sixty-fourth note
-            [note->_metrics setCode:@"vb"];
+            [[note metrics] setCode:@"vb"];
             break;
         case(MNDurationSixtyFourNote * N + MNNoteHarmonic):   // Sixty-fourth harmonic
-            [note->_metrics setCode:@"v22"];
+            [[note metrics] setCode:@"v22"];
             break;
         case(MNDurationSixtyFourNote * N + MNNoteMuted):   // Sixty-fourth muted
-            [note->_metrics setCode:@"v3e"];
+            [[note metrics] setCode:@"v3e"];
             break;
         case(MNDurationSixtyFourNote * N + MNNoteRest):   // Sixty-fourth rest
-            [note->_metrics setCode:@"v38"];
+            [[note metrics] setCode:@"v38"];
             note.headWidth = 18;
             note.hasStem = NO;
             note.flag = NO;
             note.rest = YES;
             note.position = @"B/4";
             note.dotShiftY = -1.5;
-            [note->_metrics setLineAbove:2.0];
-            [note->_metrics setLineBelow:3.0];
+            [[note metrics] setLineAbove:2.0];
+            [[note metrics] setLineBelow:3.0];
             break;
         case(MNDurationSixtyFourNote * N + MNNoteSlash):   // Sixty-fourth  slash
             // Drawn with canvas primitives
@@ -2230,6 +2222,13 @@ static NSDictionary* _durationCodesDictionary;
     }
 
     NSArray* pieces = [key split:@"/"];
+    if(pieces.count == 1)
+    {
+        pieces = @[
+            pieces[0],
+            @"",
+        ];
+    }
 
     if(pieces.count < 2)
     {

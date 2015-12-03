@@ -32,8 +32,6 @@
 #import "MNLog.h"
 #import "MNStaffNote.h"
 #import "MNText.h"
-#import "NSMutableArray+MNAdditions.h"
-#import "MNStaffNote.h"
 #import "MNKeyProperty.h"
 #import "MNFretHandFingerNumStruct.h"
 
@@ -115,9 +113,16 @@
     return propertiesEntriesMapping;
 }
 
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
+/*!
+ *  Arrange FretHandFingers inside a `ModifierContext`
+ *  @param modifiers collection of `Modifier`
+ *  @param state     state of the `ModifierContext`
+ *  @param context   the calling `ModifierContext`
+ *  @return YES if succussful
+ */
++ (BOOL)format:(NSMutableArray<MNModifier*>*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
-    NSMutableArray<MNFretHandFinger*>* nums = modifiers;
+    NSMutableArray<MNFretHandFinger*>* nums = (NSMutableArray<MNFretHandFinger*>*)modifiers;
     float left_shift = state.left_shift;
     float right_shift = state.right_shift;
     NSUInteger num_spacing = 1;

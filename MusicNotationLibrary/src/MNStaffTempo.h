@@ -31,22 +31,10 @@
 #import "IAModelBase.h"
 #import "MNRenderOptions.h"
 
-@class MNFont;   // TODO: delete this file --> Tempo.h
+@class MNFont, MNStaffTempoOptionsStruct;
 
-@interface TempoOptions : MNRenderOptions
-@property (assign, nonatomic) NSUInteger glyphFontScale;
-@end
-
-@interface TempoOptionsStruct : IAModelBase
-@property (strong, nonatomic) NSString* name;
-@property (assign, nonatomic) NSString* duration;
-@property (assign, nonatomic) NSUInteger dots;
-@property (assign, nonatomic) float bpm;
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-@end
-
-/*! The `MNStaffTempo` class performs tempo markers
-
+/*!
+ *  The `MNStaffTempo` class performs tempo markers
  */
 @interface MNStaffTempo : MNStaffModifier
 {
@@ -56,7 +44,7 @@
 
 #pragma mark - Properties
 
-@property (strong, nonatomic) TempoOptionsStruct* tempo;
+@property (strong, nonatomic) MNStaffTempoOptionsStruct* tempo;
 @property (assign, nonatomic) float x;
 @property (assign, nonatomic) float shiftX;
 @property (assign, nonatomic) float shiftY;
@@ -71,7 +59,7 @@
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithTempo:(TempoOptionsStruct*)tempo atX:(float)x withShiftY:(float)shiftY;
+- (instancetype)initWithTempo:(MNStaffTempoOptionsStruct*)tempo atX:(float)x withShiftY:(float)shiftY;
 //- (void)draw:(CGContextRef)ctx toStaff:(MNStaff*)staff withShiftX:(float)shiftX;
 //- (void)setTempo:(TempoOptionsStruct*)tempo;
 - (void)setShiftX:(float)shiftX;

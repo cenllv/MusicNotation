@@ -96,10 +96,10 @@
                                  withTitle:(NSString*)title
 {
     NSUInteger w = size.width;
-    NSUInteger h = size.height;
+//    NSUInteger h = size.height;
 
     w = w != 0 ? w : 450;
-    h = h != 0 ? h : 140;
+//    h = h != 0 ? h : 140;
 
     //    // [MNFont setFont:@" 10pt Arial"];
 
@@ -1490,9 +1490,12 @@
     NSArray* beams3 =
         [MNBeam applyAndGetBeams:voice3 groups:[MNBeam getDefaultBeamGroupsForTimeSignatureType:MNTime13_16]];
 
-    MNFormatter* formatter1 = [[MNFormatter formatter] formatToStaff:@[ voice1 ] staff:staff1];
-    MNFormatter* formatter2 = [[MNFormatter formatter] formatToStaff:@[ voice2 ] staff:staff2];
-    MNFormatter* formatter3 = [[MNFormatter formatter] formatToStaff:@[ voice3 ] staff:staff3];
+//    MNFormatter* formatter1 =
+    [[MNFormatter formatter] formatToStaff:@[ voice1 ] staff:staff1];
+//    MNFormatter* formatter2 =
+    [[MNFormatter formatter] formatToStaff:@[ voice2 ] staff:staff2];
+//    MNFormatter* formatter3 =
+    [[MNFormatter formatter] formatToStaff:@[ voice3 ] staff:staff3];
 
     //    [ret.staves addObjectsFromArray:@[ staff1, staff2, staff3 ]];
     //    [ret.voices addObjectsFromArray:@[ voice1, voice2, voice3 ]];

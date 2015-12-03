@@ -26,76 +26,28 @@
 //  THE SOFTWARE.
 //
 
-#import "MNColor.h"
-#import "MNBezierPath.h"
 #import "MNStaffNote.h"
-#import "MNUtils.h"
 #import "MNGlyph.h"
 #import "MNBeam.h"
 #import "MNClef.h"
-#import "MNNote.h"
-#import "MNMetrics.h"
-#import "MNPadding.h"
-#import "MNStaff.h"
-#import "MNNote.h"
 #import "MNAccidental.h"
 #import "MNArticulation.h"
 #import "MNAnnotation.h"
-#import "MNModifier.h"
-#import "MNOptions.h"
 #import "MNTable.h"
 #import "MNKeyProperty.h"
-#import "MNStaff.h"
-#import "MNEnum.h"
-#import "MNModifierContext.h"
 #import "MNBoundingBox.h"
-#import "MNModifier.h"
-#import "MNNote.h"
-#import "MNBoundingBox.h"
-#import "MNKeyProperty.h"
 #import "MNDot.h"
-#import "MNSymbol.h"
-#import "MNNote.h"
 #import "MNTickable.h"
-#import "MNDelegates.h"
-#import "NSString+Ruby.h"
-#import "OCTotallyLazy.h"
 #import "MNExtentStruct.h"
 #import "MNStem.h"
-#import "MNTuplet.h"
-#import "NSMutableArray+MNAdditions.h"
 #import "MNNoteHead.h"
-#import "IAModelBase.h"
-#import "MNTablesNoteData.h"
 #import "MNTickContext.h"
 #import "MNShapeLayer.h"
 #import "MNStroke.h"
-#import "NSString+MNAdditions.h"
 #import "MNStaffNoteRenderOptions.h"
 #import "MNNoteHeadBounds.h"
 #import "MNConstants.h"
-
-@interface FormatNote : IAModelBase
-@property (assign, nonatomic) float line;       // note/rest base line
-@property (assign, nonatomic) float max_line;   // note/rest upper bounds line
-@property (assign, nonatomic) float min_line;   // note/rest lower bounds line
-@property (assign, nonatomic) BOOL isRest;
-@property (assign, nonatomic) MNStemDirectionType stem_dir;
-@property (assign, nonatomic) float stem_max;   // Maximum (default) note stem length;
-@property (assign, nonatomic) float stem_min;   // minimum note stem length
-@property (assign, nonatomic) float voice_shift;
-@property (assign, nonatomic) BOOL displaced;   // note manually displaced
-@property (strong, nonatomic) MNStaffNote* note;
-@end
-
-@implementation FormatNote
-@end
-
-#pragma mark -  MNStaffNote Implementation
-/*!---------------------------------------------------------------------------------------------------------------------
- * @name  MNStaffNote Implementation
- * ---------------------------------------------------------------------------------------------------------------------
- */
+#import "MNStaffNoteFormatNoteStruct.h"
 
 @interface MNStaffNote ()
 {
@@ -107,8 +59,6 @@
 @end
 
 @implementation MNStaffNote
-
-#pragma mark - Initialization
 
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
@@ -229,12 +179,6 @@
     ]];
 }
 
-#pragma mark - Setup/Configuration
-/*!---------------------------------------------------------------------------------------------------------------------
- * @name Setup/Configuration
- * ---------------------------------------------------------------------------------------------------------------------
- */
-
 /*! defaults setup
  */
 - (void)setupStaffNote
@@ -281,12 +225,15 @@
         self.clef = [MNClef clefWithName:self.clefName];
     }
 
-    self->_renderOptions = [[MNStaffNoteRenderOptions alloc]
-        initWithDictionary:[self->_renderOptions propertiesToDictionaryEntriesMapping]];
+    MNStaffNoteRenderOptions* renderOptions =
+        [[MNStaffNoteRenderOptions alloc] initWithDictionary:@{}];   // WithDictionary:[self->_renderOptions
+                                                                     // propertiesToDictionaryEntriesMapping]];
+    [renderOptions merge:self->_renderOptions];
+    self->_renderOptions = renderOptions;
     // font size for note heads and rests
-    [self->_renderOptions setGlyphFontScale:35];
+    [renderOptions setGlyphFontScale:35.f / 35.f];   // 35];
     // number of stroke px to the left and right of head
-    [self->_renderOptions setStrokePx:3];
+    [renderOptions setStrokePoints:3];
 
     [self calculateKeyProps];
     self.note_heads = [NSMutableArray arrayWithCapacity:self.keyProps.count];
@@ -339,6 +286,7 @@
     }
 
     self.stem.y_extend = y_extend;
+    [self->_renderOptions setStemHeight:y_extend];
 }
 
 // Builds a `NoteHead` for each key in the note
@@ -353,7 +301,7 @@
 
     NSMutableArray* keys = self.keyStrings;
 
-    float last_line = -999;
+    float last_line = FLT_MIN;
     float line_diff = 0;
     BOOL displaced = NO;
 
@@ -378,11 +326,7 @@
 
         // Keep track of last line with a note head, so that consecutive heads
         // are correctly displaced.
-        if(last_line == -999)
-        {
-            last_line = line;
-        }
-        else
+        if(last_line != FLT_MIN)
         {
             line_diff = ABS(last_line - line);
             if(line_diff == 0 || line_diff == 0.5)
@@ -407,7 +351,6 @@
         //        [self->renderOptions setGlyphFontScale:10];
         //        NSLog(@"%f", [self->renderOptions glyphFontScale]);
 
-        // TODO: fix the following
         //         MNNoteHead* noteHead = [[MNNoteHead alloc] initWithDictionary:nil];
         //        noteHead.duration = self.durationString;
         //        noteHead.noteNHMRSType = self.noteNHMRSType;
@@ -433,7 +376,7 @@
             @"line" : @(note_props.line),
             @"noteName" : self.durationString,
         }];
-        [noteHead->_renderOptions setGlyphFontScale:[self->_renderOptions glyphFontScale]];
+        [[noteHead renderOptions] setGlyphFontScale:[self->_renderOptions glyphFontScale]];
         self.note_heads[i] = noteHead;   //[self.note_heads insertObject:noteHead atIndex:i];
     }
 }
@@ -548,7 +491,9 @@
  *  @param note      <#note description#>
  *  @param direction <#direction description#>
  */
-+ (void)shiftRestVertical:(FormatNote*)rest note:(FormatNote*)note direction:(MNShiftDirectionType)direction
++ (void)shiftRestVertical:(MNStaffNoteFormatNoteStruct*)rest
+                     note:(MNStaffNoteFormatNoteStruct*)note
+                direction:(MNShiftDirectionType)direction
 {
     float delta = (note.isRest ? 0.0 : 1.0) * direction;
     rest.line += delta;
@@ -564,7 +509,9 @@
  *  @param noteU <#noteU description#>
  *  @param noteL <#noteL description#>
  */
-+ (void)centerRest:(FormatNote*)rest noteU:(FormatNote*)noteU noteL:(FormatNote*)noteL
++ (void)centerRest:(MNStaffNoteFormatNoteStruct*)rest
+             noteU:(MNStaffNoteFormatNoteStruct*)noteU
+             noteL:(MNStaffNoteFormatNoteStruct*)noteL
 {
     float delta = rest.line - mnmidline(noteU.min_line, noteL.max_line);
     [rest.note setKeyLine:0 withLine:([rest.note getKeyLine:0] - delta)];
@@ -573,10 +520,16 @@
     rest.min_line -= delta;
 }
 
-// Format notes inside a ModifierContext.
-+ (BOOL)format:(NSMutableArray*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
+/*!
+ *  Format notes inside a ModifierContext.
+ *  @param modifiers collection of `Modifier`
+ *  @param state     state of the `ModifierContext`
+ *  @param context   the calling `ModifierContext`
+ *  @return YES if succussful
+ */
++ (BOOL)format:(NSMutableArray<MNModifier*>*)modifiers state:(MNModifierState*)state context:(MNModifierContext*)context
 {
-    NSMutableArray* notes = modifiers;
+    NSMutableArray<MNStaffNote*>* notes = (NSMutableArray<MNStaffNote*>*)modifiers;
     if(!notes || notes.count < 2)
     {
         return NO;
@@ -612,7 +565,7 @@
                                  : ((MNKeyProperty*)props[props.count - 1]).line;
             minL = stem_dir == 1 ? ((MNKeyProperty*)props[0]).line : ((MNKeyProperty*)props[0]).line - stem_max;
         }
-        [notes_list push:[[FormatNote alloc] initWithDictionary:@{
+        [notes_list push:[[MNStaffNoteFormatNoteStruct alloc] initWithDictionary:@{
                         @"line" : @(firstKeyProp.line),   // note/rest base line
                         @"max_line" : @(maxL),            // note/rest upper bounds line
                         @"min_line" : @(minL),            // note/rest lower bounds line
@@ -628,9 +581,9 @@
 
     NSUInteger voices = notes_list.count;
 
-    FormatNote* noteU = notes_list[0];
-    FormatNote* noteM = voices > 2 ? notes_list[1] : nil;
-    FormatNote* noteL = voices > 2 ? notes_list[2] : notes_list[1];
+    MNStaffNoteFormatNoteStruct* noteU = notes_list[0];
+    MNStaffNoteFormatNoteStruct* noteM = voices > 2 ? notes_list[1] : nil;
+    MNStaffNoteFormatNoteStruct* noteL = voices > 2 ? notes_list[2] : notes_list[1];
     // for two voice backward compatibility, ensure upper voice is stems up
     // for three voices, the voices must be in order (upper, middle, lower)
     if(voices == 2 && noteU.stem_dir == -1 && noteL.stem_dir == 1)
@@ -878,10 +831,15 @@
     return NSStringFromClass([self class]);
 }
 
-- (NSString*)category
-{
-    return [[self class] CATEGORY];
-}
+//- (NSString*)category
+//{
+//    return [[self class] CATEGORY];
+//}
+
+//- (id)renderOptions
+//{
+//    return _renderOptions;
+//}
 
 - (NSString*)codeHead
 {
@@ -1044,7 +1002,7 @@
 
 //- (void)setStem:(MNStem*)stem
 //{
-    //    self.glyphStruct.stem = stem;
+//    self.glyphStruct.stem = stem;
 //    _stem = stem;
 //}
 
@@ -1237,20 +1195,15 @@
 //}
 
 #pragma mark - get positions for modifiers
-/*!---------------------------------------------------------------------------------------------------------------------
- * @name getters for modifiers positioning
- * ---------------------------------------------------------------------------------------------------------------------
- */
 
-// TODO: change this to getYForTopTextWithLine
-- (float)getYForTopText:(float)textLine
+- (float)getYForTopTextWithLine:(float)textLine
 {
     MNExtentStruct* extents = self.stemExtents;
     return MIN([self.staff getYForTopTextWithLine:textLine],
                extents.topY - ([self->_renderOptions annotation_spacing] * (textLine + 1)));
 }
 
-- (float)getYForBottomText:(float)textLine
+- (float)getYForBottomTextWithLine:(float)textLine
 {
     MNExtentStruct* extents = self.stemExtents;
     return MAX([self.staff getYForTopTextWithLine:textLine],
@@ -1403,7 +1356,7 @@ addModifier: function(index, modifier) {
     MNTickContext* tickContext = [[MNTickContext alloc] init];
     [[tickContext addTickable:note] preFormat];
     tickContext.x = x;
-    tickContext.pixelsUsed = 20;
+    tickContext.pointsUsed = 20;
     note.staff = staff;
     [note draw:ctx];
     //    if (drawBoundingBox) {
@@ -1568,8 +1521,8 @@ addModifier: function(index, modifier) {
           // head_x = that.getAbsoluteX() + that.x_shift;
           head_x = ((MNNoteHead*)self.note_heads[0]).x /* .absoluteX*/ + that.xShift;
       }
-      float x = head_x - [that->_renderOptions strokePx];
-      float length = ((head_x + that.glyphStruct.headWidth) - head_x) + ([that->_renderOptions strokePx] * 2);
+      float x = head_x - [that->_renderOptions strokePoints];
+      float length = ((head_x + that.glyphStruct.headWidth) - head_x) + ([that->_renderOptions strokePoints] * 2);
 
       CGContextFillRect(ctx, CGRectMake(x, y, length, 1));
     };
@@ -1627,6 +1580,7 @@ addModifier: function(index, modifier) {
     if(glyph.flag && render_flag)
     {
         float note_stem_height = self.stem.height;
+        //        float note_stem_height = [self->_renderOptions stemHeight];
         float flag_x, flag_y;
         NSString* flag_code;
 
@@ -1649,7 +1603,7 @@ addModifier: function(index, modifier) {
         [MNGlyph renderGlyph:ctx
                          atX:flag_x
                          atY:flag_y
-                   withScale:1   //[self->_renderOptions glyphFontScale] // CHANGE
+                   withScale:[self->_renderOptions glyphFontScale]
                 forGlyphCode:flag_code];
     }
 }
@@ -1686,6 +1640,7 @@ addModifier: function(index, modifier) {
     [self.stem setStyleBlock:self.styleBlock];
     if(self.stem)
     {
+        //        [self.stem setStem_extension:[self->_renderOptions stemHeight]];
         [self.stem draw:ctx];
     }
 }
@@ -1733,7 +1688,8 @@ addModifier: function(index, modifier) {
     }
     if(self.isRest)
     {
-        [MNGlyph renderGlyph:ctx atX:x_begin atY:[self.ys[0] floatValue] withScale:1 forGlyphCode:self.glyphCode];
+        float scale = [(MNStaffNoteRenderOptions*)[self renderOptions] glyphFontScale];
+        [MNGlyph renderGlyph:ctx atX:x_begin atY:[self.ys[0] floatValue] withScale:scale forGlyphCode:self.glyphCode];
     }
     else
     {

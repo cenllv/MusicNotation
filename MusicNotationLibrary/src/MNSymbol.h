@@ -1,6 +1,6 @@
 //
 //  MNSymbol.h
-//  MNCore
+//  MusicNotation
 //
 //  Created by Scott Riccardelli on 1/1/15.
 //  Copyright (c) Scott Riccardelli 2015
@@ -34,7 +34,7 @@
  */
 @interface MNSymbol : IAModelBase
 {
-   @public
+   @protected
     id _renderOptions;
     id _metrics;
     BOOL _preFormatted;
@@ -119,6 +119,8 @@
 
 @property (assign, nonatomic) NSUInteger index;
 
+- (id)metrics;
+
 //- (Metrics *)metrics;
 //- (void)setMetrics;
 
@@ -156,6 +158,7 @@
 - (void)reset;
 - (BOOL)preFormat;
 - (BOOL)postFormat;
+- (void)draw:(CGContextRef)ctx;
 
 //`````````````````````
 // CALayer Methods

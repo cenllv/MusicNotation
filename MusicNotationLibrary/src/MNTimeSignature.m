@@ -29,52 +29,22 @@
 #import "MNTimeSignature.h"
 #import "MNUtils.h"
 #import "MNGlyph.h"
-#import "MNStaffModifier.h"
-#import "MNMetrics.h"
-#import "MNBoundingBox.h"
 #import "MNPoint.h"
 #import "MNStaff.h"
-#import "MNDelegates.h"
-#import "MNGlyphList.h"
-#import "MNSymbol.h"
-#import "MNPoint.h"
-#import "MNSymbol.h"
-#import "MNPadding.h"
-#import "MNSize.h"
-#import "MNEnum.h"
-
-@interface MNTimeSignatureGlyphMetrics : MNMetrics
-{
-   @private
-    float _x_min;
-    float _x_max;
-}
-@property (assign, nonatomic) float x_min;
-@property (assign, nonatomic) float x_max;
-@end
+#import "MNTimeSignatureGlyphMetrics.h"
+#import "MNTimeSigStruct.h"
 
 @interface MNTimeSignature ()
+
 @property (assign, nonatomic) float topLine;
 @property (assign, nonatomic) float bottomLine;
 @property (strong, nonatomic) NSMutableArray* topGlyphs;
 @property (strong, nonatomic) NSMutableArray* botGlyphs;
 @property (assign, nonatomic) BOOL num;
 @property (assign, nonatomic) float line;
-@property (strong, nonatomic) NSArray* topCodes;
-@property (strong, nonatomic) NSArray* bottomCodes;
 @property (strong, nonatomic) NSArray* topNumbers;
 @property (strong, nonatomic) NSArray* bottomNumbers;
-@end
 
-@implementation MNTimeSignatureGlyphMetrics
-- (float)x_min
-{
-    return _x_min;
-}
-- (float)x_max
-{
-    return _x_max + self.width;
-}
 @end
 
 @implementation MNTimeSignature
@@ -97,10 +67,13 @@
         self.bottomLine = 4;
         self.point.x = 40;
         BOOL haveGlyph = [self parseTimeSpec:self.timeSpec];
+
+        self.timeSig.num = haveGlyph;
         if(!haveGlyph)
         {
             self.glyph =
                 [self makeTimeSignatureGlyphWithTopNumbers:self.topNumbers andBottomNumbers:self.bottomNumbers];
+            self.timeSig.glyph = self.glyph;
         }
     }
     return self;
@@ -108,7 +81,7 @@
 
 - (instancetype)initWithTimeSpec:(NSString*)timeSpec andPadding:(float)padding
 {
-    self = [self initWithDictionary:@{@"timeSpec" : timeSpec}];
+    self = [self initWithDictionary:@{ @"timeSpec" : timeSpec }];
     if(self)
     {
         //        _timeSpec = timeSpec;
@@ -151,7 +124,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"timesignature";
+    return NSStringFromClass([self class]);   // return @"timesignature";
 }
 - (NSString*)CATEGORY
 {
@@ -169,53 +142,14 @@
     return _timeSpec;
 }
 
-- (NSArray*)topCodes
+- (MNTimeSigStruct*)timeSig
 {
-    if(!_topCodes)
+    if(!_timeSig)
     {
-        //        _topCodes = [NSMutableArray array];
-        MNLogError(@"TimeSignatureTopCodeUnitializedException, intiialize top codes first");
+        _timeSig = [[MNTimeSigStruct alloc] init];
     }
-    return _topCodes;
+    return _timeSig;
 }
-
-- (NSArray*)bottomCodes
-{
-    if(!_bottomCodes)
-    {
-        //        _bottomCodes = [NSMutableArray array];
-        MNLogError(@"TimeSignatureBottomCodeUnitializedException, intiialize bottom codes first");
-    }
-    return _bottomCodes;
-}
-
-//- (NSMutableArray*)topNumbers
-//{
-//    if(!_topNumbers)
-//    {
-//        _topNumbers = [NSMutableArray array];
-//    }
-//    return _topNumbers;
-//}
-//
-//- (NSMutableArray*)bottomNumbers
-//{
-//    if(!_bottomNumbers)
-//    {
-//        _bottomNumbers = [NSMutableArray array];
-//    }
-//    return _bottomNumbers;
-//}
-
-//- (MNGlyph*)glyph //(TimeSignatureGlyph*)glyph
-//{
-//    return _glyph;
-//}
-
-//- (void)setGlyph:(TimeSignatureGlyph*)glyph
-//{
-//    _glyph = glyph;
-//}
 
 #pragma mark - LU Tables
 /*!---------------------------------------------------------------------------------------------------------------------
@@ -286,8 +220,9 @@ static NSDictionary* _standardTimeSignatures;
 #pragma mark - Methods
 
 /*!
- *  <#Description#>
- *  @param timeSpec <#timeSpec description#>
+ *  Parses a time signature string
+ *  @param timeSpec time signature string in the form: [0-9]+/[0-9]+
+ *  @return YES if successful, NO otherwise
  */
 - (BOOL)parseTimeSpec:(NSString*)timeSpec
 {
@@ -322,7 +257,8 @@ static NSDictionary* _standardTimeSignatures;
                                                               range:NSMakeRange(0, timeSpecRegexString.length)]];
     if(!timeSpecMatch)
     {
-        [MNLog logError:timeSpecErrMsg];
+        MNLogError(@"%@", timeSpecErrMsg);
+        return NO;
     }
 
     // split the timeSpec string
@@ -332,8 +268,8 @@ static NSDictionary* _standardTimeSignatures;
     if(specComponents.count != 2)
     {
         MNLogError(@"%@", timeSpecErrMsg);
-        MNLogError(@"invalid values: %@%@%@", @"received values=[", [NSString stringWithFormat:@"%@", specComponents],
-                   @"]");
+        MNLogError(@"invalid values: received values=[%@]", specComponents);
+        return NO;
     }
 
     // get a formatter to convert from a string to an actual number
@@ -349,28 +285,17 @@ static NSDictionary* _standardTimeSignatures;
         }
         return chars;
     };
-    //
-    //    self.topCodes = split(specComponents[0]);
-    //    self.bottomCodes = split(specComponents[1]);
 
     NSArray* topNumbers = split(specComponents[0]);
     topNumbers = [topNumbers oct_map:^NSNumber*(NSString* element) {
       return [NSNumber numberWithInteger:[element integerValue]];
     }];
-    //    topNumbers = [topNumbers.rac_sequence map:^NSNumber*(NSString* element) {
-    //                   return [NSNumber numberWithInteger:[element integerValue]];
-    //                 }].array;
-    //
     self.topNumbers = topNumbers;
 
     NSArray* bottomNumbers = split(specComponents[1]);
     bottomNumbers = [bottomNumbers oct_map:^NSNumber*(NSString* element) {
       return [NSNumber numberWithInteger:[element integerValue]];
     }];
-    //    bottomNumbers = [bottomNumbers.rac_sequence map:^NSNumber*(NSString* element) {
-    //                      return [NSNumber numberWithInteger:[element integerValue]];
-    //                    }].array;
-    //
     self.bottomNumbers = bottomNumbers;
 
     self.num = YES;
@@ -431,22 +356,41 @@ static NSDictionary* _standardTimeSignatures;
     __block float botStartX = (width - botWidth) / 2.0;
 
     __block typeof(self) this = self;
-    glyph.drawBlock = ^(CGContextRef ctx, float x, float y) {
+    glyph.drawBlock = ^(CGContextRef ctx, MNStaff* staff, float x, float y) {
 
       float start_x = x + topStartX;
       MNGlyph* g;
+      float _y = 0;
+      if(!this.staff)
+      {
+          //          _y = y;
+          _y = [staff getYForLine:this.topLine] + 1;
+      }
+      else
+      {
+          _y = [this.staff getYForLine:this.topLine] + 1;
+      }
       for(NSUInteger i = 0; i < this.topGlyphs.count; ++i)
       {
           g = this.topGlyphs[i];
           [MNGlyph renderGlyph:ctx
                            atX:start_x + g.x_shift
-                           atY:[this.staff getYForLine:this.topLine] + 1
+                           atY:_y
                      withScale:1 /*g.scale*/
                   forGlyphCode:g.metrics.code];
           start_x += g.metrics.width;
       }
 
       start_x = x + botStartX;
+      if(!this.staff)
+      {
+          //          _y = y;
+          _y = [staff getYForLine:this.bottomLine] + 1;
+      }
+      else
+      {
+          _y = [this.staff getYForLine:this.bottomLine] + 1;
+      }
       for(NSUInteger i = 0; i < this.botGlyphs.count; ++i)
       {
           g = this.botGlyphs[i];
@@ -454,8 +398,8 @@ static NSDictionary* _standardTimeSignatures;
           //          [this placeGlyphOnLine:glyph forStaff:this.staff onLine:g.line];
           [MNGlyph renderGlyph:ctx
                            atX:start_x + g.x_shift
-                           atY:[this.staff getYForLine:this.bottomLine] + 1
-                     withScale:1 /*g.scale*/
+                           atY:_y   //[this.staff getYForLine:this.bottomLine] + 1 + y
+                     withScale:1    /*g.scale*/
                   forGlyphCode:g.metrics.code];
           start_x += g.metrics.width;
       }
@@ -474,7 +418,7 @@ static NSDictionary* _standardTimeSignatures;
 {
     //    [staff addGlyph:self.glyph];
     //
-    [staff addGlyph:[staff makeSpacer:10]];
+    [staff addGlyph:[staff makeSpacer:self.padding]];
 
     if(!self.num)
     {
@@ -491,7 +435,7 @@ static NSDictionary* _standardTimeSignatures;
  */
 - (void)addEndModifierToStaff:(MNStaff*)staff
 {
-    [staff addEndGlyph:[staff makeSpacer:10]];
+    [staff addEndGlyph:[staff makeSpacer:self.padding]];
 
     if(!self.num)
     {

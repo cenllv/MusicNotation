@@ -27,6 +27,9 @@
 #import "IAModelBase.h"
 #import "MNEnum.h"
 
+/*!
+ *  `MNBendStruct`
+ */
 @interface MNBendStruct : IAModelBase
 
 @property (assign, nonatomic) MNBendDirectionType type;

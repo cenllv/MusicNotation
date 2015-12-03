@@ -81,10 +81,10 @@
      }
      */
     NSUInteger w = size.width;
-    NSUInteger h = size.height;
+    //    NSUInteger h = size.height;
 
     w = w != 0 ? w : 350;
-    h = h != 0 ? h : 150;
+    //    h = h != 0 ? h : 150;
 
     // [MNFont setFont:@" 10pt Arial"];
 
@@ -273,137 +273,141 @@
         return [[MNTabNote alloc] initWithDictionary:note_struct];
     };
 
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 400, 0)] addTrebleGlyph];
+
+    MNTabStaff* tabStaff = [[MNTabStaff staffWithRect:CGRectMake(10, 155, 400, 0)] addTabGlyph];
+    tabStaff.noteStartX = staff.noteStartX;
+
+    // notation upper voice notes
+    NSArray* notes = @[
+        newNote(
+            @{ @"keys" : @[ @"g/4", @"b/4", @"e/5" ],
+               @"duration" : @"q" }),
+        newNote(
+            @{ @"keys" : @[ @"g/4", @"b/4", @"e/5" ],
+               @"duration" : @"q" }),
+        newNote(
+            @{ @"keys" : @[ @"g/4", @"b/4", @"e/5" ],
+               @"duration" : @"q" }),
+        newNote(
+            @{ @"keys" : @[ @"g/4", @"b/4", @"e/5" ],
+               @"duration" : @"q" })
+    ];
+
+    // tablature upper voice notes
+    NSArray* notes3 = @[
+        newTabNote(@{
+            @"positions" : @[
+                @{@"str" : @(3), @"fret" : @"0"},
+                @{@"str" : @(2), @"fret" : @"0"},
+                @{@"str" : @(1), @"fret" : @"1"}
+            ],
+            @"duration" : @"q"
+        }),
+        newTabNote(@{
+            @"positions" : @[
+                @{@"str" : @(3), @"fret" : @"0"},
+                @{@"str" : @(2), @"fret" : @"0"},
+                @{@"str" : @(1), @"fret" : @"1"}
+            ],
+            @"duration" : @"q"
+        }),
+        newTabNote(@{
+            @"positions" : @[
+                @{@"str" : @(3), @"fret" : @"0"},
+                @{@"str" : @(2), @"fret" : @"0"},
+                @{@"str" : @(1), @"fret" : @"1"}
+            ],
+            @"duration" : @"q"
+        }),
+        newTabNote(@{
+            @"positions" : @[
+                @{@"str" : @(3), @"fret" : @"0"},
+                @{@"str" : @(2), @"fret" : @"0"},
+                @{@"str" : @(1), @"fret" : @"1"}
+            ],
+            @"duration" : @"q"
+        })
+    ];
+
+    // Create the strokes for notation
+    MNStroke* stroke1 = [MNStroke strokeWithType:MNStrokeRollDown allVoices:NO];
+    MNStroke* stroke2 = [MNStroke strokeWithType:MNStrokeRasquedoUp];
+    MNStroke* stroke3 = [MNStroke strokeWithType:MNStrokeBrushUp allVoices:NO];
+    MNStroke* stroke4 = [MNStroke strokeWithType:MNStrokeBrushDown];
+    // add strokes to notation
+    [notes[0] addStroke:stroke1 atIndex:0];
+    [notes[1] addStroke:stroke2 atIndex:0];
+    [notes[2] addStroke:stroke3 atIndex:0];
+    [notes[3] addStroke:stroke4 atIndex:0];
+
+    // creae strokes for tab
+    MNStroke* stroke5 = [MNStroke strokeWithType:MNStrokeRollDown allVoices:NO];
+    MNStroke* stroke6 = [MNStroke strokeWithType:MNStrokeRasquedoUp];
+    MNStroke* stroke7 = [MNStroke strokeWithType:MNStrokeBrushUp allVoices:NO];
+    MNStroke* stroke8 = [MNStroke strokeWithType:MNStrokeBrushDown];
+    // add strokes to tab
+    [notes3[0] addStroke:stroke5 atIndex:0];
+    [notes3[1] addStroke:stroke6 atIndex:0];
+    [notes3[2] addStroke:stroke7 atIndex:0];
+    [notes3[3] addStroke:stroke8 atIndex:0];
+
+    // notation lower voice notes
+    NSArray* notes2 = @[
+        newNote(
+            @{ @"keys" : @[ @"g/3" ],
+               @"stem_direction" : @(-1),
+               @"duration" : @"q" }),
+        newNote(
+            @{ @"keys" : @[ @"g/3" ],
+               @"stem_direction" : @(-1),
+               @"duration" : @"q" }),
+        newNote(
+            @{ @"keys" : @[ @"g/3" ],
+               @"stem_direction" : @(-1),
+               @"duration" : @"q" }),
+        newNote(
+            @{ @"keys" : @[ @"g/3" ],
+               @"stem_direction" : @(-1),
+               @"duration" : @"q" })
+    ];
+
+    // tablature lower voice notes
+    NSArray* notes4 = @[
+        newTabNote(
+            @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"3"} ],
+               @"duration" : @"q" }),
+        newTabNote(
+            @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"3"} ],
+               @"duration" : @"q" }),
+        newTabNote(
+            @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"3"} ],
+               @"duration" : @"q" }),
+        newTabNote(
+            @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"3"} ],
+               @"duration" : @"q" })
+    ];
+
+    MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
+    MNVoice* voice2 = [MNVoice voiceWithTimeSignature:MNTime4_4];
+    MNVoice* voice3 = [MNVoice voiceWithTimeSignature:MNTime4_4];
+    MNVoice* voice4 = [MNVoice voiceWithTimeSignature:MNTime4_4];
+    [voice addTickables:notes];
+    [voice2 addTickables:notes2];
+    [voice3 addTickables:notes3];
+    [voice4 addTickables:notes4];
+
+    //        MNFormatter *formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice, voice2, voice3, voice4 ]]
+              formatWith:@[ voice, voice2, voice3, voice4 ]
+        withJustifyWidth:275];
+    //        [[[MNFormatter formatter] joinVoices:@[  voice3, voice4 ]]
+    //         formatWith:@[ voice3, voice4 ]
+    //         withJustifyWidth:275];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 400, 0)] addTrebleGlyph];
       [staff draw:ctx];
-      MNTabStaff* tabStaff = [[MNTabStaff staffWithRect:CGRectMake(10, 155, 400, 0)] addTabGlyph];
-      tabStaff.noteStartX = staff.noteStartX;
       [tabStaff draw:ctx];
-
-      // notation upper voice notes
-      NSArray* notes = @[
-          newNote(
-              @{ @"keys" : @[ @"g/4", @"b/4", @"e/5" ],
-                 @"duration" : @"q" }),
-          newNote(
-              @{ @"keys" : @[ @"g/4", @"b/4", @"e/5" ],
-                 @"duration" : @"q" }),
-          newNote(
-              @{ @"keys" : @[ @"g/4", @"b/4", @"e/5" ],
-                 @"duration" : @"q" }),
-          newNote(
-              @{ @"keys" : @[ @"g/4", @"b/4", @"e/5" ],
-                 @"duration" : @"q" })
-      ];
-
-      // tablature upper voice notes
-      NSArray* notes3 = @[
-          newTabNote(@{
-              @"positions" : @[
-                  @{@"str" : @(3), @"fret" : @"0"},
-                  @{@"str" : @(2), @"fret" : @"0"},
-                  @{@"str" : @(1), @"fret" : @"1"}
-              ],
-              @"duration" : @"q"
-          }),
-          newTabNote(@{
-              @"positions" : @[
-                  @{@"str" : @(3), @"fret" : @"0"},
-                  @{@"str" : @(2), @"fret" : @"0"},
-                  @{@"str" : @(1), @"fret" : @"1"}
-              ],
-              @"duration" : @"q"
-          }),
-          newTabNote(@{
-              @"positions" : @[
-                  @{@"str" : @(3), @"fret" : @"0"},
-                  @{@"str" : @(2), @"fret" : @"0"},
-                  @{@"str" : @(1), @"fret" : @"1"}
-              ],
-              @"duration" : @"q"
-          }),
-          newTabNote(@{
-              @"positions" : @[
-                  @{@"str" : @(3), @"fret" : @"0"},
-                  @{@"str" : @(2), @"fret" : @"0"},
-                  @{@"str" : @(1), @"fret" : @"1"}
-              ],
-              @"duration" : @"q"
-          })
-      ];
-
-      // Create the strokes for notation
-      MNStroke* stroke1 = [MNStroke strokeWithType:3 allVoices:NO];
-      MNStroke* stroke2 = [MNStroke strokeWithType:MNStrokeRasquedoUp];
-      MNStroke* stroke3 = [MNStroke strokeWithType:2 allVoices:NO];
-      MNStroke* stroke4 = [MNStroke strokeWithType:MNStrokeBrushDown];
-      // add strokes to notation
-      [notes[0] addStroke:stroke1 atIndex:0];
-      [notes[1] addStroke:stroke2 atIndex:0];
-      [notes[2] addStroke:stroke3 atIndex:0];
-      [notes[3] addStroke:stroke4 atIndex:0];
-
-      // creae strokes for tab
-      MNStroke* stroke5 = [MNStroke strokeWithType:3 allVoices:NO];
-      MNStroke* stroke6 = [MNStroke strokeWithType:MNStrokeRasquedoUp];
-      MNStroke* stroke7 = [MNStroke strokeWithType:2 allVoices:NO];
-      MNStroke* stroke8 = [MNStroke strokeWithType:MNStrokeBrushDown];
-      // add strokes to tab
-      [notes3[0] addStroke:stroke5 atIndex:0];
-      [notes3[1] addStroke:stroke6 atIndex:0];
-      [notes3[2] addStroke:stroke7 atIndex:0];
-      [notes3[3] addStroke:stroke8 atIndex:0];
-
-      // notation lower voice notes
-      NSArray* notes2 = @[
-          newNote(
-              @{ @"keys" : @[ @"g/3" ],
-                 @"stem_direction" : @(-1),
-                 @"duration" : @"q" }),
-          newNote(
-              @{ @"keys" : @[ @"g/3" ],
-                 @"stem_direction" : @(-1),
-                 @"duration" : @"q" }),
-          newNote(
-              @{ @"keys" : @[ @"g/3" ],
-                 @"stem_direction" : @(-1),
-                 @"duration" : @"q" }),
-          newNote(
-              @{ @"keys" : @[ @"g/3" ],
-                 @"stem_direction" : @(-1),
-                 @"duration" : @"q" })
-      ];
-
-      // tablature lower voice notes
-      NSArray* notes4 = @[
-          newTabNote(
-              @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"3"} ],
-                 @"duration" : @"q" }),
-          newTabNote(
-              @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"3"} ],
-                 @"duration" : @"q" }),
-          newTabNote(
-              @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"3"} ],
-                 @"duration" : @"q" }),
-          newTabNote(
-              @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"3"} ],
-                 @"duration" : @"q" })
-      ];
-
-      MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
-      MNVoice* voice2 = [MNVoice voiceWithTimeSignature:MNTime4_4];
-      MNVoice* voice3 = [MNVoice voiceWithTimeSignature:MNTime4_4];
-      MNVoice* voice4 = [MNVoice voiceWithTimeSignature:MNTime4_4];
-      [voice addTickables:notes];
-      [voice2 addTickables:notes2];
-      [voice4 addTickables:notes4];
-      [voice3 addTickables:notes];
-
-      //        MNFormatter *formatter =
-      [[[MNFormatter formatter] joinVoices:@[ voice, voice2, voice3, voice4 ]]
-                formatWith:@[ voice, voice2, voice3, voice4 ]
-          withJustifyWidth:275];
 
       [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
@@ -678,7 +682,8 @@
 
     [tabVoice addTickables:notes.tabNotes];
 
-    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatWith:@[ voice, tabVoice ] withJustifyWidth:justify];
+    [[[MNFormatter formatter] joinVoices:@[ voice, tabVoice ]] formatWith:@[ voice, tabVoice ]
+                                                         withJustifyWidth:justify];
 
     [voice draw:ctx dirtyRect:CGRectZero toStaff:staves.notesStaff];
     [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {

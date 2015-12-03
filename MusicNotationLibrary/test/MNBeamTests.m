@@ -81,10 +81,10 @@
     }
      */
     NSUInteger w = size.width;
-    NSUInteger h = size.height;
+//    NSUInteger h = size.height;
 
     w = w != 0 ? w : 450;
-    h = h != 0 ? h : 140;
+//    h = h != 0 ? h : 140;
 
     //     // [MNFont setFont:@" 10pt Arial"];
 
@@ -1401,7 +1401,7 @@
 
     NSArray* notes = [specs oct_map:^MNTabNote*(NSDictionary* noteSpec) {
       MNTabNote* tabNote = [[MNTabNote alloc] initWithDictionary:noteSpec];
-      [tabNote->_renderOptions setDrawStem:YES];
+      [[tabNote renderOptions] setDraw_stem:YES];
       return tabNote;
     }];
 
@@ -1486,9 +1486,9 @@
 
     NSArray* notes = [specs oct_map:^MNTabNote*(NSDictionary* noteSpec) {
       MNTabNote* tabNote = [[MNTabNote alloc] initWithDictionary:noteSpec];
-      [tabNote->_renderOptions setDraw_stem:YES];
+      [[tabNote renderOptions] setDraw_stem:YES];
       tabNote.stemDirection = -1;
-      [tabNote->_renderOptions setDraw_dots:YES];
+      [[tabNote renderOptions] setDraw_dots:YES];
       return tabNote;
     }];
 
@@ -1568,8 +1568,8 @@
 
     NSArray* notes = [specs oct_map:^MNTabNote*(NSDictionary* noteSpec) {
       MNTabNote* tabNote = [[MNTabNote alloc] initWithDictionary:noteSpec];
-      [tabNote->_renderOptions setDraw_stem:YES];
-      [tabNote->_renderOptions setDraw_dots:YES];
+      [[tabNote renderOptions] setDraw_stem:YES];
+      [[tabNote renderOptions] setDraw_dots:YES];
       return tabNote;
     }];
 
@@ -1654,8 +1654,8 @@
 
     NSArray* notes = [specs oct_map:^MNTabNote*(NSDictionary* noteSpec) {
       MNTabNote* tabNote = [[MNTabNote alloc] initWithDictionary:noteSpec];
-      [tabNote->_renderOptions setDrawStem:YES];
-      [tabNote->_renderOptions setDraw_dots:YES];
+      [[tabNote renderOptions] setDraw_stem:YES];
+      [[tabNote renderOptions] setDraw_dots:YES];
       return tabNote;
     }];
 

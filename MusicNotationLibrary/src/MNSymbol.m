@@ -25,17 +25,12 @@
 //  THE SOFTWARE.
 //
 
-#import "MNColor.h"
-#import "MNBezierPath.h"
 #import "MNSymbol.h"
 #import "MNUtils.h"
 #import "MNPoint.h"
 #import "MNGlyphList.h"
 //#import "MNCore.h"
 #import "MNRenderOptions.h"
-#import <objc/runtime.h>
-#import "MNGlyphList.h"
-#import "NSString+Ruby.h"
 #import "MNMetrics.h"
 #import "MNBoundingBox.h"
 #import "MNShapeLayer.h"

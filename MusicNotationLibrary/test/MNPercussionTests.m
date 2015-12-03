@@ -37,7 +37,7 @@
     [super start];
     float w = 600, h = 150;
     [self runTest:@"Percussion Clef" func:@selector(draw:withTitle:) frame:CGRectMake(10, 10, w, h)];
-    [self runTest:@"Percussion Notes" func:@selector(drawNotes:withTitle:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Percussion Notes" func:@selector(drawNotes:withTitle:) frame:CGRectMake(10, 10, w, 2*h)];
     [self runTest:@"Percussion Basic0" func:@selector(drawBasic0:withTitle:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"Percussion Basic1" func:@selector(drawBasic1:withTitle:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"Percussion Basic2" func:@selector(drawBasic2:withTitle:) frame:CGRectMake(10, 10, w, h)];
@@ -66,10 +66,10 @@
      }
      */
     NSUInteger w = size.width;
-    NSUInteger h = size.height;
+    //    NSUInteger h = size.height;
 
     w = w != 0 ? w : 350;
-    h = h != 0 ? h : 150;
+    //    h = h != 0 ? h : 150;
 
     // [MNFont setFont:@" 10pt Arial"];
 
@@ -144,80 +144,92 @@
     return ret;
 }
 
-- (void)showNote
+- (void)showNote:(MNStaffNote*)note staff:(MNStaff*)staff ctx:(CGContextRef)ctx x:(float)x
 {
-    /*
-    Vex.Flow.Test.Percussion.showNote = function(note_struct, staff, ctx, x) {
-        var note = [[MNStaffNote alloc]initWithDictionary:(note_struct);
-         MNTickContext *tickContext = [[MNTickContext alloc]init];
-        [tickContext addTickable:note] preFormat].x = x).setPixelsUsed(20);
-        note.staff = staff;
-        [note draw:ctx]
-        return note;
-    }
-     */
+    MNTickContext *tickContext = [[MNTickContext alloc]init];
+    [[tickContext addTickable:note] preFormat];
+    [tickContext setX:x];
+    [tickContext setPointsUsed:20];
+    note.staff = staff;
+    [note draw:ctx];
 }
 
 - (MNTestTuple*)drawNotes:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
 {
     MNTestTuple* ret = [MNTestTuple testTuple];
-    /*
-    Vex.Flow.Test.Percussion.drawNotes = function(options, contextBuilder) {
-        NSArray *notes = @[
-                     @{ @"keys" : @[@"g/5/d0"], @"duration" : @"q"},
-                     @{ @"keys" : @[@"g/5/d1"], @"duration" : @"q"},
-                     @{ @"keys" : @[@"g/5/d2"], @"duration" : @"q"},
-                     @{ @"keys" : @[@"g/5/d3"], @"duration" : @"q"},
-                     @{ @"keys" : @[@"x/"], @"duration" : @"w"},
 
-                     @{ @"keys" : @[@"g/5/t0"], @"duration" : @"w"},
-                     @{ @"keys" : @[@"g/5/t1"], @"duration" : @"q"},
-                     @{ @"keys" : @[@"g/5/t2"], @"duration" : @"q"},
-                     @{ @"keys" : @[@"g/5/t3"], @"duration" : @"q"},
-                     @{ @"keys" : @[@"x/"], @"duration" : @"w"},
+    NSArray<NSDictionary*>* notes_structs = @[
+        @{ @"keys" : @[ @"g/5/d0" ],
+           @"duration" : @"q" },
+        @{ @"keys" : @[ @"g/5/d1" ],
+           @"duration" : @"q" },
+        @{ @"keys" : @[ @"g/5/d2" ],
+           @"duration" : @"q" },
+        @{ @"keys" : @[ @"g/5/d3" ],
+           @"duration" : @"q" },
+        @{ @"keys" : @[ @"x/" ],
+           @"duration" : @"w" },
 
-                     @{ @"keys" : @[@"g/5/x0"], @"duration" : @"w"},
-                     @{ @"keys" : @[@"g/5/x1"], @"duration" : @"q"},
-                     @{ @"keys" : @[@"g/5/x2"], @"duration" : @"q"},
-                     @{ @"keys" : @[@"g/5/x3"], @"duration" : @"q"}
-                     ];
-        expect(notes.length * 4);
+        @{ @"keys" : @[ @"g/5/t0" ],
+           @"duration" : @"w" },
+        @{ @"keys" : @[ @"g/5/t1" ],
+           @"duration" : @"q" },
+        @{ @"keys" : @[ @"g/5/t2" ],
+           @"duration" : @"q" },
+        @{ @"keys" : @[ @"g/5/t3" ],
+           @"duration" : @"q" },
+        @{ @"keys" : @[ @"x/" ],
+           @"duration" : @"w" },
 
-        var ctx = new contextBuilder(options.canvas_sel,
-                                     notes.length * 25 + 100, 240);
+        @{ @"keys" : @[ @"g/5/x0" ],
+           @"duration" : @"w" },
+        @{ @"keys" : @[ @"g/5/x1" ],
+           @"duration" : @"q" },
+        @{ @"keys" : @[ @"g/5/x2" ],
+           @"duration" : @"q" },
+        @{ @"keys" : @[ @"g/5/x3" ],
+           @"duration" : @"q" }
+    ];
+    //        expect(notes.length * 4);
 
-        // Draw two staffs, one with up-stems and one with down-stems.
-        for (var h = 0; h < 2; ++h) {
-             MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 10 + h * 120, notes.length * 25 + 75);
-            staff addClefWithName:@"percussion");
+    //        var ctx = new contextBuilder(options.canvas_sel,
+    //                                     notes.length * 25 + 100, 240);
 
-            [staff draw:ctx];
-
-            var showNote = Vex.Flow.Test.Percussion.showNote;
-
-            for (var i = 0; i < notes.length; ++i) {
-                var note = notes[i];
-                note.stem_direction = (h == 0 ? -1 : 1);
-                 MNStaff *staffNote = showNote(note, staff, ctx, (i + 1) * 25);
-
-                ok(staffNote.getX() > 0, "Note " + i + " has X value");
-                ok(staffNote.getYs().length > 0, "Note " + i + " has Y values");
-            }
-        }
-    }
-     */
+    NSArray<MNStaffNote*>* notes = [notes_structs oct_map:^MNStaffNote*(NSDictionary* note_struct) {
+      return [[MNStaffNote alloc] initWithDictionary:note_struct];
+    }];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 280, 0)];
-      [staff addClefWithName:@"percussion"];
-      [staff draw:ctx];
+      //        MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 280, 0)];
+      //        [staff addClefWithName:@"percussion"];
+      //        [staff draw:ctx];
 
-      //        NSUInteger i = notes.count * 4;
-      //        expect(i);
+      // Draw two staffs, one with up-stems and one with down-stems.
+      for(NSUInteger h = 0; h < 2; ++h)
+      {
+          MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10 + h * 120, notes.count * 25 + 75, 0)];
+          [staff addClefWithName:@"percussion"];
+          [staff draw:ctx];
 
+          //            var showNote = Vex.Flow.Test.Percussion.showNote;
+
+          for(NSUInteger i = 0; i < notes.count; ++i)
+          {
+              MNStaffNote* note = notes[i];
+              note.stemDirection = (h == 0 ? -1 : 1);
+              [self showNote:note staff:staff ctx:ctx x:(i + 1) * 25];
+
+              //                ok(staffNote.getX() > 0, "Note " + i + " has X value");
+              //                ok(staffNote.getYs().length > 0, "Note " + i + " has Y values");
+          }
+      }
       ok(YES, @"");
     };
+
+    //        NSUInteger i = notes.count * 4;
+    //        expect(i);
+
     return ret;
 }
 

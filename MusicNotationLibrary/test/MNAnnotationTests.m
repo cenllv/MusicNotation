@@ -76,10 +76,10 @@ static NSUInteger testFontSize;
      }
      */
     NSUInteger w = size.width;
-    NSUInteger h = size.height;
+//    NSUInteger h = size.height;
 
     w = w != 0 ? w : 350;
-    h = h != 0 ? h : 150;
+//    h = h != 0 ? h : 150;
 
     //    // [MNFont setFont:@" 10pt Arial"];
 
@@ -494,7 +494,7 @@ static NSUInteger testFontSize;
 
     NSArray* notes = [specs oct_map:^MNTabNote*(NSDictionary* tab_struct) {
       MNTabNote* tabNote = [[MNTabNote alloc] initWithDictionary:tab_struct];
-      [tabNote->_renderOptions setDraw_stem:YES];
+      [[tabNote renderOptions] setDraw_stem:YES];
       return tabNote;
     }];
 
