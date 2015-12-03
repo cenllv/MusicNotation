@@ -26,7 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNEnum.h"
 #import "MNModifier.h"
 #import "MNMetrics.h"

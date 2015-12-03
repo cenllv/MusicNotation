@@ -26,10 +26,10 @@
 //  THE SOFTWARE.
 //
 
-#import <QuartzCore/QuartzCore.h>
 #import "MNLayerResponder.h"
 
-/*! The `MNGlyphShapeLayer` class
+/*!
+ *  The `MNGlyphShapeLayer` class
  */
 @interface MNGlyphShapeLayer : CAShapeLayer <MNLayerResponder>
 {

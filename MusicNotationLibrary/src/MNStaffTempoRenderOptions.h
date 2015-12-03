@@ -28,11 +28,10 @@
 #import "MNRenderOptions.h"
 
 /*!
- *  <#Description#>
+ *  The `MNStaffTempoRenderOptions` class
  */
 @interface MNStaffTempoRenderOptions : MNRenderOptions
 
 @property (assign, nonatomic) float glyphFontScale;
 
 @end
-

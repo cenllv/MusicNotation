@@ -1,6 +1,6 @@
 //
 //  MNOptions.h
-//  MNCore
+//  MusicNotation
 //
 //  Created by Scott Riccardelli on 1/1/15
 //  Copyright (c) Scott Riccardelli 2015
@@ -30,9 +30,9 @@
 
 @class MNColor;
 
-/*! The `MNOptions` class holds various properties for rendering and general drawing
-    "options".
-
+/*!
+ *  The `MNOptions` class holds various properties for rendering and general drawing
+ *  "options".
  */
 @interface MNOptions : IAModelBase
 {
@@ -49,6 +49,6 @@
 #pragma mark - Methods
 + (MNOptions*)options;
 
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+//- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
 @end

@@ -30,7 +30,7 @@
 #import "MNEnum.h"
 
 /*!
- *  `MNTableGlyphStruct`
+ *  The `MNTableGlyphStruct` class
  */
 @interface MNTableGlyphStruct : IAModelBase
 //@property (strong, nonatomic) Common *common;

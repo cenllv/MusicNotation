@@ -1,5 +1,5 @@
 //
-//  ExtraPx.h
+//  MNExtraPoints.h
 //  MusicNotation
 //
 //  Created by Scott Riccardelli on 1/1/15
@@ -28,7 +28,8 @@
 
 #import "IAModelBase.h"
 
-/*! The `MNExtraPx` class
+/*!
+ *  The `MNExtraPx` class
  */
 @interface MNExtraPoints : IAModelBase
 {

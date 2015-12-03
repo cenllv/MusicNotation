@@ -1,6 +1,6 @@
 //
 //  MNSymbol.m
-//  MNCore
+//  MusicNotation
 //
 //  Created by Scott Riccardelli on 1/1/15.
 //  Copyright (c) Scott Riccardelli 2015
@@ -29,7 +29,6 @@
 #import "MNUtils.h"
 #import "MNPoint.h"
 #import "MNGlyphList.h"
-//#import "MNCore.h"
 #import "MNRenderOptions.h"
 #import "MNMetrics.h"
 #import "MNBoundingBox.h"

@@ -3,6 +3,7 @@
 //  MusicNotation
 //
 //  Created by Scott Riccardelli on 11/22/15.
+//  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,6 +27,9 @@
 
 #import "MNOptions.h"
 
+/*!
+ *  The `MNVibratoRenderOptions` class
+ */
 @interface MNVibratoRenderOptions : MNOptions
 
 @property (assign, nonatomic) float vibrato_width;

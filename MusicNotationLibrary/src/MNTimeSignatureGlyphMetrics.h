@@ -27,6 +27,9 @@
 
 #import "MNMetrics.h"
 
+/*!
+ *  The `MNTimeSignatureGlyphMetrics` class
+ */
 @interface MNTimeSignatureGlyphMetrics : MNMetrics
 {
    @private

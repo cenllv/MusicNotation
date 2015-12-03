@@ -48,6 +48,7 @@
 #import "MNNoteHeadBounds.h"
 #import "MNConstants.h"
 #import "MNStaffNoteFormatNoteStruct.h"
+#import "MNNoteMetrics.h"
 
 @interface MNStaffNote ()
 {
@@ -891,7 +892,7 @@
 
     //    TickableMetrics *metrics = self.metrics;
 
-    NoteMetrics* metrics = self.metrics;
+    MNNoteMetrics* metrics = self.metrics;
 
     float w = metrics.width;
     float x = self.absoluteX - metrics.modLeftPx - metrics.extraLeftPx;

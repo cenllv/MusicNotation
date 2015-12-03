@@ -31,7 +31,8 @@
 
 @class MNFloatSize, MNPoint;
 
-/*! The `MNGlyphList` class loads and stores the outline coordinates to draw symbols.
+/*!
+ *  The `MNGlyphList` class loads and stores the outline coordinates to draw symbols.
  */
 @interface MNGlyphList : IAModelBase
 
@@ -57,7 +58,7 @@
 
 @end
 
-@interface  MNGlyphStruct : IAModelBase
+@interface MNGlyphStruct : IAModelBase
 @property (strong, nonatomic) NSString* stringOutline;
 @property (strong, nonatomic) NSArray* arrayOutline;
 //@property (strong, nonatomic) NSString *key;

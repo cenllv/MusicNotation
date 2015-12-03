@@ -3,6 +3,7 @@
 //  MusicNotation
 //
 //  Created by Scott Riccardelli on 11/25/15.
+//  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,6 +27,9 @@
 
 #import "MNRenderOptions.h"
 
+/*!
+ *  The `MNNoteRenderOptions` class
+ */
 @interface MNNoteRenderOptions : MNRenderOptions
 
 @property (assign, nonatomic) float glyphFontScale;

@@ -31,12 +31,12 @@
 
 @class MNColor, MNFont;
 
-/*! The `MNPedalMarking` class performs implements different types of pedal markings. These notation
-      elements indicate to the performer when to depress and release the a pedal.
-
-      In order to create "Sostenuto", and "una corda" markings, you must set
-      custom text for the release/depress pedal markings.
-
+/*!
+ *  The `MNPedalMarking` class performs implements different types of pedal markings. These notation
+ *  elements indicate to the performer when to depress and release the a pedal.
+ *
+ *  In order to create "Sostenuto", and "una corda" markings, you must set
+ *  custom text for the release/depress pedal markings.
  */
 @interface MNPedalMarking : IAModelBase
 

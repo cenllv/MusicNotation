@@ -1,8 +1,8 @@
 //
-//  MNPlayNote.m
-//  MNCore
+//  MNTableKeySpecStruct.m
+//  MusicNotation
 //
-//  Created by Scott Riccardelli on 1/1/15.
+//  Created by Scott Riccardelli on 12/2/15.
 //  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
 //
@@ -25,15 +25,16 @@
 //  THE SOFTWARE.
 //
 
-#import "MNPlayNote.h"
+#import "MNTableKeySpecStruct.h"
 
-@implementation MNPlayNote
-
-//- (NSMutableDictionary*)propertiesToDictionaryEntriesMapping;
-//{
-//    NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
-//    //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
-//    return propertiesEntriesMapping;
-//}
-
+@implementation MNTableKeySpecStruct
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
+{
+    self = [super initWithDictionary:optionsDict];
+    if(self)
+    {
+        //
+    }
+    return self;
+}
 @end

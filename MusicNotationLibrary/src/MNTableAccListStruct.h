@@ -28,23 +28,13 @@
 #import "IAModelBase.h"
 
 /*!
- *  `MNTableAccListStruct`
+ *  The `MNTableAccListStruct` class
  */
 @interface MNTableAccListStruct : IAModelBase
 
 @property (strong, nonatomic) NSString* type;
 @property (assign, nonatomic) float line;
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
-@end
-
-/*!
- *  `MNTableKeySpecStruct`
- */
-@interface MNTableKeySpecStruct : IAModelBase
-
-@property (strong, nonatomic) NSString* acc;
-@property (assign, nonatomic) NSUInteger num;
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
 @end

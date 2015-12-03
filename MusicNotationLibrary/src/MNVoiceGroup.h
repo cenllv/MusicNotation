@@ -39,7 +39,6 @@
 @property (strong, nonatomic, readonly) NSMutableArray* modiferContexts;
 
 #pragma mark - Methods
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
 - (void)addVoices:(NSArray*)objects;
 - (void)addVoice:(MNVoice*)voice;

@@ -25,6 +25,9 @@
 //  THE SOFTWARE.
 //
 
+/*!
+ *  The `MNTableChords` class
+ */
 @interface MNTableChords : NSObject
 
 + (NSArray*)chordChart;

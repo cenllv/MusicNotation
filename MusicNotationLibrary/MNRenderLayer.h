@@ -25,7 +25,6 @@
 //  THE SOFTWARE.
 //
 
-#import <QuartzCore/QuartzCore.h>
 #import "MNTestAction.h"
 #import "MNLayerResponder.h"
 

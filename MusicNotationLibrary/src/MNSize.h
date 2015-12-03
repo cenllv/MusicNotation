@@ -27,7 +27,8 @@
 
 #import "IAModelBase.h"
 
-/*! The `MNFloatSize` class
+/*!
+ *  The `MNFloatSize` class
  */
 @interface MNFloatSize : IAModelBase
 {
@@ -41,7 +42,8 @@
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 @end
 
-/*! The `MNUIntSize` class
+/*!
+ *  The `MNUIntSize` class
  */
 @interface MNUIntSize : IAModelBase
 {

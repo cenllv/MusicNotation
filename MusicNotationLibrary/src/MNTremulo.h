@@ -26,12 +26,11 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNModifier.h"
 #import "MNEnum.h"
 
-/*! The `MNTremulo` class
-
+/*!
+ *  The `MNTremulo` class
  */
 @interface MNTremulo : MNModifier
 

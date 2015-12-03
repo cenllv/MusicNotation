@@ -36,6 +36,7 @@
 #import "MNTable.h"
 #import "MNPoint.h"
 #import "MNTableAccListStruct.h"
+#import "MNTableKeySpecStruct.h"
 
 @interface MNAccidentalCodesStruct : IAModelBase
 @property (strong, nonatomic) NSString* code;
@@ -149,8 +150,7 @@
     MNKeySignature* ret = [[MNKeySignature alloc] initWithDictionary:@{}];
 
     ret.key = key;
-     MNTableKeySpecStruct* keySpec =
-        [[MNTableKeySpecStruct alloc] initWithDictionary:MNTable.keySpecsDictionary[key]];
+    MNTableKeySpecStruct* keySpec = [[MNTableKeySpecStruct alloc] initWithDictionary:MNTable.keySpecsDictionary[key]];
     if(!keySpec)
     {
         MNLogError(@"NoValidKeySignatureForKey, specify a valid key signature.");
@@ -169,7 +169,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"keysignature";
+    return NSStringFromClass([self class]);   // return @"keysignature";
 }
 - (NSString*)CATEGORY
 {

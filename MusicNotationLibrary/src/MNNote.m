@@ -31,7 +31,6 @@
 #import "MNStaff.h"
 #import "MNTickContext.h"
 #import "MNTable.h"
-#import "MNPlayNote.h"
 #import "MNTablesNoteData.h"
 #import "MNRational.h"
 #import "MNPoint.h"
@@ -39,18 +38,7 @@
 #import "MNBeam.h"
 #import "MNTuplet.h"
 #import "MNConstants.h"
-
-@implementation NoteMetrics
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
-{
-    self = [super initWithDictionary:optionsDict];
-    if(self)
-    {
-        //        [self setValuesForKeyPathsWithDictionary:optionsDict];
-    }
-    return self;
-}
-@end
+#import "MNNoteMetrics.h"
 
 @implementation MNNote
 
@@ -118,7 +106,7 @@
     self.width = 0;
     _x_shift = 0;   // Shift from tick context
     self.voice = nil;
-//    self.tickContext = nil;
+    //    self.tickContext = nil;
     self.modifierContext = nil;
     self.modifiers = [NSMutableArray array];
     self.preFormatted = NO;
@@ -171,10 +159,10 @@
     self.code = self.glyphCode;
 
     // Note to play for audio players.
-    self.playNote = nil;
+//    self.playNote = nil;
 
     // Positioning contexts used by the Formatter.
-//    self.tickContext = nil;   // The current tick context.
+    //    self.tickContext = nil;   // The current tick context.
     self.modifierContext = nil;
     //    _ignore_ticks = NO;
 
@@ -248,20 +236,20 @@
  *   audio player.
  *  @return play note object
  */
-- (MNPlayNote*)getPlayNote
-{
-    return _playNote;
-}
+//- (MNPlayNote*)getPlayNote
+//{
+//    return _playNote;
+//}
 
 /*!
  *   Sets the play note, which is arbitrary data that can be used by an
  *   audio player.
  *  @param playNote play note object
  */
-- (void)setPlayNote:(MNPlayNote*)playNote
-{
-    _playNote = playNote;
-}
+//- (void)setPlayNote:(MNPlayNote*)playNote
+//{
+//    _playNote = playNote;
+//}
 
 /*!
  *   Don't play notes by default, call them rests. This is also used by things like
@@ -744,7 +732,7 @@
  *    `extraLeftPx`: Extra space on left of note.
  *    `extraRightPx`: Extra space on right of note.
  */
-- (NoteMetrics*)metrics
+- (MNNoteMetrics*)metrics
 {
     if(!self.preFormatted)
     {
@@ -770,7 +758,7 @@
     //        @"extraLeftPx" : @(self.extraLeftPx),
     //        @"extraRightPx" : @(self.extraRightPx),
     //    }];
-    NoteMetrics* metrics = [[NoteMetrics alloc] initWithDictionary:nil];
+    MNNoteMetrics* metrics = [[MNNoteMetrics alloc] initWithDictionary:nil];
     metrics.width = width;
     metrics.noteWidth = width - modLeftPx - modRightPx -   // used by accidentals and modifiers
                         self.extraLeftPx - self.extraRightPx;

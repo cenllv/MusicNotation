@@ -32,13 +32,14 @@
 
 @class MNStem, MNBeam, MNExtentStruct, MNTableGlyphStruct;
 
-/*! The `MNStemmableNote`  is an abstract interface for notes with optional stems.
-    Examples of stemmable notes are `MNStaffNote` and `MNTabNote` and `ghostnote`
+/*!
+ *  The `MNStemmableNote`  is an abstract interface for notes with optional stems.
+ *  Examples of stemmable notes are `MNStaffNote` and `MNTabNote` and `ghostnote`
  */
 @interface MNStemmableNote : MNNote
 {
    @private
-    //NSDictionary* _stemMinimumLengthsDictionary;
+    // NSDictionary* _stemMinimumLengthsDictionary;
 
    @protected
     __weak MNBeam* _beam;

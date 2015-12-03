@@ -28,8 +28,6 @@
 
 #import "MNNote.h"
 
-//@class MNTimeSigStruct;
-
 /*!
  *  The `MNTimeSigNote` class c
  */

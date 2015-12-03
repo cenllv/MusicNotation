@@ -30,7 +30,8 @@
 @class MNMetrics, MNOptions, MNPoint, MNFloatSize, MNPadding, MNBoundingBox, MNRenderOptions, MNGlyph, MNColor,
     MNShapeLayer;
 
-/*! The `MNSymbol` class
+/*!
+ *  The `MNSymbol` class
  */
 @interface MNSymbol : IAModelBase
 {

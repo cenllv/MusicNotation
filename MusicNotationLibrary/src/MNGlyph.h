@@ -26,75 +26,39 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNSymbol.h"
 #import "MNMetrics.h"
 
-@class MNStaff, MNPoint, MNCarrierLayer;
-
-@interface GlyphMetrics : MNMetrics
-@property (assign, nonatomic) float x_shift;
-@property (assign, nonatomic) float y_shift;
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-- (NSString*)description;
-- (NSDictionary*)dictionarySerialization;
-@end
+@class MNStaff, MNPoint, MNCarrierLayer, MNGlyphMetrics;
 
 typedef void (^DrawCustom)(CGContextRef context, MNStaff* staff, float x, float y);
 
-/*! The `MNGlyph` class is a static glyph renderer.
-
+/*!
+ *  The `MNGlyph` class is a static glyph renderer.
  */
 @interface MNGlyph : MNSymbol
 {
-   @public
-
    @private
     float _headWidth;
 }
 
 #pragma mark - Properties
 
-///*!
-// */
 @property (strong, nonatomic) NSString* position;
-//
-////@property (strong, nonatomic)  MNStaff *Staff;
-//@property (strong, nonatomic) NSDictionary *glyphTypes;
-//
-//
-
-//@property (assign, nonatomic) float dotShiftY;
-
 @property (assign, nonatomic) NSUInteger beamCount;
-
 @property (assign, nonatomic, getter=hasStem) BOOL stem;
 @property (assign, nonatomic) BOOL flag;
-
 @property (assign, nonatomic) BOOL rest;
-
-/*!
- *  does not draw anything, only takes up space
- */
-@property (assign, nonatomic) BOOL isSpacer;
-
+@property (assign, nonatomic) BOOL isSpacer;   // does not draw anything, only takes up space
 @property (assign, nonatomic) BOOL cache;
 @property (strong, nonatomic) NSString* codeFlagUpstem;
 @property (strong, nonatomic) NSArray* aFlagUpstem;
 @property (strong, nonatomic) NSString* codeFlagDownstem;
 @property (strong, nonatomic) NSArray* aFlagDownstem;
-
-//@property (strong, nonatomic) NSString *category;
-
-//@property (strong, nonatomic) Metrics *metrics;
-
 @property (strong, nonatomic) NSString* code_head;
-
 @property (assign, nonatomic) float x_shift;
 @property (assign, nonatomic) float y_shift;
-
 @property (assign, nonatomic) BOOL renderBoundingBox;
-
 @property (strong, nonatomic) DrawCustom drawBlock;
 
 - (NSString*)category;
@@ -115,7 +79,7 @@ typedef void (^DrawCustom)(CGContextRef context, MNStaff* staff, float x, float 
 - (void)reset;
 - (void)loadMetricsWithFont:(NSString*)font withCode:(NSString*)code andCache:(BOOL)cache;
 
-- (GlyphMetrics*)metrics;
+- (MNGlyphMetrics*)metrics;
 
 + (void)setDebugMode:(BOOL)mode;
 
@@ -132,22 +96,16 @@ typedef void (^DrawCustom)(CGContextRef context, MNStaff* staff, float x, float 
 
 - (void)renderWithContext:(CGContextRef)ctx;
 
-+ (void)renderIntoArray:(NSMutableArray*)paths
-              transform:(CGAffineTransform*)transform
-               withCode:(NSString*)code
-              withScale:(float)scale;
+//+ (void)renderIntoArray:(NSMutableArray*)paths
+//              transform:(CGAffineTransform*)transform
+//               withCode:(NSString*)code
+//              withScale:(float)scale;
 
 + (MNCarrierLayer*)createCarrierLayerWithCode:(NSString*)code withScale:(CGFloat)scale hasCross:(BOOL)hasCross;
 
 + (CGPathRef)createPathwithCode:(NSString*)code withScale:(CGFloat)scale atPoint:(CGPoint)point;
 
-//- (void)renderOutline:(CGContextRef)ctx
-//          withOutline:(NSArray*)outline
-//             andScale:(CGFloat)scale
-//                  atX:(CGFloat)x
-//                  atY:(CGFloat)y;
-
-+ (void)renderGlyph:(CGContextRef)ctx withMetrics:(MNMetrics*)metrics;
+//+ (void)renderGlyph:(CGContextRef)ctx withMetrics:(MNMetrics*)metrics;
 
 + (void)renderGlyph:(CGContextRef)ctx
                 atX:(CGFloat)x

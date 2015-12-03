@@ -1,6 +1,6 @@
 //
 //  Header.h
-//  MNCore
+//  MusicNotation
 //
 //  Created by Scott Riccardelli on 1/1/15
 //  Copyright (c) Scott Riccardelli 2015

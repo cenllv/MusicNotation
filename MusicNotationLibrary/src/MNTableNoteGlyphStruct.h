@@ -27,7 +27,8 @@
 
 #import "IAModelBase.h"
 
-/*! The `MNTableNoteGlyphStruct` class stores a code and a shift value
+/*!
+ *  The `MNTableNoteGlyphStruct` class stores a code and a shift value
  */
 @interface MNTableNoteGlyphStruct : IAModelBase   // NSObject
 

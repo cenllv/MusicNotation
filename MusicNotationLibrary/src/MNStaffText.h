@@ -30,7 +30,8 @@
 
 @class MNFont;
 
-/*! The `MNStaffText` class
+/*!
+ *  The `MNStaffText` class
  */
 @interface MNStaffText : MNStaffModifier
 {

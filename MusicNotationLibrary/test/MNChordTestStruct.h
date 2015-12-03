@@ -3,6 +3,7 @@
 //  MusicNotation
 //
 //  Created by Scott Riccardelli on 11/26/15.
+//  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,7 +28,7 @@
 #import "IAModelBase.h"
 
 /*!
- *  ``
+ *  The `MNChordTestStruct` class
  */
 @interface MNChordTestStruct : IAModelBase
 

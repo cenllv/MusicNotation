@@ -31,9 +31,9 @@
 
 @class MNFormatter, MNStaffNote;
 
-/*! The `MNStaffHairpin` class implements hairpins between notes.
-      Hairpins can be either Crescendo or Descrescendo.
-
+/*!
+ *  The `MNStaffHairpin` class implements hairpins between notes.
+ *  Hairpins can be either Crescendo or Descrescendo.
  */
 @interface MNStaffHairpin : MNModifier
 {

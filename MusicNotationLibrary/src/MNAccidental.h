@@ -33,33 +33,33 @@
 
 /*!
  *  The `MNAccidental` class inherits from `Modifier`, and is formatted within a
-     `MNModifierContext`.
-     
-     In music, an accidental is a note whose pitch (or pitch class) is not a member of a scale
-     or mode indicated by the most recently applied key signature. In musical notation, the
-     sharp (♯), flat (♭), and natural (♮) symbols are used to mark such notes, and those
-     symbols may themselves be called accidentals. In the measure (bar) in which it appears,
-     an accidental sign raises or lowers the following notes from their normal pitch,
-     overriding sharps or flats (or their absence) in the key signature. A note is usually
-     raised or lowered by a semitone, although microtonal music may use "fractional" accidental
-     signs. One occasionally sees double sharps or flats, which raise or lower the indicated
-     note by a whole tone. Accidentals apply within the measure and octave in which they
-     appear, unless canceled by another accidental sign, or tied into a following measure.
-     
-     ...the first seven letters of the alphabet represent the basic diatonic pitches, with
-     additional symbols called accidentals. In addition to the sharp (♯) and flat (♭) used
-     in Europe to indicate the displacement of a scale degree by a semitone up or down,
-     respectively, Arabic theorists have added accidentals representing a lowering of a
-     pitch by a quarter-tone () and raising it by a quarter-tone sharp (). (Iranians use
-     different symbols.)
-     —Alves (2008)[1]
-     
-     The modern accidental signs derive from the round and square small letter b used in
-     Gregorian chant manuscripts to signify the two pitches of B, the only note that could
-     be altered. The round b became the flat sign, while the square b diverged into the sharp
-     and natural signs.
-     Sometimes the black keys on a musical keyboard are called accidentals or sharps, and the
-     white keys are called naturals.[2]
+ *  `MNModifierContext`.
+ *
+ *  In music, an accidental is a note whose pitch (or pitch class) is not a member of a scale
+ *  or mode indicated by the most recently applied key signature. In musical notation, the
+ *  sharp (♯), flat (♭), and natural (♮) symbols are used to mark such notes, and those
+ *  symbols may themselves be called accidentals. In the measure (bar) in which it appears,
+ *  an accidental sign raises or lowers the following notes from their normal pitch,
+ *  overriding sharps or flats (or their absence) in the key signature. A note is usually
+ *  raised or lowered by a semitone, although microtonal music may use "fractional" accidental
+ *  signs. One occasionally sees double sharps or flats, which raise or lower the indicated
+ *  note by a whole tone. Accidentals apply within the measure and octave in which they
+ *  appear, unless canceled by another accidental sign, or tied into a following measure.
+ *
+ *  ...the first seven letters of the alphabet represent the basic diatonic pitches, with
+ *  additional symbols called accidentals. In addition to the sharp (♯) and flat (♭) used
+ *  in Europe to indicate the displacement of a scale degree by a semitone up or down,
+ *  respectively, Arabic theorists have added accidentals representing a lowering of a
+ *  pitch by a quarter-tone () and raising it by a quarter-tone sharp (). (Iranians use
+ *  different symbols.)
+ *  —Alves (2008)[1]
+ *
+ *  The modern accidental signs derive from the round and square small letter b used in
+ *  Gregorian chant manuscripts to signify the two pitches of B, the only note that could
+ *  be altered. The round b became the flat sign, while the square b diverged into the sharp
+ *  and natural signs.
+ *  Sometimes the black keys on a musical keyboard are called accidentals or sharps, and the
+ *  white keys are called naturals.[2]
  */
 @interface MNAccidental : MNStaffModifier
 {

@@ -29,6 +29,9 @@
 
 @class MNGlyph, MNStaff;
 
+/*!
+ *  The `MNTimeSigStruct` class
+ */
 @interface MNTimeSigStruct : IAModelBase
 
 @property (assign, nonatomic) BOOL num;

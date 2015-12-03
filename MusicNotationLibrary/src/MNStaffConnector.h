@@ -31,32 +31,32 @@
 
 @class MNStaff, MNGlyph, MNMetrics;
 
-/*! The `MNStaffConnector` class implements the following as outlined at
-
-        https://en.wikipedia.org/wiki/Staff_(music)#Ensemble_staves
-
-     A single vertical line drawn to the left of multiple staves creates a system, indicating that the
-        music on all the staves is to be played simultaneously. A bracket is an additional straight line
-        joining staves, to show groupings of instruments that function as a unit, such as the string
-        section of an orchestra. A brace is used to join multiple staves that represent a single instrument,
-        such as a piano, organ, harp, or marimba.[2] Sometimes, a second bracket is used to show instruments
-        grouped in pairs, such as the first and second oboes, or the first and second violins in an
-        orchestra.[3] In some cases, a brace is used for this purpose instead of a bracket.[4][2]
-     Four-part SATB vocal settings, especially in hymnals, use a divisi notation on a two-staff system
-        with soprano and alto voices sharing the upper staff, and tenor and bass voices on the lower staff.
-
-    and,
-
-         https://en.wikipedia.org/wiki/Staff_(music)#Grand_staff
-
-     When music on two staves is joined by a brace, or is intended to be played at once by a single performer
-         (usually a keyboard instrument or the harp), a great stave (BrE) or grand staff (AmE) is created. Typically,
-         the upper staff uses a treble clef and the lower staff has a bass clef. In this instance, middle C is
-         centered between the two staves, and it can be written on the first ledger line below the upper staff or
-         the first ledger line above the lower staff. When playing the piano or harp, the upper staff is normally
-         played with the right hand and the lower staff with the left hand. In music intended for the organ, a grand
-         staff comprises three staves, one for each hand on the manuals and one for the feet on the pedalboard.
-
+/*!
+ *  The `MNStaffConnector` class implements the following as outlined at
+ *
+ *      https://en.wikipedia.org/wiki/Staff_(music)#Ensemble_staves
+ *
+ *  A single vertical line drawn to the left of multiple staves creates a system, indicating that the
+ *  music on all the staves is to be played simultaneously. A bracket is an additional straight line
+ *  joining staves, to show groupings of instruments that function as a unit, such as the string
+ *  section of an orchestra. A brace is used to join multiple staves that represent a single instrument,
+ *  such as a piano, organ, harp, or marimba.[2] Sometimes, a second bracket is used to show instruments
+ *  grouped in pairs, such as the first and second oboes, or the first and second violins in an
+ *  orchestra.[3] In some cases, a brace is used for this purpose instead of a bracket.[4][2]
+ *  Four-part SATB vocal settings, especially in hymnals, use a divisi notation on a two-staff system
+ *  with soprano and alto voices sharing the upper staff, and tenor and bass voices on the lower staff.
+ *
+ *  and,
+ *
+ *       https://en.wikipedia.org/wiki/Staff_(music)#Grand_staff
+ *
+ *  When music on two staves is joined by a brace, or is intended to be played at once by a single performer
+ *  usually a keyboard instrument or the harp), a great stave (BrE) or grand staff (AmE) is created. Typically,
+ *  the upper staff uses a treble clef and the lower staff has a bass clef. In this instance, middle C is
+ *  centered between the two staves, and it can be written on the first ledger line below the upper staff or
+ *  the first ledger line above the lower staff. When playing the piano or harp, the upper staff is normally
+ *  played with the right hand and the lower staff with the left hand. In music intended for the organ, a grand
+ *  staff comprises three staves, one for each hand on the manuals and one for the feet on the pedalboard.
  */
 @interface MNStaffConnector : MNStaffModifier
 

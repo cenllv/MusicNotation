@@ -28,8 +28,8 @@
 
 #import "MNStemmableNote.h"
 
-/*! The `MNGhostNote` class
-
+/*!
+ *  The `MNGhostNote` class
  */
 @interface MNGhostNote : MNStemmableNote
 
@@ -38,6 +38,5 @@
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-- (void)draw:(CGContextRef)ctx;
 
 @end

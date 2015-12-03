@@ -30,7 +30,8 @@
 
 @class RootAccidentalTypeStruct, MNMusicScales, /*MNMusicRootIndices,*/ MNMusicDiatonicAccidentals;
 
-/*! The `MNMusic` class implements some standard music theory routines.
+/*!
+ *  The `MNMusic` class implements some standard music theory routines.
  */
 @interface MNMusic : NSObject
 {

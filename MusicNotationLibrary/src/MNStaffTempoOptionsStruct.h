@@ -28,7 +28,7 @@
 #import "IAModelBase.h"
 
 /*!
- *  <#Description#>
+ *  The `MNStaffTempoOptionsStruct` class
  */
 @interface MNStaffTempoOptionsStruct : IAModelBase
 

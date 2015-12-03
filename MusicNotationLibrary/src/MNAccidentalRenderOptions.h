@@ -28,7 +28,7 @@
 #import "MNRenderOptions.h"
 
 /*!
- *  `MNAccidentalRenderOptions`
+ *  The `MNAccidentalRenderOptions` class
  */
 @interface MNAccidentalRenderOptions : MNRenderOptions
 

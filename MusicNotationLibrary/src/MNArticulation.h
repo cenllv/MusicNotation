@@ -31,9 +31,10 @@
 
 @class MNStaffNote;
 
-/*! The `MNArticulation` class articulations and accents as modifiers that can be
-      attached to notes. The complete list of articulations is available in
-      `mntables ` under `articulationCodes`.
+/*!
+ *  The `MNArticulation` class articulations and accents as modifiers that can be
+ *  attached to notes. The complete list of articulations is available in
+ *  `MNTables ` under `articulationCodes`.
  */
 @interface MNArticulation : MNModifier
 {

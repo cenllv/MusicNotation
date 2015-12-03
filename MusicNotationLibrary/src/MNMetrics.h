@@ -30,10 +30,10 @@
 @class MNFloatSize, MNColor;
 @class MNPoint, MNBoundingBox, MNPadding;
 
-/*! The `Metrics` class is a container for all the positioning, spacing,
-     direction, scale, and every other possible number you can assign to a thing that is
-     gonna be stored, compared, calculated and drawn for music notation.
-
+/*!
+ *  The `Metrics` class is a container for all the positioning, spacing,
+ *  direction, scale, and every other possible number you can assign to a thing that is
+ *  gonna be stored, compared, calculated and drawn for music notation.
  */
 @interface MNMetrics : IAModelBase
 {

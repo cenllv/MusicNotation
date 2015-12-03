@@ -28,7 +28,8 @@
 
 #import "MNStaffNote.h"
 
-/*! The `MNGraceNote` class
+/*!
+ *  The `MNGraceNote` class
  */
 @interface MNGraceNote : MNStaffNote
 

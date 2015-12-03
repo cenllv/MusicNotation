@@ -28,9 +28,11 @@
 
 #import "IAModelBase.h"
 
-/*! The `MNMusicRootIndices` class
+/*!
+ *  The `MNMusicRootIndices` class
  */
 @interface MNMusicRootIndices : IAModelBase
+
 @property (assign, nonatomic) NSUInteger c;
 @property (assign, nonatomic) NSUInteger d;
 @property (assign, nonatomic) NSUInteger e;
@@ -39,5 +41,7 @@
 @property (assign, nonatomic) NSUInteger a;
 @property (assign, nonatomic) NSUInteger b;
 @property (readonly) NSUInteger count;
+
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+
 @end

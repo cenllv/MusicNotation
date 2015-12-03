@@ -1,6 +1,6 @@
 //
 //  MNPair.h
-//  MNCore
+//  MusicNotation
 //
 //  Created by Scott Riccardelli on 1/1/15.
 //  Copyright (c) Scott Riccardelli 2015
@@ -27,12 +27,11 @@
 
 #import "IAModelBase.h"
 
-/*! The `MNPair` class holds a pair of floats
-
+/*!
+ *  The `MNPair` class holds a pair of floats
  */
 @interface MNPair : IAModelBase
 
-#pragma mark - Properties
 @property (assign, nonatomic) float item1;
 @property (assign, nonatomic) float item2;
 

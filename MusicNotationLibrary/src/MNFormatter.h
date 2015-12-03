@@ -31,18 +31,18 @@
 
 @class MNRational, MNStaff, MNTabStaff, MNBoundingBox, MNFormatterContext, MNVoice;
 
-/*! The `MNFormatter` class implements the formatting and layout algorithms that are used
-      to position notes in a voice. The algorithm can align multiple voices both
-      within a stave, and across multiple staves.
-
-      To do this, the formatter breaks up voices into a grid of rational-valued
-      `ticks`, to which each note is assigned. Then, minimum widths are assigned
-      to each tick based on the widths of the notes and modifiers in that tick. This
-      establishes the smallest amount of space required for each tick.
-
-      Finally, the formatter distributes the left over space proportionally to
-      all the ticks, setting the `x` values of the notes in each tick.
-
+/*!
+ *  The `MNFormatter` class implements the formatting and layout algorithms that are used
+ *  to position notes in a voice. The algorithm can align multiple voices both
+ *  within a stave, and across multiple staves.
+ *
+ *  To do this, the formatter breaks up voices into a grid of rational-valued
+ *  `ticks`, to which each note is assigned. Then, minimum widths are assigned
+ *  to each tick based on the widths of the notes and modifiers in that tick. This
+ *  establishes the smallest amount of space required for each tick.
+ *
+ *  Finally, the formatter distributes the left over space proportionally to
+ *  all the ticks, setting the `x` values of the notes in each tick.
  */
 @interface MNFormatter : IAModelBase
 
@@ -112,7 +112,8 @@
 
 - (BOOL)preFormat;
 
-//- (BOOL)preFormatWith:(float)justifyWidth andContext:(CGContextRef)ctx voices:(NSArray<MNVoice*>*)voices staff:(MNStaff*)staff;
+//- (BOOL)preFormatWith:(float)justifyWidth andContext:(CGContextRef)ctx voices:(NSArray<MNVoice*>*)voices
+//staff:(MNStaff*)staff;
 
 - (BOOL)postFormat;
 

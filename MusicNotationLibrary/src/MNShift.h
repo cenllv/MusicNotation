@@ -29,7 +29,8 @@
 #import "MNEnum.h"
 #import "IAModelBase.h"
 
-/*! The `Shift` class is a container for shifting
+/*!
+ *  The `Shift` class is a container for shifting
  */
 @interface MNShift : IAModelBase
 

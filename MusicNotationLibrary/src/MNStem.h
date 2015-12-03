@@ -34,8 +34,8 @@
 typedef void (^DrawStyle)(CGContextRef);
 typedef void (^StyleBlock)(CGContextRef);
 
-/*! The `MNStem` gnerally is handled by its parent `StemmableNote`.
-
+/*!
+ *  The `MNStem` class gnerally is handled by its parent `MNStemmableNote`.
  */
 @interface MNStem : MNModifier
 {

@@ -38,39 +38,7 @@
 #import "MNGlyphLayer.h"
 #import "NSBezierPath+MNAdditions.h"
 #import "MNConstants.h"
-
-@implementation GlyphMetrics
-
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
-{
-    self = [super initWithDictionary:optionsDict];
-    if(self)
-    {
-        _x_shift = 0;
-        _y_shift = 0;
-    }
-    return self;
-}
-
-- (NSString*)description
-{
-    return [super description];
-}
-
-/*!
- *  helps create a debug description from the specified string to properties dictionary
- *  @return a dictionary of property names
- */
-- (NSDictionary*)dictionarySerialization
-{
-    //    return [NSMutableDictionary merge:[super dictionarySerialization]
-    //                                 with:[self dictionaryWithValuesForKeyPaths:@[
-    //                                     @"x_shift",
-    //                                     @"y_shift",
-    //                                 ]]];
-    return nil;
-}
-@end
+#import "MNGlyphMetrics.h"
 
 @implementation MNGlyph
 
@@ -195,11 +163,11 @@
     ]];
 }
 
-- (GlyphMetrics*)metrics
+- (MNGlyphMetrics*)metrics
 {
     if(!_metrics)
     {
-        _metrics = [[GlyphMetrics alloc] init];
+        _metrics = [[MNGlyphMetrics alloc] init];
     }
     return _metrics;
 }

@@ -26,15 +26,15 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNNote.h"
 
-/*! The `MNTextDynamics` class implements the `TextDynamics` which renders traditional
-      text dynamics markings, **ie: p, f, sfz, rfz, ppp**
-
-      You can render any dynamics string that contains a combination of
-      the following letters:  P, M, F, Z, R, S
-
+/*!
+ *  The `MNTextDynamics` class implements the `TextDynamics` which renders traditional
+ *  text dynamics markings, **ie: p, f, sfz, rfz, ppp**
+ *
+ *    You can render any dynamics string that contains a combination of
+ *    the following letters:  P, M, F, Z, R, S
+ *
  */
 @interface MNTextDynamics : MNNote
 #pragma mark - Properties

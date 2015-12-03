@@ -33,6 +33,7 @@
 #import "MNStaff.h"
 #import "MNTimeSignatureGlyphMetrics.h"
 #import "MNTimeSigStruct.h"
+#import "MNGlyphMetrics.h"
 
 @interface MNTimeSignature ()
 

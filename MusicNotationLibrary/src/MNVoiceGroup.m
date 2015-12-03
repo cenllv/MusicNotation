@@ -29,8 +29,12 @@
 #import "MNVoiceGroup.h"
 
 @interface MNVoiceGroup ()
+
 @property (strong, nonatomic) NSMutableArray* voices;
 @property (strong, nonatomic) NSMutableArray* modiferContexts;
+
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+
 @end
 
 @implementation MNVoiceGroup

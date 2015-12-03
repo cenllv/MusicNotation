@@ -33,7 +33,8 @@
 
 @class MNPoint;
 
-/*! The `MNVibrato` class implements vibratos
+/*! 
+ *  The `MNVibrato` class implements vibratos
  */
 @interface MNVibrato : MNModifier
 {

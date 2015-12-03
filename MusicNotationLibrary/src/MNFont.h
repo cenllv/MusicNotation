@@ -27,7 +27,8 @@
 
 @class MNColor;
 
-/*! The `MNFont` class
+/*!
+ *  The `MNFont` class
  */
 @interface MNFont : NSObject
 {
@@ -41,9 +42,9 @@
     BOOL _italic;
     float _fontSize;
     NSString* _family;
-    MNColor *_strokeColor;
-    MNColor *_fillColor;
-    MNColor *_backColor;
+    MNColor* _strokeColor;
+    MNColor* _fillColor;
+    MNColor* _backColor;
 }
 #pragma mark - Properties
 #if TARGET_OS_IPHONE
@@ -55,9 +56,9 @@
 @property (assign, atomic) BOOL italic;
 @property (assign, atomic) float size;
 @property (strong, atomic) NSString* family;
-@property (strong, atomic) MNColor *strokeColor;
-@property (strong, atomic) MNColor *fillColor;
-@property (strong, atomic) MNColor *backColor;
+@property (strong, atomic) MNColor* strokeColor;
+@property (strong, atomic) MNColor* fillColor;
+@property (strong, atomic) MNColor* backColor;
 
 #pragma mark - Methods
 

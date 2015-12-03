@@ -26,46 +26,45 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNStaffModifier.h"
 
 @class MNClef, MNStaff, MNAccidental;
 
-/*! The `MNKeySignature` class implements key signatures.
-
- In musical notation, a key signature is a set of sharp or flat symbols placed together on the staff.
-    Key signatures are generally written immediately after the clef at the beginning of a line of
-    musical notation, although they can appear in other parts of a score, notably after a double
-    barline.
-
- A key signature designates notes that are to be played higher or lower than the corresponding natural
-    notes and applies through to the end of the piece or up to the next key signature. A sharp symbol on
-    a line or space in the key signature raises the notes on that line or space one semitone above the
-    natural, and a flat lowers such notes one semitone. Further, a symbol in the key signature affects
-    all the notes of one letter: for instance, a sharp on the top line of the treble staff applies to
-    F's not only on that line, but also to F's in the bottom space of the staff, and to any other F's.
-
- An accidental is an exception to the key signature, applying only in the measure in which it appears,
-    and the choice of key signature can increase or decrease the need for accidentals.
-
- Although a key signature may be written using any combination of sharp and flat symbols, about a dozen
-    diatonic key signatures are by far the most common, and their use is assumed in much of this
-    article. A piece scored using a single diatonic key signature and no accidentals contains notes of
-    at most seven of the twelve pitch classes, which seven being determined by the particular key
-    signature.
-
- Each major and minor key has an associated key signature that sharpens or flattens the notes which are
-    used in its scale. However, it is not uncommon for a piece to be written with a key signature that
-    does not match its key, for example, in some Baroque pieces,[1] or in transcriptions of traditional
-    modal folk tunes.[2]
-
-    http://en.wikipedia.org/wiki/Key_signature
-
+/*!
+ *  The `MNKeySignature` class implements key signatures.
+ *
+ *  In musical notation, a key signature is a set of sharp or flat symbols placed together on the staff.
+ *  Key signatures are generally written immediately after the clef at the beginning of a line of
+ *  musical notation, although they can appear in other parts of a score, notably after a double
+ *  barline.
+ *
+ *  A key signature designates notes that are to be played higher or lower than the corresponding natural
+ *  notes and applies through to the end of the piece or up to the next key signature. A sharp symbol on
+ *  a line or space in the key signature raises the notes on that line or space one semitone above the
+ *  natural, and a flat lowers such notes one semitone. Further, a symbol in the key signature affects
+ *  all the notes of one letter: for instance, a sharp on the top line of the treble staff applies to
+ *  F's not only on that line, but also to F's in the bottom space of the staff, and to any other F's.
+ *
+ *  An accidental is an exception to the key signature, applying only in the measure in which it appears,
+ *  and the choice of key signature can increase or decrease the need for accidentals.
+ *
+ *  Although a key signature may be written using any combination of sharp and flat symbols, about a dozen
+ *  diatonic key signatures are by far the most common, and their use is assumed in much of this
+ *  article. A piece scored using a single diatonic key signature and no accidentals contains notes of
+ *  at most seven of the twelve pitch classes, which seven being determined by the particular key
+ *  signature.
+ *
+ *  Each major and minor key has an associated key signature that sharpens or flattens the notes which are
+ *  used in its scale. However, it is not uncommon for a piece to be written with a key signature that
+ *  does not match its key, for example, in some Baroque pieces,[1] or in transcriptions of traditional
+ *  modal folk tunes.[2]
+ *
+ *  http://en.wikipedia.org/wiki/Key_signature
  */
 @interface MNKeySignature : MNStaffModifier
 {
    @private
-//    NSString* _code;
+    //    NSString* _code;
 }
 
 #pragma mark - Properties

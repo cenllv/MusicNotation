@@ -42,7 +42,7 @@
     self = [super initWithDictionary:optionsDict];
     if(self)
     {
-//        [self setValuesForKeyPathsWithDictionary:optionsDict];
+        //        [self setValuesForKeyPathsWithDictionary:optionsDict];
         [self setupStrokesithDictionary:optionsDict];
     }
     return self;
@@ -59,7 +59,7 @@
 {
     MNStroke* ret = [[MNStroke alloc] initWithDictionary:@{ @"allVoices" : @(allVoices) }];
     ret.type = type;
-//    ret.allVoices = allVoices;
+    //    ret.allVoices = allVoices;
     return ret;
 }
 
@@ -109,7 +109,7 @@
     // multi voice - end note of stroke, set in draw()
     self.noteEnd = nil;
     self.index = NSUIntegerMax;   // nil;
-                         //    self.type = type;
+                                  //    self.type = type;
     self.position = MNPositionLeft;
 
     [self->_renderOptions setFontSize:38];   // = {font_scale : 38, stroke_px : 3, stroke_spacing : 10};

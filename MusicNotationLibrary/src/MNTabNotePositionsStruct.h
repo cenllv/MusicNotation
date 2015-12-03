@@ -3,6 +3,7 @@
 //  MusicNotation
 //
 //  Created by Scott Riccardelli on 11/25/15.
+//  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,6 +27,9 @@
 
 #import "IAModelBase.h"
 
+/*!
+ *  The `MNTabNotePositionsStruct` class
+ */
 @interface MNTabNotePositionsStruct : IAModelBase
 {
    @private
@@ -41,5 +45,3 @@
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
 @end
-
-

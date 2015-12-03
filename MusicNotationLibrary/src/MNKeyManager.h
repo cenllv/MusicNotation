@@ -30,8 +30,8 @@
 
 @class MNMusic, MNNoteAccidentalStruct;
 
-/*! The `MNKeyManager` class
-
+/*!
+ *  The `MNKeyManager` class
  */
 @interface MNKeyManager : IAModelBase
 {

@@ -30,6 +30,7 @@
 #import "MNStaffModifier.h"
 #import "MNStaff.h"
 #import "MNGlyph.h"
+#import "MNGlyphMetrics.h"
 
 @implementation MNStaffModifier
 

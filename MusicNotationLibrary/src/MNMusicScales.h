@@ -28,12 +28,16 @@
 
 #import "IAModelBase.h"
 
-/*! The `MNMusicScales` class
+/*!
+ *  The `MNMusicScales` class
  */
 @interface MNMusicScales : IAModelBase
+
 @property (strong, nonatomic) NSArray* major;
 @property (strong, nonatomic) NSArray* dorian;
 @property (strong, nonatomic) NSArray* mixolydian;
 @property (strong, nonatomic) NSArray* minor;
+
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+
 @end

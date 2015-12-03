@@ -36,6 +36,9 @@
 #import "OCTotallyLazy.h"
 #import "MNFont.h"
 
+/*!
+ *  The `MNUtils` class
+ */
 @interface MNUtils : NSObject
 
 typedef BOOL (^EqualBlock)(NSNumber*, NSNumber*);

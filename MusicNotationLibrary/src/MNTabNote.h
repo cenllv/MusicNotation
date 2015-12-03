@@ -33,9 +33,9 @@
 
 @class MNGhostNote, MNTabStaff, MNAnnotation;
 
-/*! The `MNTabNote` implements notes for Tablature notation. This consists of one or
-  more fret positions, and can either be drawn with or without stems.
-
+/*!
+ *  The `MNTabNote` implements notes for Tablature notation. This consists of one or
+ *  more fret positions, and can either be drawn with or without stems.
  */
 @interface MNTabNote : MNStemmableNote
 
@@ -91,6 +91,6 @@
 //- (void)drawModifiers:(CGContextRef)ctx;
 //- (void)drawStemThrough:(CGContextRef)ctx;
 //- (void)drawPositions:(CGContextRef)ctx;
-//- (void)draw:(CGContextRef)ctx;
+
 
 @end

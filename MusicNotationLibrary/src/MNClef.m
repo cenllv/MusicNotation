@@ -36,6 +36,7 @@
 #import "MNMoveableClef.h"
 #import "MNGlyph.h"
 #import "MNClefAnnotation.h"
+#import "MNGlyphMetrics.h"
 
 @implementation MNClef
 {

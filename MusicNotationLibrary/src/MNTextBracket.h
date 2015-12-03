@@ -30,10 +30,10 @@
 
 @class MNFont, MNStaffNote;
 
-/*! The `MNTextBracket` class implement `TextBrackets` which extend between two notes.
-      The octave transposition markings (8va, 8vb, 15va, 15vb) can be created
-      using this class.
-
+/*!
+ *  The `MNTextBracket` class implement `TextBrackets` which extend between two notes.
+ *  The octave transposition markings (8va, 8vb, 15va, 15vb) can be created
+ *  using this class.
  */
 @interface MNTextBracket : MNModifier
 {

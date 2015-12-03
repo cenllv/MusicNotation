@@ -27,6 +27,7 @@
 //
 
 #import "MNStaffLineTests.h"
+#import "MNStaffLineNotesStruct.h"
 
 @implementation MNStaffLineTests
 
@@ -77,14 +78,14 @@
         return newNote(d);
       }];
 
-      MNStaffLine* staffLine = [[MNStaffLine alloc] initWithNotes:[[StaffLineNotesStruct alloc] initWithDictionary:@{
+      MNStaffLine* staffLine = [[MNStaffLine alloc] initWithNotes:[[MNStaffLineNotesStruct alloc] initWithDictionary:@{
                                                         @"first_note" : notes[0],
                                                         @"last_note" : notes[1],
                                                         @"first_indices" : @[ @(0) ],
                                                         @"last_indices" : @[ @(0) ]
                                                     }]];
 
-      MNStaffLine* staffLine2 = [[MNStaffLine alloc] initWithNotes:[[StaffLineNotesStruct alloc] initWithDictionary:@{
+      MNStaffLine* staffLine2 = [[MNStaffLine alloc] initWithNotes:[[MNStaffLineNotesStruct alloc] initWithDictionary:@{
                                                          @"first_note" : notes[2],
                                                          @"last_note" : notes[3],
                                                          @"first_indices" : @[ @(2), @(1), @(0) ],
@@ -175,35 +176,35 @@
       [notes[4] addAccidental:newAcc(@"#") atIndex:0];   //.addAccidental(0, new Vex.Flow.Accidental(@"#"));
       [notes[7] addAccidental:newAcc(@"#") atIndex:2];   //.addAccidental(2, new Vex.Flow.Accidental(@"#"));
 
-      MNStaffLine* staffLine0 = [[MNStaffLine alloc] initWithNotes:[[StaffLineNotesStruct alloc] initWithDictionary:@{
+      MNStaffLine* staffLine0 = [[MNStaffLine alloc] initWithNotes:[[MNStaffLineNotesStruct alloc] initWithDictionary:@{
                                                          @"first_note" : notes[0],
                                                          @"last_note" : notes[1],
                                                          @"first_indices" : @[ @(0) ],
                                                          @"last_indices" : @[ @(0) ]
                                                      }]];
 
-      MNStaffLine* staffLine4 = [[MNStaffLine alloc] initWithNotes:[[StaffLineNotesStruct alloc] initWithDictionary:@{
+      MNStaffLine* staffLine4 = [[MNStaffLine alloc] initWithNotes:[[MNStaffLineNotesStruct alloc] initWithDictionary:@{
                                                          @"first_note" : notes[2],
                                                          @"last_note" : notes[3],
                                                          @"first_indices" : @[ @(1) ],
                                                          @"last_indices" : @[ @(1) ]
                                                      }]];
 
-      MNStaffLine* staffLine1 = [[MNStaffLine alloc] initWithNotes:[[StaffLineNotesStruct alloc] initWithDictionary:@{
+      MNStaffLine* staffLine1 = [[MNStaffLine alloc] initWithNotes:[[MNStaffLineNotesStruct alloc] initWithDictionary:@{
                                                          @"first_note" : notes[4],
                                                          @"last_note" : notes[5],
                                                          @"first_indices" : @[ @(0) ],
                                                          @"last_indices" : @[ @(0) ]
                                                      }]];
 
-      MNStaffLine* staffLine2 = [[MNStaffLine alloc] initWithNotes:[[StaffLineNotesStruct alloc] initWithDictionary:@{
+      MNStaffLine* staffLine2 = [[MNStaffLine alloc] initWithNotes:[[MNStaffLineNotesStruct alloc] initWithDictionary:@{
                                                          @"first_note" : notes[6],
                                                          @"last_note" : notes[7],
                                                          @"first_indices" : @[ @(1) ],
                                                          @"last_indices" : @[ @(0) ]
                                                      }]];
 
-      MNStaffLine* staffLine3 = [[MNStaffLine alloc] initWithNotes:[[StaffLineNotesStruct alloc] initWithDictionary:@{
+      MNStaffLine* staffLine3 = [[MNStaffLine alloc] initWithNotes:[[MNStaffLineNotesStruct alloc] initWithDictionary:@{
                                                          @"first_note" : notes[6],
                                                          @"last_note" : notes[7],
                                                          @"first_indices" : @[ @(2) ],

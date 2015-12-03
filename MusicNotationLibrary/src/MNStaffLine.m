@@ -32,19 +32,8 @@
 #import "MNStaffNote.h"
 #import "MNKeyProperty.h"
 #import "MNStaffLineRenderOptions.h"
-
-@implementation StaffLineNotesStruct
-
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
-{
-    self = [super initWithDictionary:optionsDict];
-    if(self)
-    {
-    }
-    return self;
-}
-
-@end
+#import "MNStaffLineNotesStruct.h"
+#import "MNNoteMetrics.h"
 
 @implementation MNStaffLine
 
@@ -71,7 +60,7 @@
 //    last_indices: [n1, n2, n3]
 //  }
 //  ```
-- (instancetype)initWithNotes:(StaffLineNotesStruct*)notes
+- (instancetype)initWithNotes:(MNStaffLineNotesStruct*)notes
 {
     self = [self initWithDictionary:@{}];
     if(self)
@@ -143,7 +132,7 @@
  *       last_indices: [n1, n2, n3]
  *  @return this object
  */
-- (id)setNotes:(StaffLineNotesStruct*)notes
+- (id)setNotes:(MNStaffLineNotesStruct*)notes
 {
     if(!notes.first_note && !notes.last_note)
     {
@@ -210,7 +199,7 @@
             CGFloat* lengths;
             NSUInteger cnt = render_options.lineDashLengths.count;
             malloc(sizeof(CGFloat) * cnt);
-            memset (lengths, 0, sizeof (CGFloat) * cnt);
+            memset(lengths, 0, sizeof(CGFloat) * cnt);
             [render_options.lineDashLengths foreach:^(NSNumber* element, NSUInteger index, BOOL* stop) {
               lengths[index] = (CGFloat)[element floatValue];
             }];

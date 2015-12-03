@@ -36,21 +36,21 @@
 @class MNAnnotation, MNModifierContext, MNTuplet, MNTableGlyphStruct;
 @class MNNoteHeadBounds, MNStaffNoteRenderOptions;
 
-/*! The `MNStaffNote` class calculates the position and renders a note to a staff.
-
- In music, the term note has two primary meanings:
- A sign used in musical notation to represent the relative duration and pitch of a sound;
- A pitched sound itself.
-
- Notes are the "atoms" of much Western music: discretizations of musical phenomena that
-    facilitate performance, comprehension, and analysis.[1]
-
- The term note can be used in both generic and specific senses: one might say either "the
-    piece 'Happy Birthday to You' begins with two notes having the same pitch," or "the
-    piece begins with two repetitions of the same note." In the former case, one uses note
-    to refer to a specific musical event; in the latter, one uses the term to refer to a
-    class of events sharing the same pitch.
-
+/*!
+ * The `MNStaffNote` class calculates the position and renders a note to a staff.
+ *
+ *  In music, the term note has two primary meanings:
+ *  A sign used in musical notation to represent the relative duration and pitch of a sound;
+ *  A pitched sound itself.
+ *
+ *  Notes are the "atoms" of much Western music: discretizations of musical phenomena that
+ *  facilitate performance, comprehension, and analysis.[1]
+ *
+ *  The term note can be used in both generic and specific senses: one might say either "the
+ *  piece 'Happy Birthday to You' begins with two notes having the same pitch," or "the
+ *  piece begins with two repetitions of the same note." In the former case, one uses note
+ *  to refer to a specific musical event; in the latter, one uses the term to refer to a
+ *  class of events sharing the same pitch.
  */
 @interface MNStaffNote : MNStemmableNote
 {

@@ -26,7 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNNote.h"
 #import "MNOptions.h"
 #import "MNRenderOptions.h"
@@ -36,8 +35,9 @@
 @class MNBoundingBox, MNColor, MNStaffNote, MNStaff;
 @class MNNoteHeadRenderOptions, MNTableGlyphStruct;
 
-/*! The `MNNoteHead` implements `NoteHeads`. `NoteHeads` are typically not manipulated
-  directly, but used internally in `MNStaffNote`.
+/*!
+ *  The `MNNoteHead` implements `NoteHeads`. `NoteHeads` are typically not manipulated
+ *  directly, but used internally in `MNStaffNote`.
  */
 @interface MNNoteHead : MNNote
 {

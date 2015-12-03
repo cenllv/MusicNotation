@@ -1,6 +1,6 @@
 //
 //  MNOptions.m
-//  MNCore
+//  MusicNotation
 //
 //  Created by Scott Riccardelli on 1/1/15
 //  Copyright (c) Scott Riccardelli 2015
@@ -29,6 +29,12 @@
 #import "MNColor.h"
 #import "MNOptions.h"
 #import "NSObject+MNAdditions.h"
+
+@interface MNOptions ()
+
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+
+@end
 
 @implementation MNOptions
 {

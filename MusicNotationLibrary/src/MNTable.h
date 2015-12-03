@@ -36,7 +36,7 @@
 @class MNGlyphTabStruct;
 
 /*!
-    The `MNTables` class has lots of data and formatting tables for `MNClasses`.
+ *  The `MNTables` class has lots of data and formatting tables for `"MN"-Classes`.
  */
 @interface MNTable : NSObject
 {

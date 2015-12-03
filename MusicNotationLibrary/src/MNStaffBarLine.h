@@ -26,43 +26,20 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNStaffModifier.h"
 #import "MNDelegates.h"
 
-@class MNStaffBarLine;
-
-typedef MNStaffBarLine  MNBarLine;
-
-@class MNStaff, MNStaffLineRenderOptions;
-
-/*! The `MNStaffBarLine` class modifies a `MNStaff` object.
-    Implements barlines (single, double, repeat, end)
-
+/*!
+ *  The `MNStaffBarLine` class modifies a `MNStaff` object.
+ *  Implements barlines (single, double, repeat, end)
  */
 @interface MNStaffBarLine : MNStaffModifier
-{
-    //    __weak MNStaff* _staff;
-}
 
-#pragma mark - Properties
 @property (assign, nonatomic) MNBarLineType barLinetype;
 @property (assign, nonatomic, readonly) BOOL doubleBar;
 @property (strong, nonatomic) NSString* text;
 
-#pragma mark - Methods
-//`````````````````````
-// initializers
-
-//- (instancetype)initWithType:(MNBarLineType)type AtX:(float)x;
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 + (MNStaffBarLine*)barLineWithType:(MNBarLineType)type atX:(float)x;
-
-//`````````````````````
-//
-
-- (void)setX:(float)x;
-
-- (void)draw:(CGContextRef)ctx;
 
 @end

@@ -32,7 +32,8 @@
 
 @class MNModifierContext, MNVoice, MNRational, MNBeamConfig, MNStemmableNote;
 
-/*! The `MNBeam` class
+/*!
+ *  The `MNBeam` class
  *  creates a new beam from the specified notes. The notes must
  *  be part of the same line, and have the same duration (in ticks).
  */
@@ -46,7 +47,6 @@
     NSUInteger _beamCount;
     //    float _beamWidth;
     float _partialBeamLength;
-    
 }
 
 #pragma mark - Properties

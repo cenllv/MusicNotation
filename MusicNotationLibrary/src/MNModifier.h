@@ -34,9 +34,9 @@
 @class MNModifierContext, MNNote, MNTableGlyphStruct, MNStaffNote;
 @class ShiftState, MNMetrics, MNModifierState, MNFont;
 
-/*! The `MNModifier` class modifies a Staffmodifier. What this means more specifically is that it
- can render items to the staff defined by a code, a position and a scale.
-
+/*!
+ *  The `MNModifier` class modifies a Staffmodifier. What this means more specifically is that it
+ *  can render items to the staff defined by a code, a position and a scale.
  */
 @interface MNModifier : MNSymbol <MNTickableDelegate>
 {
@@ -156,8 +156,6 @@
 - (BOOL)postFormatWith:(NSArray*)notes;
 
 //- (void)setX_shift:(float)x_shift;
-
-//- (void)draw:(CGContextRef)ctx;
 
 - (void)draw:(CGContextRef)ctx withStaff:(MNStaff*)staff withShiftX:(float)shiftX;
 

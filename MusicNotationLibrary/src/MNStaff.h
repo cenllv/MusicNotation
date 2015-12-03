@@ -26,7 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNColor.h"
 #import "MNUtils.h"
 #import "MNDelegates.h"
@@ -35,9 +34,10 @@
 #import "MNSymbol.h"
 
 @class MNGlyph, MNModifier, MNKeySignature, MNClef, MNStaffText, MNPadding;
-@class  MNLine, MNTimeSignature, MNOptions, MNBoundingBox, MNFont, MNStaffModifier, MNStaffTempoOptionsStruct;
+@class MNLine, MNTimeSignature, MNOptions, MNBoundingBox, MNFont, MNStaffModifier, MNStaffTempoOptionsStruct;
 
-/*! The `StaffOptions` class sets many staff-specific 'options'
+/*!
+ *  The `StaffOptions` class sets many staff-specific 'options'
  *  used to render metrics
  */
 @interface MNStaffOptions : IAModelBase
@@ -122,8 +122,8 @@
 
 //@property (assign, nonatomic) float glyphStartXPosition;
 
-@property (strong, nonatomic)  MNLine* noteBounds;
-@property (strong, nonatomic)  MNLine* tieBounds;
+@property (strong, nonatomic) MNLine* noteBounds;
+@property (strong, nonatomic) MNLine* tieBounds;
 
 /*! the glyphs to be rendered to this Staff
  */

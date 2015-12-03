@@ -3,6 +3,7 @@
 //  MusicNotation
 //
 //  Created by Scott Riccardelli on 11/24/15.
+//  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
 //  Ported from [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //

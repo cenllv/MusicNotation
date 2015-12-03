@@ -49,6 +49,7 @@
 #import "MNStaffRepetition.h"
 #import "NSObject+AutoDescription.h"
 #import "MNConstants.h"
+#import "MNGlyphMetrics.h"
 
 @implementation MNStaffOptions
 {

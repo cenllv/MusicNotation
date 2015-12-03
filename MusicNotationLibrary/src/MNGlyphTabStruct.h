@@ -28,15 +28,19 @@
 
 #import "IAModelBase.h"
 
-/*! The `MNGlyphTabStruct` class
+/*!
+ *  The `MNGlyphTabStruct` class
  */
 @interface MNGlyphTabStruct : IAModelBase
 {
    @private
 }
+
 @property (strong, nonatomic) NSString* text;
 @property (strong, nonatomic) NSString* code;
 @property (assign, nonatomic) float width;
 @property (assign, nonatomic) float shift_y;
+
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+
 @end

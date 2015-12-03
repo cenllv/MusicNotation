@@ -1,6 +1,6 @@
 //
 //  MNPadding.h
-//  MNCore
+//  MusicNotation
 //
 //  Created by Scott Riccardelli on 1/1/15.
 //  Copyright (c) Scott Riccardelli 2015
@@ -29,8 +29,8 @@
 
 @class MNPoint;
 
-/*! The `MNPadding` class is a container for padding
-
+/*!
+ *  The `MNPadding` class is a container for padding {left, right up, down} points
  */
 @interface MNPadding : IAModelBase
 
@@ -51,8 +51,7 @@
 @property (assign, nonatomic, readonly) float height;
 
 #pragma mark - Methods
-//`````````````````````
-// initializers
+
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithXRightPadding:(float)xRight
                       andXLeftPadding:(float)xLeft
@@ -62,9 +61,6 @@
 - (instancetype)initWithXRightPadding:(float)xRight andXLeftPadding:(float)xLeft;
 
 - (instancetype)initWithX:(float)x andY:(float)y;
-
-//`````````````````````
-// class methods
 
 + (MNPadding*)paddingWithX:(float)x andY:(float)y;
 
@@ -76,9 +72,6 @@
 + (MNPadding*)paddingWith:(float)padding;
 
 + (MNPadding*)paddingZero;
-
-//`````````````````````
-// quick padding for everything
 
 - (void)addPaddingToAllSidesWith:(float)padding;
 - (void)padAllSidesBy:(float)padding;

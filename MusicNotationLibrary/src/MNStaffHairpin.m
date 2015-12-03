@@ -148,11 +148,6 @@
     [staffHairPin draw:ctx];
 }
 
-//- (void)setContext:(CGContextRef)ctx
-//{
-//    self.graphicsContext = ctx;
-//}
-
 - (id)setPosition:(MNPositionType)position
 {
     if(position == MNPositionAbove || position == MNPositionBelow)

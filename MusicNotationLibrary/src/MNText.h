@@ -51,7 +51,8 @@ typedef NS_ENUM(NSUInteger, MNTextVerticalAlignment)
     MNTextAlignmentBottom = 3,
 };
 
-/*! The `MNText` draws text
+/*!
+ *  The `MNText` draws text
  */
 @interface MNText : NSObject
 

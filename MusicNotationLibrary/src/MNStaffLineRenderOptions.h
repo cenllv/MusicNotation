@@ -30,7 +30,8 @@
 #import "MNEnum.h"
 #import "MNColor.h"
 
-/*! The `MNStaffLineRenderOptions` class
+/*!
+ *  The `MNStaffLineRenderOptions` class
  */
 @interface MNStaffLineRenderOptions : MNRenderOptions
 

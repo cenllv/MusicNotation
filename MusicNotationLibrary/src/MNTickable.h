@@ -34,9 +34,9 @@
 @class MNPoint;
 @class MNModifierContext, MNTickContext, MNVoice, MNTuplet, MNBoundingBox, MNRational, MNModifier;
 
-/*! The `MNTickable`. Tickables are things that sit on a score and
- have a duration, i.e., they occupy space in the musical rendering dimension.
-
+/*!
+ *  The `MNTickable`. Tickables are things that sit on a score and
+ *  have a duration, i.e., they occupy space in the musical rendering dimension.
  */
 @interface MNTickable : MNSymbol <MNTickableDelegate>
 {

@@ -44,6 +44,8 @@
 #import "NSArray+MNAdditions.h"
 #import "MNConstants.h"
 #import "MNText.h"
+#import "MNTableKeySpecStruct.h"
+#import "MNNoteMetrics.h"
 
 #pragma mark -  MNTables Implementation
 

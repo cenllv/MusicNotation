@@ -1,5 +1,5 @@
 //
-//  MNExtent.m
+//  MNExtentStruct.m
 //  MusicNotation
 //
 //  Created by Scott Riccardelli on 1/1/15

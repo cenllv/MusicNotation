@@ -30,8 +30,8 @@
 
 @class MNStaff;   //,  MNFont;
 
-/*! The `MNStaffRepetition` class implements repetitions (Coda, signo, D.C., etc.)
-
+/*! 
+ *  The `MNStaffRepetition` class implements repetitions (Coda, signo, D.C., etc.)
  */
 @interface MNStaffRepetition : MNStaffModifier
 {

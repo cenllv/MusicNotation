@@ -33,6 +33,7 @@
 #import "MNClef.h"
 #import "MNStaff.h"
 #import "MNClefAnnotation.h"
+#import "MNGlyphMetrics.h"
 
 @implementation MNClefNote
 

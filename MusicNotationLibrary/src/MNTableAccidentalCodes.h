@@ -27,6 +27,9 @@
 
 #import "IAModelBase.h"
 
+/*!
+ *  The `MNTableAccidentalCodes` class
+ */
 @interface MNTableAccidentalCodes : IAModelBase
 
 @property (strong, nonatomic) NSString* code;

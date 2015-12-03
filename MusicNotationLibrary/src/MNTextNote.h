@@ -30,12 +30,13 @@
 
 @class MNFont;
 
-/*! The `MNTextNote` class
+/*!
+ *  The `MNTextNote` class
  */
 @interface MNTextNote : MNNote
 {
    @private
-//    MNFont* _font;
+    //    MNFont* _font;
 }
 
 #pragma mark - Properties

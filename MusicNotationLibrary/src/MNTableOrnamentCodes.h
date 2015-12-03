@@ -30,7 +30,7 @@
 @class MNOrnamentData;
 
 /*!
- *  `MNTableOrnamentCodes`
+ *  The `MNTableOrnamentCodes` class
  */
 @interface MNTableOrnamentCodes : IAModelBase
 @property (strong, nonatomic) MNOrnamentData* mordent;

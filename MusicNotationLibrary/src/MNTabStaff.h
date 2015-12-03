@@ -28,8 +28,8 @@
 
 #import "MNStaff.h"
 
-/*! 
-    The `MNTabStaff` class is an implementation of the  MNStaff but for guitar tabs
+/*!
+ *  The `MNTabStaff` class is an implementation of the  MNStaff but for guitar tabs
  */
 @interface MNTabStaff : MNStaff
 

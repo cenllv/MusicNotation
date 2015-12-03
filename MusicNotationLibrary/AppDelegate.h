@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-
-
 @class MNBrowserWindowController;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>

@@ -28,6 +28,7 @@
 #import "MNTableAccListStruct.h"
 
 @implementation MNTableAccListStruct
+
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
@@ -37,16 +38,6 @@
     }
     return self;
 }
+
 @end
 
-@implementation MNTableKeySpecStruct
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
-{
-    self = [super initWithDictionary:optionsDict];
-    if(self)
-    {
-        //
-    }
-    return self;
-}
-@end

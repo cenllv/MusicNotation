@@ -3,6 +3,7 @@
 //  MusicNotation
 //
 //  Created by Scott Riccardelli on 11/25/15.
+//  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,13 +27,14 @@
 
 #import "MNNoteRenderOptions.h"
 
+/*!
+ *  The `MNStaffNoteRenderOptions` class
+ */
 @interface MNStaffNoteRenderOptions : MNNoteRenderOptions
 
 @property (assign, nonatomic) float stemHeight;
 @property (assign, nonatomic) float strokeSpacing;
 @property (assign, nonatomic) float strokePoints;
 //@property (assign, nonatomic) float annotation_spacing;
-
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
 @end

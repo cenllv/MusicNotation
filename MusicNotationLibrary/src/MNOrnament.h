@@ -31,10 +31,10 @@
 
 @class MNAccidental, MNStaffNote, MNOrnamentData;
 
-/*! The `MNOrnament` class implements ornaments as modifiers that can be
-      attached to notes. The complete list of ornaments is available in
-      `tables.js` under `Vex.Flow.ornamentCodes`.
-
+/*!
+ *  The `MNOrnament` class implements ornaments as modifiers that can be
+ *  attached to notes. The complete list of ornaments is available in
+ *  `MNTables` under `ornamentCodes`.
  */
 @interface MNOrnament : MNModifier
 {
@@ -46,7 +46,7 @@
     NSString* _accidental_lower;
     float _font_scale;
 
-//    float _shiftRight;
+    //    float _shiftRight;
     float _shift_y;
     float _shiftUp;
 

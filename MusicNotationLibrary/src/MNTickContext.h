@@ -26,8 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
-
 #import "MNContextDelegate.h"
 #import "MNDelegates.h"
 #import "IAModelBase.h"
@@ -35,9 +33,10 @@
 
 @class MNRational, MNTickable, MNPoint, MNPadding, MNStaff, MNModifier;
 
-/*! The `MNTickContext` class  is a A formatter for abstract
- tickable objects, such as notes, chords,
- tabs, etc.
+/*!
+ *  The `MNTickContext` class  is a A formatter for abstract
+ *  tickable objects, such as notes, chords,
+ *  tabs, etc.
  */
 @interface MNTickContext : IAModelBase
 {   //<MNContextDelegate>

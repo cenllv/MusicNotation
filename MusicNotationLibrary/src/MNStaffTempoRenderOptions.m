@@ -1,4 +1,3 @@
-
 //
 //  MNStaffTempoRenderOptions.m
 //  MusicNotation

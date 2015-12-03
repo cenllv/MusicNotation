@@ -25,18 +25,12 @@
 //  THE SOFTWARE.
 //
 
+/*!
+ * The `MNImage` class
+ */
 #if TARGET_OS_IPHONE
-
-/*! The `MNImage` class
- */
 //@interface  MNImage : UIImage
-//
-//@end
 #elif TARGET_OS_MAC
-
-/*! The `MNImage` class
-
- */
 @interface MNImage : NSImage
 #pragma mark - Methods
 - (void)drawAtPoint:(CGPoint)point;
@@ -44,4 +38,5 @@
                              context:(NSGraphicsContext*)referenceContext
                                hints:(NSDictionary*)hints;
 @end
+
 #endif

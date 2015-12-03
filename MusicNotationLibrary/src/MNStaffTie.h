@@ -31,9 +31,9 @@
 
 @class MNStaffNote;
 
-/*! The `MNStaffTie` class implements various types of ties between contiguous notes.
-    Ties include reuglar ties, hammer ons, pull offs, and slides.
-
+/*! 
+ *  The `MNStaffTie` class implements various types of ties between contiguous notes.
+ *   Ties include reuglar ties, hammer ons, pull offs, and slides.
  */
 @interface MNStaffTie : MNStaffModifier
 

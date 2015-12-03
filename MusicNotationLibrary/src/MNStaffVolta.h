@@ -28,7 +28,8 @@
 
 #import "MNStaffModifier.h"
 
-/*! The `MNStaffVolta` class
+/*! 
+ *  The `MNStaffVolta` class
  */
 @interface MNStaffVolta : MNStaffModifier
 {

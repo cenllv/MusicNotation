@@ -1,10 +1,11 @@
 //
-//  MNPlayNote.h
-//  MNCore
+//  MNNoteMetrics.h
+//  MusicNotation
 //
-//  Created by Scott Riccardelli on 1/1/15.
+//  Created by Scott Riccardelli on 12/2/15.
 //  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
+//  Ported from [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,12 +26,19 @@
 //  THE SOFTWARE.
 //
 
+#import "MNMetrics.h"
+#import "MNDelegates.h"
 
-//#import "IAModelBase.h"
+@interface MNNoteMetrics : MNMetrics <TickableMetrics>
 
-/*! The `MNPlayNote` class
+//@property (assign, nonatomic) float width;      // The total width of the note (including modifiers.)
+@property (assign, nonatomic) float noteWidth;      // The width of the note head only.
+@property (assign, nonatomic) float left_shift;     // The horizontal displacement of the note.
+@property (assign, nonatomic) float modLeftPx;      // Start `X` for left modifiers.
+@property (assign, nonatomic) float modRightPx;     // Start `X` for right modifiers.
+@property (assign, nonatomic) float extraLeftPx;    // Extra left pixels for modifers & displace notes
+@property (assign, nonatomic) float extraRightPx;   // Extra right pixels for modifers & displace notes
 
- */
-@interface MNPlayNote : NSObject //IAModelBase
-//- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+
 @end

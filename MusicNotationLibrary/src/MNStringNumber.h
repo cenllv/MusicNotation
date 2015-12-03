@@ -32,8 +32,9 @@
 
 @class MNStaffNote;
 
-/*! The `MNStringNumber` which renders string
-      number annotations beside notes.
+/*!
+ *  The `MNStringNumber` which renders string
+ *  number annotations beside notes.
  */
 @interface MNStringNumber : MNModifier
 {

@@ -33,10 +33,11 @@
 
 @class MNTimeSigStruct;
 
-/*! The `MNTimeSignature` class performs
-    Implements time signatures glyphs for staffs
-    See tables.js for the internal time signatures
-    representation
+/*!
+ *  The `MNTimeSignature` class performs
+ *  Implements time signatures glyphs for staffs
+ *  See tables.js for the internal time signatures
+ *  representation
  */
 @interface MNTimeSignature : MNStaffModifier
 {

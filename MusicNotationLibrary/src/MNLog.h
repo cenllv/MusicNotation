@@ -29,7 +29,8 @@
 
 @class MNColor;
 
-/*! The `MNLog` class performs logging.
+/*!
+ *  The `MNLog` class performs logging.
  */
 @interface MNLog : NSObject
 

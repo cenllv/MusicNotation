@@ -30,28 +30,21 @@
 #import "MNRenderOptions.h"
 #import "MNStaffLineRenderOptions.h"
 
-@class MNStaffLineRenderOptions;
+@class MNStaffLineRenderOptions, MNStaffLineNotesStruct;
 
-@interface StaffLineNotesStruct : IAModelBase
-@property (strong, nonatomic) MNStaffNote* first_note;
-@property (strong, nonatomic) MNStaffNote* last_note;
-@property (strong, nonatomic) NSArray* first_indices;
-@property (strong, nonatomic) NSArray* last_indices;
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-@end
-
-/*! The `MNStaffLine` class implements `StaveLine` which are simply lines that connect
-      two notes. This object is highly configurable, see the `render_options`.
-      A simple line is often used for notating glissando articulations, but you
-      can format a `StaveLine` with arrows or colors for more pedagogical
-      purposes, such as diagrams.
+/*!
+ *  The `MNStaffLine` class implements `StaveLine` which are simply lines that connect
+ *  two notes. This object is highly configurable, see the `render_options`.
+ *  A simple line is often used for notating glissando articulations, but you
+ *  can format a `StaveLine` with arrows or colors for more pedagogical
+ *  purposes, such as diagrams.
  */
 @interface MNStaffLine : MNModifier
 #pragma mark - Properties
 //@property (strong, nonatomic)  MNFont* font;
 @property (strong, nonatomic) NSString* text;
-@property (strong, nonatomic) StaffLineNotesStruct* staff_line_notes;
-- (id)setNotes:(StaffLineNotesStruct*)notes;
+@property (strong, nonatomic) MNStaffLineNotesStruct* staff_line_notes;
+- (id)setNotes:(MNStaffLineNotesStruct*)notes;
 - (MNStaffLineRenderOptions*)renderOptions;
 - (id)setRenderOptions:(MNStaffLineRenderOptions*)renderOptions;
 @property (strong, nonatomic) MNStaffNote* first_note;
@@ -61,6 +54,6 @@
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithNotes:(StaffLineNotesStruct*)notes;
+- (instancetype)initWithNotes:(MNStaffLineNotesStruct*)notes;
 
 @end

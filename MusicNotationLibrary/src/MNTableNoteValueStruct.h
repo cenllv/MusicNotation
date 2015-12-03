@@ -27,7 +27,8 @@
 
 #import "IAModelBase.h"
 
-/*! The `MNTableNoteValueStruct` class
+/*!
+ *  The `MNTableNoteValueStruct` class
  */
 @interface MNTableNoteValueStruct : IAModelBase   // NSObject <NSCopying>
 

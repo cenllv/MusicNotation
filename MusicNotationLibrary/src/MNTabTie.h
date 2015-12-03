@@ -26,13 +26,12 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNStaffTie.h"
 
-/*! The `MNTabTie` class
-    This class implements varies types of ties between contiguous notes. The
-    ties include: regular ties, hammer ons, pull offs, and slides.
-
+/*!
+ *  The `MNTabTie` class
+ *  This class implements varies types of ties between contiguous notes. The
+ *  ties include: regular ties, hammer ons, pull offs, and slides.
  */
 @interface MNTabTie : MNStaffTie
 

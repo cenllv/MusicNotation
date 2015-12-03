@@ -30,7 +30,8 @@
 
 @class IAUnison, IAm2, IAM2, IAm3, IAM3, IAp4, IAdim5, IAp5, IAm6, IAM6, IAb7, IAM7, IAoctave;
 
-/*! The `MNMusicDiatonicAccidentals` class
+/*!
+ *  The `MNMusicDiatonicAccidentals` class
  */
 @interface MNMusicDiatonicAccidentals : IAModelBase
 @property (strong, nonatomic) IAUnison* obj_unison;
@@ -49,33 +50,33 @@
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 @end
 
-@interface  MNMusicNoteAccidental : IAModelBase
+@interface MNMusicNoteAccidental : IAModelBase
 @property (assign, nonatomic) NSUInteger note;
 @property (assign, nonatomic) NSUInteger accidental;
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 @end
 
-@interface IAUnison :  MNMusicNoteAccidental
+@interface IAUnison : MNMusicNoteAccidental
 @end
-@interface IAm2 :  MNMusicNoteAccidental
+@interface IAm2 : MNMusicNoteAccidental
 @end
-@interface IAM2 :  MNMusicNoteAccidental
+@interface IAM2 : MNMusicNoteAccidental
 @end
-@interface IAm3 :  MNMusicNoteAccidental
+@interface IAm3 : MNMusicNoteAccidental
 @end
-@interface IAp4 :  MNMusicNoteAccidental
+@interface IAp4 : MNMusicNoteAccidental
 @end
-@interface IAdim5 :  MNMusicNoteAccidental
+@interface IAdim5 : MNMusicNoteAccidental
 @end
-@interface IAp5 :  MNMusicNoteAccidental
+@interface IAp5 : MNMusicNoteAccidental
 @end
-@interface IAm6 :  MNMusicNoteAccidental
+@interface IAm6 : MNMusicNoteAccidental
 @end
-@interface IAM6 :  MNMusicNoteAccidental
+@interface IAM6 : MNMusicNoteAccidental
 @end
-@interface IAb7 :  MNMusicNoteAccidental
+@interface IAb7 : MNMusicNoteAccidental
 @end
-@interface IAM7 :  MNMusicNoteAccidental
+@interface IAM7 : MNMusicNoteAccidental
 @end
-@interface IAoctave :  MNMusicNoteAccidental
+@interface IAoctave : MNMusicNoteAccidental
 @end

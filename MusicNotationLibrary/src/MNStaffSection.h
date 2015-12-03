@@ -31,9 +31,9 @@
 
 @class MNStaff;
 
-/*! The `MNStaffSection` class draws separation vertical lines between measures on the staff
-    and also draws text.
-
+/*! 
+ *  The `MNStaffSection` class draws separation vertical lines between measures on the staff
+ *  and also draws text.
  */
 @interface MNStaffSection : MNModifier
 

@@ -33,7 +33,8 @@
 
 @class MNMetrics, MNOptions, MNStaff, MNGlyph, MNColor;
 
-/*! The `MNStaffModifier` class
+/*!
+ * The `MNStaffModifier` class
  */
 @interface MNStaffModifier : MNModifier
 {

@@ -30,7 +30,8 @@
 
 @class MNNote;
 
-/*! The `TieNotes` class is a struct for holding ties between two notes.
+/*!
+ *  The `TieNotes` class is a struct for holding ties between two notes.
  */
 @interface MNNoteTie : IAModelBase
 @property (strong, nonatomic) MNNote* firstNote;

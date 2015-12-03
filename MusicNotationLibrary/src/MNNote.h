@@ -27,48 +27,36 @@
 //
 
 #import "MNMetrics.h"
-//#import "MNDelegates.h"
 #import "MNModifier.h"
 #import "MNRenderOptions.h"
 #import "MNEnum.h"
 #import "MNNoteRenderOptions.h"
 
-@interface NoteMetrics : MNMetrics <TickableMetrics>
-//@property (assign, nonatomic) float width;      // The total width of the note (including modifiers.)
-@property (assign, nonatomic) float noteWidth;      // The width of the note head only.
-@property (assign, nonatomic) float left_shift;     // The horizontal displacement of the note.
-@property (assign, nonatomic) float modLeftPx;      // Start `X` for left modifiers.
-@property (assign, nonatomic) float modRightPx;     // Start `X` for right modifiers.
-@property (assign, nonatomic) float extraLeftPx;    // Extra left pixels for modifers & displace notes
-@property (assign, nonatomic) float extraRightPx;   // Extra right pixels for modifers & displace notes
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-@end
-
 typedef void (^StyleBlock)(CGContextRef);
 
-@class MNVoice, MNStaff, MNNote, MNClef, MNTableGlyphStruct, MNKeyProperty;                  //, MNBoundingBox;
-@class MNPlayNote, MNModifier, MNRational, MNTickContext, MNStroke, MNBeam;   //, MNNoteRenderOptions;
+@class MNVoice, MNStaff, MNNote, MNClef, MNTableGlyphStruct, MNKeyProperty;      //, MNBoundingBox;
+@class MNNoteMetrics, MNModifier, MNRational, MNTickContext, MNStroke, MNBeam;   //, MNNoteRenderOptions;
 
-/*! The `MNNote` class  implements an abstract interface for notes and chords that
-      are rendered on a stave. Notes have some common properties: All of them
-      have a value (e.g., pitch, fret, etc.) and a duration (quarter, half, etc.)
-
-      To create a new note you need to provide a `note_struct`, which consists
-      of the following fields:
-
-      `type`: The note type (e.g., `r` for rest, `s` for slash notes, etc.)
-      `dots`: The number of dots, which affects the duration.
-      `duration`: The time length (e.g., `q` for quarter, `h` for half, `8` for eighth etc.)
-
-      The range of values for these parameters are available in `src/tables.js`.
-
-      Every note is a tickable, i.e., it can be mutated by the `Formatter` class for
-      positioning and layout.
-
-      Some notes have stems, heads, dots, etc. Most notational elements that
-      surround a note are called *modifiers*, and every note has an associated
-      array of them. All notes also have a rendering context and belong to a stave.
-
+/*!
+ *  The `MNNote` class  implements an abstract interface for notes and chords that
+ *  are rendered on a stave. Notes have some common properties: All of them
+ *  have a value (e.g., pitch, fret, etc.) and a duration (quarter, half, etc.)
+ *
+ *  To create a new note you need to provide a `note_struct`, which consists
+ *  of the following fields:
+ *
+ *  `type`: The note type (e.g., `r` for rest, `s` for slash notes, etc.)
+ *  `dots`: The number of dots, which affects the duration.
+ *  `duration`: The time length (e.g., `q` for quarter, `h` for half, `8` for eighth etc.)
+ *
+ *  The range of values for these parameters are available in `src/tables.js`.
+ *
+ *  Every note is a tickable, i.e., it can be mutated by the `Formatter` class for
+ *  positioning and layout.
+ *
+ *  Some notes have stems, heads, dots, etc. Most notational elements that
+ *  surround a note are called *modifiers*, and every note has an associated
+ *  array of them. All notes also have a rendering context and belong to a stave.
  */
 @interface MNNote : MNModifier   //<MNTickableDelegate>
 {
@@ -85,7 +73,7 @@ typedef void (^StyleBlock)(CGContextRef);
     NSMutableArray* _ys;
     NSMutableArray* _keyStrings;
     NSMutableArray* _keyProperties;
-    MNPlayNote* _playNote;
+    //    MNPlayNote* _playNote;
     float _x_shift;
     //    MNTuplet* _tuplet;
     float _left_modPx;
@@ -127,7 +115,7 @@ typedef void (^StyleBlock)(CGContextRef);
 @property (strong, nonatomic, readonly) NSString* category;
 
 // for audio players later
-@property (strong, nonatomic) MNPlayNote* playNote;
+//@property (strong, nonatomic) MNPlayNote* playNote;
 
 @property (assign, nonatomic) MNNoteDurationType noteDurationType;
 
@@ -192,14 +180,14 @@ typedef void (^StyleBlock)(CGContextRef);
  *   audio player.
  *  @return play note object
  */
-- (MNPlayNote*)getPlayNote;
+//- (MNPlayNote*)getPlayNote;
 
 /*!
  *   Sets the play note, which is arbitrary data that can be used by an
  *   audio player.
  *  @param playNote play note object
  */
-- (void)setPlayNote:(MNPlayNote*)playNote;
+//- (void)setPlayNote:(MNPlayNote*)playNote;
 
 /*!
  *   Don't play notes by default, call them rests. This is also used by things like
@@ -481,7 +469,7 @@ typedef void (^StyleBlock)(CGContextRef);
  *    `extraLeftPx`: Extra space on left of note.
  *    `extraRightPx`: Extra space on right of note.
  */
-- (NoteMetrics*)metrics;
+- (MNNoteMetrics*)metrics;
 
 /*!
  *  Sets width of note. Used by the formatter for positioning.

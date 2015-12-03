@@ -26,7 +26,6 @@
 //  THE SOFTWARE.
 //
 
-
 #if TARGET_OS_IPHONE
 
 //#import <UIKit/UIKit.h>
@@ -38,7 +37,8 @@
 @class MNMetrics, MNTuplet;
 @protocol TickableMetrics;
 
-/*! The `MNTickableDelegate` protocol...
+/*!
+ *  The `MNTickableDelegate` protocol...
  */
 @protocol MNTickableDelegate <NSObject>
 @required

@@ -31,8 +31,8 @@
 
 @class MNNote;
 
-/*! The `MNStrokes` class implements chord strokes - arpeggiated, brush & rasquedo.
-
+/*!
+ *  The `MNStrokes` class implements chord strokes - arpeggiated, brush & rasquedo.
  */
 @interface MNStroke : MNModifier
 {

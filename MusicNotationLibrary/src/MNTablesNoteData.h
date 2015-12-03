@@ -31,7 +31,7 @@
 @class MNRational;
 
 /*!
- *  `MNTableNoteInputData`
+ *  The `MNTableNoteInputData` class
  */
 @interface MNTableNoteInputData : IAModelBase
 {

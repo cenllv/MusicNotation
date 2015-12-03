@@ -30,8 +30,8 @@
 
 @class MNTuningNames;
 
-/*! The `MNTuning` class implements various types of tunings for tablature.
-
+/*! 
+ *  The `MNTuning` class implements various types of tunings for tablature.
  */
 @interface MNTuning : IAModelBase
 
