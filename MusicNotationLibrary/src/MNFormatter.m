@@ -179,7 +179,7 @@ typedef void (^AddFunction)(MNTickable*, id);
             MNLogError(@"IncompleteVoice, Voice does not have enough notes.");
         }
 
-        NSUInteger lcm = [MNRational LCM:resolutionMultiplier and:voice.resolutionMultiplier];
+        NSUInteger lcm = [MNRational LCM:resolutionMultiplier with:voice.resolutionMultiplier];
         if(resolutionMultiplier < lcm)
         {
             resolutionMultiplier = lcm;
@@ -657,7 +657,7 @@ typedef void (^AddFunction)(MNTickable*, id);
                                          andAddFunction:^(MNTickable* tickable, MNTickContext* context) {
                                            [context addTickable:tickable];
                                          }];
-    [contexts.array foreach:^(MNTickContext* context, NSUInteger index, BOOL* stop) {
+    [contexts.array oct_foreach:^(MNTickContext* context, NSUInteger index, BOOL* stop) {
       context.tContexts = contexts.array;
     }];
     self.totalTicks = [((MNVoice*)[voices firstObject]).ticksUsed clone];
@@ -694,7 +694,7 @@ typedef void (^AddFunction)(MNTickable*, id);
     // and preFormat to apply Y values to the notes;
     if(voices && staff)
     {
-        [voices foreach:^(MNVoice* voice, NSUInteger index, BOOL* stop) {
+        [voices oct_foreach:^(MNVoice* voice, NSUInteger index, BOOL* stop) {
           [voice setStaff:staff];
           [voice preFormat];
         }];
@@ -831,9 +831,9 @@ typedef void (^AddFunction)(MNTickable*, id);
             prev_tick_value = tickValue;
 
             // Move center aligned tickables to middle
-            NSArray* centeredTickables = [context getCenterAlignedTickables];   //.getCenterAlignedTickables();
+            NSArray<MNTickable*>* centeredTickables = [context getCenterAlignedTickables];   //.getCenterAlignedTickables();
 
-            [centeredTickables foreach:^(MNTickable* tickable, NSUInteger index, BOOL* stop) {
+            [centeredTickables oct_foreach:^(MNTickable* tickable, NSUInteger index, BOOL* stop) {
               tickable.centerXShift = center_x - context.x;
             }];
         }
@@ -852,12 +852,12 @@ typedef void (^AddFunction)(MNTickable*, id);
 - (BOOL)postFormat   //:(NSArray<MNVoice*>*)voices
 {
     // Postformat modifier contexts
-    [self.mContexts.list foreach:^(NSNumber* mContext, NSUInteger index, BOOL* stop) {
+    [self.mContexts.list oct_foreach:^(NSNumber* mContext, NSUInteger index, BOOL* stop) {
       [self.mContexts.map[mContext] postFormat];
     }];
 
     // Postformat tick contexts
-    [self.tContexts.list foreach:^(NSNumber* mContext, NSUInteger index, BOOL* stop) {
+    [self.tContexts.list oct_foreach:^(NSNumber* mContext, NSUInteger index, BOOL* stop) {
       [self.tContexts.map[mContext] postFormat];
     }];
     return YES;

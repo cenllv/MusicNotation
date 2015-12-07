@@ -28,8 +28,10 @@
 #import "MNCarrierLayer.h"
 
 #ifdef TARGET_OS_IPHONE
+
 @implementation MNCarrierLayer
 @end
+
 #elif TARGET_OS_MAC
 
 - (BOOL)pointingDeviceDownEvent:(NSEvent*)event atPoint:(CGPoint)interactionPoint

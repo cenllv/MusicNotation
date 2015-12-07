@@ -17,6 +17,11 @@
 
 - (id)get
 {
+    return nil;
+}
+
+- (id)getSafely
+{
     [NoSuchElementException raise:@"Cannot get value of None" format:@"Cannot get value of None"];
     return nil;
 }
@@ -36,7 +41,7 @@
     return [otherObject isKindOfClass:[None class]];
 }
 
-- (id)flatMap:(id (^)(id))funcBlock
+- (id)oct_flatMap:(id (^)(id))funcBlock
 {
     return [None none];
 }
@@ -46,14 +51,14 @@
     // Do nothing
 }
 
-- (id)map:(id (^)(id))funcBlock
+- (id)oct_map:(id (^)(id))funcBlock
 {
     return [None none];
 }
 
-- (id)oct_fold:(id)seed with:(id (^)(id, id))functorBlock
+- (id)oct_fold:(id)seed oct_with:(id (^)(id, id))functorBlock
 {
-    return [Some some:seed];
+    return [Some oct_some:seed];
 }
 
 - (id)copyWithZone:(NSZone*)zone

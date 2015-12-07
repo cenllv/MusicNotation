@@ -25,9 +25,9 @@
 //  THE SOFTWARE.
 //
 
-#import "MNTestAction.h"
+#import "MNTestActionStruct.h"
 
-@implementation MNTestAction
+@implementation MNTestActionStruct
 
 - (instancetype)init
 {
@@ -38,9 +38,12 @@
     return self;
 }
 
-+ (MNTestAction*)testWithName:(NSString*)name andSelector:(SEL)selector andTarget:(id)target andFrame:(CGRect)frame
++ (MNTestActionStruct*)testWithName:(NSString*)name
+                        andSelector:(SEL)selector
+                          andTarget:(id)target
+                           andFrame:(CGRect)frame
 {
-    MNTestAction* ret = [[MNTestAction alloc] init];
+    MNTestActionStruct* ret = [[MNTestActionStruct alloc] init];
     ret.name = name;
     ret.selector = selector;
     ret.target = target;

@@ -25,18 +25,49 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
-
-//#ifdef TARGET_OS_IPHONE
-//@protocol LayerResponder <NSObject>
-//@end
 #if TARGET_OS_IPHONE
+
+// No protocol is necessary because iOS has sufficient CALayer hit testing caps
+
 #elif TARGET_OS_MAC
+
+/*!
+ *  The `MNLayerResponder` protocol declares methods for responding to touches
+ *  to CALayers on the Mac app.
+ */
 @protocol MNLayerResponder <NSObject>
+
 @optional
+
+/*!
+ *  Sends touch calls down the CALayer heirarchy
+ *  @param event            the input action
+ *  @param interactionPoint the interaction point
+ *  @return if this layer handled the event
+ */
 - (BOOL)pointingDeviceDownEvent:(NSEvent*)event atPoint:(CGPoint)interactionPoint;
+
+/*!
+ *  Sends touch calls down the CALayer heirarchy
+ *  @param event            the input action
+ *  @param interactionPoint the interaction point
+ *  @return if this layer handled the event
+ */
 - (BOOL)pointingDeviceUpEvent:(NSEvent*)event atPoint:(CGPoint)interactionPoint;
+
+/*!
+ *  Sends touch calls down the CALayer heirarchy
+ *  @param event            the input action
+ *  @param interactionPoint the interaction point
+ *  @return if this layer handled the event
+ */
 - (BOOL)pointingDeviceDraggedEvent:(NSEvent*)event atPoint:(CGPoint)interactionPoint;
+
+/*!
+ *  Sends touch calls down the CALayer heirarchy
+ *  @param event            the input action
+ *  @return if this layer handled the event
+ */
 - (BOOL)pointingDeviceCancelledEvent:(NSEvent*)event;
 
 @end

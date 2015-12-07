@@ -24,8 +24,15 @@
 //  THE SOFTWARE.
 //
 
+/*!
+ *  Utility methods for setting up the collection of tests.
+ */
 @interface MNTestUtils : NSObject
 
+/*!
+ *  Gets the Class for each of the tests listed in the test enumeration.
+ *  @return a dictionary of the test Class objects
+ */
 + (NSDictionary*)classForTestType;
 
 @end

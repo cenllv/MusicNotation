@@ -52,7 +52,6 @@
 #import "MNOptions.h"
 #import "NSString+Ruby.h"
 #import "MNMath.h"
-
 #import "OCTotallyLazy.h"
 
 @implementation MNModifierState
@@ -298,7 +297,7 @@
     }
     __block BOOL success = YES;
     __weak __typeof__(self) weakSelf = self;
-    [self.PREFORMAT foreach:^(Class modifierClass, NSUInteger index, BOOL* stop) {
+    [self.PREFORMAT oct_foreach:^(Class modifierClass, NSUInteger index, BOOL* stop) {
       NSString* category = [modifierClass CATEGORY];
       // NOTE: uncomment the folloing for more debug info
       //        MNLogDebug(@"%@", [NSString stringWithFormat:@"Preformatting ModifierContext: %@", category]);
@@ -348,7 +347,7 @@
         return YES;
     }
 
-    [self.POSTFORMAT foreach:^(Class modifierClass, NSUInteger index, BOOL* stop) {
+    [self.POSTFORMAT oct_foreach:^(Class modifierClass, NSUInteger index, BOOL* stop) {
       NSString* category = [modifierClass CATEGORY];
       MNLogDebug(@"%@", [NSString stringWithFormat:@"Postformatting ModifierContext: %@", category]);
       NSArray* modifiers = [self getModifiersForType:category];

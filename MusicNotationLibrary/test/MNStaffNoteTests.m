@@ -1389,7 +1389,7 @@
     //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
-      [notes foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
+      [notes oct_foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
         [[self class] renderNote:parent note:note staff:staff withContext:ctx atX:(i + 1) * 50];
       }];
     };
@@ -1478,7 +1478,7 @@
     //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
-      [notes foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
+      [notes oct_foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
         [[self class] renderNote:parent note:note staff:staff withContext:ctx atX:(i + 1) * 50];
       }];
       ok(YES, @"Full Dot");
@@ -1558,7 +1558,7 @@
     //    [ret.beams addObject:@[beam]];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
-      [notes foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
+      [notes oct_foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
         [[self class] renderNote:parent note:note staff:staff withContext:ctx atX:(i + 1) * 50];
       }];
       [beam draw:ctx];
@@ -1640,7 +1640,7 @@
     //    [ret.beams addObject:@[ beam ]];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
-      [notes foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
+      [notes oct_foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
         [[self class] renderNote:parent note:note staff:staff withContext:ctx atX:(i + 1) * 25];
       }];
       [beam draw:ctx];

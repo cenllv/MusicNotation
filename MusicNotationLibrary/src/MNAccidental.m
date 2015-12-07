@@ -563,7 +563,7 @@
 
     // Fill column_widths with widest needed x-space;
     // this is what keeps the columns parallel.
-    [line_list foreach:^(MNLineListStruct* line, NSUInteger index, BOOL* stop) {
+    [line_list oct_foreach:^(MNLineListStruct* line, NSUInteger index, BOOL* stop) {
       if(((MNLineListStruct*)line).width > [column_widths[((MNLineListStruct*)line).column] unsignedIntegerValue])
       {
           column_widths[((MNLineListStruct*)line).column] = @(((MNLineListStruct*)line).width);
@@ -579,7 +579,7 @@
 
     // Set the x_shift for each accidental according to column offsets:
     __block NSUInteger acc_count = 0;
-    [line_list foreach:^(MNLineListStruct* line, NSUInteger index, BOOL* stop) {
+    [line_list oct_foreach:^(MNLineListStruct* line, NSUInteger index, BOOL* stop) {
       float line_width = 0;
       float last_acc_on_line = acc_count + line.num_acc;
       // handle all of the accidentals on a given line:
@@ -607,16 +607,16 @@
  *  @param voices       a collection of voices
  *  @param keySignature the key signature
  */
-+ (void)applyAccidentals:(NSArray*)voices withKeySignature:(NSString*)keySignature
++ (void)applyAccidentals:(NSArray<MNVoice*>*)voices withKeySignature:(NSString*)keySignature
 {
-    NSMutableArray* tickPositions = [NSMutableArray array];
+    NSMutableArray<MNRational*>* tickPositions = [NSMutableArray array];
     NSMutableDictionary* tickNoteMap = [NSMutableDictionary dictionary];
 
     // Sort the tickables in each voice by their tick position in the voice
-    [voices foreach:^(MNVoice* voice, NSUInteger index, BOOL* stop) {
+    [voices oct_foreach:^(MNVoice* voice, NSUInteger index, BOOL* stop) {
       MNRational* tickPosition = Rational(0, 1);
       NSArray* notes = voice.tickables;
-      [notes foreach:^(MNStaffNote* note, NSUInteger index2, BOOL* stop2) {
+      [notes oct_foreach:^(MNStaffNote* note, NSUInteger index2, BOOL* stop2) {
         NSMutableArray* notesAtPosition = tickNoteMap[tickPosition.numberValue];
 
         if(!notesAtPosition)
@@ -643,13 +643,13 @@
     // Get the scale map, which represents the current state of each pitch
     NSMutableDictionary* scaleMap = [MNMusic createScaleMap:keySignature];
 
-    [tickPositions foreach:^(MNRational* tick, NSUInteger index, BOOL* stop) {
+    [tickPositions oct_foreach:^(MNRational* tick, NSUInteger index, BOOL* stop) {
       NSMutableArray* notes = tickNoteMap[tick];
       // Array to store all pitches that modified accidental states
       // at this tick position
       NSMutableArray* modifiedPitches = [NSMutableArray array];
 
-      [notes foreach:^(MNStaffNote* note, NSUInteger index, BOOL* stop) {
+      [notes oct_foreach:^(MNStaffNote* note, NSUInteger index, BOOL* stop) {
         if(note.isRest)
         {
             return;
@@ -658,7 +658,7 @@
         // Go through each key and determine if an accidental should be
         // applied
         __block NSInteger i = -1;
-        [note.keyStrings foreach:^(NSString* keyString, NSUInteger keyIndex, BOOL* stop) {
+        [note.keyStrings oct_foreach:^(NSString* keyString, NSUInteger keyIndex, BOOL* stop) {
           ++i;
           RootAccidentalTypeStruct* key = [MNMusic getNoteParts:([keyString split:@"/"])[0]];
 

@@ -38,6 +38,10 @@ typedef void (^DrawTest)(CGRect dirtyRect, CGRect bounds, CGContextRef ctx);
 @property (strong, nonatomic) DrawTest drawBlock;
 @property (strong, nonatomic) MNColor* backgroundColor;
 
+/*!
+ *  Gets a new empty test.
+ *  @return a test block struct object.
+ */
 + (MNTestBlockStruct*)testTuple;
 
 @end

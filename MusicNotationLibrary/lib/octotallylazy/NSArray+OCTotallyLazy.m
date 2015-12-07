@@ -1,49 +1,53 @@
-#import "OCTotallyLazy.h"
-#import "NSArray+OCTotallyLazy.h"
+#import <objc/objc.h>
+#import "Sequence.h"
+#import "Group.h"
+#import "Pair.h"
+#import "Predicates.h"
+#import "Callables.h"
 
 @implementation NSArray (OCTotallyLazy)
 
-- (NSArray*)add:(id)value
+- (NSArray*)oct_add:(id)value
 {
-    return [self join:sequence(value, nil)];
+    return [self oct_join:sequence(value, nil)];
 }
 
-- (NSArray*)cons:(id)value
+- (NSArray*)oct_cons:(id)value
 {
-    return [array(value, nil) join:self];
+    return [array(value, nil) oct_join:self];
 }
 
-- (NSArray*)drop:(NSUInteger)n
+- (NSArray*)oct_drop:(int)n
 {
-    return [[[self asSequence] drop:n] asArray];
+    return [[[self oct_asSequence] oct_drop:n] oct_asArray];
 }
 
-- (NSArray*)dropWhile:(BOOL (^)(id))funcBlock
+- (NSArray*)oct_dropWhile:(BOOL (^)(id))funcBlock
 {
-    return [[[self asSequence] dropWhile:funcBlock] asArray];
+    return [[[self oct_asSequence] oct_dropWhile:funcBlock] oct_asArray];
 }
 
-- (NSArray*)filter:(BOOL (^)(id))filterBlock
+- (NSArray*)oct_filter:(BOOL (^)(id))filterBlock
 {
-    return [[[self asSequence] filter:filterBlock] asArray];
+    return [[[self oct_asSequence] oct_filter:filterBlock] oct_asArray];
 }
 
-- (NSArray*)flatMap:(id (^)(id))functorBlock
+- (NSArray*)oct_flatMap:(id (^)(id))functorBlock
 {
-    return [[[self asSequence] flatMap:functorBlock] asArray];
+    return [[[self oct_asSequence] oct_flatMap:functorBlock] oct_asArray];
 }
 
 - (NSArray*)oct_flatten
 {
-    return [[[self asSequence] flatten] asArray];
+    return [[[self oct_asSequence] oct_flatten] oct_asArray];
 }
 
-- (Option*)find:(BOOL (^)(id))filterBlock
+- (Option*)oct_find:(BOOL (^)(id))filterBlock
 {
-    return [[self asSequence] find:filterBlock];
+    return [[self oct_asSequence] oct_find:filterBlock];
 }
 
-- (id)oct_fold:(id)value with:(id (^)(id, id))functorBlock
+- (id)oct_fold:(id)value oct_with:(id (^)(id, id))functorBlock
 {
     id accumulator = value;
     for(id item in self)
@@ -53,13 +57,15 @@
     return accumulator;
 }
 
-//- (void)foreach:(void (^)(id))funcBlock {
-//    for (id item in self) {
-//        funcBlock(item);
-//    }
-//}
+- (void)foreach:(void (^)(id))funcBlock
+{
+    for(id item in self)
+    {
+        funcBlock(item);
+    }
+}
 
-- (void)foreach:(void (^)(id, NSUInteger, BOOL*))funcBlock
+- (void)oct_foreach:(void (^)(id, NSUInteger, BOOL*))funcBlock
 {
     BOOL stop = NO;
     NSUInteger index = 0;
@@ -74,43 +80,17 @@
     }
 }
 
-- (BOOL)isEmpty
+- (BOOL)oct_isEmpty
 {
     return self.count == 0;
 }
 
-//- (NSArray *)groupBy:(FUNCTION1)groupingBlock {
-//    NSMutableDictionary *keysAndValues = [NSMutableDictionary dictionary];
-//    NSMutableArray *keys = [NSMutableArray array];
-//    NSMutableArray *nilKeyItems = [NSMutableArray array];
-//    [self foreach:^(id item) {
-//        id key = groupingBlock(item);
-//        if (key) {
-//            if (![keys containsObject:key]) {
-//                [keys addObject:key];
-//                [keysAndValues setObject:[NSMutableArray array] forKey:key];
-//            }
-//            [[keysAndValues objectForKey:key] addObject:item];
-//        } else {
-//            [nilKeyItems addObject:item];
-//        }
-//    }];
-//    NSArray *keyedGroups = [keys map:^(id key) {
-//        return [Group group:key enumerable:[keysAndValues objectForKey:key]];
-//    }];
-//    NSArray *unkeyedGroups = [nilKeyItems map:^(id item) {
-//        return [Group group:nil enumerable:array(item, nil)];
-//    }];
-////    return keyedGroups;
-//    return [keyedGroups arrayByAddingObjectsFromArray:unkeyedGroups];
-//}
-
-- (NSArray*)groupBy:(FUNCTION1)groupingBlock
+- (NSArray*)oct_groupBy:(FUNCTION1)groupingBlock
 {
     NSMutableDictionary* keysAndValues = [NSMutableDictionary dictionary];
     NSMutableArray* keys = [NSMutableArray array];
     NSMutableArray* nilKeyItems = [NSMutableArray array];
-    [self foreach:^(id item, NSUInteger index, BOOL* stop) {
+    [self foreach:^(id item) {
       id key = groupingBlock(item);
       if(key)
       {
@@ -127,67 +107,62 @@
       }
     }];
     NSArray* keyedGroups = [keys oct_map:^(id key) {
-      return [OCGroup group:key enumerable:[keysAndValues objectForKey:key]];
+      return [Group group:key enumerable:[keysAndValues objectForKey:key]];
     }];
     NSArray* unkeyedGroups = [nilKeyItems oct_map:^(id item) {
-      return [OCGroup group:nil enumerable:array(item, nil)];
+      return [Group group:nil enumerable:array(item, nil)];
     }];
     //    return keyedGroups;
     return [keyedGroups arrayByAddingObjectsFromArray:unkeyedGroups];
 }
 
-- (NSArray*)grouped:(NSUInteger)n
+- (NSArray*)oct_grouped:(int)n
 {
-    return [[[self asSequence] grouped:n] asArray];
+    return [[[self oct_asSequence] oct_grouped:n] oct_asArray];
 }
 
-- (id)head
+- (id)oct_head
 {
-    return [[self asSequence] head];
+    return [[self oct_asSequence] oct_head];
 }
 
-- (Option*)headOption
+- (Option*)oct_headOption
 {
-    return [[self asSequence] headOption];
+    return [[self oct_asSequence] oct_headOption];
 }
 
-- (NSArray*)join:(id<Enumerable>)toJoin
+- (NSArray*)oct_join:(id<Enumerable>)toJoin
 {
-    return [[[self asSequence] join:toJoin] asArray];
-}
-
-- (NSArray*)concat:(id<Enumerable>)toJoin
-{
-    return [[[self asSequence] join:toJoin] asArray];
+    return [[[self oct_asSequence] oct_join:toJoin] oct_asArray];
 }
 
 - (id)oct_map:(id (^)(id))funcBlock
 {
-    return [[[self asSequence] oct_map:funcBlock] asArray];
+    return [[[self oct_asSequence] oct_map:funcBlock] oct_asArray];
 }
 
-- (id)mapWithIndex:(id (^)(id, NSInteger))funcBlock
+- (id)oct_mapWithIndex:(id (^)(id, NSInteger))funcBlock
 {
-    return [[[self asSequence] oct_mapWithIndex:funcBlock] asArray];
+    return [[[self oct_asSequence] oct_mapWithIndex:funcBlock] oct_asArray];
 }
 
-- (NSArray*)merge:(NSArray*)toMerge
+- (NSArray*)oct_merge:(NSArray*)toMerge
 {
-    return [[[self asSequence] merge:[toMerge asSequence]] asArray];
+    return [[[self oct_asSequence] oct_merge:[toMerge oct_asSequence]] oct_asArray];
 }
 
-- (Pair*)partition:(BOOL (^)(id))filterBlock
+- (Pair*)oct_partition:(BOOL (^)(id))filterBlock
 {
-    Pair* partitioned = [[self asSequence] partition:filterBlock];
-    return [Pair left:[partitioned.left asArray] right:[partitioned.right asArray]];
+    Pair* partitioned = [[self oct_asSequence] oct_partition:filterBlock];
+    return [Pair left:[partitioned.left oct_asArray] right:[partitioned.right oct_asArray]];
 }
 
 - (id)oct_reduce:(id (^)(id, id))functorBlock
 {
-    return [self isEmpty] ? nil : [[self tail] oct_fold:[self head] with:functorBlock];
+    return [self oct_isEmpty] ? nil : [[self oct_tail] oct_fold:[self oct_head] oct_with:functorBlock];
 }
 
-- (NSArray*)reverse
+- (NSArray*)oct_reverse
 {
     NSMutableArray* collectedArray = [[NSMutableArray alloc] init];
     NSEnumerator* reversed = [self reverseObjectEnumerator];
@@ -199,41 +174,41 @@
     return collectedArray;
 }
 
-- (Pair*)splitAt:(NSUInteger)splitIndex
+- (Pair*)oct_splitAt:(int)splitIndex
 {
-    return [self splitWhen:TL_not(TL_countTo(splitIndex))];
+    return [self oct_splitWhen:TL_not(TL_countTo(splitIndex))];
 }
 
-- (Pair*)splitOn:(id)splitItem
+- (Pair*)oct_splitOn:(id)splitItem
 {
-    return [self splitWhen:TL_equalTo(splitItem)];
+    return [self oct_splitWhen:TL_equalTo(splitItem)];
 }
 
-- (Pair*)splitWhen:(BOOL (^)(id))predicate
+- (Pair*)oct_splitWhen:(BOOL (^)(id))predicate
 {
-    Pair* partition = [self partition:TL_whileTrue(TL_not(predicate))];
-    return [Pair left:partition.left right:[partition.right tail]];
+    Pair* partition = [self oct_partition:TL_whileTrue(TL_not(predicate))];
+    return [Pair left:partition.left right:[partition.right oct_tail]];
 }
 
-- (NSArray*)tail
+- (NSArray*)oct_tail
 {
-    return [[[self asSequence] tail] asArray];
+    return [[[self oct_asSequence] oct_tail] oct_asArray];
     //    return [self takeRight:[self count] - 1];
 }
 
-- (NSArray*)take:(NSUInteger)n
+- (NSArray*)oct_take:(int)n
 {
-    return [[[self asSequence] take:n] asArray];
+    return [[[self oct_asSequence] oct_take:n] oct_asArray];
 }
 
-- (NSArray*)takeWhile:(BOOL (^)(id))funcBlock
+- (NSArray*)oct_takeWhile:(BOOL (^)(id))funcBlock
 {
-    return [[[self asSequence] takeWhile:funcBlock] asArray];
+    return [[[self oct_asSequence] oct_takeWhile:funcBlock] oct_asArray];
 }
 
-- (NSArray*)takeRight:(NSUInteger)n
+- (NSArray*)takeRight:(int)n
 {
-    NSUInteger toTake = (n > [self count]) ? [self count] : (NSUInteger)n;
+    int toTake = (n > [self count]) ? [self count] : (NSUInteger)n;
     return [self subarrayWithRange:NSMakeRange([self count] - toTake, (NSUInteger)toTake)];
 }
 
@@ -242,58 +217,58 @@
     return [self objectEnumerator];
 }
 
-- (NSString*)toString
+- (NSString*)oct_toString
 {
-    return [self toString:@""];
+    return [self oct_toString:@""];
 }
 
-- (NSString*)toString:(NSString*)separator
+- (NSString*)oct_toString:(NSString*)separator
 {
     return [self oct_reduce:TL_appendWithSeparator(separator)];
 }
 
-- (NSString*)toString:(NSString*)start separator:(NSString*)separator end:(NSString*)end
+- (NSString*)oct_toString:(NSString*)start separator:(NSString*)separator end:(NSString*)end
 {
-    return [[start stringByAppendingString:[self toString:separator]] stringByAppendingString:end];
+    return [[start stringByAppendingString:[self oct_toString:separator]] stringByAppendingString:end];
 }
 
-- (NSArray*)zip:(NSArray*)otherArray
+- (NSArray*)oct_zip:(NSArray*)otherArray
 {
-    return [[[self asSequence] zip:[otherArray asSequence]] asArray];
+    return [[[self oct_asSequence] oct_zip:[otherArray oct_asSequence]] oct_asArray];
 }
 
-- (NSArray*)zipWithIndex
+- (NSArray*)oct_zipWithIndex
 {
-    return [[[self asSequence] zipWithIndex] asArray];
+    return [[[self oct_asSequence] oct_zipWithIndex] oct_asArray];
 }
 
-- (Sequence*)asSequence
+- (Sequence*)oct_asSequence
 {
-    return [Sequence with:self];
+    return [Sequence oct_with:self];
 }
 
-- (NSSet*)asSet
+- (NSSet*)oct_asSet
 {
-    return [[self asSequence] asSet];
+    return [[self oct_asSequence] oct_asSet];
 }
 
-- (NSArray*)asArray
+- (NSArray*)oct_asArray
 {
     return self;
 }
 
-- (NSDictionary*)asDictionary
+- (NSDictionary*)oct_asDictionary
 {
-    Pair* keysAndValues = [self partition:TL_alternate(YES)];
+    Pair* keysAndValues = [self oct_partition:TL_alternate(YES)];
     NSArray* keys = keysAndValues.left;
     NSArray* values = keysAndValues.right;
-    values = [values take:[keys count]];
-    keys = [keys take:[values count]];
+    values = [values oct_take:[keys count]];
+    keys = [keys oct_take:[values count]];
     NSEnumerator* valueEnumerator = [keysAndValues.right objectEnumerator];
     return [keys oct_fold:[NSMutableDictionary dictionary]
-                     with:^(NSMutableDictionary* accumulator, id key) {
-                       [accumulator setObject:[valueEnumerator nextObject] forKey:key];
-                       return accumulator;
-                     }];
+                 oct_with:^(NSMutableDictionary* accumulator, id key) {
+                   [accumulator setObject:[valueEnumerator nextObject] forKey:key];
+                   return accumulator;
+                 }];
 }
 @end

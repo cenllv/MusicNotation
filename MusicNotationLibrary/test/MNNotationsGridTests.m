@@ -60,6 +60,7 @@
     [super tearDown];
 #if TARGET_OS_IPHONE
 #elif TARGET_OS_MAC
+    // TODO: still not removing labels properly
     dispatch_async(dispatch_get_main_queue(), ^{
       for(id label in self.labels)
       {
@@ -146,7 +147,7 @@
     textLabel.frame = frame;
     dispatch_async(dispatch_get_main_queue(), ^{
       [parent addSubview:textLabel];
-      [self.labels add:textLabel];
+      [self.labels oct_add:textLabel];
     });
 
     NSArray* glyphStructArray = [MNGlyphList sharedInstance].availableGlyphStructsArray;
@@ -237,10 +238,10 @@
       for(id textLabel in textLabels)
       {
           [parent addSubview:textLabel];
-          [self.labels add:textLabel];
+          [self.labels oct_add:textLabel];
       }
       [parent addSubview:textLabel];
-      [self.labels add:textLabel];
+      [self.labels oct_add:textLabel];
     });
     //#endif
 

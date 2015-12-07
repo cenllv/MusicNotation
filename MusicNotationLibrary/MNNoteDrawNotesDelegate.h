@@ -26,12 +26,13 @@
 
 //#import <Foundation/Foundation.h>
 
-@class MNStaffNote, MNStaff;
+@class MNStaffNote, MNStaff, MNUIntSize;
 
+/*!
+ *  The `MNNoteDrawNotesDelegate` protocol declares convenience methods for displaying
+ *  individual notes on a staff
+ */
 @protocol MNNoteDrawNotesDelegate <NSObject>
-
-+ (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size
-                                withParent:(id<MNTestParentDelegate>)parent;
 
 + (MNStaffNote*)showStaffNote:(MNStaffNote*)staffNote
                       onStaff:(MNStaff*)staff

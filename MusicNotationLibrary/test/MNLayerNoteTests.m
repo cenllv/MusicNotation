@@ -27,21 +27,22 @@
 
 #import "MNLayerNoteTests.h"
 #import <objc/runtime.h>
+
 #if TARGET_OS_IPHONE
+
 #import "MNMAppDelegate.h"
+
 #elif TARGET_OS_MAC
+
 #import "AppDelegate.h"
+
 #endif
-#import <TheAmazingAudioEngine/AEPlaythroughChannel.h>
-#import <TheAmazingAudioEngine/AEExpanderFilter.h>
 
-// TODO: add playing actual notes using Core Audio
-
-@interface MNShapeLayer (animationSwizzle)
+@interface MNShapeLayer (AnimationSwizzle)
 
 @end
 
-@implementation MNShapeLayer (animationSwizzle)
+@implementation MNShapeLayer (AnimationSwizzle)
 
 + (void)load
 {
@@ -57,19 +58,17 @@
 
 - (void)customAnimate
 {
-    // //     uncomment the following to use original implementation
-    //        [self customAnimate];
+    // NOTE: uncomment the following line and comment the next one to use original animation
+    // [self customAnimate];
     [self animateSuperFancy];
 }
 
 - (void)animateSuperFancy
 {
-    /*
-    POPDecayAnimation* scaleAnimation = [POPDecayAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
-    scaleAnimation.velocity = [NSValue valueWithCGSize:CGSizeMake(1.5f, 1.5f)];
-    scaleAnimation.autoreverses = YES;
-    [self pop_addAnimation:scaleAnimation forKey:@"layerScaleSpringAnimation"];
-     */
+    //    POPDecayAnimation* scaleAnimation = [POPDecayAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    //    scaleAnimation.velocity = [NSValue valueWithCGSize:CGSizeMake(1.5f, 1.5f)];
+    //    scaleAnimation.autoreverses = YES;
+    //    [self pop_addAnimation:scaleAnimation forKey:@"layerScaleSpringAnimation"];
 
     POPBasicAnimation* scaleAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
     //    scaleAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
@@ -83,12 +82,12 @@
     shadowRadiusAnimation.fromValue = @(0);
     shadowRadiusAnimation.toValue = @(15);
 
-    //        POPBasicAnimation* shadowOpacityAnimation = [POPBasicAnimation
-    //        animationWithPropertyNamed:kPOPLayerShadowOpacity];
-    //        POPBasicAnimation* shadowOffsetAnimation = [POPBasicAnimation
-    //        animationWithPropertyNamed:kPOPLayerShadowOffset];
-    //        POPBasicAnimation* shadowColorAnimation = [POPBasicAnimation
-    //        animationWithPropertyNamed:kPOPLayerShadowColor];
+    //    POPBasicAnimation* shadowOpacityAnimation = [POPBasicAnimation
+    //    animationWithPropertyNamed:kPOPLayerShadowOpacity];
+    //    POPBasicAnimation* shadowOffsetAnimation = [POPBasicAnimation
+    //    animationWithPropertyNamed:kPOPLayerShadowOffset];
+    //    POPBasicAnimation* shadowColorAnimation = [POPBasicAnimation
+    //    animationWithPropertyNamed:kPOPLayerShadowColor];
 
     typedef struct _previousShadow
     {
@@ -138,27 +137,20 @@
     AEAudioController* _audioController;
     AEChannelGroupRef _group;
 }
+@property (strong, nonatomic) NSMutableArray<MNShapeLayer*>* layers;
+
 @property (strong, nonatomic) AEAudioController* audioController;
 @property (nonatomic, strong) AEAudioUnitChannel* audioUnitPlayer;
 @property (nonatomic, strong) AEAudioFilePlayer* oneshot;
-
 @property (assign, nonatomic) AudioUnit mySamplerUnit;
-@property (strong, nonatomic) NSMutableArray<MNShapeLayer*>* layers;
-
 @property (nonatomic, strong) AEAudioFilePlayer* loop1;
 @property (nonatomic, strong) AEAudioFilePlayer* loop2;
 @property (nonatomic, strong) AEBlockChannel* oscillator;
-@property (nonatomic, strong) AEPlaythroughChannel* playthrough;
-//@property (nonatomic, strong) AELimiterFilter *limiter;
-//@property (nonatomic, strong) AEExpanderFilter *expander;
-//@property (nonatomic, strong) AEReverbFilter *reverb;
-//@property (nonatomic, strong) TPOscilloscopeLayer *outputOscilloscope;
-//@property (nonatomic, strong) TPOscilloscopeLayer *inputOscilloscope;
 @property (nonatomic, strong) CALayer* inputLevelLayer;
 @property (nonatomic, strong) CALayer* outputLevelLayer;
 @property (nonatomic, weak) NSTimer* levelsTimer;
-//@property (nonatomic, strong) AERecorder *recorder;
 @property (nonatomic, strong) AEAudioFilePlayer* player;
+
 @end
 
 @implementation MNLayerNoteTests
@@ -178,7 +170,7 @@
            params:@{
                @"shadow" : @(YES)
            }];
-    [self setUp];
+    [self audioSetup];
 }
 
 - (void)tearDown
@@ -203,11 +195,13 @@
     return _layers;
 }
 
-- (void)setUp
+- (void)audioSetup
 {
+    [super audioSetup];
     static BOOL once = YES;
     if(once)
     {
+        once = NO;
 #if TARGET_OS_IPHONE
         MNMAppDelegate* appDelegate = (MNMAppDelegate*)[[UIApplication sharedApplication] delegate];
         self.audioController = appDelegate.audioController;
@@ -321,61 +315,12 @@
 
         // Finally, add the audio unit player
         [_audioController addChannels:@[ _audioUnitPlayer ]];
-
-//        [_audioController addObserver:self forKeyPath:@"numberOfInputChannels" options:0
-//        context:(void*)&kInputChannelsChangedContext];
-
-//        AudioStreamBasicDescription asbd = AEAudioStreamBasicDescriptionNonInterleavedFloatStereo;
-//
-//        self.audioController = [[AEAudioController alloc] initWithAudioDescription:asbd inputEnabled:YES];
-//        self.audioController.preferredBufferDuration = 0.005;
-//         [self.audioController start:NULL];
-//
-//        self.audioController = [[AEAudioController alloc]
-//            initWithAudioDescription:[AEAudioController nonInterleavedFloatStereoAudioDescription]];
 #endif
-
-        once = NO;
     }
-
-    //    _audioController.preferredBufferDuration = 0.005;
-    //    _audioController.useMeasurementMode = YES;
-    //    NSError* error = NULL;
-    //    BOOL result = [_audioController start:&error];
-    //    if(!result)
-    //    {
-    //        NSLog(@"%@", [error localizedDescription]);
-    //    }
-
-    //    self loadFromDLSOrSoundFont:[NSURL URLWithString:<#(nonnull NSString *)#>] withPatch:<#(int)#>
 }
 
 - (void)oneshotPlay
 {
-    //    if(_oneshot)
-    //    {
-    //        [_audioController removeChannels:@[ _oneshot ]];
-    //        self.oneshot = nil;
-    //    }
-    //    else
-    //    {
-    //        NSError* error = NULL;
-    //        self.oneshot = [AEAudioFilePlayer
-    //            audioFilePlayerWithURL:[[NSBundle mainBundle] URLForResource:@"Organ Run" withExtension:@"m4a"]
-    //                             error:&error];
-    //        if(error)
-    //        {
-    //            NSLog(@"%@", error);
-    //        }
-    //        _oneshot.removeUponFinish = YES;
-    //        __weak typeof(self) weakSelf = self;
-    //        _oneshot.completionBlock = ^{
-    //          typeof(self) strongSelf = weakSelf;
-    //          strongSelf.oneshot = nil;
-    //        };
-    //        [_audioController addChannels:@[ _oneshot ]];
-    //    }
-
     if(_oneshot)
     {
         [_audioController removeChannels:@[ _oneshot ]];
@@ -399,7 +344,7 @@
 - (MNTestBlockStruct*)layerTest:(id<MNTestParentDelegate>)parent params:(NSDictionary*)options
 {
     MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
-    ret.drawBlock = nil;
+    //    ret.drawBlock = nil;
     //    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
     //    };
 
@@ -423,24 +368,14 @@
     staffNoteLayer.controller = self;
 
 #if TARGET_OS_IOS
-    if([parent isKindOfClass:[UIView class]])
-    {
-        staffNoteLayer.superView = (UIView*)parent;
-    }
-    else
+    if(![parent isKindOfClass:[UIView class]])
     {
         MNLogError(@"Attempting to store non-view superview for layer note");
     }
+    staffNoteLayer.superView = (UIView*)parent;
 #endif
     staffNoteLayer.backgroundColor = MNColor.orangeColor.CGColor;
-
-    //    CGRect frame = staffNoteLayer.frame;
-    //    frame.size.width = 200;
-    //    staffNoteLayer.frame = frame;
-
     staffNoteLayer.frame = [self rectInSuperView:staffNoteLayer];
-
-    //    staffNoteLayer.path = [note path];
 
     if([options[@"shadow"] boolValue])
     {
@@ -452,23 +387,20 @@
         staffNoteLayer.shadowRadius = 10;
     }
 
-    //    dispatch_async(dispatch_get_main_queue(), ^{
-    //      [parent.layer addSublayer:staffNoteLayer];
-    //      [self.layers addObject:staffNoteLayer];
-    //    });
-
-    [self.layers addObject:staffNoteLayer];
-
-    //    __block MNTestCollectionItemView* weakParent = parent;
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-      [parent.layer addSublayer:staffNoteLayer];
-    });
-
     //        CALayer* tmp = [CALayer layer];
     //        tmp.frame = CGRectMake(50, 50, 50, 50);
     //        tmp.backgroundColor = MNColor.blueColor.CGColor;
     //        [weakParent.layer addSublayer:tmp];
+
+    [self.layers addObject:staffNoteLayer];
+
+    //    dispatch_async(dispatch_get_main_queue(), ^{
+    //      [parent.layer addSublayer:staffNoteLayer];
+    //    });
+
+    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+      [parent.layer addSublayer:staffNoteLayer];
+    };
 
     return ret;
 }

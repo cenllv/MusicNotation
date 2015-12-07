@@ -25,61 +25,34 @@
 //  THE SOFTWARE.
 //
 
-#import "MNTestAction.h"
+#import "MNTestActionStruct.h"
 #import "MNLayerResponder.h"
 
-@class MNStaff, MNStaffNote, MNTestCollectionItemView;
-
 #if TARGET_OS_IPHONE
+
+/*!
+ *  The `MNRenderLayer` class renders individual tests for the iOS test app
+ */
 @interface MNRenderLayer : CALayer
 
 @property (weak, nonatomic) UIView* parentView;
-@property (strong, nonatomic) MNTestAction* _Nullable testAction;
+@property (strong, nonatomic) MNTestActionStruct* _Nullable testAction;
 @property (assign, nonatomic) float height;
 
-- (void)clearLayer;
-
-//- (MNStaffNote* _Null_unspecified)showStaffNote:(MNStaffNote* _Null_unspecified)staffNote
-//                                        onStaff:(MNStaff* _Null_unspecified)staff
-//                                    withContext:(CGContextRef _Null_unspecified)ctx
-//                                            atX:(float)x
-//                                withBoundingBox:(BOOL)drawBoundingBox;
-//
-//- (MNStaffNote* _Null_unspecified)showNote:(NSDictionary* _Null_unspecified)noteStruct
-//                                   onStaff:(MNStaff* _Null_unspecified)staff
-//                               withContext:(CGContextRef _Null_unspecified)ctx
-//                                       atX:(float)x;
-//- (MNStaffNote* _Null_unspecified)showNote:(NSDictionary* _Null_unspecified)noteStruct
-//                                   onStaff:(MNStaff* _Null_unspecified)staff
-//                               withContext:(CGContextRef _Null_unspecified)ctx
-//                                       atX:(float)x
-//                           withBoundingBox:(BOOL)drawBoundingBox;
-@end
-
 #elif TARGET_OS_MAC
+
+@class MNTestCollectionItemView;
+
+/*!
+ *  The `MNRenderLayer` class renders individual tests for the Mac test app
+ */
 @interface MNRenderLayer : CALayer <MNLayerResponder>
 
 @property (weak, nonatomic) MNTestCollectionItemView* parentView;
-@property (strong, nonatomic) MNTestAction* _Nullable testAction;
+@property (strong, nonatomic) MNTestActionStruct* _Nullable testAction;
+
+#endif
 
 - (void)clearLayer;
 
-//- (MNStaffNote* _Null_unspecified)showStaffNote:(MNStaffNote* _Null_unspecified)staffNote
-//                                        onStaff:(MNStaff* _Null_unspecified)staff
-//                                    withContext:(CGContextRef _Null_unspecified)ctx
-//                                            atX:(float)x
-//                                withBoundingBox:(BOOL)drawBoundingBox;
-//
-//- (MNStaffNote* _Null_unspecified)showNote:(NSDictionary* _Null_unspecified)noteStruct
-//                                   onStaff:(MNStaff* _Null_unspecified)staff
-//                               withContext:(CGContextRef _Null_unspecified)ctx
-//                                       atX:(float)x;
-//- (MNStaffNote* _Null_unspecified)showNote:(NSDictionary* _Null_unspecified)noteStruct
-//                                   onStaff:(MNStaff* _Null_unspecified)staff
-//                               withContext:(CGContextRef _Null_unspecified)ctx
-//                                       atX:(float)x
-//                           withBoundingBox:(BOOL)drawBoundingBox;
-
 @end
-
-#endif

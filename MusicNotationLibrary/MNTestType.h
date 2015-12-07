@@ -25,10 +25,11 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
-#import <ReflectableEnum/ReflectableEnum.h>
-
 // clang-format off
+
+/*!
+ *  The various test types.
+ */
 REFLECTABLE_ENUM(NSInteger, MNTestType,
     NoneTestType,
     AccidentalTestType,

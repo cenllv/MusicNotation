@@ -71,7 +71,7 @@ typedef void (^StyleBlock)(CGContextRef);
     MNClef* _clef;
     NSUInteger _dots;
     NSMutableArray* _ys;
-    NSMutableArray* _keyStrings;
+    NSMutableArray<NSString*>* _keyStrings;
     NSMutableArray* _keyProperties;
     //    MNPlayNote* _playNote;
     float _x_shift;
@@ -84,8 +84,8 @@ typedef void (^StyleBlock)(CGContextRef);
     BOOL _ignoreTicks;
     //    float _width;
     //    MNRational* _ticks;
-//    float _extraLeftPx;
-//    float _extraRightPx;
+    //    float _extraLeftPx;
+    //    float _extraRightPx;
     //    BOOL _centerAlign;
     //    float _width;
 }
@@ -94,7 +94,7 @@ typedef void (^StyleBlock)(CGContextRef);
 
 // the key for this note
 @property (strong, nonatomic) NSString* key;
-@property (strong, nonatomic) NSMutableArray* keyStrings;   // pitches in the note
+@property (strong, nonatomic) NSMutableArray<NSString*>* keyStrings;   // pitches in the note
 
 // the clef type for this note
 @property (strong, nonatomic) MNClef* clef;

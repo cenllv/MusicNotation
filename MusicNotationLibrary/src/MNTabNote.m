@@ -473,7 +473,7 @@
 - (void)drawModifiers:(CGContextRef)ctx
 {
     // Draw the modifiers
-    [self.modifiers foreach:^(MNModifier* modifier, NSUInteger index, BOOL* stop) {
+    [self.modifiers oct_foreach:^(MNModifier* modifier, NSUInteger index, BOOL* stop) {
       // Only draw the dots if enabled
       //        if ([modifier.category isEqualToString:@"dots"]) {
       if([modifier isKindOfClass:[MNDot class]] && !self.renderOptions.draw_dots)
@@ -503,7 +503,7 @@
         }];
 
         NSArray* unused_strings = [self getUnusedStringGroups:total_lines stringsUsed:strings_used];
-        NSArray* stem_lines = [self getPartialStemLines:stem_y
+        NSArray<NSNumber*>* stem_lines = [self getPartialStemLines:stem_y
                                           unusedStrings:unused_strings
                                                   staff:self.staff
                                           stemDirection:self.stemDirection];
@@ -516,8 +516,8 @@
 
         CGContextSaveGState(ctx);
         CGContextSetLineWidth(ctx, kSTEM_WIDTH);
-        [stem_lines foreach:^(NSArray* bounds, NSUInteger index, BOOL* stop) {
-          if([bounds isEmpty])
+        [stem_lines oct_foreach:^(NSArray<NSNumber*>* bounds, NSUInteger index, BOOL* stop) {
+          if([bounds oct_isEmpty])
           {   // CHANGE:
               //                *stop = YES;
               return;
@@ -674,7 +674,7 @@
 
     NSMutableArray* stem_lines = [NSMutableArray array];
 
-    [unusedStrings foreach:^(NSMutableArray* strings, NSUInteger index, BOOL* stop) {
+    [unusedStrings oct_foreach:^(NSMutableArray<NSNumber*>* strings, NSUInteger index, BOOL* stop) {
       BOOL containsLastString =
           [strings containsObject:@(total_lines)];                // != NSNotFound;  // .indexOf(total_lines) > -1;
       BOOL containsFirstString = [strings containsObject:@(1)];   // != NSNotFound;   //.indexOf(1) > -1;
@@ -694,7 +694,7 @@
 
       NSMutableArray* line_ys = [NSMutableArray array];
       // Iterate through each group string and store it's y position
-      [strings foreach:^(NSNumber* stringElement, NSUInteger index, BOOL* stop) {
+      [strings oct_foreach:^(NSNumber* stringElement, NSUInteger index, BOOL* stop) {
         float string = [stringElement floatValue];
 
         BOOL isTopBound = string == 1;

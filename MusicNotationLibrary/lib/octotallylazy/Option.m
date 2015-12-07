@@ -5,48 +5,54 @@
 
 @implementation Option
 
-- (Sequence*)asSequence
+- (Sequence*)oct_asSequence
 {
     [NSException raise:@"Unsupported" format:@"Unsupported"];
     return nil;
 }
 
-+ (id)option:(id)value
++ (id)oct_option:(id)value
 {
-    return (value == nil) ? [None none] : [Some some:value];
+    return (value == nil) ? [None none] : [Some oct_some:value];
 }
 
-- (BOOL)isEmpty
+- (BOOL)oct_isEmpty
 {
     [NSException raise:@"Unsupported" format:@"Unsupported"];
     return FALSE;
 }
 
-- (id)flatMap:(id (^)(id))funcBlock
+- (id)oct_flatMap:(id (^)(id))funcBlock
 {
     [NSException raise:@"Unsupported" format:@"Unsupported"];
     return nil;
 }
 
-- (id)oct_fold:(id)value with:(id (^)(id, id))functorBlock
+- (id)oct_fold:(id)value oct_with:(id (^)(id, id))functorBlock
 {
     [NSException raise:@"Unsupported" format:@"Unsupported"];
     return nil;
 }
 
-- (id)get
+- (id)oct_get
 {
     [NSException raise:@"Unsupported" format:@"Unsupported"];
     return nil;
 }
 
-- (id)getOrElse:(id)other
+- (id)oct_getSafely
 {
     [NSException raise:@"Unsupported" format:@"Unsupported"];
     return nil;
 }
 
-- (id)getOrInvoke:(id (^)())funcBlock
+- (id)oct_getOrElse:(id)other
+{
+    [NSException raise:@"Unsupported" format:@"Unsupported"];
+    return nil;
+}
+
+- (id)oct_getOrInvoke:(id (^)())funcBlock
 {
     [NSException raise:@"Unsupported" format:@"Unsupported"];
     return nil;
@@ -58,7 +64,7 @@
     return nil;
 }
 
-- (void)maybe:(void (^)(id))invokeWhenSomeBlock
+- (void)oct_maybe:(void (^)(id))invokeWhenSomeBlock
 {
     [NSException raise:@"Unsupported" format:@"Unsupported"];
 }
@@ -71,7 +77,7 @@
 
 - (Option*)oct_flatten
 {
-    return [self isEmpty] ? [None none] : [[[self asSequence] flatten] headOption];
+    return [self oct_isEmpty] ? [None none] : [[[self oct_asSequence] oct_flatten] oct_headOption];
 }
 
 - (id)copyWithZone:(NSZone*)zone

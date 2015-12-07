@@ -35,7 +35,7 @@
 - (void)start
 {
     [super start];
-    //       [MNGlyph setDebugMode:YES];
+    //    [MNGlyph setDebugMode:YES];
     [self runTest:@"Clef Test" func:@selector(draw:) frame:CGRectMake(10, 10, 800, 250)];
     [self runTest:@"Clef End Test" func:@selector(drawEnd:) frame:CGRectMake(10, 10, 800, 250)];
     [self runTest:@"Small Clef Test" func:@selector(drawSmall:) frame:CGRectMake(10, 10, 800, 250)];
@@ -73,7 +73,7 @@
       [staff addEndClefWithName:@"treble"];
 
       [staff draw:ctx];
-      // ok(YES, @"all pass");
+      ok(YES, @"all pass");
     };
     return ret;
 }
@@ -103,7 +103,7 @@
       [staff addEndClefWithName:@"french"];
 
       [staff draw:ctx];
-      // ok(YES, @"all pass");
+      ok(YES, @"all pass");
     };
     return ret;
 }
@@ -133,7 +133,7 @@
       [staff addEndClefWithName:@"treble" size:@"small"];
 
       [staff draw:ctx];
-      // ok(YES, @"all pass");
+      ok(YES, @"all pass");
     };
     return ret;
 }
@@ -163,7 +163,7 @@
       [staff addEndClefWithName:@"french" size:@"small"];
 
       [staff draw:ctx];
-      // ok(YES, @"all pass");
+      ok(YES, @"all pass");
     };
     return ret;
 }
@@ -212,7 +212,7 @@
       [formatter formatWith:@[ voice ] withJustifyWidth:650];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      // ok(YES, @"all pass");
+      ok(YES, @"all pass");
     };
     return ret;
 }

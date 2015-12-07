@@ -27,12 +27,8 @@
 
 #import "MNTestType.h"
 
-@interface MNBrowserWindowController : NSWindowController <
-                                           // NSCollectionViewDataSource,
-                                           NSCollectionViewDelegate,
-                                           // NSCollectionViewDelegateFlowLayout,
-                                           NSSplitViewDelegate,
-                                           NSToolbarDelegate>
+@interface MNBrowserWindowController
+    : NSWindowController <NSCollectionViewDelegate, NSSplitViewDelegate, NSToolbarDelegate>
 {
     __weak IBOutlet NSSplitView* _splitView;
     __weak IBOutlet NSCollectionView* _collectionView;
@@ -50,6 +46,10 @@
 
 @property (assign, nonatomic) MNTestType testType;
 
-- (void)appendText:(NSAttributedString*)string;
+/*!
+ *  Adds text to the debug text view of the main app.
+ *  @param string th
+ */
+- (void)appendText:(nonnull NSAttributedString*)string;
 
 @end

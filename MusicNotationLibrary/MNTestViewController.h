@@ -26,40 +26,64 @@
 //
 
 #import "MNCore.h"
-#define HC_SHORTHAND
-#import "OCHamcrest.h"
 #import "MNTestCollectionItemView.h"
 #import "MNTestBlockStruct.h"
-#import "MNViewStaffStruct.h"
 #import "MNNoteDrawNotesDelegate.h"
+#define HC_SHORTHAND
+#import "OCHamcrest.h"
+#import "OCTotallyLazy.h"
 
-//@class MNRenderLayer;
-
+/*!
+ *  The `MNTestViewController` class is the main controller for each collection of tests.
+ *  It caches the tests and later 
+ */
+@interface MNTestViewController
 #if TARGET_OS_IPHONE
-
-typedef UIButton MNButton;
-
-@interface MNTestViewController
     : UITableViewController <UITableViewDataSource, UITableViewDelegate, MNNoteDrawNotesDelegate>
-//@property UITableViewCell* currentCell;
-
 #elif TARGET_OS_MAC
-
-typedef NSButton MNButton;
-
-@interface MNTestViewController
     : NSViewController <NSCollectionViewDataSource, NSCollectionViewDelegateFlowLayout, MNNoteDrawNotesDelegate>
-
 #endif
 
+/*!
+ *  Loads the collection of tests for the test type.
+ */
 - (void)start;
+
+/*!
+ *  Unloads resources and prepares the container view for reuse.
+ */
 - (void)tearDown;
 
-- (void)runTest:(NSString*)name func:(SEL)selector;
-- (void)runTest:(NSString*)name func:(SEL)selector params:(NSObject*)params;
-- (void)runTest:(NSString*)name func:(SEL)selector frame:(CGRect)frame;
-- (void)runTest:(NSString*)name func:(SEL)selector frame:(CGRect)frame params:(NSObject*)params;
+/*!
+ *  Sets up the audio controller.
+ */
+- (void)audioSetup;
 
-//- (MNRenderLayer*)renderLayer;
+/*!
+ *  Runs a basic test immediately with no drawing.
+ *  @param name     the name of the test
+ *  @param selector method to call for the test
+ */
+- (void)runTest:(nullable NSString*)name func:(nonnull SEL)selector;
+
+/*!
+ *  Caches a drawing test for later rendering.
+ *  @param name     the name of the test
+ *  @param selector method to call for the test
+ *  @param frame    the frame for rendering the test
+ */
+- (void)runTest:(nonnull NSString*)name func:(nonnull SEL)selector frame:(CGRect)frame;
+
+/*!
+ *  Caches a drawing test for later rendering that takes params later
+ *  @param name     the name of the test
+ *  @param selector method to call for the test
+ *  @param frame    the frame for rendering the test
+ *  @param frame    the frame for rendering the test
+ */
+- (void)runTest:(nonnull NSString*)name
+           func:(nonnull SEL)selector
+          frame:(CGRect)frame
+         params:(nullable NSObject*)params;
 
 @end

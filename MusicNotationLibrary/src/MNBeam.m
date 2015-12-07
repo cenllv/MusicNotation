@@ -529,7 +529,7 @@
  */
 - (void)drawStems:(CGContextRef)ctx
 {
-    [self.notes foreach:^(MNStemmableNote* note, NSUInteger index, BOOL* stop) {
+    [self.notes oct_foreach:^(MNStemmableNote* note, NSUInteger index, BOOL* stop) {
       if(note.stem)
       {
           [note.stem draw:ctx];
@@ -653,10 +653,10 @@
 + (MNStemDirectionType)calculateStemDirection:(NSArray<MNStemmableNote*>*)notes
 {
     __block float lineSum = 0.f;
-    [notes foreach:^(MNStaffNote* note, NSUInteger index, BOOL* stop) {
+    [notes oct_foreach:^(MNStaffNote* note, NSUInteger index, BOOL* stop) {
       if(note.keyProps)
       {
-          [note.keyProps foreach:^(MNKeyProperty* keyProp, NSUInteger index, BOOL* stop) {
+          [note.keyProps oct_foreach:^(MNKeyProperty* keyProp, NSUInteger index, BOOL* stop) {
             lineSum += (keyProp.line - 3.f);
           }];
       }
@@ -878,7 +878,7 @@
 
     createGroups = ^() {
       //      NSMutableArray* nextGroup = [NSMutableArray array];
-      [unprocessedNotes foreach:^(MNStemmableNote* unprocessedNote, NSUInteger index, BOOL* stop) {
+      [unprocessedNotes oct_foreach:^(MNStemmableNote* unprocessedNote, NSUInteger index, BOOL* stop) {
         NSMutableArray* nextGroup = [NSMutableArray array];
         if(unprocessedNote.shouldIgnoreTicks)
         {
@@ -929,11 +929,11 @@
 
     getBeamGroups = ^NSArray*()
     {
-        return [noteGroups filter:^BOOL(NSArray* group) {
+        return [noteGroups oct_filter:^BOOL(NSArray* group) {
           if(group.count > 1)
           {
               __block BOOL beamable = YES;
-              [group foreach:^(MNTickable* note, NSUInteger index, BOOL* stop) {
+              [group oct_foreach:^(MNTickable* note, NSUInteger index, BOOL* stop) {
                 if(note.intrinsicTicks >= [MNTable durationToTicks:@"4"])
                 {
                     beamable = NO;
@@ -948,9 +948,9 @@
     // Splits up groups by Rest
     sanitizeGroups = ^() {
       NSMutableArray* sanitizedGroups = [NSMutableArray array];
-      [noteGroups foreach:^(NSArray* group, NSUInteger index, BOOL* stop) {
+      [noteGroups oct_foreach:^(NSArray* group, NSUInteger index, BOOL* stop) {
         __block NSMutableArray* tempGroup = [NSMutableArray array];
-        [group foreach:^(MNStemmableNote* note, NSUInteger index, BOOL* stop) {
+        [group oct_foreach:^(MNStemmableNote* note, NSUInteger index, BOOL* stop) {
           BOOL isFirstOrLast = index == 0 || index == group.count - 1;
           MNStemmableNote* prevNote = index > 0 ? group[index - 1] : nil;
 
@@ -999,7 +999,7 @@
     };
 
     formatStems = ^() {
-      [noteGroups foreach:^(NSArray* group, NSUInteger index, BOOL* stop) {
+      [noteGroups oct_foreach:^(NSArray* group, NSUInteger index, BOOL* stop) {
         MNStemDirectionType stemDirection;
         if(config.maintainStemDirections)
         {
@@ -1034,14 +1034,14 @@
     };
 
     applyStemDirection = ^(NSArray* group, MNStemDirectionType direction) {
-      [group foreach:^(MNStemmableNote* note, NSUInteger index, BOOL* stop) {
+      [group oct_foreach:^(MNStemmableNote* note, NSUInteger index, BOOL* stop) {
         note.stemDirection = direction;
       }];
     };
 
     getTupletGroups = ^NSArray*()
     {
-        return [noteGroups filter:^BOOL(NSArray* group) {   // group of notes
+        return [noteGroups oct_filter:^BOOL(NSArray* group) {   // group of notes
           if(group.firstObject)
           {
               if(((MNStemmableNote*)group.firstObject)
@@ -1068,7 +1068,7 @@
     NSArray* tupletGroups = getTupletGroups();
 
     __block NSMutableArray* beams = [NSMutableArray array];
-    [beamedNoteGroups foreach:^(NSArray* group, NSUInteger index, BOOL* stop) {   // group of notes
+    [beamedNoteGroups oct_foreach:^(NSArray* group, NSUInteger index, BOOL* stop) {   // group of notes
       MNBeam* beam = [[MNBeam alloc] initWithNotes:group];
       BOOL show_stemlets = config.showStemlets;
       if(show_stemlets)
@@ -1079,9 +1079,9 @@
     }];
 
     // Reformat tuplets
-    [tupletGroups foreach:^(NSArray* group, NSUInteger index, BOOL* stop) {
+    [tupletGroups oct_foreach:^(NSArray* group, NSUInteger index, BOOL* stop) {
       __block MNStemmableNote* firstNote = group.firstObject;
-      [group foreach:^(MNStemmableNote* note, NSUInteger index, BOOL* stop) {
+      [group oct_foreach:^(MNStemmableNote* note, NSUInteger index, BOOL* stop) {
         if(note.hasStem)
         {
             firstNote = note;

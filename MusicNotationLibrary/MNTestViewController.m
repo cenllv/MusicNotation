@@ -32,13 +32,13 @@
 #elif TARGET_OS_MAC
 #import "MNTestCollectionItem.h"
 #endif
-#import "MNTestAction.h"
+#import "MNTestActionStruct.h"
 #import "MNRenderLayer.h"
 
 @interface MNTestViewController ()
 @property (assign, nonatomic) NSInteger numberOfSections;
 @property (assign, nonatomic) NSInteger numberOfItems;
-@property (strong, nonatomic) NSMutableArray<MNTestAction*>* tests;
+@property (strong, nonatomic) NSMutableArray<MNTestActionStruct*>* tests;
 
 @end
 
@@ -53,6 +53,10 @@
 }
 
 - (void)tearDown
+{
+}
+
+- (void)audioSetup
 {
 }
 
@@ -96,7 +100,7 @@ static NSString* const reuseId = @"customTestCell";
 {
     if(indexPath.section == 0)
     {
-        MNTestAction* testAction = ((MNTestAction*)self.tests[indexPath.row]);
+        MNTestActionStruct* testAction = ((MNTestActionStruct*)self.tests[indexPath.row]);
         return testAction.frame.size.height;
     }
     return 0;
@@ -126,7 +130,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath
         cell.contentView.contentMode = UIViewContentModeScaleAspectFit;
     }
 
-    MNTestAction* testAction = self.tests[indexPath.row];
+    MNTestActionStruct* testAction = self.tests[indexPath.row];
 
     cell.textLabel.text = testAction.name;
     MNRenderLayer* layer = (MNRenderLayer*)cell.carrierView.layer;
@@ -175,7 +179,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath
 
     MNTestCollectionItem* testCollectionItem =
         [collectionView makeItemWithIdentifier:kTestCollectionItemid forIndexPath:indexPath];
-    MNTestAction* testAction = self.tests[indexPath.item];
+    MNTestActionStruct* testAction = self.tests[indexPath.item];
     [testCollectionItem setRepresentedObject:testAction];
 
     return testCollectionItem;
@@ -189,7 +193,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath
                   layout:(NSCollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
-    MNTestAction* testAction = self.tests[indexPath.item];
+    MNTestActionStruct* testAction = self.tests[indexPath.item];
     return testAction.frame.size;
 }
 
@@ -208,8 +212,13 @@ forRowAtIndexPath:(NSIndexPath*)indexPath
 
 #endif
 
-#pragma mark - runTest
+#pragma mark - Run Test
 
+/*!
+ *  Runs a basic test immediately with no drawing.
+ *  @param name     the name of the test
+ *  @param selector method to call for the test
+ */
 - (void)runTest:(NSString*)name func:(SEL)selector
 {
     NSMethodSignature* signature = [self methodSignatureForSelector:selector];
@@ -220,33 +229,36 @@ forRowAtIndexPath:(NSIndexPath*)indexPath
     //    [invocation setArgument:&ctx atIndex:3];
     [invocation invoke];
 
-    //    BOOL* success __unsafe_unretained;   // http://stackoverflow.com/a/22034059/629014
+    // NOTE: http://stackoverflow.com/a/22034059/629014
+    //    BOOL* success __unsafe_unretained;
     //    [invocation getReturnValue:&success];
 }
 
 - (void)runTest:(NSString*)name func:(SEL)selector frame:(CGRect)frame
 {
     self.numberOfItems++;
-    MNTestAction* testAction = [MNTestAction testWithName:name andSelector:selector andTarget:self andFrame:frame];
+    MNTestActionStruct* testAction =
+        [MNTestActionStruct testWithName:name andSelector:selector andTarget:self andFrame:frame];
     [self.tests addObject:testAction];
 }
 
-- (void)runTest:(NSString*)name func:(SEL)selector params:(NSObject*)params
-{
-    NSMethodSignature* signature = [self methodSignatureForSelector:selector];
-    NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:signature];
-    [invocation setSelector:selector];
-    [invocation setTarget:self];
-    [invocation setArgument:&name atIndex:2];
-    [invocation setArgument:&params atIndex:3];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-      [invocation invoke];
-    });
-}
+//- (void)runTest:(NSString*)name func:(SEL)selector params:(NSObject*)params
+//{
+//    NSMethodSignature* signature = [self methodSignatureForSelector:selector];
+//    NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:signature];
+//    [invocation setSelector:selector];
+//    [invocation setTarget:self];
+//    [invocation setArgument:&name atIndex:2];
+//    [invocation setArgument:&params atIndex:3];
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//      [invocation invoke];
+//    });
+//}
 
 - (void)runTest:(NSString*)name func:(SEL)selector frame:(CGRect)frame params:(NSObject*)params
 {
-    MNTestAction* testAction = [MNTestAction testWithName:name andSelector:selector andTarget:self andFrame:frame];
+    MNTestActionStruct* testAction =
+        [MNTestActionStruct testWithName:name andSelector:selector andTarget:self andFrame:frame];
     if([params isKindOfClass:[NSDictionary class]] || [params isKindOfClass:[NSArray class]])
     {
         testAction.params = (NSDictionary*)params;
@@ -273,7 +285,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath
 
 #pragma mark - <MNNoteDrawNotesDelegate>
 
-+ (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(id<MNTestParentDelegate>)parent
++ (MNStaff*)setupContextWithSize:(MNUIntSize*)size   // withParent:(id<MNTestParentDelegate>)parent
 {
     NSUInteger w = size.width;
     //    NSUInteger h = size.height;
@@ -284,7 +296,7 @@ forRowAtIndexPath:(NSIndexPath*)indexPath
     //    // [MNFont setFont:@" 10pt Arial"];
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
+    return staff;
 }
 
 + (MNStaffNote*)showStaffNote:(MNStaffNote*)ret

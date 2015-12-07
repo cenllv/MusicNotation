@@ -1,11 +1,11 @@
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 @interface Queue : NSObject
-- (BOOL)isEmpty;
+- (BOOL)oct_isEmpty;
 
-- (id)remove;
+- (id)oct_remove;
 
-- (void)add:(id)item;
+- (void)oct_add:(id)item;
 
 + (Queue*)queue;
 

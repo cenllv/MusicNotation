@@ -1,4 +1,4 @@
-@import Foundation;
+#import <Foundation/Foundation.h>
 #import "Mappable.h"
 #import "Foldable.h"
 #import "Enumerable.h"
@@ -6,21 +6,22 @@
 @class Sequence;
 
 @interface Option : NSObject <NSCopying, Mappable, Foldable, Enumerable, Flattenable>
-- (BOOL)isEmpty;
-- (id)get;
-- (id)getOrElse:(id)other;
-- (id)getOrInvoke:(id (^)())funcBlock;
+- (BOOL)oct_isEmpty;
+- (id)oct_get;
+- (id)oct_getSafely;
+- (id)oct_getOrElse:(id)other;
+- (id)oct_getOrInvoke:(id (^)())funcBlock;
 
-- (id)flatMap:(id (^)(id))funcBlock;
+- (id)oct_flatMap:(id (^)(id))funcBlock;
 
-- (Sequence*)asSequence;
+- (Sequence*)oct_asSequence;
 
-- (void)maybe:(void (^)(id))invokeWhenSomeBlock;
+- (void)oct_maybe:(void (^)(id))invokeWhenSomeBlock;
 
-+ (id)option:(id)value;
++ (id)oct_option:(id)value;
 @end
 
-inline static Option* option(id value)
+static Option* option(id value)
 {
-    return [Option option:value];
+    return [Option oct_option:value];
 }

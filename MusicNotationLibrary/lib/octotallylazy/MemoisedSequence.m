@@ -1,3 +1,4 @@
+#import "MemoisedEnumerator.h"
 #import "MemoisedSequence.h"
 
 @implementation MemoisedSequence
@@ -22,7 +23,7 @@
 
 - (NSEnumerator*)oct_toEnumerator
 {
-    return [MemoisedEnumerator with:[super oct_toEnumerator] memory:memory];
+    return [MemoisedEnumerator oct_with:[super oct_toEnumerator] memory:memory];
 }
 
 @end

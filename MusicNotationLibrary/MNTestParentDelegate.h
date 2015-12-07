@@ -24,16 +24,21 @@
 //  THE SOFTWARE.
 //
 
+#import "MNMacros.h"
+
+/*!
+ *  The `MNTestParentDelegate` protocol declares methods for containers passed
+ *  to tests, which are necessary to format the test.
+ */
 @protocol MNTestParentDelegate <NSObject>
 
 - (CALayer*)layer;
-
 - (CGRect)bounds;
 
-#if TARGET_OS_IPHONE
-- (void)addSubview:(UIView*)aView;
-#elif TARGET_OS_MAC
-- (void)addSubview:(NSView*)aView;
-#endif
+/*!
+ *  Adds a subview to the parent view of each individual tests
+ *  @param aView the subview to add
+ */
+- (void)addSubview:(MNView*)aView;
 
 @end

@@ -1,4 +1,4 @@
-    //
+//
 //  MNRenderLayer.m
 //  MusicNotation
 //
@@ -29,9 +29,12 @@
 #import "MNTestBlockStruct.h"
 #import "MNCore.h"
 #import "MNGlyphLayer.h"
+
 #if TARGET_OS_IPHONE
+
 #import "MNMTableViewCell.h"
 #import "MNMCarrierView.h"
+
 #endif
 
 #define RENDERLAYER_BORDER_WIDTH 4.0
@@ -40,13 +43,10 @@
 
 @property (assign, nonatomic) SEL selector;
 @property (strong, nonatomic) id target;
-@property (strong, nonatomic) MNTestBlockStruct* testTuple;
+@property (strong, nonatomic) MNTestBlockStruct* testBlockStruct;
 @property (strong, nonatomic) NSString* testName;
 
 @end
-
-//#ifdef TARGET_OS_IPHONE
-//#elif TARGET_OS_MAC
 
 @implementation MNRenderLayer
 
@@ -76,57 +76,47 @@
 #elif TARGET_OS_MAC
 #endif
 
+/*!
+ *  Runs the individual test that was cached earlier by the controller.
+ *  This initializes and formats the notations.
+ *  @return a callback block for actually drawing the test.
+ */
 - (MNTestBlockStruct*)invokeTest
 {
     NSMethodSignature* signature = [_target methodSignatureForSelector:self.selector];
     NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:signature];
     [invocation setSelector:self.selector];
     [invocation setTarget:self.target];
-//    NSString* name = @"";
-
-// set the TestCollectionItemView
 
 #if TARGET_OS_IPHONE
-    // MNMTableViewCell* arg2 = (MNMTableViewCell*)self.parentView;
-    MNMCarrierView* arg2 = (MNMCarrierView*)self.parentView;
-//    self.bounds = arg2.frame;
+    MNMCarrierView* parentView = (MNMCarrierView*)self.parentView;
 #elif TARGET_OS_MAC
-    id arg2 = self.parentView;
+    MNTestCollectionItemView* parentView = self.parentView;
 #endif
 
-    [invocation setArgument:&arg2 atIndex:2];
-    //    [invocation setArgument:&ctx atIndex:3];
+    [invocation setArgument:&parentView atIndex:2];
 
     // set additional params
     if(self.testAction)
     {
         if(self.testAction.params)
         {
-            id arg3 = _testAction.params;
+            // this arg can be any object except nil
+            id arg3 = self.testAction.params;
             [invocation setArgument:&arg3 atIndex:3];
         }
     }
 
     [invocation invoke];
-    MNTestBlockStruct* ret __unsafe_unretained;   // http://stackoverflow.com/a/22034059/629014
+
+    // http://stackoverflow.com/a/22034059/629014
+    MNTestBlockStruct* ret __unsafe_unretained;
     [invocation getReturnValue:&ret];
-    self.testTuple = ret;
+    self.testBlockStruct = ret;
     return ret;
 }
 
-- (void)setNeedsDisplay
-{
-    //    if(_testTuple)
-    //    {
-    [super setNeedsDisplay];
-    //    }
-    //    else
-    //    {
-    //        NSLog(@"need to setup layer first.");
-    //    }
-}
-
-- (void)setTestAction:(MNTestAction*)testAction
+- (void)setTestAction:(MNTestActionStruct*)testAction
 {
     _testAction = testAction;
     self.selector = _testAction.selector;
@@ -141,9 +131,11 @@
     });
 }
 
+#pragma mark - Draw
+
 - (void)clearLayer
 {
-    _testTuple = nil;
+    _testBlockStruct = nil;
     [self setNeedsDisplay];
 }
 
@@ -161,14 +153,16 @@
 #endif
 
     MNBezierPath* outline = [MNBezierPath bezierPathWithRect:self.bounds];
-    if(self.testTuple.backgroundColor)
+    if(self.testBlockStruct.backgroundColor)
     {
-        [self.testTuple.backgroundColor setFill];
+        [self.testBlockStruct.backgroundColor setFill];
     }
     else
     {
         [SHEET_MUSIC_COLOR setFill];
-        //    [[MNColor randomBGColor:YES] setFill];
+
+        // // NOTE: uncomment to allow for a random background color
+        //  [[MNColor randomBGColor:YES] setFill];
     }
     [outline fill];
 
@@ -176,12 +170,16 @@
     float superLayerWidth = self.superlayer.bounds.size.width;
     float testWidth = self.testAction.frame.size.width;
     float scale = superLayerWidth / testWidth;
+    if(scale > 1.f)
+    {
+        scale = .8f;
+    }
     CGContextScaleCTM(ctx, scale, scale);
 #endif
 
-    if(self.testTuple.drawBlock)
+    if(self.testBlockStruct.drawBlock)
     {
-        self.testTuple.drawBlock(CGRectZero, self.bounds, ctx);
+        self.testBlockStruct.drawBlock(CGRectZero, self.bounds, ctx);
     }
 
 #if TARGET_OS_IPHONE
@@ -190,77 +188,32 @@
 #elif TARGET_OS_MAC
     [NSGraphicsContext restoreGraphicsState];
 #endif
-    //        CGContextRestoreGState(ctx);
 }
 
-//- (MNStaffNote*)showStaffNote:(MNStaffNote*)ret
-//                      onStaff:(MNStaff*)staff
-//                  withContext:(CGContextRef)ctx
-//                          atX:(float)x
-//              withBoundingBox:(BOOL)drawBoundingBox
-//{
-//    MNLogInfo(@"");
-//    MNTickContext* tickContext = [[MNTickContext alloc] init];
-//    [[tickContext addTickable:ret] preFormat];
-//    tickContext.x = x;
-//    tickContext.pointsUsed = 20;
-//    ret.staff = staff;
-//    [ret draw:ctx];
-//    if(drawBoundingBox)
-//    {
-//        [ret.boundingBox draw:ctx];
-//    }
-//    return ret;
-//}
-//
-//- (MNStaffNote*)showNote:(NSDictionary*)noteStruct onStaff:(MNStaff*)staff withContext:(CGContextRef)ctx atX:(float)x
-//{
-//    return [self showNote:noteStruct onStaff:staff withContext:ctx atX:x withBoundingBox:NO];
-//}
-//
-//- (MNStaffNote*)showNote:(NSDictionary*)noteStruct
-//                 onStaff:(MNStaff*)staff
-//             withContext:(CGContextRef)ctx
-//                     atX:(float)x
-//         withBoundingBox:(BOOL)drawBoundingBox
-//{
-//    MNStaffNote* ret = [[MNStaffNote alloc] initWithDictionary:noteStruct];
-//    return [self showStaffNote:ret onStaff:staff withContext:ctx atX:x withBoundingBox:drawBoundingBox];
-//}
-
-//- (void)setBorderColor:(NSColor*)newBorderColor
+/*!
+ *  Sets the border color of a cell for the Mac app
+ *  @param borderColor the border color to highlight
+ */
 - (void)setBorderColor:(CGColorRef)borderColor
 {
-    //    if(_borderColor != [NSColor colorWithCGColor:borderColor])
-    //    {
-    //        _borderColor = [NSColor colorWithCGColor:borderColor];
-    //        NSColor* borderColor = [NSColor blueColor];
-    //        self.borderColor = _borderColor.CGColor;
     [super setBorderColor:borderColor];
     self.borderWidth = (self.borderColor ? RENDERLAYER_BORDER_WIDTH : 0.0);
-    //        [self setNeedsDisplay];
-    //    }
-}
-
-- (void)addSublayer:(CALayer*)layer
-{
-    [super addSublayer:layer];
 }
 
 #if TARGET_OS_IPHONE
 
+#pragma mark - Touch methods
+
 - (CALayer*)hitTest:(CGPoint)interactionPoint
 {
+    //    for(CALayer* sublayer in self.sublayers.reverseObjectEnumerator)
+    //    {
+    //        CGPoint pointInHostedLayer = [self convertPoint:interactionPoint toLayer:sublayer];
+    //        if ([sublayer containsPoint:pointInHostedLayer]) {
+    //
+    //        }
+    //    }
 
-    
-//    for(CALayer* sublayer in self.sublayers.reverseObjectEnumerator)
-//    {
-//        CGPoint pointInHostedLayer = [self convertPoint:interactionPoint toLayer:sublayer];
-//        if ([sublayer containsPoint:pointInHostedLayer]) {
-//            
-//        }
-//    }
-    
     return [super hitTest:interactionPoint];
 }
 

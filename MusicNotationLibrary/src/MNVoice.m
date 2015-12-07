@@ -403,7 +403,7 @@
 {
     if(!_preFormatted)
     {
-        [self.tickables foreach:^(id<MNTickableDelegate> tickable, NSUInteger index, BOOL* stop) {
+        [self.tickables oct_foreach:^(id<MNTickableDelegate> tickable, NSUInteger index, BOOL* stop) {
           tickable.staff = self.staff;
         }];
     }

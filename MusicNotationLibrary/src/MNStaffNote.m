@@ -411,7 +411,7 @@
 - (void)calculateKeyProps
 {
     __block float last_line = FLT_MAX;
-    [self.keyStrings foreach:^(NSString* key, NSUInteger index, BOOL* stop) {
+    [self.keyStrings oct_foreach:^(NSString* key, NSUInteger index, BOOL* stop) {
       // All rests use the same position on the line.
       // if (self.glyph.rest) key = self.glyph.position;
       if(self.glyphStruct.rest)
@@ -781,7 +781,7 @@
     }
 
     __block BOOL success = YES;
-    [notes foreach:^(MNNote* note, NSUInteger index, BOOL* stop) {
+    [notes oct_foreach:^(MNNote* note, NSUInteger index, BOOL* stop) {
       if(![note postFormat])
       {
           success = NO;
@@ -1217,7 +1217,7 @@
 - (void)setStyleBlock:(void (^)(CGContextRef))styleBlock
 {
     _styleBlock = styleBlock;
-    [self.note_heads foreach:^(MNNoteHead* notehead, NSUInteger index, BOOL* stop) {
+    [self.note_heads oct_foreach:^(MNNoteHead* notehead, NSUInteger index, BOOL* stop) {
       notehead.styleBlock = styleBlock;
     }];
     self.stem.styleBlock = styleBlock;
@@ -1451,7 +1451,7 @@ addModifier: function(index, modifier) {
     __block float highest_line = self.staff.numberOfLines;
     __block float lowest_line = 1;
 
-    [self.note_heads foreach:^(MNNoteHead* note_head, NSUInteger index, BOOL* stop) {
+    [self.note_heads oct_foreach:^(MNNoteHead* note_head, NSUInteger index, BOOL* stop) {
       float line = note_head.line;
       float y = note_head.y;
 
@@ -1618,7 +1618,7 @@ addModifier: function(index, modifier) {
  */
 - (void)drawNoteHeads:(CGContextRef)ctx
 {
-    [self.note_heads foreach:^(MNNoteHead* note_head, NSUInteger index, BOOL* stop) {
+    [self.note_heads oct_foreach:^(MNNoteHead* note_head, NSUInteger index, BOOL* stop) {
       //      note_head.graphicsContext = context
       StyleBlock key_style = note_head.styleBlock;   // .getStyle();
       if(key_style)
@@ -1670,7 +1670,7 @@ addModifier: function(index, modifier) {
     float x_end = [self getNoteHeadEndX];
 
     // Format note head x positions
-    [self.note_heads foreach:^(MNNoteHead* note_head, NSUInteger index, BOOL* stop) {
+    [self.note_heads oct_foreach:^(MNNoteHead* note_head, NSUInteger index, BOOL* stop) {
       note_head.x = x_begin;
       //      note_head.y += self.staff.y;
     }];

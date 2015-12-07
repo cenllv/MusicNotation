@@ -174,12 +174,12 @@
 
 - (NSArray*)getTickables
 {
-    return [_tickables asArray];
+    return [_tickables oct_asArray];
 }
 
 - (NSArray*)getCenterAlignedTickables
 {
-    return [self.tickables filter:^BOOL(MNTickable* tickable) {
+    return [self.tickables oct_filter:^BOOL(MNTickable* tickable) {
       return tickable.centerAlign;
     }];
 }

@@ -38,9 +38,9 @@
     float w = 600, h = 150;
     [self runTest:@"Percussion Clef" func:@selector(draw:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"Percussion Notes" func:@selector(drawNotes:) frame:CGRectMake(10, 10, w, 2 * h)];
-    [self runTest:@"Percussion Basic0" func:@selector(drawBasic0:) frame:CGRectMake(10, 10, w, h+100)];
-    [self runTest:@"Percussion Basic1" func:@selector(drawBasic1:) frame:CGRectMake(10, 10, w, h+100)];
-    [self runTest:@"Percussion Basic2" func:@selector(drawBasic2:) frame:CGRectMake(10, 10, w, h+100)];
+    [self runTest:@"Percussion Basic0" func:@selector(drawBasic0:) frame:CGRectMake(10, 10, w, h + 100)];
+    [self runTest:@"Percussion Basic1" func:@selector(drawBasic1:) frame:CGRectMake(10, 10, w, h + 100)];
+    [self runTest:@"Percussion Basic2" func:@selector(drawBasic2:) frame:CGRectMake(10, 10, w, h + 100)];
     [self runTest:@"Percussion Snare0" func:@selector(drawSnare0:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"Percussion Snare1" func:@selector(drawSnare1:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"Percussion Snare2" func:@selector(drawSnare2:) frame:CGRectMake(10, 10, w, h)];
@@ -50,7 +50,6 @@
 {
     [super tearDown];
 }
-
 
 - (MNAnnotation*)newModifier:(NSString*)s
 {
@@ -139,7 +138,6 @@
            @"duration" : @"q" }
     ];
     //        expect(notes.length * 4);
-
 
     NSArray<MNStaffNote*>* notes = [notes_structs oct_map:^MNStaffNote*(NSDictionary* note_struct) {
       return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -543,7 +541,7 @@
     [voiceDown2 addTickables:notesDown2];
     //    MNFormatter* formatter2 =
     [[[MNFormatter formatter] joinVoices:@[ voiceDown2 ]] formatToStaff:@[ voiceDown2 ] staff:staff2];
-    //x += staff.width;
+    // x += staff.width;
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -568,28 +566,29 @@
     [staff setEndBarType:MNBarLineSingle];
     [staff addClefWithName:@"percussion"];
 
-    NSArray* notesDown = @[
-        [[[MNStaffNote alloc] initWithDictionary:@{
-            @"keys" : @[ @"g/5/x2" ],
-            @"duration" : @"q",
-            @"stem_direction" : @(-1)
-        }] addArticulation:[self newArticulation:@"ah"] atIndex:0],
-        [[MNStaffNote alloc] initWithDictionary:@{
-            @"keys" : @[ @"g/5/x2" ],
-            @"duration" : @"q",
-            @"stem_direction" : @(-1)
-        }],
-        [[[MNStaffNote alloc] initWithDictionary:@{
-            @"keys" : @[ @"g/5/x2" ],
-            @"duration" : @"q",
-            @"stem_direction" : @(-1)
-        }]addArticulation:[self newArticulation:@"ah"] atIndex:0],
-        [[[MNStaffNote alloc] initWithDictionary:@{
-            @"keys" : @[ @"a/5/x3" ],
-            @"duration" : @"q",
-            @"stem_direction" : @(-1)
-        }]addArticulation:[self newArticulation:@"a,"] atIndex:0],
-    ];
+    NSArray* notesDown =
+        @[
+           [[[MNStaffNote alloc] initWithDictionary:
+                                     @{ @"keys" : @[ @"g/5/x2" ],
+                                        @"duration" : @"q",
+                                        @"stem_direction" : @(-1) }] addArticulation:[self newArticulation:@"ah"]
+                                                                             atIndex:0],
+           [[MNStaffNote alloc] initWithDictionary:@{
+               @"keys" : @[ @"g/5/x2" ],
+               @"duration" : @"q",
+               @"stem_direction" : @(-1)
+           }],
+           [[[MNStaffNote alloc] initWithDictionary:
+                                     @{ @"keys" : @[ @"g/5/x2" ],
+                                        @"duration" : @"q",
+                                        @"stem_direction" : @(-1) }] addArticulation:[self newArticulation:@"ah"]
+                                                                             atIndex:0],
+           [[[MNStaffNote alloc] initWithDictionary:
+                                     @{ @"keys" : @[ @"a/5/x3" ],
+                                        @"duration" : @"q",
+                                        @"stem_direction" : @(-1) }] addArticulation:[self newArticulation:@"a,"]
+                                                                             atIndex:0],
+        ];
     MNVoice* voiceDown = [[MNVoice alloc] initWithDictionary:@{
         @"num_beats" : @4,
         @"beat_value" : @4,
@@ -619,28 +618,29 @@
     [staff setEndBarType:MNBarLineSingle];
     [staff addClefWithName:@"percussion"];
 
-    NSArray* notesDown = @[
-        [[[MNStaffNote alloc] initWithDictionary:@{
-            @"keys" : @[ @"c/5" ],
-            @"duration" : @"q",
-            @"stem_direction" : @-1
-        }] addArticulation:[self newTremolo:0] atIndex:0],
-        [[[MNStaffNote alloc] initWithDictionary:@{
-            @"keys" : @[ @"c/5" ],
-            @"duration" : @"q",
-            @"stem_direction" : @-1
-        }] addArticulation:[self newTremolo:1] atIndex:0],
-        [[[MNStaffNote alloc] initWithDictionary:@{
-            @"keys" : @[ @"c/5" ],
-            @"duration" : @"q",
-            @"stem_direction" : @-1
-        }] addArticulation:[self newTremolo:3] atIndex:0],
-        [[[MNStaffNote alloc] initWithDictionary:@{
-            @"keys" : @[ @"c/5" ],
-            @"duration" : @"q",
-            @"stem_direction" : @-1
-        }] addArticulation:[self newTremolo:5] atIndex:0],
-    ];
+    NSArray* notesDown =
+        @[
+           [[[MNStaffNote alloc] initWithDictionary:
+                                     @{ @"keys" : @[ @"c/5" ],
+                                        @"duration" : @"q",
+                                        @"stem_direction" : @-1 }] addArticulation:[self newTremolo:0]
+                                                                           atIndex:0],
+           [[[MNStaffNote alloc] initWithDictionary:
+                                     @{ @"keys" : @[ @"c/5" ],
+                                        @"duration" : @"q",
+                                        @"stem_direction" : @-1 }] addArticulation:[self newTremolo:1]
+                                                                           atIndex:0],
+           [[[MNStaffNote alloc] initWithDictionary:
+                                     @{ @"keys" : @[ @"c/5" ],
+                                        @"duration" : @"q",
+                                        @"stem_direction" : @-1 }] addArticulation:[self newTremolo:3]
+                                                                           atIndex:0],
+           [[[MNStaffNote alloc] initWithDictionary:
+                                     @{ @"keys" : @[ @"c/5" ],
+                                        @"duration" : @"q",
+                                        @"stem_direction" : @-1 }] addArticulation:[self newTremolo:5]
+                                                                           atIndex:0],
+        ];
     MNVoice* voiceDown = [[MNVoice alloc] initWithDictionary:@{
         @"num_beats" : @4,
         @"beat_value" : @4,

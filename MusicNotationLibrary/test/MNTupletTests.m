@@ -627,7 +627,7 @@
     [voice2 addTickables:notes2];
 
     //        MNFormatter *formatter = [MNFormatter formatter] joinVoices:@[voice1, voice2]).
-    //        format([voice1, voice2], c.staff.getNoteEndX() - c.staff.getNoteStartX() - 50);
+    //        format([voice1, voice2], staff.getNoteEndX() - staff.getNoteStartX() - 50);
 
     //    MNFormatter* formatter =
     [[[MNFormatter formatter] joinVoices:@[ voice1, voice2 ]] formatWith:@[ voice1, voice2 ] withJustifyWidth:400];

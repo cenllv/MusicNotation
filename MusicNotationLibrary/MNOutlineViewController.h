@@ -25,13 +25,12 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
-#import <AppKit/AppKit.h>
-
+/*!
+ *  The `MNOutlineViewController` class shows all the tests in the left sidebar
+ */
 @interface MNOutlineViewController : NSObject <NSOutlineViewDataSource, NSOutlineViewDelegate>
 
 @property (weak) IBOutlet NSOutlineView* outlineView;
-
 @property (strong, nonatomic) NSMutableArray* tests;
 
 + (MNOutlineViewController*)sharedInstance;

@@ -1,5 +1,6 @@
-#import "OCTotallyLazy.h"
 #import "NSDictionary+OCTotallyLazy.h"
+#import "Option.h"
+#import "Sequence.h"
 
 @implementation NSDictionary (Functional)
 
@@ -11,41 +12,44 @@
     } copy];
 }
 
-- (NSDictionary*)filterKeys:(BOOL (^)(id))filterBlock
+- (NSDictionary*)oct_filterKeys:(BOOL (^)(id))filterBlock
 {
-    return [[[self allKeys] filter:filterBlock] oct_fold:[NSMutableDictionary dictionary] with:[self addObjectForKey]];
+    return [[[self allKeys] oct_filter:filterBlock] oct_fold:[NSMutableDictionary dictionary]
+                                                    oct_with:[self addObjectForKey]];
 }
 
-- (NSDictionary*)filterValues:(BOOL (^)(id))filterBlock
+- (NSDictionary*)oct_filterValues:(BOOL (^)(id))filterBlock
 {
-    return
-        [[[self allValues] filter:filterBlock] oct_fold:[NSMutableDictionary dictionary]
-                                               with:^(NSMutableDictionary* dict, id value) {
-                                                 [[self allKeysForObject:value] oct_fold:dict with:[self addObjectForKey]];
-                                                 return dict;
-                                               }];
+    return [[[self allValues] oct_filter:filterBlock]
+        oct_fold:[NSMutableDictionary dictionary]
+        oct_with:^(NSMutableDictionary* dict, id value) {
+          [[self allKeysForObject:value] oct_fold:dict oct_with:[self addObjectForKey]];
+          return dict;
+        }];
 }
 
-- (void)foreach:(void (^)(id, id))funcBlock
+- (void)oct_foreach:(void (^)(id, id))funcBlock
 {
-    [[self allKeys] foreach:^(id key, NSUInteger index, BOOL* stop) {
+    //    NSUInteger i = 0;
+    //    BOOL stop = NO;
+    [[self allKeys] oct_foreach:^(id key, NSUInteger i, BOOL* b) {
       funcBlock(key, [self objectForKey:key]);
     }];
 }
 
-- (id)map:(NSArray* (^)(id key, id value))funcBlock
+- (id)oct_map:(NSArray* (^)(id key, id value))funcBlock
 {
     return [[[[self allKeys] oct_map:^(id key) {
       return funcBlock(key, [self objectForKey:key]);
-    }] flatten] asDictionary];
+    }] oct_flatten] oct_asDictionary];
 }
 
-- (id)mapValues:(id (^)(id))funcBlock
+- (id)oct_mapValues:(id (^)(id))funcBlock
 {
-    return dictionary([[self allKeys] asSequence], [[[self allValues] asSequence] oct_map:funcBlock]);
+    return dictionary([[self allKeys] oct_asSequence], [[[self allValues] oct_asSequence] oct_map:funcBlock]);
 }
 
-- (Option*)optionForKey:(id)key
+- (Option*)oct_optionForKey:(id)key
 {
     return option([self objectForKey:key]);
 }

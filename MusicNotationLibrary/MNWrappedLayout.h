@@ -25,10 +25,12 @@
 //  THE SOFTWARE.
 //
 
-
-
 @class MNTestViewController;
 
+/*!
+ *  The `MNWrappedLayout` class is the layout for the Mac app tests.
+ *  It wraps the collection left to right, up to down.
+ */
 @interface MNWrappedLayout : NSCollectionViewFlowLayout
 
 @property (strong, nonatomic) MNTestViewController* testViewController;

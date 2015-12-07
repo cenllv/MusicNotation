@@ -34,21 +34,6 @@
 @synthesize x = _x;
 @synthesize centerAlign = _centerAlign;
 
-/*!
- * VexFlow - TickContext Tests
- *
-
-Vex.Flow.Test.TIME4_4 = {
-num_beats: 4,
-beat_value: 4,
-resolution: kRESOLUTION
-};
-
-// Mock Tickable
-
- Vex.Flow.Test.MockTickable = function() { this.ignore_ticks = NO; }
-*/
-
 - (instancetype)init
 {
     self = [super init];

@@ -32,17 +32,14 @@
 @implementation MNMTableViewCell
 
 @dynamic textLabel;
-//@dynamic contentView;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString*)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if(self)
     {
-        self.backgroundColor = [UIColor whiteColor];   //[UIColor greenColor];
-        
-        // leave self.contentView.translatesAutoresizingMaskIntoConstraints to YES!!!
-        self.textLabel.translatesAutoresizingMaskIntoConstraints = NO;   // important
+        self.backgroundColor = [UIColor whiteColor];   //[UIColor greenColor]; // for debugging
+        self.textLabel.translatesAutoresizingMaskIntoConstraints = NO;
         self.carrierView.translatesAutoresizingMaskIntoConstraints = NO;
         [self setNeedsUpdateConstraints];
     }
@@ -121,57 +118,59 @@
     [self.contentView addConstraints:@[ c3, c4, c5, c6 ]];
 }
 
-//- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-//{
-//    [super setSelected:selected animated:animated];
-//
-//    // Configure the view for the selected state
-//    if(selected)
-//    {
-//        self.backgroundColor = [UIColor greenColor];
-//    }
-//    else
-//    {
-//        self.backgroundColor = [UIColor whiteColor];
-//    }
-//}
+#pragma mark - touch
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+
+    //    // Configure the view for the selected state
+    //    if(selected)
+    //    {
+    //        self.backgroundColor = [UIColor greenColor];
+    //    }
+    //    else
+    //    {
+    //        self.backgroundColor = [UIColor whiteColor];
+    //    }
+}
 
 - (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent*)event
 {
-    //CALayer *layer = [self.layer hitTest:point];
-    
+    // CALayer *layer = [self.layer hitTest:point];
+
     return [super hitTest:point withEvent:event];
 }
 
-//- (void)touchesBegan:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event
-//{
-//    //    UITouch *touch = [touches anyObject];
-//    ////    CALayer *hitLayer = [self layerForTouch:touch];
-//    //    CALayer *hitPresentationLayer = [self.layer.presentationLayer hitTest:location];
-//    //    if (hitPresentationLayer) {
-//    //        return hitPresentationLayer.modelLayer;
-//    //    }
-//    [self setSelected:YES];
-//
-//    if([touches count] == 1)
-//    {
-//        for(UITouch* touch in touches)
-//        {
-//            CGPoint point = [touch locationInView:[touch view]];
-//            point = [[touch view] convertPoint:point toView:nil];
-//
-//            //            CALayer* layer = [(CALayer*)self.layer.presentationLayer hitTest:point];
-//            CALayer* layer = [(CALayer*)self.layer hitTest:point];
-//            [layer hitTest:point];
-//
-//            //            layer = layer.modelLayer;
-//        }
-//    }
-//}
-//
-//- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-//{
-//    [self setSelected:NO];
-//}
+- (void)touchesBegan:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event
+{
+    //    //    UITouch *touch = [touches anyObject];
+    //    ////    CALayer *hitLayer = [self layerForTouch:touch];
+    //    //    CALayer *hitPresentationLayer = [self.layer.presentationLayer hitTest:location];
+    //    //    if (hitPresentationLayer) {
+    //    //        return hitPresentationLayer.modelLayer;
+    //    //    }
+    //    [self setSelected:YES];
+    //
+    //    if([touches count] == 1)
+    //    {
+    //        for(UITouch* touch in touches)
+    //        {
+    //            CGPoint point = [touch locationInView:[touch view]];
+    //            point = [[touch view] convertPoint:point toView:nil];
+    //
+    //            //            CALayer* layer = [(CALayer*)self.layer.presentationLayer hitTest:point];
+    //            CALayer* layer = [(CALayer*)self.layer hitTest:point];
+    //            [layer hitTest:point];
+    //
+    //            //            layer = layer.modelLayer;
+    //        }
+    //    }
+}
+
+- (void)touchesEnded:(NSSet<UITouch*>*)touches withEvent:(UIEvent*)event
+{
+    //    [self setSelected:NO];
+}
 
 @end

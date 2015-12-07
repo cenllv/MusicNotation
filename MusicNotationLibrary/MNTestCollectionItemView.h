@@ -29,15 +29,12 @@
 
 @class MNStaffNote, MNStaff, MNRenderLayer;
 
-#if TARGET_OS_IPHONE
-//TODO :this class is not used for iOS see MNCarrierView
-@interface MNTestCollectionItemView : UIView <MNTestParentDelegate>
-#elif TARGET_OS_MAC
-@interface MNTestCollectionItemView : NSView <MNTestParentDelegate>
-#endif
+/*!
+ *  The `MNTestCollectionItemView` class is the view the test is drawn to
+ *  @note :this class is not used for iOS see MNCarrierView
+ */
+@interface MNTestCollectionItemView : MNView <MNTestParentDelegate>
 
 @property (weak, nonatomic) MNRenderLayer* hostedRenderLayer;
-
-
 
 @end

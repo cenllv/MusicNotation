@@ -25,14 +25,20 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
-
+/*!
+ *  The `MNTestTrie` class is a container for storing the names and subtests of
+ *  tests to display in left sidebar of Mac app.
+ */
 @interface MNTestTrie : NSObject
 
 @property (strong, nonatomic) NSString* name;
-
 @property (strong, nonatomic) NSMutableArray* children;
 
+/*!
+ *  Get a new trie with a name displayed in the left sidebar.
+ *  @param name the name of the tests
+ *  @return the trie object
+ */
 - (instancetype)initWithName:(NSString*)name;
 
 @end

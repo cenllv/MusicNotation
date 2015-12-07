@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Tobias Kräntzer. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+//#import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
 @interface DPObjectProperty : NSObject

@@ -25,10 +25,11 @@
 //  THE SOFTWARE.
 //
 
-
-
 extern NSString* const kTestCollectionItemid;
 
+/*!
+ *  The `MNTestCollectionItem` class is the controller for the views for the tests
+ */
 @interface MNTestCollectionItem : NSCollectionViewItem
 
 @end

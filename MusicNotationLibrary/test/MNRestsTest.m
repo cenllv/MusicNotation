@@ -59,33 +59,6 @@
     [super tearDown];
 }
 
-//// TODO: does this belong in superclass?
-//+ (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(id<MNTestParentDelegate>)parent
-//{
-//    /*
-//    Vex.Flow.Test.Rests.setupContext = function(options, contextBuilder, x, y) {
-//        var ctx = new contextBuilder(options.canvas_sel, x || 350, y || 150);
-//        ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-//        ctx.font = " 10pt Arial";
-//         MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350).addTrebleGlyph().
-//        setContext(ctx).draw();
-//
-//        return {context: ctx, staff: staff};
-//    }
-//     */
-//
-//    NSUInteger w = size.width;
-////    NSUInteger h = size.height;
-//
-//    w = w != 0 ? w : 350;
-////    h = h != 0 ? h : 150;
-////
-//    //    // [MNFont setFont:@" 10pt Arial"];
-//
-//    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-//    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-//}
-
 - (MNTestBlockStruct*)basic:(id<MNTestParentDelegate>)parent
 {
     MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
@@ -94,11 +67,10 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(700, 0) withParent:parent];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 700, 0)];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      MNStaff* staff = c.staff;
       [staff draw:ctx];
 
       NSArray* notes = @[
@@ -247,8 +219,7 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(600, 160) withParent:parent];
-    MNStaff* staff = c.staff;
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 600, 0)];
 
     NSArray* notes = @[
         newNote(
@@ -437,8 +408,7 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(600, 160) withParent:parent];
-    MNStaff* staff = c.staff;
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 600, 0)];
 
     NSArray* notes = @[
         newNote(
@@ -545,9 +515,7 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(600, 160) withParent:parent];
-
-    MNStaff* staff = c.staff;
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 600, 0)];
 
     NSArray* notes = @[
         newNote(
@@ -653,8 +621,7 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(600, 160) withParent:parent];
-    MNStaff* staff = c.staff;
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 600, 0)];
 
     NSArray* notes = @[
         newNote(

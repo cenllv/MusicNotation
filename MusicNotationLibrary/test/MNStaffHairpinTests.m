@@ -46,7 +46,6 @@
     [super tearDown];
 }
 
-
 + (void)drawHairpin:(NSArray*)notes
               staff:(MNStaff*)staff
             context:(CGContextRef)ctx
@@ -120,7 +119,7 @@ static BOOL _debug = NO;
       //      MNStaff* staff = [[self class] hairpinNotes:notes options:nil context:ctx];
       MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 10, 400, 0)] addTrebleGlyph];
       [staff draw:ctx];
-      [notes foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
+      [notes oct_foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
         [[self class] showStaffNote:note onStaff:staff withContext:ctx atX:(i + 1) * 50 withBoundingBox:_debug];
       }];
 
@@ -181,7 +180,7 @@ static BOOL _debug = NO;
                  @"duration" : @"q" })
       ];
 
-      [notes foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
+      [notes oct_foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
         [[self class] showStaffNote:note onStaff:staff withContext:ctx atX:(i + 1) * 50 withBoundingBox:_debug];
       }];
 
@@ -255,7 +254,7 @@ static BOOL _debug = NO;
                  @"duration" : @"q" })
       ];
 
-      [notes foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
+      [notes oct_foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
         [[self class] showStaffNote:note onStaff:staff withContext:ctx atX:(i + 1) * 50 withBoundingBox:_debug];
       }];
 
@@ -329,7 +328,7 @@ static BOOL _debug = NO;
                  @"duration" : @"q" })
       ];
 
-      [notes foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
+      [notes oct_foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
         [[self class] showStaffNote:note onStaff:staff withContext:ctx atX:(i + 1) * 50 withBoundingBox:_debug];
       }];
 

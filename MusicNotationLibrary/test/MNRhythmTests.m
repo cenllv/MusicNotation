@@ -57,7 +57,6 @@ static NSUInteger _testFontSize;
     [super tearDown];
 }
 
-
 // TODO: "drawSlash:" not being tested
 - (MNTestBlockStruct*)drawSlash:(id<MNTestParentDelegate>)parent
 {
@@ -94,7 +93,7 @@ static NSUInteger _testFontSize;
 
       expect(@"%tu", notes.count * 2);
 
-      [notes foreach:^(NSDictionary* note, NSUInteger i, BOOL* stop) {
+      [notes oct_foreach:^(NSDictionary* note, NSUInteger i, BOOL* stop) {
 
         MNStaffNote* staffNote = [[self class] showNote:note onStaff:staff withContext:ctx atX:(((float)i) + 1.f) * 25];
 

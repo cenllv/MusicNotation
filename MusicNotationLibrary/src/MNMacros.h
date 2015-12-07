@@ -95,6 +95,12 @@
 #endif
 
 #if TARGET_OS_IPHONE
+#define MNButton UIButton
+#elif TARGET_OS_MAC
+#define MNButton NSButton
+#endif
+
+#if TARGET_OS_IPHONE
 #define MNView UIView
 #elif TARGET_OS_MAC
 #define MNView NSView

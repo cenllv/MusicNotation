@@ -11,7 +11,6 @@
 #import "Pair.h"
 #import "Range.h"
 #import "PartitionEnumerator.h"
-#import "OCTotallyLazy.h"
 #import "MergeEnumerator.h"
 
 @implementation Sequence
@@ -35,85 +34,81 @@
     return [forwardOnlyEnumerator countByEnumeratingWithState:state objects:buffer count:len];
 }
 
-- (Sequence*)add:(id)value
+- (Sequence*)oct_add:(id)value
 {
-    return [self join:sequence(value, nil)];
+    return [self oct_join:sequence(value, nil)];
 }
 
-- (Sequence*)cons:(id)value
+- (Sequence*)oct_cons:(id)value
 {
-    return [sequence(value, nil) join:self];
+    return [sequence(value, nil) oct_join:self];
 }
 
-- (Sequence*)drop:(NSUInteger)toDrop
+- (Sequence*)oct_drop:(int)toDrop
 {
-    return [Sequence with:[EasyEnumerable with:^{
-                       return [[self oct_toEnumerator] drop:toDrop];
+    return [Sequence oct_with:[EasyEnumerable oct_with:^{
+                       return [[self oct_toEnumerator] oct_drop:toDrop];
                      }]];
 }
 
-- (Sequence*)dropWhile:(BOOL (^)(id))funcBlock
+- (Sequence*)oct_dropWhile:(BOOL (^)(id))funcBlock
 {
-    return [Sequence with:[EasyEnumerable with:^{
-                       return [[self oct_toEnumerator] dropWhile:funcBlock];
+    return [Sequence oct_with:[EasyEnumerable oct_with:^{
+                       return [[self oct_toEnumerator] oct_dropWhile:funcBlock];
                      }]];
 }
 
 - (id)first
 {
-    return [self head];
+    return [self oct_head];
 }
 
-- (Sequence*)flatMap:(id (^)(id))funcBlock
+- (Sequence*)oct_flatMap:(id (^)(id))funcBlock
 {
-    return [Sequence with:[EasyEnumerable with:^{
-                       return [[[self oct_toEnumerator] oct_map:funcBlock] flatten];
+    return [Sequence oct_with:[EasyEnumerable oct_with:^{
+                       return [[[self oct_toEnumerator] oct_map:funcBlock] oct_flatten];
                      }]];
 }
 
-- (Sequence*)filter:(BOOL (^)(id))predicate
+- (Sequence*)oct_filter:(BOOL (^)(id))predicate
 {
-    return [Sequence with:[EasyEnumerable with:^{
-                       return [[self oct_toEnumerator] filter:predicate];
+    return [Sequence oct_with:[EasyEnumerable oct_with:^{
+                       return [[self oct_toEnumerator] oct_filter:predicate];
                      }]];
 }
 
-- (Option*)find:(BOOL (^)(id))predicate
+- (Option*)oct_find:(BOOL (^)(id))predicate
 {
-    return [[self oct_toEnumerator] find:predicate];
+    return [[self oct_toEnumerator] oct_find:predicate];
 }
 
-- (Sequence*)flatten
+- (Sequence*)oct_flatten
 {
-    return [Sequence with:[EasyEnumerable with:^{
-                       return [[self oct_toEnumerator] flatten];
+    return [Sequence oct_with:[EasyEnumerable oct_with:^{
+                       return [[self oct_toEnumerator] oct_flatten];
                      }]];
 }
 
-- (id)fold:(id)value with:(id (^)(id, id))functorBlock
+- (id)oct_fold:(id)value oct_with:(id (^)(id, id))functorBlock
 {
-    return [[self asArray] oct_fold:value with:functorBlock];
+    return [[self oct_asArray] oct_fold:value oct_with:functorBlock];
 }
 
-//- (void)foreach:(void (^)(id))funcBlock {
-//    [[self asArray] foreach:funcBlock];
-//}
-
-- (void)foreach:(void (^)(id, NSUInteger, BOOL*))funcBlock
+- (void)oct_foreach:(void (^)(id, NSUInteger, BOOL*))funcBlock
 {
-    [[self asArray] foreach:funcBlock];
+    [[self oct_asArray] oct_foreach:funcBlock];
 }
 
-- (Sequence*)grouped:(NSUInteger)n
+- (Sequence*)oct_grouped:(int)n
 {
-    return [Sequence with:[EasyEnumerable with:^{
-                       return [GroupedEnumerator with:[self oct_toEnumerator] groupSize:n];
+    return [Sequence oct_with:[EasyEnumerable oct_with:^{
+                       return [GroupedEnumerator oct_with:[self oct_toEnumerator] groupSize:n];
                      }]];
 }
 
-- (Sequence*)groupBy:(FUNCTION1)groupingBlock
+- (Sequence*)oct_groupBy:(FUNCTION1)groupingBlock
 {
-    return [[[self asArray] groupBy:groupingBlock] asSequence];
+    return [[[self oct_asArray] oct_groupBy:groupingBlock] oct_asSequence];
 }
 
 - (id)head
@@ -132,30 +127,30 @@
     return option([self oct_toEnumerator].nextObject);
 }
 
-- (Sequence*)join:(id<Enumerable>)toJoin
+- (Sequence*)oct_join:(id<Enumerable>)toJoin
 {
-    return [sequence(self, toJoin, nil) flatten];
+    return [sequence(self, toJoin, nil) oct_flatten];
 }
 
 - (Sequence*)oct_map:(id (^)(id))funcBlock
 {
-    return [Sequence with:[EasyEnumerable with:^{
+    return [Sequence oct_with:[EasyEnumerable oct_with:^{
                        return [[self oct_toEnumerator] oct_map:funcBlock];
                      }]];
 }
 
-- (Sequence*)oct_mapWithIndex:(id (^)(id, NSInteger))funcBlock
+- (Sequence*)mapWithIndex:(id (^)(id, NSInteger))funcBlock
 {
-    return [[self zipWithIndex] oct_map:^(Pair* itemAndIndex) {
+    return [[self oct_zipWithIndex] oct_map:^(Pair* itemAndIndex) {
       return funcBlock(itemAndIndex.left, [itemAndIndex.right intValue]);
     }];
 }
 
 - (Sequence*)merge:(Sequence*)toMerge
 {
-    return [[Sequence with:[EasyEnumerable with:^{
-                        return [MergeEnumerator with:[self oct_toEnumerator] toMerge:[toMerge oct_toEnumerator]];
-                      }]] flatten];
+    return [[Sequence oct_with:[EasyEnumerable oct_with:^{
+                        return [MergeEnumerator oct_with:[self oct_toEnumerator] toMerge:[toMerge oct_toEnumerator]];
+                      }]] oct_flatten];
 }
 
 - (Pair*)partition:(BOOL (^)(id))predicate
@@ -163,29 +158,30 @@
     Queue* matched = [Queue queue];
     Queue* unmatched = [Queue queue];
     NSEnumerator* underlyingEnumerator = [self oct_toEnumerator];
-    Sequence* leftSequence = memoiseSeq([EasyEnumerable with:^{
-      return [PartitionEnumerator with:underlyingEnumerator predicate:predicate matched:matched unmatched:unmatched];
+    Sequence* leftSequence = memoiseSeq([EasyEnumerable oct_with:^{
+      return
+          [PartitionEnumerator oct_with:underlyingEnumerator predicate:predicate matched:matched unmatched:unmatched];
     }]);
-    Sequence* rightSequence = memoiseSeq([EasyEnumerable with:^{
-      return [PartitionEnumerator with:underlyingEnumerator
-                             predicate:TL_not(predicate)
-                               matched:unmatched
-                             unmatched:matched];
+    Sequence* rightSequence = memoiseSeq([EasyEnumerable oct_with:^{
+      return [PartitionEnumerator oct_with:underlyingEnumerator
+                                 predicate:TL_not(predicate)
+                                   matched:unmatched
+                                 unmatched:matched];
     }]);
     return [Pair left:leftSequence right:rightSequence];
 }
 
-- (id)reduce:(id (^)(id, id))functorBlock
+- (id)oct_reduce:(id (^)(id, id))functorBlock
 {
-    return [[self asArray] oct_reduce:functorBlock];
+    return [[self oct_asArray] oct_reduce:functorBlock];
 }
 
 - (id)second
 {
-    return [[self tail] head];
+    return [[self oct_tail] oct_head];
 }
 
-- (Pair*)splitAt:(NSUInteger)splitIndex
+- (Pair*)splitAt:(int)splitIndex
 {
     return [self splitWhen:TL_not(TL_countTo(splitIndex))];
 }
@@ -198,36 +194,36 @@
 - (Pair*)splitWhen:(BOOL (^)(id))predicate
 {
     Pair* partitioned = [self partition:TL_whileTrue(TL_not(predicate))];
-    return [Pair left:partitioned.left right:[partitioned.right tail]];
+    return [Pair left:partitioned.left right:[partitioned.right oct_tail]];
 }
 
 - (Sequence*)tail
 {
-    return [Sequence with:[EasyEnumerable with:^{
+    return [Sequence oct_with:[EasyEnumerable oct_with:^{
                        NSEnumerator* const anEnumerator = [self oct_toEnumerator];
                        [anEnumerator nextObject];
                        return anEnumerator;
                      }]];
 }
 
-- (Sequence*)take:(NSUInteger)n
+- (Sequence*)oct_take:(int)n
 {
-    return [Sequence with:[EasyEnumerable with:^{
-                       return [[self oct_toEnumerator] take:n];
+    return [Sequence oct_with:[EasyEnumerable oct_with:^{
+                       return [[self oct_toEnumerator] oct_take:n];
                      }]];
 }
 
-- (Sequence*)takeWhile:(BOOL (^)(id))funcBlock
+- (Sequence*)oct_takeWhile:(BOOL (^)(id))funcBlock
 {
-    return [Sequence with:[EasyEnumerable with:^{
-                       return [[self oct_toEnumerator] takeWhile:funcBlock];
+    return [Sequence oct_with:[EasyEnumerable oct_with:^{
+                       return [[self oct_toEnumerator] oct_takeWhile:funcBlock];
                      }]];
 }
 
 - (NSDictionary*)toDictionary:(id (^)(id))valueBlock
 {
-    return [self fold:[NSMutableDictionary dictionary]
-                 with:^(NSMutableDictionary* accumulator, id item) {
+    return [self oct_fold:[NSMutableDictionary dictionary]
+                 oct_with:^(NSMutableDictionary* accumulator, id item) {
                    if([accumulator objectForKey:item] == nil)
                    {
                        [accumulator setObject:valueBlock(item) forKey:item];
@@ -236,51 +232,51 @@
                  }];
 }
 
-- (NSString*)toString
+- (NSString*)oct_toString
 {
-    return [self toString:@""];
+    return [self oct_toString:@""];
 }
 
-- (NSString*)toString:(NSString*)separator
+- (NSString*)oct_toString:(NSString*)separator
 {
-    return [self reduce:TL_appendWithSeparator(separator)];
+    return [self oct_reduce:TL_appendWithSeparator(separator)];
 }
 
-- (NSString*)toString:(NSString*)start separator:(NSString*)separator end:(NSString*)end
+- (NSString*)oct_toString:(NSString*)start separator:(NSString*)separator end:(NSString*)end
 {
-    return [[start stringByAppendingString:[self toString:separator]] stringByAppendingString:end];
+    return [[start stringByAppendingString:[self oct_toString:separator]] stringByAppendingString:end];
 }
 
-- (Sequence*)zip:(Sequence*)otherSequence
+- (Sequence*)oct_zip:(Sequence*)otherSequence
 {
-    return [Sequence with:[EasyEnumerable with:^{
+    return [Sequence oct_with:[EasyEnumerable oct_with:^{
                        return [PairEnumerator withLeft:[self oct_toEnumerator] right:[otherSequence oct_toEnumerator]];
                      }]];
 }
 
-- (Sequence*)zipWithIndex
+- (Sequence*)oct_zipWithIndex
 {
-    return [self zip:[Range range:[NSNumber numberWithInt:0]]];
+    return [self oct_zip:[Range range:[NSNumber numberWithInt:0]]];
 }
 
-- (Sequence*)cycle
+- (Sequence*)oct_cycle
 {
-    return [Sequence with:[EasyEnumerable with:^{
-                       return [RepeatEnumerator with:[MemoisedEnumerator with:[self oct_toEnumerator]]];
+    return [Sequence oct_with:[EasyEnumerable oct_with:^{
+                       return [RepeatEnumerator oct_with:[MemoisedEnumerator oct_with:[self oct_toEnumerator]]];
                      }]];
 }
 
-+ (Sequence*)with:(id<Enumerable>)enumerable
++ (Sequence*)oct_with:(id<Enumerable>)enumerable
 {
     return [[Sequence alloc] initWith:enumerable];
 }
 
-- (NSDictionary*)asDictionary
+- (NSDictionary*)oct_asDictionary
 {
-    return [[self asArray] asDictionary];
+    return [[self oct_asArray] oct_asDictionary];
 }
 
-- (NSArray*)asArray
+- (NSArray*)oct_asArray
 {
     NSEnumerator* itemsEnumerator = [self oct_toEnumerator];
     NSMutableArray* collect = [NSMutableArray array];
@@ -292,9 +288,9 @@
     return collect;
 }
 
-- (NSSet*)asSet
+- (NSSet*)oct_asSet
 {
-    return [NSSet setWithArray:[self asArray]];
+    return [NSSet setWithArray:[self oct_asArray]];
 }
 
 - (NSString*)description

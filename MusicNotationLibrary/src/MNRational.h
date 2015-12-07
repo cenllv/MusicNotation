@@ -127,7 +127,7 @@
  *  ---------------------------------------------------------------------------------------
  */
 
-- (void)set:(NSInteger)numerator and:(NSInteger)denominator;
+- (void)set:(NSInteger)numerator with:(NSInteger)denominator;
 
 + (MNRational*)simplify:(MNRational*)rational;
 
@@ -135,19 +135,19 @@
 
 - (MNRational*)add:(MNRational*)other;
 
-+ (MNRational*)add:(MNRational*)param1 and:(MNRational*)param2;
++ (MNRational*)add:(MNRational*)param1 with:(MNRational*)param2;
 
 - (MNRational*)addn:(NSUInteger)value;
 
 - (MNRational*)subtract:(MNRational*)other;
 
-+ (MNRational*)subtract:(MNRational*)param1 and:(MNRational*)param2;
++ (MNRational*)subtract:(MNRational*)param1 with:(MNRational*)param2;
 
 - (MNRational*)subt:(NSUInteger)value;
 
 - (MNRational*)multiply:(MNRational*)other;
 
-+ (MNRational*)multiply:(MNRational*)param1 and:(MNRational*)param2;
++ (MNRational*)multiply:(MNRational*)param1 with:(MNRational*)param2;
 
 /*!
  *  Multiplies this Rational by another Rational
@@ -160,7 +160,7 @@
 
 - (MNRational*)divide:(MNRational*)other;
 
-+ (MNRational*)divide:(MNRational*)param1 and:(MNRational*)param2;
+//+ (MNRational*)divide:(MNRational*)param1 with:(MNRational*)param2;
 
 - (MNRational*)divn:(NSUInteger)value;
 
@@ -172,7 +172,7 @@
 
 - (BOOL)equalsFloat:(float)other;
 
-+ (BOOL)equalsRational:(MNRational*)rat1 and:(MNRational*)rat2;
+//+ (BOOL)equalsRational:(MNRational*)rat1 with:(MNRational*)rat2;
 
 /*! Determines if this rational is equivalent to another rational.
  @param other The other rational to compare this rational to.
@@ -226,14 +226,14 @@
  @param v Another integer
  @return The greatest common divisor
  */
-+ (NSInteger)GCD:(NSInteger)u and:(NSInteger)v;
++ (NSInteger)GCD:(NSInteger)u with:(NSInteger)v;
 
 /*! Determines the least common multiple of the two integers.
  @param param1 An integer
  @param param2 Another integer
  @return The least common multiple
  */
-+ (NSInteger)LCM:(NSInteger)param1 and:(NSInteger)param2;
++ (NSInteger)LCM:(NSInteger)param1 with:(NSInteger)param2;
 
 /*! Determines the greatest common divisor of many integers.
  @params Two or more integers integers

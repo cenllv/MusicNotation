@@ -1,12 +1,12 @@
-#import "OCTotallyLazy.h"
 #import "Queue.h"
+#import "NSArray+OCTotallyLazy.h"
 
 @implementation Queue
 {
     NSMutableArray* queue;
 }
 
-- (instancetype)init
+- (id)init
 {
     self = [super init];
     if(self)
@@ -16,14 +16,14 @@
     return self;
 }
 
-- (BOOL)isEmpty
+- (BOOL)oct_isEmpty
 {
-    return [queue isEmpty];
+    return [queue oct_isEmpty];
 }
 
-- (id)remove
+- (id)oct_remove
 {
-    if([self isEmpty])
+    if([self oct_isEmpty])
     {
         return nil;
     }
@@ -32,7 +32,7 @@
     return item;
 }
 
-- (void)add:(id)item
+- (void)oct_add:(id)item
 {
     [queue addObject:item];
 }

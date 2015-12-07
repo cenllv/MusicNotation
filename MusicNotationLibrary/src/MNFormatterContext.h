@@ -41,7 +41,7 @@
 /*!
  *  NSArray of NSNumber
  */
-@property (strong, nonatomic) NSMutableArray* list;
+@property (strong, nonatomic) NSMutableArray<NSNumber*>* list;
 @property (assign, nonatomic) NSUInteger resolutionMultiplier;
 
 @end

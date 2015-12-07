@@ -25,14 +25,13 @@
 //  THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+//#import <UIKit/UIKit.h>
 
 @class MNMCarrierView;
 
 @interface MNMTableViewCell : UITableViewCell
 
 @property (strong, nonatomic, readonly) UILabel *textLabel;
-//@property (strong, nonatomic, readonly) IBOutlet UIView *contentView;
 @property (strong, nonatomic) MNMCarrierView *carrierView;
 
 @end

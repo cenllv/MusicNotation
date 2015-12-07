@@ -242,7 +242,7 @@ static NSDictionary* _pedalMarkingDictionary;
 
     // Iterate through each note
     //    __block NSUInteger index = 0;
-    [self.notes foreach:^(MNStaffNote* note, NSUInteger index, BOOL* stop) {
+    [self.notes oct_foreach:^(MNStaffNote* note, NSUInteger index, BOOL* stop) {
       // Each note triggers the opposite pedal action
       is_pedal_depressed = !is_pedal_depressed;
 
@@ -334,7 +334,7 @@ static NSDictionary* _pedalMarkingDictionary;
     float point = pedal.glyph_point_size;
 
     // Iterate through each note, placing glyphs or custom text accordingly
-    [self.notes foreach:^(MNStaffNote* note, NSUInteger index, BOOL* stop) {
+    [self.notes oct_foreach:^(MNStaffNote* note, NSUInteger index, BOOL* stop) {
       is_pedal_depressed = !is_pedal_depressed;
       MNStaff* stave = note.staff;
       float x = note.absoluteX;

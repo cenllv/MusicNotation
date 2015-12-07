@@ -265,7 +265,7 @@ Vex.Flow.GraceNoteGroup = (function(){
           MNTickContext* tickContext = note.tickContext;
           MNExtraPoints* extraPx = [tickContext getExtraPx];
           float x = tickContext.x - extraPx.left - extraPx.extraLeft;
-          [grace_notes foreach:^(MNGraceNote* graceNote, NSUInteger index, BOOL* stop) {
+          [grace_notes oct_foreach:^(MNGraceNote* graceNote, NSUInteger index, BOOL* stop) {
             MNTickContext* tick_context = graceNote.tickContext;
             float x_offset = tick_context.x;
             graceNote.staff = note.staff;
@@ -276,7 +276,7 @@ Vex.Flow.GraceNoteGroup = (function(){
     alignGraceNotesWithNote(self.graceNotes, note);
 
     // Draw notes
-    [self.graceNotes foreach:^(MNGraceNote* graceNote, NSUInteger index, BOOL* stop) {
+    [self.graceNotes oct_foreach:^(MNGraceNote* graceNote, NSUInteger index, BOOL* stop) {
       [graceNote draw:ctx];
     }];
 

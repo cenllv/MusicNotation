@@ -25,8 +25,6 @@
 //  THE SOFTWARE.
 //
 
-#import <CocoaLumberjack/CocoaLumberjack.h>
-
 /*! The `MNBrowserLogger` class performs logging to the app text area.
  */
 @interface MNBrowserLogger : DDAbstractLogger <DDLogger>

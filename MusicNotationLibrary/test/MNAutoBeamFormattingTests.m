@@ -94,7 +94,7 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    NSArray* notes = @[
+    NSArray<MNStaffNote*>* notes = @[
         newNote(
             @{ @"keys" : @[ @"f/5" ],
                @"duration" : @"8" }),
@@ -144,7 +144,7 @@
 
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -163,7 +163,7 @@
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
-    NSArray* notes = @[
+    NSArray<MNStaffNote*>* notes = @[
         newNote(
             @{ @"keys" : @[ @"a/4" ],
                @"duration" : @"8" }),
@@ -222,7 +222,7 @@
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -241,7 +241,7 @@
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
-    NSArray* notes = @[
+    NSArray<MNStaffNote*>* notes = @[
         newNote(
             @{ @"keys" : @[ @"g/4" ],
                @"duration" : @"8" }),
@@ -311,7 +311,7 @@
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -330,7 +330,7 @@
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
-    NSArray* notes = @[
+    NSArray<MNStaffNote*>* notes = @[
         newNote(
             @{ @"keys" : @[ @"f/5" ],
                @"duration" : @"8" }),
@@ -387,7 +387,7 @@
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -406,7 +406,7 @@
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
-    NSArray* notes = @[
+    NSArray<MNStaffNote*>* notes = @[
         newNote(
             @{ @"keys" : @[ @"c/4" ],
                @"duration" : @"8" }),
@@ -445,7 +445,7 @@
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -464,7 +464,7 @@
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
-    NSArray* notes = @[
+    NSArray<MNStaffNote*>* notes = @[
         newNote(
             @{ @"keys" : @[ @"c/5" ],
                @"duration" : @"16" }),
@@ -527,7 +527,7 @@
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -546,7 +546,7 @@
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
-    NSArray* notes = @[
+    NSArray<MNStaffNote*>* notes = @[
         newNote(
             @{ @"keys" : @[ @"c/5" ],
                @"duration" : @"16" }),
@@ -615,7 +615,7 @@
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -634,7 +634,7 @@
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
-    NSArray* notes = @[
+    NSArray<MNStaffNote*>* notes = @[
         newNote(
             @{ @"keys" : @[ @"c/5" ],
                @"duration" : @"16" }),
@@ -707,7 +707,7 @@
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -725,7 +725,7 @@
     };
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
-    NSArray* notes = @[
+    NSArray<MNStaffNote*>* notes = @[
         newNote(
             @{ @"keys" : @[ @"c/5" ],
                @"duration" : @"8" }),
@@ -792,7 +792,7 @@
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -811,7 +811,7 @@
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
-    NSArray* notes = @[
+    NSArray<MNStaffNote*>* notes = @[
         newNote(
             @{ @"keys" : @[ @"c/5" ],
                @"duration" : @"16" }),
@@ -884,7 +884,7 @@
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -955,7 +955,7 @@
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
-    NSArray* notes = @[
+    NSArray<MNStaffNote*>* notes = @[
         newNote(
             @{ @"keys" : @[ @"b/4" ],
                @"duration" : @"16",
@@ -1037,7 +1037,7 @@
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -1056,7 +1056,7 @@
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
-    NSArray* notes = @[
+    NSArray<MNStaffNote*>* notes = @[
         newNote(
             @{ @"keys" : @[ @"b/4" ],
                @"duration" : @"16",
@@ -1138,7 +1138,7 @@
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -1159,7 +1159,7 @@
 
     [staff addTimeSignatureWithName:@"2/2"];
 
-    NSArray* notes = @[
+    NSArray<MNStaffNote*>* notes = @[
         newNote(
             @{ @"keys" : @[ @"b/4" ],
                @"duration" : @"16",
@@ -1200,7 +1200,7 @@
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -1221,7 +1221,7 @@
 
     [staff addTimeSignatureWithName:@"6/8"];
 
-    NSArray* notes = @[
+    NSArray<MNStaffNote*>* notes = @[
         newNote(
             @{ @"keys" : @[ @"b/4" ],
                @"duration" : @"4",
@@ -1258,7 +1258,7 @@
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -1413,13 +1413,13 @@
       [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staff2];
       [voice3 draw:ctx dirtyRect:CGRectZero toStaff:staff3];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
-      [beams2 foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams2 oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
-      [beams3 foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams3 oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -1577,13 +1577,13 @@
       [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staff2];
       [voice3 draw:ctx dirtyRect:CGRectZero toStaff:staff3];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
-      [beams2 foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams2 oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
-      [beams3 foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams3 oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -1601,7 +1601,7 @@
     };
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
-    NSArray* notes = @[
+    NSArray<MNStaffNote*>* notes = @[
         newNote(
             @{ @"keys" : @[ @"c/4" ],
                @"duration" : @"8" }),
@@ -1651,7 +1651,7 @@
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -1673,7 +1673,7 @@
     //    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent withTitle:title];
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
-    NSArray* notes = @[
+    NSArray<MNStaffNote*>* notes = @[
         newNote(
             @{ @"keys" : @[ @"d/4" ],
                @"duration" : @"4" }),
@@ -1712,7 +1712,7 @@
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -1733,7 +1733,7 @@
     //    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent withTitle:title];
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
-    NSArray* notes = @[
+    NSArray<MNStaffNote*>* notes = @[
         newNote(
             @{ @"keys" : @[ @"c/4" ],
                @"duration" : @"8" }),
@@ -1775,7 +1775,7 @@
 
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 

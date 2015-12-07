@@ -1,6 +1,6 @@
-@import Foundation;
+#import <Foundation/Foundation.h>
 #import "Option.h"
 
 @interface Some : Option
-+ (Option*)some:(id)value;
++ (Option*)oct_some:(id)value;
 @end

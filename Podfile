@@ -34,19 +34,30 @@ inhibit_all_warnings!
 
 target 'MusicNotationDesktop' do
     platform :osx, '10.11'
-    pod 'CocoaLumberjack'
+#    pod 'OCTotallyLazy', :path => '/Users/slcott/Desktop/MusicNotation/OCTotallyLazy-master'
+#    #:git => 'https://github.com/stuartervine/OCTotallyLazy.git',
+#    #:podspec => '/Users/slcott/Desktop/MusicNotation/OCTotallyLazy-master'
     pod 'ReflectableEnum'
     pod 'RegExCategories'
+    pod 'CocoaLumberjack'
     pod 'pop'
     pod 'TheAmazingAudioEngine', :git => 'https://github.com/TheAmazingAudioEngine/TheAmazingAudioEngine.git'
     link_with 'MusicNotationDesktop'
 end
 
+#target 'MusicNotationDesktop' do
+#    platform :osx, '10.7'
+#    pod 'OCTotallyLazy', :git => 'https://github.com/stuartervine/OCTotallyLazy.git'
+#    link_with 'MusicNotationDesktop'
+#end
+
+
 target 'MusicNotationMobile' do
     platform :ios, '9.0'
-    pod 'CocoaLumberjack'
+#    pod 'OCTotallyLazy', :path => '/Users/slcott/Desktop/MusicNotation/OCTotallyLazy-master'
     pod 'ReflectableEnum'
     pod 'RegExCategories'
+    pod 'CocoaLumberjack'
     pod 'pop'
     pod 'TheAmazingAudioEngine', :git => 'https://github.com/TheAmazingAudioEngine/TheAmazingAudioEngine.git'
     link_with 'MusicNotationMobile'

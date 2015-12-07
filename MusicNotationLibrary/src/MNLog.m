@@ -265,7 +265,7 @@ static MNBrowserLogger* _browserLogger = nil;
 {
     NSArray* mnSymbols = [NSThread callStackSymbols];
     __block NSMutableString* output = [@"" mutableCopy];
-    [mnSymbols foreach:^(NSString* callStackLine, NSUInteger index, BOOL* stop) {
+    [mnSymbols oct_foreach:^(NSString* callStackLine, NSUInteger index, BOOL* stop) {
       if([callStackLine rangeOfString:@"VexFlow"].location != NSNotFound)
       {
           if(!([callStackLine includes:@"LogVexDump"] || [callStackLine includes:@"main +"] ||

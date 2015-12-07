@@ -28,6 +28,7 @@
 
 #import "MNStaffLineTests.h"
 #import "MNStaffLineNotesStruct.h"
+#import "OCTotallyLazy.h"
 
 @implementation MNStaffLineTests
 

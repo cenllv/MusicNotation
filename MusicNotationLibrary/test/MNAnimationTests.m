@@ -36,9 +36,9 @@
 {
     MNLogDebug(@"AnimationGlyphBox drawLayer");
 
-    #if TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE
     UIGraphicsPushContext(ctx);
-    #endif
+#endif
 
     CGPoint center;
     center.x = CGRectGetMidX(theLayer.bounds);
@@ -56,7 +56,7 @@
         renderBoundingBox:NO];
 
     CGContextRestoreGState(ctx);
-    
+
 #if TARGET_OS_IPHONE
     UIGraphicsPopContext();
 #endif
@@ -108,7 +108,7 @@
     test.animateButton.titleLabel.textColor = UIColor.blackColor;
     test.animateButton.layer.cornerRadius = 10;
     test.animateButton.clipsToBounds = YES;
-    [UIFont fontWithName:@"Helvetica-Bold" size: 11.0];
+    [UIFont fontWithName:@"Helvetica-Bold" size:11.0];
     test.animateButton.titleLabel.text = @"Animate";
     [test.animateButton setTitle:@"Animate" forState:UIControlStateNormal];
     [test.animateButton sizeToFit];

@@ -243,7 +243,7 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
     return self.numerator << 16 | self.denominator;
 }
 
-- (void)set:(NSInteger)numerator and:(NSInteger)denominator
+- (void)set:(NSInteger)numerator with:(NSInteger)denominator
 {
     self.numerator = numerator;
     self.denominator = denominator;
@@ -258,7 +258,7 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
 {
     NSInteger u = self.numerator * (self.positive ? 1 : -1);
     NSInteger d = self.denominator;
-    NSInteger gcd = [MNRational GCD:u and:d];
+    NSInteger gcd = [MNRational GCD:u with:d];
     u /= gcd;
     d /= gcd;
 
@@ -268,21 +268,21 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
     //    }
 
     BOOL posTmp = self.positive;
-    [self set:u and:d];
+    [self set:u with:d];
     self.positive = posTmp;
     return self;
 }
 
 #pragma mark Math Operations
 
-+ (MNRational*)performOperation:(Operation)operation on:(MNRational*)param1 and:(MNRational*)param2
++ (MNRational*)performOperation:(Operation)operation on:(MNRational*)param1 with:(MNRational*)param2
 {
     if(!param1 || !param2)
     {
         //        MNLogError(@"MNrationalOperationError, can't perform operation with
         //        null params");
     }
-    NSUInteger lcm = [MNRational LCM:param1.denominator and:param2.denominator];
+    NSUInteger lcm = [MNRational LCM:param1.denominator with:param2.denominator];
     NSUInteger denominator1 = param1.denominator != 0 ? param1.denominator : 1;
     NSUInteger denominator2 = param2.denominator != 0 ? param2.denominator : 1;
     NSUInteger a = lcm / denominator1;
@@ -322,24 +322,24 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
  };
  */
 
-- (MNRational*)performOperation:(Operation)operation on:(MNRational*)param1 and:(MNRational*)param2
+- (MNRational*)performOperation:(Operation)operation on:(MNRational*)param1 with:(MNRational*)param2
 {
     if(!param1 || !param2)
     {
         //        MNLogError(@"MNrationalOperationError, can't perform operation with
         //        null params");
     }
-    NSUInteger lcm = [MNRational LCM:param1.denominator and:param2.denominator];
+    NSUInteger lcm = [MNRational LCM:param1.denominator with:param2.denominator];
     NSUInteger denominator1 = param1.denominator != 0 ? param1.denominator : 1;
     NSUInteger denominator2 = param2.denominator != 0 ? param2.denominator : 1;
     NSUInteger a = lcm / denominator1;
     NSUInteger b = lcm / denominator2;
     NSUInteger u = operation(param1.numerator * a, param2.numerator * b);
-    [self set:u and:lcm];
+    [self set:u with:lcm];
     return self;
 }
 
-+ (MNRational*)performOperation2:(Operation)operation on:(MNRational*)param1 and:(MNRational*)param2
++ (MNRational*)performOperation2:(Operation)operation on:(MNRational*)param1 with:(MNRational*)param2
 {
     if(!param1 || !param2)
     {
@@ -347,41 +347,41 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
         //        null params");
     }
     MNRational* ret = [[MNRational alloc] initWithNumerator:1 andDenominator:1];
-    [ret set:(param1.numerator * param2.numerator) and:(param1.denominator * param2.denominator)];
+    [ret set:(param1.numerator * param2.numerator) with:(param1.denominator * param2.denominator)];
     [ret simplify];
     return ret;
 }
 
-- (MNRational*)performOperation2:(Operation)operation on:(MNRational*)param1 and:(MNRational*)param2
+- (MNRational*)performOperation2:(Operation)operation on:(MNRational*)param1 with:(MNRational*)param2
 {
     if(!param1 || !param2)
     {
         //        MNLogError(@"MNrationalOperationError, can't perform operation with
         //        null params");
     }
-    [self set:(param1.numerator * param2.numerator) and:(param1.denominator * param2.denominator)];
+    [self set:(param1.numerator * param2.numerator) with:(param1.denominator * param2.denominator)];
     return self;   //[self simplify];
 }
 
-+ (MNRational*)add:(MNRational*)param1 and:(MNRational*)param2
++ (MNRational*)add:(MNRational*)param1 with:(MNRational*)param2
 {
     return [MNRational performOperation:^(NSInteger a, NSInteger b) {
       return a + b;
-    } on:param1 and:param2];
+    } on:param1 with:param2];
 }
 
 - (MNRational*)add:(MNRational*)other
 {
     return [self performOperation:^(NSInteger a, NSInteger b) {
       return a + b;
-    } on:self and:other];
+    } on:self with:other];
 }
 
 - (MNRational*)addByValue:(NSUInteger)value
 {
     return [self performOperation2:^(NSInteger a, NSInteger b) {
       return a + b;
-    } on:self and:[MNRational rationalWithNumerator:value]];
+    } on:self with:[MNRational rationalWithNumerator:value]];
 }
 
 - (MNRational*)addn:(NSUInteger)value
@@ -389,25 +389,25 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
     return [self addByValue:value];
 }
 
-+ (MNRational*)subtract:(MNRational*)param1 and:(MNRational*)param2
++ (MNRational*)subtract:(MNRational*)param1 with:(MNRational*)param2
 {
     return [MNRational performOperation:^(NSInteger a, NSInteger b) {
       return a - b;
-    } on:param1 and:param2];
+    } on:param1 with:param2];
 }
 
 - (MNRational*)subtract:(MNRational*)other
 {
     return [self performOperation:^(NSInteger a, NSInteger b) {
       return a - b;
-    } on:self and:other];
+    } on:self with:other];
 }
 
 - (MNRational*)subtractByValue:(NSUInteger)value
 {
     return [self performOperation2:^(NSInteger a, NSInteger b) {
       return a - b;
-    } on:self and:[MNRational rationalWithNumerator:value]];
+    } on:self with:[MNRational rationalWithNumerator:value]];
 }
 
 - (MNRational*)subt:(NSUInteger)value
@@ -415,25 +415,25 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
     return [self subtractByValue:value];
 }
 
-+ (MNRational*)multiply:(MNRational*)param1 and:(MNRational*)param2
++ (MNRational*)multiply:(MNRational*)param1 with:(MNRational*)param2
 {
     return [MNRational performOperation2:^(NSInteger a, NSInteger b) {
       return a * b;
-    } on:param1 and:param2];
+    } on:param1 with:param2];
 }
 
 - (MNRational*)multiply:(MNRational*)other
 {
     return [self performOperation2:^(NSInteger a, NSInteger b) {
       return a * b;
-    } on:self and:other];
+    } on:self with:other];
 }
 
 - (MNRational*)multiplyByValue:(NSUInteger)value
 {
     return [self performOperation2:^(NSInteger a, NSInteger b) {
       return a * b;
-    } on:self and:[MNRational rationalWithNumerator:value]];
+    } on:self with:[MNRational rationalWithNumerator:value]];
 }
 
 - (MNRational*)mult:(NSUInteger)value
@@ -441,18 +441,18 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
     return [self multiplyByValue:value];
 }
 
-+ (MNRational*)divide:(MNRational*)param1 and:(MNRational*)param2
++ (MNRational*)divide:(MNRational*)param1 with:(MNRational*)param2
 {
     return [MNRational performOperation2:^(NSInteger a, NSInteger b) {
       return a / b;
-    } on:param1 and:param2];
+    } on:param1 with:param2];
 }
 
 - (MNRational*)divide:(MNRational*)other
 {
     return [self performOperation2:^(NSInteger a, NSInteger b) {
       return a / b;
-    } on:self and:other];
+    } on:self with:other];
 }
 
 - (MNRational*)divideByValue:(NSUInteger)value
@@ -464,7 +464,7 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
           abort();
       }
       return a / b;
-    } on:self and:[MNRational rationalWithNumerator:value]];
+    } on:self with:[MNRational rationalWithNumerator:value]];
 }
 
 - (MNRational*)divn:(NSUInteger)value
@@ -499,7 +499,7 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
     return [self floatValue] == other;
 }
 
-+ (BOOL)equalsRational:(MNRational*)rat1 and:(MNRational*)rat2
++ (BOOL)equalsRational:(MNRational*)rat1 with:(MNRational*)rat2
 {
     //    [param1 simplify];
     //    [param2 simplify];
@@ -624,7 +624,7 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
     }
 }
 
-+ (NSInteger)GCD:(NSInteger)param1 and:(NSInteger)param2
++ (NSInteger)GCD:(NSInteger)param1 with:(NSInteger)param2
 {
     NSInteger a, b, t;
     a = param1;
@@ -638,12 +638,12 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
     return a;
 }
 
-+ (NSInteger)LCM:(NSInteger)param1 and:(NSInteger)param2
++ (NSInteger)LCM:(NSInteger)param1 with:(NSInteger)param2
 {
     NSInteger a, b, ret;
     a = param1;
     b = param2;
-    ret = ((a * b) / [MNRational GCD:a and:b]);
+    ret = ((a * b) / [MNRational GCD:a with:b]);
     return ret;
 }
 
@@ -665,7 +665,7 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
     for(NSUInteger i = 1; i < [arr count] - 1; ++i)
     {
         curr = [[arr objectAtIndex:i] integerValue];
-        prev = [MNRational LCM:prev and:curr];
+        prev = [MNRational LCM:prev with:curr];
     }
     ret = curr;
     return ret;

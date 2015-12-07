@@ -9,7 +9,7 @@
 //  Github: https://github.com/djmadcat
 //
 
-#import <Foundation/Foundation.h>
+//#import <Foundation/Foundation.h>
 
 @interface NSObject (AutoDescription)
 

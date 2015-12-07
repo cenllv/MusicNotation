@@ -11,7 +11,7 @@
     return self;
 }
 
-+ (EasyEnumerable*)with:(NSEnumerator* (^)())aConvertToEnumerator
++ (EasyEnumerable*)oct_with:(NSEnumerator* (^)())aConvertToEnumerator
 {
     return [[EasyEnumerable alloc] initWith:aConvertToEnumerator];
 }

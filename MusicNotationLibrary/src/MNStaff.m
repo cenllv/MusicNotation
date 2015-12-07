@@ -318,7 +318,7 @@ static MNStaff* _currentStaff;
 
         else
         {
-            for(NSString* key in((NSDictionary*)tmpLinesConfiguration[i]).allKeys)
+            for(NSString* key in [((NSDictionary*)tmpLinesConfiguration[i]) allKeys])
             {
                 self.options.lineConfig[i][key] = tmpLinesConfiguration[i][key];
             }
@@ -1237,6 +1237,7 @@ static MNStaff* _currentStaff;
 {
     self.clefName = clefName;
     MNClef* clef = [MNClef clefWithName:clefName size:size annotationName:annotation];
+    self.clef = clef;
     [self addModifier:clef];
     return self;
 }
@@ -1447,15 +1448,15 @@ static MNStaff* _currentStaff;
     //    }];
 
     // Draw the modifiers (bar lines, coda, segno, repeat brackets, etc.)
-    [[self.modifiers filter:^BOOL(MNModifier* modifier) {
+    [[self.modifiers oct_filter:^BOOL(MNModifier* modifier) {
       return YES;   //[modifier isKindOfClass:[MNStaffModifier class]];
-    }] foreach:^(MNStaffModifier* staffModifier, NSUInteger index, BOOL* stop) {
+    }] oct_foreach:^(MNStaffModifier* staffModifier, NSUInteger index, BOOL* stop) {
       [staffModifier drawWithContext:ctx toStaff:self withShiftX:[self getModifierXShift]];
     }];
 
-    [[self.modifiers filter:^BOOL(MNModifier* modifier) {
+    [[self.modifiers oct_filter:^BOOL(MNModifier* modifier) {
       return ([modifier isKindOfClass:[MNStaffText class]]);
-    }] foreach:^(MNStaffText* staffText, NSUInteger index, BOOL* stop) {
+    }] oct_foreach:^(MNStaffText* staffText, NSUInteger index, BOOL* stop) {
       [staffText drawWithContext:ctx toStaff:self];
     }];
 

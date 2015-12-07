@@ -30,7 +30,6 @@
 #import "MNTestType.h"
 #import "OCTotallyLazy.h"
 #import "NSString+MNAdditions.h"
-//#import <ReflectableEnum/ReflectableEnum.h>
 
 @interface MNOutlineViewController ()
 
@@ -59,6 +58,8 @@ static id _sharedInstance;
 - (void)load
 {
     _tests = [NSMutableArray array];
+
+    // examples of adding sections of tests for the sidebar if desired later
 
     //    Test* test1 = [[Test alloc] initWithName:@"abc"];
     //    [[test1 children] addObject:[[Test alloc] initWithName:@"qwfp"]];

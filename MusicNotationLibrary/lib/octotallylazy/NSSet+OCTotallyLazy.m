@@ -3,59 +3,59 @@
 
 @implementation NSSet (Functional)
 
-- (Option*)find:(PREDICATE)filterBlock
+- (Option*)oct_find:(PREDICATE)filterBlock
 {
-    return [[self asSequence] find:filterBlock];
+    return [[self oct_asSequence] oct_find:filterBlock];
 }
 
-- (NSSet*)filter:(BOOL (^)(id))filterBlock
+- (NSSet*)oct_filter:(BOOL (^)(id))filterBlock
 {
-    return [[[self asSequence] filter:filterBlock] asSet];
+    return [[[self oct_asSequence] oct_filter:filterBlock] oct_asSet];
 }
 
-- (id)oct_fold:(id)value with:(id (^)(id, id))functorBlock
+- (id)oct_fold:(id)value oct_with:(id (^)(id, id))functorBlock
 {
-    return [[self asSequence] fold:value with:functorBlock];
+    return [[self oct_asSequence] oct_fold:value oct_with:functorBlock];
 }
 
-- (NSSet*)groupBy:(FUNCTION1)groupingBlock
+- (NSSet*)oct_groupBy:(FUNCTION1)groupingBlock
 {
-    return [[[self asSequence] groupBy:groupingBlock] asSet];
+    return [[[self oct_asSequence] oct_groupBy:groupingBlock] oct_asSet];
 }
 
 - (id)head
 {
-    return [[self asSequence] head];
+    return [[self oct_asSequence] oct_head];
 }
 
 - (Option*)headOption
 {
-    return [[self asSequence] headOption];
+    return [[self oct_asSequence] oct_headOption];
 }
 
-- (NSSet*)join:(NSSet*)toJoin
+- (NSSet*)oct_join:(NSSet*)toJoin
 {
-    return [[[self asSequence] join:[toJoin asSequence]] asSet];
+    return [[[self oct_asSequence] oct_join:[toJoin oct_asSequence]] oct_asSet];
 }
 
 - (id)oct_map:(id (^)(id))funcBlock
 {
-    return [[[self asSequence] oct_map:funcBlock] asSet];
+    return [[[self oct_asSequence] oct_map:funcBlock] oct_asSet];
 }
 
-- (id)reduce:(id (^)(id, id))functorBlock
+- (id)oct_reduce:(id (^)(id, id))functorBlock
 {
-    return [[self asSequence] reduce:functorBlock];
+    return [[self oct_asSequence] oct_reduce:functorBlock];
 }
 
-- (Sequence*)asSequence
+- (Sequence*)oct_asSequence
 {
-    return [Sequence with:self];
+    return [Sequence oct_with:self];
 }
 
-- (NSArray*)asArray
+- (NSArray*)oct_asArray
 {
-    return [[self asSequence] asArray];
+    return [[self oct_asSequence] oct_asArray];
 }
 
 - (NSEnumerator*)oct_toEnumerator

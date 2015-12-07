@@ -184,7 +184,7 @@
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
-      [notes foreach:^(NSDictionary* note, NSUInteger i, BOOL* stop) {
+      [notes oct_foreach:^(NSDictionary* note, NSUInteger i, BOOL* stop) {
 
         MNTabNote* staffNote = [[self class] showNote:note staff:staff context:ctx x:(i + 1) * 25];
 

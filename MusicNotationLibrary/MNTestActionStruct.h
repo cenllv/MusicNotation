@@ -25,17 +25,21 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface MNTestAction : NSObject
+/*!
+ *  The `MNTestActionStruct` class stores the target and selector for individual
+ *  tests for later invocation.
+ */
+@interface MNTestActionStruct : NSObject
 
 @property (assign, nonatomic) SEL selector;
 @property (strong, nonatomic) id target;
 @property (strong, nonatomic) NSString* name;
 @property (assign, nonatomic) CGRect frame;
 @property (strong, nonatomic) NSObject* params;
-//@property (assign, nonatomic) BOOL cached;
 
-+ (MNTestAction*)testWithName:(NSString*)name andSelector:(SEL)selector andTarget:(id)target andFrame:(CGRect)frame;
++ (MNTestActionStruct*)testWithName:(NSString*)name
+                        andSelector:(SEL)selector
+                          andTarget:(id)target
+                           andFrame:(CGRect)frame;
 
 @end

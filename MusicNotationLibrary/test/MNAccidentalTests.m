@@ -94,39 +94,16 @@
     //      //@([[modifier category] isEqualToString:@"accidentals"]);
     //    }];
 
-    return ![[note.modifiers filter:^BOOL(MNModifier* modifier) {
+    return ![[note.modifiers oct_filter:^BOOL(MNModifier* modifier) {
              return [modifier isKindOfClass:[MNAccidental class]];
-           }] isEmpty];
+           }] oct_isEmpty];
 }
 
 #define hasAccidental(note) [self hasAccidental:note]
 
+// TODO: this method needs to be refactored (already in defined by superclass)
 - (MNStaffNote*)showNote:(MNStaffNote*)note staff:(MNStaff*)staff context:(CGContextRef)ctx atX:(float)x
 {
-    /*
-    Vex.Flow.Test.Accidental.showNote = function(note, staff, ctx, x) {
-        var mc = new Vex.Flow.ModifierContext();
-        note.addToModifierContext(mc);
-
-         MNTickContext *tickContext = [[MNTickContext alloc]init];
-        [tickContext addTickable:note] preFormat].x = x).setPixelsUsed(65);
-
-        note.staff = staff;
-        [note draw:ctx]
-
-        ctx.save();
-        ctx.font = "10pt Arial"; ctx.strokeStyle = "#579"; ctx.fillStyle = "#345";
-        ctx.fillText(@"w: " + note.getWidth(), note.getAbsoluteX() - 25, 200 / 1.5);
-
-        ctx.beginPath();
-        ctx.moveTo(note.getAbsoluteX() - (note.getWidth() / 2), 210/1.5);
-        ctx.lineTo(note.getAbsoluteX() + (note.getWidth() / 2), 210/1.5);
-        ctx.stroke();
-        ctx.restore();
-        return note;
-    }
-     */
-
     MNModifierContext* mc = [MNModifierContext modifierContext];
     [note addToModifierContext:mc];
 
@@ -653,7 +630,7 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(700, 200) withParent:parent];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 700, 0)];
 
     NSArray* notes = @[
         newNote(
@@ -701,13 +678,13 @@
     [MNAccidental applyAccidentals:@[ voice ] withKeySignature:@"C"];
 
     //    MNFormatter* formatter =
-    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ok(YES, @"");
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
-      [voice draw:ctx dirtyRect:c.view.frame toStaff:c.staff];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
     };
     return ret;
 }
@@ -720,9 +697,9 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(700, 150) withParent:parent];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 700, 0)];
 
-    [c.staff addKeySignature:@"Ab"];
+    [staff addKeySignature:@"Ab"];
 
     NSArray* notes = @[
         newNote(
@@ -758,10 +735,10 @@
     [MNAccidental applyAccidentals:@[ voice ] withKeySignature:@"Ab"];
 
     //    MNFormatter* formatter =
-    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
-      [voice draw:ctx dirtyRect:c.view.frame toStaff:c.staff];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
       ok(YES, @"");
 
@@ -777,9 +754,8 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(700, 150) withParent:parent];
-
-    MNStaff* staff = [c.staff addKeySignature:@"A"];   // WithSpec:@"A"];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 700, 0)];
+    staff = [staff addKeySignature:@"A"];   // WithSpec:@"A"];
     //    [staff draw:ctx];
 
     NSArray* notes = @[
@@ -820,7 +796,7 @@
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
-      [voice draw:ctx dirtyRect:c.view.frame toStaff:staff];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
       ok(YES, @"");
     };
 
@@ -835,9 +811,8 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(700, 150) withParent:parent];
-
-    MNStaff* staff = [c.staff addKeySignature:@"Ab"];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 700, 0)];
+    staff = [staff addKeySignature:@"Ab"];
 
     NSArray* notes0 = @[
         newNote(
@@ -944,8 +919,8 @@
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
-      [voice0 draw:ctx dirtyRect:c.view.frame toStaff:staff];
-      [voice1 draw:ctx dirtyRect:c.view.frame toStaff:staff];
+      [voice0 draw:ctx dirtyRect:CGRectZero toStaff:staff];
+      [voice1 draw:ctx dirtyRect:CGRectZero toStaff:staff];
     };
     return ret;
 }
@@ -958,9 +933,8 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(700, 150) withParent:parent];
-
-    MNStaff* staff = [c.staff addKeySignature:@"Cb"];   // WithSpec:@"Cb"];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 700, 0)];
+    staff = [staff addKeySignature:@"Cb"];   // WithSpec:@"Cb"];
     //    [staff draw:ctx];
 
     NSArray* notes0 = @[

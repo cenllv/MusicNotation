@@ -76,12 +76,12 @@
 - (NSArray*)layoutAttributesForElementsInRect:(NSRect)rect
 {
     NSArray* layoutAttributesArray = [super layoutAttributesForElementsInRect:rect];
-//    for(NSCollectionViewLayoutAttributes* attributes in layoutAttributesArray)
-//    {
-        //        [attributes setZIndex:[[attributes indexPath] item]];
-        //        attributes.frame = [self.testViewController frameAtIndex:attributes.indexPath.item];
-        //
-//    }
+    //    for(NSCollectionViewLayoutAttributes* attributes in layoutAttributesArray)
+    //    {
+    //        [attributes setZIndex:[[attributes indexPath] item]];
+    //        attributes.frame = [self.testViewController frameAtIndex:attributes.indexPath.item];
+    //
+    //    }
     return layoutAttributesArray;
 }
 

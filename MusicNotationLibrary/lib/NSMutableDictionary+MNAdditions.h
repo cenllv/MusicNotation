@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+//#import <Foundation/Foundation.h>
 
 @interface NSMutableDictionary (MNAdditions)
 

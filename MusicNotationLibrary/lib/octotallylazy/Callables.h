@@ -1,10 +1,12 @@
-@import Foundation;
+#import <Foundation/Foundation.h>
 
 typedef NSString* (^CALLABLE_TO_STRING)(id);
 typedef NSNumber* (^CALLABLE_TO_NUMBER)(id);
 typedef NSString* (^ACCUMULATOR_TO_STRING)(id, id);
 
 @interface Callables : NSObject
++ (id (^)(id))identity;
+
 + (NSString* (^)(NSString*))toUpperCase;
 
 + (NSString* (^)(NSString*, NSString*))appendString;
@@ -16,17 +18,17 @@ typedef NSString* (^ACCUMULATOR_TO_STRING)(id, id);
 + (CALLABLE_TO_NUMBER)increment;
 @end
 
-inline static CALLABLE_TO_STRING TL_upperCase()
+static CALLABLE_TO_STRING TL_upperCase()
 {
     return [Callables upperCase];
 }
 
-inline static ACCUMULATOR_TO_STRING TL_appendWithSeparator(NSString* separator)
+static ACCUMULATOR_TO_STRING TL_appendWithSeparator(NSString* separator)
 {
     return [Callables appendWithSeparator:separator];
 }
 
-inline static CALLABLE_TO_NUMBER TL_increment()
+static CALLABLE_TO_NUMBER TL_increment()
 {
     return [Callables increment];
 }

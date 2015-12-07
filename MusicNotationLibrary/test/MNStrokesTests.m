@@ -660,7 +660,7 @@
     [[[MNFormatter formatter] joinVoices:@[ voice ]] formatWith:@[ voice, tabVoice ] withJustifyWidth:justify];
 
     [voice draw:ctx dirtyRect:CGRectZero toStaff:staves.notesStaff];
-    [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+    [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
       [beam draw:ctx];
     }];
     [tabVoice draw:ctx dirtyRect:CGRectZero toStaff:staves.tabStaff];

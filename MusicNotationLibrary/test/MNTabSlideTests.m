@@ -77,7 +77,7 @@
         Vex.Flow.Test.TabSlide.tieNotes([
                                          newNote({ positions: [{str:4, fret:4}], @"duration" : @"h"}),
                                          newNote({ positions: [{str:4, fret:6}], @"duration" : @"h"})
-                                         ], [0], c.staff, c.context);
+                                         ], [0], staff, c.context);
 
      */
 

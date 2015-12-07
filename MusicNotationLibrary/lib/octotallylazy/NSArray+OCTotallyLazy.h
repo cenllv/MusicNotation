@@ -1,4 +1,4 @@
-@import Foundation;
+#import <Foundation/Foundation.h>
 #import "Option.h"
 #import "Mappable.h"
 #import "Flattenable.h"
@@ -7,49 +7,47 @@
 @class Pair;
 
 @interface NSArray (OCTotallyLazy) <Mappable, Foldable, Enumerable, Flattenable>
-- (NSArray*)add:(id)value;
-- (NSArray*)cons:(id)value;
-- (NSArray*)drop:(NSUInteger)toDrop;
-- (NSArray*)dropWhile:(PREDICATE)funcBlock;
-- (NSArray*)filter:(PREDICATE)filterBlock;
-- (Option*)find:(PREDICATE)filterBlock;
-- (NSArray*)flatMap:(FUNCTION1)functorBlock;
+- (NSArray*)oct_add:(id)value;
+- (NSArray*)oct_cons:(id)value;
+- (NSArray*)oct_drop:(int)toDrop;
+- (NSArray*)oct_dropWhile:(PREDICATE)funcBlock;
+- (NSArray*)oct_filter:(PREDICATE)filterBlock;
+- (Option*)oct_find:(PREDICATE)filterBlock;
+- (NSArray*)oct_flatMap:(FUNCTION1)functorBlock;
 - (NSArray*)oct_flatten;
-- (id)oct_fold:(id)value with:(id (^)(id accumulator, id item))functorBlock;
-//- (void)foreach:(void (^)(id))funcBlock;
-- (void)foreach:(void (^)(id element, NSUInteger index, BOOL* stop))funcBlock;
-- (BOOL)isEmpty;
-- (NSArray*)groupBy:(FUNCTION1)groupingBlock;
-- (NSArray*)grouped:(NSUInteger)n;
-- (id)head;
-- (Option*)headOption;
-- (NSArray*)join:(id<Enumerable>)toJoin;
-- (NSArray*)concat:(id<Enumerable>)toJoin;
-- (id)mapWithIndex:(id (^)(id, NSInteger))funcBlock;
-- (Pair*)partition:(PREDICATE)toJoin;
+- (id)oct_fold:(id)value oct_with:(id (^)(id accumulator, id item))functorBlock;
+- (void)oct_foreach:(void (^)(id, NSUInteger, BOOL*))funcBlock;
+- (BOOL)oct_isEmpty;
+- (NSArray*)oct_groupBy:(FUNCTION1)groupingBlock;
+- (NSArray*)oct_grouped:(int)n;
+- (id)oct_head;
+- (Option*)oct_headOption;
+- (NSArray*)oct_join:(id<Enumerable>)toJoin;
+- (id)oct_mapWithIndex:(id (^)(id, NSInteger))funcBlock;
+- (Pair*)oct_partition:(PREDICATE)toJoin;
 - (id)oct_reduce:(id (^)(id, id))functorBlock;
-- (NSArray*)reverse;
-- (Pair*)splitAt:(NSUInteger)splitIndex;
-- (Pair*)splitOn:(id)splitItem;
-- (Pair*)splitWhen:(PREDICATE)predicate;
-- (NSArray*)tail;
-- (NSArray*)take:(NSUInteger)n;
-- (NSArray*)takeWhile:(PREDICATE)funcBlock;
-- (NSArray*)takeRight:(NSUInteger)n;
-- (NSString*)toString;
-- (NSString*)toString:(NSString*)separator;
-- (NSString*)toString:(NSString*)start separator:(NSString*)separator end:(NSString*)end;
-- (NSArray*)zip:(NSArray*)otherSequence;
-- (NSArray*)zipWithIndex;
+- (NSArray*)oct_reverse;
+- (Pair*)oct_splitAt:(int)splitIndex;
+- (Pair*)oct_splitOn:(id)splitItem;
+- (Pair*)oct_splitWhen:(PREDICATE)predicate;
+- (NSArray*)oct_tail;
+- (NSArray*)oct_take:(int)n;
+- (NSArray*)oct_takeWhile:(PREDICATE)funcBlock;
+- (NSArray*)oct_takeRight:(int)n;
+- (NSString*)oct_toString;
+- (NSString*)oct_toString:(NSString*)separator;
+- (NSString*)oct_toString:(NSString*)start separator:(NSString*)separator end:(NSString*)end;
+- (NSArray*)oct_zip:(NSArray*)otherSequence;
+- (NSArray*)oct_zipWithIndex;
 
-- (Sequence*)asSequence;
-- (NSSet*)asSet;
-- (NSArray*)asArray;
-- (NSDictionary*)asDictionary;
+- (Sequence*)oct_asSequence;
+- (NSSet*)oct_asSet;
+- (NSArray*)oct_asArray;
+- (NSDictionary*)oct_asDictionary;
 
 @end
 
-inline static NSArray* array(id items, ...)
+static NSArray* array(id items, ...)
 {
     NSMutableArray* array = [NSMutableArray array];
     va_list args;

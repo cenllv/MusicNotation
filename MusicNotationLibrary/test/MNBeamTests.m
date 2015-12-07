@@ -100,10 +100,10 @@
         return [MNAccidental accidentalWithType:type];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 700, 0)];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
+      [staff draw:ctx];
 
       [self beamNotes:@[
           [[newNote(
@@ -132,7 +132,7 @@
               @{ @"keys" : @[ @"f/4", @"a/4", @"c/5" ],
                  @"stem_direction" : @1,
                  @"duration" : @"8" }),
-      ] staff:c.staff
+      ] staff:staff
               context:ctx
             dirtyRect:CGRectZero];
       ok(YES, @"Simple Test");
@@ -148,7 +148,7 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 700, 0)];
 
     NSArray* notes = @[
         newNote(
@@ -234,10 +234,10 @@
     MNBeam* beam2_2 = [MNBeam beamWithNotes:[notes2 slice:[@4:8]]];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
+      [staff draw:ctx];
 
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      [voice2 draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+      [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
       [beam1_1 draw:ctx];
       [beam1_2 draw:ctx];
@@ -258,7 +258,7 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 700, 0)];
 
     NSArray* notes = @[
         newNote(
@@ -352,10 +352,10 @@
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      [c.staff draw:ctx];
+      [staff draw:ctx];
 
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      [voice2 draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+      [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
       [beam1_1 draw:ctx];
       [beam1_2 draw:ctx];
@@ -376,7 +376,7 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(600, 0) withParent:parent];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 600, 0)];
 
     NSArray* notes = @[
         newNote(
@@ -527,10 +527,10 @@
     [beam2_2 breakSecondaryAt:@[ @3 ]];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
+      [staff draw:ctx];
 
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      [voice2 draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+      [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [beam1_1 draw:ctx];
       [beam1_2 draw:ctx];
 
@@ -550,9 +550,9 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(350, 140) withParent:parent];
 
-    //      MNStaff* staff =  [MNStaff staffWithRect:CGRectMake(10, 10, 350, 0)];
+
+          MNStaff* staff =  [MNStaff staffWithRect:CGRectMake(10, 10, 350, 0)];
 
     NSArray* notes = @[
         newNote(
@@ -598,9 +598,9 @@
     MNBeam* beam1_2 = [MNBeam beamWithNotes:[notes slice:[@4:8]]];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
+      [staff draw:ctx];
 
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [beam1_1 draw:ctx];
       [beam1_2 draw:ctx];
 
@@ -612,14 +612,14 @@
 - (MNTestBlockStruct*)autoStem:(id<MNTestParentDelegate>)parent
 {
     MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(350, 140) withParent:parent];
+
 
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    //      MNStaff* staff =  [MNStaff staffWithRect:CGRectMake(10, 10, 350, 0)];
+          MNStaff* staff =  [MNStaff staffWithRect:CGRectMake(10, 10, 350, 0)];
 
     NSArray* notes = @[
         newNote(
@@ -688,9 +688,9 @@
     assertThatInteger(beam6.stemDirection, equalToInteger(MNStemDirectionDown));
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
+      [staff draw:ctx];
 
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [beam1 draw:ctx];
       [beam2 draw:ctx];
       [beam3 draw:ctx];
@@ -711,7 +711,7 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 600, 0)];
 
     NSArray* notes = @[
         newNote(
@@ -835,10 +835,10 @@
     MNBeam* beam2_2 = [MNBeam beamWithNotes:[notes2 slice:[@4:8]]];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
+      [staff draw:ctx];
 
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      [voice2 draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+      [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [beam1_1 draw:ctx];
       [beam1_2 draw:ctx];
 
@@ -858,7 +858,7 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 600, 0)];
 
     NSArray* notes = @[
         newNote(
@@ -980,10 +980,10 @@
     MNBeam* beam2_1 = [MNBeam beamWithNotes:[notes2 slice:[@0:12]]];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
+      [staff draw:ctx];
 
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      [voice2 draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+      [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [beam1_1 draw:ctx];
       [beam2_1 draw:ctx];
 
@@ -1000,7 +1000,7 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 700, 0)];
 
     NSArray* notes = @[
         newNote(
@@ -1067,9 +1067,9 @@
     MNBeam* beam1_3 = [MNBeam beamWithNotes:[notes slice:[@8:12]]];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
+      [staff draw:ctx];
 
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [beam1_1 draw:ctx];
       [beam1_2 draw:ctx];
       [beam1_3 draw:ctx];
@@ -1087,7 +1087,7 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 700, 0)];
 
     NSArray* notes = @[
         newNote(
@@ -1134,9 +1134,9 @@
     MNBeam* beam1_2 = [MNBeam beamWithNotes:[notes slice:[@4:8]]];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
+      [staff draw:ctx];
 
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [beam1_1 draw:ctx];
       [beam1_2 draw:ctx];
 
@@ -1153,7 +1153,7 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 700, 0)];
 
     NSArray* notes = @[
         newNote(
@@ -1200,9 +1200,9 @@
     MNBeam* beam1_2 = [MNBeam beamWithNotes:[notes slice:[@4:7]]];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
+      [staff draw:ctx];
 
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [beam1_1 draw:ctx];
       [beam1_2 draw:ctx];
 
@@ -1219,7 +1219,7 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 700, 0)];
 
     NSArray* notes = @[
         newNote(
@@ -1249,8 +1249,8 @@
     MNBeam* beam1_1 = [MNBeam beamWithNotes:[notes slice:[@0:4]]];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [beam1_1 draw:ctx];
 
       ok(YES, @"Lengthy Test");
@@ -1266,7 +1266,6 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    //    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent];
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 500, 0)];
 
     NSArray* notes = @[
@@ -1561,7 +1560,7 @@
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 
@@ -1651,7 +1650,7 @@
       [staff draw:ctx];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+      [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
       }];
 

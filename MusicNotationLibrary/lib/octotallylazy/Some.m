@@ -14,31 +14,36 @@
     return self;
 }
 
-+ (Option*)some:(id)value
++ (Option*)oct_some:(id)value
 {
     return [[Some alloc] initWithValue:value];
 }
 
-- (BOOL)isEmpty
+- (BOOL)oct_isEmpty
 {
     return FALSE;
 }
 
-- (BOOL)isEqual:(id)otherObject
+- (BOOL)oct_isEqual:(id)otherObject
 {
     if(![otherObject isKindOfClass:[Some class]])
     {
-        return [self isEqual:[Some some:otherObject]];
+        return [self isEqual:[Some oct_some:otherObject]];
     }
-    return [[otherObject get] isEqual:[self get]];
+    return [[otherObject oct_get] oct_isEqual:[self oct_get]];
 }
 
-- (id)get
+- (id)oct_get
 {
     return value;
 }
 
-- (id)getOrElse:(id)other
+- (id)oct_getSafely
+{
+    return value;
+}
+
+- (id)oct_getOrElse:(id)other
 {
     return value;
 }
@@ -48,22 +53,22 @@
     return value;
 }
 
-- (id)map:(id (^)(id))funcBlock
+- (id)oct_map:(id (^)(id))funcBlock
 {
-    return [Some some:funcBlock(value)];
+    return [Some oct_some:funcBlock(value)];
 }
 
-- (id)flatMap:(id (^)(id))funcBlock
+- (id)oct_flatMap:(id (^)(id))funcBlock
 {
-    return [[self oct_flatten] map:funcBlock];
+    return [[self oct_flatten] oct_map:funcBlock];
 }
 
-- (id)oct_fold:(id)seed with:(id (^)(id, id))functorBlock
+- (id)oct_fold:(id)seed oct_with:(id (^)(id, id))functorBlock
 {
-    return [Some some:functorBlock(seed, value)];
+    return [Some oct_some:functorBlock(seed, value)];
 }
 
-- (Sequence*)asSequence
+- (Sequence*)oct_asSequence
 {
     return sequence(value, nil);
 }
@@ -75,10 +80,10 @@
 
 - (id)copyWithZone:(NSZone*)zone
 {
-    return [Some some:value];
+    return [Some oct_some:value];
 }
 
-- (void)maybe:(void (^)(id))invokeWhenSomeBlock
+- (void)oct_maybe:(void (^)(id))invokeWhenSomeBlock
 {
     invokeWhenSomeBlock(value);
 }

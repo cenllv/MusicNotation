@@ -1,6 +1,6 @@
-@import Foundation;
+#import <Foundation/Foundation.h>
 #import "Enumerable.h"
 
 @interface EasyEnumerable : NSObject <Enumerable>
-+ (EasyEnumerable*)with:(NSEnumerator* (^)())aConvertToEnumerator;
++ (EasyEnumerable*)oct_with:(NSEnumerator* (^)())aConvertToEnumerator;
 @end

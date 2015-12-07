@@ -27,14 +27,13 @@
 
 #import "MNLayerResponder.h"
 
-#if TARGET_OS_IPHONE
+/*!
+ *  The `MNCarrierLayer` class
+ */
 @interface MNCarrierLayer : CALayer
-
-@end
+#if TARGET_OS_IPHONE
 #elif TARGET_OS_MAC
-
-@interface MNCarrierLayer : CALayer <MNLayerResponder>
+                            <MNLayerResponder>
+#endif
 
 @end
-
-#endif

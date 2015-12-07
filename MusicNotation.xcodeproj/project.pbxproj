@@ -7,8 +7,81 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E95DE263BB6171A18C03A4A /* Pods_MusicNotationDesktop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F15AA8371CC8C24BA804B386 /* Pods_MusicNotationDesktop.framework */; };
+		50DD15EAB2841FEF5EF1E7FF /* Pods_MusicNotationMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24DF42CE43159DF121C5F1B3 /* Pods_MusicNotationMobile.framework */; };
+		5FC5D54AA3C9A43D576F2221 /* Pods_MusicNotationDesktop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF69A71D7E4769254B6E2C05 /* Pods_MusicNotationDesktop.framework */; };
 		6B0BE79C1C14A4CB0035ADCF /* MNMCarrierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE79B1C14A4CB0035ADCF /* MNMCarrierView.m */; };
+		6B0BE87E1C162D630035ADCF /* Callables.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE82D1C162D630035ADCF /* Callables.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6B0BE87F1C162D630035ADCF /* Callables.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE82D1C162D630035ADCF /* Callables.m */; };
+		6B0BE8801C162D630035ADCF /* EasyEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8301C162D630035ADCF /* EasyEnumerable.m */; };
+		6B0BE8811C162D630035ADCF /* EasyEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8301C162D630035ADCF /* EasyEnumerable.m */; };
+		6B0BE8821C162D630035ADCF /* EmptyEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8341C162D630035ADCF /* EmptyEnumerator.m */; };
+		6B0BE8831C162D630035ADCF /* EmptyEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8341C162D630035ADCF /* EmptyEnumerator.m */; };
+		6B0BE8841C162D630035ADCF /* EnumerateEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8361C162D630035ADCF /* EnumerateEnumerator.m */; };
+		6B0BE8851C162D630035ADCF /* EnumerateEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8361C162D630035ADCF /* EnumerateEnumerator.m */; };
+		6B0BE8861C162D630035ADCF /* FilterEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8381C162D630035ADCF /* FilterEnumerator.m */; };
+		6B0BE8871C162D630035ADCF /* FilterEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8381C162D630035ADCF /* FilterEnumerator.m */; };
+		6B0BE8881C162D630035ADCF /* FlattenEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE83A1C162D630035ADCF /* FlattenEnumerator.m */; };
+		6B0BE8891C162D630035ADCF /* FlattenEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE83A1C162D630035ADCF /* FlattenEnumerator.m */; };
+		6B0BE88A1C162D630035ADCF /* GroupedEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE83C1C162D630035ADCF /* GroupedEnumerator.m */; };
+		6B0BE88B1C162D630035ADCF /* GroupedEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE83C1C162D630035ADCF /* GroupedEnumerator.m */; };
+		6B0BE88C1C162D630035ADCF /* MapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE83E1C162D630035ADCF /* MapEnumerator.m */; };
+		6B0BE88D1C162D630035ADCF /* MapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE83E1C162D630035ADCF /* MapEnumerator.m */; };
+		6B0BE88E1C162D630035ADCF /* MemoisedEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8401C162D630035ADCF /* MemoisedEnumerator.m */; };
+		6B0BE88F1C162D630035ADCF /* MemoisedEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8401C162D630035ADCF /* MemoisedEnumerator.m */; };
+		6B0BE8901C162D630035ADCF /* MergeEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8421C162D630035ADCF /* MergeEnumerator.m */; };
+		6B0BE8911C162D630035ADCF /* MergeEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8421C162D630035ADCF /* MergeEnumerator.m */; };
+		6B0BE8921C162D630035ADCF /* NSEnumerator+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8441C162D630035ADCF /* NSEnumerator+OCTotallyLazy.m */; };
+		6B0BE8931C162D630035ADCF /* NSEnumerator+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8441C162D630035ADCF /* NSEnumerator+OCTotallyLazy.m */; };
+		6B0BE8941C162D630035ADCF /* PairEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8461C162D630035ADCF /* PairEnumerator.m */; };
+		6B0BE8951C162D630035ADCF /* PairEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8461C162D630035ADCF /* PairEnumerator.m */; };
+		6B0BE8961C162D630035ADCF /* PartitionEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8481C162D630035ADCF /* PartitionEnumerator.m */; };
+		6B0BE8971C162D630035ADCF /* PartitionEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8481C162D630035ADCF /* PartitionEnumerator.m */; };
+		6B0BE8981C162D630035ADCF /* RepeatEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE84A1C162D630035ADCF /* RepeatEnumerator.m */; };
+		6B0BE8991C162D630035ADCF /* RepeatEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE84A1C162D630035ADCF /* RepeatEnumerator.m */; };
+		6B0BE89A1C162D630035ADCF /* SingleValueEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE84C1C162D630035ADCF /* SingleValueEnumerator.m */; };
+		6B0BE89B1C162D630035ADCF /* SingleValueEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE84C1C162D630035ADCF /* SingleValueEnumerator.m */; };
+		6B0BE89C1C162D630035ADCF /* TakeWhileEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE84E1C162D630035ADCF /* TakeWhileEnumerator.m */; };
+		6B0BE89D1C162D630035ADCF /* TakeWhileEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE84E1C162D630035ADCF /* TakeWhileEnumerator.m */; };
+		6B0BE89E1C162D630035ADCF /* Function1.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8531C162D630035ADCF /* Function1.m */; };
+		6B0BE89F1C162D630035ADCF /* Function1.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8531C162D630035ADCF /* Function1.m */; };
+		6B0BE8A01C162D630035ADCF /* Function2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8551C162D630035ADCF /* Function2.m */; };
+		6B0BE8A11C162D630035ADCF /* Function2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8551C162D630035ADCF /* Function2.m */; };
+		6B0BE8A21C162D630035ADCF /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8571C162D630035ADCF /* Functions.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6B0BE8A31C162D630035ADCF /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8571C162D630035ADCF /* Functions.m */; };
+		6B0BE8A41C162D630035ADCF /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8591C162D630035ADCF /* Group.m */; };
+		6B0BE8A51C162D630035ADCF /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8591C162D630035ADCF /* Group.m */; };
+		6B0BE8A61C162D630035ADCF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B0BE85A1C162D630035ADCF /* Info.plist */; };
+		6B0BE8A71C162D630035ADCF /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B0BE85A1C162D630035ADCF /* Info.plist */; };
+		6B0BE8A81C162D630035ADCF /* MemoisedSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE85D1C162D630035ADCF /* MemoisedSequence.m */; };
+		6B0BE8A91C162D630035ADCF /* MemoisedSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE85D1C162D630035ADCF /* MemoisedSequence.m */; };
+		6B0BE8AA1C162D630035ADCF /* None.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE85F1C162D630035ADCF /* None.m */; };
+		6B0BE8AB1C162D630035ADCF /* None.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE85F1C162D630035ADCF /* None.m */; };
+		6B0BE8AC1C162D630035ADCF /* NoSuchElementException.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8611C162D630035ADCF /* NoSuchElementException.m */; };
+		6B0BE8AD1C162D630035ADCF /* NoSuchElementException.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8611C162D630035ADCF /* NoSuchElementException.m */; };
+		6B0BE8AE1C162D630035ADCF /* NSArray+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8631C162D630035ADCF /* NSArray+OCTotallyLazy.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6B0BE8AF1C162D630035ADCF /* NSArray+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8631C162D630035ADCF /* NSArray+OCTotallyLazy.m */; };
+		6B0BE8B01C162D630035ADCF /* NSDictionary+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8651C162D630035ADCF /* NSDictionary+OCTotallyLazy.m */; };
+		6B0BE8B11C162D630035ADCF /* NSDictionary+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8651C162D630035ADCF /* NSDictionary+OCTotallyLazy.m */; };
+		6B0BE8B21C162D630035ADCF /* NSSet+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8671C162D630035ADCF /* NSSet+OCTotallyLazy.m */; };
+		6B0BE8B31C162D630035ADCF /* NSSet+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8671C162D630035ADCF /* NSSet+OCTotallyLazy.m */; };
+		6B0BE8B41C162D630035ADCF /* Numbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE86A1C162D630035ADCF /* Numbers.m */; };
+		6B0BE8B51C162D630035ADCF /* Numbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE86A1C162D630035ADCF /* Numbers.m */; };
+		6B0BE8B61C162D630035ADCF /* OCTotallyLazy-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B0BE86B1C162D630035ADCF /* OCTotallyLazy-Info.plist */; };
+		6B0BE8B71C162D630035ADCF /* OCTotallyLazy-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B0BE86B1C162D630035ADCF /* OCTotallyLazy-Info.plist */; };
+		6B0BE8B81C162D630035ADCF /* Option.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE86F1C162D630035ADCF /* Option.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6B0BE8B91C162D630035ADCF /* Option.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE86F1C162D630035ADCF /* Option.m */; };
+		6B0BE8BA1C162D630035ADCF /* Pair.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8711C162D630035ADCF /* Pair.m */; };
+		6B0BE8BB1C162D630035ADCF /* Pair.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8711C162D630035ADCF /* Pair.m */; };
+		6B0BE8BC1C162D630035ADCF /* Predicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8741C162D630035ADCF /* Predicates.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6B0BE8BD1C162D630035ADCF /* Predicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8741C162D630035ADCF /* Predicates.m */; };
+		6B0BE8BE1C162D630035ADCF /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8761C162D630035ADCF /* Queue.m */; };
+		6B0BE8BF1C162D630035ADCF /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8761C162D630035ADCF /* Queue.m */; };
+		6B0BE8C01C162D630035ADCF /* Range.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8781C162D630035ADCF /* Range.m */; };
+		6B0BE8C11C162D630035ADCF /* Range.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8781C162D630035ADCF /* Range.m */; };
+		6B0BE8C21C162D630035ADCF /* Sequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE87A1C162D630035ADCF /* Sequence.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6B0BE8C31C162D630035ADCF /* Sequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE87A1C162D630035ADCF /* Sequence.m */; };
+		6B0BE8C41C162D630035ADCF /* Some.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE87C1C162D630035ADCF /* Some.m */; };
+		6B0BE8C51C162D630035ADCF /* Some.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE87C1C162D630035ADCF /* Some.m */; };
 		6B182C731C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C721C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m */; };
 		6B182C741C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C721C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m */; };
 		6B182C771C0E57C1006F0981 /* MNGraceNoteRenderOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C761C0E57C1006F0981 /* MNGraceNoteRenderOptions.m */; };
@@ -321,74 +394,6 @@
 		6B4AA6201BF45B0800E56C1A /* NSObject+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5B81BF45B0800E56C1A /* NSObject+MNAdditions.m */; };
 		6B4AA6231BF45B0800E56C1A /* NSString+Ruby.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5BC1BF45B0800E56C1A /* NSString+Ruby.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA6241BF45B0800E56C1A /* NSString+Ruby.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5BC1BF45B0800E56C1A /* NSString+Ruby.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6251BF45B0800E56C1A /* Callables.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5BF1BF45B0800E56C1A /* Callables.m */; };
-		6B4AA6261BF45B0800E56C1A /* Callables.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5BF1BF45B0800E56C1A /* Callables.m */; };
-		6B4AA6271BF45B0800E56C1A /* EasyEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5C21BF45B0800E56C1A /* EasyEnumerable.m */; };
-		6B4AA6281BF45B0800E56C1A /* EasyEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5C21BF45B0800E56C1A /* EasyEnumerable.m */; };
-		6B4AA6291BF45B0800E56C1A /* EmptyEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5C41BF45B0800E56C1A /* EmptyEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA62A1BF45B0800E56C1A /* EmptyEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5C41BF45B0800E56C1A /* EmptyEnumerator.m */; };
-		6B4AA62B1BF45B0800E56C1A /* EnumerateEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5C71BF45B0800E56C1A /* EnumerateEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA62C1BF45B0800E56C1A /* EnumerateEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5C71BF45B0800E56C1A /* EnumerateEnumerator.m */; };
-		6B4AA62D1BF45B0800E56C1A /* FilterEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5C91BF45B0800E56C1A /* FilterEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA62E1BF45B0800E56C1A /* FilterEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5C91BF45B0800E56C1A /* FilterEnumerator.m */; };
-		6B4AA62F1BF45B0800E56C1A /* FlattenEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5CC1BF45B0800E56C1A /* FlattenEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6301BF45B0800E56C1A /* FlattenEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5CC1BF45B0800E56C1A /* FlattenEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6311BF45B0800E56C1A /* Function1.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5CF1BF45B0800E56C1A /* Function1.m */; };
-		6B4AA6321BF45B0800E56C1A /* Function1.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5CF1BF45B0800E56C1A /* Function1.m */; };
-		6B4AA6331BF45B0800E56C1A /* Function2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5D11BF45B0800E56C1A /* Function2.m */; };
-		6B4AA6341BF45B0800E56C1A /* Function2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5D11BF45B0800E56C1A /* Function2.m */; };
-		6B4AA6351BF45B0800E56C1A /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5D31BF45B0800E56C1A /* Functions.m */; };
-		6B4AA6361BF45B0800E56C1A /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5D31BF45B0800E56C1A /* Functions.m */; };
-		6B4AA6371BF45B0800E56C1A /* GroupedEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5D51BF45B0800E56C1A /* GroupedEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6381BF45B0800E56C1A /* GroupedEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5D51BF45B0800E56C1A /* GroupedEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6391BF45B0800E56C1A /* MapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5D71BF45B0800E56C1A /* MapEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA63A1BF45B0800E56C1A /* MapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5D71BF45B0800E56C1A /* MapEnumerator.m */; };
-		6B4AA63B1BF45B0800E56C1A /* MemoisedEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5DA1BF45B0800E56C1A /* MemoisedEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA63C1BF45B0800E56C1A /* MemoisedEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5DA1BF45B0800E56C1A /* MemoisedEnumerator.m */; };
-		6B4AA63D1BF45B0800E56C1A /* MemoisedSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5DC1BF45B0800E56C1A /* MemoisedSequence.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA63E1BF45B0800E56C1A /* MemoisedSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5DC1BF45B0800E56C1A /* MemoisedSequence.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA63F1BF45B0800E56C1A /* MergeEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5DE1BF45B0800E56C1A /* MergeEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6401BF45B0800E56C1A /* MergeEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5DE1BF45B0800E56C1A /* MergeEnumerator.m */; };
-		6B4AA6411BF45B0800E56C1A /* None.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E01BF45B0800E56C1A /* None.m */; };
-		6B4AA6421BF45B0800E56C1A /* None.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E01BF45B0800E56C1A /* None.m */; };
-		6B4AA6431BF45B0800E56C1A /* NoSuchElementException.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E21BF45B0800E56C1A /* NoSuchElementException.m */; };
-		6B4AA6441BF45B0800E56C1A /* NoSuchElementException.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E21BF45B0800E56C1A /* NoSuchElementException.m */; };
-		6B4AA6451BF45B0800E56C1A /* NSArray+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E41BF45B0800E56C1A /* NSArray+OCTotallyLazy.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6461BF45B0800E56C1A /* NSArray+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E41BF45B0800E56C1A /* NSArray+OCTotallyLazy.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6471BF45B0800E56C1A /* NSDictionary+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E61BF45B0800E56C1A /* NSDictionary+OCTotallyLazy.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6481BF45B0800E56C1A /* NSDictionary+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E61BF45B0800E56C1A /* NSDictionary+OCTotallyLazy.m */; };
-		6B4AA6491BF45B0800E56C1A /* NSEnumerator+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E81BF45B0800E56C1A /* NSEnumerator+OCTotallyLazy.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA64A1BF45B0800E56C1A /* NSEnumerator+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E81BF45B0800E56C1A /* NSEnumerator+OCTotallyLazy.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA64B1BF45B0800E56C1A /* NSSet+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5EA1BF45B0800E56C1A /* NSSet+OCTotallyLazy.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA64C1BF45B0800E56C1A /* NSSet+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5EA1BF45B0800E56C1A /* NSSet+OCTotallyLazy.m */; };
-		6B4AA64D1BF45B0800E56C1A /* Numbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5EC1BF45B0800E56C1A /* Numbers.m */; };
-		6B4AA64E1BF45B0800E56C1A /* Numbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5EC1BF45B0800E56C1A /* Numbers.m */; };
-		6B4AA64F1BF45B0800E56C1A /* OCGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5EE1BF45B0800E56C1A /* OCGroup.m */; };
-		6B4AA6501BF45B0800E56C1A /* OCGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5EE1BF45B0800E56C1A /* OCGroup.m */; };
-		6B4AA6511BF45B0800E56C1A /* Option.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5F11BF45B0800E56C1A /* Option.m */; };
-		6B4AA6521BF45B0800E56C1A /* Option.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5F11BF45B0800E56C1A /* Option.m */; };
-		6B4AA6531BF45B0800E56C1A /* Pair.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5F31BF45B0800E56C1A /* Pair.m */; };
-		6B4AA6541BF45B0800E56C1A /* Pair.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5F31BF45B0800E56C1A /* Pair.m */; };
-		6B4AA6551BF45B0800E56C1A /* PairEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5F51BF45B0800E56C1A /* PairEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6561BF45B0800E56C1A /* PairEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5F51BF45B0800E56C1A /* PairEnumerator.m */; };
-		6B4AA6571BF45B0800E56C1A /* PartitionEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5F71BF45B0800E56C1A /* PartitionEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6581BF45B0800E56C1A /* PartitionEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5F71BF45B0800E56C1A /* PartitionEnumerator.m */; };
-		6B4AA6591BF45B0800E56C1A /* Predicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5F91BF45B0800E56C1A /* Predicates.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA65A1BF45B0800E56C1A /* Predicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5F91BF45B0800E56C1A /* Predicates.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA65B1BF45B0800E56C1A /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5FB1BF45B0800E56C1A /* Queue.m */; };
-		6B4AA65C1BF45B0800E56C1A /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5FB1BF45B0800E56C1A /* Queue.m */; };
-		6B4AA65D1BF45B0800E56C1A /* Range.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5FD1BF45B0800E56C1A /* Range.m */; };
-		6B4AA65E1BF45B0800E56C1A /* Range.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5FD1BF45B0800E56C1A /* Range.m */; };
-		6B4AA65F1BF45B0800E56C1A /* RepeatEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5FF1BF45B0800E56C1A /* RepeatEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6601BF45B0800E56C1A /* RepeatEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5FF1BF45B0800E56C1A /* RepeatEnumerator.m */; };
-		6B4AA6611BF45B0800E56C1A /* Sequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA6011BF45B0800E56C1A /* Sequence.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6621BF45B0800E56C1A /* Sequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA6011BF45B0800E56C1A /* Sequence.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6631BF45B0800E56C1A /* SingleValueEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA6031BF45B0800E56C1A /* SingleValueEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6641BF45B0800E56C1A /* SingleValueEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA6031BF45B0800E56C1A /* SingleValueEnumerator.m */; };
-		6B4AA6651BF45B0800E56C1A /* Some.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA6051BF45B0800E56C1A /* Some.m */; };
-		6B4AA6661BF45B0800E56C1A /* Some.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA6051BF45B0800E56C1A /* Some.m */; };
-		6B4AA6671BF45B0800E56C1A /* TakeWhileEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA6071BF45B0800E56C1A /* TakeWhileEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6681BF45B0800E56C1A /* TakeWhileEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA6071BF45B0800E56C1A /* TakeWhileEnumerator.m */; };
 		6B4AA6691BF45B0800E56C1A /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA60A1BF45B0800E56C1A /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 		6B4AA66A1BF45B0800E56C1A /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA60A1BF45B0800E56C1A /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 		6B4AA6751BF45CD800E56C1A /* Organ Run.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B4AA66D1BF45CD800E56C1A /* Organ Run.m4a */; };
@@ -617,15 +622,14 @@
 		6BBB49DE1B667EE70036081B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BBB49DD1B667EE70036081B /* Assets.xcassets */; };
 		6BBB49E11B667EE70036081B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BBB49DF1B667EE70036081B /* LaunchScreen.storyboard */; };
 		6BC6F05F1B75774200A582C1 /* MNTestBlockStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC6F05E1B75774200A582C1 /* MNTestBlockStruct.m */; };
-		6BC86D261B76441C00C6D20B /* MNTestAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D251B76441C00C6D20B /* MNTestAction.m */; };
+		6BC86D261B76441C00C6D20B /* MNTestActionStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D251B76441C00C6D20B /* MNTestActionStruct.m */; };
 		6BC86D291B768BDD00C6D20B /* MNRenderLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D281B768BDD00C6D20B /* MNRenderLayer.m */; };
 		6BC86D2C1B76A31B00C6D20B /* MNTestCollectionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D2B1B76A31B00C6D20B /* MNTestCollectionItemView.m */; };
-		6BC86D2F1B76A3D100C6D20B /* MNViewStaffStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D2E1B76A3D100C6D20B /* MNViewStaffStruct.m */; };
 		6BC86D351B77D75C00C6D20B /* NSString+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D341B77D75C00C6D20B /* NSString+MNAdditions.m */; };
 		6BD132E41C126E9000E14741 /* MNBendRenderOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE115631BFE7B0700961E35 /* MNBendRenderOptions.m */; };
 		6BD132E61C126EA300E14741 /* MNCarrierLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4BC5DB1B7B9CF4002FAA76 /* MNCarrierLayer.m */; };
 		6BD132E71C126EA900E14741 /* MNRenderLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D281B768BDD00C6D20B /* MNRenderLayer.m */; };
-		6BD132E81C126EB100E14741 /* MNTestAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D251B76441C00C6D20B /* MNTestAction.m */; };
+		6BD132E81C126EB100E14741 /* MNTestActionStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D251B76441C00C6D20B /* MNTestActionStruct.m */; };
 		6BD132E91C12790800E14741 /* MNAccidentalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA4F91BF459B200E56C1A /* MNAccidentalTests.m */; };
 		6BD132EA1C12790800E14741 /* MNAnimationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA4FB1BF459B200E56C1A /* MNAnimationTests.m */; };
 		6BD132EB1C12790800E14741 /* MNAnnotationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA4FD1BF459B200E56C1A /* MNAnnotationTests.m */; };
@@ -820,7 +824,6 @@
 		6BD133A81C127A1000E14741 /* SenTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56447D1BF44680006FDFD9 /* SenTestSuite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 		6BD133A91C127A1000E14741 /* SenTestSuiteRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56447F1BF44680006FDFD9 /* SenTestSuiteRun.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 		6BD133AA1C127AE500E14741 /* MNTestBlockStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC6F05E1B75774200A582C1 /* MNTestBlockStruct.m */; };
-		6BD133AB1C127AED00E14741 /* MNViewStaffStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D2E1B76A3D100C6D20B /* MNViewStaffStruct.m */; };
 		6BD133AE1C1280CA00E14741 /* MNMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD133AD1C1280CA00E14741 /* MNMTableViewCell.m */; };
 		6BD133AF1C128BF500E14741 /* NSString+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D341B77D75C00C6D20B /* NSString+MNAdditions.m */; };
 		6BD133B21C13664E00E14741 /* MNTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD133B11C13664E00E14741 /* MNTestUtils.m */; };
@@ -831,7 +834,6 @@
 		6BF09E4C1C0910B9008590D3 /* MNAccListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09E4A1C0910B9008590D3 /* MNAccListStruct.m */; };
 		6BF09E4F1C0910C9008590D3 /* MNLineListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09E4E1C0910C9008590D3 /* MNLineListStruct.m */; };
 		6BF09E501C0910C9008590D3 /* MNLineListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09E4E1C0910C9008590D3 /* MNLineListStruct.m */; };
-		85159CA0EEE6C220849D9FC0 /* Pods_MusicNotationMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D1C2FA77A7E450CF68D1FA /* Pods_MusicNotationMobile.framework */; };
 		D278F51B1A8689AE000C57C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D278F51A1A8689AE000C57C1 /* AppDelegate.m */; };
 		D278F51D1A8689AE000C57C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D278F51C1A8689AE000C57C1 /* main.m */; };
 		D278F5201A8689AE000C57C1 /* MNBrowserWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D278F51F1A8689AE000C57C1 /* MNBrowserWindowController.m */; };
@@ -851,12 +853,89 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		180A38F4867827872B96F8D3 /* Pods-MusicNotationMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationMobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationMobile/Pods-MusicNotationMobile.debug.xcconfig"; sourceTree = "<group>"; };
-		57F41D53F602C4070678E460 /* Pods-MusicNotationDesktop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationDesktop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationDesktop/Pods-MusicNotationDesktop.debug.xcconfig"; sourceTree = "<group>"; };
+		24DF42CE43159DF121C5F1B3 /* Pods_MusicNotationMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicNotationMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B0BE79A1C14A4CB0035ADCF /* MNMCarrierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNMCarrierView.h; sourceTree = "<group>"; };
 		6B0BE79B1C14A4CB0035ADCF /* MNMCarrierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNMCarrierView.m; sourceTree = "<group>"; };
 		6B0BE79D1C14E7600035ADCF /* MNNoteDrawNotesDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNNoteDrawNotesDelegate.h; sourceTree = "<group>"; };
 		6B0BE79E1C14F5F70035ADCF /* MNTestParentDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestParentDelegate.h; sourceTree = "<group>"; };
+		6B0BE82C1C162D630035ADCF /* Callables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Callables.h; sourceTree = "<group>"; };
+		6B0BE82D1C162D630035ADCF /* Callables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Callables.m; sourceTree = "<group>"; };
+		6B0BE82E1C162D630035ADCF /* Coercions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coercions.h; sourceTree = "<group>"; };
+		6B0BE82F1C162D630035ADCF /* EasyEnumerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyEnumerable.h; sourceTree = "<group>"; };
+		6B0BE8301C162D630035ADCF /* EasyEnumerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyEnumerable.m; sourceTree = "<group>"; };
+		6B0BE8311C162D630035ADCF /* Enumerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enumerable.h; sourceTree = "<group>"; };
+		6B0BE8331C162D630035ADCF /* EmptyEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyEnumerator.h; sourceTree = "<group>"; };
+		6B0BE8341C162D630035ADCF /* EmptyEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyEnumerator.m; sourceTree = "<group>"; };
+		6B0BE8351C162D630035ADCF /* EnumerateEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumerateEnumerator.h; sourceTree = "<group>"; };
+		6B0BE8361C162D630035ADCF /* EnumerateEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnumerateEnumerator.m; sourceTree = "<group>"; };
+		6B0BE8371C162D630035ADCF /* FilterEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterEnumerator.h; sourceTree = "<group>"; };
+		6B0BE8381C162D630035ADCF /* FilterEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterEnumerator.m; sourceTree = "<group>"; };
+		6B0BE8391C162D630035ADCF /* FlattenEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlattenEnumerator.h; sourceTree = "<group>"; };
+		6B0BE83A1C162D630035ADCF /* FlattenEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlattenEnumerator.m; sourceTree = "<group>"; };
+		6B0BE83B1C162D630035ADCF /* GroupedEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupedEnumerator.h; sourceTree = "<group>"; };
+		6B0BE83C1C162D630035ADCF /* GroupedEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupedEnumerator.m; sourceTree = "<group>"; };
+		6B0BE83D1C162D630035ADCF /* MapEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapEnumerator.h; sourceTree = "<group>"; };
+		6B0BE83E1C162D630035ADCF /* MapEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapEnumerator.m; sourceTree = "<group>"; };
+		6B0BE83F1C162D630035ADCF /* MemoisedEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoisedEnumerator.h; sourceTree = "<group>"; };
+		6B0BE8401C162D630035ADCF /* MemoisedEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoisedEnumerator.m; sourceTree = "<group>"; };
+		6B0BE8411C162D630035ADCF /* MergeEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeEnumerator.h; sourceTree = "<group>"; };
+		6B0BE8421C162D630035ADCF /* MergeEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeEnumerator.m; sourceTree = "<group>"; };
+		6B0BE8431C162D630035ADCF /* NSEnumerator+OCTotallyLazy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEnumerator+OCTotallyLazy.h"; sourceTree = "<group>"; };
+		6B0BE8441C162D630035ADCF /* NSEnumerator+OCTotallyLazy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSEnumerator+OCTotallyLazy.m"; sourceTree = "<group>"; };
+		6B0BE8451C162D630035ADCF /* PairEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PairEnumerator.h; sourceTree = "<group>"; };
+		6B0BE8461C162D630035ADCF /* PairEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PairEnumerator.m; sourceTree = "<group>"; };
+		6B0BE8471C162D630035ADCF /* PartitionEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartitionEnumerator.h; sourceTree = "<group>"; };
+		6B0BE8481C162D630035ADCF /* PartitionEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartitionEnumerator.m; sourceTree = "<group>"; };
+		6B0BE8491C162D630035ADCF /* RepeatEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatEnumerator.h; sourceTree = "<group>"; };
+		6B0BE84A1C162D630035ADCF /* RepeatEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatEnumerator.m; sourceTree = "<group>"; };
+		6B0BE84B1C162D630035ADCF /* SingleValueEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleValueEnumerator.h; sourceTree = "<group>"; };
+		6B0BE84C1C162D630035ADCF /* SingleValueEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleValueEnumerator.m; sourceTree = "<group>"; };
+		6B0BE84D1C162D630035ADCF /* TakeWhileEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeWhileEnumerator.h; sourceTree = "<group>"; };
+		6B0BE84E1C162D630035ADCF /* TakeWhileEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeWhileEnumerator.m; sourceTree = "<group>"; };
+		6B0BE84F1C162D630035ADCF /* Flattenable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flattenable.h; sourceTree = "<group>"; };
+		6B0BE8501C162D630035ADCF /* Foldable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foldable.h; sourceTree = "<group>"; };
+		6B0BE8521C162D630035ADCF /* Function1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Function1.h; sourceTree = "<group>"; };
+		6B0BE8531C162D630035ADCF /* Function1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Function1.m; sourceTree = "<group>"; };
+		6B0BE8541C162D630035ADCF /* Function2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Function2.h; sourceTree = "<group>"; };
+		6B0BE8551C162D630035ADCF /* Function2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Function2.m; sourceTree = "<group>"; };
+		6B0BE8561C162D630035ADCF /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
+		6B0BE8571C162D630035ADCF /* Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Functions.m; sourceTree = "<group>"; };
+		6B0BE8581C162D630035ADCF /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		6B0BE8591C162D630035ADCF /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		6B0BE85A1C162D630035ADCF /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B0BE85B1C162D630035ADCF /* Mappable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mappable.h; sourceTree = "<group>"; };
+		6B0BE85C1C162D630035ADCF /* MemoisedSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoisedSequence.h; sourceTree = "<group>"; };
+		6B0BE85D1C162D630035ADCF /* MemoisedSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoisedSequence.m; sourceTree = "<group>"; };
+		6B0BE85E1C162D630035ADCF /* None.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = None.h; sourceTree = "<group>"; };
+		6B0BE85F1C162D630035ADCF /* None.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = None.m; sourceTree = "<group>"; };
+		6B0BE8601C162D630035ADCF /* NoSuchElementException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoSuchElementException.h; sourceTree = "<group>"; };
+		6B0BE8611C162D630035ADCF /* NoSuchElementException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoSuchElementException.m; sourceTree = "<group>"; };
+		6B0BE8621C162D630035ADCF /* NSArray+OCTotallyLazy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+OCTotallyLazy.h"; sourceTree = "<group>"; };
+		6B0BE8631C162D630035ADCF /* NSArray+OCTotallyLazy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+OCTotallyLazy.m"; sourceTree = "<group>"; };
+		6B0BE8641C162D630035ADCF /* NSDictionary+OCTotallyLazy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+OCTotallyLazy.h"; sourceTree = "<group>"; };
+		6B0BE8651C162D630035ADCF /* NSDictionary+OCTotallyLazy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+OCTotallyLazy.m"; sourceTree = "<group>"; };
+		6B0BE8661C162D630035ADCF /* NSSet+OCTotallyLazy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+OCTotallyLazy.h"; sourceTree = "<group>"; };
+		6B0BE8671C162D630035ADCF /* NSSet+OCTotallyLazy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+OCTotallyLazy.m"; sourceTree = "<group>"; };
+		6B0BE8691C162D630035ADCF /* Numbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Numbers.h; sourceTree = "<group>"; };
+		6B0BE86A1C162D630035ADCF /* Numbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Numbers.m; sourceTree = "<group>"; };
+		6B0BE86B1C162D630035ADCF /* OCTotallyLazy-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OCTotallyLazy-Info.plist"; sourceTree = "<group>"; };
+		6B0BE86C1C162D630035ADCF /* OCTotallyLazy-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "OCTotallyLazy-Prefix.pch"; sourceTree = "<group>"; };
+		6B0BE86D1C162D630035ADCF /* OCTotallyLazy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTotallyLazy.h; sourceTree = "<group>"; };
+		6B0BE86E1C162D630035ADCF /* Option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Option.h; sourceTree = "<group>"; };
+		6B0BE86F1C162D630035ADCF /* Option.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Option.m; sourceTree = "<group>"; };
+		6B0BE8701C162D630035ADCF /* Pair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pair.h; sourceTree = "<group>"; };
+		6B0BE8711C162D630035ADCF /* Pair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pair.m; sourceTree = "<group>"; };
+		6B0BE8731C162D630035ADCF /* Predicates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Predicates.h; sourceTree = "<group>"; };
+		6B0BE8741C162D630035ADCF /* Predicates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Predicates.m; sourceTree = "<group>"; };
+		6B0BE8751C162D630035ADCF /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
+		6B0BE8761C162D630035ADCF /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
+		6B0BE8771C162D630035ADCF /* Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Range.h; sourceTree = "<group>"; };
+		6B0BE8781C162D630035ADCF /* Range.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Range.m; sourceTree = "<group>"; };
+		6B0BE8791C162D630035ADCF /* Sequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sequence.h; sourceTree = "<group>"; };
+		6B0BE87A1C162D630035ADCF /* Sequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sequence.m; sourceTree = "<group>"; };
+		6B0BE87B1C162D630035ADCF /* Some.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Some.h; sourceTree = "<group>"; };
+		6B0BE87C1C162D630035ADCF /* Some.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Some.m; sourceTree = "<group>"; };
+		6B0BE87D1C162D630035ADCF /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		6B182C711C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNGraceNoteGroupListStruct.h; sourceTree = "<group>"; };
 		6B182C721C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNGraceNoteGroupListStruct.m; sourceTree = "<group>"; };
 		6B182C751C0E57C1006F0981 /* MNGraceNoteRenderOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNGraceNoteRenderOptions.h; sourceTree = "<group>"; };
@@ -1233,81 +1312,6 @@
 		6B4AA5B81BF45B0800E56C1A /* NSObject+MNAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MNAdditions.m"; sourceTree = "<group>"; };
 		6B4AA5BB1BF45B0800E56C1A /* NSString+Ruby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Ruby.h"; sourceTree = "<group>"; };
 		6B4AA5BC1BF45B0800E56C1A /* NSString+Ruby.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Ruby.m"; sourceTree = "<group>"; };
-		6B4AA5BE1BF45B0800E56C1A /* Callables.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Callables.h; sourceTree = "<group>"; };
-		6B4AA5BF1BF45B0800E56C1A /* Callables.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Callables.m; sourceTree = "<group>"; };
-		6B4AA5C01BF45B0800E56C1A /* Coercions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coercions.h; sourceTree = "<group>"; };
-		6B4AA5C11BF45B0800E56C1A /* EasyEnumerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyEnumerable.h; sourceTree = "<group>"; };
-		6B4AA5C21BF45B0800E56C1A /* EasyEnumerable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyEnumerable.m; sourceTree = "<group>"; };
-		6B4AA5C31BF45B0800E56C1A /* EmptyEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmptyEnumerator.h; sourceTree = "<group>"; };
-		6B4AA5C41BF45B0800E56C1A /* EmptyEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmptyEnumerator.m; sourceTree = "<group>"; };
-		6B4AA5C51BF45B0800E56C1A /* Enumerable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enumerable.h; sourceTree = "<group>"; };
-		6B4AA5C61BF45B0800E56C1A /* EnumerateEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumerateEnumerator.h; sourceTree = "<group>"; };
-		6B4AA5C71BF45B0800E56C1A /* EnumerateEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnumerateEnumerator.m; sourceTree = "<group>"; };
-		6B4AA5C81BF45B0800E56C1A /* FilterEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterEnumerator.h; sourceTree = "<group>"; };
-		6B4AA5C91BF45B0800E56C1A /* FilterEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterEnumerator.m; sourceTree = "<group>"; };
-		6B4AA5CA1BF45B0800E56C1A /* Flattenable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flattenable.h; sourceTree = "<group>"; };
-		6B4AA5CB1BF45B0800E56C1A /* FlattenEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlattenEnumerator.h; sourceTree = "<group>"; };
-		6B4AA5CC1BF45B0800E56C1A /* FlattenEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlattenEnumerator.m; sourceTree = "<group>"; };
-		6B4AA5CD1BF45B0800E56C1A /* Foldable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foldable.h; sourceTree = "<group>"; };
-		6B4AA5CE1BF45B0800E56C1A /* Function1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Function1.h; sourceTree = "<group>"; };
-		6B4AA5CF1BF45B0800E56C1A /* Function1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Function1.m; sourceTree = "<group>"; };
-		6B4AA5D01BF45B0800E56C1A /* Function2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Function2.h; sourceTree = "<group>"; };
-		6B4AA5D11BF45B0800E56C1A /* Function2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Function2.m; sourceTree = "<group>"; };
-		6B4AA5D21BF45B0800E56C1A /* Functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Functions.h; sourceTree = "<group>"; };
-		6B4AA5D31BF45B0800E56C1A /* Functions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Functions.m; sourceTree = "<group>"; };
-		6B4AA5D41BF45B0800E56C1A /* GroupedEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupedEnumerator.h; sourceTree = "<group>"; };
-		6B4AA5D51BF45B0800E56C1A /* GroupedEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupedEnumerator.m; sourceTree = "<group>"; };
-		6B4AA5D61BF45B0800E56C1A /* MapEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapEnumerator.h; sourceTree = "<group>"; };
-		6B4AA5D71BF45B0800E56C1A /* MapEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapEnumerator.m; sourceTree = "<group>"; };
-		6B4AA5D81BF45B0800E56C1A /* Mappable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mappable.h; sourceTree = "<group>"; };
-		6B4AA5D91BF45B0800E56C1A /* MemoisedEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoisedEnumerator.h; sourceTree = "<group>"; };
-		6B4AA5DA1BF45B0800E56C1A /* MemoisedEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoisedEnumerator.m; sourceTree = "<group>"; };
-		6B4AA5DB1BF45B0800E56C1A /* MemoisedSequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoisedSequence.h; sourceTree = "<group>"; };
-		6B4AA5DC1BF45B0800E56C1A /* MemoisedSequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoisedSequence.m; sourceTree = "<group>"; };
-		6B4AA5DD1BF45B0800E56C1A /* MergeEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MergeEnumerator.h; sourceTree = "<group>"; };
-		6B4AA5DE1BF45B0800E56C1A /* MergeEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MergeEnumerator.m; sourceTree = "<group>"; };
-		6B4AA5DF1BF45B0800E56C1A /* None.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = None.h; sourceTree = "<group>"; };
-		6B4AA5E01BF45B0800E56C1A /* None.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = None.m; sourceTree = "<group>"; };
-		6B4AA5E11BF45B0800E56C1A /* NoSuchElementException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoSuchElementException.h; sourceTree = "<group>"; };
-		6B4AA5E21BF45B0800E56C1A /* NoSuchElementException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoSuchElementException.m; sourceTree = "<group>"; };
-		6B4AA5E31BF45B0800E56C1A /* NSArray+OCTotallyLazy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+OCTotallyLazy.h"; sourceTree = "<group>"; };
-		6B4AA5E41BF45B0800E56C1A /* NSArray+OCTotallyLazy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+OCTotallyLazy.m"; sourceTree = "<group>"; };
-		6B4AA5E51BF45B0800E56C1A /* NSDictionary+OCTotallyLazy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+OCTotallyLazy.h"; sourceTree = "<group>"; };
-		6B4AA5E61BF45B0800E56C1A /* NSDictionary+OCTotallyLazy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+OCTotallyLazy.m"; sourceTree = "<group>"; };
-		6B4AA5E71BF45B0800E56C1A /* NSEnumerator+OCTotallyLazy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSEnumerator+OCTotallyLazy.h"; sourceTree = "<group>"; };
-		6B4AA5E81BF45B0800E56C1A /* NSEnumerator+OCTotallyLazy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSEnumerator+OCTotallyLazy.m"; sourceTree = "<group>"; };
-		6B4AA5E91BF45B0800E56C1A /* NSSet+OCTotallyLazy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+OCTotallyLazy.h"; sourceTree = "<group>"; };
-		6B4AA5EA1BF45B0800E56C1A /* NSSet+OCTotallyLazy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+OCTotallyLazy.m"; sourceTree = "<group>"; };
-		6B4AA5EB1BF45B0800E56C1A /* Numbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Numbers.h; sourceTree = "<group>"; };
-		6B4AA5EC1BF45B0800E56C1A /* Numbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Numbers.m; sourceTree = "<group>"; };
-		6B4AA5ED1BF45B0800E56C1A /* OCGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCGroup.h; sourceTree = "<group>"; };
-		6B4AA5EE1BF45B0800E56C1A /* OCGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OCGroup.m; sourceTree = "<group>"; };
-		6B4AA5EF1BF45B0800E56C1A /* OCTotallyLazy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCTotallyLazy.h; sourceTree = "<group>"; };
-		6B4AA5F01BF45B0800E56C1A /* Option.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Option.h; sourceTree = "<group>"; };
-		6B4AA5F11BF45B0800E56C1A /* Option.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Option.m; sourceTree = "<group>"; };
-		6B4AA5F21BF45B0800E56C1A /* Pair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pair.h; sourceTree = "<group>"; };
-		6B4AA5F31BF45B0800E56C1A /* Pair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pair.m; sourceTree = "<group>"; };
-		6B4AA5F41BF45B0800E56C1A /* PairEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PairEnumerator.h; sourceTree = "<group>"; };
-		6B4AA5F51BF45B0800E56C1A /* PairEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PairEnumerator.m; sourceTree = "<group>"; };
-		6B4AA5F61BF45B0800E56C1A /* PartitionEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PartitionEnumerator.h; sourceTree = "<group>"; };
-		6B4AA5F71BF45B0800E56C1A /* PartitionEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PartitionEnumerator.m; sourceTree = "<group>"; };
-		6B4AA5F81BF45B0800E56C1A /* Predicates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Predicates.h; sourceTree = "<group>"; };
-		6B4AA5F91BF45B0800E56C1A /* Predicates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Predicates.m; sourceTree = "<group>"; };
-		6B4AA5FA1BF45B0800E56C1A /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
-		6B4AA5FB1BF45B0800E56C1A /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
-		6B4AA5FC1BF45B0800E56C1A /* Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Range.h; sourceTree = "<group>"; };
-		6B4AA5FD1BF45B0800E56C1A /* Range.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Range.m; sourceTree = "<group>"; };
-		6B4AA5FE1BF45B0800E56C1A /* RepeatEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatEnumerator.h; sourceTree = "<group>"; };
-		6B4AA5FF1BF45B0800E56C1A /* RepeatEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatEnumerator.m; sourceTree = "<group>"; };
-		6B4AA6001BF45B0800E56C1A /* Sequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sequence.h; sourceTree = "<group>"; };
-		6B4AA6011BF45B0800E56C1A /* Sequence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sequence.m; sourceTree = "<group>"; };
-		6B4AA6021BF45B0800E56C1A /* SingleValueEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleValueEnumerator.h; sourceTree = "<group>"; };
-		6B4AA6031BF45B0800E56C1A /* SingleValueEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleValueEnumerator.m; sourceTree = "<group>"; };
-		6B4AA6041BF45B0800E56C1A /* Some.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Some.h; sourceTree = "<group>"; };
-		6B4AA6051BF45B0800E56C1A /* Some.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Some.m; sourceTree = "<group>"; };
-		6B4AA6061BF45B0800E56C1A /* TakeWhileEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TakeWhileEnumerator.h; sourceTree = "<group>"; };
-		6B4AA6071BF45B0800E56C1A /* TakeWhileEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TakeWhileEnumerator.m; sourceTree = "<group>"; };
-		6B4AA6081BF45B0800E56C1A /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		6B4AA6091BF45B0800E56C1A /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		6B4AA60A1BF45B0800E56C1A /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		6B4AA66D1BF45CD800E56C1A /* Organ Run.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Organ Run.m4a"; sourceTree = "<group>"; };
@@ -1727,14 +1731,12 @@
 		6BBB49E21B667EE70036081B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6BC6F05D1B75774200A582C1 /* MNTestBlockStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestBlockStruct.h; sourceTree = "<group>"; };
 		6BC6F05E1B75774200A582C1 /* MNTestBlockStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTestBlockStruct.m; sourceTree = "<group>"; };
-		6BC86D241B76441C00C6D20B /* MNTestAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestAction.h; sourceTree = "<group>"; };
-		6BC86D251B76441C00C6D20B /* MNTestAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTestAction.m; sourceTree = "<group>"; };
+		6BC86D241B76441C00C6D20B /* MNTestActionStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestActionStruct.h; sourceTree = "<group>"; };
+		6BC86D251B76441C00C6D20B /* MNTestActionStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTestActionStruct.m; sourceTree = "<group>"; };
 		6BC86D271B768BDD00C6D20B /* MNRenderLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNRenderLayer.h; sourceTree = "<group>"; };
 		6BC86D281B768BDD00C6D20B /* MNRenderLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNRenderLayer.m; sourceTree = "<group>"; };
 		6BC86D2A1B76A31B00C6D20B /* MNTestCollectionItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestCollectionItemView.h; sourceTree = "<group>"; };
 		6BC86D2B1B76A31B00C6D20B /* MNTestCollectionItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTestCollectionItemView.m; sourceTree = "<group>"; };
-		6BC86D2D1B76A3D100C6D20B /* MNViewStaffStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNViewStaffStruct.h; sourceTree = "<group>"; };
-		6BC86D2E1B76A3D100C6D20B /* MNViewStaffStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNViewStaffStruct.m; sourceTree = "<group>"; };
 		6BC86D331B77D75C00C6D20B /* NSString+MNAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+MNAdditions.h"; path = "../NSString+MNAdditions.h"; sourceTree = "<group>"; };
 		6BC86D341B77D75C00C6D20B /* NSString+MNAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+MNAdditions.m"; path = "../NSString+MNAdditions.m"; sourceTree = "<group>"; };
 		6BD133AC1C1280CA00E14741 /* MNMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNMTableViewCell.h; sourceTree = "<group>"; };
@@ -1751,9 +1753,11 @@
 		6BF09E4A1C0910B9008590D3 /* MNAccListStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNAccListStruct.m; sourceTree = "<group>"; };
 		6BF09E4D1C0910C9008590D3 /* MNLineListStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNLineListStruct.h; sourceTree = "<group>"; };
 		6BF09E4E1C0910C9008590D3 /* MNLineListStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNLineListStruct.m; sourceTree = "<group>"; };
-		7AD24FF2A1DFE43BC7FB5697 /* Pods-MusicNotationDesktop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationDesktop.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationDesktop/Pods-MusicNotationDesktop.release.xcconfig"; sourceTree = "<group>"; };
-		82D1C2FA77A7E450CF68D1FA /* Pods_MusicNotationMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicNotationMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8555E94A25DCF4B33D73B0F0 /* Pods-MusicNotationMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationMobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationMobile/Pods-MusicNotationMobile.release.xcconfig"; sourceTree = "<group>"; };
+		7931C3BC3335BB59F58AAEA6 /* Pods-MusicNotationDesktop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationDesktop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationDesktop/Pods-MusicNotationDesktop.debug.xcconfig"; sourceTree = "<group>"; };
+		7CAA54FDF931131D4AA3C386 /* Pods-MusicNotationMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationMobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationMobile/Pods-MusicNotationMobile.release.xcconfig"; sourceTree = "<group>"; };
+		9DCF05863704306CC41A85BB /* Pods-MusicNotationMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationMobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationMobile/Pods-MusicNotationMobile.debug.xcconfig"; sourceTree = "<group>"; };
+		AF69A71D7E4769254B6E2C05 /* Pods_MusicNotationDesktop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicNotationDesktop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2BFBDC93D72FCB928185506 /* Pods-MusicNotationDesktop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationDesktop.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationDesktop/Pods-MusicNotationDesktop.release.xcconfig"; sourceTree = "<group>"; };
 		D278F5141A8689AE000C57C1 /* MusicNotationLibraryCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicNotationLibraryCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D278F5181A8689AE000C57C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D278F5191A8689AE000C57C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1762,7 +1766,6 @@
 		D278F51E1A8689AE000C57C1 /* MNBrowserWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MNBrowserWindowController.h; sourceTree = "<group>"; };
 		D278F51F1A8689AE000C57C1 /* MNBrowserWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MNBrowserWindowController.m; sourceTree = "<group>"; };
 		D278F5211A8689AE000C57C1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		F15AA8371CC8C24BA804B386 /* Pods_MusicNotationDesktop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicNotationDesktop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1773,7 +1776,7 @@
 				6B4F91C01C13A7FF00296C6F /* Accelerate.framework in Frameworks */,
 				6B4F91BE1C13A7F600296C6F /* AVFoundation.framework in Frameworks */,
 				6B4F91BC1C13A7EB00296C6F /* AudioToolbox.framework in Frameworks */,
-				85159CA0EEE6C220849D9FC0 /* Pods_MusicNotationMobile.framework in Frameworks */,
+				50DD15EAB2841FEF5EF1E7FF /* Pods_MusicNotationMobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1784,22 +1787,77 @@
 				6B4F91C61C13A8DD00296C6F /* Accelerate.framework in Frameworks */,
 				6B4F91C41C13A8CD00296C6F /* AVFoundation.framework in Frameworks */,
 				6B4F91C21C13A8C700296C6F /* AudioToolbox.framework in Frameworks */,
-				5E95DE263BB6171A18C03A4A /* Pods_MusicNotationDesktop.framework in Frameworks */,
+				5FC5D54AA3C9A43D576F2221 /* Pods_MusicNotationDesktop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5F995727FF2FBF0026A12013 /* Pods */ = {
+		6B0BE8321C162D630035ADCF /* enumerators */ = {
 			isa = PBXGroup;
 			children = (
-				57F41D53F602C4070678E460 /* Pods-MusicNotationDesktop.debug.xcconfig */,
-				7AD24FF2A1DFE43BC7FB5697 /* Pods-MusicNotationDesktop.release.xcconfig */,
-				180A38F4867827872B96F8D3 /* Pods-MusicNotationMobile.debug.xcconfig */,
-				8555E94A25DCF4B33D73B0F0 /* Pods-MusicNotationMobile.release.xcconfig */,
+				6B0BE8331C162D630035ADCF /* EmptyEnumerator.h */,
+				6B0BE8341C162D630035ADCF /* EmptyEnumerator.m */,
+				6B0BE8351C162D630035ADCF /* EnumerateEnumerator.h */,
+				6B0BE8361C162D630035ADCF /* EnumerateEnumerator.m */,
+				6B0BE8371C162D630035ADCF /* FilterEnumerator.h */,
+				6B0BE8381C162D630035ADCF /* FilterEnumerator.m */,
+				6B0BE8391C162D630035ADCF /* FlattenEnumerator.h */,
+				6B0BE83A1C162D630035ADCF /* FlattenEnumerator.m */,
+				6B0BE83B1C162D630035ADCF /* GroupedEnumerator.h */,
+				6B0BE83C1C162D630035ADCF /* GroupedEnumerator.m */,
+				6B0BE83D1C162D630035ADCF /* MapEnumerator.h */,
+				6B0BE83E1C162D630035ADCF /* MapEnumerator.m */,
+				6B0BE83F1C162D630035ADCF /* MemoisedEnumerator.h */,
+				6B0BE8401C162D630035ADCF /* MemoisedEnumerator.m */,
+				6B0BE8411C162D630035ADCF /* MergeEnumerator.h */,
+				6B0BE8421C162D630035ADCF /* MergeEnumerator.m */,
+				6B0BE8431C162D630035ADCF /* NSEnumerator+OCTotallyLazy.h */,
+				6B0BE8441C162D630035ADCF /* NSEnumerator+OCTotallyLazy.m */,
+				6B0BE8451C162D630035ADCF /* PairEnumerator.h */,
+				6B0BE8461C162D630035ADCF /* PairEnumerator.m */,
+				6B0BE8471C162D630035ADCF /* PartitionEnumerator.h */,
+				6B0BE8481C162D630035ADCF /* PartitionEnumerator.m */,
+				6B0BE8491C162D630035ADCF /* RepeatEnumerator.h */,
+				6B0BE84A1C162D630035ADCF /* RepeatEnumerator.m */,
+				6B0BE84B1C162D630035ADCF /* SingleValueEnumerator.h */,
+				6B0BE84C1C162D630035ADCF /* SingleValueEnumerator.m */,
+				6B0BE84D1C162D630035ADCF /* TakeWhileEnumerator.h */,
+				6B0BE84E1C162D630035ADCF /* TakeWhileEnumerator.m */,
 			);
-			name = Pods;
+			path = enumerators;
+			sourceTree = "<group>";
+		};
+		6B0BE8511C162D630035ADCF /* functions */ = {
+			isa = PBXGroup;
+			children = (
+				6B0BE8521C162D630035ADCF /* Function1.h */,
+				6B0BE8531C162D630035ADCF /* Function1.m */,
+				6B0BE8541C162D630035ADCF /* Function2.h */,
+				6B0BE8551C162D630035ADCF /* Function2.m */,
+				6B0BE8561C162D630035ADCF /* Functions.h */,
+				6B0BE8571C162D630035ADCF /* Functions.m */,
+			);
+			path = functions;
+			sourceTree = "<group>";
+		};
+		6B0BE8681C162D630035ADCF /* numbers */ = {
+			isa = PBXGroup;
+			children = (
+				6B0BE8691C162D630035ADCF /* Numbers.h */,
+				6B0BE86A1C162D630035ADCF /* Numbers.m */,
+			);
+			path = numbers;
+			sourceTree = "<group>";
+		};
+		6B0BE8721C162D630035ADCF /* predicates */ = {
+			isa = PBXGroup;
+			children = (
+				6B0BE8731C162D630035ADCF /* Predicates.h */,
+				6B0BE8741C162D630035ADCF /* Predicates.m */,
+			);
+			path = predicates;
 			sourceTree = "<group>";
 		};
 		6B3185021B71335000CCB182 /* resources */ = {
@@ -2275,81 +2333,50 @@
 		6B4AA5BD1BF45B0800E56C1A /* octotallylazy */ = {
 			isa = PBXGroup;
 			children = (
-				6B4AA5BE1BF45B0800E56C1A /* Callables.h */,
-				6B4AA5BF1BF45B0800E56C1A /* Callables.m */,
-				6B4AA5C01BF45B0800E56C1A /* Coercions.h */,
-				6B4AA5C11BF45B0800E56C1A /* EasyEnumerable.h */,
-				6B4AA5C21BF45B0800E56C1A /* EasyEnumerable.m */,
-				6B4AA5C31BF45B0800E56C1A /* EmptyEnumerator.h */,
-				6B4AA5C41BF45B0800E56C1A /* EmptyEnumerator.m */,
-				6B4AA5C51BF45B0800E56C1A /* Enumerable.h */,
-				6B4AA5C61BF45B0800E56C1A /* EnumerateEnumerator.h */,
-				6B4AA5C71BF45B0800E56C1A /* EnumerateEnumerator.m */,
-				6B4AA5C81BF45B0800E56C1A /* FilterEnumerator.h */,
-				6B4AA5C91BF45B0800E56C1A /* FilterEnumerator.m */,
-				6B4AA5CA1BF45B0800E56C1A /* Flattenable.h */,
-				6B4AA5CB1BF45B0800E56C1A /* FlattenEnumerator.h */,
-				6B4AA5CC1BF45B0800E56C1A /* FlattenEnumerator.m */,
-				6B4AA5CD1BF45B0800E56C1A /* Foldable.h */,
-				6B4AA5CE1BF45B0800E56C1A /* Function1.h */,
-				6B4AA5CF1BF45B0800E56C1A /* Function1.m */,
-				6B4AA5D01BF45B0800E56C1A /* Function2.h */,
-				6B4AA5D11BF45B0800E56C1A /* Function2.m */,
-				6B4AA5D21BF45B0800E56C1A /* Functions.h */,
-				6B4AA5D31BF45B0800E56C1A /* Functions.m */,
-				6B4AA5D41BF45B0800E56C1A /* GroupedEnumerator.h */,
-				6B4AA5D51BF45B0800E56C1A /* GroupedEnumerator.m */,
-				6B4AA5D61BF45B0800E56C1A /* MapEnumerator.h */,
-				6B4AA5D71BF45B0800E56C1A /* MapEnumerator.m */,
-				6B4AA5D81BF45B0800E56C1A /* Mappable.h */,
-				6B4AA5D91BF45B0800E56C1A /* MemoisedEnumerator.h */,
-				6B4AA5DA1BF45B0800E56C1A /* MemoisedEnumerator.m */,
-				6B4AA5DB1BF45B0800E56C1A /* MemoisedSequence.h */,
-				6B4AA5DC1BF45B0800E56C1A /* MemoisedSequence.m */,
-				6B4AA5DD1BF45B0800E56C1A /* MergeEnumerator.h */,
-				6B4AA5DE1BF45B0800E56C1A /* MergeEnumerator.m */,
-				6B4AA5DF1BF45B0800E56C1A /* None.h */,
-				6B4AA5E01BF45B0800E56C1A /* None.m */,
-				6B4AA5E11BF45B0800E56C1A /* NoSuchElementException.h */,
-				6B4AA5E21BF45B0800E56C1A /* NoSuchElementException.m */,
-				6B4AA5E31BF45B0800E56C1A /* NSArray+OCTotallyLazy.h */,
-				6B4AA5E41BF45B0800E56C1A /* NSArray+OCTotallyLazy.m */,
-				6B4AA5E51BF45B0800E56C1A /* NSDictionary+OCTotallyLazy.h */,
-				6B4AA5E61BF45B0800E56C1A /* NSDictionary+OCTotallyLazy.m */,
-				6B4AA5E71BF45B0800E56C1A /* NSEnumerator+OCTotallyLazy.h */,
-				6B4AA5E81BF45B0800E56C1A /* NSEnumerator+OCTotallyLazy.m */,
-				6B4AA5E91BF45B0800E56C1A /* NSSet+OCTotallyLazy.h */,
-				6B4AA5EA1BF45B0800E56C1A /* NSSet+OCTotallyLazy.m */,
-				6B4AA5EB1BF45B0800E56C1A /* Numbers.h */,
-				6B4AA5EC1BF45B0800E56C1A /* Numbers.m */,
-				6B4AA5ED1BF45B0800E56C1A /* OCGroup.h */,
-				6B4AA5EE1BF45B0800E56C1A /* OCGroup.m */,
-				6B4AA5EF1BF45B0800E56C1A /* OCTotallyLazy.h */,
-				6B4AA5F01BF45B0800E56C1A /* Option.h */,
-				6B4AA5F11BF45B0800E56C1A /* Option.m */,
-				6B4AA5F21BF45B0800E56C1A /* Pair.h */,
-				6B4AA5F31BF45B0800E56C1A /* Pair.m */,
-				6B4AA5F41BF45B0800E56C1A /* PairEnumerator.h */,
-				6B4AA5F51BF45B0800E56C1A /* PairEnumerator.m */,
-				6B4AA5F61BF45B0800E56C1A /* PartitionEnumerator.h */,
-				6B4AA5F71BF45B0800E56C1A /* PartitionEnumerator.m */,
-				6B4AA5F81BF45B0800E56C1A /* Predicates.h */,
-				6B4AA5F91BF45B0800E56C1A /* Predicates.m */,
-				6B4AA5FA1BF45B0800E56C1A /* Queue.h */,
-				6B4AA5FB1BF45B0800E56C1A /* Queue.m */,
-				6B4AA5FC1BF45B0800E56C1A /* Range.h */,
-				6B4AA5FD1BF45B0800E56C1A /* Range.m */,
-				6B4AA5FE1BF45B0800E56C1A /* RepeatEnumerator.h */,
-				6B4AA5FF1BF45B0800E56C1A /* RepeatEnumerator.m */,
-				6B4AA6001BF45B0800E56C1A /* Sequence.h */,
-				6B4AA6011BF45B0800E56C1A /* Sequence.m */,
-				6B4AA6021BF45B0800E56C1A /* SingleValueEnumerator.h */,
-				6B4AA6031BF45B0800E56C1A /* SingleValueEnumerator.m */,
-				6B4AA6041BF45B0800E56C1A /* Some.h */,
-				6B4AA6051BF45B0800E56C1A /* Some.m */,
-				6B4AA6061BF45B0800E56C1A /* TakeWhileEnumerator.h */,
-				6B4AA6071BF45B0800E56C1A /* TakeWhileEnumerator.m */,
-				6B4AA6081BF45B0800E56C1A /* Types.h */,
+				6B0BE82C1C162D630035ADCF /* Callables.h */,
+				6B0BE82D1C162D630035ADCF /* Callables.m */,
+				6B0BE82E1C162D630035ADCF /* Coercions.h */,
+				6B0BE82F1C162D630035ADCF /* EasyEnumerable.h */,
+				6B0BE8301C162D630035ADCF /* EasyEnumerable.m */,
+				6B0BE8311C162D630035ADCF /* Enumerable.h */,
+				6B0BE8321C162D630035ADCF /* enumerators */,
+				6B0BE84F1C162D630035ADCF /* Flattenable.h */,
+				6B0BE8501C162D630035ADCF /* Foldable.h */,
+				6B0BE8511C162D630035ADCF /* functions */,
+				6B0BE8581C162D630035ADCF /* Group.h */,
+				6B0BE8591C162D630035ADCF /* Group.m */,
+				6B0BE85A1C162D630035ADCF /* Info.plist */,
+				6B0BE85B1C162D630035ADCF /* Mappable.h */,
+				6B0BE85C1C162D630035ADCF /* MemoisedSequence.h */,
+				6B0BE85D1C162D630035ADCF /* MemoisedSequence.m */,
+				6B0BE85E1C162D630035ADCF /* None.h */,
+				6B0BE85F1C162D630035ADCF /* None.m */,
+				6B0BE8601C162D630035ADCF /* NoSuchElementException.h */,
+				6B0BE8611C162D630035ADCF /* NoSuchElementException.m */,
+				6B0BE8621C162D630035ADCF /* NSArray+OCTotallyLazy.h */,
+				6B0BE8631C162D630035ADCF /* NSArray+OCTotallyLazy.m */,
+				6B0BE8641C162D630035ADCF /* NSDictionary+OCTotallyLazy.h */,
+				6B0BE8651C162D630035ADCF /* NSDictionary+OCTotallyLazy.m */,
+				6B0BE8661C162D630035ADCF /* NSSet+OCTotallyLazy.h */,
+				6B0BE8671C162D630035ADCF /* NSSet+OCTotallyLazy.m */,
+				6B0BE8681C162D630035ADCF /* numbers */,
+				6B0BE86B1C162D630035ADCF /* OCTotallyLazy-Info.plist */,
+				6B0BE86C1C162D630035ADCF /* OCTotallyLazy-Prefix.pch */,
+				6B0BE86D1C162D630035ADCF /* OCTotallyLazy.h */,
+				6B0BE86E1C162D630035ADCF /* Option.h */,
+				6B0BE86F1C162D630035ADCF /* Option.m */,
+				6B0BE8701C162D630035ADCF /* Pair.h */,
+				6B0BE8711C162D630035ADCF /* Pair.m */,
+				6B0BE8721C162D630035ADCF /* predicates */,
+				6B0BE8751C162D630035ADCF /* Queue.h */,
+				6B0BE8761C162D630035ADCF /* Queue.m */,
+				6B0BE8771C162D630035ADCF /* Range.h */,
+				6B0BE8781C162D630035ADCF /* Range.m */,
+				6B0BE8791C162D630035ADCF /* Sequence.h */,
+				6B0BE87A1C162D630035ADCF /* Sequence.m */,
+				6B0BE87B1C162D630035ADCF /* Some.h */,
+				6B0BE87C1C162D630035ADCF /* Some.m */,
+				6B0BE87D1C162D630035ADCF /* Types.h */,
 			);
 			path = octotallylazy;
 			sourceTree = "<group>";
@@ -2910,32 +2937,30 @@
 				6B9A37291BF55DCB00341DF8 /* MNBrowserLogger.m */,
 				D278F51E1A8689AE000C57C1 /* MNBrowserWindowController.h */,
 				D278F51F1A8689AE000C57C1 /* MNBrowserWindowController.m */,
-				6B3EAAF01B7A637F009C0317 /* MNLayerResponder.h */,
 				6B4BC5DA1B7B9CF4002FAA76 /* MNCarrierLayer.h */,
 				6B4BC5DB1B7B9CF4002FAA76 /* MNCarrierLayer.m */,
+				6B3EAAF01B7A637F009C0317 /* MNLayerResponder.h */,
+				6B0BE79D1C14E7600035ADCF /* MNNoteDrawNotesDelegate.h */,
 				6B8631C81B235C0300786D3D /* MNOutlineViewController.h */,
 				6B8631C91B235C0300786D3D /* MNOutlineViewController.m */,
 				6BC86D271B768BDD00C6D20B /* MNRenderLayer.h */,
 				6BC86D281B768BDD00C6D20B /* MNRenderLayer.m */,
+				6BC86D241B76441C00C6D20B /* MNTestActionStruct.h */,
+				6BC86D251B76441C00C6D20B /* MNTestActionStruct.m */,
+				6BC6F05D1B75774200A582C1 /* MNTestBlockStruct.h */,
+				6BC6F05E1B75774200A582C1 /* MNTestBlockStruct.m */,
 				6B2C00651B72B1600036AA76 /* MNTestCollectionItem.h */,
 				6B2C00661B72B1600036AA76 /* MNTestCollectionItem.m */,
 				6BC86D2A1B76A31B00C6D20B /* MNTestCollectionItemView.h */,
 				6BC86D2B1B76A31B00C6D20B /* MNTestCollectionItemView.m */,
-				6B0BE79D1C14E7600035ADCF /* MNNoteDrawNotesDelegate.h */,
 				6B0BE79E1C14F5F70035ADCF /* MNTestParentDelegate.h */,
-				6B8480B61B6FCF0B00FB2B48 /* MNTestViewController.h */,
-				6B8480B71B6FCF0B00FB2B48 /* MNTestViewController.m */,
 				6B8631C61B235C0300786D3D /* MNTestTrie.h */,
 				6B8631C71B235C0300786D3D /* MNTestTrie.m */,
-				6BC86D241B76441C00C6D20B /* MNTestAction.h */,
-				6BC86D251B76441C00C6D20B /* MNTestAction.m */,
-				6BC6F05D1B75774200A582C1 /* MNTestBlockStruct.h */,
-				6BC6F05E1B75774200A582C1 /* MNTestBlockStruct.m */,
 				6B8631D51B236CDE00786D3D /* MNTestType.h */,
 				6BD133B01C13664E00E14741 /* MNTestUtils.h */,
 				6BD133B11C13664E00E14741 /* MNTestUtils.m */,
-				6BC86D2D1B76A3D100C6D20B /* MNViewStaffStruct.h */,
-				6BC86D2E1B76A3D100C6D20B /* MNViewStaffStruct.m */,
+				6B8480B61B6FCF0B00FB2B48 /* MNTestViewController.h */,
+				6B8480B71B6FCF0B00FB2B48 /* MNTestViewController.m */,
 				6B2C00621B72ADB20036AA76 /* MNWrappedLayout.h */,
 				6B2C00631B72ADB20036AA76 /* MNWrappedLayout.m */,
 			);
@@ -2992,10 +3017,21 @@
 				6B4F91BF1C13A7FF00296C6F /* Accelerate.framework */,
 				6B4F91BD1C13A7F600296C6F /* AVFoundation.framework */,
 				6B4F91BB1C13A7EB00296C6F /* AudioToolbox.framework */,
-				F15AA8371CC8C24BA804B386 /* Pods_MusicNotationDesktop.framework */,
-				82D1C2FA77A7E450CF68D1FA /* Pods_MusicNotationMobile.framework */,
+				AF69A71D7E4769254B6E2C05 /* Pods_MusicNotationDesktop.framework */,
+				24DF42CE43159DF121C5F1B3 /* Pods_MusicNotationMobile.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		959D9DD6F9E3E77B2059B306 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7931C3BC3335BB59F58AAEA6 /* Pods-MusicNotationDesktop.debug.xcconfig */,
+				B2BFBDC93D72FCB928185506 /* Pods-MusicNotationDesktop.release.xcconfig */,
+				9DCF05863704306CC41A85BB /* Pods-MusicNotationMobile.debug.xcconfig */,
+				7CAA54FDF931131D4AA3C386 /* Pods-MusicNotationMobile.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		D247A7FA1A87B87900774EA6 /* JS */ = {
@@ -3017,7 +3053,7 @@
 				6BBB49D01B667EE70036081B /* MusicNotationMobile */,
 				D278F5151A8689AE000C57C1 /* Products */,
 				8B5B4F1EC62595EBFC86ABA0 /* Frameworks */,
-				5F995727FF2FBF0026A12013 /* Pods */,
+				959D9DD6F9E3E77B2059B306 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -3062,12 +3098,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6BBB49E61B667EE70036081B /* Build configuration list for PBXNativeTarget "MusicNotationMobile" */;
 			buildPhases = (
-				781838D650D4274912D72FA3 /* Check Pods Manifest.lock */,
+				160040FEFFD2BB8189BC38BA /* Check Pods Manifest.lock */,
 				6BBB49CB1B667EE70036081B /* Sources */,
 				6BBB49CC1B667EE70036081B /* Frameworks */,
 				6BBB49CD1B667EE70036081B /* Resources */,
-				0EC25027601060171FA94D07 /* Embed Pods Frameworks */,
-				556995A7CD4C974987BECE71 /* Copy Pods Resources */,
+				4527099FDA49EB2A4DF71CB7 /* Embed Pods Frameworks */,
+				BAA4620BB0CBCF35FE09E762 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3082,13 +3118,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D278F5341A8689AE000C57C1 /* Build configuration list for PBXNativeTarget "MusicNotationDesktop" */;
 			buildPhases = (
-				32C974AF38D3A03586DB0D96 /* Check Pods Manifest.lock */,
+				3294B6A21ECA5489A08F9532 /* Check Pods Manifest.lock */,
 				D278F5101A8689AE000C57C1 /* Sources */,
 				D278F5111A8689AE000C57C1 /* Frameworks */,
 				D278F5121A8689AE000C57C1 /* Resources */,
 				6B606A1D1A9AAAF000F3F73F /* CopyFiles */,
-				32C1A3F1A204C4A8390195F8 /* Embed Pods Frameworks */,
-				54066C8BFBC158CF08C9D944 /* Copy Pods Resources */,
+				816FA6D4DCE3BB04EE29A055 /* Embed Pods Frameworks */,
+				C8215ABD495AF7BEAD7C8950 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3144,12 +3180,14 @@
 			files = (
 				6B4F91B71C13A23600296C6F /* Organ Run.m4a in Resources */,
 				6B4F91B81C13A23600296C6F /* Southern Rock Drums.m4a in Resources */,
+				6B0BE8B71C162D630035ADCF /* OCTotallyLazy-Info.plist in Resources */,
 				6B4F91B91C13A23600296C6F /* Southern Rock Organ.m4a in Resources */,
 				6BBB49E11B667EE70036081B /* LaunchScreen.storyboard in Resources */,
 				6B4AA67E1BF45CD800E56C1A /* gonville_all.js in Resources */,
 				6BBB49DE1B667EE70036081B /* Assets.xcassets in Resources */,
 				6B4AA67C1BF45CD800E56C1A /* gonville.js in Resources */,
 				6B4AA6821BF45CD800E56C1A /* vexflow_font.js in Resources */,
+				6B0BE8A71C162D630035ADCF /* Info.plist in Resources */,
 				6B4AA6801BF45CD800E56C1A /* gonville_original.js in Resources */,
 				6BBB49DC1B667EE70036081B /* Main.storyboard in Resources */,
 			);
@@ -3161,12 +3199,14 @@
 			files = (
 				6B3185001B71315500CCB182 /* BrowserWindow.xib in Resources */,
 				6B4AA6751BF45CD800E56C1A /* Organ Run.m4a in Resources */,
+				6B0BE8B61C162D630035ADCF /* OCTotallyLazy-Info.plist in Resources */,
 				6B4AA67D1BF45CD800E56C1A /* gonville_all.js in Resources */,
 				D278F5221A8689AE000C57C1 /* Images.xcassets in Resources */,
 				6B4AA67B1BF45CD800E56C1A /* gonville.js in Resources */,
 				6B4AA6811BF45CD800E56C1A /* vexflow_font.js in Resources */,
 				6B4AA6791BF45CD800E56C1A /* Southern Rock Organ.m4a in Resources */,
 				6B4AA67F1BF45CD800E56C1A /* gonville_original.js in Resources */,
+				6B0BE8A61C162D630035ADCF /* Info.plist in Resources */,
 				6B2C00611B716B150036AA76 /* MainMenu.xib in Resources */,
 				6B4AA6771BF45CD800E56C1A /* Southern Rock Drums.m4a in Resources */,
 			);
@@ -3175,7 +3215,37 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0EC25027601060171FA94D07 /* Embed Pods Frameworks */ = {
+		160040FEFFD2BB8189BC38BA /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3294B6A21ECA5489A08F9532 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4527099FDA49EB2A4DF71CB7 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3190,7 +3260,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MusicNotationMobile/Pods-MusicNotationMobile-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		32C1A3F1A204C4A8390195F8 /* Embed Pods Frameworks */ = {
+		816FA6D4DCE3BB04EE29A055 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3205,37 +3275,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MusicNotationDesktop/Pods-MusicNotationDesktop-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		32C974AF38D3A03586DB0D96 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		54066C8BFBC158CF08C9D944 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MusicNotationDesktop/Pods-MusicNotationDesktop-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		556995A7CD4C974987BECE71 /* Copy Pods Resources */ = {
+		BAA4620BB0CBCF35FE09E762 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3250,19 +3290,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MusicNotationMobile/Pods-MusicNotationMobile-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		781838D650D4274912D72FA3 /* Check Pods Manifest.lock */ = {
+		C8215ABD495AF7BEAD7C8950 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MusicNotationDesktop/Pods-MusicNotationDesktop-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3273,7 +3313,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BD133AF1C128BF500E14741 /* NSString+MNAdditions.m in Sources */,
-				6BD133AB1C127AED00E14741 /* MNViewStaffStruct.m in Sources */,
 				6BD133AA1C127AE500E14741 /* MNTestBlockStruct.m in Sources */,
 				6BD133211C127A0F00E14741 /* HCAssertThat.m in Sources */,
 				6BD133221C127A0F00E14741 /* HCBaseDescription.m in Sources */,
@@ -3290,6 +3329,7 @@
 				6BD1332D1C127A0F00E14741 /* HCDoubleReturnGetter.m in Sources */,
 				6BD133B31C13664E00E14741 /* MNTestUtils.m in Sources */,
 				6BD1332E1C127A0F00E14741 /* HCFloatReturnGetter.m in Sources */,
+				6B0BE8BB1C162D630035ADCF /* Pair.m in Sources */,
 				6BD1332F1C127A0F00E14741 /* HCIntReturnGetter.m in Sources */,
 				6BD133301C127A0F00E14741 /* HCLongLongReturnGetter.m in Sources */,
 				6BD133311C127A0F00E14741 /* HCLongReturnGetter.m in Sources */,
@@ -3297,6 +3337,7 @@
 				6BD133331C127A0F00E14741 /* HCReturnTypeHandlerChain.m in Sources */,
 				6BD133341C127A0F00E14741 /* HCReturnValueGetter.m in Sources */,
 				6BD133351C127A0F00E14741 /* HCShortReturnGetter.m in Sources */,
+				6B0BE8B91C162D630035ADCF /* Option.m in Sources */,
 				6BD133361C127A0F00E14741 /* HCUnsignedCharReturnGetter.m in Sources */,
 				6BD133371C127A0F00E14741 /* HCUnsignedIntReturnGetter.m in Sources */,
 				6BD133381C127A0F00E14741 /* HCUnsignedLongLongReturnGetter.m in Sources */,
@@ -3307,9 +3348,12 @@
 				6BD1333D1C127A0F00E14741 /* HCTestFailure.m in Sources */,
 				6BD1333E1C127A0F00E14741 /* HCTestFailureHandler.m in Sources */,
 				6BD1333F1C127A0F00E14741 /* HCTestFailureHandlerChain.m in Sources */,
+				6B0BE8B11C162D630035ADCF /* NSDictionary+OCTotallyLazy.m in Sources */,
 				6BD133401C127A0F00E14741 /* HCXCTestFailureHandler.m in Sources */,
+				6B0BE88F1C162D630035ADCF /* MemoisedEnumerator.m in Sources */,
 				6BD133411C127A0F00E14741 /* HCEvery.m in Sources */,
 				6BD133421C127A0F00E14741 /* HCHasCount.m in Sources */,
+				6B0BE8A11C162D630035ADCF /* Function2.m in Sources */,
 				6BD133431C127A0F00E14741 /* HCIsCollectionContaining.m in Sources */,
 				6BD133441C127A0F00E14741 /* HCIsCollectionContainingInAnyOrder.m in Sources */,
 				6BD133451C127A0F00E14741 /* HCIsCollectionContainingInOrder.m in Sources */,
@@ -3317,6 +3361,7 @@
 				6BD133471C127A0F00E14741 /* HCIsDictionaryContaining.m in Sources */,
 				6BD133481C127A0F00E14741 /* HCIsDictionaryContainingEntries.m in Sources */,
 				6BD133491C127A0F00E14741 /* HCIsDictionaryContainingKey.m in Sources */,
+				6B0BE8891C162D630035ADCF /* FlattenEnumerator.m in Sources */,
 				6BD1334A1C127A0F00E14741 /* HCIsDictionaryContainingValue.m in Sources */,
 				6BD1334B1C127A0F00E14741 /* HCIsEmptyCollection.m in Sources */,
 				6BD1334C1C127A0F00E14741 /* HCIsIn.m in Sources */,
@@ -3333,9 +3378,11 @@
 				6BD133561C127A0F00E14741 /* HCNumberAssert.m in Sources */,
 				6BD133571C127A0F00E14741 /* HCOrderingComparison.m in Sources */,
 				6BD133581C127A0F00E14741 /* HCClassMatcher.m in Sources */,
+				6B0BE89B1C162D630035ADCF /* SingleValueEnumerator.m in Sources */,
 				6BD133591C127A0F00E14741 /* HCConformsToProtocol.m in Sources */,
 				6BD1335A1C127A0F00E14741 /* HCHasDescription.m in Sources */,
 				6BD1335B1C127A0F00E14741 /* HCHasProperty.m in Sources */,
+				6B0BE8951C162D630035ADCF /* PairEnumerator.m in Sources */,
 				6BD1335C1C127A0F00E14741 /* HCIsEqual.m in Sources */,
 				6BD1335D1C127A0F00E14741 /* HCIsInstanceOf.m in Sources */,
 				6BD1335E1C127A0F00E14741 /* HCIsNil.m in Sources */,
@@ -3351,6 +3398,7 @@
 				6BD133681C127A0F00E14741 /* HCSubstringMatcher.m in Sources */,
 				6BD133691C127A0F00E14741 /* EveryTest.m in Sources */,
 				6BD1336A1C127A0F00E14741 /* FakeWithCount.m in Sources */,
+				6B0BE8A91C162D630035ADCF /* MemoisedSequence.m in Sources */,
 				6BD1336B1C127A0F00E14741 /* FakeWithoutCount.m in Sources */,
 				6BD1336C1C127A0F00E14741 /* HasCountTest.m in Sources */,
 				6BD1336D1C127A0F00E14741 /* IsCollectionContainingInAnyOrderTest.m in Sources */,
@@ -3391,12 +3439,15 @@
 				6BD1338F1C127A0F00E14741 /* IsInstanceOfTest.m in Sources */,
 				6BD133901C127A0F00E14741 /* IsNilTest.m in Sources */,
 				6BD133911C127A0F00E14741 /* IsSameTest.m in Sources */,
+				6B0BE8A51C162D630035ADCF /* Group.m in Sources */,
 				6BD133921C127A0F00E14741 /* IsTypeOfTest.m in Sources */,
 				6BD133931C127A0F00E14741 /* SomeClassAndSubclass.m in Sources */,
 				6BD133941C127A0F00E14741 /* ThrowsExceptionTest.m in Sources */,
 				6BD133951C127A0F00E14741 /* IsEqualIgnoringCaseTest.m in Sources */,
 				6BD133961C127A0F00E14741 /* IsEqualIgnoringWhiteSpaceTest.m in Sources */,
+				6B0BE8971C162D630035ADCF /* PartitionEnumerator.m in Sources */,
 				6BD133971C127A0F00E14741 /* StringContainsInOrderTest.m in Sources */,
+				6B0BE8851C162D630035ADCF /* EnumerateEnumerator.m in Sources */,
 				6BD133981C127A0F00E14741 /* StringContainsTest.m in Sources */,
 				6BD133991C127A0F00E14741 /* StringEndsWithTest.m in Sources */,
 				6BD1339A1C127A0F00E14741 /* StringStartsWithTest.m in Sources */,
@@ -3417,14 +3468,17 @@
 				6BD133A91C127A1000E14741 /* SenTestSuiteRun.m in Sources */,
 				6BD132E91C12790800E14741 /* MNAccidentalTests.m in Sources */,
 				6BD132EA1C12790800E14741 /* MNAnimationTests.m in Sources */,
+				6B0BE8831C162D630035ADCF /* EmptyEnumerator.m in Sources */,
 				6BD132EB1C12790800E14741 /* MNAnnotationTests.m in Sources */,
 				6BD132EC1C12790800E14741 /* MNArticulationTests.m in Sources */,
+				6B0BE8C11C162D630035ADCF /* Range.m in Sources */,
 				6BD132ED1C12790800E14741 /* MNAutoBeamFormattingTests.m in Sources */,
 				6BD132EE1C12790800E14741 /* MNBeamTests.m in Sources */,
 				6BD132EF1C12790800E14741 /* MNBendTests.m in Sources */,
 				6BD132F01C12790800E14741 /* MNBoundingBoxTests.m in Sources */,
 				6BD132F11C12790800E14741 /* MNChordTest.m in Sources */,
 				6BD132F21C12790800E14741 /* MNClefTests.m in Sources */,
+				6B0BE8911C162D630035ADCF /* MergeEnumerator.m in Sources */,
 				6BD132F31C12790800E14741 /* MNCurveTests.m in Sources */,
 				6BD132F41C12790800E14741 /* MNDotTests.m in Sources */,
 				6BD132F51C12790800E14741 /* MNFontTests.m in Sources */,
@@ -3438,14 +3492,17 @@
 				6BD132FD1C12790800E14741 /* MNModifierTests.m in Sources */,
 				6BD132FE1C12790800E14741 /* MNMusicTests.m in Sources */,
 				6BD132FF1C12790800E14741 /* MNNodeTests.m in Sources */,
+				6B0BE8811C162D630035ADCF /* EasyEnumerable.m in Sources */,
 				6BD133001C12790800E14741 /* MNNoneTests.m in Sources */,
 				6BD133011C12790800E14741 /* MNNotationsGridTests.m in Sources */,
 				6BD133021C12790800E14741 /* MNNoteHeadTests.m in Sources */,
 				6BD133031C12790800E14741 /* MNOrnamentTests.m in Sources */,
 				6BD133041C12790800E14741 /* MNPedalMarkingTests.m in Sources */,
+				6B0BE8A31C162D630035ADCF /* Functions.m in Sources */,
 				6BD133051C12790800E14741 /* MNPercussionTests.m in Sources */,
 				6BD133061C12790800E14741 /* MNRestsTest.m in Sources */,
 				6BD133071C12790800E14741 /* MNRhythmTests.m in Sources */,
+				6B0BE8871C162D630035ADCF /* FilterEnumerator.m in Sources */,
 				6BD133081C12790800E14741 /* MNSheetMusicExamplesTests.m in Sources */,
 				6BD133091C12790800E14741 /* MNStaffConnectorTests.m in Sources */,
 				6BD1330A1C12790800E14741 /* MNStaffHairpinTests.m in Sources */,
@@ -3454,6 +3511,8 @@
 				6BD1330D1C12790800E14741 /* MNStaffNoteTests.m in Sources */,
 				6BD1330E1C12790800E14741 /* MNStaffTests.m in Sources */,
 				6BD1330F1C12790800E14741 /* MNStaffTieTests.m in Sources */,
+				6B0BE8AB1C162D630035ADCF /* None.m in Sources */,
+				6B0BE89F1C162D630035ADCF /* Function1.m in Sources */,
 				6BD133101C12790800E14741 /* MNStringNumberTests.m in Sources */,
 				6BD133111C12790800E14741 /* MNStrokesTests.m in Sources */,
 				6BD133121C12790800E14741 /* MNTableTests.m in Sources */,
@@ -3461,6 +3520,7 @@
 				6BD133141C12790800E14741 /* MNTabSlideTests.m in Sources */,
 				6BD133151C12790800E14741 /* MNTabStaffTests.m in Sources */,
 				6BD133161C12790800E14741 /* MNTabTieTests.m in Sources */,
+				6B0BE8AD1C162D630035ADCF /* NoSuchElementException.m in Sources */,
 				6BD133171C12790800E14741 /* MNTextBracketTests.m in Sources */,
 				6BD133181C12790800E14741 /* MNTextNoteTests.m in Sources */,
 				6BD133191C12790800E14741 /* MNTextTests.m in Sources */,
@@ -3471,12 +3531,12 @@
 				6BD1331E1C12790800E14741 /* MNTupletTests.m in Sources */,
 				6BD1331F1C12790800E14741 /* MNVibratoTests.m in Sources */,
 				6BD133201C12790800E14741 /* MNVoiceTests.m in Sources */,
-				6BD132E81C126EB100E14741 /* MNTestAction.m in Sources */,
+				6B0BE89D1C162D630035ADCF /* TakeWhileEnumerator.m in Sources */,
+				6BD132E81C126EB100E14741 /* MNTestActionStruct.m in Sources */,
 				6BD132E71C126EA900E14741 /* MNRenderLayer.m in Sources */,
 				6BD132E61C126EA300E14741 /* MNCarrierLayer.m in Sources */,
+				6B0BE8C51C162D630035ADCF /* Some.m in Sources */,
 				6BD132E41C126E9000E14741 /* MNBendRenderOptions.m in Sources */,
-				6B4AA6521BF45B0800E56C1A /* Option.m in Sources */,
-				6B4AA6441BF45B0800E56C1A /* NoSuchElementException.m in Sources */,
 				6BAF42911C0289A000C82A4A /* MNTuningNames.m in Sources */,
 				6B4AA61C1BF45B0800E56C1A /* NSObject+AutoDescription.m in Sources */,
 				6B4AA4B81BF4591500E56C1A /* MNStaffVolta.m in Sources */,
@@ -3484,41 +3544,37 @@
 				6B4AA4C81BF4591500E56C1A /* MNTableAccListStruct.m in Sources */,
 				6B4AA47C1BF4591500E56C1A /* MNNoteHead.m in Sources */,
 				6BB7EC1D1C07C91A00E09252 /* MNTableChords.m in Sources */,
-				6B4AA65C1BF45B0800E56C1A /* Queue.m in Sources */,
 				6B4AA44C1BF4591500E56C1A /* MNGhostNote.m in Sources */,
-				6B4AA63C1BF45B0800E56C1A /* MemoisedEnumerator.m in Sources */,
 				6B4AA4181BF4591500E56C1A /* MNRational.m in Sources */,
-				6B4AA6421BF45B0800E56C1A /* None.m in Sources */,
 				6B4AA4861BF4591500E56C1A /* MNPair.m in Sources */,
 				6B4AA4AC1BF4591500E56C1A /* MNStaffNote.m in Sources */,
 				6B4AA4D41BF4591500E56C1A /* MNTabStaff.m in Sources */,
 				6B4AA48E1BF4591500E56C1A /* MNPropertyUtil.m in Sources */,
-				6B4AA6341BF45B0800E56C1A /* Function2.m in Sources */,
 				6B4AA60E1BF45B0800E56C1A /* IAModelBase.m in Sources */,
 				6BAF42A51C02AE0100C82A4A /* NSBezierPath+MNAdditions.m in Sources */,
-				6B4AA62A1BF45B0800E56C1A /* EmptyEnumerator.m in Sources */,
 				6B4AA4561BF4591500E56C1A /* MNGraceNoteGroup.m in Sources */,
 				6B2DB7D61C0A2A7F00498848 /* MNTimeSigStruct.m in Sources */,
-				6B4AA6361BF45B0800E56C1A /* Functions.m in Sources */,
 				6B182C781C0E57C1006F0981 /* MNGraceNoteRenderOptions.m in Sources */,
 				6B4AA4C21BF4591500E56C1A /* MNSymbol.m in Sources */,
-				6B4AA62E1BF45B0800E56C1A /* FilterEnumerator.m in Sources */,
 				6B4AA4581BF4591500E56C1A /* MNImage.m in Sources */,
 				6B4AA46A1BF4591500E56C1A /* MNMetrics.m in Sources */,
 				6B4AA47A1BF4591500E56C1A /* MNNote.m in Sources */,
 				6BAF42791C02804C00C82A4A /* MNChordBarStruct.m in Sources */,
+				6B0BE88B1C162D630035ADCF /* GroupedEnumerator.m in Sources */,
 				6B4AA4781BF4591500E56C1A /* MNMusicScales.m in Sources */,
 				6BF09E4C1C0910B9008590D3 /* MNAccListStruct.m in Sources */,
 				6B182C841C0F6CBB006F0981 /* MNNoteHeadRenderOptions.m in Sources */,
 				6B4AA4A21BF4591500E56C1A /* MNStaffBarLine.m in Sources */,
 				6B4AA4BA1BF4591500E56C1A /* MNStem.m in Sources */,
-				6B4AA64E1BF45B0800E56C1A /* Numbers.m in Sources */,
+				6B0BE8BF1C162D630035ADCF /* Queue.m in Sources */,
 				6B4AA4E41BF4591600E56C1A /* MNTimeSignature.m in Sources */,
+				6B0BE8931C162D630035ADCF /* NSEnumerator+OCTotallyLazy.m in Sources */,
 				6B4AA4961BF4591500E56C1A /* MNRenderOptions.m in Sources */,
 				6B182C981C0FE913006F0981 /* MNTableKeySpecStruct.m in Sources */,
 				6B4AA4321BF4591500E56C1A /* MNChordBox.m in Sources */,
 				6B4AA4841BF4591500E56C1A /* MNPadding.m in Sources */,
 				6B4AA61A1BF45B0800E56C1A /* NSMutableDictionary+MNAdditions.m in Sources */,
+				6B0BE8B51C162D630035ADCF /* Numbers.m in Sources */,
 				6BAF42951C028A2800C82A4A /* MNVibratoRenderOptions.m in Sources */,
 				6B4AA4C01BF4591500E56C1A /* MNStroke.m in Sources */,
 				6B4AA43C1BF4591500E56C1A /* MNCurve.m in Sources */,
@@ -3530,11 +3586,9 @@
 				6B4AA41A1BF4591500E56C1A /* MNStaffLineRenderOptions.m in Sources */,
 				6BB7EC211C07CA3B00E09252 /* MNChordTestStruct.m in Sources */,
 				6B4AA4661BF4591500E56C1A /* MNLog.m in Sources */,
-				6B4AA6581BF45B0800E56C1A /* PartitionEnumerator.m in Sources */,
 				6B4AA4521BF4591500E56C1A /* MNGlyphTabStruct.m in Sources */,
 				6B4AA4481BF4591500E56C1A /* MNFormatter.m in Sources */,
 				6B4AA4501BF4591500E56C1A /* MNGlyphList.m in Sources */,
-				6B4AA6541BF45B0800E56C1A /* Pair.m in Sources */,
 				6BF09E501C0910C9008590D3 /* MNLineListStruct.m in Sources */,
 				6B4AA4AA1BF4591500E56C1A /* MNStaffModifier.m in Sources */,
 				6B4AA4421BF4591500E56C1A /* MNEnum.m in Sources */,
@@ -3545,25 +3599,21 @@
 				6BAF42AD1C02B04900C82A4A /* MNTableNoteValueStruct.m in Sources */,
 				6BAF42811C02819E00C82A4A /* MNFormatterContext.m in Sources */,
 				6B4AA4361BF4591500E56C1A /* MNClefNote.m in Sources */,
-				6B4AA6281BF45B0800E56C1A /* EasyEnumerable.m in Sources */,
-				6B4AA6401BF45B0800E56C1A /* MergeEnumerator.m in Sources */,
 				6B182C8C1C0FDD62006F0981 /* MNStaffNoteFormatNoteStruct.m in Sources */,
 				6BB7EC0D1C06299600E09252 /* MNNoteRenderOptions.m in Sources */,
 				6BB7EC111C062A6800E09252 /* MNStaffNoteRenderOptions.m in Sources */,
 				6B4AA47E1BF4591500E56C1A /* MNNoteTie.m in Sources */,
 				6B182C7E1C0E8B3E006F0981 /* DPObject.m in Sources */,
-				6B4AA6601BF45B0800E56C1A /* RepeatEnumerator.m in Sources */,
-				6B4AA6501BF45B0800E56C1A /* OCGroup.m in Sources */,
 				6BB7EC191C062F4000E09252 /* MNTextNoteStruct.m in Sources */,
 				6B4AA4D81BF4591600E56C1A /* MNText.m in Sources */,
-				6B4AA6641BF45B0800E56C1A /* SingleValueEnumerator.m in Sources */,
 				6B4AA46C1BF4591500E56C1A /* MNModifier.m in Sources */,
 				6B4AA4461BF4591500E56C1A /* MNFont.m in Sources */,
 				6B4AA4BC1BF4591500E56C1A /* MNStemmableNote.m in Sources */,
+				6B0BE87F1C162D630035ADCF /* Callables.m in Sources */,
 				6B4AA45C1BF4591500E56C1A /* MNKeyProperty.m in Sources */,
 				6B4AA48C1BF4591500E56C1A /* MNPoint.m in Sources */,
+				6B0BE8BD1C162D630035ADCF /* Predicates.m in Sources */,
 				6BAF42711C027DF700C82A4A /* MNFretHandFingerNumStruct.m in Sources */,
-				6B4AA63A1BF45B0800E56C1A /* MapEnumerator.m in Sources */,
 				6B4AA6181BF45B0800E56C1A /* NSMutableArray+MNAdditions.m in Sources */,
 				6B4AA4341BF4591500E56C1A /* MNClef.m in Sources */,
 				6B182C881C0F717C006F0981 /* MNBeamRenderOptions.m in Sources */,
@@ -3574,7 +3624,6 @@
 				6B4AA4B41BF4591500E56C1A /* MNStaffText.m in Sources */,
 				6B4AA4D61BF4591600E56C1A /* MNTabTie.m in Sources */,
 				6B4AA4261BF4591500E56C1A /* MNBeam.m in Sources */,
-				6B4AA65A1BF45B0800E56C1A /* Predicates.m in Sources */,
 				6B4AA4721BF4591500E56C1A /* MNMusic.m in Sources */,
 				6B4AA4401BF4591500E56C1A /* MNDot.m in Sources */,
 				6BAF427D1C0280F900C82A4A /* MNClefAnnotation.m in Sources */,
@@ -3584,13 +3633,13 @@
 				6B4AA4381BF4591500E56C1A /* MNColor.m in Sources */,
 				6BAF428D1C02858500C82A4A /* MNBendStruct.m in Sources */,
 				6B4AA4B01BF4591500E56C1A /* MNStaffSection.m in Sources */,
-				6B4AA6461BF45B0800E56C1A /* NSArray+OCTotallyLazy.m in Sources */,
 				6B4AA4B21BF4591500E56C1A /* MNStaffTempo.m in Sources */,
 				6B4AA6141BF45B0800E56C1A /* NSArray+MNAdditions.m in Sources */,
 				6B4AA6121BF45B0800E56C1A /* JSONKit.m in Sources */,
 				6B4AA4881BF4591500E56C1A /* MNPedalMarking.m in Sources */,
 				6B182C9C1C0FEBF2006F0981 /* MNStaffLineNotesStruct.m in Sources */,
 				6B4AA4E01BF4591600E56C1A /* MNTickable.m in Sources */,
+				6B0BE8B31C162D630035ADCF /* NSSet+OCTotallyLazy.m in Sources */,
 				6B4AA4D01BF4591500E56C1A /* MNTabNote.m in Sources */,
 				6B4AA4EA1BF4591600E56C1A /* MNTuning.m in Sources */,
 				6B4AA4821BF4591500E56C1A /* MNOrnament.m in Sources */,
@@ -3610,21 +3659,19 @@
 				6B4AA4A41BF4591500E56C1A /* MNStaffConnector.m in Sources */,
 				6B4AA4CC1BF4591500E56C1A /* MNTablesNoteData.m in Sources */,
 				6B4AA4F21BF4591600E56C1A /* MNVibrato.m in Sources */,
-				6B4AA6301BF45B0800E56C1A /* FlattenEnumerator.m in Sources */,
+				6B0BE8C31C162D630035ADCF /* Sequence.m in Sources */,
 				6B4AA4A01BF4591500E56C1A /* MNStaff.m in Sources */,
 				6BAF42891C0284D800C82A4A /* MNBeamConfig.m in Sources */,
 				6BAF42A11C028DD100C82A4A /* MNTickableMetrics.m in Sources */,
 				6B4AA4681BF4591500E56C1A /* MNMath.m in Sources */,
+				6B0BE8991C162D630035ADCF /* RepeatEnumerator.m in Sources */,
 				6B4AA42A1BF4591500E56C1A /* MNBezierPath.m in Sources */,
 				6B4AA4441BF4591500E56C1A /* MNExtentStruct.m in Sources */,
 				6B5D4AC31C04E66A00AA250A /* MNConstants.m in Sources */,
-				6B4AA6561BF45B0800E56C1A /* PairEnumerator.m in Sources */,
 				6B2DB7D21C09F48E00498848 /* MNTimeSignatureGlyphMetrics.m in Sources */,
-				6B4AA65E1BF45B0800E56C1A /* Range.m in Sources */,
 				6BAF42751C027FD500C82A4A /* MNNoteAccidentalStruct.m in Sources */,
 				6B4AA61E1BF45B0800E56C1A /* NSObject+CleanDescription.m in Sources */,
 				6B4AA4541BF4591500E56C1A /* MNGraceNote.m in Sources */,
-				6B4AA6261BF45B0800E56C1A /* Callables.m in Sources */,
 				6B4AA4C61BF4591500E56C1A /* MNTableAccidentalCodes.m in Sources */,
 				6B4AA42C1BF4591500E56C1A /* MNBoundingBox.m in Sources */,
 				6B4AA4F41BF4591600E56C1A /* MNVoice.m in Sources */,
@@ -3643,34 +3690,26 @@
 				6B4AA45E1BF4591500E56C1A /* MNKeySignature.m in Sources */,
 				6BAF42A91C02B03F00C82A4A /* MNTableNoteGlyphStruct.m in Sources */,
 				6B4AA4761BF4591500E56C1A /* MNMusicRootIndices.m in Sources */,
-				6B4AA62C1BF45B0800E56C1A /* EnumerateEnumerator.m in Sources */,
-				6B4AA6321BF45B0800E56C1A /* Function1.m in Sources */,
+				6B0BE88D1C162D630035ADCF /* MapEnumerator.m in Sources */,
 				6B4AA41E1BF4591500E56C1A /* MNAccidental.m in Sources */,
-				6B4AA6481BF45B0800E56C1A /* NSDictionary+OCTotallyLazy.m in Sources */,
-				6B4AA6381BF45B0800E56C1A /* GroupedEnumerator.m in Sources */,
 				6B4AA4CA1BF4591500E56C1A /* MNTableGlyphStruct.m in Sources */,
 				6B4AA4801BF4591500E56C1A /* MNOptions.m in Sources */,
 				6B4AA4241BF4591500E56C1A /* MNBarNote.m in Sources */,
-				6B4AA64A1BF45B0800E56C1A /* NSEnumerator+OCTotallyLazy.m in Sources */,
-				6B4AA63E1BF45B0800E56C1A /* MemoisedSequence.m in Sources */,
 				6B4AA49E1BF4591500E56C1A /* MNSize.m in Sources */,
 				6B4AA4161BF4591500E56C1A /* MNGlyphLayer.m in Sources */,
 				6B4AA4DA1BF4591600E56C1A /* MNTextBracket.m in Sources */,
 				6BAF426D1C027D6900C82A4A /* MNStringNumberFormatStruct.m in Sources */,
-				6B4AA64C1BF45B0800E56C1A /* NSSet+OCTotallyLazy.m in Sources */,
 				6B4AA6201BF45B0800E56C1A /* NSObject+MNAdditions.m in Sources */,
-				6B4AA6621BF45B0800E56C1A /* Sequence.m in Sources */,
 				6B4AA4981BF4591500E56C1A /* MNShapeLayer.m in Sources */,
 				6B8480BA1B6FD4BE00FB2B48 /* MNTestViewController.m in Sources */,
+				6B0BE8AF1C162D630035ADCF /* NSArray+OCTotallyLazy.m in Sources */,
 				6B8480A81B6D7A0900FB2B48 /* MNMTableViewController.m in Sources */,
 				6BAF42991C028AB800C82A4A /* MNVoiceTime.m in Sources */,
-				6B4AA6681BF45B0800E56C1A /* TakeWhileEnumerator.m in Sources */,
 				6BBB49D61B667EE70036081B /* MNMAppDelegate.m in Sources */,
 				6B182CA01C0FEEFA006F0981 /* MNNoteMetrics.m in Sources */,
 				6BBB49D31B667EE70036081B /* main.m in Sources */,
 				6B4AA44E1BF4591500E56C1A /* MNGlyph.m in Sources */,
 				6B8480AC1B6D7CD800FB2B48 /* MNMProxyTestViewController.m in Sources */,
-				6B4AA6661BF45B0800E56C1A /* Some.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3678,7 +3717,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B4AA64D1BF45B0800E56C1A /* Numbers.m in Sources */,
 				6B5645001BF44680006FDFD9 /* SenTestDistributedNotifier.m in Sources */,
 				6B8480B91B6FCFC800FB2B48 /* MNTestViewController.m in Sources */,
 				6B56449C1BF44680006FDFD9 /* HCTestFailure.m in Sources */,
@@ -3688,50 +3726,53 @@
 				6B5644E11BF44680006FDFD9 /* AllOfTest.m in Sources */,
 				6B182C9B1C0FEBF2006F0981 /* MNStaffLineNotesStruct.m in Sources */,
 				6B5644B01BF44680006FDFD9 /* HCIsAnything.m in Sources */,
-				6B4AA6511BF45B0800E56C1A /* Option.m in Sources */,
 				6B5644991BF44680006FDFD9 /* HCUnsignedShortReturnGetter.m in Sources */,
 				6B5644DB1BF44680006FDFD9 /* DiagnosingMatcherTest.m in Sources */,
+				6B0BE8B21C162D630035ADCF /* NSSet+OCTotallyLazy.m in Sources */,
 				6B4AA4BF1BF4591500E56C1A /* MNStroke.m in Sources */,
+				6B0BE8961C162D630035ADCF /* PartitionEnumerator.m in Sources */,
 				6B4AA4A31BF4591500E56C1A /* MNStaffConnector.m in Sources */,
 				6B4AA4911BF4591500E56C1A /* MNRect.m in Sources */,
 				6B4AA5981BF459B200E56C1A /* MNTextTests.m in Sources */,
+				6B0BE89C1C162D630035ADCF /* TakeWhileEnumerator.m in Sources */,
 				6B5644981BF44680006FDFD9 /* HCUnsignedLongReturnGetter.m in Sources */,
+				6B0BE88E1C162D630035ADCF /* MemoisedEnumerator.m in Sources */,
 				6B4AA4571BF4591500E56C1A /* MNImage.m in Sources */,
+				6B0BE8B81C162D630035ADCF /* Option.m in Sources */,
 				6B4AA56A1BF459B200E56C1A /* MNAnimationTests.m in Sources */,
-				6B4AA6651BF45B0800E56C1A /* Some.m in Sources */,
 				6B5644A71BF44680006FDFD9 /* HCIsDictionaryContainingEntries.m in Sources */,
 				6B5644E01BF44680006FDFD9 /* NeverMatch.m in Sources */,
 				6B5644EF1BF44680006FDFD9 /* IsNilTest.m in Sources */,
 				6B4AA5861BF459B200E56C1A /* MNRestsTest.m in Sources */,
 				6B5644F41BF44680006FDFD9 /* IsEqualIgnoringCaseTest.m in Sources */,
 				6BAF42701C027DF700C82A4A /* MNFretHandFingerNumStruct.m in Sources */,
-				6B4AA6471BF45B0800E56C1A /* NSDictionary+OCTotallyLazy.m in Sources */,
+				6B0BE8881C162D630035ADCF /* FlattenEnumerator.m in Sources */,
 				6B182C971C0FE913006F0981 /* MNTableKeySpecStruct.m in Sources */,
 				6B4AA4811BF4591500E56C1A /* MNOrnament.m in Sources */,
 				6BB7EC081C06292700E09252 /* MNTabNoteRenderOptions.m in Sources */,
 				6B4AA49D1BF4591500E56C1A /* MNSize.m in Sources */,
+				6B0BE8861C162D630035ADCF /* FilterEnumerator.m in Sources */,
 				6B5644E51BF44680006FDFD9 /* IsCloseToTest.m in Sources */,
 				6B5644DA1BF44680006FDFD9 /* BaseMatcherTest.m in Sources */,
 				6B5644A51BF44680006FDFD9 /* HCIsCollectionOnlyContaining.m in Sources */,
 				6B5644DD1BF44680006FDFD9 /* StringDescriptionTest.m in Sources */,
-				6B4AA6671BF45B0800E56C1A /* TakeWhileEnumerator.m in Sources */,
 				6B4AA4291BF4591500E56C1A /* MNBezierPath.m in Sources */,
 				6B5645061BF44680006FDFD9 /* SenTestRun.m in Sources */,
 				6B5644D81BF44680006FDFD9 /* AssertThatAfterTest.m in Sources */,
-				6B4AA6491BF45B0800E56C1A /* NSEnumerator+OCTotallyLazy.m in Sources */,
 				6B5644E81BF44680006FDFD9 /* NumberAssertTest.m in Sources */,
 				6B4AA4B91BF4591500E56C1A /* MNStem.m in Sources */,
 				D278F5201A8689AE000C57C1 /* MNBrowserWindowController.m in Sources */,
 				6B5644B61BF44680006FDFD9 /* HCOrderingComparison.m in Sources */,
 				6B4AA56B1BF459B200E56C1A /* MNAnnotationTests.m in Sources */,
+				6B0BE88C1C162D630035ADCF /* MapEnumerator.m in Sources */,
 				6B182C831C0F6CBB006F0981 /* MNNoteHeadRenderOptions.m in Sources */,
+				6B0BE8BE1C162D630035ADCF /* Queue.m in Sources */,
 				6B5644C01BF44680006FDFD9 /* HCThrowsException.m in Sources */,
 				6B182C931C0FDE77006F0981 /* MNStaffTempoRenderOptions.m in Sources */,
 				D278F51D1A8689AE000C57C1 /* main.m in Sources */,
 				6B8631CD1B235C0300786D3D /* MNOutlineViewController.m in Sources */,
 				6B4AA6111BF45B0800E56C1A /* JSONKit.m in Sources */,
 				6B5644B91BF44680006FDFD9 /* HCHasDescription.m in Sources */,
-				6B4AA62F1BF45B0800E56C1A /* FlattenEnumerator.m in Sources */,
 				6B5645011BF44680006FDFD9 /* SenTestingUtilities.m in Sources */,
 				6B4AA42B1BF4591500E56C1A /* MNBoundingBox.m in Sources */,
 				6B5644F61BF44680006FDFD9 /* StringContainsInOrderTest.m in Sources */,
@@ -3751,7 +3792,6 @@
 				6B4AA57A1BF459B200E56C1A /* MNKeyManagerTests.m in Sources */,
 				6B4AA59A1BF459B200E56C1A /* MNTickContextTests.m in Sources */,
 				6B4AA56F1BF459B200E56C1A /* MNBendTests.m in Sources */,
-				6B4AA63D1BF45B0800E56C1A /* MemoisedSequence.m in Sources */,
 				6B4AA5891BF459B200E56C1A /* MNStaffHairpinTests.m in Sources */,
 				6B5644851BF44680006FDFD9 /* HCCollect.m in Sources */,
 				6B5644C71BF44680006FDFD9 /* HCSubstringMatcher.m in Sources */,
@@ -3762,7 +3802,6 @@
 				6B5644931BF44680006FDFD9 /* HCReturnValueGetter.m in Sources */,
 				6B5644CC1BF44680006FDFD9 /* IsCollectionContainingInAnyOrderTest.m in Sources */,
 				6B4BC5DC1B7B9CF4002FAA76 /* MNCarrierLayer.m in Sources */,
-				6B4AA62B1BF45B0800E56C1A /* EnumerateEnumerator.m in Sources */,
 				6B4AA4751BF4591500E56C1A /* MNMusicRootIndices.m in Sources */,
 				6B4AA6191BF45B0800E56C1A /* NSMutableDictionary+MNAdditions.m in Sources */,
 				6B56449B1BF44680006FDFD9 /* HCSenTestFailureHandler.m in Sources */,
@@ -3770,7 +3809,6 @@
 				6B5644A11BF44680006FDFD9 /* HCHasCount.m in Sources */,
 				6B5644A41BF44680006FDFD9 /* HCIsCollectionContainingInOrder.m in Sources */,
 				6B4AA61D1BF45B0800E56C1A /* NSObject+CleanDescription.m in Sources */,
-				6B4AA6291BF45B0800E56C1A /* EmptyEnumerator.m in Sources */,
 				6BAF42941C028A2800C82A4A /* MNVibratoRenderOptions.m in Sources */,
 				6B5644B71BF44680006FDFD9 /* HCClassMatcher.m in Sources */,
 				6B4AA4351BF4591500E56C1A /* MNClefNote.m in Sources */,
@@ -3782,6 +3820,7 @@
 				6B182C731C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m in Sources */,
 				6B4AA5991BF459B200E56C1A /* MNThreeVoiceTests.m in Sources */,
 				6B4AA5941BF459B200E56C1A /* MNTabStaffTests.m in Sources */,
+				6B0BE8941C162D630035ADCF /* PairEnumerator.m in Sources */,
 				6B4AA4C71BF4591500E56C1A /* MNTableAccListStruct.m in Sources */,
 				6B4AA6231BF45B0800E56C1A /* NSString+Ruby.m in Sources */,
 				6B4AA4151BF4591500E56C1A /* MNGlyphLayer.m in Sources */,
@@ -3796,7 +3835,6 @@
 				D278F51B1A8689AE000C57C1 /* AppDelegate.m in Sources */,
 				6B4AA4B31BF4591500E56C1A /* MNStaffText.m in Sources */,
 				6B4AA4491BF4591500E56C1A /* MNFretHandFinger.m in Sources */,
-				6B4AA64B1BF45B0800E56C1A /* NSSet+OCTotallyLazy.m in Sources */,
 				6B5644AB1BF44680006FDFD9 /* HCIsIn.m in Sources */,
 				6B4AA4C31BF4591500E56C1A /* MNTable.m in Sources */,
 				6B4AA4771BF4591500E56C1A /* MNMusicScales.m in Sources */,
@@ -3804,17 +3842,18 @@
 				6B4AA47D1BF4591500E56C1A /* MNNoteTie.m in Sources */,
 				6B56448E1BF44680006FDFD9 /* HCIntReturnGetter.m in Sources */,
 				6B4AA61F1BF45B0800E56C1A /* NSObject+MNAdditions.m in Sources */,
+				6B0BE8841C162D630035ADCF /* EnumerateEnumerator.m in Sources */,
 				6B4AA5841BF459B200E56C1A /* MNPedalMarkingTests.m in Sources */,
 				6BAF42801C02819E00C82A4A /* MNFormatterContext.m in Sources */,
 				6B4AA58E1BF459B200E56C1A /* MNStaffTieTests.m in Sources */,
 				6B4AA44D1BF4591500E56C1A /* MNGlyph.m in Sources */,
 				6B4AA46B1BF4591500E56C1A /* MNModifier.m in Sources */,
-				6B4AA6531BF45B0800E56C1A /* Pair.m in Sources */,
 				6B5644831BF44680006FDFD9 /* HCDiagnosingMatcher.m in Sources */,
 				6B4AA4BD1BF4591500E56C1A /* MNStringNumber.m in Sources */,
 				6B4AA5921BF459B200E56C1A /* MNTabNoteTests.m in Sources */,
 				6B5644F51BF44680006FDFD9 /* IsEqualIgnoringWhiteSpaceTest.m in Sources */,
 				6BC86D291B768BDD00C6D20B /* MNRenderLayer.m in Sources */,
+				6B0BE8B01C162D630035ADCF /* NSDictionary+OCTotallyLazy.m in Sources */,
 				6BC86D351B77D75C00C6D20B /* NSString+MNAdditions.m in Sources */,
 				6B4AA5A01BF459B200E56C1A /* MNVoiceTests.m in Sources */,
 				6B4AA59F1BF459B200E56C1A /* MNVibratoTests.m in Sources */,
@@ -3836,6 +3875,7 @@
 				6B4AA57D1BF459B200E56C1A /* MNMockTickable.m in Sources */,
 				6B56449F1BF44680006FDFD9 /* HCXCTestFailureHandler.m in Sources */,
 				6B4AA58F1BF459B200E56C1A /* MNStringNumberTests.m in Sources */,
+				6B0BE8821C162D630035ADCF /* EmptyEnumerator.m in Sources */,
 				6B5645071BF44680006FDFD9 /* SenTestSuite.m in Sources */,
 				6BE400031C122DBA007573FB /* MNSheetMusicExamplesTests.m in Sources */,
 				6B4AA58C1BF459B200E56C1A /* MNStaffNoteTests.m in Sources */,
@@ -3859,7 +3899,6 @@
 				6BD133B21C13664E00E14741 /* MNTestUtils.m in Sources */,
 				6B4AA4471BF4591500E56C1A /* MNFormatter.m in Sources */,
 				6B5644C61BF44680006FDFD9 /* HCStringStartsWith.m in Sources */,
-				6B4AA6591BF45B0800E56C1A /* Predicates.m in Sources */,
 				6B5644881BF44680006FDFD9 /* HCWrapInMatcher.m in Sources */,
 				6B5644FC1BF44680006FDFD9 /* SenTest.m in Sources */,
 				6B4AA5881BF459B200E56C1A /* MNStaffConnectorTests.m in Sources */,
@@ -3876,36 +3915,39 @@
 				6B5644C11BF44680006FDFD9 /* HCIsEqualIgnoringCase.m in Sources */,
 				6B4AA43B1BF4591500E56C1A /* MNCurve.m in Sources */,
 				6B4AA5971BF459B200E56C1A /* MNTextNoteTests.m in Sources */,
+				6B0BE8C01C162D630035ADCF /* Range.m in Sources */,
 				6B5D4AC21C04E66A00AA250A /* MNConstants.m in Sources */,
 				6B4AA4F51BF4591600E56C1A /* MNVoiceGroup.m in Sources */,
 				6B4AA4C11BF4591500E56C1A /* MNSymbol.m in Sources */,
 				6B4AA4551BF4591500E56C1A /* MNGraceNoteGroup.m in Sources */,
 				6B5644BA1BF44680006FDFD9 /* HCHasProperty.m in Sources */,
 				6B4AA5701BF459B200E56C1A /* MNBoundingBoxTests.m in Sources */,
-				6B4AA6551BF45B0800E56C1A /* PairEnumerator.m in Sources */,
 				6B5644F71BF44680006FDFD9 /* StringContainsTest.m in Sources */,
 				6B4AA41D1BF4591500E56C1A /* MNAccidental.m in Sources */,
 				6B4AA4371BF4591500E56C1A /* MNColor.m in Sources */,
 				6BAF42901C0289A000C82A4A /* MNTuningNames.m in Sources */,
+				6B0BE8A21C162D630035ADCF /* Functions.m in Sources */,
+				6B0BE8901C162D630035ADCF /* MergeEnumerator.m in Sources */,
 				6B4AA56E1BF459B200E56C1A /* MNBeamTests.m in Sources */,
 				6B5644CD1BF44680006FDFD9 /* IsCollectionContainingInOrderTest.m in Sources */,
-				6B4AA6451BF45B0800E56C1A /* NSArray+OCTotallyLazy.m in Sources */,
 				6B4AA4DB1BF4591600E56C1A /* MNTextDynamics.m in Sources */,
 				6B5644AD1BF44680006FDFD9 /* HCIs.m in Sources */,
 				6B4AA5911BF459B200E56C1A /* MNTableTests.m in Sources */,
 				6B56448D1BF44680006FDFD9 /* HCFloatReturnGetter.m in Sources */,
 				6B4AA4DD1BF4591600E56C1A /* MNTextNote.m in Sources */,
 				6B5644A61BF44680006FDFD9 /* HCIsDictionaryContaining.m in Sources */,
-				6B4AA6311BF45B0800E56C1A /* Function1.m in Sources */,
 				6B4AA4B71BF4591500E56C1A /* MNStaffVolta.m in Sources */,
 				6B5644E41BF44680006FDFD9 /* IsNotTest.m in Sources */,
+				6B0BE8AE1C162D630035ADCF /* NSArray+OCTotallyLazy.m in Sources */,
 				6B5644BB1BF44680006FDFD9 /* HCIsEqual.m in Sources */,
+				6B0BE8A41C162D630035ADCF /* Group.m in Sources */,
+				6B0BE8801C162D630035ADCF /* EasyEnumerable.m in Sources */,
 				6B4AA4971BF4591500E56C1A /* MNShapeLayer.m in Sources */,
 				6B5644F01BF44680006FDFD9 /* IsSameTest.m in Sources */,
 				6B4AA5901BF459B200E56C1A /* MNStrokesTests.m in Sources */,
-				6B4AA6271BF45B0800E56C1A /* EasyEnumerable.m in Sources */,
 				6B5644FA1BF44680006FDFD9 /* NSException_SenTestFailure.m in Sources */,
 				6B5644DF1BF44680006FDFD9 /* IsTest.m in Sources */,
+				6B0BE8A01C162D630035ADCF /* Function2.m in Sources */,
 				6B5644FE1BF44680006FDFD9 /* SenTestCaseRun.m in Sources */,
 				6B5644AF1BF44680006FDFD9 /* HCAnyOf.m in Sources */,
 				6BB7EC0C1C06299600E09252 /* MNNoteRenderOptions.m in Sources */,
@@ -3913,10 +3955,10 @@
 				6B5644DE1BF44680006FDFD9 /* DescribedAsTest.m in Sources */,
 				6B4AA4591BF4591500E56C1A /* MNKeyManager.m in Sources */,
 				6B5644C21BF44680006FDFD9 /* HCIsEqualIgnoringWhiteSpace.m in Sources */,
-				6B4AA6251BF45B0800E56C1A /* Callables.m in Sources */,
 				6B5644EC1BF44680006FDFD9 /* HasPropertyTest.m in Sources */,
 				6B4AA4711BF4591500E56C1A /* MNMusic.m in Sources */,
 				6B5644FF1BF44680006FDFD9 /* SenTestClassEnumerator.m in Sources */,
+				6B0BE87E1C162D630035ADCF /* Callables.m in Sources */,
 				6B4AA5851BF459B200E56C1A /* MNPercussionTests.m in Sources */,
 				6B4AA4B51BF4591500E56C1A /* MNStaffTie.m in Sources */,
 				6B4AA47F1BF4591500E56C1A /* MNOptions.m in Sources */,
@@ -3925,19 +3967,15 @@
 				6B182C9F1C0FEEFA006F0981 /* MNNoteMetrics.m in Sources */,
 				6B4AA4F11BF4591600E56C1A /* MNVibrato.m in Sources */,
 				6B4AA4271BF4591500E56C1A /* MNBend.m in Sources */,
-				6B4AA65D1BF45B0800E56C1A /* Range.m in Sources */,
 				6B4AA4231BF4591500E56C1A /* MNBarNote.m in Sources */,
 				6B4AA44F1BF4591500E56C1A /* MNGlyphList.m in Sources */,
-				6BC86D261B76441C00C6D20B /* MNTestAction.m in Sources */,
-				6B4AA6571BF45B0800E56C1A /* PartitionEnumerator.m in Sources */,
+				6BC86D261B76441C00C6D20B /* MNTestActionStruct.m in Sources */,
 				6B8631CC1B235C0300786D3D /* MNTestTrie.m in Sources */,
 				6B9A372A1BF55DCB00341DF8 /* MNBrowserLogger.m in Sources */,
 				6B5644B41BF44680006FDFD9 /* HCIsTrueFalse.m in Sources */,
-				6B4AA6351BF45B0800E56C1A /* Functions.m in Sources */,
 				6B5644D41BF44680006FDFD9 /* IsEmptyCollectionTest.m in Sources */,
 				6BAF429C1C028CD900C82A4A /* MNTimeSignatureOptions.m in Sources */,
 				6B5644F91BF44680006FDFD9 /* StringStartsWithTest.m in Sources */,
-				6B4AA63B1BF45B0800E56C1A /* MemoisedEnumerator.m in Sources */,
 				6B5644B81BF44680006FDFD9 /* HCConformsToProtocol.m in Sources */,
 				6B4AA4531BF4591500E56C1A /* MNGraceNote.m in Sources */,
 				6B4AA4851BF4591500E56C1A /* MNPair.m in Sources */,
@@ -3952,25 +3990,26 @@
 				6B5644941BF44680006FDFD9 /* HCShortReturnGetter.m in Sources */,
 				6B4AA4A71BF4591500E56C1A /* MNStaffLine.m in Sources */,
 				6B5644951BF44680006FDFD9 /* HCUnsignedCharReturnGetter.m in Sources */,
-				6B4AA65F1BF45B0800E56C1A /* RepeatEnumerator.m in Sources */,
 				6B5644C31BF44680006FDFD9 /* HCStringContains.m in Sources */,
 				6BAF42B01C03467C00C82A4A /* NSNumber+MNAdditions.m in Sources */,
 				6B5644901BF44680006FDFD9 /* HCLongReturnGetter.m in Sources */,
 				6B5644E31BF44680006FDFD9 /* IsAnythingTest.m in Sources */,
-				6B4AA63F1BF45B0800E56C1A /* MergeEnumerator.m in Sources */,
+				6B0BE88A1C162D630035ADCF /* GroupedEnumerator.m in Sources */,
+				6B0BE8981C162D630035ADCF /* RepeatEnumerator.m in Sources */,
 				6B4AA58D1BF459B200E56C1A /* MNStaffTests.m in Sources */,
 				6B4AA59E1BF459B200E56C1A /* MNTupletTests.m in Sources */,
 				6B5644BD1BF44680006FDFD9 /* HCIsNil.m in Sources */,
 				6BAF42741C027FD500C82A4A /* MNNoteAccidentalStruct.m in Sources */,
+				6B0BE8BA1C162D630035ADCF /* Pair.m in Sources */,
 				6B5644FD1BF44680006FDFD9 /* SenTestCase.m in Sources */,
-				6B4AA62D1BF45B0800E56C1A /* FilterEnumerator.m in Sources */,
 				6BB7EC141C062AAD00E09252 /* MNNoteHeadBounds.m in Sources */,
 				6B4AA4A11BF4591500E56C1A /* MNStaffBarLine.m in Sources */,
 				6B4AA4E11BF4591600E56C1A /* MNTickContext.m in Sources */,
 				6B4AA4D71BF4591600E56C1A /* MNText.m in Sources */,
-				6B4AA6411BF45B0800E56C1A /* None.m in Sources */,
 				6B4AA4211BF4591500E56C1A /* MNArticulation.m in Sources */,
+				6B0BE8C21C162D630035ADCF /* Sequence.m in Sources */,
 				6B4AA4BB1BF4591500E56C1A /* MNStemmableNote.m in Sources */,
+				6B0BE89E1C162D630035ADCF /* Function1.m in Sources */,
 				6B2C00641B72ADB20036AA76 /* MNWrappedLayout.m in Sources */,
 				6B4AA56D1BF459B200E56C1A /* MNAutoBeamFormattingTests.m in Sources */,
 				6B56448A1BF44680006FDFD9 /* HCBoolReturnGetter.m in Sources */,
@@ -3980,7 +4019,6 @@
 				6B4AA61B1BF45B0800E56C1A /* NSObject+AutoDescription.m in Sources */,
 				6B4AA4251BF4591500E56C1A /* MNBeam.m in Sources */,
 				6B4AA4411BF4591500E56C1A /* MNEnum.m in Sources */,
-				6B4AA6391BF45B0800E56C1A /* MapEnumerator.m in Sources */,
 				6B4AA4AF1BF4591500E56C1A /* MNStaffSection.m in Sources */,
 				6B5645021BF44680006FDFD9 /* SenTestInvocationEnumerator.m in Sources */,
 				6B5644841BF44680006FDFD9 /* HCStringDescription.m in Sources */,
@@ -3995,18 +4033,17 @@
 				6B5644861BF44680006FDFD9 /* HCInvocationMatcher.m in Sources */,
 				6B4AA4831BF4591500E56C1A /* MNPadding.m in Sources */,
 				6B5644F21BF44680006FDFD9 /* SomeClassAndSubclass.m in Sources */,
-				6B4AA65B1BF45B0800E56C1A /* Queue.m in Sources */,
 				6B5644D01BF44680006FDFD9 /* IsDictionaryContainingEntriesTest.m in Sources */,
 				6B5644E91BF44680006FDFD9 /* OrderingComparisonTest.m in Sources */,
 				6BAF42A01C028DD100C82A4A /* MNTickableMetrics.m in Sources */,
-				6B4AA6611BF45B0800E56C1A /* Sequence.m in Sources */,
 				6B4AA4991BF4591500E56C1A /* MNShift.m in Sources */,
-				6BC86D2F1B76A3D100C6D20B /* MNViewStaffStruct.m in Sources */,
 				6B4AA4D51BF4591600E56C1A /* MNTabTie.m in Sources */,
+				6B0BE8B41C162D630035ADCF /* Numbers.m in Sources */,
 				6BAF42841C02845D00C82A4A /* MNAccidentalRenderOptions.m in Sources */,
 				6B4AA5761BF459B200E56C1A /* MNFormatterTests.m in Sources */,
 				6BAF427C1C0280F900C82A4A /* MNClefAnnotation.m in Sources */,
 				6BB7EC201C07CA3B00E09252 /* MNChordTestStruct.m in Sources */,
+				6B0BE8A81C162D630035ADCF /* MemoisedSequence.m in Sources */,
 				6BE115641BFE7B0700961E35 /* MNBendRenderOptions.m in Sources */,
 				6B5644FB1BF44680006FDFD9 /* SenInterfaceTestCase.m in Sources */,
 				6B5644F81BF44680006FDFD9 /* StringEndsWithTest.m in Sources */,
@@ -4015,11 +4052,11 @@
 				6B4AA4671BF4591500E56C1A /* MNMath.m in Sources */,
 				6B4AA4EB1BF4591600E56C1A /* MNTuplet.m in Sources */,
 				6B56448C1BF44680006FDFD9 /* HCDoubleReturnGetter.m in Sources */,
-				6B4AA6331BF45B0800E56C1A /* Function2.m in Sources */,
+				6B0BE8AA1C162D630035ADCF /* None.m in Sources */,
+				6B0BE8C41C162D630035ADCF /* Some.m in Sources */,
 				6B5644E61BF44680006FDFD9 /* IsEqualToNumberTest.m in Sources */,
 				6B4AA60D1BF45B0800E56C1A /* IAModelBase.m in Sources */,
 				6B5644AA1BF44680006FDFD9 /* HCIsEmptyCollection.m in Sources */,
-				6B4AA6431BF45B0800E56C1A /* NoSuchElementException.m in Sources */,
 				6B4AA4651BF4591500E56C1A /* MNLog.m in Sources */,
 				6B4AA4451BF4591500E56C1A /* MNFont.m in Sources */,
 				6B4AA47B1BF4591500E56C1A /* MNNoteHead.m in Sources */,
@@ -4028,14 +4065,15 @@
 				6B5644A01BF44680006FDFD9 /* HCEvery.m in Sources */,
 				6B5644A81BF44680006FDFD9 /* HCIsDictionaryContainingKey.m in Sources */,
 				6B5644921BF44680006FDFD9 /* HCReturnTypeHandlerChain.m in Sources */,
+				6B0BE8AC1C162D630035ADCF /* NoSuchElementException.m in Sources */,
 				6B4AA4D31BF4591500E56C1A /* MNTabStaff.m in Sources */,
 				6B5644D21BF44680006FDFD9 /* IsDictionaryContainingTest.m in Sources */,
+				6B0BE8921C162D630035ADCF /* NSEnumerator+OCTotallyLazy.m in Sources */,
 				6B5644871BF44680006FDFD9 /* HCRequireNonNilObject.m in Sources */,
 				6B5644D31BF44680006FDFD9 /* IsDictionaryContainingValueTest.m in Sources */,
 				6B4AA5871BF459B200E56C1A /* MNRhythmTests.m in Sources */,
 				6BAF42881C0284D800C82A4A /* MNBeamConfig.m in Sources */,
 				6B182C871C0F717C006F0981 /* MNBeamRenderOptions.m in Sources */,
-				6B4AA6371BF45B0800E56C1A /* GroupedEnumerator.m in Sources */,
 				6B4AA59D1BF459B200E56C1A /* MNTuningTests.m in Sources */,
 				6BC86D2C1B76A31B00C6D20B /* MNTestCollectionItemView.m in Sources */,
 				6B5645031BF44680006FDFD9 /* SenTestLog.m in Sources */,
@@ -4049,9 +4087,7 @@
 				6B4AA5691BF459B200E56C1A /* MNAccidentalTests.m in Sources */,
 				6B182CA31C0FF29A006F0981 /* MNGlyphMetrics.m in Sources */,
 				6B4AA5801BF459B200E56C1A /* MNNodeTests.m in Sources */,
-				6B4AA6631BF45B0800E56C1A /* SingleValueEnumerator.m in Sources */,
 				6B5644C81BF44680006FDFD9 /* EveryTest.m in Sources */,
-				6B4AA64F1BF45B0800E56C1A /* OCGroup.m in Sources */,
 				6B4AA4311BF4591500E56C1A /* MNChordBox.m in Sources */,
 				6B4AA4CB1BF4591500E56C1A /* MNTablesNoteData.m in Sources */,
 				6B4AA46F1BF4591500E56C1A /* MNMoveableClef.m in Sources */,
@@ -4064,6 +4100,7 @@
 				6B5644801BF44680006FDFD9 /* HCAssertThat.m in Sources */,
 				6B4AA4AB1BF4591500E56C1A /* MNStaffNote.m in Sources */,
 				6B4AA57B1BF459B200E56C1A /* MNKeySignatureTests.m in Sources */,
+				6B0BE89A1C162D630035ADCF /* SingleValueEnumerator.m in Sources */,
 				6B5644B31BF44680006FDFD9 /* HCIsEqualToNumber.m in Sources */,
 				6B5644EB1BF44680006FDFD9 /* HasDescriptionTest.m in Sources */,
 				6B4AA4EF1BF4591600E56C1A /* MNUtils.m in Sources */,
@@ -4075,6 +4112,7 @@
 				6B5644F11BF44680006FDFD9 /* IsTypeOfTest.m in Sources */,
 				6B4AA43F1BF4591500E56C1A /* MNDot.m in Sources */,
 				6BAF428C1C02858500C82A4A /* MNBendStruct.m in Sources */,
+				6B0BE8BC1C162D630035ADCF /* Predicates.m in Sources */,
 				6B4AA57E1BF459B200E56C1A /* MNModifierTests.m in Sources */,
 				6B4AA4791BF4591500E56C1A /* MNNote.m in Sources */,
 				6B5644CF1BF44680006FDFD9 /* IsCollectionOnlyContainingTest.m in Sources */,
@@ -4107,7 +4145,7 @@
 /* Begin XCBuildConfiguration section */
 		6BBB49E31B667EE70036081B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 180A38F4867827872B96F8D3 /* Pods-MusicNotationMobile.debug.xcconfig */;
+			baseConfigurationReference = 9DCF05863704306CC41A85BB /* Pods-MusicNotationMobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -4136,7 +4174,7 @@
 		};
 		6BBB49E41B667EE70036081B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8555E94A25DCF4B33D73B0F0 /* Pods-MusicNotationMobile.release.xcconfig */;
+			baseConfigurationReference = 7CAA54FDF931131D4AA3C386 /* Pods-MusicNotationMobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -4257,7 +4295,7 @@
 		};
 		D278F5351A8689AE000C57C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57F41D53F602C4070678E460 /* Pods-MusicNotationDesktop.debug.xcconfig */;
+			baseConfigurationReference = 7931C3BC3335BB59F58AAEA6 /* Pods-MusicNotationDesktop.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -4299,7 +4337,7 @@
 		};
 		D278F5361A8689AE000C57C1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7AD24FF2A1DFE43BC7FB5697 /* Pods-MusicNotationDesktop.release.xcconfig */;
+			baseConfigurationReference = B2BFBDC93D72FCB928185506 /* Pods-MusicNotationDesktop.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

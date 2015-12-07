@@ -1,6 +1,13 @@
 #import "Callables.h"
 
 @implementation Callables
++ (id (^)(id))identity
+{
+    return [^(id item) {
+      return item;
+    } copy];
+}
+
 + (NSString* (^)(NSString*))toUpperCase
 {
     return [^(NSString* item) {

@@ -44,31 +44,6 @@
     [super tearDown];
 }
 
-
-/*
-Vex.Flow.Test.NoteHead.setupContext = function(options, x, y) {
-
-    var ctx = new options.contextBuilder(options.canvas_sel, x || 450, y || 140);
-    ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-    ctx.font = " 10pt Arial";
-     MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 10, x || 450).addTrebleGlyph();
-
-    return {context: ctx, staff: staff};
-};
- */
-//+ (void)setupContext:(NSView *)parent {
-//     MNTestView *test =  [MNTestView createCanvasTest:CGSizeMake(450, 140) withParent:parent];
-//
-//    test.drawBlock = ^(CGRect dirtyRect, CGRect bounds, NSGraphicsContext *context) {
-//
-//         MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(300, 10, 300, 0)];
-//
-//
-//
-//
-//    };
-//}
-
 - (MNTestBlockStruct*)basic:(id<MNTestParentDelegate>)parent
 {
     MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];

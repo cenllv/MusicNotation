@@ -200,7 +200,7 @@
             NSUInteger cnt = render_options.lineDashLengths.count;
             lengths = malloc(sizeof(CGFloat) * cnt);
             memset(lengths, 0, sizeof(CGFloat) * cnt);
-            [render_options.lineDashLengths foreach:^(NSNumber* element, NSUInteger index, BOOL* stop) {
+            [render_options.lineDashLengths oct_foreach:^(NSNumber* element, NSUInteger index, BOOL* stop) {
               lengths[index] = (CGFloat)[element floatValue];
             }];
             size_t count = (size_t)render_options.lineDashCount;
@@ -256,7 +256,7 @@
     CGContextRestoreGState(ctx);
     __block MNPoint* start_position;
     __block MNPoint* end_position;
-    [self.first_indices foreach:^(NSNumber* first_index_number, NSUInteger i, BOOL* stop) {
+    [self.first_indices oct_foreach:^(NSNumber* first_index_number, NSUInteger i, BOOL* stop) {
       NSUInteger first_index = [first_index_number unsignedIntegerValue];
       NSUInteger last_index = [self.last_indices[i] unsignedIntegerValue];
 

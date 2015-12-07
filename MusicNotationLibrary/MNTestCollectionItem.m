@@ -26,7 +26,7 @@
 //
 
 #import "MNTestCollectionItem.h"
-#import "MNTestAction.h"
+#import "MNTestActionStruct.h"
 #import "MNRenderLayer.h"
 #import "MNMacros.h"
 #import "MNTestCollectionItemView.h"
@@ -37,7 +37,7 @@ NSString* const kTestCollectionItemid = @"testCollectionItemid";
 
 @interface MNTestCollectionItem ()
 
-@property (strong, nonatomic) MNTestAction* test;
+@property (strong, nonatomic) MNTestActionStruct* test;
 @property (strong, nonatomic) MNRenderLayer* renderLayer;
 //@property (strong, nonatomic) NSTextField* textField; // already a convenience property with this name
 @property (strong, nonatomic) NSTextField* textLabel;
@@ -182,11 +182,11 @@ NSString* const kTestCollectionItemid = @"testCollectionItemid";
 {
     [super setRepresentedObject:newRepresentedObject];
 
-    if([newRepresentedObject isKindOfClass:[MNTestAction class]])
+    if([newRepresentedObject isKindOfClass:[MNTestActionStruct class]])
     {
         if(self.renderLayer.testAction != newRepresentedObject)
         {
-            self.textLabel.stringValue = ((MNTestAction*)newRepresentedObject).name;
+            self.textLabel.stringValue = ((MNTestActionStruct*)newRepresentedObject).name;
             [self.textLabel sizeToFit];
             self.renderLayer.testAction = newRepresentedObject;
         }

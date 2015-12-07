@@ -26,11 +26,8 @@
 //
 
 #import "MNTestBlockStruct.h"
-#import "MNCore.h"
 
 @implementation MNTestBlockStruct
-
-#pragma mark - Constructors
 
 - (instancetype)init
 {
@@ -45,6 +42,5 @@
 {
     return [[MNTestBlockStruct alloc] init];
 }
-
 
 @end

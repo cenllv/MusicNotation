@@ -1,7 +1,6 @@
-@import Foundation;
-#ifdef TL_COERCIONS
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-function"
+#import <Foundation/Foundation.h>
+
+#ifndef TL_COERCIONS
 static NSNumber* num(NSInteger value)
 {
     return [NSNumber numberWithInteger:value];
@@ -18,5 +17,4 @@ static NSNumber* numd(double value)
 {
     return [NSNumber numberWithDouble:value];
 }
-#pragma clang diagnostic pop
 #endif

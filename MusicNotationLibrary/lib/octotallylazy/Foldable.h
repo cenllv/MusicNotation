@@ -1,3 +1,3 @@
 @protocol Foldable
-- (id)oct_fold:(id)value with:(id (^)(id, id))functorBlock;
+- (id)oct_fold:(id)value oct_with:(id (^)(id, id))functorBlock;
 @end
