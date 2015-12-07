@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-@class MNBrowserWindowController;
+@class MNBrowserWindowController, AEAudioController;
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 {
@@ -33,5 +33,7 @@
 }
 
 @property MNBrowserWindowController* browserWindowController;
+
+@property (nonatomic, strong) AEAudioController* audioController;
 
 @end

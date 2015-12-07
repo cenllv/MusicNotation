@@ -42,35 +42,9 @@
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)simple0:(id<MNTestParentDelegate>)parent
 {
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();s
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
-
-- (MNTestTuple*)simple0:(MNTestCollectionItemView*)parent
-{
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
@@ -79,7 +53,7 @@
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(40, 40, 550, 0)] addTrebleGlyph];
 
-    [ret.staves addObject:staff];
+    //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
 
@@ -150,9 +124,9 @@
     return ret;
 }
 
-- (MNTestTuple*)simple1:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)simple1:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     /*
     Vex.Flow.Test.TextBracket.simple1 = function(options, contextBuilder) {
         expect(0);
@@ -174,7 +148,7 @@
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(40, 40, 550, 0)];
 
-    [ret.staves addObject:staff];
+    //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       /*

@@ -149,7 +149,7 @@
  *  @param textLine line number on staff for text
  *  @return y position on canvas
  */
-- (float)getYForTopText:(float)textLine;
+- (float)getYForTopTextWithLine:(float)textLine;
 
 /*!
  *  Get the `y` value for the bottom modifiers at a specific `text_line`

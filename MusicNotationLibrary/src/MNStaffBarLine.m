@@ -189,7 +189,7 @@
         case MNBarLineNone:
             break;
         default:
-            MNLogError(@"DrawBarLineWarning, tried to draw a bar line with unknown value: %li", self.barLinetype);
+            MNLogError(@"DrawBarLineWarning, tried to draw a bar line with unknown value: %tu", self.barLinetype);
             break;
     }
 }
@@ -261,10 +261,7 @@
     float dotX = (x + xShift) + (dotRadius / 2);
 
     // calculate the y offset based on number of staff lines
-    float yOffset = (self.staff.options.numLines - 1) * self.staff.options.pointsBetweenLines;
-    yOffset = (yOffset / 2) - (self.staff.options.pointsBetweenLines / 2);
-    float dotY = topY - yOffset + (dotRadius / 2);
-    //    float dotY = [self.staff getYForLine:1.5];
+    float dotY = [self.staff getYForLine:1.5];
 
     // draw the top repeat dot
     CGContextSaveGState(ctx);

@@ -102,6 +102,9 @@
 //@property (assign, nonatomic, setter=setGlyphFontScale:) float glyphFontScale;
 //@property (strong, nonatomic)  MNTablesGlyphStruct* glyphStruct;
 
+// note types: n h r m s ?
+//@property (assign, nonatomic) MNNoteNHMRSType noteNHMRSType;
+
 @property (assign, nonatomic) float headWidth;
 
 #pragma mark - Methods

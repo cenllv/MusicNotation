@@ -1,11 +1,10 @@
 //
-//  MTMTestViewController.h
+//  MNMTestViewController.h
 //  MusicNotationMobile
 //
 //  Created by Scott on 8/1/15.
 //  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
-//  [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +27,11 @@
 
 #import "MNTestType.h"
 
-@interface MTMTestViewController : UITableViewController
+/*!
+ *  The `MNMProxyTestViewController` class serves as a proxy to MAC app MNTestViewController.
+ *  It passes the test type and delegates control to MNTestViewController.
+ */
+@interface MNMProxyTestViewController : UITableViewController
 
 @property (assign, nonatomic) MNTestType testType;
 

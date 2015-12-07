@@ -34,7 +34,6 @@
 
 @interface MNBrowserWindowController () <NSSplitViewDelegate>
 
-@property (strong, nonatomic) NSDictionary* classForType;
 @property (strong, nonatomic) MNTestViewController* testViewController;
 @property (strong) IBOutlet NSSplitViewController* splitViewController;
 
@@ -202,93 +201,7 @@
     }
 }
 
-- (NSDictionary*)classForType
-{
-    if(!_classForType)
-    {
-        _classForType = @{
-            @(NoneTestType) : [MNNoneTests class],
-            @(AccidentalTestType) : [MNAccidentalTests class],
-            @(AnimationTestType) : [MNAnimationTests class],
-            @(AnnotationTestType) : [MNAnnotationTests class],
-            @(ArticulationTestType) : [MNArticulationTests class],
-            @(AutoBeamFormattingTestType) : [MNAutoBeamFormattingTests class],
-            @(BeamTestType) : [MNBeamTests class],
-            @(BendTestType) : [MNBendTests class],
-            @(BoundingBoxTestType) : [MNBoundingBoxTests class],
-            @(ChordTestType) : [MNChordTest class],
-            @(ClefTestType) : [MNClefTests class],
-            @(CurveTestType) : [MNCurveTests class],
-            @(DotTestType) : [MNDotTests class],
-            @(FontTestType) : [MNFontTests class],
-            @(FormatterTestType) : [MNFormatterTests class],
-            @(GraceNoteTestType) : [MNGraceNoteTests class],
-            @(KeyClefTestType) : [MNKeyClefTests class],
-            @(KeyManagerTestType) : [MNKeyManagerTests class],
-            @(KeySignatureTestType) : [MNKeySignatureTests class],
-            @(LayerNoteTestsTestType) : [MNLayerNoteTests class],
-            @(ModifierTestType) : [MNModifierTests class],
-            @(MusicTestType) : [MNMusicTests class],
-            @(NodeTestType) : [MNNodeTests class],
-            @(NoteHeadTestType) : [MNNoteHeadTests class],
-            @(NotationsGridTestType) : [MNNotationsGridTests class],
-            @(OrnamentTestType) : [MNOrnamentTests class],
-            @(PedalMarkingTestType) : [MNPedalMarkingTests class],
-            @(PercussionTestType) : [MNPercussionTests class],
-            @(RestsTestType) : [MNRestsTest class],
-            @(RhythmTestType) : [MNRhythmTests class],
-            @(StaffTestType) : [MNStaffTests class],
-            @(StaffConnectorTestType) : [MNStaffConnectorTests class],
-            @(StaffHairpinTestType) : [MNStaffHairpinTests class],
-            @(StaffLineTestType) : [MNStaffLineTests class],
-            @(StaffModifierTestType) : [MNStaffModifierTests class],
-            @(StaffNoteTestType) : [MNStaffNoteTests class],
-            @(StaffTieTestType) : [MNStaffTieTests class],
-            @(StringNumberTestType) : [MNStringNumberTests class],
-            @(StrokesTestType) : [MNStrokesTests class],
-            @(TableTestType) : [MNTableTests class],
-            @(TabNoteTestType) : [MNTabNoteTests class],
-            @(TabSlideTestType) : [MNTabSlideTests class],
-            @(TabStaffTestType) : [MNTabStaffTests class],
-            @(TabTieTestType) : [MNTabTieTests class],
-            @(TextBracketTestType) : [MNTextBracketTests class],
-            @(TextNoteTestType) : [MNTextNoteTests class],
-            @(TextTestType) : [MNTextTests class],
-            @(ThreeVoiceTestType) : [MNThreeVoiceTests class],
-            @(TickContextTestType) : [MNTickContextTests class],
-            @(TimeSignatureTestType) : [MNTimeSignatureTests class],
-            @(TuningTestType) : [MNTuningTests class],
-            @(TupletTestType) : [MNTupletTests class],
-            @(VibratoTestType) : [MNVibratoTests class],
-            @(VoiceTestType) : [MNVoiceTests class],
-        };
-        NSArray* allNumValues = REFAllValuesInMNTestType();
-        if(allNumValues.count - 1 != _classForType.count)
-        {
-            NSLog(@"%@:%lu out of sync with %@:%lu", VariableName(_classForType), _classForType.count,
-                  VariableName(self.testType), allNumValues.count);
-            NSMutableSet *set1, *set2;
-            set1 = [[NSMutableSet alloc] init];
-            [set1 addObjectsFromArray:allNumValues];
-            set2 = [[NSMutableSet alloc] init];
-            [set2 addObjectsFromArray:_classForType.allKeys];
-            [set1 minusSet:set2];
-            for(NSNumber* num in set1)
-            {
-                MNTestType missingType = [num integerValue];
-                NSString* missingTypeString = REFStringForMemberInMNTestType(missingType);
-                if([missingTypeString isNotEqualToString:@""])
-                {
-                    NSLog(@"missing class for type: %@", missingTypeString);
-                }
-            }
-        }
-    }
-
-    return _classForType;
-}
-
-#pragma mark CheckBoxe Options
+#pragma mark CheckBox Options
 
 - (IBAction)differentSublayerBackgroundsToggle:(NSButton*)sender
 {
@@ -331,9 +244,9 @@
     [defaults setObject:@(_testType) forKey:@"lastTest"];
     [defaults synchronize];
 
-    if([self.classForType objectForKey:@(_testType)] != [NSNull null])
+    if([[MNTestUtils classForTestType] objectForKey:@(_testType)] != [NSNull null])
     {
-        Class clazz = [self.classForType objectForKey:@(_testType)];
+        Class clazz = [[MNTestUtils classForTestType] objectForKey:@(_testType)];
         if([clazz isSubclassOfClass:[MNTestViewController class]])
         {
             if(self.testViewController)

@@ -57,36 +57,11 @@ static NSUInteger _testFontSize;
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
-{
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
 
 // TODO: "drawSlash:" not being tested
-- (MNTestTuple*)drawSlash:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawSlash:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -117,26 +92,26 @@ static NSUInteger _testFontSize;
              @"stem_direction" : @(-1) },
       ];
 
-      expect(@"%lu", notes.count * 2);
+      expect(@"%tu", notes.count * 2);
 
       [notes foreach:^(NSDictionary* note, NSUInteger i, BOOL* stop) {
 
-        MNStaffNote* staffNote = [parent showNote:note onStaff:staff withContext:ctx atX:(((float)i) + 1.f) * 25];
+        MNStaffNote* staffNote = [[self class] showNote:note onStaff:staff withContext:ctx atX:(((float)i) + 1.f) * 25];
 
         BOOL success = staffNote.x > 0;
-        NSString* message = [NSString stringWithFormat:@"Note %lu has X value", i];
+        NSString* message = [NSString stringWithFormat:@"Note %tu has X value", i];
         ok(success, message);
         success = staffNote.ys.count > 0;
-        message = [NSString stringWithFormat:@"Note %lu has Y values", i];
+        message = [NSString stringWithFormat:@"Note %tu has Y values", i];
         ok(success, message);
       }];
     };
     return ret;
 }
 
-- (MNTestTuple*)drawBasic:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawBasic:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -269,9 +244,9 @@ static NSUInteger _testFontSize;
     return ret;
 }
 
-- (MNTestTuple*)drawBeamedSlashNotes:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawBeamedSlashNotes:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -349,9 +324,9 @@ static NSUInteger _testFontSize;
     return ret;
 }
 
-- (MNTestTuple*)drawSlashAndBeamAndRests:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawSlashAndBeamAndRests:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -450,9 +425,9 @@ static NSUInteger _testFontSize;
     return ret;
 }
 
-- (MNTestTuple*)drawSixteenthWithScratches:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawSixteenthWithScratches:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -536,9 +511,9 @@ static NSUInteger _testFontSize;
     return ret;
 }
 
-- (MNTestTuple*)drawThirtySecondWithScratches:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawThirtySecondWithScratches:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 

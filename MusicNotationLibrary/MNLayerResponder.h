@@ -30,7 +30,8 @@
 //#ifdef TARGET_OS_IPHONE
 //@protocol LayerResponder <NSObject>
 //@end
-//#elif TARGET_OS_MAC
+#if TARGET_OS_IPHONE
+#elif TARGET_OS_MAC
 @protocol MNLayerResponder <NSObject>
 @optional
 - (BOOL)pointingDeviceDownEvent:(NSEvent*)event atPoint:(CGPoint)interactionPoint;
@@ -40,4 +41,4 @@
 
 @end
 
-//#endif
+#endif

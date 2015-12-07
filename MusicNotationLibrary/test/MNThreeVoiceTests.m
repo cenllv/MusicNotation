@@ -33,9 +33,9 @@
 - (void)start
 {
     [super start];
-//    [self runTest:@"Three Voices - #1" func:@selector(threevoices:) frame:CGRectMake(10, 10, 600, 200)];
-//    [self runTest:@"Three Voices - #2 Complex" func:@selector(threevoices2:) frame:CGRectMake(10, 10, 600, 200)];
-//    [self runTest:@"Three Voices - #3" func:@selector(threevoices3:) frame:CGRectMake(10, 10, 600, 200)];
+    //    [self runTest:@"Three Voices - #1" func:@selector(threevoices:) frame:CGRectMake(10, 10, 600, 200)];
+    //    [self runTest:@"Three Voices - #2 Complex" func:@selector(threevoices2:) frame:CGRectMake(10, 10, 600, 200)];
+    //    [self runTest:@"Three Voices - #3" func:@selector(threevoices3:) frame:CGRectMake(10, 10, 600, 200)];
     [self runTest:@"Auto Adjust Rest Positions - Two Voices"
              func:@selector(autoresttwovoices:)
             frame:CGRectMake(10, 10, 900, 250)];
@@ -52,35 +52,9 @@
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)threevoices:(id<MNTestParentDelegate>)parent
 {
-    /*
-    Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-        Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-        var ctx = Vex.getCanvasContext(options.canvas_sel);
-        ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-        ctx.font = " 10pt Arial";
-         MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-        setContext(ctx).draw();
-
-        return {context: ctx, staff: staff};
-    }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
-
-- (MNTestTuple*)threevoices:(MNTestCollectionItemView*)parent
-{
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -209,9 +183,9 @@
     return ret;
 }
 
-- (MNTestTuple*)threevoices2:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)threevoices2:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -351,9 +325,9 @@
       [voice addTickables:notes];
       [voice1 addTickables:notes1];
       [voice2 addTickables:notes2];
-      NSArray* beams = [MNBeam applyAndGetBeams:voice direction:MNStemDirectionUp groups:nil];
-      NSArray* beams1 = [MNBeam applyAndGetBeams:voice1 direction:MNStemDirectionDown groups:nil];
-      NSArray* beams2 = [MNBeam applyAndGetBeams:voice2 direction:MNStemDirectionDown groups:nil];
+      NSArray<MNBeam*>* beams = [MNBeam applyAndGetBeams:voice direction:MNStemDirectionUp groups:nil];
+      NSArray<MNBeam*>* beams1 = [MNBeam applyAndGetBeams:voice1 direction:MNStemDirectionDown groups:nil];
+      NSArray<MNBeam*>* beams2 = [MNBeam applyAndGetBeams:voice2 direction:MNStemDirectionDown groups:nil];
 
       // Set option to position rests near the notes in each voice
       //      MNFormatter* formatter =
@@ -380,9 +354,9 @@
     return ret;
 }
 
-- (MNTestTuple*)threevoices3:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)threevoices3:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -510,9 +484,9 @@
     return ret;
 }
 
-- (MNTestTuple*)autoresttwovoices:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)autoresttwovoices:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -714,9 +688,9 @@
     return ret;
 }
 
-- (MNTestTuple*)autorestthreevoices:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)autorestthreevoices:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -951,9 +925,9 @@
     return ret;
 }
 
-- (MNTestTuple*)autorestthreevoices2:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)autorestthreevoices2:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];

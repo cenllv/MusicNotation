@@ -62,40 +62,40 @@
 
 static float w = 700;
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
+//- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(id<MNTestParentDelegate>)parent
+//{
+//    /*
+//     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
+//     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
+//     var ctx = Vex.getCanvasContext(options.canvas_sel);
+//     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
+//     ctx.font = " 10pt Arial";
+//      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
+//     setContext(ctx).draw();
+//
+//     return {context: ctx, staff: staff};
+//     }
+//     */
+//    NSUInteger w = size.width;
+//    //    NSUInteger h = size.height;
+//
+//    w = w != 0 ? w : 350;
+//    //    h = h != 0 ? h : 150;
+//
+//    // [MNFont setFont:@" 10pt Arial"];
+//
+//    // withParent:parent withTitle:title];
+//    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
+//    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
+//}
+
+- (MNTestBlockStruct*)draw:(id<MNTestParentDelegate>)parent
 {
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    // withParent:parent withTitle:title];
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
-
-- (MNTestTuple*)draw:(MNTestCollectionItemView*)parent
-{
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(40, 40, w - 40, 0)];
 
-    [ret.staves addObject:staff];
+    //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       [staff drawBoundingBox:ctx];
@@ -108,13 +108,13 @@ static float w = 700;
     return ret;
 }
 
-- (MNTestTuple*)drawVerticalBar:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawVerticalBar:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(20, 40, w - 40, 0)];
 
-    [ret.staves addObject:staff];
+    //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
 
@@ -126,9 +126,9 @@ static float w = 700;
     return ret;
 }
 
-- (MNTestTuple*)drawMultipleMeasures:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawMultipleMeasures:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     // bar 1
     MNStaff* staffBar1 = [MNStaff staffWithRect:CGRectMake(10, 50, 250, 0)];
@@ -147,7 +147,8 @@ static float w = 700;
 
     MNVoice* voice = [MNVoice voiceWithNumBeats:4 beatValue:4 resolution:kRESOLUTION];
     [voice addTickables:notesBar1];
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staffBar1];
+    //    MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staffBar1];
 
     // // FIXME: calls to formatWith:withJustifyWidth screws up the width. width is too bid in this case.
     // formatWith:@[ voice ] withJustifyWidth:staffBar1.width];
@@ -187,13 +188,13 @@ static float w = 700;
     //    MNFormatter* formatter2 = [voice addTickables:notesBar2];
     //    [[[MNFormatter formatter] joinVoices:@[ voice2 ]] formatWith:@[ voice2 ] withJustifyWidth:staffBar2.width];
 
-    MNFormatter* formatter2 =
-        [[[MNFormatter formatter] joinVoices:@[ voice2 ]] formatToStaff:@[ voice2 ] staff:staffBar2];
+    //    MNFormatter* formatter2 =
+    [[[MNFormatter formatter] joinVoices:@[ voice2 ]] formatToStaff:@[ voice2 ] staff:staffBar2];
 
-    [ret.formatters addObjectsFromArray:@[ formatter, formatter2 ]];
+    //    [ret.formatters addObjectsFromArray:@[ formatter, formatter2 ]];
 
     //    [ret.staves addObject:staffBar1];
-    //    [ret.voices addObject:voice];
+    //  //  [ret.voices addObject:voice];
     //
     //    [ret.staves addObject:staffBar2];
     //    [ret.voices addObject:voice2];
@@ -203,14 +204,12 @@ static float w = 700;
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-        
-        [staffBar1 draw:ctx];
-        [staffBar2 draw:ctx];
-        
+      [staffBar1 draw:ctx];
+      [staffBar2 draw:ctx];
+
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staffBar1];
 
       [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staffBar2];
-
 
       [beam1 draw:ctx];
       [beam2 draw:ctx];
@@ -218,9 +217,9 @@ static float w = 700;
     return ret;
 }
 
-- (MNTestTuple*)drawRepeats:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawRepeats:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       // bar 1
@@ -310,9 +309,9 @@ static float w = 700;
     return ret;
 }
 
-- (MNTestTuple*)drawVoltaTest:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawVoltaTest:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -415,9 +414,9 @@ static float w = 700;
     return ret;
 }
 
-- (MNTestTuple*)drawTempo:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawTempo:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -490,9 +489,9 @@ static float w = 700;
     return ret;
 }
 
-- (MNTestTuple*)configureSingleLine:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)configureSingleLine:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(100, 10, 300, 0)];
 
@@ -521,9 +520,9 @@ static float w = 700;
     return ret;
 }
 
-- (MNTestTuple*)configureAllLines:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)configureAllLines:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -556,9 +555,9 @@ static float w = 700;
     return ret;
 }
 
-- (MNTestTuple*)drawStaffText:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawStaffText:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(100, 50, 300, 0)];
 
@@ -576,9 +575,9 @@ static float w = 700;
     return ret;
 }
 
-- (MNTestTuple*)drawStaffTextMultiLine:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawStaffTextMultiLine:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(100, 50, 300, 0)];
 

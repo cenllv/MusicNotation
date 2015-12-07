@@ -27,6 +27,8 @@
 
 #import "MNTestViewController.h"
 #if TARGET_OS_IPHONE
+#import "MNMTableViewCell.h"
+#import "MNMCarrierView.h"
 #elif TARGET_OS_MAC
 #import "MNTestCollectionItem.h"
 #endif
@@ -36,12 +38,8 @@
 @interface MNTestViewController ()
 @property (assign, nonatomic) NSInteger numberOfSections;
 @property (assign, nonatomic) NSInteger numberOfItems;
-#if TARGET_OS_IPHONE
-@property (strong, nonatomic) NSMutableDictionary* rowHeights;
-#elif TARGET_OS_MAC
-#endif
-@property (strong, nonatomic) NSMutableArray* tests;            // collection of  MNTestView
-@property (strong, nonatomic) NSMutableDictionary* testItems;   // collection of TestCollectionItem
+@property (strong, nonatomic) NSMutableArray<MNTestAction*>* tests;
+
 @end
 
 @implementation MNTestViewController
@@ -51,14 +49,14 @@
     self.numberOfSections = 1;
     self.numberOfItems = 0;
     self.tests = [NSMutableArray array];
-    self.testItems = [NSMutableDictionary dictionary];
     [MNText showBoundingBox:NO];
 }
 
 - (void)tearDown
 {
-    
 }
+
+static NSString* const reuseId = @"customTestCell";
 
 #if TARGET_OS_IPHONE
 - (instancetype)init
@@ -68,6 +66,8 @@
     {
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
+        [self.tableView registerClass:[MNMTableViewCell class] forCellReuseIdentifier:reuseId];
+        self.tableView.userInteractionEnabled = YES;
     }
     return self;
 }
@@ -75,6 +75,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    // TODO: this may not be helping
+    self.tableView.estimatedRowHeight = 500.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 #pragma mark - <UITableViewDataSource>
@@ -83,7 +87,7 @@
 {
     if(section == 0)
     {
-        return self.numberOfItems;
+        return self.tests.count;
     }
     return 0;
 }
@@ -92,37 +96,47 @@
 {
     if(indexPath.section == 0)
     {
-        return ((TestCollectionItemView*)self.tests[indexPath.row]).frame.size.height;
+        MNTestAction* testAction = ((MNTestAction*)self.tests[indexPath.row]);
+        return testAction.frame.size.height;
     }
     return 0;
+}
+
+- (void)tableView:(UITableView*)tableView
+  willDisplayCell:(UITableViewCell*)cell
+forRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    MNMTableViewCell* mnmCell = (MNMTableViewCell*)cell;
+    MNRenderLayer* layer = (MNRenderLayer*)mnmCell.carrierView.layer;
+    [cell layoutSubviews];
+    [mnmCell.contentView setNeedsLayout];
+    layer.parentView = mnmCell.carrierView;
 }
 
 - (nonnull UITableViewCell*)tableView:(nonnull UITableView*)tableView
                 cellForRowAtIndexPath:(nonnull NSIndexPath*)indexPath
 {
-    static NSString* cellIdentifier = @"cellId";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    //    static NSString* cellIdentifier = @"testCell";
+    MNMTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseId];
 
     if(!cell)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[MNMTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseId];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.contentView.contentMode = UIViewContentModeScaleAspectFit;
     }
 
-    cell.textLabel.text = @"arst";
+    MNTestAction* testAction = self.tests[indexPath.row];
 
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-    TestCollectionItemView* test = self.tests[indexPath.row];
-    //    cell.frame = test.frame;
-    [cell.contentView addSubview:test];
-    [test setNeedsDisplay];
+    cell.textLabel.text = testAction.name;
+    MNRenderLayer* layer = (MNRenderLayer*)cell.carrierView.layer;
+    layer.testAction = testAction;
 
     return cell;
 }
 
-#pragma mark - <UITableViewDelegate>
+//#pragma mark - <UITableViewDelegate>
 
-//--------------------------------
 #elif TARGET_OS_MAC
 - (instancetype)init
 {
@@ -134,7 +148,7 @@
         self.numberOfSections = 1;
         self.numberOfItems = 0;
         self.tests = [NSMutableArray array];
-        self.testItems = [NSMutableDictionary dictionary];
+        //        self.testItems = [NSMutableDictionary dictionary];
     }
     return self;
 }
@@ -154,10 +168,10 @@
 - (nonnull NSCollectionViewItem*)collectionView:(nonnull NSCollectionView*)collectionView
             itemForRepresentedObjectAtIndexPath:(nonnull NSIndexPath*)indexPath
 {
-    if([self.testItems objectForKey:indexPath])
-    {
-        return [self.testItems objectForKey:indexPath];
-    }
+    //    if([self.testItems objectForKey:indexPath])
+    //    {
+    //        return [self.testItems objectForKey:indexPath];
+    //    }
 
     MNTestCollectionItem* testCollectionItem =
         [collectionView makeItemWithIdentifier:kTestCollectionItemid forIndexPath:indexPath];
@@ -255,6 +269,57 @@
     }
     else
         return nil;
+}
+
+#pragma mark - <MNNoteDrawNotesDelegate>
+
++ (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(id<MNTestParentDelegate>)parent
+{
+    NSUInteger w = size.width;
+    //    NSUInteger h = size.height;
+
+    w = w != 0 ? w : 450;
+    //    h = h != 0 ? h : 140;
+
+    //    // [MNFont setFont:@" 10pt Arial"];
+
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, w, 0)] addTrebleGlyph];
+    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
+}
+
++ (MNStaffNote*)showStaffNote:(MNStaffNote*)ret
+                      onStaff:(MNStaff*)staff
+                  withContext:(CGContextRef)ctx
+                          atX:(float)x
+              withBoundingBox:(BOOL)drawBoundingBox
+{
+    MNLogInfo(@"");
+    MNTickContext* tickContext = [[MNTickContext alloc] init];
+    [[tickContext addTickable:ret] preFormat];
+    tickContext.x = x;
+    tickContext.pointsUsed = 20;
+    ret.staff = staff;
+    [ret draw:ctx];
+    if(drawBoundingBox)
+    {
+        [ret.boundingBox draw:ctx];
+    }
+    return ret;
+}
+
++ (MNStaffNote*)showNote:(NSDictionary*)noteStruct onStaff:(MNStaff*)staff withContext:(CGContextRef)ctx atX:(float)x
+{
+    return [self showNote:noteStruct onStaff:staff withContext:ctx atX:x withBoundingBox:NO];
+}
+
++ (MNStaffNote*)showNote:(NSDictionary*)noteStruct
+                 onStaff:(MNStaff*)staff
+             withContext:(CGContextRef)ctx
+                     atX:(float)x
+         withBoundingBox:(BOOL)drawBoundingBox
+{
+    MNStaffNote* ret = [[MNStaffNote alloc] initWithDictionary:noteStruct];
+    return [self showStaffNote:ret onStaff:staff withContext:ctx atX:x withBoundingBox:drawBoundingBox];
 }
 
 @end

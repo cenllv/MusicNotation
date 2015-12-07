@@ -61,6 +61,9 @@
     });
 }
 
+#if TARGET_OS_IPHONE
+#elif TARGET_OS_MAC
+
 - (BOOL)pointingDeviceDownEvent:(NSEvent*)event atPoint:(CGPoint)interactionPoint
 {
     BOOL handled = NO;
@@ -100,5 +103,5 @@
 {
     return NO;
 }
-
+#endif
 @end

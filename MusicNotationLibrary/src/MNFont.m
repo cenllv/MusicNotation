@@ -38,10 +38,7 @@ static NSArray<NSString*>* _availableFonts;
 {
     if(!_availableFonts)
     {
-#if TARGET_OS_MAC
-        _availableFonts = [[NSFontManager sharedFontManager] availableFonts];
-// availableFontFamilies];
-#elif TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE
         NSMutableArray* arr = [NSMutableArray array];
         for(NSString* familyName in [UIFont familyNames])
         {
@@ -53,24 +50,13 @@ static NSArray<NSString*>* _availableFonts;
             }
         }
         _availableFonts = arr;
+#elif TARGET_OS_MAC
+        _availableFonts = [[NSFontManager sharedFontManager] availableFonts];
+// availableFontFamilies];
 #endif
     }
     return _availableFonts;
 }
-
-#if TARGET_OS_IPHONE
-
-+ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize
-{
-    return (MNFont*)[UIFont fontWithName:fontName size:fontSize];
-}
-
-+ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize weight:(NSString*)weight
-{
-    return (MNFont*)[UIFont fontWithName:fontName size:fontSize];   // TODO: not using weight
-}
-
-#elif TARGET_OS_MAC
 
 - (instancetype)init
 {
@@ -78,7 +64,11 @@ static NSArray<NSString*>* _availableFonts;
     if(self)
     {
         _fontSize = 12;
+#if TARGET_OS_IPHONE
+        _font = [UIFont systemFontOfSize:_fontSize];
+#elif TARGET_OS_MAC
         _font = [NSFont systemFontOfSize:_fontSize];
+#endif
         _bold = NO;
         _italic = NO;
         _family = _font.familyName;
@@ -86,17 +76,51 @@ static NSArray<NSString*>* _availableFonts;
     return self;
 }
 
+/*
+#if TARGET_OS_IPHONE
+
+#elif TARGET_OS_MAC
+
+#endif
+ */
+
 + (MNFont*)systemFontWithSize:(CGFloat)fontSize
 {
-    MNFont* ret = [[MNFont alloc] init];
-    [ret setSize:fontSize];
+    MNFont* ret = [(MNFont*)[MNFont alloc] init];
+    //    ret.family = fontName;
+#if TARGET_OS_IPHONE
+    ret.font = [UIFont systemFontOfSize:fontSize];
+#elif TARGET_OS_MAC
+    ret.font = [NSFont systemFontOfSize:fontSize];
+#endif
+    ret.size = fontSize;
     return ret;
 }
 
 + (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize
 {
-    MNFont* ret = [[MNFont alloc] init];
+    MNFont* ret = [(MNFont*)[MNFont alloc] init];
+//    ret.family = fontName;
+#if TARGET_OS_IPHONE
+    ret.font = [UIFont fontWithName:fontName size:fontSize];
+#elif TARGET_OS_MAC
     ret.font = [NSFont fontWithName:fontName size:fontSize];
+#endif
+    ret.size = fontSize;
+    return ret;
+}
+
++ (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize weight:(NSString*)weight
+{
+    //    return (MNFont*)[UIFont fontWithName:fontName size:fontSize];   // TODO: not using weight
+    MNFont* ret = [(MNFont*)[MNFont alloc] init];
+//    ret.family = fontName;
+#if TARGET_OS_IPHONE
+    ret.font = [UIFont fontWithName:fontName size:fontSize];
+#elif TARGET_OS_MAC
+    ret.font = [NSFont fontWithName:fontName size:fontSize];
+#endif
+    ret.size = fontSize;
     return ret;
 }
 
@@ -113,8 +137,6 @@ static NSArray<NSString*>* _availableFonts;
     }
     return ret;
 }
-
-#endif
 
 #pragma mark - Properties
 
@@ -164,7 +186,11 @@ static NSArray<NSString*>* _availableFonts;
 - (void)setBold:(BOOL)bold
 {
     _bold = bold;
+#if TARGET_OS_IPHONE
+
+#elif TARGET_OS_MAC
     [[NSFontManager sharedFontManager] convertWeight:YES ofFont:_font];
+#endif
 }
 
 - (BOOL)italic
@@ -176,6 +202,9 @@ static NSArray<NSString*>* _availableFonts;
 {
     if(italic != _italic)
     {
+#if TARGET_OS_IPHONE
+
+#elif TARGET_OS_MAC
         if(italic)
         {
             _font = [[NSFontManager sharedFontManager] convertFont:_font toHaveTrait:NSFontItalicTrait];
@@ -184,6 +213,7 @@ static NSArray<NSString*>* _availableFonts;
         {
             _font = [[NSFontManager sharedFontManager] convertFont:_font toNotHaveTrait:NSFontItalicTrait];
         }
+#endif
     }
     _italic = italic;
 }
@@ -192,7 +222,11 @@ static NSArray<NSString*>* _availableFonts;
 {
     if(size != _fontSize)
     {
+#if TARGET_OS_IPHONE
+
+#elif TARGET_OS_MAC
         _font = [[NSFontManager sharedFontManager] convertFont:_font toSize:size];
+#endif
         _fontSize = size;
     }
 }

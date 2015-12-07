@@ -27,14 +27,6 @@
 //
 
 #import "MNAccidentalTests.h"
-//#if TARGET_OS_IPHONE
-//#elif TARGET_OS_MAC
-//#import "MTMTestHelpers.h"
-//#endif
-//#import "MNVex.h"
-//#import "MNAccidental.h"
-//#import "AutoBeamFormattingTests.h"
-//#import "MNText.h"
 
 @interface MNAccidentalTests ()
 
@@ -46,60 +38,34 @@
 {
     [super start];
     [self runTest:@"Basic" func:@selector(basic:) frame:CGRectMake(10, 10, 700, 250)];
-//    [self runTest:@"Stem Down" func:@selector(basicStemDown:) frame:CGRectMake(10, 10, 700, 250)];
-//    [self runTest:@"Accidental Arrangement Special Cases"
-//             func:@selector(specialCases:)
-//            frame:CGRectMake(10, 10, 700, 250)];
+    [self runTest:@"Stem Down" func:@selector(basicStemDown:) frame:CGRectMake(10, 10, 700, 250)];
+    [self runTest:@"Accidental Arrangement Special Cases"
+             func:@selector(specialCases:)
+            frame:CGRectMake(10, 10, 700, 250)];
     [self runTest:@"Multi Voice" func:@selector(multiVoice:) frame:CGRectMake(10, 10, 700, 250)];
-//    [self runTest:@"Microtonal" func:@selector(microtonal:) frame:CGRectMake(10, 10, 700, 250)];
-//    [self runTest:@"Automatic Accidentals - Simple Tests" func:@selector(autoAccidentalWorking:)];
-//    [self runTest:@"Automatic Accidentals - Simple Tests"
-//             func:@selector(automaticAccidentals0:)
-//            frame:CGRectMake(10, 10, 700, 250)];
-//    [self runTest:@"Automatic Accidentals" func:@selector(automaticAccidentals0:) frame:CGRectMake(10, 10, 750, 210)];
-//    [self runTest:@"Automatic Accidentals - C major scale in Ab"
-//             func:@selector(automaticAccidentals1:)
-//            frame:CGRectMake(10, 10, 750, 160)];
-//    [self runTest:@"Automatic Accidentals - No Accidentals Necessary"
-//             func:@selector(automaticAccidentals2:)
-//            frame:CGRectMake(10, 10, 750, 160)];
-//    [self runTest:@"Automatic Accidentals - Multi Voice Inline"
-//             func:@selector(automaticAccidentalsMultiVoiceInline:)
-//            frame:CGRectMake(10, 10, 750, 160)];
-//    [self runTest:@"Automatic Accidentals - Multi Voice Offset"
-//             func:@selector(automaticAccidentalsMultiVoiceOffset:)
-//            frame:CGRectMake(10, 10, 750, 160)];
+    [self runTest:@"Microtonal" func:@selector(microtonal:) frame:CGRectMake(10, 10, 700, 250)];
+    [self runTest:@"Automatic Accidentals - Simple Tests" func:@selector(autoAccidentalWorking:)];
+    [self runTest:@"Automatic Accidentals - Simple Tests"
+             func:@selector(automaticAccidentals0:)
+            frame:CGRectMake(10, 10, 700, 250)];
+    [self runTest:@"Automatic Accidentals" func:@selector(automaticAccidentals0:) frame:CGRectMake(10, 10, 750, 210)];
+    [self runTest:@"Automatic Accidentals - C major scale in Ab"
+             func:@selector(automaticAccidentals1:)
+            frame:CGRectMake(10, 10, 750, 160)];
+    [self runTest:@"Automatic Accidentals - No Accidentals Necessary"
+             func:@selector(automaticAccidentals2:)
+            frame:CGRectMake(10, 10, 750, 160)];
+    [self runTest:@"Automatic Accidentals - Multi Voice Inline"
+             func:@selector(automaticAccidentalsMultiVoiceInline:)
+            frame:CGRectMake(10, 10, 750, 160)];
+    [self runTest:@"Automatic Accidentals - Multi Voice Offset"
+             func:@selector(automaticAccidentalsMultiVoiceOffset:)
+            frame:CGRectMake(10, 10, 750, 160)];
 }
 
 - (void)tearDown
 {
     [super tearDown];
-}
-
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
-{
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    //     // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
 }
 
 - (BOOL)hasAccidental:(MNNote*)note
@@ -206,10 +172,9 @@
 
     return note;
 }
-- (MNTestTuple*)basic:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)basic:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
-    //    CGContextRef ctx =  MNGraphicsContext();
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 40, 550, 0)];
 
@@ -267,7 +232,7 @@
                                    atIndex:5],
     ];
 
-    //    [ret.staves addObject:staff];
+    //
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       for(uint i = 0; i < notes.count; ++i)
@@ -294,9 +259,9 @@
     return ret;
 }
 
-- (MNTestTuple*)specialCases:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)specialCases:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -305,8 +270,6 @@
     {
         return [MNAccidental accidentalWithType:type];
     };
-
-    //    CGContextRef ctx =  MNGraphicsContext();
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 40, 550, 0)];
 
@@ -359,7 +322,7 @@
                   atIndex:4],
     ];
 
-    [ret.staves addObject:staff];
+    //
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       for(uint i = 0; i < notes.count; ++i)
@@ -386,9 +349,9 @@
     return ret;
 }
 
-- (MNTestTuple*)basicStemDown:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)basicStemDown:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -398,14 +361,7 @@
         return [MNAccidental accidentalWithType:type];
     };
 
-    //    CGContextRef ctx =  MNGraphicsContext();
-
-    // TODO: customize formatting
-    //[self background:bounds];
-
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 40, 550, 0)];
-
-    //    [staff draw:ctx];
 
     NSArray* notes = @[
         [[newNote(
@@ -444,7 +400,6 @@
                                    atIndex:6],
     ];
 
-    [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       for(uint i = 0; i < notes.count; ++i)
@@ -540,9 +495,9 @@
     //    CGContextRestoreGState(ctx);
 }
 
-- (MNTestTuple*)multiVoice:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)multiVoice:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -552,11 +507,6 @@
     {
         return [MNAccidental accidentalWithType:type];
     };
-
-    //    CGContextRef ctx =  MNGraphicsContext();
-
-    // TODO: customize formatting
-    //[self background:bounds];
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 40, 420, 0)];
     //    [staff draw:ctx];
@@ -607,7 +557,6 @@
            @"stem_direction" : @1 }) addAccidental:newAcc(@"b")
                                            atIndex:0];
 
-    [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       [self showNotes:note1 other:note2 staff:staff context:ctx atX:60];
@@ -619,9 +568,9 @@
     return ret;
 }
 
-- (MNTestTuple*)microtonal:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)microtonal:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -632,12 +581,7 @@
         return [MNAccidental accidentalWithType:type];
     };
 
-    //    CGContextRef ctx =  MNGraphicsContext();
-
     MNStaff* staff = [MNStaff staffAtX:10 atY:10 width:550 height:0];
-
-    // TODO: customize formatting
-    //      [MNAccidentalTests background:bounds];
 
     NSArray* notes = @[
         [[newNote(
@@ -682,9 +626,6 @@
                                    atIndex:5],
     ];
 
-    //    [staff draw:ctx];
-
-    [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       for(NSUInteger i = 0; i < notes.count; ++i)
@@ -694,27 +635,25 @@
           for(NSUInteger j = 0; j < accidentals.count; ++j)
           {
               BOOL result = accidentals.count > 0;
-              NSString* str = [NSString stringWithFormat:@"Accidental %lu has set width", j];
+              NSString* str = [NSString stringWithFormat:@"Accidental %tu has set width", j];
               ok(result, str);
           }
       }
+      ok(YES, @"Microtonal Accidental");
     };
-
-    ok(YES, @"Microtonal Accidental");
 
     return ret;
 }
 
-- (MNTestTuple*)automaticAccidentals0:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)automaticAccidentals0:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [self setupContextWithSize:MNUIntSizeMake(700, 200) withParent:parent];
-    //    CGContextRef ctx =  MNGraphicsContext();
+    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(700, 200) withParent:parent];
 
     NSArray* notes = @[
         newNote(
@@ -761,26 +700,27 @@
 
     [MNAccidental applyAccidentals:@[ voice ] withKeySignature:@"C"];
 
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-    //    [voice draw:ctx dirtyRect:c.view.frame toStaff:c.staff];
+    //    MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
 
     ok(YES, @"");
 
-    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    [ret.staves addObject:c.staff];
+    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+      [c.staff draw:ctx];
+      [voice draw:ctx dirtyRect:c.view.frame toStaff:c.staff];
+    };
     return ret;
 }
 
-- (MNTestTuple*)automaticAccidentals1:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)automaticAccidentals1:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [self setupContextWithSize:MNUIntSizeMake(700, 150) withParent:parent];
+    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(700, 150) withParent:parent];
 
     [c.staff addKeySignature:@"Ab"];
 
@@ -817,31 +757,27 @@
 
     [MNAccidental applyAccidentals:@[ voice ] withKeySignature:@"Ab"];
 
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-    //    [voice draw:ctx dirtyRect:c.view.frame toStaff:c.staff];
+    //    MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
+    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+      [c.staff draw:ctx];
+      [voice draw:ctx dirtyRect:c.view.frame toStaff:c.staff];
 
-    ok(YES, @"");
+      ok(YES, @"");
 
-    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    [ret.staves addObject:c.staff];
+    };
     return ret;
 }
 
-- (MNTestTuple*)automaticAccidentals2:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)automaticAccidentals2:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [self setupContextWithSize:MNUIntSizeMake(700, 150) withParent:parent];
-
-    //    CGContextRef ctx =  MNGraphicsContext();
-
-    // TODO: customize formatting
-    //      [MNAccidentalTests background:bounds];
+    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(700, 150) withParent:parent];
 
     MNStaff* staff = [c.staff addKeySignature:@"A"];   // WithSpec:@"A"];
     //    [staff draw:ctx];
@@ -879,34 +815,29 @@
 
     [MNAccidental applyAccidentals:@[ voice ] withKeySignature:@"A"];
 
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
-    //    [voice draw:ctx dirtyRect:c.view.frame toStaff:staff];
+    //    MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
-    ok(YES, @"");
+    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:c.view.frame toStaff:staff];
+      ok(YES, @"");
+    };
 
-    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    [ret.staves addObject:staff];
     return ret;
 }
 
-- (MNTestTuple*)automaticAccidentalsMultiVoiceInline:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)automaticAccidentalsMultiVoiceInline:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [self setupContextWithSize:MNUIntSizeMake(700, 150) withParent:parent];
+    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(700, 150) withParent:parent];
 
-    //    CGContextRef ctx =  MNGraphicsContext();
-
-    // TODO: customize formatting
-    //[MNAccidentalTests background:bounds];
-
-    MNStaff* staff = [c.staff addKeySignature:@"Ab"];   // WithSpec:@"Ab"];
-    //    [staff draw:ctx];
+    MNStaff* staff = [c.staff addKeySignature:@"Ab"];
 
     NSArray* notes0 = @[
         newNote(
@@ -999,8 +930,8 @@
     assertThatBool(hasAccidental(notes1[6]), isTrue());
     assertThatBool(hasAccidental(notes1[7]), isFalse());
 
-    MNFormatter* formatter =
-        [[[MNFormatter formatter] joinVoices:@[ voice0, voice1 ]] formatToStaff:@[ voice0, voice1 ] staff:staff];
+    //    MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice0, voice1 ]] formatToStaff:@[ voice0, voice1 ] staff:staff];
 
     //    MNFormatter* formatter =
     //        [[[MNFormatter formatter] joinVoices:@[ voice0, /*voice1*/ ]] formatToStaff:@[ voice0, /*voice1*/ ]
@@ -1009,33 +940,25 @@
     //    [[[MNFormatter formatter] joinVoices:@[ /*voice0,*/ voice1 ]] formatToStaff:@[ /*voice0,*/ voice1 ]
     //    staff:staff];
 
-    //    [voice0 draw:ctx dirtyRect:c.view.frame toStaff:staff];
-    //    [voice1 draw:ctx dirtyRect:c.view.frame toStaff:staff];
     ok(YES, @"");
 
-    [ret.voices addObject:voice0];
-    [ret.staves addObject:staff];
-    [ret.voices addObject:voice1];
-    [ret.staves addObject:staff];
-    [ret.formatters addObject:formatter];
-    //    [ret.formatters addObject:formatter2];
+    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+      [staff draw:ctx];
+      [voice0 draw:ctx dirtyRect:c.view.frame toStaff:staff];
+      [voice1 draw:ctx dirtyRect:c.view.frame toStaff:staff];
+    };
     return ret;
 }
 
-- (MNTestTuple*)automaticAccidentalsMultiVoiceOffset:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)automaticAccidentalsMultiVoiceOffset:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [self setupContextWithSize:MNUIntSizeMake(700, 150) withParent:parent];
-
-    //    CGContextRef ctx =  MNGraphicsContext();
-
-    // TODO: customize formatting
-    //[MNAccidentalTests background:bounds];
+    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(700, 150) withParent:parent];
 
     MNStaff* staff = [c.staff addKeySignature:@"Cb"];   // WithSpec:@"Cb"];
     //    [staff draw:ctx];
@@ -1134,24 +1057,22 @@
     assertThatBool(hasAccidental(notes1[6]), isFalse());
     assertThatBool(hasAccidental(notes1[7]), isFalse());
 
-    MNFormatter* formatter =
-        [[[MNFormatter formatter] joinVoices:@[ voice0, voice1 ]] formatToStaff:@[ voice0, voice1 ] staff:staff];
+    //    MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice0, voice1 ]] formatToStaff:@[ voice0, voice1 ] staff:staff];
 
-    //    [voice0 draw:ctx dirtyRect:c.view.frame toStaff:staff];
-    //    [voice1 draw:ctx dirtyRect:c.view.frame toStaff:staff];
     ok(YES, @"");
 
-    [ret.voices addObject:voice0];
-    [ret.staves addObject:staff];
-    [ret.voices addObject:voice1];
-    [ret.staves addObject:staff];
-    [ret.formatters addObject:formatter];
+    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+      [staff draw:ctx];
+      [voice0 draw:ctx dirtyRect:CGRectZero toStaff:staff];
+      [voice1 draw:ctx dirtyRect:CGRectZero toStaff:staff];
+    };
     return ret;
 }
 
-- (MNTestTuple*)autoAccidentalWorking:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)autoAccidentalWorking:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];

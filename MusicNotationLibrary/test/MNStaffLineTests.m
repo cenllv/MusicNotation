@@ -34,8 +34,8 @@
 - (void)start
 {
     [super start];
-    [self runTest:@"Simple StaffLine" func:@selector(simple0:withTitle:) frame:CGRectMake(10, 10, 700, 250)];
-    [self runTest:@"StaffLine Arrow Options" func:@selector(simple1:withTitle:) frame:CGRectMake(10, 10, 700, 250)];
+    [self runTest:@"Simple StaffLine" func:@selector(simple0:) frame:CGRectMake(10, 10, 700, 250)];
+    [self runTest:@"StaffLine Arrow Options" func:@selector(simple1:) frame:CGRectMake(10, 10, 700, 250)];
 }
 
 - (void)tearDown
@@ -43,9 +43,9 @@
     [super tearDown];
 }
 
-- (MNTestTuple*)simple0:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)simple0:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -117,9 +117,9 @@
     return ret;
 }
 
-- (MNTestTuple*)simple1:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)simple1:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];

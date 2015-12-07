@@ -67,32 +67,32 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 
 | Status    | Count   |
 |-----------|---------|
-| pass      | 24      |
-| almost    | 19      |
-| fail      | 5       |
+| pass      | 31      |
+| almost    | 15      |
+| fail      | 2       |
 | unknown   | 3       |
 
 
 | Test                  | Status    | Issues | Demonstration |
 |-----------------------|-----------|--------|---------------|
-| Accidental            | almost    | order of multiple modifiers different from vexflow  | accidentals |
+| Accidental            | pass      |  | accidentals |
 | Animation             | pass      |  | animation of basic notations |
 | Annotation            | pass      |  | annotations for tabs, harmonics, fingerpicking |
 | Articulation          | pass      |  | articulations like staccato, accent, marcato, fermata, etc |
-| AutoBeamFormatting    | pass      | Guessing Default Beam Groups bug & More Simple Tuplet Auto Beaming bug | auto beams for even/odd, breaks, etc |
-| Beam                  | almost    | very minor issues | beams for simple, multi, mixed, insane, tabnotes, complex, etc |
-| Bend                  | almost    | down arrow missing, text clobbered, static format method bug | bends for double, reverse, phrase, with release |
+| AutoBeamFormatting    | pass      |  | auto beams for even/odd, breaks, etc |
+| Beam                  | pass      |  | beams for simple, multi, mixed, insane, tabnotes, complex, etc |
+| Bend                  | almost    |  | bends for double, reverse, phrase, with release |
 | BoundingBox           | pass      |  | bounding box object init and merge |
 | Chord                 | almost    | bug with number on left side of bar chart |  |
 | Clef                  | almost    | keysignote x posn incorrect | clef start, end small, clef change |
-| Curve                 | almost    | beams upside down, thick/thin curve not correct | simple, rounded, thick/thin, top curves |
-| Dot                   | almost    | multiple dots clobber | basic and multi-voice |
+| Curve                 | pass      |  | simple, rounded, thick/thin, top curves |
+| Dot                   | pass      |  | basic and multi-voice |
 | Font                  | pass      |  |   |
-| Formatter             | fail      | notes clobbered | staff notes, tab notes, multi-staffs |
+| Formatter             | almost    | minor issues, buildContexts test crashses | staff notes, tab notes, multi-staffs |
 | GraceNote             | pass      |  | grace note basic, with slurs, multi-voices |
 | KeyClef               | pass      |  | major/minor clef |
 | KeyManager            | unknown   | not rendering | valid/select notes |
-| KeySignature          | fail      | cancelled key test incorrect, staff helper missing | key parser, major/minor, cancelled key |
+| KeySignature          | pass      |  | key parser, major/minor, cancelled key |
 | Layer Note            | pass      |  | click/push calayer note for pop animation & aae audio |
 | Modifier              | pass      | not rendering | modifier width, management |
 | Music                 | unknown   |  | valid notes, keys, notes, intervals, canonical notes, scales |
@@ -100,9 +100,9 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | NotationsGrid         | almost    | teardown not removing all labels  | grid of most basic notations |
 | Ornament              | pass      |  | vertically shifted, delayed turns, stacked, w/ accidentals |
 | PedalMarking          | almost    |  | pedal for simple, release, depress, text, etc |
-| Percussion            | fail      | does not render any notes | percussion clef, notes, basic, snare |
+| Percussion            | pass      |  | percussion clef, notes, basic, snare |
 | Rests                 | pass      |  | rests dotted, auto align beamed, tuplets, single & multi voice |
-| Rhythm                | almost    | rests out of place, missing one staff glyph not fully rendered | rhythm draw slash, beamed, rests, 16th, 32nd, etc  |
+| Rhythm                | almost    |  | rhythm draw slash, beamed, rests, 16th, 32nd, etc  |
 | Staff                 | pass      |  | draw basic, vertical bar, mutli bar, barlines, repeats, tempo, single lines, etc |
 | StaffConnector        | almost    | minor formatting bugs | connectors single, double , bold, thin brace, bracket, combined, etc |
 | StaffHairpin          | almost    | minor note modifier clobber | simple, horizontal, vertical, height |
@@ -110,7 +110,7 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | StaffModifier         | almost    | may be complete | staff draw, vertical bar |
 | StaffNote             | almost    | slash notes clobber, tab notes incomplete, modifiers clobber | tick, stem, auto, staffline, width, boundingbox, etc |
 | StaffTie              | pass      |  | simple, chord, stem up, no end, no start |
-| StringNumber          | almost    | not rendering string numbers, needs test callback optimizing | string number in notation, fred hand finger, etc |
+| StringNumber          | pass      |  | string number in notation, fred hand finger, etc |
 | Strokes               | pass      | had to hack tabnote setStaff method | brush/arpeggiate/etc, multi, notation/tab, etc |
 | Table                 | unknown   | n/a | clef, key, etc number constants and ratios, etc |
 | TabNote               | pass      |  | tick, tabstaff, tickcontext, tabnote, etc |

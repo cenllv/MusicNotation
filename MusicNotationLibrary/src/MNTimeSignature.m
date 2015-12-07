@@ -43,8 +43,8 @@
 @property (strong, nonatomic) NSMutableArray* botGlyphs;
 @property (assign, nonatomic) BOOL num;
 @property (assign, nonatomic) float line;
-@property (strong, nonatomic) NSArray* topNumbers;
-@property (strong, nonatomic) NSArray* bottomNumbers;
+@property (strong, nonatomic) NSArray<NSNumber*>* topNumbers;
+@property (strong, nonatomic) NSArray<NSNumber*>* bottomNumbers;
 
 @end
 
@@ -377,7 +377,7 @@ static NSDictionary* _standardTimeSignatures;
           [MNGlyph renderGlyph:ctx
                            atX:start_x + g.x_shift
                            atY:_y
-                     withScale:1 /*g.scale*/
+                     withScale:1.2 /*g.scale*/
                   forGlyphCode:g.metrics.code];
           start_x += g.metrics.width;
       }
@@ -400,7 +400,7 @@ static NSDictionary* _standardTimeSignatures;
           [MNGlyph renderGlyph:ctx
                            atX:start_x + g.x_shift
                            atY:_y   //[this.staff getYForLine:this.bottomLine] + 1 + y
-                     withScale:1    /*g.scale*/
+                     withScale:1.2    /*g.scale*/
                   forGlyphCode:g.metrics.code];
           start_x += g.metrics.width;
       }

@@ -30,12 +30,12 @@
 
 #define MNBoundingBoxMake(x, y, w, h) [MNBoundingBox boundingBoxWithRect:CGRectMake(x, y, w, h)]
 
-#define  MNRectMake(x, y, w, h)  [MNRect boundingBoxAtX:x atY:y withWidth:w andHeight:h]
+#define MNRectMake(x, y, w, h) [MNRect boundingBoxAtX:x atY:y withWidth:w andHeight:h]
 
 #define MNPointMake(x, y) [MNPoint pointWithX:x andY:y]
 
 // pad all 4 directions with same padding
-#define  MNPaddingMake(padding)  [MNPadding paddingWith:padding]
+#define MNPaddingMake(padding) [MNPadding paddingWith:padding]
 
 #define MNFloatSizeMake(x, y) [MNFloatSize sizeWithWidth:x andHeight:y]
 
@@ -71,7 +71,7 @@
 #define STAFF_LINE_GAP 10.0f
 #define STAFF_STANDARD_WIDTH 569.0f
 
-#define SHEET_MUSIC_COLOR [NSColor colorWithRed:0.93f green:0.93f blue:0.87f alpha:1.0f]
+//#define SHEET_MUSIC_COLOR [NSColor colorWithRed:0.93f green:0.93f blue:0.87f alpha:1.0f]
 
 #define TF(BOOL_VAL) (BOOL_VAL ? @"YES" : @"NO")
 
@@ -89,15 +89,15 @@
 #endif
 
 #if TARGET_OS_IPHONE
-#define  MNGraphicsContext() UIGraphicsGetCurrentContext()
+#define MNGraphicsContext() UIGraphicsGetCurrentContext()
 #elif TARGET_OS_MAC
-#define  MNGraphicsContext() [[NSGraphicsContext currentContext] graphicsPort]
+#define MNGraphicsContext() [[NSGraphicsContext currentContext] graphicsPort]
 #endif
 
 #if TARGET_OS_IPHONE
-#define  MNView UIView
+#define MNView UIView
 #elif TARGET_OS_MAC
-#define  MNView NSView
+#define MNView NSView
 #endif
 
 #define VariableName(arg) (@"" #arg)

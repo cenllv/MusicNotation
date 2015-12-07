@@ -48,10 +48,10 @@
 // TODO: is this data type a float or nsuiniteger
 @property (assign, nonatomic) float start;
 @property (assign, nonatomic) float end;
-+ (MNBeamLine*)lineWithStart:(NSUInteger)start end:(NSUInteger)end;
++ (MNBeamLine*)lineWithStart:(float)start end:(float)end;
 @end
 @implementation MNBeamLine
-+ (MNBeamLine*)lineWithStart:(NSUInteger)start end:(NSUInteger)end
++ (MNBeamLine*)lineWithStart:(float)start end:(float)end
 {
     MNBeamLine* ret = [[MNBeamLine alloc] init];
     ret.start = start;
@@ -107,7 +107,7 @@
     }
     return self;
 }
-- (instancetype)initWithNotes:(NSArray*)notes
+- (instancetype)initWithNotes:(NSArray<MNStemmableNote*>*)notes
 {
     self = [self initWithNotes:notes autoStem:NO];
     if(self)
@@ -116,24 +116,24 @@
     }
     return self;
 }
-- (instancetype)initWithNotes:(NSArray*)notes autoStem:(BOOL)autoStem
+- (instancetype)initWithNotes:(NSArray<MNStemmableNote*>*)notes autoStem:(BOOL)autoStem
 {
     self = [self initWithDictionary:nil];
     if(self)
     {
         _notes = notes;
-        _autoStem = NO;
+        _autoStem = autoStem;
         [self setupBeam];
     }
     return self;
 }
 
-+ (MNBeam*)beamWithNotes:(NSArray*)notes
++ (MNBeam*)beamWithNotes:(NSArray<MNStemmableNote*>*)notes
 {
-    return [[MNBeam alloc] initWithNotes:notes autoStem:YES];
+    return [[MNBeam alloc] initWithNotes:notes autoStem:NO];
 }
 
-+ (MNBeam*)beamWithNotes:(NSArray*)notes autoStem:(BOOL)autoStem
++ (MNBeam*)beamWithNotes:(NSArray<MNStemmableNote*>*)notes autoStem:(BOOL)autoStem
 {
     return [[MNBeam alloc] initWithNotes:notes autoStem:autoStem];
 }
@@ -171,12 +171,20 @@
     {
         stem_direction = [MNBeam calculateStemDirection:_notes];
     }
-    else if(_autoStem && [((MNStemmableNote*)_notes[0]).category isEqualToString:[MNTabNote CATEGORY]])
+    else if(_autoStem && [_notes[0] isKindOfClass:[MNTabNote class]])
     {
         // Auto Stem TabNotes
-        float stem_weight = [[_notes oct_reduce:^NSNumber*(NSNumber* memo, MNStemmableNote* note) {
-          return [NSNumber numberWithFloat:([memo floatValue] + note.stemDirection)];
-        }] floatValue];
+        //        float stem_weight = [[_notes oct_reduce:^NSNumber*(NSNumber* memo, MNStemmableNote* note) {
+        //            if (!memo) {
+        //                memo = @(0);
+        //            }
+        //          return [NSNumber numberWithFloat:([memo floatValue] + note.stemDirection)];
+        //        }] floatValue];
+        float stem_weight = 0;
+        for(MNTabNote* note in _notes)
+        {
+            stem_weight += note.stemDirection;
+        }
         stem_direction = stem_weight > -1 ? MNStemDirectionUp : MNStemDirectionDown;
     }
 
@@ -185,7 +193,7 @@
     {
         if(_autoStem)
         {
-            [note setStemDirection:_stemDirection];
+            [note setStemDirection:stem_direction];
             _stemDirection = stem_direction;
         }
         note.beam = self;
@@ -375,8 +383,8 @@
                 float stemlet_height = (total_width - y_displacement + self.renderOptions.stemlet_extension);
 
                 float beam_y =
-                    [self getSlopeYForX:centerGlyphX first_x_px:first_x_px first_y_px:first_y_px slope:self.slope];
-                // (centerGlyphX, first_x_px, first_y_px, self.slope) + self.y_shift;
+                    [self getSlopeYForX:centerGlyphX first_x_px:first_x_px first_y_px:first_y_px slope:self.slope] +
+                    self.yShift;
                 float start_y = beam_y + (kSTEM_HEIGHT * ((float)self.stemDirection));
                 float end_y = beam_y + (stemlet_height * ((float)self.stemDirection));
 
@@ -390,18 +398,7 @@
                 stem.stem_extension = -1;   // To avoid protruding through the beam
                 stem.stemDirection = self.stemDirection;
                 note.stem = stem;
-                //                 MNStem* stem = [[MNStem alloc] initWithDictionary:@{
-                //                    @"x_begin" : @(centerGlyphX),
-                //                    @"x_end" : @(centerGlyphX),
-                //                    @"y_bottom" : @(self.stemDirection == 1 ? end_y : start_y),
-                //                    @"y_top" : @(self.stemDirection == 1 ? start_y : end_y),
-                //                    @"y_extend" : @(y_displacement),
-                //                    @"stem_extension" : @(-1),   // To avoid protruding through the beam
-                //                    @"stem_direction" : @(self.stemDirection),
-                //                }];
-                note.stem = stem;
             }
-
             continue;
         }
 
@@ -409,21 +406,13 @@
             [self getSlopeYForX:x_px first_x_px:first_x_px first_y_px:first_y_px slope:self.slope] + self.yShift;
 
         MNStem* stem = [[MNStem alloc] init];
-        stem.x_begin = x_px - (kSTEM_WIDTH / 2), stem.x_end = x_px, stem.x_end = x_px;
+        stem.x_begin = x_px - (kSTEM_WIDTH / 2);
+        stem.x_end = x_px;
         stem.y_top = self.stemDirection == MNStemDirectionUp ? top_y_px : base_y_px,
-        stem.y_bottom = self.stemDirection == MNStemDirectionUp ? base_y_px : top_y_px, stem.y_extend = y_displacement,
+        stem.y_bottom = self.stemDirection == MNStemDirectionUp ? base_y_px : top_y_px, stem.y_extend = y_displacement;
         stem.y_extend = y_displacement;
         stem.stem_extension = ABS(top_y_px - slope_y) - kSTEM_HEIGHT - 1;
         stem.stemDirection = self.stemDirection;
-        //         MNStem* stem = [[MNStem alloc] initWithDictionary:@{
-        //            @"x_begin" : @(x_px - (kSTEM_WIDTH / 2)),
-        //            @"x_end" : @(x_px),
-        //            @"y_top" : @(self.stemDirection == 1 ? top_y_px : base_y_px),
-        //            @"y_bottom" : @(self.stemDirection == 1 ? base_y_px : top_y_px),
-        //            @"y_extend" : @(y_displacement),
-        //            @"stem_extension" : @(ABS(top_y_px - slope_y) - kSTEM_HEIGHT - 1),
-        //            @"stem_direction" : @(self.stemDirection),
-        //        }];
         note.stem = stem;
     }
 }
@@ -536,7 +525,6 @@
 
 /*!
  *  Render the stems for each notes
- *
  *  @param ctx the core graphics opaque type drawing environment
  */
 - (void)drawStems:(CGContextRef)ctx
@@ -549,10 +537,8 @@
     }];
 }
 
-//
 /*!
  *  Render the beam lines
- *
  *  @param ctx the core graphics opaque type drawing environment
  */
 - (void)drawBeamLines:(CGContextRef)ctx
@@ -588,10 +574,10 @@
 
             MNLogInfo(@"first:(%f, %f), last(%f, %f)", first_x, first_y, last_x, last_y);
 
-            if(first_x > last_x)
-            {
-                NSLog(@"hi");
-            }
+            //            if(first_x > last_x)
+            //            {
+            //                NSLog(@"hi");
+            //            }
 
             CGContextBeginPath(ctx);
             CGContextMoveToPoint(ctx, first_x, first_y + self.yShift);
@@ -609,7 +595,6 @@
 
 /*!
  *  Pre-format the beam
- *
  *  @return YES if preFormatting was successful, NO otherwise
  */
 - (BOOL)preFormat
@@ -623,7 +608,6 @@
  *   Post-format the beam. This can only be called after
  *   the notes in the beam have both `x` and `y` values. ie: they've
  *   been formatted and have staves
- *
  *  @return YES if preFormatting was successful, NO otherwise
  */
 - (BOOL)postFormat
@@ -663,12 +647,10 @@
 
 /*!
  *  calculates the direction of the stems
- *
  *  @param notes the notes used to determine the stem direction
- *
  *  @return up or down
  */
-+ (MNStemDirectionType)calculateStemDirection:(NSArray*)notes
++ (MNStemDirectionType)calculateStemDirection:(NSArray<MNStemmableNote*>*)notes
 {
     __block float lineSum = 0.f;
     [notes foreach:^(MNStaffNote* note, NSUInteger index, BOOL* stop) {
@@ -828,12 +810,12 @@
  *
  *  @return generated beams
  */
-+ (NSArray<MNBeam*>*)generateBeams:(NSArray*)notes withDictionary:(NSDictionary*)config
++ (NSArray<MNBeam*>*)generateBeams:(NSArray<MNStemmableNote*>*)notes withDictionary:(NSDictionary*)config
 {
     return [[self class] generateBeams:notes config:[[MNBeamConfig alloc] initWithDictionary:config]];
 }
 
-+ (NSArray<MNBeam*>*)generateBeams:(NSArray*)notes config:(MNBeamConfig*)config
++ (NSArray<MNBeam*>*)generateBeams:(NSArray<MNStemmableNote*>*)notes config:(MNBeamConfig*)config
 {
     if(!config)
     {
@@ -846,7 +828,7 @@
     }
 
     // Convert beam groups to tick amounts
-    NSMutableArray* tickGroups = [config.groups oct_map:^MNRational*(MNRational* group) {
+    NSMutableArray<MNRational*>* tickGroups = [config.groups oct_map:^MNRational*(MNRational* group) {
       if(![group isKindOfClass:[MNRational class]])
       {
           MNLogError(@"InvalidBeamGroups, The beam groups must be an array of Rationals");

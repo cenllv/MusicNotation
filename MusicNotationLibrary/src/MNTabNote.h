@@ -27,7 +27,6 @@
 //
 
 #import "MNStemmableNote.h"
-//#import "MNOptions.h"
 #import "MNTabNoteRenderOptions.h"
 #import "MNTabNotePositionsStruct.h"
 
@@ -43,10 +42,10 @@
 @property (strong, nonatomic) MNGhostNote* ghostNote;
 @property (assign, nonatomic) BOOL ghost;
 //@property (weak, nonatomic) MNStaff* staff;
-@property (strong, nonatomic) NSArray* positionsCollection;   // positions for the notes in a chord
-@property (strong, nonatomic) NSArray* positions;
+//@property (strong, nonatomic) NSArray* positionsCollection;   // positions for the notes in a chord
+@property (strong, nonatomic) NSArray<MNTabNotePositionsStruct*>* positions;
 @property (assign, nonatomic, getter=getStemY) float stemY;
-@property (assign, nonatomic, getter=getStemX) float stemX;
+@property (assign, nonatomic) float stemX;
 @property (strong, nonatomic) NSArray* stem_extents;
 //@property (strong, nonatomic) TabNoteOptions *renderOptions;
 @property (strong, nonatomic) NSMutableArray* glyphs;   // array of  MNGlyphTabStruct

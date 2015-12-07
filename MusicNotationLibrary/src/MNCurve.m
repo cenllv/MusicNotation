@@ -31,6 +31,7 @@
 #import "MNPoint.h"
 #import "MNStaffNote.h"
 #import "MNExtentStruct.h"
+#import "NSMutableDictionary+MNAdditions.h"
 
 @implementation MNCurve
 
@@ -45,8 +46,8 @@
         _yShift = 10;
         _position = MNCurveNearHead;
         _invert = NO;
-        _cps = @[ MNPointMake(0, 10), MNPointMake(0, 10) ];   // control points
-        //        [self setValuesForKeyPathsWithDictionary:optionsDict];
+        _cps = @[ MNPointMake(0, 10), MNPointMake(0, 10) ];
+        [self setValuesForKeyPathsWithDictionary:optionsDict];
     }
     return self;
 }
@@ -57,23 +58,63 @@
  *  @param toNote   end note
  *  @return a curve object
  */
-+ (MNCurve*)curveFromNote:(MNNote*)fromNote toNote:(MNNote*)toNote
++ (nonnull MNCurve*)curveFromNote:(nonnull MNNote*)fromNote toNote:(nonnull MNNote*)toNote
 {
     MNCurve* ret = [[MNCurve alloc] initWithDictionary:@{ @"fromNote" : fromNote, @"toNote" : toNote }];
     return ret;
 }
 
-+ (MNCurve*)curveFromNote:(MNNote*)fromNote toNote:(MNNote*)toNote withDictionary:(NSDictionary*)optionsDict
++ (MNCurve*)curveFromNote:(nonnull MNNote*)fromNote
+                   toNote:(nonnull MNNote*)toNote
+           withDictionary:(NSDictionary*)optionsDict
 {
-    MNCurve* ret = [[MNCurve alloc] initWithDictionary:@{ @"fromNote" : fromNote, @"toNote" : toNote }];
-    //    [ret setValuesForKeyPathsWithDictionary:optionsDict];
+    if(!fromNote || !toNote)
+    {
+        MNLogError(@"NilNotesException, need a valid fromNote and a valid toNote");
+        abort();
+    }
+    NSDictionary* tmp_dict = @{ @"fromNote" : fromNote, @"toNote" : toNote };
+
+    MNCurve* ret = [[MNCurve alloc] initWithDictionary:[NSMutableDictionary merge:tmp_dict with:optionsDict]];
     return ret;
+}
+
+#pragma marke - IAModelBase
+
+- (NSMutableDictionary*)classesForArrayEntries
+{
+    NSMutableDictionary* classesForArrayEntries = [super classesForArrayEntries];
+    [classesForArrayEntries addEntriesFromDictionaryWithoutReplacing:@{ @"cps" : NSStringFromClass([MNPoint class]) }];
+    return classesForArrayEntries;
+}
+
+- (void)setValuesForKeyPathsWithDictionary:(NSDictionary*)keyedValues
+{
+    for(NSString* key_keyPath in keyedValues.allKeys)
+    {
+        id object = [keyedValues objectForKey:key_keyPath];
+        if([key_keyPath isEqualToString:@"fromNote"])
+        {
+            self.fromNote = object;
+            continue;
+        }
+        if([key_keyPath isEqualToString:@"toNote"])
+        {
+            self.toNote = object;
+            continue;
+        }
+        [self setValue:object forKeyPath:key_keyPath];
+    }
 }
 
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
-    //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
+    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{
+        @"x_shift" : @"xShift",
+        @"y_shift" : @"yShift",
+        @"position_end" : @"positionEnd",
+    }];
     return propertiesEntriesMapping;
 }
 
@@ -83,7 +124,7 @@
  *  @param toNote   end note
  *  @return this object
  */
-- (id)setNotesFrom:(MNStaffNote*)fromNote toNote:(MNStaffNote*)toNote
+- (id)setNotesFrom:(MNNote*)fromNote toNote:(MNNote*)toNote
 {
     if(!fromNote && !toNote)
     {
@@ -95,7 +136,7 @@
 }
 
 /*!
- *  Returns YES if this is a partial bar.
+ *  is a partial bar?
  *  @return YES if this is a partial bar.
  */
 - (BOOL)isPartial
@@ -131,11 +172,13 @@
 
     float cp_spacing = (last_x - first_x) / (cps.count + 2);
 
+    MNPoint* cp0 = cps[0];
+    MNPoint* cp1 = cps[1];
+
     CGContextSaveGState(ctx);
     CGContextBeginPath(ctx);
     CGContextMoveToPoint(ctx, first_x, first_y);
-    MNPoint* cp0 = cps[0];
-    MNPoint* cp1 = cps[1];
+
     CGContextAddCurveToPoint(ctx, first_x + cp_spacing + cp0.x, first_y + (cp0.y * direction),
                              last_x - cp_spacing + cp1.x, last_y + (cp1.y * direction), last_x, last_y);
     CGContextAddCurveToPoint(ctx, last_x - cp_spacing + cp1.x, last_y + ((cp1.y + thickness) * direction),
@@ -143,14 +186,82 @@
                              first_y);
     CGContextClosePath(ctx);
     CGContextDrawPath(ctx, kCGPathFillStroke);
+
+    CGContextAddArc(ctx, first_x, first_y, 10, 0, 2 * M_PI, YES);
+    CGContextAddArc(ctx, last_x, last_y, 10, 0, 2 * M_PI, YES);
+
+    CGContextRestoreGState(ctx);
+
+    // [self bezierRenderDebug:ctx points:@[ firstPoint, self.cps[0], self.cps[1], lastPoint]];
+    [self bezierRenderDebug:ctx
+                     points:@[
+                         firstPoint,
+                         MNPointMake(first_x + cp_spacing + cp0.x, first_y + (cp0.y * direction)),
+                         MNPointMake(last_x - cp_spacing + cp1.x, last_y + (cp1.y * direction)),
+                         lastPoint
+                     ]];
+}
+
+/*!
+ *  Render debug points and lines
+ *  @param ctx the core graphics opaque type drawing environment
+ */
+- (void)bezierRenderDebug:(CGContextRef)ctx points:(NSArray<MNPoint*>*)points
+{
+    float radius = 6;
+    CGContextSaveGState(ctx);
+    CGContextSetFillColorWithColor(ctx, MNColor.redColor.CGColor);
+    CGContextBeginPath(ctx);
+    for(MNPoint* pt in @[
+            points[0],
+            points[3],
+        ])
+    {
+        CGContextAddArc(ctx, pt.x, pt.y, radius, 0, 2 * M_PI, YES);
+        CGContextClosePath(ctx);
+        CGContextDrawPath(ctx, kCGPathFillStroke);
+    }
+
+    //    NSArray<MNPoint*>* pts2 = self.cps;
+    CGContextSetFillColorWithColor(ctx, MNColor.blueColor.CGColor);
+    CGContextBeginPath(ctx);
+    for(MNPoint* pt in @[
+            points[1],
+            points[2],
+        ])
+    {
+        CGContextAddArc(ctx, pt.x, pt.y, radius, 0, 2 * M_PI, YES);
+        CGContextClosePath(ctx);
+        CGContextDrawPath(ctx, kCGPathFillStroke);
+    }
+
+    //    NSArray<MNPoint*>* pts3 = points;
+    CGContextMoveToPoint(ctx, points[0].x, points[0].y);
+    CGContextSetLineWidth(ctx, 2);
+    for(MNPoint* pt in points)
+    {
+        CGContextAddLineToPoint(ctx, pt.x, pt.y);
+    }
+    //    CGContextClosePath(ctx);
+    CGContextDrawPath(ctx, kCGPathStroke);
+
     CGContextRestoreGState(ctx);
 }
 
+/*!
+ *  Draw the curve
+ *  @param ctx the core graphics opaque type drawing environment
+ */
 - (void)draw:(CGContextRef)ctx
 {
-    [super draw:ctx];
-    MNStaffNote* first_note = self.fromNote;
-    MNStaffNote* last_note = self.toNote;
+    if(![self.fromNote isKindOfClass:[MNStaffNote class]] || ![self.toNote isKindOfClass:[MNStaffNote class]])
+    {
+        MNLogError(@"MNCurve prepared only for `MNStaffNote`s");
+    }
+
+    MNStaffNote* first_note = (MNStaffNote*)self.fromNote;
+    MNStaffNote* last_note = (MNStaffNote*)self.toNote;
+
     float first_x, last_x, first_y, last_y;
     MNStemDirectionType stem_direction = 0;
 
@@ -178,26 +289,26 @@
     {
         first_x = first_note.tieRightX;
         stem_direction = first_note.stemDirection;
-        first_y = [[first_note.stemExtents valueForKey:metric] floatValue];   // .getStemExtents()[metric];
+        first_y = [[first_note.stemExtents valueForKey:metric] floatValue];
     }
     else
     {
-        first_x = last_note.staff.tieStartX;                                 // .getStave().getTieStartX();
-        first_y = [[last_note.stemExtents valueForKey:metric] floatValue];   // getStemExtents()[metric];
+        first_x = last_note.staff.tieStartX;
+        first_y = [[last_note.stemExtents valueForKey:metric] floatValue];
     }
 
     if(last_note)
     {
-        last_x = last_note.tieLeftX;                                            // getTieLeftX();
-        stem_direction = last_note.stemDirection;                               // getStemDirection();
-        last_y = [[last_note.stemExtents valueForKey:end_metric] floatValue];   // getStemExtents()[end_metric];
+        last_x = last_note.tieLeftX;
+        stem_direction = last_note.stemDirection;
+        last_y = [[last_note.stemExtents valueForKey:end_metric] floatValue];
     }
     else
     {
-        last_x = first_note.staff.tieEndX;                                       // getStave().getTieEndX();
-        last_y = [[first_note.stemExtents valueForKey:end_metric] floatValue];   // getStemExtents()[end_metric];
+        last_x = first_note.staff.tieEndX;
+        last_y = [[first_note.stemExtents valueForKey:end_metric] floatValue];
     }
-    float direction = stem_direction * (self.invert ? -1.f : 1.f);
+    float direction = ((float)stem_direction) * (self.invert ? -1.f : 1.f);
     [self renderCurve:ctx
         fromFirstPoint:MNPointMake(first_x, first_y)
            toLastPoint:MNPointMake(last_x, last_y)

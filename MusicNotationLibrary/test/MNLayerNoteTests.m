@@ -27,7 +27,13 @@
 
 #import "MNLayerNoteTests.h"
 #import <objc/runtime.h>
-#import <TheAmazingAudioEngine/TheAmazingAudioEngine.h>
+#if TARGET_OS_IPHONE
+#import "MNMAppDelegate.h"
+#elif TARGET_OS_MAC
+#import "AppDelegate.h"
+#endif
+#import <TheAmazingAudioEngine/AEPlaythroughChannel.h>
+#import <TheAmazingAudioEngine/AEExpanderFilter.h>
 
 // TODO: add playing actual notes using Core Audio
 
@@ -51,8 +57,8 @@
 
 - (void)customAnimate
 {
-    //// uncomment the following to use original implementation
-    //    [self customAnimate];
+    // //     uncomment the following to use original implementation
+    //        [self customAnimate];
     [self animateSuperFancy];
 }
 
@@ -138,6 +144,21 @@
 
 @property (assign, nonatomic) AudioUnit mySamplerUnit;
 @property (strong, nonatomic) NSMutableArray<MNShapeLayer*>* layers;
+
+@property (nonatomic, strong) AEAudioFilePlayer* loop1;
+@property (nonatomic, strong) AEAudioFilePlayer* loop2;
+@property (nonatomic, strong) AEBlockChannel* oscillator;
+@property (nonatomic, strong) AEPlaythroughChannel* playthrough;
+//@property (nonatomic, strong) AELimiterFilter *limiter;
+//@property (nonatomic, strong) AEExpanderFilter *expander;
+//@property (nonatomic, strong) AEReverbFilter *reverb;
+//@property (nonatomic, strong) TPOscilloscopeLayer *outputOscilloscope;
+//@property (nonatomic, strong) TPOscilloscopeLayer *inputOscilloscope;
+@property (nonatomic, strong) CALayer* inputLevelLayer;
+@property (nonatomic, strong) CALayer* outputLevelLayer;
+@property (nonatomic, weak) NSTimer* levelsTimer;
+//@property (nonatomic, strong) AERecorder *recorder;
+@property (nonatomic, strong) AEAudioFilePlayer* player;
 @end
 
 @implementation MNLayerNoteTests
@@ -147,13 +168,13 @@
     [super start];
     [self runTest:@"Layer Note Test"
              func:@selector(layerTest:params:)
-            frame:CGRectMake(0, 0, 800, 180)
+            frame:CGRectMake(0, 0, 600, 250)
            params:@{
                @"shadow" : @(NO)
            }];
     [self runTest:@"Layer Note Test - shadow"
              func:@selector(layerTest:params:)
-            frame:CGRectMake(0, 0, 800, 180)
+            frame:CGRectMake(0, 0, 600, 250)
            params:@{
                @"shadow" : @(YES)
            }];
@@ -187,26 +208,174 @@
     static BOOL once = YES;
     if(once)
     {
-        //     Create an instance of the audio controller, set it up and start it running
-        self.audioController = [[AEAudioController alloc]
-            initWithAudioDescription:[AEAudioController nonInterleavedFloatStereoAudioDescription]];
+#if TARGET_OS_IPHONE
+        MNMAppDelegate* appDelegate = (MNMAppDelegate*)[[UIApplication sharedApplication] delegate];
+        self.audioController = appDelegate.audioController;
+
+        self.loop1 = [AEAudioFilePlayer
+            audioFilePlayerWithURL:[[NSBundle mainBundle] URLForResource:@"Southern Rock Drums" withExtension:@"m4a"]
+                             error:NULL];
+        _loop1.volume = 1.0;
+        _loop1.channelIsMuted = YES;
+        _loop1.loop = YES;
+
+        // Create the second loop player
+        self.loop2 = [AEAudioFilePlayer
+            audioFilePlayerWithURL:[[NSBundle mainBundle] URLForResource:@"Southern Rock Organ" withExtension:@"m4a"]
+                             error:NULL];
+        _loop2.volume = 1.0;
+        _loop2.channelIsMuted = YES;
+        _loop2.loop = YES;
+
+        // Create a block-based channel, with an implementation of an oscillator
+        __block float oscillatorPosition = 0;
+        __block float oscillatorRate = 622.0 / 44100.0;
+        self.oscillator =
+            [AEBlockChannel channelWithBlock:^(const AudioTimeStamp* time, UInt32 frames, AudioBufferList* audio) {
+              for(int i = 0; i < frames; i++)
+              {
+                  // Quick sin-esque oscillator
+                  float x = oscillatorPosition;
+                  x *= x;
+                  x -= 1.0;
+                  x *= x;   // x now in the range 0...1
+                  x *= INT16_MAX;
+                  x -= INT16_MAX / 2;
+                  oscillatorPosition += oscillatorRate;
+                  if(oscillatorPosition > 1.0)
+                      oscillatorPosition -= 2.0;
+
+                  ((SInt16*)audio->mBuffers[0].mData)[i] = x;
+                  ((SInt16*)audio->mBuffers[1].mData)[i] = x;
+              }
+            }];
+        _oscillator.audioDescription = AEAudioStreamBasicDescriptionNonInterleaved16BitStereo;
+        _oscillator.channelIsMuted = YES;
+
+        // Create an audio unit channel (a file player)
+        self.audioUnitPlayer = [[AEAudioUnitChannel alloc]
+            initWithComponentDescription:AEAudioComponentDescriptionMake(kAudioUnitManufacturer_Apple,
+                                                                         kAudioUnitType_Generator,
+                                                                         kAudioUnitSubType_AudioFilePlayer)];
+
+        // Create a group for loop1, loop2 and oscillator
+        _group = [_audioController createChannelGroup];
+        [_audioController addChannels:@[ _loop1, _loop2, _oscillator ] toChannelGroup:_group];
+
+        // Finally, add the audio unit player
+        [_audioController addChannels:@[ _audioUnitPlayer ]];
+
+#elif TARGET_OS_MAC
+
+        AppDelegate* appDelegate = (AppDelegate*)[[NSApplication sharedApplication] delegate];
+        self.audioController = appDelegate.audioController;
+
+        // Create the first loop player
+        self.loop1 = [AEAudioFilePlayer
+            audioFilePlayerWithURL:[[NSBundle mainBundle] URLForResource:@"Southern Rock Drums" withExtension:@"m4a"]
+                             error:NULL];
+        _loop1.volume = 1.0;
+        _loop1.channelIsMuted = YES;
+        _loop1.loop = YES;
+
+        // Create the second loop player
+        self.loop2 = [AEAudioFilePlayer
+            audioFilePlayerWithURL:[[NSBundle mainBundle] URLForResource:@"Southern Rock Organ" withExtension:@"m4a"]
+                             error:NULL];
+        _loop2.volume = 1.0;
+        _loop2.channelIsMuted = YES;
+        _loop2.loop = YES;
+
+        // Create a block-based channel, with an implementation of an oscillator
+        __block float oscillatorPosition = 0;
+        __block float oscillatorRate = 622.0 / 44100.0;
+        self.oscillator =
+            [AEBlockChannel channelWithBlock:^(const AudioTimeStamp* time, UInt32 frames, AudioBufferList* audio) {
+              for(int i = 0; i < frames; i++)
+              {
+                  // Quick sin-esque oscillator
+                  float x = oscillatorPosition;
+                  x *= x;
+                  x -= 1.0;
+                  x *= x;   // x now in the range 0...1
+                  x -= 0.5;
+                  oscillatorPosition += oscillatorRate;
+                  if(oscillatorPosition > 1.0)
+                      oscillatorPosition -= 2.0;
+                  ((float*)audio->mBuffers[0].mData)[i] = x;
+                  ((float*)audio->mBuffers[1].mData)[i] = x;
+              }
+            }];
+        _oscillator.audioDescription = self.audioController.audioDescription;
+        _oscillator.channelIsMuted = YES;
+
+        // Create an audio unit channel (a file player)
+        self.audioUnitPlayer = [[AEAudioUnitChannel alloc]
+            initWithComponentDescription:AEAudioComponentDescriptionMake(kAudioUnitManufacturer_Apple,
+                                                                         kAudioUnitType_Generator,
+                                                                         kAudioUnitSubType_AudioFilePlayer)];
+
+        // Create a group for loop1, loop2 and oscillator
+        _group = [_audioController createChannelGroup];
+        [_audioController addChannels:@[ _loop1, _loop2, _oscillator ] toChannelGroup:_group];
+
+        // Finally, add the audio unit player
+        [_audioController addChannels:@[ _audioUnitPlayer ]];
+
+//        [_audioController addObserver:self forKeyPath:@"numberOfInputChannels" options:0
+//        context:(void*)&kInputChannelsChangedContext];
+
+//        AudioStreamBasicDescription asbd = AEAudioStreamBasicDescriptionNonInterleavedFloatStereo;
+//
+//        self.audioController = [[AEAudioController alloc] initWithAudioDescription:asbd inputEnabled:YES];
+//        self.audioController.preferredBufferDuration = 0.005;
+//         [self.audioController start:NULL];
+//
+//        self.audioController = [[AEAudioController alloc]
+//            initWithAudioDescription:[AEAudioController nonInterleavedFloatStereoAudioDescription]];
+#endif
+
         once = NO;
     }
 
-    _audioController.preferredBufferDuration = 0.005;
+    //    _audioController.preferredBufferDuration = 0.005;
     //    _audioController.useMeasurementMode = YES;
-    NSError* error = NULL;
-    BOOL result = [_audioController start:&error];
-    if(!result)
-    {
-        NSLog(@"%@", [error localizedDescription]);
-    }
+    //    NSError* error = NULL;
+    //    BOOL result = [_audioController start:&error];
+    //    if(!result)
+    //    {
+    //        NSLog(@"%@", [error localizedDescription]);
+    //    }
 
     //    self loadFromDLSOrSoundFont:[NSURL URLWithString:<#(nonnull NSString *)#>] withPatch:<#(int)#>
 }
 
 - (void)oneshotPlay
 {
+    //    if(_oneshot)
+    //    {
+    //        [_audioController removeChannels:@[ _oneshot ]];
+    //        self.oneshot = nil;
+    //    }
+    //    else
+    //    {
+    //        NSError* error = NULL;
+    //        self.oneshot = [AEAudioFilePlayer
+    //            audioFilePlayerWithURL:[[NSBundle mainBundle] URLForResource:@"Organ Run" withExtension:@"m4a"]
+    //                             error:&error];
+    //        if(error)
+    //        {
+    //            NSLog(@"%@", error);
+    //        }
+    //        _oneshot.removeUponFinish = YES;
+    //        __weak typeof(self) weakSelf = self;
+    //        _oneshot.completionBlock = ^{
+    //          typeof(self) strongSelf = weakSelf;
+    //          strongSelf.oneshot = nil;
+    //        };
+    //        [_audioController addChannels:@[ _oneshot ]];
+    //    }
+
     if(_oneshot)
     {
         [_audioController removeChannels:@[ _oneshot ]];
@@ -214,14 +383,9 @@
     }
     else
     {
-        NSError* error = NULL;
         self.oneshot = [AEAudioFilePlayer
             audioFilePlayerWithURL:[[NSBundle mainBundle] URLForResource:@"Organ Run" withExtension:@"m4a"]
-                             error:&error];
-        if(error)
-        {
-            NSLog(@"%@", error);
-        }
+                             error:NULL];
         _oneshot.removeUponFinish = YES;
         __weak typeof(self) weakSelf = self;
         _oneshot.completionBlock = ^{
@@ -232,10 +396,12 @@
     }
 }
 
-- (MNTestTuple*)layerTest:(MNTestCollectionItemView*)parent params:(NSDictionary*)options
+- (MNTestBlockStruct*)layerTest:(id<MNTestParentDelegate>)parent params:(NSDictionary*)options
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     ret.drawBlock = nil;
+    //    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+    //    };
 
     MNLogInfo(@"");
 
@@ -243,7 +409,7 @@
     NSDictionary* note_struct = @{ @"keys" : @[ @"g/4", @"bb/4", @"d/5" ], @"duration" : @"q" };
     MNStaffNote* note = [[MNStaffNote alloc] initWithDictionary:note_struct];
     [note addAccidental:[MNAccidental accidentalWithType:@"b"] atIndex:1];
-    [ret.staves addObject:staff];
+    //  [ret.staves addObject:staff];
 
     MNTickContext* tickContext = [[MNTickContext alloc] init];
     [[tickContext addTickable:note] preFormat];
@@ -252,7 +418,20 @@
     note.staff = staff;
 
     MNShapeLayer* staffNoteLayer = (MNShapeLayer*)[note shapeLayer];
+    //#if TARGET_OS_IPHONE
+    //#elif TARGET_OS_MAC
     staffNoteLayer.controller = self;
+
+#if TARGET_OS_IOS
+    if([parent isKindOfClass:[UIView class]])
+    {
+        staffNoteLayer.superView = (UIView*)parent;
+    }
+    else
+    {
+        MNLogError(@"Attempting to store non-view superview for layer note");
+    }
+#endif
     staffNoteLayer.backgroundColor = MNColor.orangeColor.CGColor;
 
     //    CGRect frame = staffNoteLayer.frame;
@@ -273,10 +452,23 @@
         staffNoteLayer.shadowRadius = 10;
     }
 
+    //    dispatch_async(dispatch_get_main_queue(), ^{
+    //      [parent.layer addSublayer:staffNoteLayer];
+    //      [self.layers addObject:staffNoteLayer];
+    //    });
+
+    [self.layers addObject:staffNoteLayer];
+
+    //    __block MNTestCollectionItemView* weakParent = parent;
+
     dispatch_async(dispatch_get_main_queue(), ^{
       [parent.layer addSublayer:staffNoteLayer];
-      [self.layers addObject:staffNoteLayer];
     });
+
+    //        CALayer* tmp = [CALayer layer];
+    //        tmp.frame = CGRectMake(50, 50, 50, 50);
+    //        tmp.backgroundColor = MNColor.blueColor.CGColor;
+    //        [weakParent.layer addSublayer:tmp];
 
     return ret;
 }

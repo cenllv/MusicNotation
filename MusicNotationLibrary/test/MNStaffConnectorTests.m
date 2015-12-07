@@ -39,46 +39,46 @@ static NSUInteger staff_LINE_THICKNESS;
     staff_LINE_THICKNESS = 1;
     float w = 600, h = 250;
     [self runTest:@"StaffConnector Single Draw Test"
-             func:@selector(drawSingle:withTitle:)
+             func:@selector(drawSingle:)
             frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"StaffConnector Single Draw Test, 1px Staff Line Thickness"
-             func:@selector(drawSingle1pxBarlines:withTitle:)
+             func:@selector(drawSingle1pxBarlines:)
             frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"StaffConnector Single Both Sides Test"
-             func:@selector(drawSingleBoth:withTitle:)
+             func:@selector(drawSingleBoth:)
             frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"StaffConnector Double Draw Test"
-             func:@selector(drawDouble:withTitle:)
+             func:@selector(drawDouble:)
             frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"StaffConnector Bold Double Line Left Draw Test"
-             func:@selector(drawRepeatBegin:withTitle:)
+             func:@selector(drawRepeatBegin:)
             frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"StaffConnector Bold Double Line Right Draw Test"
-             func:@selector(drawRepeatEnd:withTitle:)
+             func:@selector(drawRepeatEnd:)
             frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"StaffConnector Thin Double Line Right Draw Test"
-             func:@selector(drawThinDouble:withTitle:)
+             func:@selector(drawThinDouble:)
             frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"StaffConnector Bold Double Lines Overlapping Draw Test"
-             func:@selector(drawRepeatAdjacent:withTitle:)
+             func:@selector(drawRepeatAdjacent:)
             frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"StaffConnector Bold Double Lines Offset Draw Test"
-             func:@selector(drawRepeatOffset:withTitle:)
+             func:@selector(drawRepeatOffset:)
             frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"StaffConnector Bold Double Lines Offset Draw Test 2"
-             func:@selector(drawRepeatOffset2:withTitle:)
+             func:@selector(drawRepeatOffset2:)
             frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"StaffConnector Brace Draw Test"
-             func:@selector(drawBrace:withTitle:)
+             func:@selector(drawBrace:)
             frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"StaffConnector Brace Wide Draw Test"
-             func:@selector(drawBraceWide:withTitle:)
+             func:@selector(drawBraceWide:)
             frame:CGRectMake(10, 10, w, 350)];
     [self runTest:@"StaffConnector Bracket Draw Test"
-             func:@selector(drawBracket:withTitle:)
+             func:@selector(drawBracket:)
             frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"StaffConnector Combined Draw Test"
-             func:@selector(drawCombined:withTitle:)
+             func:@selector(drawCombined:)
             frame:CGRectMake(10, 10, w, 750)];
 }
 
@@ -87,35 +87,10 @@ static NSUInteger staff_LINE_THICKNESS;
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
+
+- (MNTestBlockStruct*)drawSingle:(id<MNTestParentDelegate>)parent
 {
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
-
-- (MNTestTuple*)drawSingle:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
-{
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -134,9 +109,9 @@ static NSUInteger staff_LINE_THICKNESS;
     return ret;
 }
 
-- (MNTestTuple*)drawSingle1pxBarlines:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawSingle1pxBarlines:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -158,9 +133,9 @@ static NSUInteger staff_LINE_THICKNESS;
     return ret;
 }
 
-- (MNTestTuple*)drawSingleBoth:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawSingleBoth:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -183,9 +158,9 @@ static NSUInteger staff_LINE_THICKNESS;
     return ret;
 }
 
-- (MNTestTuple*)drawDouble:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawDouble:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -208,9 +183,9 @@ static NSUInteger staff_LINE_THICKNESS;
     return ret;
 }
 
-- (MNTestTuple*)drawBrace:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawBrace:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -234,9 +209,9 @@ static NSUInteger staff_LINE_THICKNESS;
     return ret;
 }
 
-- (MNTestTuple*)drawBraceWide:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawBraceWide:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -259,9 +234,9 @@ static NSUInteger staff_LINE_THICKNESS;
     return ret;
 }
 
-- (MNTestTuple*)drawBracket:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawBracket:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -284,9 +259,9 @@ static NSUInteger staff_LINE_THICKNESS;
     return ret;
 }
 
-- (MNTestTuple*)drawRepeatBegin:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawRepeatBegin:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -308,9 +283,9 @@ static NSUInteger staff_LINE_THICKNESS;
     return ret;
 }
 
-- (MNTestTuple*)drawRepeatEnd:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawRepeatEnd:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -332,9 +307,9 @@ static NSUInteger staff_LINE_THICKNESS;
     return ret;
 }
 
-- (MNTestTuple*)drawThinDouble:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawThinDouble:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -356,9 +331,9 @@ static NSUInteger staff_LINE_THICKNESS;
     return ret;
 }
 
-- (MNTestTuple*)drawRepeatAdjacent:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawRepeatAdjacent:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -399,9 +374,9 @@ static NSUInteger staff_LINE_THICKNESS;
     return ret;
 }
 
-- (MNTestTuple*)drawRepeatOffset2:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawRepeatOffset2:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -461,9 +436,9 @@ static NSUInteger staff_LINE_THICKNESS;
     return ret;
 }
 
-- (MNTestTuple*)drawRepeatOffset:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawRepeatOffset:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -526,9 +501,9 @@ static NSUInteger staff_LINE_THICKNESS;
     return ret;
 }
 
-- (MNTestTuple*)drawCombined:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawCombined:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 

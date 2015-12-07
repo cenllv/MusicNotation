@@ -50,10 +50,10 @@
     NSMutableArray* _topGlyphs;
     //    NSMutableArray* _bottomGlyphs;
     BOOL _num;
-    NSArray* _topCodes;
-    NSArray* _bottomCodes;
-    NSArray* _topNumbers;
-    NSArray* _bottomNumbers;
+//    NSArray* _topCodes;
+//    NSArray* _bottomCodes;
+    NSArray<NSNumber*>* _topNumbers;
+    NSArray<NSNumber*>* _bottomNumbers;
 
     MNTimeSigStruct* _timeSig;
 }

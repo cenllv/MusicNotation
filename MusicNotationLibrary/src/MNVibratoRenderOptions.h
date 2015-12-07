@@ -37,4 +37,6 @@
 @property (assign, nonatomic) float wave_width;
 @property (assign, nonatomic) float wave_girth;
 
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+
 @end

@@ -36,54 +36,42 @@
     [super start];
     float w = 500;
     //    float h = 200;
-    [self runTest:@"Simple Auto Beaming" func:@selector(simpleAuto:withTitle:) frame:CGRectMake(0, 0, w, 150)];
+    [self runTest:@"Simple Auto Beaming" func:@selector(simpleAuto:) frame:CGRectMake(0, 0, w, 150)];
     [self runTest:@"Even Group Stem Directions"
-             func:@selector(evenGroupStemDirections:withTitle:)
+             func:@selector(evenGroupStemDirections:)
             frame:CGRectMake(0, 0, w, 200)];
-    [self runTest:@"Odd Group Stem Directions"
-             func:@selector(oddGroupStemDirections:withTitle:)
-            frame:CGRectMake(0, 0, w, 200)];
-    [self runTest:@"Odd Beam Groups Auto Beaming"
-             func:@selector(oddBeamGroups:withTitle:)
-            frame:CGRectMake(0, 0, w, 200)];
-    [self runTest:@"More Simple Auto Beaming 0" func:@selector(moreSimple0:withTitle:) frame:CGRectMake(0, 0, w, 200)];
-    [self runTest:@"More Simple Auto Beaming 1" func:@selector(moreSimple1:withTitle:) frame:CGRectMake(0, 0, w, 200)];
-    [self runTest:@"Break Beams on Rest" func:@selector(breakBeamsOnRests:withTitle:) frame:CGRectMake(0, 0, w, 200)];
-    [self runTest:@"Beam Across All Rests"
-             func:@selector(beamAcrossAllRests:withTitle:)
-            frame:CGRectMake(0, 0, w, 200)];
+    [self runTest:@"Odd Group Stem Directions" func:@selector(oddGroupStemDirections:) frame:CGRectMake(0, 0, w, 200)];
+    [self runTest:@"Odd Beam Groups Auto Beaming" func:@selector(oddBeamGroups:) frame:CGRectMake(0, 0, w, 200)];
+    [self runTest:@"More Simple Auto Beaming 0" func:@selector(moreSimple0:) frame:CGRectMake(0, 0, w, 200)];
+    [self runTest:@"More Simple Auto Beaming 1" func:@selector(moreSimple1:) frame:CGRectMake(0, 0, w, 200)];
+    [self runTest:@"Break Beams on Rest" func:@selector(breakBeamsOnRests:) frame:CGRectMake(0, 0, w, 200)];
+    [self runTest:@"Beam Across All Rests" func:@selector(beamAcrossAllRests:) frame:CGRectMake(0, 0, w, 200)];
     [self runTest:@"Beam Across All Rests with Stemlets"
-             func:@selector(beamAcrossAllRestsWithStemlets:withTitle:)
+             func:@selector(beamAcrossAllRestsWithStemlets:)
             frame:CGRectMake(0, 0, w, 200)];
     [self runTest:@"Break Beams on Middle Rests Only"
-             func:@selector(beamAcrossMiddleRests:withTitle:)
+             func:@selector(beamAcrossMiddleRests:)
             frame:CGRectMake(0, 0, w, 200)];
     //    [self runTest:@"Break Beams on Rest 2"
-    //             func:@selector(breakBeamsOnRests2:withTitle:)
+    //             func:@selector(breakBeamsOnRests2:)
     // frame:CGRectMake(0, 0, w, 200)];
-    [self runTest:@"Maintain Stem Directions"
-             func:@selector(maintainStemDirections:withTitle:)
-            frame:CGRectMake(0, 0, w, 200)];
+    [self runTest:@"Maintain Stem Directions" func:@selector(maintainStemDirections:) frame:CGRectMake(0, 0, w, 200)];
     [self runTest:@"Maintain Stem Directions - Beam Over Rests"
-             func:@selector(maintainStemDirectionsBeamAcrossRests:withTitle:)
+             func:@selector(maintainStemDirectionsBeamAcrossRests:)
             frame:CGRectMake(0, 0, w, 200)];
     [self runTest:@"Beat group with unbeamable note - 2/2"
-             func:@selector(groupWithUnbeamableNote:withTitle:)
+             func:@selector(groupWithUnbeamableNote:)
             frame:CGRectMake(0, 0, w, 200)];
     [self runTest:@"Offset beat grouping - 6/8 "
-             func:@selector(groupWithUnbeamableNote1:withTitle:)
+             func:@selector(groupWithUnbeamableNote1:)
             frame:CGRectMake(0, 0, w, 200)];
     [self runTest:@"Odd Time - Guessing Default Beam Groups"
-             func:@selector(autoOddBeamGroups:withTitle:)
+             func:@selector(autoOddBeamGroups:)
             frame:CGRectMake(0, 0, w, 400)];
-    [self runTest:@"Custom Beam Groups" func:@selector(customBeamGroups:withTitle:) frame:CGRectMake(0, 0, w, 400)];
-    [self runTest:@"Simple Tuplet Auto Beaming"
-             func:@selector(simpleTuplets:withTitle:)
-            frame:CGRectMake(0, 0, w, 200)];
-    [self runTest:@"More Simple Tuplet Auto Beaming"
-             func:@selector(moreSimpleTuplets:withTitle:)
-            frame:CGRectMake(0, 0, w, 200)];
-    [self runTest:@"More Automatic Beaming" func:@selector(moreBeaming:withTitle:) frame:CGRectMake(0, 0, w, 200)];
+    [self runTest:@"Custom Beam Groups" func:@selector(customBeamGroups:) frame:CGRectMake(0, 0, w, 400)];
+    [self runTest:@"Simple Tuplet Auto Beaming" func:@selector(simpleTuplets:) frame:CGRectMake(0, 0, w, 200)];
+    [self runTest:@"More Simple Tuplet Auto Beaming" func:@selector(moreSimpleTuplets:) frame:CGRectMake(0, 0, w, 200)];
+    [self runTest:@"More Automatic Beaming" func:@selector(moreBeaming:) frame:CGRectMake(0, 0, w, 200)];
 }
 
 - (void)tearDown
@@ -91,30 +79,15 @@
     [super tearDown];
 }
 
-+ (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size
-                                withParent:(MNTestCollectionItemView*)parent
-                                 withTitle:(NSString*)title
+- (MNTestBlockStruct*)simpleAuto:(id<MNTestParentDelegate>)parent
 {
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
-    w = w != 0 ? w : 450;
-//    h = h != 0 ? h : 140;
-
-    //    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
-
-- (MNTestTuple*)simpleAuto:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
-{
-    MNTestTuple* ret = [MNTestTuple testTuple];
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent withTitle:title];
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
     MNVoice* voice;
     MNFormatter* formatter;
-    NSArray* beams;
+    NSArray<MNBeam*>* beams;
 
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
@@ -163,38 +136,32 @@
     voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
     [voice addTickables:notes];
 
-    // Takes a voice and returns it's auto beamsj
     beams = [MNBeam applyAndGetBeams:voice];
 
-    formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-
-    [ret.staves addObject:c.staff];
-    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    [ret.beams addObject:beams];
+    formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      /*
-    [staff draw:ctx];
-    [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
-    [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      [beam draw:ctx];
-    }];
-       */
+
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
 
       ok(YES, @"Auto Beaming Applicator Test");
     };
     return ret;
 }
 
-- (MNTestTuple*)evenGroupStemDirections:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)evenGroupStemDirections:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent withTitle:title];
+
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -239,11 +206,7 @@
     [voice setStrict:NO];
     [voice addTickables:notes];
 
-    // Takes a voice and returns it's auto beamsj
-    NSArray* beams = [MNBeam applyAndGetBeams:voice];
-
-    //      MNFormatter* formatter =
-    //    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
+    NSArray<MNBeam*>* beams = [MNBeam applyAndGetBeams:voice];
 
     assertThatInteger([beams[0] stemDirection], equalToInteger(MNStemDirectionUp));
     assertThatInteger([beams[1] stemDirection], equalToInteger(MNStemDirectionUp));
@@ -252,16 +215,12 @@
     assertThatInteger([beams[4] stemDirection], equalToInteger(MNStemDirectionDown));
     assertThatInteger([beams[5] stemDirection], equalToInteger(MNStemDirectionDown));
 
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-
-    //    [ret.staves addObject:c.staff];
-    //    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    //    [ret.beams addObject:beams];
+    //    MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
       [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
         [beam draw:ctx];
@@ -272,14 +231,15 @@
     return ret;
 }
 
-- (MNTestTuple*)oddGroupStemDirections:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)oddGroupStemDirections:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent withTitle:title];
+
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -335,8 +295,7 @@
 
     NSArray* groups = @[ Rational(3, 8) ];
 
-    // Takes a voice and returns it's auto beamsj
-    NSArray* beams = [MNBeam applyAndGetBeams:voice groups:groups];
+    NSArray<MNBeam*>* beams = [MNBeam applyAndGetBeams:voice groups:groups];
 
     assertThatInteger([beams[0] stemDirection], describedAs(@"Notes are equa-distant from middle line",
                                                             equalToInteger(MNStemDirectionDown), nil));
@@ -346,34 +305,30 @@
                       describedAs(@"Notes are equadistant from middle line", equalToInteger(MNStemDirectionDown), nil));
 
     //      MNFormatter* formatter =
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-
-    [ret.staves addObject:c.staff];
-    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    [ret.beams addObject:beams];
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      //      [c.staff draw:ctx];
-      //      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      //
-      //      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
 
       ok(YES, @"Auto Beaming Applicator Test");
     };
     return ret;
 }
 
-- (MNTestTuple*)oddBeamGroups:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)oddBeamGroups:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent withTitle:title];
+
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -423,38 +378,33 @@
 
     NSArray* groups = @[ Rational(2, 8), Rational(3, 8), Rational(1, 8) ];
 
-    // Takes a voice and returns it's auto beamsj
-    NSArray* beams = [MNBeam applyAndGetBeams:voice groups:groups];
+    NSArray<MNBeam*>* beams = [MNBeam applyAndGetBeams:voice groups:groups];
 
     //      MNFormatter* formatter =
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-
-    [ret.staves addObject:c.staff];
-    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    [ret.beams addObject:beams];
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      //      [c.staff draw:ctx];
-      //      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      //
-      //      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
 
       ok(YES, @"Auto Beam Applicator Test");
     };
     return ret;
 }
 
-- (MNTestTuple*)moreSimple0:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)moreSimple0:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent withTitle:title];
+
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -486,38 +436,33 @@
     voice.mode = MNModeSoft;
     [voice addTickables:notes];
 
-    NSArray* beams = [MNBeam applyAndGetBeams:voice];
+    NSArray<MNBeam*>* beams = [MNBeam applyAndGetBeams:voice];
 
-    //      MNFormatter* formatter =
-    //    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-
-    [ret.staves addObject:c.staff];
-    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    [ret.beams addObject:beams];
+    // MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      //      [c.staff draw:ctx];
-      //      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      //
-      //      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
 
       ok(YES, @"Auto Beam Applicator Test");
     };
     return ret;
 }
 
-- (MNTestTuple*)moreSimple1:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)moreSimple1:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent withTitle:title];
+
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -573,36 +518,33 @@
     voice.mode = MNModeSoft;
     [voice addTickables:notes];
 
-    NSArray* beams = [MNBeam applyAndGetBeams:voice];
+    NSArray<MNBeam*>* beams = [MNBeam applyAndGetBeams:voice];
 
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-
-    [ret.staves addObject:c.staff];
-    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    [ret.beams addObject:beams];
+    //    MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      //      [c.staff draw:ctx];
-      //      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      //
-      //      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
 
       ok(YES, @"Auto Beam Applicator Test");
     };
     return ret;
 }
 
-- (MNTestTuple*)breakBeamsOnRests:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)breakBeamsOnRests:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent withTitle:title];
+
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -664,36 +606,33 @@
     voice.mode = MNModeSoft;
     [voice addTickables:notes];
 
-    NSArray* beams = [MNBeam generateBeams:notes withDictionary:@{ @"beam_rests" : @(NO) }];
+    NSArray<MNBeam*>* beams = [MNBeam generateBeams:notes withDictionary:@{ @"beam_rests" : @(NO) }];
 
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-
-    [ret.staves addObject:c.staff];
-    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    [ret.beams addObject:beams];
+    //    MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      //      [c.staff draw:ctx];
-      //      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      //
-      //      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
 
       ok(YES, @"Auto Beam Applicator Test");
     };
     return ret;
 }
 
-- (MNTestTuple*)beamAcrossAllRestsWithStemlets:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)beamAcrossAllRestsWithStemlets:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent withTitle:title];
+
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -755,36 +694,36 @@
     voice.mode = MNModeSoft;
     [voice addTickables:notes];
 
-    NSArray* beams = [MNBeam generateBeams:notes withDictionary:@{ @"beam_rests" : @(YES), @"show_stemlets" : @(YES) }];
+    NSArray<MNBeam*>* beams =
+        [MNBeam generateBeams:notes withDictionary:@{
+            @"beam_rests" : @(YES),
+            @"show_stemlets" : @(YES)
+        }];
 
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-
-    [ret.staves addObject:c.staff];
-    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    [ret.beams addObject:beams];
+    // MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      //      [c.staff draw:ctx];
-      //      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      //
-      //      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
 
       ok(YES, @"Auto Beam Applicator Test");
     };
     return ret;
 }
 
-- (MNTestTuple*)beamAcrossAllRests:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)beamAcrossAllRests:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent withTitle:title];
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -844,36 +783,33 @@
     voice.mode = MNModeSoft;
     [voice addTickables:notes];
 
-    NSArray* beams = [MNBeam generateBeams:notes withDictionary:@{ @"beam_rests" : @(YES) }];
+    NSArray<MNBeam*>* beams = [MNBeam generateBeams:notes withDictionary:@{ @"beam_rests" : @(YES) }];
 
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-
-    [ret.staves addObject:c.staff];
-    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    [ret.beams addObject:beams];
+    // MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      //      [c.staff draw:ctx];
-      //      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      //
-      //      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
 
       ok(YES, @"Auto Beam Applicator Test");
     };
     return ret;
 }
 
-- (MNTestTuple*)beamAcrossMiddleRests:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)beamAcrossMiddleRests:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent withTitle:title];
+
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -935,35 +871,31 @@
     voice.mode = MNModeSoft;
     [voice addTickables:notes];
 
-    NSArray* beams =
+    NSArray<MNBeam*>* beams =
         [MNBeam generateBeams:notes withDictionary:@{
             @"beam_rests" : @(YES),
             @"beam_middle_only" : @(YES)
         }];
 
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-
-    [ret.staves addObject:c.staff];
-    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    [ret.beams addObject:beams];
+    // MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      //      [c.staff draw:ctx];
-      //      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      //
-      //      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
 
       ok(YES, @"Auto Beam Applicator Test");
     };
     return ret;
 }
 
-- (MNTestTuple*)breakBeamsOnRests2:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)breakBeamsOnRests2:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     /*
      Vex.Flow.Test.AutoBeamFormatting.breakBeamsOnRests = function(options, contextBuilder) {
         options.contextBuilder = contextBuilder;
@@ -994,15 +926,15 @@
         voice.mode =  MNModeSoft;
         [voice addTickables:notes];
 
-        NSArray* beams = Vex.Flow.Beam.generateBeams(notes, {
+        NSArray<MNBeam*>* beams = Vex.Flow.Beam.generateBeams(notes, {
         beam_rests: NO
         });
 
         MNFormatter *formatter = [MNFormatter formatter] joinVoices:@[voice]
-        formatTostaff([voice], c.staff);
+        formatTostaff([voice], staff);
 
-    [c.staff draw:ctx];
-        [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+    [staff draw:ctx];
+        [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
         beams.forEach(function(beam){
             beam.setContext(c.context) draw:ctx];
@@ -1013,15 +945,15 @@
     return ret;
 }
 
-- (MNTestTuple*)maintainStemDirections:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)maintainStemDirections:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c =
-        [[self class] setupContextWithSize:MNUIntSizeMake(450, 200) withParent:parent withTitle:title];
+
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -1092,41 +1024,37 @@
     voice.mode = MNModeSoft;
     [voice addTickables:notes];
 
-    NSArray* beams =
+    NSArray<MNBeam*>* beams =
         [MNBeam generateBeams:notes withDictionary:@{
             @"beam_rests" : @(NO),
             @"maintain_stem_directions" : @(YES)
         }];
 
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-
-    [ret.staves addObject:c.staff];
-    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    [ret.beams addObject:beams];
+    // MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      //      [c.staff draw:ctx];
-      //      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      //
-      //      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
 
       ok(YES, @"Auto Beam Applicator Test");
     };
     return ret;
 }
 
-- (MNTestTuple*)maintainStemDirectionsBeamAcrossRests:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)maintainStemDirectionsBeamAcrossRests:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c =
-        [[self class] setupContextWithSize:MNUIntSizeMake(450, 200) withParent:parent withTitle:title];
+
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -1197,45 +1125,39 @@
     voice.mode = MNModeSoft;
     [voice addTickables:notes];
 
-    NSArray* beams =
+    NSArray<MNBeam*>* beams =
         [MNBeam generateBeams:notes withDictionary:@{
             @"beam_rests" : @(YES),
             @"maintain_stem_directions" : @(YES)
         }];
 
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-
-    [ret.staves addObject:c.staff];
-    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    [ret.beams addObject:beams];
+    // MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      //      [c.staff draw:ctx];
-      //      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      //
-      //      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
 
       ok(YES, @"Auto Beam Applicator Test");
     };
     return ret;
 }
 
-- (MNTestTuple*)groupWithUnbeamableNote:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)groupWithUnbeamableNote:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c =
-        [[self class] setupContextWithSize:MNUIntSizeMake(450, 200) withParent:parent withTitle:title];
 
-    [c.staff addTimeSignatureWithName:@"2/2"];
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
-    //      [c.staff draw:ctx];
+    [staff addTimeSignatureWithName:@"2/2"];
 
     NSArray* notes = @[
         newNote(
@@ -1264,46 +1186,40 @@
     voice.mode = MNModeSoft;
     [voice addTickables:notes];
 
-    NSArray* beams = [MNBeam generateBeams:notes
-                            withDictionary:@{
-                                @"groups" : @[ Rational(2, 2) ],
-                                @"beam_rests" : @(NO),
-                                @"maintain_stem_directions" : @(YES)
-                            }];
+    NSArray<MNBeam*>* beams = [MNBeam generateBeams:notes
+                                     withDictionary:@{
+                                         @"groups" : @[ Rational(2, 2) ],
+                                         @"beam_rests" : @(NO),
+                                         @"maintain_stem_directions" : @(YES)
+                                     }];
 
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-
-    [ret.staves addObject:c.staff];
-    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    [ret.beams addObject:beams];
+    //    MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      //      [c.staff draw:ctx];
-      //      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      //
-      //      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
 
       ok(YES, @"Auto Beam Applicator Test");
     };
     return ret;
 }
 
-- (MNTestTuple*)groupWithUnbeamableNote1:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)groupWithUnbeamableNote1:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c =
-        [[self class] setupContextWithSize:MNUIntSizeMake(450, 200) withParent:parent withTitle:title];
 
-    [c.staff addTimeSignatureWithName:@"6/8"];
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
-    //      [c.staff draw:ctx];
+    [staff addTimeSignatureWithName:@"6/8"];
 
     NSArray* notes = @[
         newNote(
@@ -1328,36 +1244,32 @@
     voice.mode = MNModeSoft;
     [voice addTickables:notes];
 
-    NSArray* beams = [MNBeam generateBeams:notes
-                            withDictionary:@{
-                                @"groups" : @[ Rational(3, 8) ],
-                                @"beam_rests" : @(NO),
-                                @"maintain_stem_directions" : @(YES)
-                            }];
+    NSArray<MNBeam*>* beams = [MNBeam generateBeams:notes
+                                     withDictionary:@{
+                                         @"groups" : @[ Rational(3, 8) ],
+                                         @"beam_rests" : @(NO),
+                                         @"maintain_stem_directions" : @(YES)
+                                     }];
 
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-
-    [ret.staves addObject:c.staff];
-    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    [ret.beams addObject:beams];
+    //    MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      //      [c.staff draw:ctx];
-      //      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      //
-      //      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
 
       ok(YES, @"Auto Beam Applicator Test");
     };
     return ret;
 }
 
-- (MNTestTuple*)autoOddBeamGroups:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)autoOddBeamGroups:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -1477,30 +1389,19 @@
     voice3.mode = MNModeSoft;
     [voice3 addTickables:notes3];
 
-    //      [staff1 draw:ctx];
-    //      [staff2 draw:ctx];
-    //      [staff3 draw:ctx];
-
-    //      NSArray* groups1316 = @[ Rational(3, 16), Rational(2, 16) ];
-
-    NSArray* beams =
+    NSArray<MNBeam*>* beams =
         [MNBeam applyAndGetBeams:voice1 groups:[MNBeam getDefaultBeamGroupsForTimeSignatureType:MNTime5_4]];
-    NSArray* beams2 =
+    NSArray<MNBeam*>* beams2 =
         [MNBeam applyAndGetBeams:voice2 groups:[MNBeam getDefaultBeamGroupsForTimeSignatureType:MNTime5_8]];
-    NSArray* beams3 =
+    NSArray<MNBeam*>* beams3 =
         [MNBeam applyAndGetBeams:voice3 groups:[MNBeam getDefaultBeamGroupsForTimeSignatureType:MNTime13_16]];
 
-//    MNFormatter* formatter1 =
+    //    MNFormatter* formatter1 =
     [[MNFormatter formatter] formatToStaff:@[ voice1 ] staff:staff1];
-//    MNFormatter* formatter2 =
+    //    MNFormatter* formatter2 =
     [[MNFormatter formatter] formatToStaff:@[ voice2 ] staff:staff2];
-//    MNFormatter* formatter3 =
+    //    MNFormatter* formatter3 =
     [[MNFormatter formatter] formatToStaff:@[ voice3 ] staff:staff3];
-
-    //    [ret.staves addObjectsFromArray:@[ staff1, staff2, staff3 ]];
-    //    [ret.voices addObjectsFromArray:@[ voice1, voice2, voice3 ]];
-    //    [ret.formatters addObjectsFromArray:@[ formatter1, formatter2, formatter3 ]];
-    //    [ret.beams addObjectsFromArray:@[ beams, beams2, beams3 ]];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -1527,9 +1428,9 @@
     return ret;
 }
 
-- (MNTestTuple*)customBeamGroups:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)customBeamGroups:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -1649,19 +1550,15 @@
     voice3.mode = MNModeSoft;
     [voice3 addTickables:notes3];
 
-    //      [staff1 draw:ctx];
-    //      [staff2 draw:ctx];
-    //      [staff3 draw:ctx];
-
     NSArray* group1 = @[ Rational(5, 8) ];
 
     NSArray* group2 = @[ Rational(3, 8), Rational(2, 8) ];
 
     NSArray* group3 = @[ Rational(7, 16), Rational(2, 16), Rational(4, 16) ];
 
-    NSArray* beams = [MNBeam applyAndGetBeams:voice1 groups:group1];
-    NSArray* beams2 = [MNBeam applyAndGetBeams:voice2 groups:group2];
-    NSArray* beams3 = [MNBeam applyAndGetBeams:voice3 groups:group3];
+    NSArray<MNBeam*>* beams = [MNBeam applyAndGetBeams:voice1 groups:group1];
+    NSArray<MNBeam*>* beams2 = [MNBeam applyAndGetBeams:voice2 groups:group2];
+    NSArray<MNBeam*>* beams3 = [MNBeam applyAndGetBeams:voice3 groups:group3];
 
     MNFormatter* formatter1 = [MNFormatter formatter];
     MNFormatter* formatter2 = [MNFormatter formatter];
@@ -1670,44 +1567,39 @@
     [formatter2 formatToStaff:@[ voice2 ] staff:staff2];
     [formatter3 formatToStaff:@[ voice3 ] staff:staff3];
 
-    [ret.staves addObjectsFromArray:@[ staff1, staff2, staff3 ]];
-    [ret.voices addObjectsFromArray:@[ voice1, voice2, voice3 ]];
-    [ret.formatters addObjectsFromArray:@[ formatter1, formatter2, formatter3 ]];
-    [ret.beams addObjectsFromArray:@[ beams, beams2, beams3 ]];
-
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      //      [staff1 draw:ctx];
-      //      [staff2 draw:ctx];
-      //      [staff3 draw:ctx];
-      //
-      //      [voice1 draw:ctx dirtyRect:CGRectZero toStaff:staff1];
-      //      [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staff2];
-      //      [voice3 draw:ctx dirtyRect:CGRectZero toStaff:staff3];
-      //
-      //      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
-      //      [beams2 foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
-      //      [beams3 foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
+      [staff1 draw:ctx];
+      [staff2 draw:ctx];
+      [staff3 draw:ctx];
+
+      [voice1 draw:ctx dirtyRect:CGRectZero toStaff:staff1];
+      [voice2 draw:ctx dirtyRect:CGRectZero toStaff:staff2];
+      [voice3 draw:ctx dirtyRect:CGRectZero toStaff:staff3];
+
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
+      [beams2 foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
+      [beams3 foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
 
       ok(YES, @"Auto Beam Applicator Test");
     };
     return ret;
 }
 
-- (MNTestTuple*)simpleTuplets:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)simpleTuplets:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent withTitle:title];
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -1749,41 +1641,37 @@
     [voice setStrict:NO];
     [voice addTickables:notes];
 
-    NSArray* beams = [MNBeam applyAndGetBeams:voice];
+    NSArray<MNBeam*>* beams = [MNBeam applyAndGetBeams:voice];
 
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-
-    [ret.staves addObject:c.staff];
-    [ret.formatters addObject:formatter];
-    [ret.voices addObject:voice];
-    [ret.beams addObject:beams];
-    [ret.drawables addObjectsFromArray:@[ triplet1, quintuplet ]];
+    // MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      //      [c.staff draw:ctx];
-      //      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      //
-      //      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
-      //
-      //      [triplet1 draw:ctx];
-      //      [quintuplet draw:ctx];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
+
+      [triplet1 draw:ctx];
+      [quintuplet draw:ctx];
 
       ok(YES, @"Auto Beam Applicator Test");
     };
     return ret;
 }
 
-- (MNTestTuple*)moreSimpleTuplets:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)moreSimpleTuplets:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent withTitle:title];
+    //    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent withTitle:title];
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -1815,39 +1703,35 @@
     [voice setStrict:NO];
     [voice addTickables:notes];
 
-    NSArray* beams = [MNBeam applyAndGetBeams:voice];
+    NSArray<MNBeam*>* beams = [MNBeam applyAndGetBeams:voice];
 
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-
-    [ret.staves addObject:c.staff];
-    [ret.formatters addObject:formatter];
-    [ret.voices addObject:voice];
-    [ret.beams addObject:beams];
-    [ret.drawables addObjectsFromArray:@[ triplet1 ]];
+    // MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      //      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      //
-      //      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
-      //
-      //      [triplet1 draw:ctx];
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
+
+      [triplet1 draw:ctx];
 
       ok(YES, @"Auto Beam Applicator Test");
     };
     return ret;
 }
 
-- (MNTestTuple*)moreBeaming:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)moreBeaming:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent withTitle:title];
+    //    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent withTitle:title];
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 40, 450, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -1880,22 +1764,20 @@
     [voice setStrict:NO];
     [voice addTickables:notes];
 
-    NSArray* beams = [MNBeam applyAndGetBeams:voice];
+    NSArray<MNBeam*>* beams = [MNBeam applyAndGetBeams:voice];
 
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
-
-    [ret.staves addObject:c.staff];
-    [ret.formatters addObject:formatter];
-    [ret.voices addObject:voice];
-    [ret.beams addObject:beams];
+    //    MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      //      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
-      //
-      //      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-      //        [beam draw:ctx];
-      //      }];
+      [staff draw:ctx];
+
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+      [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
+        [beam draw:ctx];
+      }];
 
       ok(YES, @"Auto Beam Applicator Test");
     };

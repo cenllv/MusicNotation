@@ -34,7 +34,12 @@
  */
 @interface MNAnimationTests : MNTestViewController
 
-@property (strong, nonatomic) MNButton* animateButton;
+#if TARGET_OS_IPHONE
+@property (strong, nonatomic) UIButton* animateButton;
+#elif TARGET_OS_MAC
+@property (strong, nonatomic) NSButton* animateButton;
+#endif
+
 @property (strong, nonatomic) AnimationGlyphBox* boxDelegate;
 @property (strong, nonatomic) CALayer* box;
 

@@ -327,7 +327,9 @@
         id object = [keyedValues objectForKey:key_keyPath];
         //        if([object isNotEqualTo:[NSNull null]])
         //        {
+        
         [self setValue:object forKeyPath:key_keyPath];
+        
         //        }
         //        else
         //        {
@@ -367,11 +369,11 @@
     NSMutableDictionary* propertySetters = [[NSMutableDictionary alloc] init];
     NSMutableDictionary* propertyDeclarations = [[NSMutableDictionary alloc] init];
 
-    Class class = [other class];
-    while([class isSubclassOfClass:[IAModelBase class]])
+    Class clazz = [other class];
+    while([clazz isSubclassOfClass:[IAModelBase class]])
     {
         unsigned int outCount;
-        objc_property_t* properties = class_copyPropertyList(class, &outCount);
+        objc_property_t* properties = class_copyPropertyList(clazz, &outCount);
         for(NSUInteger i = 0; i < outCount; i++)
         {
             objc_property_t property = properties[i];
@@ -388,7 +390,7 @@
             }
         }
         free(properties);
-        class = class_getSuperclass(class);
+        clazz = class_getSuperclass(clazz);
     }
 
     for(NSString* key in propertyGetters.allKeys)

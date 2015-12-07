@@ -56,15 +56,15 @@
             frame:CGRectMake(10, 10, w, h)
            params:@[ @"a|", @"am" ]];
     [self runTest:@"Articulation - Fermata Above/Below" @"a@a" @"a@u"
-             func:@selector(drawFermata:params:withTitle:)
+             func:@selector(drawFermata:params:)
             frame:CGRectMake(10, 10, w, 250)
            params:@[ @"a@a", @"a@u" ]];
     [self runTest:@"Articulation - Inline/Multiple" @"a." @"a."
-             func:@selector(drawArticulations2:params:withTitle:)
+             func:@selector(drawArticulations2:params:)
             frame:CGRectMake(10, 10, 750, 200)
            params:@[ @"a.", @"a." ]];
     [self runTest:@"TabNote Articulation" @"a." @"a."
-             func:@selector(tabNotes:params:withTitle:)
+             func:@selector(tabNotes:params:)
             frame:CGRectMake(10, 10, 650, 250)
            params:@[ @"a.", @"a." ]];
 }
@@ -74,38 +74,10 @@
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size
-                                withParent:(MNTestCollectionItemView*)parent
-                                 withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawArticulations:(id<MNTestParentDelegate>)parent
+                                 params:(NSArray*)params   // withTitle:(NSString*)title
 {
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
-
-- (MNTestTuple*)drawArticulations:(MNTestCollectionItemView*)parent
-                           params:(NSArray*)params   // withTitle:(NSString*)title
-{
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     NSString* sym1 = params[0];
     NSString* sym2 = params[1];
 
@@ -257,9 +229,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawFermata:(MNTestCollectionItemView*)parent params:(NSArray*)params withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawFermata:(id<MNTestParentDelegate>)parent params:(NSArray*)params
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     NSString* sym1 = params[0];
     NSString* sym2 = params[1];
 
@@ -345,9 +317,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawArticulations2:(MNTestCollectionItemView*)parent params:(NSArray*)params withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawArticulations2:(id<MNTestParentDelegate>)parent params:(NSArray*)params
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNArticulation* (^newArticulation)(NSString*) = ^MNArticulation*(NSString* symbol)
     {
         MNArticulationType type = [MNEnum typeArticulationTypeForString:symbol];
@@ -612,11 +584,11 @@
       for(NSUInteger i = 0; i < 4; i++)
       {
           NSUInteger position1 = 3;
-//          NSUInteger position2 = 4;
+          //          NSUInteger position2 = 4;
           if(i > 1)
           {
               position1 = 4;
-//              position2 = 3;
+              //              position2 = 3;
           }
           [notesBar4[i] addArticulation:[newArticulation(@"a-") setPosition:position1]];
       }
@@ -627,9 +599,9 @@
     return ret;
 }
 
-- (MNTestTuple*)tabNotes:(MNTestCollectionItemView*)parent params:(NSArray*)params withTitle:(NSString*)title
+- (MNTestBlockStruct*)tabNotes:(id<MNTestParentDelegate>)parent params:(NSArray*)params
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNArticulation* (^newArticulation)(NSString*) = ^MNArticulation*(NSString* symbol)
     {
         MNArticulationType type = [MNEnum typeArticulationTypeForString:symbol];

@@ -30,8 +30,13 @@
 
 @implementation NSMutableDictionary (NSMutableDictionaryAdditions)
 
-+ (NSDictionary*)dictionaryByMerging:(NSDictionary*)destination with:(NSDictionary*)source
++ (nonnull NSDictionary*)dictionaryByMerging:(nonnull NSDictionary*)destination with:(nullable NSDictionary*)source
 {
+    if(!source)
+    {
+        return destination;
+    }
+
     NSMutableDictionary* ret = [NSMutableDictionary dictionaryWithDictionary:destination];
 
     // FROM: http://stackoverflow.com/a/4028209/629014
@@ -59,7 +64,7 @@
     return [[self class] dictionaryByMerging:self with:dict];
 }
 
-+ (NSDictionary*)merge:(NSDictionary*)destination with:(NSDictionary*)source
++ (nonnull NSDictionary*)merge:(nonnull NSDictionary*)destination with:(nullable NSDictionary*)source
 {
     destination = [[self class] dictionaryByMerging:destination with:source];
     return destination;
@@ -86,7 +91,7 @@
     return (NSDictionary*)[result copy];
 }
 
-- (void)addObjectWithoutReplacing:(id)obj forKey:(id)key
+- (void)addObjectWithoutReplacing:(nullable id)obj forKey:(nonnull id)key
 {
     if([self objectForKey:key] == nil)
     {
@@ -98,7 +103,7 @@
     }
 }
 
-- (void)addEntriesFromDictionaryWithoutReplacing:(NSDictionary*)dictionary
+- (void)addEntriesFromDictionaryWithoutReplacing:(nonnull NSDictionary*)dictionary
 {
     for(id key in dictionary.allKeys)
     {

@@ -52,32 +52,6 @@
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
-{
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
-
 - (void)renderNotes
 {
     /*
@@ -100,9 +74,9 @@
      */
 }
 
-- (MNTestTuple*)formatTextNotes:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)formatTextNotes:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     /*
         formatTextNotes: function(options, contextBuilder) {
             var ctx = new contextBuilder(options.canvas_sel, 400, 150);
@@ -145,9 +119,9 @@
     return ret;
 }
 
-- (MNTestTuple*)superscriptAndSubscript:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)superscriptAndSubscript:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     /*
         superscriptAndSubscript: function(options, contextBuilder) {
             var ctx = new contextBuilder(options.canvas_sel, 550, 200);
@@ -203,9 +177,9 @@
     return ret;
 }
 
-- (MNTestTuple*)formatTextGlyphs0:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)formatTextGlyphs0:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     /*
         formatTextGlyphs0: function(options, contextBuilder) {
             var ctx = new contextBuilder(options.canvas_sel, 600, 180);
@@ -255,9 +229,9 @@
     return ret;
 }
 
-- (MNTestTuple*)formatTextGlyphs1:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)formatTextGlyphs1:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     /*
         formatTextGlyphs1: function(options, contextBuilder) {
             var ctx = new contextBuilder(options.canvas_sel, 600, 180);
@@ -306,9 +280,9 @@
     return ret;
 }
 
-- (MNTestTuple*)crescendo:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)crescendo:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     /*
         crescendo: function(options, contextBuilder) {
             var ctx = new contextBuilder(options.canvas_sel, 600, 180);
@@ -341,9 +315,9 @@
     return ret;
 }
 
-- (MNTestTuple*)textDynamics:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)textDynamics:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     /*
         textDynamics: function(options, contextBuilder) {
             var ctx = new contextBuilder(options.canvas_sel, 600, 180);

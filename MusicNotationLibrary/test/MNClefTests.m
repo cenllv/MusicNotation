@@ -36,11 +36,11 @@
 {
     [super start];
     //       [MNGlyph setDebugMode:YES];
-    [self runTest:@"Clef Test" func:@selector(draw:withTitle:) frame:CGRectMake(10, 10, 800, 250)];
-    [self runTest:@"Clef End Test" func:@selector(drawEnd:withTitle:) frame:CGRectMake(10, 10, 800, 250)];
-    [self runTest:@"Small Clef Test" func:@selector(drawSmall:withTitle:) frame:CGRectMake(10, 10, 800, 250)];
-    [self runTest:@"Small Clef End Test" func:@selector(drawSmallEnd:withTitle:) frame:CGRectMake(10, 10, 800, 250)];
-    [self runTest:@"Clef Change Test" func:@selector(drawClefChange:withTitle:) frame:CGRectMake(10, 10, 800, 250)];
+    [self runTest:@"Clef Test" func:@selector(draw:) frame:CGRectMake(10, 10, 800, 250)];
+    [self runTest:@"Clef End Test" func:@selector(drawEnd:) frame:CGRectMake(10, 10, 800, 250)];
+    [self runTest:@"Small Clef Test" func:@selector(drawSmall:) frame:CGRectMake(10, 10, 800, 250)];
+    [self runTest:@"Small Clef End Test" func:@selector(drawSmallEnd:) frame:CGRectMake(10, 10, 800, 250)];
+    [self runTest:@"Clef Change Test" func:@selector(drawClefChange:) frame:CGRectMake(10, 10, 800, 250)];
 }
 
 - (void)tearDown
@@ -48,35 +48,9 @@
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)draw:(id<MNTestParentDelegate>)parent
 {
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
-
-- (MNTestTuple*)draw:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
-{
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 700, 0)];
@@ -104,9 +78,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawEnd:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawEnd:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 700, 0)];
@@ -134,9 +108,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawSmall:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawSmall:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 700, 0)];
@@ -164,9 +138,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawSmallEnd:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawSmallEnd:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 700, 0)];
@@ -194,9 +168,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawClefChange:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawClefChange:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 700, 0)];
@@ -236,7 +210,7 @@
       [formatter joinVoices:@[ voice ]];
       //        [formatter formatWith:@[voice] withJustifyWidth:500 andOptions:nil];
       [formatter formatWith:@[ voice ] withJustifyWidth:650];
-      [voice draw:ctx dirtyRect:parent.frame toStaff:staff];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
       // ok(YES, @"all pass");
     };

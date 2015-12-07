@@ -1,4 +1,4 @@
-//
+    //
 //  MNRenderLayer.m
 //  MusicNotation
 //
@@ -26,9 +26,13 @@
 //
 
 #import "MNRenderLayer.h"
-#import "MNTestTuple.h"
+#import "MNTestBlockStruct.h"
 #import "MNCore.h"
 #import "MNGlyphLayer.h"
+#if TARGET_OS_IPHONE
+#import "MNMTableViewCell.h"
+#import "MNMCarrierView.h"
+#endif
 
 #define RENDERLAYER_BORDER_WIDTH 4.0
 
@@ -36,14 +40,12 @@
 
 @property (assign, nonatomic) SEL selector;
 @property (strong, nonatomic) id target;
-@property (strong, nonatomic) MNTestTuple* testTuple;
+@property (strong, nonatomic) MNTestBlockStruct* testTuple;
 @property (strong, nonatomic) NSString* testName;
 
 @end
 
 //#ifdef TARGET_OS_IPHONE
-//@implementation RenderLayer
-//@end
 //#elif TARGET_OS_MAC
 
 @implementation MNRenderLayer
@@ -58,16 +60,40 @@
     return self;
 }
 
-- (MNTestTuple*)invokeTest
+#if TARGET_OS_IPHONE
+- (void)setParentView:(UIView*)parentView
+{
+    _parentView = parentView;
+    self.delegate = parentView;
+    self.frame = parentView.bounds;
+}
+
+- (void)layoutIfNeeded
+{
+    [super layoutIfNeeded];
+}
+
+#elif TARGET_OS_MAC
+#endif
+
+- (MNTestBlockStruct*)invokeTest
 {
     NSMethodSignature* signature = [_target methodSignatureForSelector:self.selector];
     NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:signature];
     [invocation setSelector:self.selector];
     [invocation setTarget:self.target];
-    //    NSString* name = @"";
+//    NSString* name = @"";
 
-    // set the TestCollectionItemView
+// set the TestCollectionItemView
+
+#if TARGET_OS_IPHONE
+    // MNMTableViewCell* arg2 = (MNMTableViewCell*)self.parentView;
+    MNMCarrierView* arg2 = (MNMCarrierView*)self.parentView;
+//    self.bounds = arg2.frame;
+#elif TARGET_OS_MAC
     id arg2 = self.parentView;
+#endif
+
     [invocation setArgument:&arg2 atIndex:2];
     //    [invocation setArgument:&ctx atIndex:3];
 
@@ -82,7 +108,7 @@
     }
 
     [invocation invoke];
-    MNTestTuple* ret __unsafe_unretained;   // http://stackoverflow.com/a/22034059/629014
+    MNTestBlockStruct* ret __unsafe_unretained;   // http://stackoverflow.com/a/22034059/629014
     [invocation getReturnValue:&ret];
     self.testTuple = ret;
     return ret;
@@ -108,6 +134,7 @@
     self.testName = _testAction.name;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
       [self invokeTest];
+      // TODO: needs a semaphore to indicate when setup is complete
       dispatch_async(dispatch_get_main_queue(), ^{
         [self setNeedsDisplay];
       });
@@ -122,15 +149,18 @@
 
 - (void)drawLayer:(CALayer*)layer inContext:(CGContextRef)ctx
 {
-    //    CGContextSaveGState(ctx);
-
-    CGRect dirtyRect = self.bounds;
-
+#if TARGET_OS_IPHONE
+    //    ctx = UIGraphicsGetCurrentContext();
+    UIGraphicsPushContext(ctx);
+    CGContextSaveGState(ctx);
+    CGContextClearRect(ctx, self.bounds);
+#elif TARGET_OS_MAC
     NSGraphicsContext* gc = [NSGraphicsContext graphicsContextWithGraphicsPort:ctx flipped:YES];
     [NSGraphicsContext saveGraphicsState];
     [NSGraphicsContext setCurrentContext:gc];
+#endif
 
-    MNBezierPath* outline = [MNBezierPath bezierPathWithRect:dirtyRect];
+    MNBezierPath* outline = [MNBezierPath bezierPathWithRect:self.bounds];
     if(self.testTuple.backgroundColor)
     {
         [self.testTuple.backgroundColor setFill];
@@ -140,125 +170,63 @@
         [SHEET_MUSIC_COLOR setFill];
         //    [[MNColor randomBGColor:YES] setFill];
     }
-
     [outline fill];
 
-    if(!_testTuple)
-    {
-        return;
-    }
-
-    MNStaff* staff;
-    if(self.testTuple.staves.count > 0)
-    {
-        staff = self.testTuple.staves[0];
-    }
-
-    if(self.testTuple.voices.count == 0)
-    {
-        [staff draw:ctx];
-    }
-
-    for(NSUInteger i = 0; i < self.testTuple.staves.count; ++i)
-    {
-        staff = self.testTuple.staves[i];
-        [staff draw:ctx];
-    }
-
-    for(NSUInteger i = 0; i < self.testTuple.voices.count; ++i)
-    {
-        //        if(self.testTuple.staves.count == i + 1)
-        //        {
-        staff = self.testTuple.staves[i];
-        //        }
-        //        [staff draw:ctx];
-        MNVoice* voice = self.testTuple.voices[i];
-        [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
-    }
-
-    for(NSUInteger i = 0; i < self.testTuple.beams.count; ++i)
-    {
-        NSArray* beams = self.testTuple.beams[i];
-        if(beams.count < 1)
-        {
-            continue;
-        }
-        [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
-          [beam draw:ctx];
-        }];
-        //        [beam draw:ctx];
-    }
-
-    for(NSUInteger i = 0; i < self.testTuple.drawables.count; ++i)
-    {
-        id<MNTickableDelegate> drawable = self.testTuple.drawables[i];
-        if([drawable respondsToSelector:@selector(draw:)])
-        {
-            [drawable draw:ctx];
-        }
-    }
+#if TARGET_OS_IPHONE
+    float superLayerWidth = self.superlayer.bounds.size.width;
+    float testWidth = self.testAction.frame.size.width;
+    float scale = superLayerWidth / testWidth;
+    CGContextScaleCTM(ctx, scale, scale);
+#endif
 
     if(self.testTuple.drawBlock)
     {
         self.testTuple.drawBlock(CGRectZero, self.bounds, ctx);
     }
 
-    //    NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    //    paragraphStyle.alignment = kCTTextAlignmentLeft;
-    //
-    //#if TARGET_OS_IPHONE
-    //    UIFont* font1 = [UIFont fontWithName:@"Helvetica" size:12];
-    //#elif TARGET_OS_MAC
-    //    NSFont* font1 = [NSFont fontWithName:@"Helvetica" size:12];
-    //#endif
-    //
-    //     MNFont* font1 =  [MNFont fontWithName:@"Helvetica" size:12];
-
-    // TODO: change to NSTextField
-    //    NSAttributedString* titleString = [[NSAttributedString alloc]
-    //        initWithString:self.testName
-    //            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
-    //    [titleString drawAtPoint:CGPointMake(10, 10)];
-
+#if TARGET_OS_IPHONE
+    CGContextRestoreGState(ctx);
+    UIGraphicsPopContext();
+#elif TARGET_OS_MAC
     [NSGraphicsContext restoreGraphicsState];
-
-    //    CGContextRestoreGState(ctx);
+#endif
+    //        CGContextRestoreGState(ctx);
 }
 
-- (MNStaffNote*)showStaffNote:(MNStaffNote*)ret
-                      onStaff:(MNStaff*)staff
-                  withContext:(CGContextRef)ctx
-                          atX:(float)x
-              withBoundingBox:(BOOL)drawBoundingBox
-{
-    MNLogInfo(@"");
-    MNTickContext* tickContext = [[MNTickContext alloc] init];
-    [[tickContext addTickable:ret] preFormat];
-    tickContext.x = x;
-    tickContext.pointsUsed = 20;
-    ret.staff = staff;
-    [ret draw:ctx];
-    if(drawBoundingBox)
-    {
-        [ret.boundingBox draw:ctx];
-    }
-    return ret;
-}
-
-- (MNStaffNote*)showNote:(NSDictionary*)noteStruct onStaff:(MNStaff*)staff withContext:(CGContextRef)ctx atX:(float)x
-{
-    return [self showNote:noteStruct onStaff:staff withContext:ctx atX:x withBoundingBox:NO];
-}
-
-- (MNStaffNote*)showNote:(NSDictionary*)noteStruct
-                 onStaff:(MNStaff*)staff
-             withContext:(CGContextRef)ctx
-                     atX:(float)x
-         withBoundingBox:(BOOL)drawBoundingBox
-{
-    MNStaffNote* ret = [[MNStaffNote alloc] initWithDictionary:noteStruct];
-    return [self showStaffNote:ret onStaff:staff withContext:ctx atX:x withBoundingBox:drawBoundingBox];
-}
+//- (MNStaffNote*)showStaffNote:(MNStaffNote*)ret
+//                      onStaff:(MNStaff*)staff
+//                  withContext:(CGContextRef)ctx
+//                          atX:(float)x
+//              withBoundingBox:(BOOL)drawBoundingBox
+//{
+//    MNLogInfo(@"");
+//    MNTickContext* tickContext = [[MNTickContext alloc] init];
+//    [[tickContext addTickable:ret] preFormat];
+//    tickContext.x = x;
+//    tickContext.pointsUsed = 20;
+//    ret.staff = staff;
+//    [ret draw:ctx];
+//    if(drawBoundingBox)
+//    {
+//        [ret.boundingBox draw:ctx];
+//    }
+//    return ret;
+//}
+//
+//- (MNStaffNote*)showNote:(NSDictionary*)noteStruct onStaff:(MNStaff*)staff withContext:(CGContextRef)ctx atX:(float)x
+//{
+//    return [self showNote:noteStruct onStaff:staff withContext:ctx atX:x withBoundingBox:NO];
+//}
+//
+//- (MNStaffNote*)showNote:(NSDictionary*)noteStruct
+//                 onStaff:(MNStaff*)staff
+//             withContext:(CGContextRef)ctx
+//                     atX:(float)x
+//         withBoundingBox:(BOOL)drawBoundingBox
+//{
+//    MNStaffNote* ret = [[MNStaffNote alloc] initWithDictionary:noteStruct];
+//    return [self showStaffNote:ret onStaff:staff withContext:ctx atX:x withBoundingBox:drawBoundingBox];
+//}
 
 //- (void)setBorderColor:(NSColor*)newBorderColor
 - (void)setBorderColor:(CGColorRef)borderColor
@@ -278,6 +246,34 @@
 {
     [super addSublayer:layer];
 }
+
+#if TARGET_OS_IPHONE
+
+- (CALayer*)hitTest:(CGPoint)interactionPoint
+{
+
+    
+//    for(CALayer* sublayer in self.sublayers.reverseObjectEnumerator)
+//    {
+//        CGPoint pointInHostedLayer = [self convertPoint:interactionPoint toLayer:sublayer];
+//        if ([sublayer containsPoint:pointInHostedLayer]) {
+//            
+//        }
+//    }
+    
+    return [super hitTest:interactionPoint];
+}
+
+//- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
+//{
+//}
+
+//- (CALayer*)layerForTouch:(UITouch*)touch
+//{
+//    return self;
+//}
+
+#elif TARGET_OS_MAC
 
 - (BOOL)pointingDeviceDownEvent:(NSEvent*)event atPoint:(CGPoint)interactionPoint
 {
@@ -315,6 +311,6 @@
     return NO;
 }
 
-@end
+#endif
 
-//#endif
+@end

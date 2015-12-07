@@ -39,13 +39,13 @@
 {
     [super start];
 
-    //    [self runTest:@"Tick" func:@selector(ticks)];
-    //    [self runTest:@"Tick" func:@selector(ticksNewApi)];
-    //    [self runTest:@"Stem" func:@selector(stem)];
-    //    [self runTest:@"Automatic" func:@selector(autoStem)];
-    //    [self runTest:@"Staffline" func:@selector(staffLine)];
-    //    [self runTest:@"Width" func:@selector(width)];
-    //    [self runTest:@"TickContext" func:@selector(tickContext)];
+        [self runTest:@"Tick" func:@selector(ticks)];
+        [self runTest:@"Tick" func:@selector(ticksNewApi)];
+        [self runTest:@"Stem" func:@selector(stem)];
+        [self runTest:@"Automatic" func:@selector(autoStem)];
+        [self runTest:@"Staffline" func:@selector(staffLine)];
+        [self runTest:@"Width" func:@selector(width)];
+        [self runTest:@"TickContext" func:@selector(tickContext)];
 
     [self runTest:@"StaffNote Draw - Treble"
              func:@selector(draw:options:)
@@ -145,31 +145,6 @@
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
-{
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
 
 // TODO: move comments to NSLog
 
@@ -538,9 +513,9 @@
 //    return ret;
 //}
 
-- (MNTestTuple*)draw:(MNTestCollectionItemView*)parent options:(NSDictionary*)options
+- (MNTestBlockStruct*)draw:(id<MNTestParentDelegate>)parent options:(NSDictionary*)options
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 30, 750, 0)];
@@ -561,8 +536,8 @@
     NSMutableArray* higherKeys = [@[ @"c/", @"e/", @"a/" ] mutableCopy];
     for(int k = 0; k < lowerKeys.count; ++k)
     {
-        lowerKeys[k] = [NSString stringWithFormat:@"%@%lu", lowerKeys[k], (4 + octaveShift)];
-        higherKeys[k] = [NSString stringWithFormat:@"%@%lu", higherKeys[k], (5 + octaveShift)];
+        lowerKeys[k] = [NSString stringWithFormat:@"%@%tu", lowerKeys[k], (4 + octaveShift)];
+        higherKeys[k] = [NSString stringWithFormat:@"%@%tu", higherKeys[k], (5 + octaveShift)];
     }
 
     NSArray* restKeys = @[ restKey ];
@@ -665,14 +640,14 @@
 
     //      expect(notes.count * 2);   // TODO: does nothing right now
 
-    [ret.staves addObject:staff];
+    //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
 
       for(int i = 0; i < notes.count; ++i)
       {
           NSDictionary* note = notes[i];
-          MNStaffNote* staffNote = [parent showNote:note onStaff:staff withContext:ctx atX:(i + 1) * 25];
+          MNStaffNote* staffNote = [[self class] showNote:note onStaff:staff withContext:ctx atX:(i + 1) * 25];
           staffNote.staff = staff;
 
           NSString* descriptionX = [NSString stringWithFormat:@"Note %i has X value", i];
@@ -687,12 +662,10 @@
     return ret;
 }
 
-- (MNTestTuple*)drawBoundingBoxes:(MNTestCollectionItemView*)parent options:(NSDictionary*)options
+- (MNTestBlockStruct*)drawBoundingBoxes:(id<MNTestParentDelegate>)parent options:(NSDictionary*)options
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
-
-
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 30, 750, 0)];
 
@@ -711,8 +684,8 @@
     NSMutableArray* higherKeys = [@[ @"c/", @"e/", @"a/" ] mutableCopy];
     for(int k = 0; k < lowerKeys.count; ++k)
     {
-        lowerKeys[k] = [NSString stringWithFormat:@"%@%lu", lowerKeys[k], (4 + octaveShift)];
-        higherKeys[k] = [NSString stringWithFormat:@"%@%lu", higherKeys[k], (5 + octaveShift)];
+        lowerKeys[k] = [NSString stringWithFormat:@"%@%tu", lowerKeys[k], (4 + octaveShift)];
+        higherKeys[k] = [NSString stringWithFormat:@"%@%tu", higherKeys[k], (5 + octaveShift)];
     }
 
     NSArray* restKeys = @[ restKey ];
@@ -814,7 +787,7 @@
     ];
 
     //      expect(notes.count * 2);   // TODO: does nothing right now
-    [ret.staves addObject:staff];
+    //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       for(int i = 0; i < notes.count; ++i)
@@ -822,7 +795,7 @@
           NSDictionary* note = [notes objectAtIndex:i];
 
           MNStaffNote* staffNote =
-              [parent showNote:note onStaff:staff withContext:ctx atX:(i + 1) * 25 withBoundingBox:YES];
+              [[self class] showNote:note onStaff:staff withContext:ctx atX:(i + 1) * 25 withBoundingBox:YES];
 
           NSString* descriptionX = [NSString stringWithFormat:@"Note %i has X value", i];
           assertThatInteger(staffNote.x, greaterThan(@(0.f)));
@@ -835,11 +808,10 @@
     return ret;
 }
 
-- (MNTestTuple*)drawBass:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawBass:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
-
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 30, 650, 0)];
     NSString* clefName = @"bass";
@@ -919,13 +891,13 @@
            @"duration" : @"h" }
     ];
 
-    [ret.staves addObject:staff];
+    //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       for(int i = 0; i < notes.count; ++i)
       {
           NSDictionary* note = notes[i];
-          MNStaffNote* staffNote = [parent showNote:note onStaff:staff withContext:ctx atX:(i + 1) * 30];
+          MNStaffNote* staffNote = [[self class] showNote:note onStaff:staff withContext:ctx atX:(i + 1) * 30];
           staffNote.staff = staff;
           assertThatInteger(staffNote.x, greaterThan(@(0.f)));
           MNLogInfo(@"Note %i %@", i, @" has X value");
@@ -936,9 +908,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawDisplacements:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawDisplacements:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 650, 0)];
@@ -988,13 +960,13 @@
         }
     ];
     //      expect(notes.count * 2);
-    [ret.staves addObject:staff];
+    //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       for(int i = 0; i < notes.count; ++i)
       {
           NSDictionary* note = notes[i];
-          MNStaffNote* staffNote = [parent showNote:note onStaff:staff withContext:ctx atX:(i + 1) * 45];
+          MNStaffNote* staffNote = [[self class] showNote:note onStaff:staff withContext:ctx atX:(i + 1) * 45];
           // showNote(note, Staff, ctx, (i + 1) * 45);
           staffNote.staff = staff;
           assertThatInteger(staffNote.x, greaterThan(@(0.f)));
@@ -1006,9 +978,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawHarmonicAndMuted:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawHarmonicAndMuted:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 280, 0)];
@@ -1109,14 +1081,14 @@
            @"stem_direction" : @(-1) }
     ];
     //      expect(notes.count * 2);
-    [ret.staves addObject:staff];
+    //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       for(int i = 0; i < notes.count; ++i)
       {
           NSDictionary* note = notes[i];
           //         MNStaffNote *staffNote = showNote(note, Staff, ctx, (i + 1) * 25);
-          MNStaffNote* staffNote = [parent showNote:note onStaff:staff withContext:ctx atX:(i + 1) * 25];
+          MNStaffNote* staffNote = [[self class] showNote:note onStaff:staff withContext:ctx atX:(i + 1) * 25];
           staffNote.staff = staff;
           assertThatInteger(staffNote.x, greaterThan(@(0.f)));
           MNLogInfo(@"Note %i %@", i, @" has X value");
@@ -1127,9 +1099,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawSlash:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawSlash:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 650, 0)];
@@ -1218,27 +1190,33 @@
     MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
     voice.mode = MNModeSoft;
 
-    [voice addTickables:Staff_notes];
+    //    [voice addTickables:Staff_notes];
+    //
+    //    MNFormatter* formatter =
+    //    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
-    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
-
-    [ret.voices addObject:voice];
-    [ret.formatters addObject:formatter];
-    [ret.staves addObject:staff];
-    [ret.beams addObject:@[ beam1, beam2 ]];
+    //  //  [ret.voices addObject:voice];
+    //  //  [ret.formatters addObject:formatter];
+    //   //  [ret.staves addObject:staff];
+    //    [ret.beams addObject:@[ beam1, beam2 ]];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      //      [beam1 draw:ctx];
-      //      [beam2 draw:ctx];
+
+      [staff draw:ctx];
+
+      [MNFormatter formatAndDrawWithContext:ctx dirtyRect:CGRectZero toStaff:staff withNotes:Staff_notes];
+
+      [beam1 draw:ctx];
+      [beam2 draw:ctx];
       ok(YES, @"Slash Note Heads");
     };
 
     return ret;
 }
 
-- (MNTestTuple*)drawKeyStyles:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawKeyStyles:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(50, 50, 100, 0)];
@@ -1276,7 +1254,7 @@
                                            //                  CGContextRestoreGState(ctx);
     };
 
-    //    [ret.staves addObject:staff];
+    //   //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       MNTickContext* tickContext = [[MNTickContext alloc] init];
@@ -1292,14 +1270,14 @@
     return ret;
 }
 
-- (MNTestTuple*)drawNoteStyles:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawNoteStyles:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(50, 50, 100, 0)];
 
-    //    [ret.staves addObject:staff];
+    //   //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       NSDictionary* note_struct = @{ @"keys" : @[ @"g/4", @"bb/4", @"d/5" ], @"duration" : @"q" };
@@ -1321,7 +1299,7 @@
     return ret;
 }
 
-+ (MNStaffNote*)renderNote:(MNTestCollectionItemView*)parent
++ (MNStaffNote*)renderNote:(id<MNTestParentDelegate>)parent
                       note:(MNStaffNote*)note
                      staff:(MNStaff*)staff
                withContext:(CGContextRef)ctx
@@ -1339,11 +1317,10 @@
     return note;
 }
 
-- (MNTestTuple*)drawDotsAndFlagsStemUp:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawDotsAndFlagsStemUp:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
-
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 975, 0)];
 
@@ -1409,7 +1386,7 @@
                @"stem_direction" : @(1) }) addDotToAll] addDotToAll]
     ];
 
-    [ret.staves addObject:staff];
+    //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       [notes foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
@@ -1419,9 +1396,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawDotsAndFlagsStemDown:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawDotsAndFlagsStemDown:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 975, 0)];
@@ -1498,7 +1475,7 @@
                @"stem_direction" : @(-1) }) addDotToAll]
     ];
 
-    [ret.staves addObject:staff];
+    //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       [notes foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
@@ -1509,9 +1486,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawDotsAndBeamsUp:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawDotsAndBeamsUp:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 975, 0)];
 
@@ -1577,7 +1554,7 @@
     ];
 
     MNBeam* beam = [MNBeam beamWithNotes:notes];
-    //    [ret.staves addObject:staff];
+    //   //  [ret.staves addObject:staff];
     //    [ret.beams addObject:@[beam]];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
@@ -1591,9 +1568,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawDotsAndBeamsDown:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawDotsAndBeamsDown:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
 
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* dict)
@@ -1659,7 +1636,7 @@
     ];
 
     id beam = [MNBeam beamWithNotes:notes];
-    //    [ret.staves addObject:staff];
+    //   //  [ret.staves addObject:staff];
     //    [ret.beams addObject:@[ beam ]];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
@@ -1673,9 +1650,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawCenterAlignedRest:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawCenterAlignedRest:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* dict)
     {
@@ -1702,19 +1679,21 @@
     MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice0 ]] formatToStaff:@[ voice0 ] staff:staff];
     //        [voice0 draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-    [ret.voices addObject:voice0];
-    [ret.formatters addObject:formatter];
-    [ret.staves addObject:staff];
+    //    [ret.voices addObject:voice0];
+    //  [ret.formatters addObject:formatter];
+    //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+      [staff draw:ctx];
+      [voice0 draw:ctx dirtyRect:CGRectZero toStaff:staff];
       ok(YES, @"");
     };
 
     return ret;
 }
 
-- (MNTestTuple*)drawCenterAlignedRestFermata:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawCenterAlignedRestFermata:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* dict)
     {
@@ -1744,19 +1723,21 @@
     MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice0 ]] formatToStaff:@[ voice0 ] staff:staff];
     //        [voice0 draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-    [ret.voices addObject:voice0];
-    [ret.formatters addObject:formatter];
-    [ret.staves addObject:staff];
+    //    [ret.voices addObject:voice0];
+    //  [ret.formatters addObject:formatter];
+    //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+      [staff draw:ctx];
+      [voice0 draw:ctx dirtyRect:CGRectZero toStaff:staff];
       ok(YES, @"");
     };
 
     return ret;
 }
 
-- (MNTestTuple*)drawCenterAlignedRestAnnotation:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawCenterAlignedRestAnnotation:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* dict)
     {
@@ -1788,18 +1769,20 @@
     MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice0 ]] formatToStaff:@[ voice0 ] staff:staff];
     //        [voice0 draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-    [ret.voices addObject:voice0];
-    [ret.formatters addObject:formatter];
-    [ret.staves addObject:staff];
+    //    [ret.voices addObject:voice0];
+    //  [ret.formatters addObject:formatter];
+    //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+      [staff draw:ctx];
+      [voice0 draw:ctx dirtyRect:CGRectZero toStaff:staff];
       ok(YES, @"");
     };
     return ret;
 }
 
-- (MNTestTuple*)drawCenterAlignedNoteMultiModifiers:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawCenterAlignedNoteMultiModifiers:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* dict)
     {
@@ -1849,18 +1832,20 @@
     MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice0 ]] formatToStaff:@[ voice0 ] staff:staff];
     //        [voice0 draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-    [ret.voices addObject:voice0];
-    [ret.formatters addObject:formatter];
-    [ret.staves addObject:staff];
+    //    [ret.voices addObject:voice0];
+    //  [ret.formatters addObject:formatter];
+    //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+      [staff draw:ctx];
+      [voice0 draw:ctx dirtyRect:CGRectZero toStaff:staff];
       ok(YES, @"");
     };
     return ret;
 }
 
-- (MNTestTuple*)drawCenterAlignedMultiVoice:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawCenterAlignedMultiVoice:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* dict)
     {
@@ -1911,12 +1896,12 @@
     [voice1 setStrict:NO];
     [voice1 addTickables:notes1];
 
-//    MNFormatter* formatter =
-        [[[MNFormatter formatter] joinVoices:@[ voice0, voice1 ]] formatToStaff:@[ voice0, voice1 ] staff:staff];
+    //    MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voice0, voice1 ]] formatToStaff:@[ voice0, voice1 ] staff:staff];
 
     //    [ret.voices addObjectsFromArray:@[ voice0, voice1 ]];
-    //    [ret.formatters addObject:formatter];
-    //    [ret.staves addObject:staff];
+    //  //  [ret.formatters addObject:formatter];
+    //   //  [ret.staves addObject:staff];
     //    [ret.beams addObject:@[beam]];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 

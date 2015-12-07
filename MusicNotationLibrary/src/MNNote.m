@@ -159,7 +159,7 @@
     self.code = self.glyphCode;
 
     // Note to play for audio players.
-//    self.playNote = nil;
+    //    self.playNote = nil;
 
     // Positioning contexts used by the Formatter.
     //    self.tickContext = nil;   // The current tick context.
@@ -167,16 +167,16 @@
     //    _ignore_ticks = NO;
 
     // Positioning variables
-    self.width = 0;                     // Width in pixels calculated after preFormat
-    _extraLeftPx = 0;                   // Extra room on left for offset note head
-    _extraRightPx = 0;                  // Extra room on right for offset note head
-    _x_shift = 0;                       // X shift from tick context X
-    self.left_modPx = 0;                // Max width of left modifiers
-    self.right_modPx = 0;               // Max width of right mod ifiers
-    self.voice = nil;                   // The voice that self note is in
-    self.preFormatted = NO;             // Is self note preFormatted?
-    self.ys = [NSMutableArray array];   // list of y coordinates for each note
-                                        // we need to hold on to these for ties and beams.
+    self.width = 0;                 // Width in pixels calculated after preFormat
+    _extraLeftPx = 0;               // Extra room on left for offset note head
+    _extraRightPx = 0;              // Extra room on right for offset note head
+    _x_shift = 0;                   // X shift from tick context X
+    self.left_modPx = 0;            // Max width of left modifiers
+    self.right_modPx = 0;           // Max width of right mod ifiers
+    self.voice = nil;               // The voice that self note is in
+    self.preFormatted = NO;         // Is self note preFormatted?
+    _ys = [NSMutableArray array];   // list of y coordinates for each note
+                                    // we need to hold on to these for ties and beams.
 
     if([optionsDict.allKeys containsObject:@"align_center"])
     {
@@ -273,12 +273,14 @@
 /*!
  *  Sets the target staff.
  *  @param staff the target staff
+ *  @return this object
  */
-- (void)setStaff:(MNStaff*)staff
+- (id)setStaff:(MNStaff*)staff
 {
     _staff = staff;
     // Update Y values if the staff is changed.
     [self setYs:[NSMutableArray arrayWithObject:@([staff getYForLine:0])]];
+    return self;
 }
 
 /*!

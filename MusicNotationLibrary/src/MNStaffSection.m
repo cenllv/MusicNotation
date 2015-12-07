@@ -124,11 +124,13 @@
 
 - (CGSize)getTextSize:(NSAttributedString*)attributedString
 {
-    CTFramesetterRef frameSetter =
-        CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)(attributedString));
-    CFRange ran = CFRangeMake(0, attributedString.length);
-    return CTFramesetterSuggestFrameSizeWithConstraints(frameSetter, ran, NULL, CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX),
-                                                        NULL);
+//    CTFramesetterRef frameSetter =
+//        CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)(attributedString));
+//    CFRange ran = CFRangeMake(0, attributedString.length);
+//    return CTFramesetterSuggestFrameSizeWithConstraints(frameSetter, ran, NULL, CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX),
+//                                                        NULL);
+    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    return CGSizeZero;
 }
 
 @end

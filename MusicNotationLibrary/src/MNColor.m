@@ -1952,7 +1952,7 @@
         {
 #if TARGET_OS_IPHONE
             float hue, sat, bri, alpha;
-            [ret getHue:&hue saturation:&sat brightness:&bri alpha:&alpha];
+            [ret getHue:(CGFloat*)&hue saturation:(CGFloat*)&sat brightness:(CGFloat*)&bri alpha:(CGFloat*)&alpha];
             if(bri > 0.8)
 #elif TARGET_OS_MAC
             if(ret.brightnessComponent > 0.8)

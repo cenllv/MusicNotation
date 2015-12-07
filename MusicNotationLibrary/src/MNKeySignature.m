@@ -70,8 +70,8 @@
 
 // accidentalSpacing
 @interface MNAccidentalSpacingStruct : IAModelBase
-@property (assign, nonatomic) NSUInteger above;
-@property (assign, nonatomic) NSUInteger below;
+@property (assign, nonatomic) float above;
+@property (assign, nonatomic) float below;
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 @end
 
@@ -109,13 +109,14 @@
  *  @param keySpecifier the key specifier
  *  @return a key signature object
  */
-- (instancetype)initWithKeySpecifier:(NSArray*)keySpecifier
+- (instancetype)initWithKeySpecifier:(NSString*)keySpecifier
 {
     self = [self initWithDictionary:nil];
     if(self)
     {
         //        self.accList = keySpecifier;
         //        [self->_metrics setCode:self.code];
+        self.accList = [MNTable keySignatureForSpec:keySpecifier];
     }
     return self;
 }
@@ -149,14 +150,15 @@
 {
     MNKeySignature* ret = [[MNKeySignature alloc] initWithDictionary:@{}];
 
-    ret.key = key;
-    MNTableKeySpecStruct* keySpec = [[MNTableKeySpecStruct alloc] initWithDictionary:MNTable.keySpecsDictionary[key]];
-    if(!keySpec)
-    {
-        MNLogError(@"NoValidKeySignatureForKey, specify a valid key signature.");
-    }
-    ret.acc = [keySpec.acc isNotEqualTo:[NSNull null]] ? keySpec.acc : nil;
-    ret.num = keySpec.num;
+    //    ret.key = key;
+    //    MNTableKeySpecStruct* keySpec = [[MNTableKeySpecStruct alloc]
+    //    initWithDictionary:MNTable.keySpecsDictionary[key]];
+    //    if(!keySpec)
+    //    {
+    //        MNLogError(@"NoValidKeySignatureForKey, specify a valid key signature.");
+    //    }
+    //    ret.acc = [keySpec.acc isNotEqualTo:[NSNull null]] ? keySpec.acc : nil;
+    //    ret.num = keySpec.num;
     ret.accList = [MNTable keySignatureForSpec:key];
     return ret;
 }
@@ -272,9 +274,11 @@ static NSDictionary* _accidentalSpacing;
     }
 
     // Combine naturals with main accidental list for the key signature
-    NSMutableSet* set = [NSMutableSet setWithArray:self.accList];
-    [set addObjectsFromArray:cancel_accList];
-    self.accList = [NSMutableArray arrayWithArray:set.allObjects];
+    //    NSMutableSet* set = [NSMutableSet setWithArray:self.accList];
+    //    [set addObjectsFromArray:cancel_accList];
+    //    self.accList = [NSMutableArray arrayWithArray:set.allObjects];
+    [cancelled addObjectsFromArray:self.accList];
+    self.accList = cancelled;
 
     return self;
 }
@@ -314,10 +318,11 @@ static NSDictionary* _accidentalSpacing;
         return self;
     }
 
-    if(!firstGlyph)
-    {
-        [staff addGlyph:[staff makeSpacer:self.padding]];
-    }
+    // CHANGE:
+    //    if(!firstGlyph)
+    //    {
+    [staff addGlyph:[staff makeSpacer:self.padding]];
+    //    }
 
     [self addModifierToStaff:staff];
 
@@ -379,10 +384,6 @@ static NSDictionary* _accidentalSpacing;
 }
 
 #pragma mark - Deprecated
-/*!---------------------------------------------------------------------------------------------------------------------
- * @name Deprecated
- * ---------------------------------------------------------------------------------------------------------------------
- */
 
 - (void)populateFlats:(float*)staffLine_p __attribute__((deprecated))
 {

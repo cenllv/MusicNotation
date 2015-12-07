@@ -38,6 +38,7 @@
 #import <TargetConditionals.h>
 //#import <AFNetworking/AFNetworking.h>
 //#import <ReactiveCocoa/ReactiveCocoa.h>
+#import <TheAmazingAudioEngine/TheAmazingAudioEngine.h>
 #import <ReflectableEnum/ReflectableEnum.h>
 //#import <CoreParse/CoreParse.h>
 #import <POP/POP.h>

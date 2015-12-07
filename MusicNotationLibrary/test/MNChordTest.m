@@ -146,9 +146,9 @@
     return chordBox;
 }
 
-- (MNTestTuple*)sectionHeader:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)sectionHeader:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -157,9 +157,9 @@
     return ret;
 }
 
-- (MNTestTuple*)singleShape:(MNTestCollectionItemView*)parent params:(NSDictionary*)params
+- (MNTestBlockStruct*)singleShape:(id<MNTestParentDelegate>)parent params:(NSDictionary*)params
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNChordBox* cb = params[@"obj"];
     if(!cb || ![cb isKindOfClass:[MNChordBox class]])
@@ -195,7 +195,7 @@
             {
                 if(d[key])
                 {
-                    [cs setPositionText:[NSString stringWithFormat:@"%lu", [d[key] unsignedIntegerValue]]];
+                    [cs setPositionText:[NSString stringWithFormat:@"%tu", [d[key] unsignedIntegerValue]]];
                 }
             }
 

@@ -72,19 +72,27 @@
     MNFont* _font;
 
     __weak MNStaff* _staff;
+
+    float _extraLeftPx;
+    float _extraRightPx;
 }
 
 #pragma mark - Properties
-@property (weak, nonatomic) MNStaff* staff;
+//@property (weak, nonatomic) MNStaff* staff;
+- (id)setStaff:(MNStaff*)staff;
 //@property (weak, nonatomic) MNNote* note;
 - (MNNote*)note;
 - (id)setNote:(MNNote*)note;
 
 @property (assign, nonatomic) NSUInteger intrinsicTicks;
 @property (strong, nonatomic) MNRational* tickMultiplier;
-@property (strong, nonatomic) MNRational* ticks;
+//@property (strong, nonatomic) MNRational* ticks;
+- (MNRational*)ticks;
+- (id)setTicks:(MNRational*)ticks;
 
-@property (strong, nonatomic) MNVoice* voice;
+//@property (strong, nonatomic) MNVoice* voice;
+- (MNVoice*)voice;
+- (id)setVoice:(MNVoice*)voice;
 //@property (weak, nonatomic) MNVoice* voice; // NOTE: weak breaks graceNoteGroups
 
 @property (strong, nonatomic) NSMutableArray* modifiers;
@@ -127,8 +135,11 @@
 
 @property (assign, nonatomic) BOOL ignore_ticks;
 
-@property (assign, nonatomic) float extraLeftPx;
-@property (assign, nonatomic) float extraRightPx;
+- (id)setExtraLeftPx:(float)extraLeftPx;
+- (float)extraLeftPx;
+
+- (id)setExtraRightPx:(float)extraRightPx;
+- (float)extraRightPx;
 
 @property (strong, nonatomic) MNTableGlyphStruct* glyphStruct;
 @property (strong, nonatomic) MNGlyph* glyph;

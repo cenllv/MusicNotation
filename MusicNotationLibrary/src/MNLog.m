@@ -36,7 +36,10 @@
 #import "MNUtils.h"
 #import "MNMacros.h"
 
+#if TARGET_OS_IPHONE
+#elif TARGET_OS_MAC
 #import "MNBrowserLogger.h"
+#endif
 
 @interface MNLog ()
 {
@@ -93,9 +96,12 @@
     CGContextFillEllipseInRect(ctx, CGRectMake(x, y, 3.0, 3.0));
 }
 
-static BOOL _initialized = NO;
 
+static BOOL _initialized = NO;
+#if TARGET_OS_IPHONE
+#elif TARGET_OS_MAC
 static MNBrowserLogger* _browserLogger = nil;
+#endif
 
 + (void)setup
 {
@@ -105,8 +111,8 @@ static MNBrowserLogger* _browserLogger = nil;
         return;
     }
     _hasBeenSetup = YES;
-//    [DDLog addLogger:[DDTTYLogger sharedInstance]];
-//    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
+    //    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    //    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
     [[DDTTYLogger sharedInstance] setForegroundColor:[MNColor redColor]
                                      backgroundColor:[MNColor clearColor]
                                              forFlag:DDLogFlagError];
@@ -114,7 +120,8 @@ static MNBrowserLogger* _browserLogger = nil;
                                      backgroundColor:[MNColor clearColor]
                                              forFlag:DDLogFlagInfo];
     [[DDTTYLogger sharedInstance]
-        setForegroundColor:[MNColor colorWithCalibratedRed:(255 / 255.0)green:(150 / 255.0)blue:(159 / 255.0)alpha:1.0]
+        setForegroundColor:[MNColor yellowColor]   // colorWithCalibratedRed:(255 / 255.0)green:(150 / 255.0)blue:(159 /
+                                                   // 255.0)alpha:1.0]
            backgroundColor:[MNColor clearColor]
                    forFlag:DDLogFlagDebug];
     [[DDTTYLogger sharedInstance] setForegroundColor:[MNColor greenColor]
@@ -123,10 +130,12 @@ static MNBrowserLogger* _browserLogger = nil;
     [[DDTTYLogger sharedInstance] setForegroundColor:[MNColor blueColor]
                                      backgroundColor:[MNColor greenColor]
                                              forFlag:DDLogFlagVerbose];
-
+#if TARGET_OS_IPHONE
+#elif TARGET_OS_MAC
     _browserLogger = [[MNBrowserLogger alloc] init];
     [DDLog addLogger:_browserLogger];
     [DDLog setLevel:DDLogLevelAll forClass:[MNBrowserLogger class]];
+#endif
 }
 
 #pragma mark - Logging

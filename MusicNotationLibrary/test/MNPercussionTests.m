@@ -36,14 +36,14 @@
 {
     [super start];
     float w = 600, h = 150;
-    [self runTest:@"Percussion Clef" func:@selector(draw:withTitle:) frame:CGRectMake(10, 10, w, h)];
-    [self runTest:@"Percussion Notes" func:@selector(drawNotes:withTitle:) frame:CGRectMake(10, 10, w, 2*h)];
-    [self runTest:@"Percussion Basic0" func:@selector(drawBasic0:withTitle:) frame:CGRectMake(10, 10, w, h)];
-    [self runTest:@"Percussion Basic1" func:@selector(drawBasic1:withTitle:) frame:CGRectMake(10, 10, w, h)];
-    [self runTest:@"Percussion Basic2" func:@selector(drawBasic2:withTitle:) frame:CGRectMake(10, 10, w, h)];
-    [self runTest:@"Percussion Snare0" func:@selector(drawSnare0:withTitle:) frame:CGRectMake(10, 10, w, h)];
-    [self runTest:@"Percussion Snare1" func:@selector(drawSnare1:withTitle:) frame:CGRectMake(10, 10, w, h)];
-    [self runTest:@"Percussion Snare2" func:@selector(drawSnare2:withTitle:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Percussion Clef" func:@selector(draw:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Percussion Notes" func:@selector(drawNotes:) frame:CGRectMake(10, 10, w, 2 * h)];
+    [self runTest:@"Percussion Basic0" func:@selector(drawBasic0:) frame:CGRectMake(10, 10, w, h+100)];
+    [self runTest:@"Percussion Basic1" func:@selector(drawBasic1:) frame:CGRectMake(10, 10, w, h+100)];
+    [self runTest:@"Percussion Basic2" func:@selector(drawBasic2:) frame:CGRectMake(10, 10, w, h+100)];
+    [self runTest:@"Percussion Snare0" func:@selector(drawSnare0:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Percussion Snare1" func:@selector(drawSnare1:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Percussion Snare2" func:@selector(drawSnare2:) frame:CGRectMake(10, 10, w, h)];
 }
 
 - (void)tearDown
@@ -51,92 +51,40 @@
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
+
+- (MNAnnotation*)newModifier:(NSString*)s
 {
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-    //    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-    //    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
+    MNAnnotation* ret = [MNAnnotation annotationWithText:s];
+    [ret setFontName:@"Arial" withSize:12];
+    [ret setVerticalJustification:MNVerticalJustifyBOTTOM];
+    return ret;
 }
 
-- (void)runBoth
+- (MNArticulation*)newArticulation:(NSString*)symbol
 {
-    /*
-    Vex.Flow.Test.Percussion.runBoth = function(title, func) {
-        Vex.Flow.Test.runTests(title, func);
-
-    }
-     */
+    MNArticulationType type = [MNEnum typeArticulationTypeForString:symbol];
+    MNArticulation* ret = [[MNArticulation alloc] initWithType:type];
+    [ret setPosition:MNPositionAbove];
+    return ret;
 }
 
-- (void)newModifier
+- (MNTremulo*)newTremolo:(NSUInteger)s
 {
-    /*
-    Vex.Flow.Test.Percussion.newModifier = function(s) {
-        return new Vex.Flow.Annotation(s).setFont(@"Arial", 12)
-        .setVerticalJustification(Vex.Flow.Annotation.VerticalJustify.BOTTOM);
-    }
-     */
+    MNTremulo* ret = [[MNTremulo alloc] initWithNum:s];
+    return ret;
 }
 
-- (void)newArticulation
+- (MNTestBlockStruct*)draw:(id<MNTestParentDelegate>)parent
 {
-    /*
-    Vex.Flow.Test.Percussion.newArticulation = function(s) {
-        return new Vex.Flow.Articulation(s).setPosition(MNPositionAbove);
-    }
-     */
-}
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
-- (void)newTremolo
-{
-    /*
-    Vex.Flow.Test.Percussion.newTremolo = function(s) {
-        return new Vex.Flow.Tremolo(s);
-    }
-     */
-}
-
-- (MNTestTuple*)draw:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
-{
-    MNTestTuple* ret = [MNTestTuple testTuple];
-    /*
-    Vex.Flow.Test.Percussion.draw = function(options, contextBuilder) {
-        var ctx = new contextBuilder(options.canvas_sel, 400, 120);
-
-         MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 10, 300);
-        staff addClefWithName:@"percussion");
-
-        [staff draw:ctx];
-
-        ok(YES, @"");
-    }
-     */
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 300, 0)];
+    [staff setBegBarType:MNBarLineRepeatBegin];
+    [staff setEndBarType:MNBarLineSingle];
+    [staff addClefWithName:@"percussion"];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 300, 0)];
-      [staff setBegBarType:MNBarLineRepeatBegin];
-      [staff setEndBarType:MNBarLineSingle];
-      [staff addClefWithName:@"percussion"];
       [staff draw:ctx];
 
       ok(YES, @"");
@@ -146,7 +94,7 @@
 
 - (void)showNote:(MNStaffNote*)note staff:(MNStaff*)staff ctx:(CGContextRef)ctx x:(float)x
 {
-    MNTickContext *tickContext = [[MNTickContext alloc]init];
+    MNTickContext* tickContext = [[MNTickContext alloc] init];
     [[tickContext addTickable:note] preFormat];
     [tickContext setX:x];
     [tickContext setPointsUsed:20];
@@ -154,9 +102,9 @@
     [note draw:ctx];
 }
 
-- (MNTestTuple*)drawNotes:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawNotes:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     NSArray<NSDictionary*>* notes_structs = @[
         @{ @"keys" : @[ @"g/5/d0" ],
@@ -192,8 +140,6 @@
     ];
     //        expect(notes.length * 4);
 
-    //        var ctx = new contextBuilder(options.canvas_sel,
-    //                                     notes.length * 25 + 100, 240);
 
     NSArray<MNStaffNote*>* notes = [notes_structs oct_map:^MNStaffNote*(NSDictionary* note_struct) {
       return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -201,18 +147,12 @@
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      //        MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 280, 0)];
-      //        [staff addClefWithName:@"percussion"];
-      //        [staff draw:ctx];
-
       // Draw two staffs, one with up-stems and one with down-stems.
       for(NSUInteger h = 0; h < 2; ++h)
       {
           MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10 + h * 120, notes.count * 25 + 75, 0)];
           [staff addClefWithName:@"percussion"];
           [staff draw:ctx];
-
-          //            var showNote = Vex.Flow.Test.Percussion.showNote;
 
           for(NSUInteger i = 0; i < notes.count; ++i)
           {
@@ -233,467 +173,488 @@
     return ret;
 }
 
-- (MNTestTuple*)drawBasic0:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawBasic0:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
-    /*
-    Vex.Flow.Test.Percussion.drawBasic0 = function(options, contextBuilder) {
-        var ctx = contextBuilder(options.canvas_sel, 500, 120);
-        ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-        ctx.setFont(@"Arial", 15, "");
-         MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 10, 420);
-        staff addClefWithName:@"percussion");
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
-        [staff draw:ctx];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 420, 0)];
+    [staff addClefWithName:@"percussion"];
 
-        NSArray* notesUp = @[
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"8" }),
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"8" }),
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"8" }),
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"8" }),
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"8" }),
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"8" }),
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"8" }),
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"8" })
-                   ];
-         MNBeam* beamUp = [MNBeam beamWithNotes:notesUp.slice(0,8));
-         MNVoice* voiceUp = new Vex.Flow.Voice({ num_beats: 4, beat_value: 4,
-            resolution: kRESOLUTION });
-        voiceUp.addTickables(notesUp);
+    NSArray* notesUp = @[
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"8"
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"8"
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"8"
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"8"
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"8"
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"8"
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"8"
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"8"
+        }]
+    ];
+    MNBeam* beamUp = [MNBeam beamWithNotes:[notesUp slice:[@0:8]]];
+    MNVoice* voiceUp = [[MNVoice alloc] initWithDictionary:@{
+        @"num_beats" : @4,
+        @"beat_value" : @4,
+        @"resolution" : @(kRESOLUTION)
+    }];
+    [voiceUp addTickables:notesUp];
 
-        notesDown = [
-                     [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"f/4"], @"duration" : @"8",
-            stem_direction: -1 }),
-                     [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"f/4"], @"duration" : @"8",
-            stem_direction: -1 }),
-                     [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5", @"d/4/x2"], @"duration" : @"q",
-            stem_direction: -1 }),
-                     [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"f/4"], @"duration" : @"8",
-            stem_direction: -1 }),
-                     [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"f/4"], @"duration" : @"8",
-            stem_direction: -1 }),
-                     [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5", @"d/4/x2"], @"duration" : @"q",
-            stem_direction: -1 })
-                     ];
-         MNBeam* beamDown1 = [MNBeam beamWithNotes:notesDown.slice(0,2));
-         MNBeam* beamDown2 = [MNBeam beamWithNotes:notesDown.slice(3,6));
-         MNVoice* voiceDown = new Vex.Flow.Voice({ num_beats: 4, beat_value: 4,
-            resolution: kRESOLUTION });
-        voiceDown.addTickables(notesDown);
+    NSArray* notesDown = @[
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"f/4" ],
+            @"duration" : @"8",
+            @"stem_direction" : @(-1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"f/4" ],
+            @"duration" : @"8",
+            @"stem_direction" : @(-1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"c/5", @"d/4/x2" ],
+            @"duration" : @"q",
+            @"stem_direction" : @(-1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"f/4" ],
+            @"duration" : @"8",
+            @"stem_direction" : @(-1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"f/4" ],
+            @"duration" : @"8",
+            @"stem_direction" : @(-1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"c/5", @"d/4/x2" ],
+            @"duration" : @"q",
+            @"stem_direction" : @(-1)
+        }]
+    ];
+    MNBeam* beamDown1 = [MNBeam beamWithNotes:[notesDown slice:[@0:2]]];
+    MNBeam* beamDown2 = [MNBeam beamWithNotes:[notesDown slice:[@3:6]]];
+    MNVoice* voiceDown = [[MNVoice alloc] initWithDictionary:@{
+        @"num_beats" : @4,
+        @"beat_value" : @4,
+        @"resolution" : @(kRESOLUTION)
+    }];
+    [voiceDown addTickables:notesDown];
 
-        MNFormatter *formatter = [MNFormatter formatter] joinVoices:@[voiceUp, voiceDown]).
-        formatToStaff([voiceUp, voiceDown], staff);
-
-        voiceUp.draw(ctx, staff);
-        voiceDown.draw(ctx, staff);
-
-        [beamUp draw:ctx];
-        beamDown1 draw:ctx];
-        beamDown2 draw:ctx];
-
-        ok(YES, @"");
-    }
-     */
+    //    MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voiceUp, voiceDown ]] formatToStaff:@[ voiceUp, voiceDown ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 420, 0)];
-      [staff addClefWithName:@"percussion"];
       [staff draw:ctx];
 
-      //      NSArray* notesUp = @[
-      //          [[MNStaffNote alloc] initWithDictionary:@{
-      //              @"keys" : @[ @"g/5/x2" ],
-      //              @"duration" : @"8"
-      //          }],
-      //          [[MNStaffNote alloc] initWithDictionary:@{
-      //              @"keys" : @[ @"g/5/x2" ],
-      //              @"duration" : @"8"
-      //          }],
-      //          [[MNStaffNote alloc] initWithDictionary:@{
-      //              @"keys" : @[ @"g/5/x2" ],
-      //              @"duration" : @"8"
-      //          }],
-      //          [[MNStaffNote alloc] initWithDictionary:@{
-      //              @"keys" : @[ @"g/5/x2" ],
-      //              @"duration" : @"8"
-      //          }],
-      //          [[MNStaffNote alloc] initWithDictionary:@{
-      //              @"keys" : @[ @"g/5/x2" ],
-      //              @"duration" : @"8"
-      //          }],
-      //          [[MNStaffNote alloc] initWithDictionary:@{
-      //              @"keys" : @[ @"g/5/x2" ],
-      //              @"duration" : @"8"
-      //          }],
-      //          [[MNStaffNote alloc] initWithDictionary:@{
-      //              @"keys" : @[ @"g/5/x2" ],
-      //              @"duration" : @"8"
-      //          }],
-      //          [[MNStaffNote alloc] initWithDictionary:@{
-      //              @"keys" : @[ @"g/5/x2" ],
-      //              @"duration" : @"8"
-      //          }]
-      //      ];
+      [voiceUp draw:ctx dirtyRect:CGRectZero toStaff:staff];
+      [voiceDown draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+      [beamUp draw:ctx];
+      [beamDown1 draw:ctx];
+      [beamDown2 draw:ctx];
 
       ok(YES, @"");
     };
     return ret;
 }
 
-- (MNTestTuple*)drawBasic1:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawBasic1:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
-    /*
-    Vex.Flow.Test.Percussion.drawBasic1 = function(options, contextBuilder) {
-        var ctx = contextBuilder(options.canvas_sel, 500, 120);
-        ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-        ctx.setFont(@"Arial", 15, "");
-         MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 10, 420);
-        staff addClefWithName:@"percussion");
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 420, 0)];
+    [staff addClefWithName:@"percussion"];
 
-        [staff draw:ctx];
+    NSArray* notesUp = @[
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"f/5/x2" ],
+            @"duration" : @"q"
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"f/5/x2" ],
+            @"duration" : @"q"
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"f/5/x2" ],
+            @"duration" : @"q"
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"f/5/x2" ],
+            @"duration" : @"q"
+        }]
+    ];
+    MNVoice* voiceUp = [[MNVoice alloc] initWithDictionary:@{
+        @"num_beats" : @4,
+        @"beat_value" : @4,
+        @"resolution" : @(kRESOLUTION)
+    }];
+    [voiceUp addTickables:notesUp];
 
-        NSArray* notesUp = @[
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"f/5/x2"], @"duration" : @"q" }),
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"f/5/x2"], @"duration" : @"q" }),
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"f/5/x2"], @"duration" : @"q" }),
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"f/5/x2"], @"duration" : @"q" })
-                   ];
-         MNVoice* voiceUp = new Vex.Flow.Voice({ num_beats: 4, beat_value: 4,
-            resolution: kRESOLUTION });
-        voiceUp.addTickables(notesUp);
+    NSArray* notesDown = @[
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"f/4" ],
+            @"duration" : @"q",
+            @"stem_direction" : @(-1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"c/5", @"d/4/x2" ],
+            @"duration" : @"q",
+            @"stem_direction" : @(-1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"f/4" ],
+            @"duration" : @"q",
+            @"stem_direction" : @(-1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"c/5", @"d/4/x2" ],
+            @"duration" : @"q",
+            @"stem_direction" : @(-1)
+        }]
+    ];
+    MNVoice* voiceDown = [[MNVoice alloc] initWithDictionary:@{
+        @"num_beats" : @4,
+        @"beat_value" : @4,
+        @"resolution" : @(kRESOLUTION)
+    }];
+    [voiceUp addTickables:notesDown];
 
-        notesDown = [
-                     [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"f/4"], @"duration" : @"q",
-            stem_direction: -1 }),
-                     [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5", @"d/4/x2"], @"duration" : @"q",
-            stem_direction: -1 }),
-                     [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"f/4"], @"duration" : @"q",
-            stem_direction: -1 }),
-                     [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5", @"d/4/x2"], @"duration" : @"q",
-            stem_direction: -1 })
-                     ];
-         MNVoice* voiceDown = new Vex.Flow.Voice({ num_beats: 4, beat_value: 4,
-            resolution: kRESOLUTION });
-        voiceDown.addTickables(notesDown);
-
-        MNFormatter *formatter = [MNFormatter formatter] joinVoices:@[voiceUp, voiceDown]).
-        formatToStaff([voiceUp, voiceDown], staff);
-
-        voiceUp.draw(ctx, staff);
-        voiceDown.draw(ctx, staff);
-
-        ok(YES, @"");
-    }
-     */
+    //    MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voiceUp, voiceDown ]] formatToStaff:@[ voiceUp, voiceDown ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 420, 0)];
-      [staff addClefWithName:@"percussion"];
       [staff draw:ctx];
+      [voiceUp draw:ctx dirtyRect:CGRectZero toStaff:staff];
+      [voiceDown draw:ctx dirtyRect:CGRectZero toStaff:staff];
+      ok(YES, @"");
+    };
+    return ret;
+}
+
+- (MNTestBlockStruct*)drawBasic2:(id<MNTestParentDelegate>)parent
+{
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 420, 0)];
+    [staff addClefWithName:@"percussion"];
+
+    NSArray* notesUp = @[
+        [[[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"a/5/x3" ],
+            @"duration" : @"8"
+        }] addModifier:[MNAnnotation annotationWithText:@"<"]
+                atIndex:0],   // addModifier(0, (new Vex.Flow.Annotation(@"<")).setFont()),
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"8"
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"8"
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"8"
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"8"
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"8"
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"8"
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"8"
+        }]
+    ];
+    MNBeam* beamUp = [MNBeam beamWithNotes:[notesUp slice:[@1:8]]];
+    MNVoice* voiceUp = [[MNVoice alloc] initWithDictionary:@{
+        @"num_beats" : @4,
+        @"beat_value" : @4,
+        @"resolution" : @(kRESOLUTION)
+    }];
+    [voiceUp addTickables:notesUp];
+
+    NSArray* notesDown = @[
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"f/4" ],
+            @"duration" : @"8",
+            @"stem_direction" : @(-1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"f/4" ],
+            @"duration" : @"8",
+            @"stem_direction" : @(-1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"c/5", @"d/4/x2" ],
+            @"duration" : @"q",
+            @"stem_direction" : @(-1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"f/4" ],
+            @"duration" : @"q",
+            @"stem_direction" : @(-1)
+        }],
+        [[[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"c/5", @"d/4/x2" ],
+            @"duration" : @"8d",
+            @"stem_direction" : @(-1)
+        }] addDotToAll],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"c/5" ],
+            @"duration" : @"16",
+            @"stem_direction" : @(-1)
+        }]
+    ];
+    MNBeam* beamDown1 = [MNBeam beamWithNotes:[notesDown slice:[@0:2]]];
+    MNBeam* beamDown2 = [MNBeam beamWithNotes:[notesDown slice:[@4:6]]];
+    MNVoice* voiceDown = [[MNVoice alloc] initWithDictionary:@{
+        @"num_beats" : @4,
+        @"beat_value" : @4,
+        @"resolution" : @(kRESOLUTION)
+    }];
+    [voiceDown addTickables:notesDown];
+
+    //    MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voiceUp, voiceDown ]] formatToStaff:@[ voiceUp, voiceDown ] staff:staff];
+
+    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+
+      [staff draw:ctx];
+      [voiceUp draw:ctx dirtyRect:CGRectZero toStaff:staff];
+      [voiceDown draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+      [beamUp draw:ctx];
+      [beamDown1 draw:ctx];
+      [beamDown2 draw:ctx];
+      ok(YES, @"");
+    };
+    return ret;
+}
+
+- (MNTestBlockStruct*)drawSnare0:(id<MNTestParentDelegate>)parent
+{
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
+
+    float x = 10;
+
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(x, 10, 280, 0)];
+    [staff setBegBarType:MNBarLineRepeatBegin];
+    [staff setEndBarType:MNBarLineSingle];
+    [staff addClefWithName:@"percussion"];
+    NSArray* notesDown =
+        @[
+           [[[[MNStaffNote alloc] initWithDictionary:@{
+               @"keys" : @[ @"c/5" ],
+               @"duration" : @"q",
+               @"stem_direction" : @(-1)
+           }] addArticulation:[self newArticulation:@"a>"]
+                       atIndex:0] addModifier:[self newModifier:@"L"]
+                                      atIndex:0],
+           [[[MNStaffNote alloc] initWithDictionary:
+                                     @{ @"keys" : @[ @"c/5" ],
+                                        @"duration" : @"q",
+                                        @"stem_direction" : @(-1) }] addModifier:[self newModifier:@"R"]
+                                                                         atIndex:0],
+           [[[MNStaffNote alloc] initWithDictionary:
+                                     @{ @"keys" : @[ @"c/5" ],
+                                        @"duration" : @"q",
+                                        @"stem_direction" : @(-1) }] addModifier:[self newModifier:@"L"]
+                                                                         atIndex:0],
+           [[[MNStaffNote alloc] initWithDictionary:
+                                     @{ @"keys" : @[ @"c/5" ],
+                                        @"duration" : @"q",
+                                        @"stem_direction" : @(-1) }] addModifier:[self newModifier:@"L"]
+                                                                         atIndex:0],
+        ];
+    MNVoice* voiceDown = [[MNVoice alloc] initWithDictionary:@{
+        @"num_beats" : @4,
+        @"beat_value" : @4,
+        @"resolution" : @(kRESOLUTION)
+    }];
+    [voiceDown addTickables:notesDown];
+    //    MNFormatter* formatter =
+    [[[MNFormatter formatter] joinVoices:@[ voiceDown ]] formatToStaff:@[ voiceDown ] staff:staff];
+    x += staff.width;
+
+    MNStaff* staff2 = [MNStaff staffWithRect:CGRectMake(x, 10, 280, 0)];
+    [staff2 setBegBarType:MNBarLineNone];
+    [staff2 setEndBarType:MNBarLineRepeatEnd];
+    NSArray* notesDown2 =
+        @[
+           [[[[MNStaffNote alloc] initWithDictionary:@{
+               @"keys" : @[ @"c/5" ],
+               @"duration" : @"q",
+               @"stem_direction" : @(-1)
+           }] addArticulation:[self newArticulation:@"a>"]
+                       atIndex:0] addModifier:[self newModifier:@"R"]
+                                      atIndex:0],
+           [[[MNStaffNote alloc] initWithDictionary:
+                                     @{ @"keys" : @[ @"c/5" ],
+                                        @"duration" : @"q",
+                                        @"stem_direction" : @(-1) }] addModifier:[self newModifier:@"L"]
+                                                                         atIndex:0],
+           [[[MNStaffNote alloc] initWithDictionary:
+                                     @{ @"keys" : @[ @"c/5" ],
+                                        @"duration" : @"q",
+                                        @"stem_direction" : @(-1) }] addModifier:[self newModifier:@"R"]
+                                                                         atIndex:0],
+           [[[MNStaffNote alloc] initWithDictionary:
+                                     @{ @"keys" : @[ @"c/5" ],
+                                        @"duration" : @"q",
+                                        @"stem_direction" : @(-1) }] addModifier:[self newModifier:@"R"]
+                                                                         atIndex:0],
+        ];
+    MNVoice* voiceDown2 = [[MNVoice alloc] initWithDictionary:@{
+        @"num_beats" : @4,
+        @"beat_value" : @4,
+        @"resolution" : @(kRESOLUTION)
+    }];
+    [voiceDown2 addTickables:notesDown2];
+    //    MNFormatter* formatter2 =
+    [[[MNFormatter formatter] joinVoices:@[ voiceDown2 ]] formatToStaff:@[ voiceDown2 ] staff:staff2];
+    //x += staff.width;
+
+    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+
+      [staff draw:ctx];
+      //      voiceDown.draw(ctx, staff);
+      [voiceDown draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+      [staff2 draw:ctx];
+      //      voiceDown2.draw(ctx, staff);
+      [voiceDown2 draw:ctx dirtyRect:CGRectZero toStaff:staff2];
 
       ok(YES, @"");
     };
     return ret;
 }
 
-- (MNTestTuple*)drawBasic2:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawSnare1:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
-    /*
-    Vex.Flow.Test.Percussion.drawBasic2 = function(options, contextBuilder) {
-        var ctx = contextBuilder(options.canvas_sel, 500, 120);
-        ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-        ctx.setFont(@"Arial", 15, "");
-         MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 10, 420);
-        staff addClefWithName:@"percussion");
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 30, 280, 0)];
+    [staff setBegBarType:MNBarLineRepeatBegin];
+    [staff setEndBarType:MNBarLineSingle];
+    [staff addClefWithName:@"percussion"];
 
-        [staff draw:ctx];
+    NSArray* notesDown = @[
+        [[[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"q",
+            @"stem_direction" : @(-1)
+        }] addArticulation:[self newArticulation:@"ah"] atIndex:0],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"q",
+            @"stem_direction" : @(-1)
+        }],
+        [[[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"g/5/x2" ],
+            @"duration" : @"q",
+            @"stem_direction" : @(-1)
+        }]addArticulation:[self newArticulation:@"ah"] atIndex:0],
+        [[[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"a/5/x3" ],
+            @"duration" : @"q",
+            @"stem_direction" : @(-1)
+        }]addArticulation:[self newArticulation:@"a,"] atIndex:0],
+    ];
+    MNVoice* voiceDown = [[MNVoice alloc] initWithDictionary:@{
+        @"num_beats" : @4,
+        @"beat_value" : @4,
+        @"resolution" : @(kRESOLUTION)
+    }];
+    [voiceDown addTickables:notesDown];
 
-        NSArray* notesUp = @[
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"a/5/x3"], @"duration" : @"8" }).
-                   addModifier(0, (new Vex.Flow.Annotation(@"<")).setFont()),
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"8" }),
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"8" }),
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"8" }),
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"8" }),
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"8" }),
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"8" }),
-                   [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"8" })
-                   ];
-         MNBeam* beamUp = [MNBeam beamWithNotes:notesUp.slice(1,8));
-         MNVoice* voiceUp = new Vex.Flow.Voice({ num_beats: 4, beat_value: 4,
-            resolution: kRESOLUTION });
-        voiceUp.addTickables(notesUp);
-
-        notesDown = [
-                     [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"f/4"], @"duration" : @"8",
-            stem_direction: -1 }),
-                     [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"f/4"], @"duration" : @"8",
-            stem_direction: -1 }),
-                     [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5", @"d/4/x2"], @"duration" : @"q",
-            stem_direction: -1 }),
-                     [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"f/4"], @"duration" : @"q",
-            stem_direction: -1 }),
-                     [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5", @"d/4/x2"], @"duration" : @"8d",
-            stem_direction: -1 }) addDotToAll],
-                     [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5"], @"duration" : @"16",
-            stem_direction: -1 })
-                     ];
-         MNBeam* beamDown1 = [MNBeam beamWithNotes:notesDown.slice(0,2));
-         MNBeam* beamDown2 = [MNBeam beamWithNotes:notesDown.slice(4,6));
-         MNVoice* voiceDown = new Vex.Flow.Voice({ num_beats: 4, beat_value: 4,
-            resolution: kRESOLUTION });
-        voiceDown.addTickables(notesDown);
-
-        MNFormatter *formatter = [MNFormatter formatter] joinVoices:@[voiceUp, voiceDown]).
-        formatToStaff([voiceUp, voiceDown], staff);
-
-        voiceUp.draw(ctx, staff);
-        voiceDown.draw(ctx, staff);
-
-        [beamUp draw:ctx];
-        beamDown1 draw:ctx];
-        beamDown2 draw:ctx];
-
-        ok(YES, @"");
-    }
-     */
+    //    MNFormatter* formatter2 =
+    [[[MNFormatter formatter] joinVoices:@[ voiceDown ]] formatToStaff:@[ voiceDown ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 420, 0)];
-      [staff addClefWithName:@"percussion"];
       [staff draw:ctx];
+      [voiceDown draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
       ok(YES, @"");
     };
     return ret;
 }
 
-- (MNTestTuple*)drawSnare0:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawSnare2:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
-    /*
-    Vex.Flow.Test.Percussion.drawSnare0 = function(options, contextBuilder) {
-        var ctx = contextBuilder(options.canvas_sel, 600, 120);
-        ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-        ctx.setFont(@"Arial", 15, "");
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
-        x = 10;
-        y = 10;
-        w = 280;
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 30, 280, 0)];
+    [staff setBegBarType:MNBarLineRepeatBegin];
+    [staff setEndBarType:MNBarLineSingle];
+    [staff addClefWithName:@"percussion"];
 
-        {
-             MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(x, y, w);
-            staff setBegBarType:Vex.Flow.Barline.type.REPEAT_BEGIN);
-            staff setEndBarType:Vex.Flow.Barline.type.SINGLE);
-            staff addClefWithName:@"percussion");
+    NSArray* notesDown = @[
+        [[[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"c/5" ],
+            @"duration" : @"q",
+            @"stem_direction" : @-1
+        }] addArticulation:[self newTremolo:0] atIndex:0],
+        [[[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"c/5" ],
+            @"duration" : @"q",
+            @"stem_direction" : @-1
+        }] addArticulation:[self newTremolo:1] atIndex:0],
+        [[[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"c/5" ],
+            @"duration" : @"q",
+            @"stem_direction" : @-1
+        }] addArticulation:[self newTremolo:3] atIndex:0],
+        [[[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"c/5" ],
+            @"duration" : @"q",
+            @"stem_direction" : @-1
+        }] addArticulation:[self newTremolo:5] atIndex:0],
+    ];
+    MNVoice* voiceDown = [[MNVoice alloc] initWithDictionary:@{
+        @"num_beats" : @4,
+        @"beat_value" : @4,
+        @"resolution" : @(kRESOLUTION)
+    }];
 
-            [staff draw:ctx];
+    [voiceDown addTickables:notesDown];
 
-            NSArray* notesDown = @[
-                         [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5"], @"duration" : @"q",
-                stem_direction: -1 }).
-                         addArticulation(0  func:@selector(newArticulation(@"a>")).
-                         addModifier(0  func:@selector(newModifier(@"L")),
-                         [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5"], @"duration" : @"q",
-                stem_direction: -1 }).
-                         addModifier(0  func:@selector(newModifier(@"R")),
-                         [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5"], @"duration" : @"q",
-                stem_direction: -1 }).
-                         addModifier(0  func:@selector(newModifier(@"L")),
-                         [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5"], @"duration" : @"q",
-                stem_direction: -1 }).
-                         addModifier(0  func:@selector(newModifier(@"L"))
-                         ];
-             MNVoice* voiceDown = new Vex.Flow.Voice({ num_beats: 4, beat_value: 4,
-                resolution: kRESOLUTION });
-            voiceDown.addTickables(notesDown);
-
-            MNFormatter *formatter = [MNFormatter formatter]
-            joinVoices([voiceDown]).formatToStaff([voiceDown], staff);
-
-            voiceDown.draw(ctx, staff);
-
-            x += staff.width;
-        }
-
-        {
-             MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(x, y, w);
-            staff setBegBarType:Vex.Flow.Barline.type.NONE);
-            staff setEndBarType:Vex.Flow.Barline.type.REPEAT_END);
-
-            [staff draw:ctx];
-
-            NSArray* notesDown = @[
-                         [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5"], @"duration" : @"q",
-                stem_direction: -1 }).
-                         addArticulation(0  func:@selector(newArticulation(@"a>")).
-                         addModifier(0  func:@selector(newModifier(@"R")),
-                         [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5"], @"duration" : @"q",
-                stem_direction: -1 }).
-                         addModifier(0  func:@selector(newModifier(@"L")),
-                         [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5"], @"duration" : @"q",
-                stem_direction: -1 }).
-                         addModifier(0  func:@selector(newModifier(@"R")),
-                         [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5"], @"duration" : @"q",
-                stem_direction: -1 }).
-                         addModifier(0  func:@selector(newModifier(@"R"))
-                         ];
-             MNVoice* voiceDown = new Vex.Flow.Voice({ num_beats: 4, beat_value: 4,
-                resolution: kRESOLUTION });
-            voiceDown.addTickables(notesDown);
-
-            MNFormatter *formatter = [MNFormatter formatter]
-            joinVoices([voiceDown]).formatToStaff([voiceDown], staff);
-
-            voiceDown.draw(ctx, staff);
-
-            x += staff.width;
-        }
-
-        ok(YES, @"");
-    }
-     */
+    //    MNFormatter* formatter2 =
+    [[[MNFormatter formatter] joinVoices:@[ voiceDown ]] formatToStaff:@[ voiceDown ] staff:staff];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 280, 0)];
-      [staff setBegBarType:MNBarLineRepeatBegin];
-      [staff setEndBarType:MNBarLineSingle];
-      [staff addClefWithName:@"percussion"];
       [staff draw:ctx];
-
-      ok(YES, @"");
-    };
-    return ret;
-}
-
-- (MNTestTuple*)drawSnare1:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
-{
-    MNTestTuple* ret = [MNTestTuple testTuple];
-    /*
-    Vex.Flow.Test.Percussion.drawSnare1 = function(options, contextBuilder) {
-        var ctx = contextBuilder(options.canvas_sel, 600, 120);
-        ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-        ctx.setFont(@"Arial", 15, "");
-
-        x = 10;
-        y = 10;
-        w = 280;
-
-        {
-             MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(x, y, w);
-            staff setBegBarType:Vex.Flow.Barline.type.REPEAT_BEGIN);
-            staff setEndBarType:Vex.Flow.Barline.type.SINGLE);
-            staff addClefWithName:@"percussion");
-
-            [staff draw:ctx];
-
-            NSArray* notesDown = @[
-                         [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"q",
-                stem_direction: -1 }).
-                         addArticulation(0  func:@selector(newArticulation(@"ah")),
-                         [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"q",
-                stem_direction: -1 }),
-                         [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"g/5/x2"], @"duration" : @"q",
-                stem_direction: -1 }).
-                         addArticulation(0  func:@selector(newArticulation(@"ah")),
-                         [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"a/5/x3"], @"duration" : @"q",
-                stem_direction: -1 }).
-                         addArticulation(0  func:@selector(newArticulation(@"a,")),
-                         ];
-             MNVoice* voiceDown = new Vex.Flow.Voice({ num_beats: 4, beat_value: 4,
-                resolution: kRESOLUTION });
-            voiceDown.addTickables(notesDown);
-
-            MNFormatter *formatter = [MNFormatter formatter]
-            joinVoices([voiceDown]).formatToStaff([voiceDown], staff);
-
-            voiceDown.draw(ctx, staff);
-
-            x += staff.width;
-        }
-
-        ok(YES, @"");
-    }
-     */
-
-    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 280, 0)];
-      [staff setBegBarType:MNBarLineRepeatBegin];
-      [staff setEndBarType:MNBarLineSingle];
-      [staff addClefWithName:@"percussion"];
-      [staff draw:ctx];
-
-      ok(YES, @"");
-    };
-    return ret;
-}
-
-- (MNTestTuple*)drawSnare2:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
-{
-    MNTestTuple* ret = [MNTestTuple testTuple];
-    /*
-    Vex.Flow.Test.Percussion.drawSnare2 = function(options, contextBuilder) {
-        var ctx = contextBuilder(options.canvas_sel, 600, 120);
-        ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-        ctx.setFont(@"Arial", 15, "");
-
-        x = 10;
-        y = 10;
-        w = 280;
-
-        {
-             MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(x, y, w);
-            staff setBegBarType:Vex.Flow.Barline.type.REPEAT_BEGIN);
-            staff setEndBarType:Vex.Flow.Barline.type.SINGLE);
-            staff addClefWithName:@"percussion");
-
-            [staff draw:ctx];
-
-            NSArray* notesDown = @[
-                         [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5"], @"duration" : @"q",
-                stem_direction: -1 }).
-                         addArticulation(0  func:@selector(newTremolo(0)),
-                         [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5"], @"duration" : @"q",
-                stem_direction: -1 }).
-                         addArticulation(0  func:@selector(newTremolo(1)),
-                         [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5"], @"duration" : @"q",
-                stem_direction: -1 }).
-                         addArticulation(0  func:@selector(newTremolo(3)),
-                         [[MNStaffNote alloc]initWithDictionary:@{ @"keys" : @[@"c/5"], @"duration" : @"q",
-                stem_direction: -1 }).
-                         addArticulation(0  func:@selector(newTremolo(5)),
-                         ];
-             MNVoice* voiceDown = new Vex.Flow.Voice({ num_beats: 4, beat_value: 4,
-                resolution: kRESOLUTION });
-            voiceDown.addTickables(notesDown);
-
-            MNFormatter *formatter = [MNFormatter formatter]
-            joinVoices([voiceDown]).formatToStaff([voiceDown], staff);
-
-            voiceDown.draw(ctx, staff);
-
-            x += staff.width;
-        }
-
-        ok(YES, @"");
-    }
-    */
-
-    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 280, 0)];
-      [staff setBegBarType:MNBarLineRepeatBegin];
-      [staff setEndBarType:MNBarLineSingle];
-      [staff addClefWithName:@"percussion"];
-      [staff draw:ctx];
-
+      [voiceDown draw:ctx dirtyRect:CGRectZero toStaff:staff];
       ok(YES, @"");
     };
     return ret;

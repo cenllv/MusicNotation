@@ -29,36 +29,37 @@
 #define HC_SHORTHAND
 #import "OCHamcrest.h"
 #import "MNTestCollectionItemView.h"
-#import "MNTestTuple.h"
+#import "MNTestBlockStruct.h"
 #import "MNViewStaffStruct.h"
+#import "MNNoteDrawNotesDelegate.h"
 
-@class MNRenderLayer;
+//@class MNRenderLayer;
 
 #if TARGET_OS_IPHONE
 
 typedef UIButton MNButton;
 
-@interface MNTestViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
-@property UITableViewCell* currentCell;
+@interface MNTestViewController
+    : UITableViewController <UITableViewDataSource, UITableViewDelegate, MNNoteDrawNotesDelegate>
+//@property UITableViewCell* currentCell;
 
 #elif TARGET_OS_MAC
 
 typedef NSButton MNButton;
 
-@interface MNTestViewController : NSViewController <NSCollectionViewDataSource, NSCollectionViewDelegateFlowLayout>
+@interface MNTestViewController
+    : NSViewController <NSCollectionViewDataSource, NSCollectionViewDelegateFlowLayout, MNNoteDrawNotesDelegate>
 
 #endif
 
 - (void)start;
 - (void)tearDown;
 
-//- (CGRect)frameAtIndex:(NSUInteger)index;
-
 - (void)runTest:(NSString*)name func:(SEL)selector;
 - (void)runTest:(NSString*)name func:(SEL)selector params:(NSObject*)params;
 - (void)runTest:(NSString*)name func:(SEL)selector frame:(CGRect)frame;
 - (void)runTest:(NSString*)name func:(SEL)selector frame:(CGRect)frame params:(NSObject*)params;
 
-- (MNRenderLayer*)renderLayer;
+//- (MNRenderLayer*)renderLayer;
 
 @end

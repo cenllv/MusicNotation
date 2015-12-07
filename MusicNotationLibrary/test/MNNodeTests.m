@@ -49,47 +49,47 @@
     [super tearDown];
 }
 
-- (void)basicHeirarchy:(MNTestCollectionItemView*)parent
+- (void)basicHeirarchy:(id<MNTestParentDelegate>)parent
 {
     // draw symbol with sub symbols
 }
 
-- (void)rotational:(MNTestCollectionItemView*)parent
+- (void)rotational:(id<MNTestParentDelegate>)parent
 {
     // draw and rotate symbols
 }
 
-- (void)scale:(MNTestCollectionItemView*)parent
+- (void)scale:(id<MNTestParentDelegate>)parent
 {
     // draw and scale symbols
 }
 
-- (void)skew:(MNTestCollectionItemView*)parent
+- (void)skew:(id<MNTestParentDelegate>)parent
 {
     // draw and skew symbols
 }
 
-- (void)transform:(MNTestCollectionItemView*)parent
+- (void)transform:(id<MNTestParentDelegate>)parent
 {
     // draw and transform symbols
 }
 
-- (void)affineInverse:(MNTestCollectionItemView*)parent
+- (void)affineInverse:(id<MNTestParentDelegate>)parent
 {
     // draw and invert symbols
 }
 
-- (void)cascadeColor:(MNTestCollectionItemView*)parent
+- (void)cascadeColor:(id<MNTestParentDelegate>)parent
 {
     // draw and cascade color change to sub symbols
 }
 
-- (void)cascadeOpacity:(MNTestCollectionItemView*)parent
+- (void)cascadeOpacity:(id<MNTestParentDelegate>)parent
 {
     // draw and cascade opacity change to sub symbols
 }
 
-- (void)cascadeScale:(MNTestCollectionItemView*)parent
+- (void)cascadeScale:(id<MNTestParentDelegate>)parent
 {
     // draw and cascade scale change to sub symbols
 }

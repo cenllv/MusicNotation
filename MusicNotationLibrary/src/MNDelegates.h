@@ -42,7 +42,9 @@
  */
 @protocol MNTickableDelegate <NSObject>
 @required
-@property (weak, nonatomic) MNStaff* staff;
+//@property (weak, nonatomic) MNStaff* staff;
+- (id)setStaff:(MNStaff*)staff;
+- (MNStaff*)staff;
 @property (assign, nonatomic) NSUInteger intrinsicTicks;
 @property (strong, nonatomic) MNRational* tickMultiplier;
 //@property (strong, nonatomic) Rational* ticks;
@@ -74,8 +76,12 @@
 //@property (assign, nonatomic) BOOL ignore_ticks;
 @property (strong, nonatomic, readonly) MNBoundingBox* boundingBox;
 //@property (readonly, nonatomic, getter=getCenterXShift) float getCenterXShift;
-@property (assign, nonatomic) float extraLeftPx;
-@property (assign, nonatomic) float extraRightPx;
+//@property (assign, nonatomic) float extraLeftPx;
+- (id)setExtraLeftPx:(float)extraLeftPx;
+- (float)extraLeftPx;
+//@property (assign, nonatomic) float extraRightPx;
+- (id)setExtraRightPx:(float)extraRightPx;
+- (float)extraRightPx;
 @property (assign, nonatomic) BOOL shouldIgnoreTicks;
 
 @required

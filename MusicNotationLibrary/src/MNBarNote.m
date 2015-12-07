@@ -106,7 +106,7 @@
     return 0;
 }
 
-- (void)setStaff:(MNStaff*)Staff
+- (id)setStaff:(MNStaff*)Staff
 {
     /*
     Vex.Flow.BarNote.prototype.setStaff = function(Staff) {
@@ -114,6 +114,7 @@
         superclass.setStaff.call(this, Staff);
     }
      */
+    return self;
 }
 
 - (MNStaff*)staff

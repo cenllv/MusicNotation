@@ -1,11 +1,10 @@
 //
-//  AppDelegate.m
+//  MNMAppDelegate.m
 //  MusicNotationMobile
 //
 //  Created by Scott on 7/27/15.
 //  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
-//  [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,17 +25,23 @@
 //  THE SOFTWARE.
 //
 
-#import "AppDelegate.h"
+#import "MNMAppDelegate.h"
 
-@interface AppDelegate ()
+@interface MNMAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation MNMAppDelegate
 
 - (BOOL)application:(UIApplication*)application didFinishLaunchingWithOptions:(NSDictionary*)launchOptions
 {
-    // Override point for customization after application launch.
+    // Create an instance of the audio controller, set it up and start it running
+    AudioStreamBasicDescription asbd = AEAudioStreamBasicDescriptionNonInterleavedFloatStereo;
+
+    self.audioController = [[AEAudioController alloc] initWithAudioDescription:asbd inputEnabled:YES];
+    self.audioController.preferredBufferDuration = 0.005;
+    [self.audioController start:NULL];
+
     return YES;
 }
 

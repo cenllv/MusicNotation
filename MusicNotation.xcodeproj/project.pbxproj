@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		54CBE4AB84A5D676A7096F32 /* Pods_MusicNotationMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2798E94B3196775A40A4928 /* Pods_MusicNotationMobile.framework */; };
+		5E95DE263BB6171A18C03A4A /* Pods_MusicNotationDesktop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F15AA8371CC8C24BA804B386 /* Pods_MusicNotationDesktop.framework */; };
+		6B0BE79C1C14A4CB0035ADCF /* MNMCarrierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE79B1C14A4CB0035ADCF /* MNMCarrierView.m */; };
 		6B182C731C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C721C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m */; };
 		6B182C741C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C721C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m */; };
 		6B182C771C0E57C1006F0981 /* MNGraceNoteRenderOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B182C761C0E57C1006F0981 /* MNGraceNoteRenderOptions.m */; };
@@ -305,8 +306,8 @@
 		6B4AA60F1BF45B0800E56C1A /* IAModelCollectionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5A71BF45B0800E56C1A /* IAModelCollectionBase.m */; };
 		6B4AA6101BF45B0800E56C1A /* IAModelCollectionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5A71BF45B0800E56C1A /* IAModelCollectionBase.m */; };
 		6B4AA6111BF45B0800E56C1A /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5A91BF45B0800E56C1A /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
-		6B4AA6121BF45B0800E56C1A /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5A91BF45B0800E56C1A /* JSONKit.m */; };
-		6B4AA6131BF45B0800E56C1A /* NSArray+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5AC1BF45B0800E56C1A /* NSArray+MNAdditions.m */; };
+		6B4AA6121BF45B0800E56C1A /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5A91BF45B0800E56C1A /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6B4AA6131BF45B0800E56C1A /* NSArray+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5AC1BF45B0800E56C1A /* NSArray+MNAdditions.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA6141BF45B0800E56C1A /* NSArray+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5AC1BF45B0800E56C1A /* NSArray+MNAdditions.m */; };
 		6B4AA6171BF45B0800E56C1A /* NSMutableArray+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5B01BF45B0800E56C1A /* NSMutableArray+MNAdditions.m */; };
 		6B4AA6181BF45B0800E56C1A /* NSMutableArray+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5B01BF45B0800E56C1A /* NSMutableArray+MNAdditions.m */; };
@@ -319,7 +320,7 @@
 		6B4AA61F1BF45B0800E56C1A /* NSObject+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5B81BF45B0800E56C1A /* NSObject+MNAdditions.m */; };
 		6B4AA6201BF45B0800E56C1A /* NSObject+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5B81BF45B0800E56C1A /* NSObject+MNAdditions.m */; };
 		6B4AA6231BF45B0800E56C1A /* NSString+Ruby.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5BC1BF45B0800E56C1A /* NSString+Ruby.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6241BF45B0800E56C1A /* NSString+Ruby.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5BC1BF45B0800E56C1A /* NSString+Ruby.m */; };
+		6B4AA6241BF45B0800E56C1A /* NSString+Ruby.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5BC1BF45B0800E56C1A /* NSString+Ruby.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA6251BF45B0800E56C1A /* Callables.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5BF1BF45B0800E56C1A /* Callables.m */; };
 		6B4AA6261BF45B0800E56C1A /* Callables.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5BF1BF45B0800E56C1A /* Callables.m */; };
 		6B4AA6271BF45B0800E56C1A /* EasyEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5C21BF45B0800E56C1A /* EasyEnumerable.m */; };
@@ -331,7 +332,7 @@
 		6B4AA62D1BF45B0800E56C1A /* FilterEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5C91BF45B0800E56C1A /* FilterEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA62E1BF45B0800E56C1A /* FilterEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5C91BF45B0800E56C1A /* FilterEnumerator.m */; };
 		6B4AA62F1BF45B0800E56C1A /* FlattenEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5CC1BF45B0800E56C1A /* FlattenEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6301BF45B0800E56C1A /* FlattenEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5CC1BF45B0800E56C1A /* FlattenEnumerator.m */; };
+		6B4AA6301BF45B0800E56C1A /* FlattenEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5CC1BF45B0800E56C1A /* FlattenEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA6311BF45B0800E56C1A /* Function1.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5CF1BF45B0800E56C1A /* Function1.m */; };
 		6B4AA6321BF45B0800E56C1A /* Function1.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5CF1BF45B0800E56C1A /* Function1.m */; };
 		6B4AA6331BF45B0800E56C1A /* Function2.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5D11BF45B0800E56C1A /* Function2.m */; };
@@ -339,13 +340,13 @@
 		6B4AA6351BF45B0800E56C1A /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5D31BF45B0800E56C1A /* Functions.m */; };
 		6B4AA6361BF45B0800E56C1A /* Functions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5D31BF45B0800E56C1A /* Functions.m */; };
 		6B4AA6371BF45B0800E56C1A /* GroupedEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5D51BF45B0800E56C1A /* GroupedEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6381BF45B0800E56C1A /* GroupedEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5D51BF45B0800E56C1A /* GroupedEnumerator.m */; };
+		6B4AA6381BF45B0800E56C1A /* GroupedEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5D51BF45B0800E56C1A /* GroupedEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA6391BF45B0800E56C1A /* MapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5D71BF45B0800E56C1A /* MapEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA63A1BF45B0800E56C1A /* MapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5D71BF45B0800E56C1A /* MapEnumerator.m */; };
 		6B4AA63B1BF45B0800E56C1A /* MemoisedEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5DA1BF45B0800E56C1A /* MemoisedEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA63C1BF45B0800E56C1A /* MemoisedEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5DA1BF45B0800E56C1A /* MemoisedEnumerator.m */; };
 		6B4AA63D1BF45B0800E56C1A /* MemoisedSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5DC1BF45B0800E56C1A /* MemoisedSequence.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA63E1BF45B0800E56C1A /* MemoisedSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5DC1BF45B0800E56C1A /* MemoisedSequence.m */; };
+		6B4AA63E1BF45B0800E56C1A /* MemoisedSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5DC1BF45B0800E56C1A /* MemoisedSequence.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA63F1BF45B0800E56C1A /* MergeEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5DE1BF45B0800E56C1A /* MergeEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA6401BF45B0800E56C1A /* MergeEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5DE1BF45B0800E56C1A /* MergeEnumerator.m */; };
 		6B4AA6411BF45B0800E56C1A /* None.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E01BF45B0800E56C1A /* None.m */; };
@@ -353,11 +354,11 @@
 		6B4AA6431BF45B0800E56C1A /* NoSuchElementException.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E21BF45B0800E56C1A /* NoSuchElementException.m */; };
 		6B4AA6441BF45B0800E56C1A /* NoSuchElementException.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E21BF45B0800E56C1A /* NoSuchElementException.m */; };
 		6B4AA6451BF45B0800E56C1A /* NSArray+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E41BF45B0800E56C1A /* NSArray+OCTotallyLazy.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6461BF45B0800E56C1A /* NSArray+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E41BF45B0800E56C1A /* NSArray+OCTotallyLazy.m */; };
+		6B4AA6461BF45B0800E56C1A /* NSArray+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E41BF45B0800E56C1A /* NSArray+OCTotallyLazy.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA6471BF45B0800E56C1A /* NSDictionary+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E61BF45B0800E56C1A /* NSDictionary+OCTotallyLazy.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA6481BF45B0800E56C1A /* NSDictionary+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E61BF45B0800E56C1A /* NSDictionary+OCTotallyLazy.m */; };
 		6B4AA6491BF45B0800E56C1A /* NSEnumerator+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E81BF45B0800E56C1A /* NSEnumerator+OCTotallyLazy.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA64A1BF45B0800E56C1A /* NSEnumerator+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E81BF45B0800E56C1A /* NSEnumerator+OCTotallyLazy.m */; };
+		6B4AA64A1BF45B0800E56C1A /* NSEnumerator+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5E81BF45B0800E56C1A /* NSEnumerator+OCTotallyLazy.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA64B1BF45B0800E56C1A /* NSSet+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5EA1BF45B0800E56C1A /* NSSet+OCTotallyLazy.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA64C1BF45B0800E56C1A /* NSSet+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5EA1BF45B0800E56C1A /* NSSet+OCTotallyLazy.m */; };
 		6B4AA64D1BF45B0800E56C1A /* Numbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5EC1BF45B0800E56C1A /* Numbers.m */; };
@@ -373,7 +374,7 @@
 		6B4AA6571BF45B0800E56C1A /* PartitionEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5F71BF45B0800E56C1A /* PartitionEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA6581BF45B0800E56C1A /* PartitionEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5F71BF45B0800E56C1A /* PartitionEnumerator.m */; };
 		6B4AA6591BF45B0800E56C1A /* Predicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5F91BF45B0800E56C1A /* Predicates.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA65A1BF45B0800E56C1A /* Predicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5F91BF45B0800E56C1A /* Predicates.m */; };
+		6B4AA65A1BF45B0800E56C1A /* Predicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5F91BF45B0800E56C1A /* Predicates.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA65B1BF45B0800E56C1A /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5FB1BF45B0800E56C1A /* Queue.m */; };
 		6B4AA65C1BF45B0800E56C1A /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5FB1BF45B0800E56C1A /* Queue.m */; };
 		6B4AA65D1BF45B0800E56C1A /* Range.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5FD1BF45B0800E56C1A /* Range.m */; };
@@ -381,7 +382,7 @@
 		6B4AA65F1BF45B0800E56C1A /* RepeatEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5FF1BF45B0800E56C1A /* RepeatEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA6601BF45B0800E56C1A /* RepeatEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5FF1BF45B0800E56C1A /* RepeatEnumerator.m */; };
 		6B4AA6611BF45B0800E56C1A /* Sequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA6011BF45B0800E56C1A /* Sequence.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B4AA6621BF45B0800E56C1A /* Sequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA6011BF45B0800E56C1A /* Sequence.m */; };
+		6B4AA6621BF45B0800E56C1A /* Sequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA6011BF45B0800E56C1A /* Sequence.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA6631BF45B0800E56C1A /* SingleValueEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA6031BF45B0800E56C1A /* SingleValueEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA6641BF45B0800E56C1A /* SingleValueEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA6031BF45B0800E56C1A /* SingleValueEnumerator.m */; };
 		6B4AA6651BF45B0800E56C1A /* Some.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA6051BF45B0800E56C1A /* Some.m */; };
@@ -389,13 +390,10 @@
 		6B4AA6671BF45B0800E56C1A /* TakeWhileEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA6071BF45B0800E56C1A /* TakeWhileEnumerator.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA6681BF45B0800E56C1A /* TakeWhileEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA6071BF45B0800E56C1A /* TakeWhileEnumerator.m */; };
 		6B4AA6691BF45B0800E56C1A /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA60A1BF45B0800E56C1A /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
-		6B4AA66A1BF45B0800E56C1A /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA60A1BF45B0800E56C1A /* RegexKitLite.m */; };
+		6B4AA66A1BF45B0800E56C1A /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA60A1BF45B0800E56C1A /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 		6B4AA6751BF45CD800E56C1A /* Organ Run.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B4AA66D1BF45CD800E56C1A /* Organ Run.m4a */; };
-		6B4AA6761BF45CD800E56C1A /* Organ Run.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B4AA66D1BF45CD800E56C1A /* Organ Run.m4a */; };
 		6B4AA6771BF45CD800E56C1A /* Southern Rock Drums.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B4AA66E1BF45CD800E56C1A /* Southern Rock Drums.m4a */; };
-		6B4AA6781BF45CD800E56C1A /* Southern Rock Drums.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B4AA66E1BF45CD800E56C1A /* Southern Rock Drums.m4a */; };
 		6B4AA6791BF45CD800E56C1A /* Southern Rock Organ.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B4AA66F1BF45CD800E56C1A /* Southern Rock Organ.m4a */; };
-		6B4AA67A1BF45CD800E56C1A /* Southern Rock Organ.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B4AA66F1BF45CD800E56C1A /* Southern Rock Organ.m4a */; };
 		6B4AA67B1BF45CD800E56C1A /* gonville.js in Resources */ = {isa = PBXBuildFile; fileRef = 6B4AA6711BF45CD800E56C1A /* gonville.js */; };
 		6B4AA67C1BF45CD800E56C1A /* gonville.js in Resources */ = {isa = PBXBuildFile; fileRef = 6B4AA6711BF45CD800E56C1A /* gonville.js */; };
 		6B4AA67D1BF45CD800E56C1A /* gonville_all.js in Resources */ = {isa = PBXBuildFile; fileRef = 6B4AA6721BF45CD800E56C1A /* gonville_all.js */; };
@@ -405,6 +403,15 @@
 		6B4AA6811BF45CD800E56C1A /* vexflow_font.js in Resources */ = {isa = PBXBuildFile; fileRef = 6B4AA6741BF45CD800E56C1A /* vexflow_font.js */; };
 		6B4AA6821BF45CD800E56C1A /* vexflow_font.js in Resources */ = {isa = PBXBuildFile; fileRef = 6B4AA6741BF45CD800E56C1A /* vexflow_font.js */; };
 		6B4BC5DC1B7B9CF4002FAA76 /* MNCarrierLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4BC5DB1B7B9CF4002FAA76 /* MNCarrierLayer.m */; };
+		6B4F91B71C13A23600296C6F /* Organ Run.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B4F91B41C13A21000296C6F /* Organ Run.m4a */; };
+		6B4F91B81C13A23600296C6F /* Southern Rock Drums.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B4F91B51C13A21000296C6F /* Southern Rock Drums.m4a */; };
+		6B4F91B91C13A23600296C6F /* Southern Rock Organ.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B4F91B61C13A21000296C6F /* Southern Rock Organ.m4a */; };
+		6B4F91BC1C13A7EB00296C6F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B4F91BB1C13A7EB00296C6F /* AudioToolbox.framework */; };
+		6B4F91BE1C13A7F600296C6F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B4F91BD1C13A7F600296C6F /* AVFoundation.framework */; };
+		6B4F91C01C13A7FF00296C6F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B4F91BF1C13A7FF00296C6F /* Accelerate.framework */; };
+		6B4F91C21C13A8C700296C6F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B4F91C11C13A8C700296C6F /* AudioToolbox.framework */; };
+		6B4F91C41C13A8CD00296C6F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B4F91C31C13A8CD00296C6F /* AVFoundation.framework */; };
+		6B4F91C61C13A8DD00296C6F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B4F91C51C13A8DD00296C6F /* Accelerate.framework */; };
 		6B5644801BF44680006FDFD9 /* HCAssertThat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643821BF44680006FDFD9 /* HCAssertThat.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B5644811BF44680006FDFD9 /* HCBaseDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643841BF44680006FDFD9 /* HCBaseDescription.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B5644821BF44680006FDFD9 /* HCBaseMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643861BF44680006FDFD9 /* HCBaseMatcher.m */; settings = {COMPILER_FLAGS = "-w"; }; };
@@ -544,9 +551,8 @@
 		6B5645081BF44680006FDFD9 /* SenTestSuiteRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56447F1BF44680006FDFD9 /* SenTestSuiteRun.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 		6B5D4AC21C04E66A00AA250A /* MNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D4AC11C04E66A00AA250A /* MNConstants.m */; };
 		6B5D4AC31C04E66A00AA250A /* MNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D4AC11C04E66A00AA250A /* MNConstants.m */; };
-		6B8480A81B6D7A0900FB2B48 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8480A71B6D7A0900FB2B48 /* TableViewController.m */; };
-		6B8480AC1B6D7CD800FB2B48 /* MNTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8480AB1B6D7CD800FB2B48 /* MNTestViewController.m */; };
-		6B8480B21B6FC4C300FB2B48 /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8480B11B6FC4C300FB2B48 /* TestView.m */; };
+		6B8480A81B6D7A0900FB2B48 /* MNMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8480A71B6D7A0900FB2B48 /* MNMTableViewController.m */; };
+		6B8480AC1B6D7CD800FB2B48 /* MNMProxyTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8480AB1B6D7CD800FB2B48 /* MNMProxyTestViewController.m */; };
 		6B8480B91B6FCFC800FB2B48 /* MNTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8480B71B6FCF0B00FB2B48 /* MNTestViewController.m */; };
 		6B8480BA1B6FD4BE00FB2B48 /* MNTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8480B71B6FCF0B00FB2B48 /* MNTestViewController.m */; };
 		6B8631CC1B235C0300786D3D /* MNTestTrie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8631C71B235C0300786D3D /* MNTestTrie.m */; };
@@ -605,25 +611,227 @@
 		6BB7EC1D1C07C91A00E09252 /* MNTableChords.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB7EC1B1C07C91A00E09252 /* MNTableChords.m */; };
 		6BB7EC201C07CA3B00E09252 /* MNChordTestStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB7EC1F1C07CA3B00E09252 /* MNChordTestStruct.m */; };
 		6BB7EC211C07CA3B00E09252 /* MNChordTestStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BB7EC1F1C07CA3B00E09252 /* MNChordTestStruct.m */; };
-		6BB7EC2A1C08D02600E09252 /* Polnomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB7EC291C08D02600E09252 /* Polnomial.swift */; };
-		6BB7EC2B1C08D02600E09252 /* Polnomial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BB7EC291C08D02600E09252 /* Polnomial.swift */; };
 		6BBB49D31B667EE70036081B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BBB49D21B667EE70036081B /* main.m */; };
-		6BBB49D61B667EE70036081B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BBB49D51B667EE70036081B /* AppDelegate.m */; };
+		6BBB49D61B667EE70036081B /* MNMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BBB49D51B667EE70036081B /* MNMAppDelegate.m */; };
 		6BBB49DC1B667EE70036081B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BBB49DA1B667EE70036081B /* Main.storyboard */; };
 		6BBB49DE1B667EE70036081B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BBB49DD1B667EE70036081B /* Assets.xcassets */; };
 		6BBB49E11B667EE70036081B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BBB49DF1B667EE70036081B /* LaunchScreen.storyboard */; };
-		6BC6F05F1B75774200A582C1 /* MNTestTuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC6F05E1B75774200A582C1 /* MNTestTuple.m */; };
+		6BC6F05F1B75774200A582C1 /* MNTestBlockStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC6F05E1B75774200A582C1 /* MNTestBlockStruct.m */; };
 		6BC86D261B76441C00C6D20B /* MNTestAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D251B76441C00C6D20B /* MNTestAction.m */; };
 		6BC86D291B768BDD00C6D20B /* MNRenderLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D281B768BDD00C6D20B /* MNRenderLayer.m */; };
 		6BC86D2C1B76A31B00C6D20B /* MNTestCollectionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D2B1B76A31B00C6D20B /* MNTestCollectionItemView.m */; };
 		6BC86D2F1B76A3D100C6D20B /* MNViewStaffStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D2E1B76A3D100C6D20B /* MNViewStaffStruct.m */; };
 		6BC86D351B77D75C00C6D20B /* NSString+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D341B77D75C00C6D20B /* NSString+MNAdditions.m */; };
+		6BD132E41C126E9000E14741 /* MNBendRenderOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE115631BFE7B0700961E35 /* MNBendRenderOptions.m */; };
+		6BD132E61C126EA300E14741 /* MNCarrierLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4BC5DB1B7B9CF4002FAA76 /* MNCarrierLayer.m */; };
+		6BD132E71C126EA900E14741 /* MNRenderLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D281B768BDD00C6D20B /* MNRenderLayer.m */; };
+		6BD132E81C126EB100E14741 /* MNTestAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D251B76441C00C6D20B /* MNTestAction.m */; };
+		6BD132E91C12790800E14741 /* MNAccidentalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA4F91BF459B200E56C1A /* MNAccidentalTests.m */; };
+		6BD132EA1C12790800E14741 /* MNAnimationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA4FB1BF459B200E56C1A /* MNAnimationTests.m */; };
+		6BD132EB1C12790800E14741 /* MNAnnotationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA4FD1BF459B200E56C1A /* MNAnnotationTests.m */; };
+		6BD132EC1C12790800E14741 /* MNArticulationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA4FF1BF459B200E56C1A /* MNArticulationTests.m */; };
+		6BD132ED1C12790800E14741 /* MNAutoBeamFormattingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5011BF459B200E56C1A /* MNAutoBeamFormattingTests.m */; };
+		6BD132EE1C12790800E14741 /* MNBeamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5031BF459B200E56C1A /* MNBeamTests.m */; };
+		6BD132EF1C12790800E14741 /* MNBendTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5051BF459B200E56C1A /* MNBendTests.m */; };
+		6BD132F01C12790800E14741 /* MNBoundingBoxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5071BF459B200E56C1A /* MNBoundingBoxTests.m */; };
+		6BD132F11C12790800E14741 /* MNChordTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5091BF459B200E56C1A /* MNChordTest.m */; };
+		6BD132F21C12790800E14741 /* MNClefTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA50B1BF459B200E56C1A /* MNClefTests.m */; };
+		6BD132F31C12790800E14741 /* MNCurveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA50D1BF459B200E56C1A /* MNCurveTests.m */; };
+		6BD132F41C12790800E14741 /* MNDotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA50F1BF459B200E56C1A /* MNDotTests.m */; };
+		6BD132F51C12790800E14741 /* MNFontTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5111BF459B200E56C1A /* MNFontTests.m */; };
+		6BD132F61C12790800E14741 /* MNFormatterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5131BF459B200E56C1A /* MNFormatterTests.m */; };
+		6BD132F71C12790800E14741 /* MNGraceNoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5151BF459B200E56C1A /* MNGraceNoteTests.m */; };
+		6BD132F81C12790800E14741 /* MNKeyClefTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5191BF459B200E56C1A /* MNKeyClefTests.m */; };
+		6BD132F91C12790800E14741 /* MNKeyManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA51B1BF459B200E56C1A /* MNKeyManagerTests.m */; };
+		6BD132FA1C12790800E14741 /* MNKeySignatureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA51D1BF459B200E56C1A /* MNKeySignatureTests.m */; };
+		6BD132FB1C12790800E14741 /* MNLayerNoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA51F1BF459B200E56C1A /* MNLayerNoteTests.m */; };
+		6BD132FC1C12790800E14741 /* MNMockTickable.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5211BF459B200E56C1A /* MNMockTickable.m */; };
+		6BD132FD1C12790800E14741 /* MNModifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5231BF459B200E56C1A /* MNModifierTests.m */; };
+		6BD132FE1C12790800E14741 /* MNMusicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5251BF459B200E56C1A /* MNMusicTests.m */; };
+		6BD132FF1C12790800E14741 /* MNNodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5271BF459B200E56C1A /* MNNodeTests.m */; };
+		6BD133001C12790800E14741 /* MNNoneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B9A37261BF552C500341DF8 /* MNNoneTests.m */; };
+		6BD133011C12790800E14741 /* MNNotationsGridTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5291BF459B200E56C1A /* MNNotationsGridTests.m */; };
+		6BD133021C12790800E14741 /* MNNoteHeadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA52B1BF459B200E56C1A /* MNNoteHeadTests.m */; };
+		6BD133031C12790800E14741 /* MNOrnamentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA52D1BF459B200E56C1A /* MNOrnamentTests.m */; };
+		6BD133041C12790800E14741 /* MNPedalMarkingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA52F1BF459B200E56C1A /* MNPedalMarkingTests.m */; };
+		6BD133051C12790800E14741 /* MNPercussionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5311BF459B200E56C1A /* MNPercussionTests.m */; };
+		6BD133061C12790800E14741 /* MNRestsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5331BF459B200E56C1A /* MNRestsTest.m */; };
+		6BD133071C12790800E14741 /* MNRhythmTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5351BF459B200E56C1A /* MNRhythmTests.m */; };
+		6BD133081C12790800E14741 /* MNSheetMusicExamplesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE400021C122DBA007573FB /* MNSheetMusicExamplesTests.m */; };
+		6BD133091C12790800E14741 /* MNStaffConnectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5371BF459B200E56C1A /* MNStaffConnectorTests.m */; };
+		6BD1330A1C12790800E14741 /* MNStaffHairpinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5391BF459B200E56C1A /* MNStaffHairpinTests.m */; };
+		6BD1330B1C12790800E14741 /* MNStaffLineTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA53B1BF459B200E56C1A /* MNStaffLineTests.m */; };
+		6BD1330C1C12790800E14741 /* MNStaffModifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA53D1BF459B200E56C1A /* MNStaffModifierTests.m */; };
+		6BD1330D1C12790800E14741 /* MNStaffNoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA53F1BF459B200E56C1A /* MNStaffNoteTests.m */; };
+		6BD1330E1C12790800E14741 /* MNStaffTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5411BF459B200E56C1A /* MNStaffTests.m */; };
+		6BD1330F1C12790800E14741 /* MNStaffTieTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5431BF459B200E56C1A /* MNStaffTieTests.m */; };
+		6BD133101C12790800E14741 /* MNStringNumberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5451BF459B200E56C1A /* MNStringNumberTests.m */; };
+		6BD133111C12790800E14741 /* MNStrokesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5471BF459B200E56C1A /* MNStrokesTests.m */; };
+		6BD133121C12790800E14741 /* MNTableTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5491BF459B200E56C1A /* MNTableTests.m */; };
+		6BD133131C12790800E14741 /* MNTabNoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA54B1BF459B200E56C1A /* MNTabNoteTests.m */; };
+		6BD133141C12790800E14741 /* MNTabSlideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA54D1BF459B200E56C1A /* MNTabSlideTests.m */; };
+		6BD133151C12790800E14741 /* MNTabStaffTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA54F1BF459B200E56C1A /* MNTabStaffTests.m */; };
+		6BD133161C12790800E14741 /* MNTabTieTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5511BF459B200E56C1A /* MNTabTieTests.m */; };
+		6BD133171C12790800E14741 /* MNTextBracketTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5541BF459B200E56C1A /* MNTextBracketTests.m */; };
+		6BD133181C12790800E14741 /* MNTextNoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5561BF459B200E56C1A /* MNTextNoteTests.m */; };
+		6BD133191C12790800E14741 /* MNTextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5581BF459B200E56C1A /* MNTextTests.m */; };
+		6BD1331A1C12790800E14741 /* MNThreeVoiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA55A1BF459B200E56C1A /* MNThreeVoiceTests.m */; };
+		6BD1331B1C12790800E14741 /* MNTickContextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA55C1BF459B200E56C1A /* MNTickContextTests.m */; };
+		6BD1331C1C12790800E14741 /* MNTimeSignatureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA55E1BF459B200E56C1A /* MNTimeSignatureTests.m */; };
+		6BD1331D1C12790800E14741 /* MNTuningTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5621BF459B200E56C1A /* MNTuningTests.m */; };
+		6BD1331E1C12790800E14741 /* MNTupletTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5641BF459B200E56C1A /* MNTupletTests.m */; };
+		6BD1331F1C12790800E14741 /* MNVibratoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5661BF459B200E56C1A /* MNVibratoTests.m */; };
+		6BD133201C12790800E14741 /* MNVoiceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5681BF459B200E56C1A /* MNVoiceTests.m */; };
+		6BD133211C127A0F00E14741 /* HCAssertThat.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643821BF44680006FDFD9 /* HCAssertThat.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133221C127A0F00E14741 /* HCBaseDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643841BF44680006FDFD9 /* HCBaseDescription.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133231C127A0F00E14741 /* HCBaseMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643861BF44680006FDFD9 /* HCBaseMatcher.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133241C127A0F00E14741 /* HCDiagnosingMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643891BF44680006FDFD9 /* HCDiagnosingMatcher.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133251C127A0F00E14741 /* HCStringDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56438D1BF44680006FDFD9 /* HCStringDescription.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133261C127A0F00E14741 /* HCCollect.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643901BF44680006FDFD9 /* HCCollect.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133271C127A0F00E14741 /* HCInvocationMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643921BF44680006FDFD9 /* HCInvocationMatcher.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133281C127A0F00E14741 /* HCRequireNonNilObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643941BF44680006FDFD9 /* HCRequireNonNilObject.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133291C127A0F00E14741 /* HCWrapInMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643961BF44680006FDFD9 /* HCWrapInMatcher.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1332A1C127A0F00E14741 /* NSInvocation+OCHamcrest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643981BF44680006FDFD9 /* NSInvocation+OCHamcrest.m */; };
+		6BD1332B1C127A0F00E14741 /* HCBoolReturnGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56439B1BF44680006FDFD9 /* HCBoolReturnGetter.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1332C1C127A0F00E14741 /* HCCharReturnGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56439D1BF44680006FDFD9 /* HCCharReturnGetter.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1332D1C127A0F00E14741 /* HCDoubleReturnGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56439F1BF44680006FDFD9 /* HCDoubleReturnGetter.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1332E1C127A0F00E14741 /* HCFloatReturnGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643A11BF44680006FDFD9 /* HCFloatReturnGetter.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1332F1C127A0F00E14741 /* HCIntReturnGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643A31BF44680006FDFD9 /* HCIntReturnGetter.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133301C127A0F00E14741 /* HCLongLongReturnGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643A51BF44680006FDFD9 /* HCLongLongReturnGetter.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133311C127A0F00E14741 /* HCLongReturnGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643A71BF44680006FDFD9 /* HCLongReturnGetter.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133321C127A0F00E14741 /* HCObjectReturnGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643A91BF44680006FDFD9 /* HCObjectReturnGetter.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133331C127A0F00E14741 /* HCReturnTypeHandlerChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643AB1BF44680006FDFD9 /* HCReturnTypeHandlerChain.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133341C127A0F00E14741 /* HCReturnValueGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643AD1BF44680006FDFD9 /* HCReturnValueGetter.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133351C127A0F00E14741 /* HCShortReturnGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643AF1BF44680006FDFD9 /* HCShortReturnGetter.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133361C127A0F00E14741 /* HCUnsignedCharReturnGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643B11BF44680006FDFD9 /* HCUnsignedCharReturnGetter.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133371C127A0F00E14741 /* HCUnsignedIntReturnGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643B31BF44680006FDFD9 /* HCUnsignedIntReturnGetter.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133381C127A0F00E14741 /* HCUnsignedLongLongReturnGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643B51BF44680006FDFD9 /* HCUnsignedLongLongReturnGetter.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133391C127A0F00E14741 /* HCUnsignedLongReturnGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643B71BF44680006FDFD9 /* HCUnsignedLongReturnGetter.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1333A1C127A0F00E14741 /* HCUnsignedShortReturnGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643B91BF44680006FDFD9 /* HCUnsignedShortReturnGetter.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1333B1C127A0F00E14741 /* HCGenericTestFailureHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643BC1BF44680006FDFD9 /* HCGenericTestFailureHandler.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1333C1C127A0F00E14741 /* HCSenTestFailureHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643BE1BF44680006FDFD9 /* HCSenTestFailureHandler.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6BD1333D1C127A0F00E14741 /* HCTestFailure.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643C01BF44680006FDFD9 /* HCTestFailure.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1333E1C127A0F00E14741 /* HCTestFailureHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643C21BF44680006FDFD9 /* HCTestFailureHandler.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1333F1C127A0F00E14741 /* HCTestFailureHandlerChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643C41BF44680006FDFD9 /* HCTestFailureHandlerChain.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133401C127A0F00E14741 /* HCXCTestFailureHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643C61BF44680006FDFD9 /* HCXCTestFailureHandler.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133411C127A0F00E14741 /* HCEvery.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643CA1BF44680006FDFD9 /* HCEvery.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133421C127A0F00E14741 /* HCHasCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643CC1BF44680006FDFD9 /* HCHasCount.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133431C127A0F00E14741 /* HCIsCollectionContaining.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643CE1BF44680006FDFD9 /* HCIsCollectionContaining.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133441C127A0F00E14741 /* HCIsCollectionContainingInAnyOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643D01BF44680006FDFD9 /* HCIsCollectionContainingInAnyOrder.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133451C127A0F00E14741 /* HCIsCollectionContainingInOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643D21BF44680006FDFD9 /* HCIsCollectionContainingInOrder.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133461C127A0F00E14741 /* HCIsCollectionOnlyContaining.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643D41BF44680006FDFD9 /* HCIsCollectionOnlyContaining.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133471C127A0F00E14741 /* HCIsDictionaryContaining.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643D61BF44680006FDFD9 /* HCIsDictionaryContaining.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133481C127A0F00E14741 /* HCIsDictionaryContainingEntries.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643D81BF44680006FDFD9 /* HCIsDictionaryContainingEntries.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133491C127A0F00E14741 /* HCIsDictionaryContainingKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643DA1BF44680006FDFD9 /* HCIsDictionaryContainingKey.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1334A1C127A0F00E14741 /* HCIsDictionaryContainingValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643DC1BF44680006FDFD9 /* HCIsDictionaryContainingValue.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1334B1C127A0F00E14741 /* HCIsEmptyCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643DE1BF44680006FDFD9 /* HCIsEmptyCollection.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1334C1C127A0F00E14741 /* HCIsIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643E01BF44680006FDFD9 /* HCIsIn.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1334D1C127A0F00E14741 /* HCDescribedAs.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643E31BF44680006FDFD9 /* HCDescribedAs.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1334E1C127A0F00E14741 /* HCIs.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643E51BF44680006FDFD9 /* HCIs.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1334F1C127A0F00E14741 /* HCAllOf.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643E81BF44680006FDFD9 /* HCAllOf.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133501C127A0F00E14741 /* HCAnyOf.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643EA1BF44680006FDFD9 /* HCAnyOf.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133511C127A0F00E14741 /* HCIsAnything.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643EC1BF44680006FDFD9 /* HCIsAnything.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133521C127A0F00E14741 /* HCIsNot.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643EE1BF44680006FDFD9 /* HCIsNot.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133531C127A0F00E14741 /* HCIsCloseTo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643F11BF44680006FDFD9 /* HCIsCloseTo.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133541C127A0F00E14741 /* HCIsEqualToNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643F31BF44680006FDFD9 /* HCIsEqualToNumber.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133551C127A0F00E14741 /* HCIsTrueFalse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643F51BF44680006FDFD9 /* HCIsTrueFalse.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133561C127A0F00E14741 /* HCNumberAssert.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643F71BF44680006FDFD9 /* HCNumberAssert.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133571C127A0F00E14741 /* HCOrderingComparison.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643F91BF44680006FDFD9 /* HCOrderingComparison.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133581C127A0F00E14741 /* HCClassMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643FC1BF44680006FDFD9 /* HCClassMatcher.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133591C127A0F00E14741 /* HCConformsToProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5643FE1BF44680006FDFD9 /* HCConformsToProtocol.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1335A1C127A0F00E14741 /* HCHasDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644001BF44680006FDFD9 /* HCHasDescription.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1335B1C127A0F00E14741 /* HCHasProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644021BF44680006FDFD9 /* HCHasProperty.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1335C1C127A0F00E14741 /* HCIsEqual.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644041BF44680006FDFD9 /* HCIsEqual.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1335D1C127A0F00E14741 /* HCIsInstanceOf.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644061BF44680006FDFD9 /* HCIsInstanceOf.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1335E1C127A0F00E14741 /* HCIsNil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644081BF44680006FDFD9 /* HCIsNil.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1335F1C127A0F00E14741 /* HCIsSame.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56440A1BF44680006FDFD9 /* HCIsSame.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133601C127A0F00E14741 /* HCIsTypeOf.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56440C1BF44680006FDFD9 /* HCIsTypeOf.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133611C127A0F00E14741 /* HCThrowsException.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56440E1BF44680006FDFD9 /* HCThrowsException.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133621C127A0F00E14741 /* HCIsEqualIgnoringCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644111BF44680006FDFD9 /* HCIsEqualIgnoringCase.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133631C127A0F00E14741 /* HCIsEqualIgnoringWhiteSpace.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644131BF44680006FDFD9 /* HCIsEqualIgnoringWhiteSpace.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133641C127A0F00E14741 /* HCStringContains.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644151BF44680006FDFD9 /* HCStringContains.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133651C127A0F00E14741 /* HCStringContainsInOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644171BF44680006FDFD9 /* HCStringContainsInOrder.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133661C127A0F00E14741 /* HCStringEndsWith.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644191BF44680006FDFD9 /* HCStringEndsWith.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133671C127A0F00E14741 /* HCStringStartsWith.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56441B1BF44680006FDFD9 /* HCStringStartsWith.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133681C127A0F00E14741 /* HCSubstringMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56441D1BF44680006FDFD9 /* HCSubstringMatcher.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133691C127A0F00E14741 /* EveryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644201BF44680006FDFD9 /* EveryTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1336A1C127A0F00E14741 /* FakeWithCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644221BF44680006FDFD9 /* FakeWithCount.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1336B1C127A0F00E14741 /* FakeWithoutCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644241BF44680006FDFD9 /* FakeWithoutCount.m */; };
+		6BD1336C1C127A0F00E14741 /* HasCountTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644251BF44680006FDFD9 /* HasCountTest.m */; };
+		6BD1336D1C127A0F00E14741 /* IsCollectionContainingInAnyOrderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644261BF44680006FDFD9 /* IsCollectionContainingInAnyOrderTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1336E1C127A0F00E14741 /* IsCollectionContainingInOrderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644271BF44680006FDFD9 /* IsCollectionContainingInOrderTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1336F1C127A0F00E14741 /* IsCollectionContainingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644281BF44680006FDFD9 /* IsCollectionContainingTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133701C127A0F00E14741 /* IsCollectionOnlyContainingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644291BF44680006FDFD9 /* IsCollectionOnlyContainingTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133711C127A0F00E14741 /* IsDictionaryContainingEntriesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56442A1BF44680006FDFD9 /* IsDictionaryContainingEntriesTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133721C127A0F00E14741 /* IsDictionaryContainingKeyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56442B1BF44680006FDFD9 /* IsDictionaryContainingKeyTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133731C127A0F00E14741 /* IsDictionaryContainingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56442C1BF44680006FDFD9 /* IsDictionaryContainingTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133741C127A0F00E14741 /* IsDictionaryContainingValueTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56442D1BF44680006FDFD9 /* IsDictionaryContainingValueTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133751C127A0F00E14741 /* IsEmptyCollectionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56442E1BF44680006FDFD9 /* IsEmptyCollectionTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133761C127A0F00E14741 /* IsInTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56442F1BF44680006FDFD9 /* IsInTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133771C127A0F00E14741 /* Mismatchable.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644311BF44680006FDFD9 /* Mismatchable.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133781C127A0F00E14741 /* AbstractMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644341BF44680006FDFD9 /* AbstractMatcherTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133791C127A0F00E14741 /* AssertThatAfterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644351BF44680006FDFD9 /* AssertThatAfterTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1337A1C127A0F00E14741 /* AssertThatTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644361BF44680006FDFD9 /* AssertThatTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1337B1C127A0F00E14741 /* BaseMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644371BF44680006FDFD9 /* BaseMatcherTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1337C1C127A0F00E14741 /* DiagnosingMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644381BF44680006FDFD9 /* DiagnosingMatcherTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1337D1C127A0F00E14741 /* InvocationMatcherTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644391BF44680006FDFD9 /* InvocationMatcherTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1337E1C127A0F00E14741 /* StringDescriptionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56443A1BF44680006FDFD9 /* StringDescriptionTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1337F1C127A0F00E14741 /* DescribedAsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56443C1BF44680006FDFD9 /* DescribedAsTest.m */; };
+		6BD133801C127A0F00E14741 /* IsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56443D1BF44680006FDFD9 /* IsTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133811C127A0F00E14741 /* NeverMatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56443F1BF44680006FDFD9 /* NeverMatch.m */; };
+		6BD133821C127A0F00E14741 /* AllOfTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644411BF44680006FDFD9 /* AllOfTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133831C127A0F00E14741 /* AnyOfTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644421BF44680006FDFD9 /* AnyOfTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133841C127A0F00E14741 /* IsAnythingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644431BF44680006FDFD9 /* IsAnythingTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133851C127A0F00E14741 /* IsNotTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644441BF44680006FDFD9 /* IsNotTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133861C127A0F00E14741 /* IsCloseToTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644461BF44680006FDFD9 /* IsCloseToTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133871C127A0F00E14741 /* IsEqualToNumberTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644471BF44680006FDFD9 /* IsEqualToNumberTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133881C127A0F00E14741 /* IsTrueFalseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644481BF44680006FDFD9 /* IsTrueFalseTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133891C127A0F00E14741 /* NumberAssertTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644491BF44680006FDFD9 /* NumberAssertTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1338A1C127A0F00E14741 /* OrderingComparisonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56444A1BF44680006FDFD9 /* OrderingComparisonTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1338B1C127A0F00E14741 /* ConformsToProtocolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56444C1BF44680006FDFD9 /* ConformsToProtocolTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1338C1C127A0F00E14741 /* HasDescriptionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56444D1BF44680006FDFD9 /* HasDescriptionTest.m */; };
+		6BD1338D1C127A0F00E14741 /* HasPropertyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56444E1BF44680006FDFD9 /* HasPropertyTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1338E1C127A0F00E14741 /* IsEqualTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56444F1BF44680006FDFD9 /* IsEqualTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1338F1C127A0F00E14741 /* IsInstanceOfTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644501BF44680006FDFD9 /* IsInstanceOfTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133901C127A0F00E14741 /* IsNilTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644511BF44680006FDFD9 /* IsNilTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133911C127A0F00E14741 /* IsSameTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644521BF44680006FDFD9 /* IsSameTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133921C127A0F00E14741 /* IsTypeOfTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644531BF44680006FDFD9 /* IsTypeOfTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133931C127A0F00E14741 /* SomeClassAndSubclass.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644551BF44680006FDFD9 /* SomeClassAndSubclass.m */; };
+		6BD133941C127A0F00E14741 /* ThrowsExceptionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644561BF44680006FDFD9 /* ThrowsExceptionTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133951C127A0F00E14741 /* IsEqualIgnoringCaseTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644581BF44680006FDFD9 /* IsEqualIgnoringCaseTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133961C127A0F00E14741 /* IsEqualIgnoringWhiteSpaceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644591BF44680006FDFD9 /* IsEqualIgnoringWhiteSpaceTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133971C127A0F00E14741 /* StringContainsInOrderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56445A1BF44680006FDFD9 /* StringContainsInOrderTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133981C127A0F00E14741 /* StringContainsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56445B1BF44680006FDFD9 /* StringContainsTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD133991C127A0F00E14741 /* StringEndsWithTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56445C1BF44680006FDFD9 /* StringEndsWithTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1339A1C127A0F00E14741 /* StringStartsWithTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56445D1BF44680006FDFD9 /* StringStartsWithTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		6BD1339B1C127A0F00E14741 /* NSException_SenTestFailure.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644601BF44680006FDFD9 /* NSException_SenTestFailure.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6BD1339C1C127A1000E14741 /* SenInterfaceTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644621BF44680006FDFD9 /* SenInterfaceTestCase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6BD1339D1C127A1000E14741 /* SenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644641BF44680006FDFD9 /* SenTest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6BD1339E1C127A1000E14741 /* SenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644661BF44680006FDFD9 /* SenTestCase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6BD1339F1C127A1000E14741 /* SenTestCaseRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644691BF44680006FDFD9 /* SenTestCaseRun.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6BD133A01C127A1000E14741 /* SenTestClassEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56446B1BF44680006FDFD9 /* SenTestClassEnumerator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6BD133A11C127A1000E14741 /* SenTestDistributedNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56446E1BF44680006FDFD9 /* SenTestDistributedNotifier.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6BD133A21C127A1000E14741 /* SenTestingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644711BF44680006FDFD9 /* SenTestingUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6BD133A31C127A1000E14741 /* SenTestInvocationEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644731BF44680006FDFD9 /* SenTestInvocationEnumerator.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6BD133A41C127A1000E14741 /* SenTestLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644751BF44680006FDFD9 /* SenTestLog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6BD133A51C127A1000E14741 /* SenTestObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644771BF44680006FDFD9 /* SenTestObserver.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6BD133A61C127A1000E14741 /* SenTestProbe.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5644791BF44680006FDFD9 /* SenTestProbe.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6BD133A71C127A1000E14741 /* SenTestRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56447B1BF44680006FDFD9 /* SenTestRun.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6BD133A81C127A1000E14741 /* SenTestSuite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56447D1BF44680006FDFD9 /* SenTestSuite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6BD133A91C127A1000E14741 /* SenTestSuiteRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56447F1BF44680006FDFD9 /* SenTestSuiteRun.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
+		6BD133AA1C127AE500E14741 /* MNTestBlockStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC6F05E1B75774200A582C1 /* MNTestBlockStruct.m */; };
+		6BD133AB1C127AED00E14741 /* MNViewStaffStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D2E1B76A3D100C6D20B /* MNViewStaffStruct.m */; };
+		6BD133AE1C1280CA00E14741 /* MNMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD133AD1C1280CA00E14741 /* MNMTableViewCell.m */; };
+		6BD133AF1C128BF500E14741 /* NSString+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D341B77D75C00C6D20B /* NSString+MNAdditions.m */; };
+		6BD133B21C13664E00E14741 /* MNTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD133B11C13664E00E14741 /* MNTestUtils.m */; };
+		6BD133B31C13664E00E14741 /* MNTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD133B11C13664E00E14741 /* MNTestUtils.m */; };
 		6BE115641BFE7B0700961E35 /* MNBendRenderOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE115631BFE7B0700961E35 /* MNBendRenderOptions.m */; };
+		6BE400031C122DBA007573FB /* MNSheetMusicExamplesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE400021C122DBA007573FB /* MNSheetMusicExamplesTests.m */; };
 		6BF09E4B1C0910B9008590D3 /* MNAccListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09E4A1C0910B9008590D3 /* MNAccListStruct.m */; };
 		6BF09E4C1C0910B9008590D3 /* MNAccListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09E4A1C0910B9008590D3 /* MNAccListStruct.m */; };
 		6BF09E4F1C0910C9008590D3 /* MNLineListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09E4E1C0910C9008590D3 /* MNLineListStruct.m */; };
 		6BF09E501C0910C9008590D3 /* MNLineListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF09E4E1C0910C9008590D3 /* MNLineListStruct.m */; };
-		7FAB1E1F1FAA31FEC7F0088E /* Pods_MusicNotationDesktop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4244BC4459D5DA3A8CE96C5 /* Pods_MusicNotationDesktop.framework */; };
+		85159CA0EEE6C220849D9FC0 /* Pods_MusicNotationMobile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D1C2FA77A7E450CF68D1FA /* Pods_MusicNotationMobile.framework */; };
 		D278F51B1A8689AE000C57C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D278F51A1A8689AE000C57C1 /* AppDelegate.m */; };
 		D278F51D1A8689AE000C57C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D278F51C1A8689AE000C57C1 /* main.m */; };
 		D278F5201A8689AE000C57C1 /* MNBrowserWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D278F51F1A8689AE000C57C1 /* MNBrowserWindowController.m */; };
@@ -643,8 +851,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		360E7C61C35C112CEDE34238 /* Pods-MusicNotationMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationMobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationMobile/Pods-MusicNotationMobile.debug.xcconfig"; sourceTree = "<group>"; };
-		4A564D528C47A9F716C29CA5 /* Pods-MusicNotationDesktop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationDesktop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationDesktop/Pods-MusicNotationDesktop.debug.xcconfig"; sourceTree = "<group>"; };
+		180A38F4867827872B96F8D3 /* Pods-MusicNotationMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationMobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationMobile/Pods-MusicNotationMobile.debug.xcconfig"; sourceTree = "<group>"; };
+		57F41D53F602C4070678E460 /* Pods-MusicNotationDesktop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationDesktop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationDesktop/Pods-MusicNotationDesktop.debug.xcconfig"; sourceTree = "<group>"; };
+		6B0BE79A1C14A4CB0035ADCF /* MNMCarrierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNMCarrierView.h; sourceTree = "<group>"; };
+		6B0BE79B1C14A4CB0035ADCF /* MNMCarrierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNMCarrierView.m; sourceTree = "<group>"; };
+		6B0BE79D1C14E7600035ADCF /* MNNoteDrawNotesDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNNoteDrawNotesDelegate.h; sourceTree = "<group>"; };
+		6B0BE79E1C14F5F70035ADCF /* MNTestParentDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestParentDelegate.h; sourceTree = "<group>"; };
 		6B182C711C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNGraceNoteGroupListStruct.h; sourceTree = "<group>"; };
 		6B182C721C0DFBDA006F0981 /* MNGraceNoteGroupListStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNGraceNoteGroupListStruct.m; sourceTree = "<group>"; };
 		6B182C751C0E57C1006F0981 /* MNGraceNoteRenderOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNGraceNoteRenderOptions.h; sourceTree = "<group>"; };
@@ -1107,6 +1319,15 @@
 		6B4AA6741BF45CD800E56C1A /* vexflow_font.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = vexflow_font.js; sourceTree = "<group>"; };
 		6B4BC5DA1B7B9CF4002FAA76 /* MNCarrierLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNCarrierLayer.h; sourceTree = "<group>"; };
 		6B4BC5DB1B7B9CF4002FAA76 /* MNCarrierLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNCarrierLayer.m; sourceTree = "<group>"; };
+		6B4F91B41C13A21000296C6F /* Organ Run.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Organ Run.m4a"; sourceTree = "<group>"; };
+		6B4F91B51C13A21000296C6F /* Southern Rock Drums.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Southern Rock Drums.m4a"; sourceTree = "<group>"; };
+		6B4F91B61C13A21000296C6F /* Southern Rock Organ.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Southern Rock Organ.m4a"; sourceTree = "<group>"; };
+		6B4F91BB1C13A7EB00296C6F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk/System/Library/Frameworks/AudioToolbox.framework; sourceTree = DEVELOPER_DIR; };
+		6B4F91BD1C13A7F600296C6F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		6B4F91BF1C13A7FF00296C6F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.1.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
+		6B4F91C11C13A8C700296C6F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		6B4F91C31C13A8CD00296C6F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		6B4F91C51C13A8DD00296C6F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		6B5643811BF44680006FDFD9 /* HCAssertThat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAssertThat.h; sourceTree = "<group>"; };
 		6B5643821BF44680006FDFD9 /* HCAssertThat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCAssertThat.m; sourceTree = "<group>"; };
 		6B5643831BF44680006FDFD9 /* HCBaseDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCBaseDescription.h; sourceTree = "<group>"; };
@@ -1427,12 +1648,10 @@
 		6B60CDFA1BFBB4E90086B343 /* MusicNotation.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = MusicNotation.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		6B60CDFB1BFBBBB90086B343 /* License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		6B60CDFC1BFBCEE90086B343 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		6B8480A61B6D7A0900FB2B48 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
-		6B8480A71B6D7A0900FB2B48 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
-		6B8480AA1B6D7CD800FB2B48 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		6B8480AB1B6D7CD800FB2B48 /* MNTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTestViewController.m; sourceTree = "<group>"; };
-		6B8480B01B6FC4C300FB2B48 /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
-		6B8480B11B6FC4C300FB2B48 /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
+		6B8480A61B6D7A0900FB2B48 /* MNMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNMTableViewController.h; sourceTree = "<group>"; };
+		6B8480A71B6D7A0900FB2B48 /* MNMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNMTableViewController.m; sourceTree = "<group>"; };
+		6B8480AA1B6D7CD800FB2B48 /* MNMProxyTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNMProxyTestViewController.h; sourceTree = "<group>"; };
+		6B8480AB1B6D7CD800FB2B48 /* MNMProxyTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNMProxyTestViewController.m; sourceTree = "<group>"; };
 		6B8480B61B6FCF0B00FB2B48 /* MNTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestViewController.h; sourceTree = "<group>"; };
 		6B8480B71B6FCF0B00FB2B48 /* MNTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTestViewController.m; sourceTree = "<group>"; };
 		6B8631C61B235C0300786D3D /* MNTestTrie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestTrie.h; sourceTree = "<group>"; };
@@ -1441,7 +1660,6 @@
 		6B8631C91B235C0300786D3D /* MNOutlineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNOutlineViewController.m; sourceTree = "<group>"; };
 		6B8631D51B236CDE00786D3D /* MNTestType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestType.h; sourceTree = "<group>"; };
 		6B8631D81B237FC400786D3D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		6B93B6301B7001410091F5C5 /* prefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prefixHeader.pch; sourceTree = "<group>"; };
 		6B9A37251BF552C500341DF8 /* MNNoneTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNNoneTests.h; sourceTree = "<group>"; };
 		6B9A37261BF552C500341DF8 /* MNNoneTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNNoneTests.m; sourceTree = "<group>"; };
 		6B9A37281BF55DCB00341DF8 /* MNBrowserLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNBrowserLogger.h; path = src/MNBrowserLogger.h; sourceTree = "<group>"; };
@@ -1499,18 +1717,16 @@
 		6BB7EC1B1C07C91A00E09252 /* MNTableChords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTableChords.m; sourceTree = "<group>"; };
 		6BB7EC1E1C07CA3B00E09252 /* MNChordTestStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNChordTestStruct.h; sourceTree = "<group>"; };
 		6BB7EC1F1C07CA3B00E09252 /* MNChordTestStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNChordTestStruct.m; sourceTree = "<group>"; };
-		6BB7EC271C08D02600E09252 /* MusicNotationDesktop-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MusicNotationDesktop-Bridging-Header.h"; sourceTree = "<group>"; };
-		6BB7EC291C08D02600E09252 /* Polnomial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Polnomial.swift; sourceTree = "<group>"; };
 		6BBB49CF1B667EE70036081B /* MusicNotationMobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicNotationMobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BBB49D21B667EE70036081B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		6BBB49D41B667EE70036081B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		6BBB49D51B667EE70036081B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6BBB49D41B667EE70036081B /* MNMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MNMAppDelegate.h; sourceTree = "<group>"; };
+		6BBB49D51B667EE70036081B /* MNMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MNMAppDelegate.m; sourceTree = "<group>"; };
 		6BBB49DB1B667EE70036081B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6BBB49DD1B667EE70036081B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6BBB49E01B667EE70036081B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6BBB49E21B667EE70036081B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6BC6F05D1B75774200A582C1 /* MNTestTuple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestTuple.h; sourceTree = "<group>"; };
-		6BC6F05E1B75774200A582C1 /* MNTestTuple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTestTuple.m; sourceTree = "<group>"; };
+		6BC6F05D1B75774200A582C1 /* MNTestBlockStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestBlockStruct.h; sourceTree = "<group>"; };
+		6BC6F05E1B75774200A582C1 /* MNTestBlockStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTestBlockStruct.m; sourceTree = "<group>"; };
 		6BC86D241B76441C00C6D20B /* MNTestAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestAction.h; sourceTree = "<group>"; };
 		6BC86D251B76441C00C6D20B /* MNTestAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTestAction.m; sourceTree = "<group>"; };
 		6BC86D271B768BDD00C6D20B /* MNRenderLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNRenderLayer.h; sourceTree = "<group>"; };
@@ -1521,17 +1737,23 @@
 		6BC86D2E1B76A3D100C6D20B /* MNViewStaffStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNViewStaffStruct.m; sourceTree = "<group>"; };
 		6BC86D331B77D75C00C6D20B /* NSString+MNAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+MNAdditions.h"; path = "../NSString+MNAdditions.h"; sourceTree = "<group>"; };
 		6BC86D341B77D75C00C6D20B /* NSString+MNAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+MNAdditions.m"; path = "../NSString+MNAdditions.m"; sourceTree = "<group>"; };
+		6BD133AC1C1280CA00E14741 /* MNMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNMTableViewCell.h; sourceTree = "<group>"; };
+		6BD133AD1C1280CA00E14741 /* MNMTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNMTableViewCell.m; sourceTree = "<group>"; };
+		6BD133B01C13664E00E14741 /* MNTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestUtils.h; sourceTree = "<group>"; };
+		6BD133B11C13664E00E14741 /* MNTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTestUtils.m; sourceTree = "<group>"; };
 		6BE115611BFE4FFD00961E35 /* MNPadding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MNPadding.h; sourceTree = "<group>"; };
 		6BE115621BFE7B0700961E35 /* MNBendRenderOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNBendRenderOptions.h; sourceTree = "<group>"; };
 		6BE115631BFE7B0700961E35 /* MNBendRenderOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNBendRenderOptions.m; sourceTree = "<group>"; };
+		6BE400011C122DBA007573FB /* MNSheetMusicExamplesTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNSheetMusicExamplesTests.h; sourceTree = "<group>"; };
+		6BE400021C122DBA007573FB /* MNSheetMusicExamplesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNSheetMusicExamplesTests.m; sourceTree = "<group>"; };
+		6BE400061C1262EC007573FB /* MNM-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MNM-PrefixHeader.pch"; sourceTree = "<group>"; };
 		6BF09E491C0910B9008590D3 /* MNAccListStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNAccListStruct.h; sourceTree = "<group>"; };
 		6BF09E4A1C0910B9008590D3 /* MNAccListStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNAccListStruct.m; sourceTree = "<group>"; };
 		6BF09E4D1C0910C9008590D3 /* MNLineListStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNLineListStruct.h; sourceTree = "<group>"; };
 		6BF09E4E1C0910C9008590D3 /* MNLineListStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNLineListStruct.m; sourceTree = "<group>"; };
-		9A231678812A50C99C54D6FF /* Pods-MusicNotationMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationMobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationMobile/Pods-MusicNotationMobile.release.xcconfig"; sourceTree = "<group>"; };
-		AD3A7B682A9706ED5A80A0B0 /* Pods-MusicNotationDesktop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationDesktop.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationDesktop/Pods-MusicNotationDesktop.release.xcconfig"; sourceTree = "<group>"; };
-		C2798E94B3196775A40A4928 /* Pods_MusicNotationMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicNotationMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4244BC4459D5DA3A8CE96C5 /* Pods_MusicNotationDesktop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicNotationDesktop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AD24FF2A1DFE43BC7FB5697 /* Pods-MusicNotationDesktop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationDesktop.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationDesktop/Pods-MusicNotationDesktop.release.xcconfig"; sourceTree = "<group>"; };
+		82D1C2FA77A7E450CF68D1FA /* Pods_MusicNotationMobile.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicNotationMobile.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8555E94A25DCF4B33D73B0F0 /* Pods-MusicNotationMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationMobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationMobile/Pods-MusicNotationMobile.release.xcconfig"; sourceTree = "<group>"; };
 		D278F5141A8689AE000C57C1 /* MusicNotationLibraryCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MusicNotationLibraryCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D278F5181A8689AE000C57C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D278F5191A8689AE000C57C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1540,6 +1762,7 @@
 		D278F51E1A8689AE000C57C1 /* MNBrowserWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MNBrowserWindowController.h; sourceTree = "<group>"; };
 		D278F51F1A8689AE000C57C1 /* MNBrowserWindowController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MNBrowserWindowController.m; sourceTree = "<group>"; };
 		D278F5211A8689AE000C57C1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F15AA8371CC8C24BA804B386 /* Pods_MusicNotationDesktop.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MusicNotationDesktop.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1547,7 +1770,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54CBE4AB84A5D676A7096F32 /* Pods_MusicNotationMobile.framework in Frameworks */,
+				6B4F91C01C13A7FF00296C6F /* Accelerate.framework in Frameworks */,
+				6B4F91BE1C13A7F600296C6F /* AVFoundation.framework in Frameworks */,
+				6B4F91BC1C13A7EB00296C6F /* AudioToolbox.framework in Frameworks */,
+				85159CA0EEE6C220849D9FC0 /* Pods_MusicNotationMobile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1555,13 +1781,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FAB1E1F1FAA31FEC7F0088E /* Pods_MusicNotationDesktop.framework in Frameworks */,
+				6B4F91C61C13A8DD00296C6F /* Accelerate.framework in Frameworks */,
+				6B4F91C41C13A8CD00296C6F /* AVFoundation.framework in Frameworks */,
+				6B4F91C21C13A8C700296C6F /* AudioToolbox.framework in Frameworks */,
+				5E95DE263BB6171A18C03A4A /* Pods_MusicNotationDesktop.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F995727FF2FBF0026A12013 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				57F41D53F602C4070678E460 /* Pods-MusicNotationDesktop.debug.xcconfig */,
+				7AD24FF2A1DFE43BC7FB5697 /* Pods-MusicNotationDesktop.release.xcconfig */,
+				180A38F4867827872B96F8D3 /* Pods-MusicNotationMobile.debug.xcconfig */,
+				8555E94A25DCF4B33D73B0F0 /* Pods-MusicNotationMobile.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6B3185021B71335000CCB182 /* resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1919,6 +2159,8 @@
 				6B4AA5331BF459B200E56C1A /* MNRestsTest.m */,
 				6B4AA5341BF459B200E56C1A /* MNRhythmTests.h */,
 				6B4AA5351BF459B200E56C1A /* MNRhythmTests.m */,
+				6BE400011C122DBA007573FB /* MNSheetMusicExamplesTests.h */,
+				6BE400021C122DBA007573FB /* MNSheetMusicExamplesTests.m */,
 				6B4AA5361BF459B200E56C1A /* MNStaffConnectorTests.h */,
 				6B4AA5371BF459B200E56C1A /* MNStaffConnectorTests.m */,
 				6B4AA5381BF459B200E56C1A /* MNStaffHairpinTests.h */,
@@ -2140,6 +2382,16 @@
 				6B4AA6741BF45CD800E56C1A /* vexflow_font.js */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		6B4F91BA1C13A26200296C6F /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				6B4F91B41C13A21000296C6F /* Organ Run.m4a */,
+				6B4F91B51C13A21000296C6F /* Southern Rock Drums.m4a */,
+				6B4F91B61C13A21000296C6F /* Southern Rock Organ.m4a */,
+			);
+			name = resources;
 			sourceTree = "<group>";
 		};
 		6B56437F1BF44680006FDFD9 /* ochamcrest */ = {
@@ -2669,15 +2921,19 @@
 				6B2C00661B72B1600036AA76 /* MNTestCollectionItem.m */,
 				6BC86D2A1B76A31B00C6D20B /* MNTestCollectionItemView.h */,
 				6BC86D2B1B76A31B00C6D20B /* MNTestCollectionItemView.m */,
+				6B0BE79D1C14E7600035ADCF /* MNNoteDrawNotesDelegate.h */,
+				6B0BE79E1C14F5F70035ADCF /* MNTestParentDelegate.h */,
 				6B8480B61B6FCF0B00FB2B48 /* MNTestViewController.h */,
 				6B8480B71B6FCF0B00FB2B48 /* MNTestViewController.m */,
 				6B8631C61B235C0300786D3D /* MNTestTrie.h */,
 				6B8631C71B235C0300786D3D /* MNTestTrie.m */,
 				6BC86D241B76441C00C6D20B /* MNTestAction.h */,
 				6BC86D251B76441C00C6D20B /* MNTestAction.m */,
-				6BC6F05D1B75774200A582C1 /* MNTestTuple.h */,
-				6BC6F05E1B75774200A582C1 /* MNTestTuple.m */,
+				6BC6F05D1B75774200A582C1 /* MNTestBlockStruct.h */,
+				6BC6F05E1B75774200A582C1 /* MNTestBlockStruct.m */,
 				6B8631D51B236CDE00786D3D /* MNTestType.h */,
+				6BD133B01C13664E00E14741 /* MNTestUtils.h */,
+				6BD133B11C13664E00E14741 /* MNTestUtils.m */,
 				6BC86D2D1B76A3D100C6D20B /* MNViewStaffStruct.h */,
 				6BC86D2E1B76A3D100C6D20B /* MNViewStaffStruct.m */,
 				6B2C00621B72ADB20036AA76 /* MNWrappedLayout.h */,
@@ -2695,31 +2951,24 @@
 			name = "test libs";
 			sourceTree = "<group>";
 		};
-		6BB7EC221C08CFEE00E09252 /* lily */ = {
-			isa = PBXGroup;
-			children = (
-				6BB7EC291C08D02600E09252 /* Polnomial.swift */,
-				6BB7EC271C08D02600E09252 /* MusicNotationDesktop-Bridging-Header.h */,
-			);
-			name = lily;
-			sourceTree = "<group>";
-		};
 		6BBB49D01B667EE70036081B /* MusicNotationMobile */ = {
 			isa = PBXGroup;
 			children = (
-				6BBB49D41B667EE70036081B /* AppDelegate.h */,
-				6BBB49D51B667EE70036081B /* AppDelegate.m */,
-				6B8480A61B6D7A0900FB2B48 /* TableViewController.h */,
-				6B8480A71B6D7A0900FB2B48 /* TableViewController.m */,
-				6B8480AA1B6D7CD800FB2B48 /* TestViewController.h */,
-				6B8480AB1B6D7CD800FB2B48 /* MNTestViewController.m */,
-				6B8480B01B6FC4C300FB2B48 /* TestView.h */,
-				6B8480B11B6FC4C300FB2B48 /* TestView.m */,
-				6B93B6301B7001410091F5C5 /* prefixHeader.pch */,
+				6BBB49D41B667EE70036081B /* MNMAppDelegate.h */,
+				6BBB49D51B667EE70036081B /* MNMAppDelegate.m */,
+				6B8480A61B6D7A0900FB2B48 /* MNMTableViewController.h */,
+				6B8480A71B6D7A0900FB2B48 /* MNMTableViewController.m */,
+				6B8480AA1B6D7CD800FB2B48 /* MNMProxyTestViewController.h */,
+				6B8480AB1B6D7CD800FB2B48 /* MNMProxyTestViewController.m */,
+				6BD133AC1C1280CA00E14741 /* MNMTableViewCell.h */,
+				6BD133AD1C1280CA00E14741 /* MNMTableViewCell.m */,
+				6B0BE79A1C14A4CB0035ADCF /* MNMCarrierView.h */,
+				6B0BE79B1C14A4CB0035ADCF /* MNMCarrierView.m */,
 				6BBB49DA1B667EE70036081B /* Main.storyboard */,
 				6BBB49DD1B667EE70036081B /* Assets.xcassets */,
 				6BBB49DF1B667EE70036081B /* LaunchScreen.storyboard */,
 				6BBB49E21B667EE70036081B /* Info.plist */,
+				6B4F91BA1C13A26200296C6F /* resources */,
 				6BBB49D11B667EE70036081B /* Supporting Files */,
 			);
 			path = MusicNotationMobile;
@@ -2728,6 +2977,7 @@
 		6BBB49D11B667EE70036081B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6BE400061C1262EC007573FB /* MNM-PrefixHeader.pch */,
 				6BBB49D21B667EE70036081B /* main.m */,
 			);
 			name = "Supporting Files";
@@ -2736,8 +2986,14 @@
 		8B5B4F1EC62595EBFC86ABA0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C4244BC4459D5DA3A8CE96C5 /* Pods_MusicNotationDesktop.framework */,
-				C2798E94B3196775A40A4928 /* Pods_MusicNotationMobile.framework */,
+				6B4F91C51C13A8DD00296C6F /* Accelerate.framework */,
+				6B4F91C31C13A8CD00296C6F /* AVFoundation.framework */,
+				6B4F91C11C13A8C700296C6F /* AudioToolbox.framework */,
+				6B4F91BF1C13A7FF00296C6F /* Accelerate.framework */,
+				6B4F91BD1C13A7F600296C6F /* AVFoundation.framework */,
+				6B4F91BB1C13A7EB00296C6F /* AudioToolbox.framework */,
+				F15AA8371CC8C24BA804B386 /* Pods_MusicNotationDesktop.framework */,
+				82D1C2FA77A7E450CF68D1FA /* Pods_MusicNotationMobile.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2760,8 +3016,8 @@
 				D278F5161A8689AE000C57C1 /* MusicNotationDesktop */,
 				6BBB49D01B667EE70036081B /* MusicNotationMobile */,
 				D278F5151A8689AE000C57C1 /* Products */,
-				F70B78761EA89A3CDCBE02BA /* Pods */,
 				8B5B4F1EC62595EBFC86ABA0 /* Frameworks */,
+				5F995727FF2FBF0026A12013 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2777,7 +3033,6 @@
 		D278F5161A8689AE000C57C1 /* MusicNotationDesktop */ = {
 			isa = PBXGroup;
 			children = (
-				6BB7EC221C08CFEE00E09252 /* lily */,
 				6B4AA5A11BF45B0800E56C1A /* lib */,
 				6BA6F0351B1F73A100EC950C /* test libs */,
 				6B4AA3281BF4591500E56C1A /* src */,
@@ -2800,17 +3055,6 @@
 			name = "supporting files";
 			sourceTree = "<group>";
 		};
-		F70B78761EA89A3CDCBE02BA /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				4A564D528C47A9F716C29CA5 /* Pods-MusicNotationDesktop.debug.xcconfig */,
-				AD3A7B682A9706ED5A80A0B0 /* Pods-MusicNotationDesktop.release.xcconfig */,
-				360E7C61C35C112CEDE34238 /* Pods-MusicNotationMobile.debug.xcconfig */,
-				9A231678812A50C99C54D6FF /* Pods-MusicNotationMobile.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2818,12 +3062,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6BBB49E61B667EE70036081B /* Build configuration list for PBXNativeTarget "MusicNotationMobile" */;
 			buildPhases = (
-				69DF2EEE66972AA7B9C20135 /* Check Pods Manifest.lock */,
+				781838D650D4274912D72FA3 /* Check Pods Manifest.lock */,
 				6BBB49CB1B667EE70036081B /* Sources */,
 				6BBB49CC1B667EE70036081B /* Frameworks */,
 				6BBB49CD1B667EE70036081B /* Resources */,
-				17FFDCCCCE19CD99186AE352 /* Embed Pods Frameworks */,
-				21DBABAC9B7FAEA5F8C8EA02 /* Copy Pods Resources */,
+				0EC25027601060171FA94D07 /* Embed Pods Frameworks */,
+				556995A7CD4C974987BECE71 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2838,13 +3082,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D278F5341A8689AE000C57C1 /* Build configuration list for PBXNativeTarget "MusicNotationDesktop" */;
 			buildPhases = (
-				D7F64E5236EB29B3F15FC1CD /* Check Pods Manifest.lock */,
+				32C974AF38D3A03586DB0D96 /* Check Pods Manifest.lock */,
 				D278F5101A8689AE000C57C1 /* Sources */,
 				D278F5111A8689AE000C57C1 /* Frameworks */,
 				D278F5121A8689AE000C57C1 /* Resources */,
 				6B606A1D1A9AAAF000F3F73F /* CopyFiles */,
-				EAFEC2EDE95530F2348385CD /* Embed Pods Frameworks */,
-				8340354C1A7A2D1E9D736056 /* Copy Pods Resources */,
+				32C1A3F1A204C4A8390195F8 /* Embed Pods Frameworks */,
+				54066C8BFBC158CF08C9D944 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2898,16 +3142,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B4F91B71C13A23600296C6F /* Organ Run.m4a in Resources */,
+				6B4F91B81C13A23600296C6F /* Southern Rock Drums.m4a in Resources */,
+				6B4F91B91C13A23600296C6F /* Southern Rock Organ.m4a in Resources */,
 				6BBB49E11B667EE70036081B /* LaunchScreen.storyboard in Resources */,
-				6B4AA6761BF45CD800E56C1A /* Organ Run.m4a in Resources */,
 				6B4AA67E1BF45CD800E56C1A /* gonville_all.js in Resources */,
 				6BBB49DE1B667EE70036081B /* Assets.xcassets in Resources */,
 				6B4AA67C1BF45CD800E56C1A /* gonville.js in Resources */,
 				6B4AA6821BF45CD800E56C1A /* vexflow_font.js in Resources */,
-				6B4AA67A1BF45CD800E56C1A /* Southern Rock Organ.m4a in Resources */,
 				6B4AA6801BF45CD800E56C1A /* gonville_original.js in Resources */,
 				6BBB49DC1B667EE70036081B /* Main.storyboard in Resources */,
-				6B4AA6781BF45CD800E56C1A /* Southern Rock Drums.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2931,7 +3175,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		17FFDCCCCE19CD99186AE352 /* Embed Pods Frameworks */ = {
+		0EC25027601060171FA94D07 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2946,67 +3190,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MusicNotationMobile/Pods-MusicNotationMobile-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		21DBABAC9B7FAEA5F8C8EA02 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MusicNotationMobile/Pods-MusicNotationMobile-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		69DF2EEE66972AA7B9C20135 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		8340354C1A7A2D1E9D736056 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MusicNotationDesktop/Pods-MusicNotationDesktop-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D7F64E5236EB29B3F15FC1CD /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		EAFEC2EDE95530F2348385CD /* Embed Pods Frameworks */ = {
+		32C1A3F1A204C4A8390195F8 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3021,6 +3205,66 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MusicNotationDesktop/Pods-MusicNotationDesktop-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		32C974AF38D3A03586DB0D96 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		54066C8BFBC158CF08C9D944 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MusicNotationDesktop/Pods-MusicNotationDesktop-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		556995A7CD4C974987BECE71 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MusicNotationMobile/Pods-MusicNotationMobile-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		781838D650D4274912D72FA3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -3028,6 +3272,209 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BD133AF1C128BF500E14741 /* NSString+MNAdditions.m in Sources */,
+				6BD133AB1C127AED00E14741 /* MNViewStaffStruct.m in Sources */,
+				6BD133AA1C127AE500E14741 /* MNTestBlockStruct.m in Sources */,
+				6BD133211C127A0F00E14741 /* HCAssertThat.m in Sources */,
+				6BD133221C127A0F00E14741 /* HCBaseDescription.m in Sources */,
+				6BD133231C127A0F00E14741 /* HCBaseMatcher.m in Sources */,
+				6BD133241C127A0F00E14741 /* HCDiagnosingMatcher.m in Sources */,
+				6BD133251C127A0F00E14741 /* HCStringDescription.m in Sources */,
+				6BD133261C127A0F00E14741 /* HCCollect.m in Sources */,
+				6BD133271C127A0F00E14741 /* HCInvocationMatcher.m in Sources */,
+				6BD133281C127A0F00E14741 /* HCRequireNonNilObject.m in Sources */,
+				6BD133291C127A0F00E14741 /* HCWrapInMatcher.m in Sources */,
+				6BD1332A1C127A0F00E14741 /* NSInvocation+OCHamcrest.m in Sources */,
+				6BD1332B1C127A0F00E14741 /* HCBoolReturnGetter.m in Sources */,
+				6BD1332C1C127A0F00E14741 /* HCCharReturnGetter.m in Sources */,
+				6BD1332D1C127A0F00E14741 /* HCDoubleReturnGetter.m in Sources */,
+				6BD133B31C13664E00E14741 /* MNTestUtils.m in Sources */,
+				6BD1332E1C127A0F00E14741 /* HCFloatReturnGetter.m in Sources */,
+				6BD1332F1C127A0F00E14741 /* HCIntReturnGetter.m in Sources */,
+				6BD133301C127A0F00E14741 /* HCLongLongReturnGetter.m in Sources */,
+				6BD133311C127A0F00E14741 /* HCLongReturnGetter.m in Sources */,
+				6BD133321C127A0F00E14741 /* HCObjectReturnGetter.m in Sources */,
+				6BD133331C127A0F00E14741 /* HCReturnTypeHandlerChain.m in Sources */,
+				6BD133341C127A0F00E14741 /* HCReturnValueGetter.m in Sources */,
+				6BD133351C127A0F00E14741 /* HCShortReturnGetter.m in Sources */,
+				6BD133361C127A0F00E14741 /* HCUnsignedCharReturnGetter.m in Sources */,
+				6BD133371C127A0F00E14741 /* HCUnsignedIntReturnGetter.m in Sources */,
+				6BD133381C127A0F00E14741 /* HCUnsignedLongLongReturnGetter.m in Sources */,
+				6BD133391C127A0F00E14741 /* HCUnsignedLongReturnGetter.m in Sources */,
+				6BD1333A1C127A0F00E14741 /* HCUnsignedShortReturnGetter.m in Sources */,
+				6BD1333B1C127A0F00E14741 /* HCGenericTestFailureHandler.m in Sources */,
+				6BD1333C1C127A0F00E14741 /* HCSenTestFailureHandler.m in Sources */,
+				6BD1333D1C127A0F00E14741 /* HCTestFailure.m in Sources */,
+				6BD1333E1C127A0F00E14741 /* HCTestFailureHandler.m in Sources */,
+				6BD1333F1C127A0F00E14741 /* HCTestFailureHandlerChain.m in Sources */,
+				6BD133401C127A0F00E14741 /* HCXCTestFailureHandler.m in Sources */,
+				6BD133411C127A0F00E14741 /* HCEvery.m in Sources */,
+				6BD133421C127A0F00E14741 /* HCHasCount.m in Sources */,
+				6BD133431C127A0F00E14741 /* HCIsCollectionContaining.m in Sources */,
+				6BD133441C127A0F00E14741 /* HCIsCollectionContainingInAnyOrder.m in Sources */,
+				6BD133451C127A0F00E14741 /* HCIsCollectionContainingInOrder.m in Sources */,
+				6BD133461C127A0F00E14741 /* HCIsCollectionOnlyContaining.m in Sources */,
+				6BD133471C127A0F00E14741 /* HCIsDictionaryContaining.m in Sources */,
+				6BD133481C127A0F00E14741 /* HCIsDictionaryContainingEntries.m in Sources */,
+				6BD133491C127A0F00E14741 /* HCIsDictionaryContainingKey.m in Sources */,
+				6BD1334A1C127A0F00E14741 /* HCIsDictionaryContainingValue.m in Sources */,
+				6BD1334B1C127A0F00E14741 /* HCIsEmptyCollection.m in Sources */,
+				6BD1334C1C127A0F00E14741 /* HCIsIn.m in Sources */,
+				6BD1334D1C127A0F00E14741 /* HCDescribedAs.m in Sources */,
+				6BD1334E1C127A0F00E14741 /* HCIs.m in Sources */,
+				6BD1334F1C127A0F00E14741 /* HCAllOf.m in Sources */,
+				6B0BE79C1C14A4CB0035ADCF /* MNMCarrierView.m in Sources */,
+				6BD133501C127A0F00E14741 /* HCAnyOf.m in Sources */,
+				6BD133511C127A0F00E14741 /* HCIsAnything.m in Sources */,
+				6BD133521C127A0F00E14741 /* HCIsNot.m in Sources */,
+				6BD133531C127A0F00E14741 /* HCIsCloseTo.m in Sources */,
+				6BD133541C127A0F00E14741 /* HCIsEqualToNumber.m in Sources */,
+				6BD133551C127A0F00E14741 /* HCIsTrueFalse.m in Sources */,
+				6BD133561C127A0F00E14741 /* HCNumberAssert.m in Sources */,
+				6BD133571C127A0F00E14741 /* HCOrderingComparison.m in Sources */,
+				6BD133581C127A0F00E14741 /* HCClassMatcher.m in Sources */,
+				6BD133591C127A0F00E14741 /* HCConformsToProtocol.m in Sources */,
+				6BD1335A1C127A0F00E14741 /* HCHasDescription.m in Sources */,
+				6BD1335B1C127A0F00E14741 /* HCHasProperty.m in Sources */,
+				6BD1335C1C127A0F00E14741 /* HCIsEqual.m in Sources */,
+				6BD1335D1C127A0F00E14741 /* HCIsInstanceOf.m in Sources */,
+				6BD1335E1C127A0F00E14741 /* HCIsNil.m in Sources */,
+				6BD1335F1C127A0F00E14741 /* HCIsSame.m in Sources */,
+				6BD133601C127A0F00E14741 /* HCIsTypeOf.m in Sources */,
+				6BD133611C127A0F00E14741 /* HCThrowsException.m in Sources */,
+				6BD133621C127A0F00E14741 /* HCIsEqualIgnoringCase.m in Sources */,
+				6BD133631C127A0F00E14741 /* HCIsEqualIgnoringWhiteSpace.m in Sources */,
+				6BD133641C127A0F00E14741 /* HCStringContains.m in Sources */,
+				6BD133651C127A0F00E14741 /* HCStringContainsInOrder.m in Sources */,
+				6BD133661C127A0F00E14741 /* HCStringEndsWith.m in Sources */,
+				6BD133671C127A0F00E14741 /* HCStringStartsWith.m in Sources */,
+				6BD133681C127A0F00E14741 /* HCSubstringMatcher.m in Sources */,
+				6BD133691C127A0F00E14741 /* EveryTest.m in Sources */,
+				6BD1336A1C127A0F00E14741 /* FakeWithCount.m in Sources */,
+				6BD1336B1C127A0F00E14741 /* FakeWithoutCount.m in Sources */,
+				6BD1336C1C127A0F00E14741 /* HasCountTest.m in Sources */,
+				6BD1336D1C127A0F00E14741 /* IsCollectionContainingInAnyOrderTest.m in Sources */,
+				6BD1336E1C127A0F00E14741 /* IsCollectionContainingInOrderTest.m in Sources */,
+				6BD1336F1C127A0F00E14741 /* IsCollectionContainingTest.m in Sources */,
+				6BD133701C127A0F00E14741 /* IsCollectionOnlyContainingTest.m in Sources */,
+				6BD133711C127A0F00E14741 /* IsDictionaryContainingEntriesTest.m in Sources */,
+				6BD133721C127A0F00E14741 /* IsDictionaryContainingKeyTest.m in Sources */,
+				6BD133731C127A0F00E14741 /* IsDictionaryContainingTest.m in Sources */,
+				6BD133741C127A0F00E14741 /* IsDictionaryContainingValueTest.m in Sources */,
+				6BD133751C127A0F00E14741 /* IsEmptyCollectionTest.m in Sources */,
+				6BD133761C127A0F00E14741 /* IsInTest.m in Sources */,
+				6BD133771C127A0F00E14741 /* Mismatchable.m in Sources */,
+				6BD133781C127A0F00E14741 /* AbstractMatcherTest.m in Sources */,
+				6BD133791C127A0F00E14741 /* AssertThatAfterTest.m in Sources */,
+				6BD1337A1C127A0F00E14741 /* AssertThatTest.m in Sources */,
+				6BD1337B1C127A0F00E14741 /* BaseMatcherTest.m in Sources */,
+				6BD1337C1C127A0F00E14741 /* DiagnosingMatcherTest.m in Sources */,
+				6BD1337D1C127A0F00E14741 /* InvocationMatcherTest.m in Sources */,
+				6BD1337E1C127A0F00E14741 /* StringDescriptionTest.m in Sources */,
+				6BD1337F1C127A0F00E14741 /* DescribedAsTest.m in Sources */,
+				6BD133801C127A0F00E14741 /* IsTest.m in Sources */,
+				6BD133AE1C1280CA00E14741 /* MNMTableViewCell.m in Sources */,
+				6BD133811C127A0F00E14741 /* NeverMatch.m in Sources */,
+				6BD133821C127A0F00E14741 /* AllOfTest.m in Sources */,
+				6BD133831C127A0F00E14741 /* AnyOfTest.m in Sources */,
+				6BD133841C127A0F00E14741 /* IsAnythingTest.m in Sources */,
+				6BD133851C127A0F00E14741 /* IsNotTest.m in Sources */,
+				6BD133861C127A0F00E14741 /* IsCloseToTest.m in Sources */,
+				6BD133871C127A0F00E14741 /* IsEqualToNumberTest.m in Sources */,
+				6BD133881C127A0F00E14741 /* IsTrueFalseTest.m in Sources */,
+				6BD133891C127A0F00E14741 /* NumberAssertTest.m in Sources */,
+				6BD1338A1C127A0F00E14741 /* OrderingComparisonTest.m in Sources */,
+				6BD1338B1C127A0F00E14741 /* ConformsToProtocolTest.m in Sources */,
+				6BD1338C1C127A0F00E14741 /* HasDescriptionTest.m in Sources */,
+				6BD1338D1C127A0F00E14741 /* HasPropertyTest.m in Sources */,
+				6BD1338E1C127A0F00E14741 /* IsEqualTest.m in Sources */,
+				6BD1338F1C127A0F00E14741 /* IsInstanceOfTest.m in Sources */,
+				6BD133901C127A0F00E14741 /* IsNilTest.m in Sources */,
+				6BD133911C127A0F00E14741 /* IsSameTest.m in Sources */,
+				6BD133921C127A0F00E14741 /* IsTypeOfTest.m in Sources */,
+				6BD133931C127A0F00E14741 /* SomeClassAndSubclass.m in Sources */,
+				6BD133941C127A0F00E14741 /* ThrowsExceptionTest.m in Sources */,
+				6BD133951C127A0F00E14741 /* IsEqualIgnoringCaseTest.m in Sources */,
+				6BD133961C127A0F00E14741 /* IsEqualIgnoringWhiteSpaceTest.m in Sources */,
+				6BD133971C127A0F00E14741 /* StringContainsInOrderTest.m in Sources */,
+				6BD133981C127A0F00E14741 /* StringContainsTest.m in Sources */,
+				6BD133991C127A0F00E14741 /* StringEndsWithTest.m in Sources */,
+				6BD1339A1C127A0F00E14741 /* StringStartsWithTest.m in Sources */,
+				6BD1339B1C127A0F00E14741 /* NSException_SenTestFailure.m in Sources */,
+				6BD1339C1C127A1000E14741 /* SenInterfaceTestCase.m in Sources */,
+				6BD1339D1C127A1000E14741 /* SenTest.m in Sources */,
+				6BD1339E1C127A1000E14741 /* SenTestCase.m in Sources */,
+				6BD1339F1C127A1000E14741 /* SenTestCaseRun.m in Sources */,
+				6BD133A01C127A1000E14741 /* SenTestClassEnumerator.m in Sources */,
+				6BD133A11C127A1000E14741 /* SenTestDistributedNotifier.m in Sources */,
+				6BD133A21C127A1000E14741 /* SenTestingUtilities.m in Sources */,
+				6BD133A31C127A1000E14741 /* SenTestInvocationEnumerator.m in Sources */,
+				6BD133A41C127A1000E14741 /* SenTestLog.m in Sources */,
+				6BD133A51C127A1000E14741 /* SenTestObserver.m in Sources */,
+				6BD133A61C127A1000E14741 /* SenTestProbe.m in Sources */,
+				6BD133A71C127A1000E14741 /* SenTestRun.m in Sources */,
+				6BD133A81C127A1000E14741 /* SenTestSuite.m in Sources */,
+				6BD133A91C127A1000E14741 /* SenTestSuiteRun.m in Sources */,
+				6BD132E91C12790800E14741 /* MNAccidentalTests.m in Sources */,
+				6BD132EA1C12790800E14741 /* MNAnimationTests.m in Sources */,
+				6BD132EB1C12790800E14741 /* MNAnnotationTests.m in Sources */,
+				6BD132EC1C12790800E14741 /* MNArticulationTests.m in Sources */,
+				6BD132ED1C12790800E14741 /* MNAutoBeamFormattingTests.m in Sources */,
+				6BD132EE1C12790800E14741 /* MNBeamTests.m in Sources */,
+				6BD132EF1C12790800E14741 /* MNBendTests.m in Sources */,
+				6BD132F01C12790800E14741 /* MNBoundingBoxTests.m in Sources */,
+				6BD132F11C12790800E14741 /* MNChordTest.m in Sources */,
+				6BD132F21C12790800E14741 /* MNClefTests.m in Sources */,
+				6BD132F31C12790800E14741 /* MNCurveTests.m in Sources */,
+				6BD132F41C12790800E14741 /* MNDotTests.m in Sources */,
+				6BD132F51C12790800E14741 /* MNFontTests.m in Sources */,
+				6BD132F61C12790800E14741 /* MNFormatterTests.m in Sources */,
+				6BD132F71C12790800E14741 /* MNGraceNoteTests.m in Sources */,
+				6BD132F81C12790800E14741 /* MNKeyClefTests.m in Sources */,
+				6BD132F91C12790800E14741 /* MNKeyManagerTests.m in Sources */,
+				6BD132FA1C12790800E14741 /* MNKeySignatureTests.m in Sources */,
+				6BD132FB1C12790800E14741 /* MNLayerNoteTests.m in Sources */,
+				6BD132FC1C12790800E14741 /* MNMockTickable.m in Sources */,
+				6BD132FD1C12790800E14741 /* MNModifierTests.m in Sources */,
+				6BD132FE1C12790800E14741 /* MNMusicTests.m in Sources */,
+				6BD132FF1C12790800E14741 /* MNNodeTests.m in Sources */,
+				6BD133001C12790800E14741 /* MNNoneTests.m in Sources */,
+				6BD133011C12790800E14741 /* MNNotationsGridTests.m in Sources */,
+				6BD133021C12790800E14741 /* MNNoteHeadTests.m in Sources */,
+				6BD133031C12790800E14741 /* MNOrnamentTests.m in Sources */,
+				6BD133041C12790800E14741 /* MNPedalMarkingTests.m in Sources */,
+				6BD133051C12790800E14741 /* MNPercussionTests.m in Sources */,
+				6BD133061C12790800E14741 /* MNRestsTest.m in Sources */,
+				6BD133071C12790800E14741 /* MNRhythmTests.m in Sources */,
+				6BD133081C12790800E14741 /* MNSheetMusicExamplesTests.m in Sources */,
+				6BD133091C12790800E14741 /* MNStaffConnectorTests.m in Sources */,
+				6BD1330A1C12790800E14741 /* MNStaffHairpinTests.m in Sources */,
+				6BD1330B1C12790800E14741 /* MNStaffLineTests.m in Sources */,
+				6BD1330C1C12790800E14741 /* MNStaffModifierTests.m in Sources */,
+				6BD1330D1C12790800E14741 /* MNStaffNoteTests.m in Sources */,
+				6BD1330E1C12790800E14741 /* MNStaffTests.m in Sources */,
+				6BD1330F1C12790800E14741 /* MNStaffTieTests.m in Sources */,
+				6BD133101C12790800E14741 /* MNStringNumberTests.m in Sources */,
+				6BD133111C12790800E14741 /* MNStrokesTests.m in Sources */,
+				6BD133121C12790800E14741 /* MNTableTests.m in Sources */,
+				6BD133131C12790800E14741 /* MNTabNoteTests.m in Sources */,
+				6BD133141C12790800E14741 /* MNTabSlideTests.m in Sources */,
+				6BD133151C12790800E14741 /* MNTabStaffTests.m in Sources */,
+				6BD133161C12790800E14741 /* MNTabTieTests.m in Sources */,
+				6BD133171C12790800E14741 /* MNTextBracketTests.m in Sources */,
+				6BD133181C12790800E14741 /* MNTextNoteTests.m in Sources */,
+				6BD133191C12790800E14741 /* MNTextTests.m in Sources */,
+				6BD1331A1C12790800E14741 /* MNThreeVoiceTests.m in Sources */,
+				6BD1331B1C12790800E14741 /* MNTickContextTests.m in Sources */,
+				6BD1331C1C12790800E14741 /* MNTimeSignatureTests.m in Sources */,
+				6BD1331D1C12790800E14741 /* MNTuningTests.m in Sources */,
+				6BD1331E1C12790800E14741 /* MNTupletTests.m in Sources */,
+				6BD1331F1C12790800E14741 /* MNVibratoTests.m in Sources */,
+				6BD133201C12790800E14741 /* MNVoiceTests.m in Sources */,
+				6BD132E81C126EB100E14741 /* MNTestAction.m in Sources */,
+				6BD132E71C126EA900E14741 /* MNRenderLayer.m in Sources */,
+				6BD132E61C126EA300E14741 /* MNCarrierLayer.m in Sources */,
+				6BD132E41C126E9000E14741 /* MNBendRenderOptions.m in Sources */,
 				6B4AA6521BF45B0800E56C1A /* Option.m in Sources */,
 				6B4AA6441BF45B0800E56C1A /* NoSuchElementException.m in Sources */,
 				6BAF42911C0289A000C82A4A /* MNTuningNames.m in Sources */,
@@ -3140,7 +3587,6 @@
 				6B4AA6461BF45B0800E56C1A /* NSArray+OCTotallyLazy.m in Sources */,
 				6B4AA4B21BF4591500E56C1A /* MNStaffTempo.m in Sources */,
 				6B4AA6141BF45B0800E56C1A /* NSArray+MNAdditions.m in Sources */,
-				6BB7EC2B1C08D02600E09252 /* Polnomial.swift in Sources */,
 				6B4AA6121BF45B0800E56C1A /* JSONKit.m in Sources */,
 				6B4AA4881BF4591500E56C1A /* MNPedalMarking.m in Sources */,
 				6B182C9C1C0FEBF2006F0981 /* MNStaffLineNotesStruct.m in Sources */,
@@ -3216,15 +3662,14 @@
 				6B4AA6621BF45B0800E56C1A /* Sequence.m in Sources */,
 				6B4AA4981BF4591500E56C1A /* MNShapeLayer.m in Sources */,
 				6B8480BA1B6FD4BE00FB2B48 /* MNTestViewController.m in Sources */,
-				6B8480A81B6D7A0900FB2B48 /* TableViewController.m in Sources */,
+				6B8480A81B6D7A0900FB2B48 /* MNMTableViewController.m in Sources */,
 				6BAF42991C028AB800C82A4A /* MNVoiceTime.m in Sources */,
 				6B4AA6681BF45B0800E56C1A /* TakeWhileEnumerator.m in Sources */,
-				6BBB49D61B667EE70036081B /* AppDelegate.m in Sources */,
-				6B8480B21B6FC4C300FB2B48 /* TestView.m in Sources */,
+				6BBB49D61B667EE70036081B /* MNMAppDelegate.m in Sources */,
 				6B182CA01C0FEEFA006F0981 /* MNNoteMetrics.m in Sources */,
 				6BBB49D31B667EE70036081B /* main.m in Sources */,
 				6B4AA44E1BF4591500E56C1A /* MNGlyph.m in Sources */,
-				6B8480AC1B6D7CD800FB2B48 /* MNTestViewController.m in Sources */,
+				6B8480AC1B6D7CD800FB2B48 /* MNMProxyTestViewController.m in Sources */,
 				6B4AA6661BF45B0800E56C1A /* Some.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3392,6 +3837,7 @@
 				6B56449F1BF44680006FDFD9 /* HCXCTestFailureHandler.m in Sources */,
 				6B4AA58F1BF459B200E56C1A /* MNStringNumberTests.m in Sources */,
 				6B5645071BF44680006FDFD9 /* SenTestSuite.m in Sources */,
+				6BE400031C122DBA007573FB /* MNSheetMusicExamplesTests.m in Sources */,
 				6B4AA58C1BF459B200E56C1A /* MNStaffNoteTests.m in Sources */,
 				6B4AA57C1BF459B200E56C1A /* MNLayerNoteTests.m in Sources */,
 				6B5644D61BF44680006FDFD9 /* Mismatchable.m in Sources */,
@@ -3410,6 +3856,7 @@
 				6B4AA5771BF459B200E56C1A /* MNGraceNoteTests.m in Sources */,
 				6B182C7F1C0E8B3E006F0981 /* DPObjectProperty.m in Sources */,
 				6B5644D51BF44680006FDFD9 /* IsInTest.m in Sources */,
+				6BD133B21C13664E00E14741 /* MNTestUtils.m in Sources */,
 				6B4AA4471BF4591500E56C1A /* MNFormatter.m in Sources */,
 				6B5644C61BF44680006FDFD9 /* HCStringStartsWith.m in Sources */,
 				6B4AA6591BF45B0800E56C1A /* Predicates.m in Sources */,
@@ -3419,7 +3866,7 @@
 				6B5645081BF44680006FDFD9 /* SenTestSuiteRun.m in Sources */,
 				6B2DB7D11C09F48E00498848 /* MNTimeSignatureGlyphMetrics.m in Sources */,
 				6B5644891BF44680006FDFD9 /* NSInvocation+OCHamcrest.m in Sources */,
-				6BC6F05F1B75774200A582C1 /* MNTestTuple.m in Sources */,
+				6BC6F05F1B75774200A582C1 /* MNTestBlockStruct.m in Sources */,
 				6B2C00671B72B1600036AA76 /* MNTestCollectionItem.m in Sources */,
 				6BB7EC041C0628E800E09252 /* MNTabNotePositionsStruct.m in Sources */,
 				6B4AA4951BF4591500E56C1A /* MNRenderOptions.m in Sources */,
@@ -3562,7 +4009,6 @@
 				6BB7EC201C07CA3B00E09252 /* MNChordTestStruct.m in Sources */,
 				6BE115641BFE7B0700961E35 /* MNBendRenderOptions.m in Sources */,
 				6B5644FB1BF44680006FDFD9 /* SenInterfaceTestCase.m in Sources */,
-				6BB7EC2A1C08D02600E09252 /* Polnomial.swift in Sources */,
 				6B5644F81BF44680006FDFD9 /* StringEndsWithTest.m in Sources */,
 				6B4AA4391BF4591500E56C1A /* MNCrescendo.m in Sources */,
 				6B4AA60F1BF45B0800E56C1A /* IAModelCollectionBase.m in Sources */,
@@ -3661,7 +4107,7 @@
 /* Begin XCBuildConfiguration section */
 		6BBB49E31B667EE70036081B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 360E7C61C35C112CEDE34238 /* Pods-MusicNotationMobile.debug.xcconfig */;
+			baseConfigurationReference = 180A38F4867827872B96F8D3 /* Pods-MusicNotationMobile.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -3670,25 +4116,13 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "MusicNotationMobile/MTM-prefixHeader.pch";
+				GCC_PREFIX_HEADER = "MusicNotationMobile/MNM-PrefixHeader.pch";
 				INFOPLIST_FILE = MusicNotationMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
-					"\"CocoaLumberjack\"",
-					"-framework",
-					"\"CoreParse\"",
-					"-framework",
-					"\"ReactiveCocoa\"",
-					"-framework",
-					"\"ReflectableEnum\"",
-					"-framework",
-					"\"TheAmazingAudioEngine\"",
 					"-licucore",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.slcott.MusicNotationMobile;
@@ -3702,7 +4136,7 @@
 		};
 		6BBB49E41B667EE70036081B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9A231678812A50C99C54D6FF /* Pods-MusicNotationMobile.release.xcconfig */;
+			baseConfigurationReference = 8555E94A25DCF4B33D73B0F0 /* Pods-MusicNotationMobile.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -3710,25 +4144,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "MusicNotationMobile/MTM-prefixHeader.pch";
+				GCC_PREFIX_HEADER = "MusicNotationMobile/MNM-PrefixHeader.pch";
 				INFOPLIST_FILE = MusicNotationMobile/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-framework",
-					"\"AFNetworking\"",
-					"-framework",
-					"\"CocoaLumberjack\"",
-					"-framework",
-					"\"CoreParse\"",
-					"-framework",
-					"\"ReactiveCocoa\"",
-					"-framework",
-					"\"ReflectableEnum\"",
-					"-framework",
-					"\"TheAmazingAudioEngine\"",
 					"-licucore",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.slcott.MusicNotationMobile;
@@ -3835,7 +4257,7 @@
 		};
 		D278F5351A8689AE000C57C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A564D528C47A9F716C29CA5 /* Pods-MusicNotationDesktop.debug.xcconfig */;
+			baseConfigurationReference = 57F41D53F602C4070678E460 /* Pods-MusicNotationDesktop.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -3877,7 +4299,7 @@
 		};
 		D278F5361A8689AE000C57C1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AD3A7B682A9706ED5A80A0B0 /* Pods-MusicNotationDesktop.release.xcconfig */;
+			baseConfigurationReference = 7AD24FF2A1DFE43BC7FB5697 /* Pods-MusicNotationDesktop.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

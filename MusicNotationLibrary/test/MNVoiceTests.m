@@ -36,7 +36,7 @@
     [super start];
     [self runTest:@"Strict Test" func:@selector(strict)];
     [self runTest:@"Ignore Test" func:@selector(ignore)];
-    [self runTest:@"Full Voice Mode Test" func:@selector(full:withTitle:) frame:CGRectMake(0, 0, 550, 200)];
+    [self runTest:@"Full Voice Mode Test" func:@selector(full:) frame:CGRectMake(0, 0, 550, 200)];
 }
 
 - (void)tearDown
@@ -136,9 +136,9 @@
     ok(YES, @"all pass");
 }
 
-- (MNTestTuple*)full:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)full:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 

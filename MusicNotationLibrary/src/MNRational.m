@@ -194,7 +194,7 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
     {
         bit = @"";
     }
-    return [NSString stringWithFormat:@"%@ %ld / %ld", bit, self.numerator, self.denominator];
+    return [NSString stringWithFormat:@"%@ %tu / %tu", bit, self.numerator, self.denominator];
 }
 
 - (NSString*)getMixedString
@@ -204,7 +204,7 @@ typedef NSInteger (^Operation)(NSInteger operand1, NSInteger operand2);
     [ret appendFormat:@""];
     NSInteger q = [self quotient];
     MNRational* f = [self clone];
-    [ret appendFormat:@" %ld", [f quotient]];   //
+    [ret appendFormat:@" %ti", [f quotient]];   //
     if(q < 0)
     {
         t = [[f abs] rational];

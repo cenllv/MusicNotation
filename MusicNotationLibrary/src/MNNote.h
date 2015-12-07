@@ -84,8 +84,8 @@ typedef void (^StyleBlock)(CGContextRef);
     BOOL _ignoreTicks;
     //    float _width;
     //    MNRational* _ticks;
-    float _extraLeftPx;
-    float _extraRightPx;
+//    float _extraLeftPx;
+//    float _extraRightPx;
     //    BOOL _centerAlign;
     //    float _width;
 }
@@ -207,8 +207,9 @@ typedef void (^StyleBlock)(CGContextRef);
 /*!
  *  Sets the target staff.
  *  @param staff the target staff
+ *  @return this object
  */
-- (void)setStaff:(MNStaff*)staff;
+- (id)setStaff:(MNStaff*)staff;
 
 ///*!
 // *  Get spacing to the left of the notes.

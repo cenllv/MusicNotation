@@ -47,7 +47,7 @@
 @implementation MNModifier
 
 @synthesize x = _x;
-@synthesize ticks = _ticks;
+//@synthesize ticks = _ticks;
 //@synthesize x_shift = _x_shift;
 @synthesize shouldIgnoreTicks = _shouldIgnoreTicks;
 
@@ -128,8 +128,32 @@
 
 #pragma mark - Properties
 
-// Shift modifier `x` pixels in the direction of the modifier. Negative values
-// shift reverse.
+/*!
+ *  sets the parent staff
+ *  @param staff the staff
+ *  @return this object
+ */
+- (id)setStaff:(MNStaff*)staff
+{
+    _staff = staff;
+    return self;
+}
+
+/*!
+ *  gets the staff
+ *  @return the staff
+ */
+- (MNStaff*)staff
+{
+    return _staff;
+}
+
+/*!
+ *  Shift modifier `x` pixels in the direction of the modifier. Negative values
+ *  shift reverse.
+ *  @param xShift the points to shift this
+ *  @return this object
+ */
 - (id)setXShift:(float)xShift
 {
     _xShift = 0;
@@ -147,6 +171,28 @@
 - (float)xShift
 {
     return _xShift;
+}
+
+- (id)setExtraLeftPx:(float)extraLeftPx
+{
+    _extraLeftPx = extraLeftPx;
+    return self;
+}
+
+- (float)extraLeftPx
+{
+    return _extraLeftPx;
+}
+
+- (id)setExtraRightPx:(float)extraRightPx
+{
+    _extraRightPx = extraRightPx;
+    return self;
+}
+
+- (float)extraRightPx
+{
+    return _extraRightPx;
 }
 
 - (id)setPosition:(MNPositionType)position
@@ -246,6 +292,12 @@
         MNLogError(@"NoVoice, Tickable has no voice.");
     }
     return _voice;
+}
+
+- (id)setVoice:(MNVoice*)voice
+{
+    _voice = voice;
+    return self;
 }
 
 - (MNNote*)note
@@ -364,6 +416,12 @@
         _ticks = RationalZero();
     }
     return _ticks;
+}
+
+- (id)setTicks:(MNRational *)ticks
+{
+    _ticks = ticks;
+    return self;
 }
 
 - (void)setIntrinsicTicks:(NSUInteger)intrinsicTicks

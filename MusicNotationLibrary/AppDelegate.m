@@ -58,6 +58,13 @@
     if(browserWindow)
     {
     }
+
+    // Create an instance of the audio controller, set it up and start it running
+    AudioStreamBasicDescription asbd = AEAudioStreamBasicDescriptionNonInterleavedFloatStereo;
+
+    self.audioController = [[AEAudioController alloc] initWithAudioDescription:asbd inputEnabled:YES];
+    self.audioController.preferredBufferDuration = 0.005;
+    [self.audioController start:NULL];
 }
 
 - (void)applicationWillTerminate:(NSNotification*)aNotification
@@ -73,7 +80,9 @@
     if(bwc.repeatLastTestCheckBox.state == 1)
     {
         [[NSUserDefaults standardUserDefaults] setObject:@(bwc.testType) forKey:@"lastTest"];
-    } else {
+    }
+    else
+    {
         [[NSUserDefaults standardUserDefaults] setObject:@(NoneTestType) forKey:@"lastTest"];
     }
 }

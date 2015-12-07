@@ -30,20 +30,20 @@
 #import "NSArray+MNAdditions.h"
 #import "OCTotallyLazy.h"
 
-@interface NotesTabStavesStruct : IAModelBase
+@interface MNNotesTabStavesStruct : IAModelBase
 @property (strong, nonatomic) MNStaff* notesStaff;
 @property (strong, nonatomic) MNStaff* tabStaff;
 @end
 
-@implementation NotesTabStavesStruct
+@implementation MNNotesTabStavesStruct
 @end
 
-@interface NotesTabNotesStruct : IAModelBase
+@interface MNNotesTabNotesStruct : IAModelBase
 @property (strong, nonatomic) NSArray* notes;
 @property (strong, nonatomic) NSArray* tabNotes;
 @end
 
-@implementation NotesTabNotesStruct
+@implementation MNNotesTabNotesStruct
 @end
 
 @implementation MNStrokesTests
@@ -66,35 +66,10 @@
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
+
+- (MNTestBlockStruct*)drawMultipleMeasures:(id<MNTestParentDelegate>)parent
 {
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-    //    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-    //    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
-
-- (MNTestTuple*)drawMultipleMeasures:(MNTestCollectionItemView*)parent
-{
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     // bar 1
     MNStaff* staffBar1 = [MNStaff staffWithRect:CGRectMake(10, 30, 250, 0)];
     [staffBar1 setEndBarType:MNBarLineDouble];
@@ -165,9 +140,9 @@
     return ret;
 }
 
-- (MNTestTuple*)multi:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)multi:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -261,9 +236,9 @@
     return ret;
 }
 
-- (MNTestTuple*)multiNotationAndTab:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)multiNotationAndTab:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -419,9 +394,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawTabStrokes:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawTabStrokes:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNTabNote* (^newTabNote)(NSDictionary*) = ^MNTabNote*(NSDictionary* note_struct)
     {
         return [[MNTabNote alloc] initWithDictionary:note_struct];
@@ -523,7 +498,7 @@
     return ret;
 }
 
-+ (NotesTabNotesStruct*)getTabNotes
++ (MNNotesTabNotesStruct*)getTabNotes
 {
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
@@ -661,29 +636,28 @@
     [tabs1[4] addStroke:tabStr5 atIndex:0];
     [tabs1[5] addStroke:tabStr6 atIndex:0];
 
-    NotesTabNotesStruct* ret = [[NotesTabNotesStruct alloc] init];
+    MNNotesTabNotesStruct* ret = [[MNNotesTabNotesStruct alloc] init];
     ret.notes = notes1;
     ret.tabNotes = tabs1;
     return ret;
 }
 
-+ (void)renderNotesWithTab:(NotesTabNotesStruct*)notes
++ (void)renderNotesWithTab:(MNNotesTabNotesStruct*)notes
                    context:(CGContextRef)ctx
                  dirtyRect:(CGRect)dirtyRect
-                    staves:(NotesTabStavesStruct*)staves
-                   justify:(NSUInteger)justify
+                    staves:(MNNotesTabStavesStruct*)staves
+                   justify:(float)justify
 {
     MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
     MNVoice* tabVoice = [MNVoice voiceWithTimeSignature:MNTime4_4];
 
     [voice addTickables:notes.notes];
     // Takes a voice and returns it's auto beamsj
-    NSArray* beams = [MNBeam applyAndGetBeams:voice];   // Vex.Flow.Beam.applyAndGetBeams(voice);
+    NSArray<MNBeam*>* beams = [MNBeam applyAndGetBeams:voice];
 
     [tabVoice addTickables:notes.tabNotes];
 
-    [[[MNFormatter formatter] joinVoices:@[ voice, tabVoice ]] formatWith:@[ voice, tabVoice ]
-                                                         withJustifyWidth:justify];
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatWith:@[ voice, tabVoice ] withJustifyWidth:justify];
 
     [voice draw:ctx dirtyRect:CGRectZero toStaff:staves.notesStaff];
     [beams foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {
@@ -692,35 +666,37 @@
     [tabVoice draw:ctx dirtyRect:CGRectZero toStaff:staves.tabStaff];
 }
 
-- (MNTestTuple*)notesWithTab:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)notesWithTab:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
+
+    // Get test voices.
+    MNNotesTabNotesStruct* notes = [[self class] getTabNotes];
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(40, 10, 400, 0)] addTrebleGlyph];
+
+    MNTabStaff* tabstaff = [[MNTabStaff staffWithRect:CGRectMake(40, 100, 400, 0)] addTabGlyph];
+    [tabstaff setNoteStartX:staff.noteStartX];
+
+    MNStaffConnector* connector = [MNStaffConnector staffConnectorWithTopStaff:staff andBottomStaff:tabstaff];
+    MNStaffConnector* line = [MNStaffConnector staffConnectorWithTopStaff:staff andBottomStaff:tabstaff];
+    connector.type = MNStaffConnectorBracket;
+    line.type = MNStaffConnectorSingleLeft;
+
+    MNNotesTabStavesStruct* notesTabStruct = [[MNNotesTabStavesStruct alloc] init];
+    notesTabStruct.notesStaff = staff;
+    notesTabStruct.tabStaff = tabstaff;
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-
-      // Get test voices.
-      NotesTabNotesStruct* notes = [[self class] getTabNotes];
-      MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(40, 10, 400, 0)] addTrebleGlyph];
       [staff draw:ctx];
-
-      MNTabStaff* tabstaff = [[MNTabStaff staffWithRect:CGRectMake(40, 100, 400, 0)] addTabGlyph];
-      [tabstaff setNoteStartX:staff.noteStartX];
       [tabstaff draw:ctx];
-
-      MNStaffConnector* connector = [MNStaffConnector staffConnectorWithTopStaff:staff andBottomStaff:tabstaff];
-      MNStaffConnector* line = [MNStaffConnector staffConnectorWithTopStaff:staff andBottomStaff:tabstaff];
-      connector.type = MNStaffConnectorBracket;
-      line.type = MNStaffConnectorSingleLeft;
       [connector draw:ctx];
       [line draw:ctx];
 
-      //        Vex.Flow.Test.Strokes.renderNotesWithTab(notes, ctx,
-      //                                                 { notes: staff, tabs: tabstaff });
-
-      NotesTabStavesStruct* tmp = [[NotesTabStavesStruct alloc] init];
-      tmp.notesStaff = staff;
-      tmp.tabStaff = tabstaff;
-      [[self class] renderNotesWithTab:notes context:ctx dirtyRect:CGRectZero staves:tmp justify:staff.width];
+      [[self class] renderNotesWithTab:notes
+                               context:ctx
+                             dirtyRect:CGRectZero
+                                staves:notesTabStruct
+                               justify:staff.width];
 
       //      ok(@"YES");
     };

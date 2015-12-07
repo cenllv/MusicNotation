@@ -34,11 +34,11 @@
 - (void)start
 {
     [super start];
-    float w = 600, h = 150;
+    float w = 600, h = 200;
     [self runTest:@"Simple Curve" func:@selector(simple:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"Rounded Curve" func:@selector(rounded:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"Thick Thin Curves" func:@selector(thickThin:) frame:CGRectMake(10, 10, w, h)];
-    [self runTest:@"Top Curve" func:@selector(topCurve:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Top Curve" func:@selector(topCurve:) frame:CGRectMake(10, 10, w, h + 100)];
 }
 
 - (void)tearDown
@@ -46,41 +46,15 @@
     [super tearDown];
 }
 
-+ (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)simple:(id<MNTestParentDelegate>)parent
 {
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    //     // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
-
-- (MNTestTuple*)simple:(MNTestCollectionItemView*)parent
-{
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(350, 140) withParent:parent];
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, 350, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -140,9 +114,9 @@
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      [c.staff draw:ctx];
+      [staff draw:ctx];
 
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [beam1_1 draw:ctx];
       [beam1_2 draw:ctx];
 
@@ -154,15 +128,16 @@
     return ret;
 }
 
-- (MNTestTuple*)rounded:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)rounded:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(350, 140) withParent:parent];
+    //    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(350, 140) withParent:parent];
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, 350, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -221,8 +196,8 @@
                               }];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [beam1_1 draw:ctx];
       [beam1_2 draw:ctx];
 
@@ -234,15 +209,16 @@
     return ret;
 }
 
-- (MNTestTuple*)thickThin:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)thickThin:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(350, 140) withParent:parent];
+    //    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(350, 140) withParent:parent];
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, 350, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -304,9 +280,9 @@
                               }];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
+      [staff draw:ctx];
 
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [beam1_1 draw:ctx];
       [beam1_2 draw:ctx];
 
@@ -318,15 +294,16 @@
     return ret;
 }
 
-- (MNTestTuple*)topCurve:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)topCurve:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(350, 140) withParent:parent];
+    //    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(350, 140) withParent:parent];
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 130, 350, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(
@@ -378,13 +355,12 @@
                                   @"y_shift" : @(10),
                                   @"position" : @(MNCurveNearTop),
                                   @"position_end" : @(MNCurveNearHead),
-
                                   @"cps" : @[ @{@"x" : @(0), @"y" : @(20)}, @{@"x" : @(40), @"y" : @(80)} ]
                               }];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [beam1_1 draw:ctx];
       [beam1_2 draw:ctx];
 

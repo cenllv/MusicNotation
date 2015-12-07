@@ -28,13 +28,36 @@
 #import "MNTableKeySpecStruct.h"
 
 @implementation MNTableKeySpecStruct
+
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
     {
-        //
+//        [self setValuesForKeyPathsWithDictionary:optionsDict];
     }
     return self;
 }
+
+- (void)setValuesForKeyPathsWithDictionary:(NSDictionary*)keyedValues
+{
+    for(NSString* key_keyPath in keyedValues.allKeys)
+    {
+        id object = [keyedValues objectForKey:key_keyPath];
+        if([key_keyPath isEqualToString:@"acc"])
+        {
+            if([object isKindOfClass:[NSNull class]] || ([object isEqual:[NSNull null]]) ||
+               (object == [NSNull null]))
+            {
+                _acc = nil;
+            }
+            else
+            {
+                _acc = object;
+            }
+        }
+        [self setValue:object forKeyPath:key_keyPath];
+    }
+}
+
 @end

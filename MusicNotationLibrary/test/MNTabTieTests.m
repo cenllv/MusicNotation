@@ -46,31 +46,6 @@
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
-{
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
 
 - (void)setupContext
 {
@@ -127,9 +102,9 @@
     [[self class] tieNotes:notes withIndices:indices staff:staff context:ctx text:text];
 }
 
-- (MNTestTuple*)simple:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)simple:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNTabNote* (^newNote)(NSDictionary*) = ^MNTabNote*(NSDictionary* note_struct)
     {
@@ -165,9 +140,9 @@
     return ret;
 }
 
-- (MNTestTuple*)tap:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)tap:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNTabNote* (^newNote)(NSDictionary*) = ^MNTabNote*(NSDictionary* note_struct)
     {
@@ -204,9 +179,9 @@
 
 typedef MNTabTie* (^Factory)(NSDictionary*);
 
-+ (MNTestTuple*)multiTest:(NSDictionary*)options factory:(Factory)factory
++ (MNTestBlockStruct*)multiTest:(NSDictionary*)options factory:(Factory)factory
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNTabNote* (^newNote)(NSDictionary*) = ^MNTabNote*(NSDictionary* note_struct)
     {
@@ -304,7 +279,7 @@ typedef MNTabTie* (^Factory)(NSDictionary*);
     return ret;
 }
 
-- (MNTestTuple*)simpleHammeron:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)simpleHammeron:(id<MNTestParentDelegate>)parent
 {
     Factory factory = ^MNTabTie*(NSDictionary* dict)
     {
@@ -316,7 +291,7 @@ typedef MNTabTie* (^Factory)(NSDictionary*);
                          } factory:factory];
 }
 
-- (MNTestTuple*)simplePulloff:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)simplePulloff:(id<MNTestParentDelegate>)parent
 {
     Factory factory = ^MNTabTie*(NSDictionary* dict)
     {
@@ -328,9 +303,9 @@ typedef MNTabTie* (^Factory)(NSDictionary*);
                          } factory:factory];
 }
 
-- (MNTestTuple*)continuous:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)continuous:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNTabNote* (^newNote)(NSDictionary*) = ^MNTabNote*(NSDictionary* note_struct)
     {

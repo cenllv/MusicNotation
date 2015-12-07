@@ -711,7 +711,7 @@ static BOOL _debugMode = NO;
     //    [NSGraphicsContext setCurrentContext:nsgc];
     CGContextSaveGState(ctx);
     [g renderWithMNKit];
-    //    [g renderWithCG:ctx];
+    //        [g renderWithCG:ctx];  // NOTE: poor rendering
     CGContextRestoreGState(ctx);
 //    [NSGraphicsContext restoreGraphicsState];
 #elif TARGET_OS_MAC

@@ -57,36 +57,8 @@
 #endif
 }
 
-- (MNStaffNote*)showStaffNote:(MNStaffNote*)staffNote
-                      onStaff:(MNStaff*)staff
-                  withContext:(CGContextRef)ctx
-                          atX:(float)x
-              withBoundingBox:(BOOL)drawBoundingBox
-{
-    return [((MNRenderLayer*)self.layer)showStaffNote:staffNote
-                                            onStaff:staff
-                                        withContext:ctx
-                                                atX:x
-                                    withBoundingBox:drawBoundingBox];
-}
-
-- (MNStaffNote*)showNote:(NSDictionary*)noteStruct onStaff:(MNStaff*)staff withContext:(CGContextRef)ctx atX:(float)x
-{
-    return [((MNRenderLayer*)self.layer)showNote:noteStruct onStaff:staff withContext:ctx atX:x withBoundingBox:NO];
-}
-
-- (MNStaffNote*)showNote:(NSDictionary*)noteStruct
-                 onStaff:(MNStaff*)staff
-             withContext:(CGContextRef)ctx
-                     atX:(float)x
-         withBoundingBox:(BOOL)drawBoundingBox
-{
-    return [((MNRenderLayer*)self.layer)showNote:noteStruct
-                                       onStaff:staff
-                                   withContext:ctx
-                                           atX:x
-                               withBoundingBox:drawBoundingBox];
-}
+#if TARGET_OS_IPHONE
+#elif TARGET_OS_MAC
 
 - (void)setLayer:(CALayer*)layer
 {
@@ -166,5 +138,7 @@
     _activated = NO;
     self.layer.borderColor = nil;
 }
+
+#endif
 
 @end

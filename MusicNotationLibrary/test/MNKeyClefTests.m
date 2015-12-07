@@ -35,9 +35,9 @@
     [super start];
     float w = 550, h = 370;
     //    [self runTest:@"Key Parser Test"  func:@selector(parser)];
-    [self runTest:@"Major Key Clef Test" func:@selector(majorKeys:withTitle:) frame:CGRectMake(10, 10, w, h)];
-    [self runTest:@"Minor Key Clef Test" func:@selector(minorKeys:withTitle:) frame:CGRectMake(10, 10, w, h)];
-    [self runTest:@"Staff Helper" func:@selector(staffHelper:withTitle:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Major Key Clef Test" func:@selector(majorKeys:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Minor Key Clef Test" func:@selector(minorKeys:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Staff Helper" func:@selector(staffHelper:) frame:CGRectMake(10, 10, w, h)];
 }
 
 - (void)tearDown
@@ -84,31 +84,7 @@ static NSArray* _MINOR_KEYS;
     return _MINOR_KEYS;
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
-{
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
 
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-    //    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-    //    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
 - (void)catchError:(NSString*)spec
 {
     /*
@@ -150,9 +126,9 @@ static NSArray* _MINOR_KEYS;
     ok(YES, @"all pass");
 }
 
-- (MNTestTuple*)majorKeys:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)majorKeys:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -192,9 +168,9 @@ static NSArray* _MINOR_KEYS;
     return ret;
 }
 
-- (MNTestTuple*)minorKeys:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)minorKeys:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -234,9 +210,9 @@ static NSArray* _MINOR_KEYS;
     return ret;
 }
 
-- (MNTestTuple*)staffHelper:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)staffHelper:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 370, 0)];
     MNStaff* staff2 = [MNStaff staffWithRect:CGRectMake(10, 90, 370, 0)];

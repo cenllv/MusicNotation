@@ -65,9 +65,6 @@ typedef NS_ENUM(NSUInteger, MNTextVerticalAlignment)
 + (void)setColor:(MNColor*)color;
 + (void)showBoundingBox:(BOOL)showBoundingBox;
 
-#pragma mark - Methods
-
-//- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 + (void)drawText:(CGContextRef)ctx atPoint:(MNPoint*)point withText:(id)text;
 + (void)drawText:(CGContextRef)ctx withFont:(MNFont*)font atPoint:(MNPoint*)point withText:(id)text;
 + (void)drawText:(CGContextRef)ctx withFont:(MNFont*)font atRect:(CGRect)rect withText:(id)text;
@@ -76,13 +73,17 @@ typedef NS_ENUM(NSUInteger, MNTextVerticalAlignment)
 
 @end
 
-@interface LoremIpsum : NSObject
+/*!
+ *  The `MNLoremIpsum` class
+ */
+@interface MNLoremIpsum : NSObject
++ (NSArray<NSString*>*)words;
 - (NSString*)words:(NSUInteger)count;
 - (NSString*)sentences:(NSUInteger)count;
 - (NSString*)randomWord;
 @end
 
-@interface NSString (Size)
+@interface NSString (MNSize)
 - (CGSize)attributedSizeWithFont:(MNFont*)font;
 - (CGSize)attributedSizeWithFont:(MNFont*)font maxWidth:(CGFloat)width;
 @end

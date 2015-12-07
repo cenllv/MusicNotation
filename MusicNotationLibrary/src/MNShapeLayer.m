@@ -69,6 +69,81 @@
     });
 }
 
+#if TARGET_OS_IPHONE
+//- (CALayer*)hitTest:(CGPoint)thePoint
+//{
+//    if([self containsPoint:thePoint])
+//    {
+//        [self animate];
+//        return self;
+//    }
+//    else
+//    {
+//        return [self.superlayer hitTest:thePoint];
+//    }
+//}
+
+//- (CALayer*)hitTest:(CGPoint)point
+//{
+//    static NSUInteger i = 1;
+//
+//    NSLog(@"%.2f, %.2f", point.x, point.y);
+//
+//    if([self containsPoint:point])
+//    {
+//        NSLog(@"clicked: %lu", i++);
+//        [self animate];
+//    }
+//    else
+//    {
+//        NSLog(@"no");
+//    }
+//    return [super hitTest:point];
+//}
+
+//- (BOOL)containsPoint:(CGPoint)p
+//{
+//    CGPoint touchLocation = [self convertPoint:p toLayer:self];
+//
+//    return NO;
+//}
+
+//- (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event
+//{
+//    [self animate];
+//}
+
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    for (UITouch *touch in touches) {
+//        CGPoint touchLocation = [touch locationInView:self.superView];
+////        for (id sublayer in self.superView.layer.sublayers) {
+//            BOOL touchInLayer = NO;
+//            if ([sublayer isKindOfClass:[CAShapeLayer class]]) {
+//                CAShapeLayer *shapeLayer = sublayer;
+//                if (CGPathContainsPoint(shapeLayer.path, 0, touchLocation, YES)) {
+//                    // This touch is in this shape layer
+//                    touchInLayer = YES;
+//                }
+//            } else {
+//                CALayer *layer = sublayer;
+//                if (CGRectContainsPoint(layer.frame, touchLocation)) {
+//                    // Touch is in this rectangular layer
+//                    touchInLayer = YES;
+//                }
+//            }
+//        }
+//    }
+//}
+
+//- (CALayer*)layerForTouch:(UITouch*)touch
+//{
+//    [self animate];
+//    return self;
+//}
+
+#elif TARGET_OS_MAC
+
 - (BOOL)pointingDeviceDownEvent:(NSEvent*)event atPoint:(CGPoint)interactionPoint
 {
     BOOL handled = NO;
@@ -108,5 +183,6 @@
 {
     return NO;
 }
+#endif
 
 @end

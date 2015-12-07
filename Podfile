@@ -38,7 +38,7 @@ target 'MusicNotationDesktop' do
     pod 'ReflectableEnum'
     pod 'RegExCategories'
     pod 'pop'
-    pod 'TheAmazingAudioEngine'
+    pod 'TheAmazingAudioEngine', :git => 'https://github.com/TheAmazingAudioEngine/TheAmazingAudioEngine.git'
     link_with 'MusicNotationDesktop'
 end
 
@@ -47,6 +47,8 @@ target 'MusicNotationMobile' do
     pod 'CocoaLumberjack'
     pod 'ReflectableEnum'
     pod 'RegExCategories'
+    pod 'pop'
+    pod 'TheAmazingAudioEngine', :git => 'https://github.com/TheAmazingAudioEngine/TheAmazingAudioEngine.git'
     link_with 'MusicNotationMobile'
 end
 

@@ -105,7 +105,7 @@
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithAcc:(NSString*)acc andNumber:(NSUInteger)num;
-- (instancetype)initWithKeySpecifier:(NSArray*)keySpecifier;
+- (instancetype)initWithKeySpecifier:(NSString*)keySpecifier;
 
 /*!
  *  gets a key signature for the specified key

@@ -49,6 +49,6 @@
 #pragma mark - Methods
 + (MNOptions*)options;
 
-//- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
 @end

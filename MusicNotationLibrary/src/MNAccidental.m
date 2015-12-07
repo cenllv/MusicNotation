@@ -64,24 +64,21 @@
         //        self.type = type;
         self.position = MNPositionLeft;
 
-        
         MNAccidentalRenderOptions* renderOptions = [[MNAccidentalRenderOptions alloc] initWithDictionary:@{}];
         [renderOptions merge:self->_renderOptions];
         self->_renderOptions = renderOptions;
-        
+
         //        self->_renderOptions = [[MNAccidentalRenderOptions alloc] initWithDictionary:@{
         //            // Font size for glyphs
         //            @"font_scale" : @38,
         //            // Length of stroke across heads above or below the staff.
         //            @"stroke_px" : @3
         //        }];
-        
+
         // font size for note heads and rests
-        [renderOptions setFontScale:38.f/35.f];   // 35];
+        [renderOptions setFontScale:38.f / 35.f];   // 35];
         // number of stroke px to the left and right of head
         [renderOptions setStrokePoints:3];
-        
-
 
         self.accidentalDict = MNTable.accidentalCodes[self.type];
         if(!self.accidentalDict)
@@ -182,7 +179,7 @@
     // Accidentals attached to grace notes are rendered smaller.
     if([(MNNote*)self.note isKindOfClass:[MNGraceNote class]])
     {
-        ((MNAccidentalRenderOptions*)self->_renderOptions).fontScale = 25.f/38.f;
+        ((MNAccidentalRenderOptions*)self->_renderOptions).fontScale = 25.f / 38.f;
         [self setWidth:[self.accidentalDict[@"gracenote_width"] floatValue]];
     }
     return self;
@@ -199,16 +196,19 @@
 - (id)setAsCautionary:(BOOL)cautionary
 {
     _cautionary = cautionary;
-    ((MNAccidentalRenderOptions*)self->_renderOptions).fontScale = 28.f/38.f;
+    if(_cautionary)
+    {
+        ((MNAccidentalRenderOptions*)self->_renderOptions).fontScale = 28.f / 38.f;
+    }
     self.paren_left = (NSDictionary*)MNTable.accidentalCodes[@"{"];
     self.paren_right = (NSDictionary*)MNTable.accidentalCodes[@"}"];
 
     float width_adjust = ([self.type isEqualToString:@"##"] || [self.type isEqualToString:@"bb"]) ? 6 : 4;
 
     // Make sure `width` accomodates for parentheses.
-    [self
-        setWidth:([self.paren_left[@"width"] unsignedIntegerValue] + [self.accidentalDict[@"width"] unsignedIntegerValue] +
-                  [self.paren_right[@"width"] integerValue] - width_adjust)];
+    [self setWidth:([self.paren_left[@"width"] unsignedIntegerValue] +
+                    [self.accidentalDict[@"width"] unsignedIntegerValue] + [self.paren_right[@"width"] integerValue] -
+                    width_adjust)];
 
     return self;
 }
@@ -302,11 +302,11 @@
       float b = obj2.line;
       if(a < b)
       {
-          return NSOrderedAscending;
+          return NSOrderedDescending;
       }
       else if(a > b)
       {
-          return NSOrderedDescending;
+          return NSOrderedAscending;
       }
       else
       {

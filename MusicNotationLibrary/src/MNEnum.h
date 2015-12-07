@@ -36,7 +36,7 @@ typedef NS_ENUM(NSUInteger, MNPositionType)
     MNPositionCenter = 5,
 };
 
-typedef NS_ENUM(NSUInteger, MNShiftDirectionType)
+typedef NS_ENUM(NSInteger, MNShiftDirectionType)
 {
     MNShiftUp = 1,
     MNShiftDown = -1,
@@ -224,7 +224,7 @@ typedef NS_ENUM(NSInteger, MNNoteDurationType)
 
 /*! tuplet types
  */
-typedef NS_ENUM(NSUInteger, MNTupletLocationType)
+typedef NS_ENUM(NSInteger, MNTupletLocationType)
 {
     MNTupletLocationNone = 0,
     MNTupletLocationTop = 1,
@@ -476,7 +476,7 @@ typedef NS_ENUM(NSUInteger, MNNotePitchType)
 
 /*!
  */
-typedef NS_ENUM(NSInteger, MNStaffHairpinType)
+typedef NS_ENUM(NSUInteger, MNStaffHairpinType)
 {
     MNStaffHairpinCres = 1,
     MNStaffHairpinDescres = 2,
@@ -484,7 +484,7 @@ typedef NS_ENUM(NSInteger, MNStaffHairpinType)
 
 /*!
  */
-typedef NS_ENUM(NSInteger, MNCurveType)
+typedef NS_ENUM(NSUInteger, MNCurveType)
 {
     MNCurveNearHead = 1,
     MNCurveNearTop = 2,
@@ -492,7 +492,7 @@ typedef NS_ENUM(NSInteger, MNCurveType)
 
 /*!
  */
-typedef NS_ENUM(NSInteger, MNPedalMarkingType)
+typedef NS_ENUM(NSUInteger, MNPedalMarkingType)
 {
     MNPedalMarkingText = 1,
     MNPedalMarkingBracket = 2,
@@ -517,7 +517,7 @@ typedef NS_ENUM(NSInteger, MNTextBracketPosition)
 
 /*! String Number end type
  */
-typedef NS_ENUM(NSInteger, MNLineEndType)
+typedef NS_ENUM(NSUInteger, MNLineEndType)
 {
     // NONE: 1,        // No leg
     // UP: 2,          // Upward leg

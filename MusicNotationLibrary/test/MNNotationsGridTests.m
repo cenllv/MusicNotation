@@ -32,9 +32,11 @@
 #import "MNCarrierLayer.h"
 
 @interface MNNotationsGridTests ()
-
+#if TARGET_OS_IPHONE
+@property (strong, nonatomic) NSMutableArray<UILabel*>* labels;
+#elif TARGET_OS_MAC
 @property (strong, nonatomic) NSMutableArray<NSTextField*>* labels;
-
+#endif
 @end
 
 @implementation MNNotationsGridTests
@@ -42,21 +44,36 @@
 - (void)start
 {
     [super start];
+#if TARGET_OS_IPHONE
+    [self runTest:@"Grid"
+             func:@selector(grid:drawBoundingBox:)
+            frame:CGRectMake(10, 10, 1000, 1700)];   // params:@(NO)];
+#elif TARGET_OS_MAC
     [self runTest:@"Grid"
              func:@selector(grid:drawBoundingBox:)
             frame:CGRectMake(10, 10, 1000, 1900)];   // params:@(NO)];
+#endif
 }
 
 - (void)tearDown
 {
     [super tearDown];
-    for(id label in self.labels)
-    {
-        [label removeFromSuperview];
-    }
+#if TARGET_OS_IPHONE
+#elif TARGET_OS_MAC
+    dispatch_async(dispatch_get_main_queue(), ^{
+      for(id label in self.labels)
+      {
+          [label removeFromSuperview];
+      }
+    });
+#endif
 }
 
+#if TARGET_OS_IPHONE
+- (NSMutableArray<UILabel*>*)labels
+#elif TARGET_OS_MAC
 - (NSMutableArray<NSTextField*>*)labels
+#endif
 {
     if(!_labels)
     {
@@ -65,9 +82,9 @@
     return _labels;
 }
 
-- (MNTestTuple*)grid:(MNTestCollectionItemView*)parent drawBoundingBox:(NSNumber*)drawBoundingBox
+- (MNTestBlockStruct*)grid:(id<MNTestParentDelegate>)parent drawBoundingBox:(NSNumber*)drawBoundingBox
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
     };
@@ -87,12 +104,17 @@
         initWithString:titleMessage
             attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
 
+#if TARGET_OS_IPHONE
+    UILabel* textLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMidX(parent.bounds), 5, 0, 0)];
+    textLabel.text = title.string;
+#elif TARGET_OS_MAC
     NSTextField* textLabel = [[NSTextField alloc] initWithFrame:CGRectMake(CGRectGetMidX(parent.bounds), 5, 0, 0)];
     textLabel.editable = NO;
     textLabel.selectable = NO;
     textLabel.bordered = NO;
     textLabel.drawsBackground = YES;
     textLabel.attributedStringValue = title;
+#endif
     [textLabel sizeToFit];
     CGRect frame = textLabel.frame;
     frame.origin.x -= CGRectGetWidth(frame) / 2;
@@ -106,7 +128,10 @@
     NSAttributedString* subtitle = [[NSAttributedString alloc]
         initWithString:subTitleMessage
             attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font2.font}];
-
+#if TARGET_OS_IPHONE
+    textLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMidX(parent.bounds), 35, 0, 0)];
+    textLabel.text = subtitle.string;
+#elif TARGET_OS_MAC
     textLabel = [[NSTextField alloc] initWithFrame:CGRectMake(CGRectGetMidX(parent.bounds), 35, 0, 0)];
     textLabel.editable = NO;
     textLabel.selectable = YES;
@@ -114,6 +139,7 @@
     textLabel.drawsBackground = NO;
     //          textLabel.stringValue = description.string; // ?: @"";
     textLabel.attributedStringValue = subtitle;
+#endif
     [textLabel sizeToFit];
     frame = textLabel.frame;
     frame.origin.x -= CGRectGetWidth(frame) / 2;
@@ -123,14 +149,27 @@
       [self.labels add:textLabel];
     });
 
-    __block NSUInteger y = 70;
-    __block NSUInteger x = 0;
-    __block NSUInteger symbolsAcross = 10;
-
     NSArray* glyphStructArray = [MNGlyphList sharedInstance].availableGlyphStructsArray;
     NSMutableArray* subLayers = [NSMutableArray arrayWithCapacity:glyphStructArray.count];
     NSMutableArray* textLabels = [NSMutableArray arrayWithCapacity:glyphStructArray.count];
     CFAbsoluteTime then = CFAbsoluteTimeGetCurrent();
+
+    __block NSUInteger x, y, symbolsAcross;
+#if TARGET_OS_IPHONE
+    y = 40;
+    x = 0;
+    symbolsAcross = 7;
+    [glyphStructArray enumerateObjectsUsingBlock:^(MNGlyphStruct* g, NSUInteger idx, BOOL* stop) {
+      if(idx % symbolsAcross == 0)
+      {
+          x = 0;
+          y += 50;
+      }
+      x += 50;
+#elif TARGET_OS_MAC
+    y = 70;
+    x = 0;
+    symbolsAcross = 10;
     [glyphStructArray enumerateObjectsUsingBlock:^(MNGlyphStruct* g, NSUInteger idx, BOOL* stop) {
       if(idx % symbolsAcross == 0)
       {
@@ -138,16 +177,25 @@
           y += 90;
       }
       x += 90;
+#endif
 
-      // label the glyph
+// label the glyph
+#if TARGET_OS_IPHONE
+      UILabel* textLabel = [[UILabel alloc] initWithFrame:CGRectMake(x - 45, y - 10, 0, 0)];
+#elif TARGET_OS_MAC
       NSTextField* textLabel = [[NSTextField alloc] initWithFrame:CGRectMake(x - 45, y - 10, 0, 0)];
       textLabel.editable = NO;
       textLabel.selectable = YES;
       textLabel.attributedStringValue = [[NSAttributedString alloc] initWithString:g.name];
+#endif
       [textLabel sizeToFit];
       [textLabels addObject:textLabel];
 
+#if TARGET_OS_IPHONE
+#define GLYPH_SCALE 1.0
+#elif TARGET_OS_MAC
 #define GLYPH_SCALE 1.4
+#endif
       MNCarrierLayer* carrierLayer =
           [MNGlyph createCarrierLayerWithCode:g.name withScale:GLYPH_SCALE hasCross:YES];   //[CarrierLayer layer];
       carrierLayer.position = CGPointMake(x, y);
@@ -165,12 +213,17 @@
     // calculate how long it took
     CFAbsoluteTime now = CFAbsoluteTimeGetCurrent();
     CFTimeInterval elapsed = now - then;
+#if TARGET_OS_IPHONE
+    textLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(parent.bounds) - 160, 15, 0, 0)];
+    textLabel.text = [NSString stringWithFormat:@"elapsed: %.03f (ms)", elapsed * 1000];
+#elif TARGET_OS_MAC
     textLabel = [[NSTextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(parent.bounds) - 160, 15, 0, 0)];
     textLabel.editable = NO;
     textLabel.selectable = NO;
     textLabel.bordered = YES;
     textLabel.drawsBackground = YES;
     textLabel.stringValue = [NSString stringWithFormat:@"elapsed: %.03f (ms)", elapsed * 1000];
+#endif
     [textLabel sizeToFit];
     frame = textLabel.frame;
     textLabel.frame = frame;
@@ -181,7 +234,7 @@
       {
           [parent.layer addSublayer:layer];
       }
-      for(NSTextField* textLabel in textLabels)
+      for(id textLabel in textLabels)
       {
           [parent addSubview:textLabel];
           [self.labels add:textLabel];
@@ -189,13 +242,14 @@
       [parent addSubview:textLabel];
       [self.labels add:textLabel];
     });
+    //#endif
 
     return ret;
 }
 
-- (void)mouseDown:(NSEvent*)theEvent
-{
-    //    NSPoint curPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
-}
+//- (void)mouseDown:(NSEvent*)theEvent
+//{
+//    NSPoint curPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+//}
 
 @end

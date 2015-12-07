@@ -64,7 +64,7 @@
 + (MNGlyphTabStruct*)glyphForTab:(NSString*)fret;
 + (MNKeyProperty*)keyPropertiesForKey:(NSString*)key;
 + (MNKeyProperty*)keyPropertiesForKey:(NSString*)key andClef:(MNClefType)clefType andOptions:(NSDictionary*)params;
-+ (MNKeySignature*)keySignatureWithString:(NSString*)key;
+//+ (MNKeySignature*)keySignatureWithString:(NSString*)key;
 + (NSMutableArray*)keySignatureForSpec:(NSString*)spec;
 + (MNTablesNoteStringData*)parseNoteData:(MNTableNoteInputData*)noteData;
 + (NSNumber*)durationToNumber:(NSString*)duration;

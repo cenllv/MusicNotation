@@ -40,18 +40,18 @@ static NSUInteger testFontSize;
 
     float w = 500;
 
-    [self runTest:@"Simple Annotation" func:@selector(simple:withTitle:) frame:CGRectMake(10, 10, w, 200)];
-    [self runTest:@"Standard Notation Annotation" func:@selector(standard:withTitle:) frame:CGRectMake(10, 10, w, 200)];
-    [self runTest:@"Harmonics" func:@selector(harmonic:withTitle:) frame:CGRectMake(10, 10, w, 200)];
-    [self runTest:@"Fingerpicking" func:@selector(picking:withTitle:) frame:CGRectMake(10, 10, w, 200)];
-    [self runTest:@"Bottom Annotation" func:@selector(bottom:withTitle:) frame:CGRectMake(10, 10, w, 200)];
+    [self runTest:@"Simple Annotation" func:@selector(simple:) frame:CGRectMake(10, 10, w, 200)];
+    [self runTest:@"Standard Notation Annotation" func:@selector(standard:) frame:CGRectMake(10, 10, w, 200)];
+    [self runTest:@"Harmonics" func:@selector(harmonic:) frame:CGRectMake(10, 10, w, 200)];
+    [self runTest:@"Fingerpicking" func:@selector(picking:) frame:CGRectMake(10, 10, w, 200)];
+    [self runTest:@"Bottom Annotation" func:@selector(bottom:) frame:CGRectMake(10, 10, w, 200)];
     [self runTest:@"Test Justification Annotation Stem Up"
-             func:@selector(justificationStemUp:withTitle:)
+             func:@selector(justificationStemUp:)
             frame:CGRectMake(10, 10, w, 700)];
     [self runTest:@"Test Justification Annotation Stem Down"
-             func:@selector(justificationStemDown:withTitle:)
+             func:@selector(justificationStemDown:)
             frame:CGRectMake(10, 10, w, 700)];
-    [self runTest:@"TabNote Annotations" func:@selector(tabNotes:withTitle:) frame:CGRectMake(10, 10, w + 100, 300)];
+    [self runTest:@"TabNote Annotations" func:@selector(tabNotes:) frame:CGRectMake(10, 10, w + 100, 300)];
 }
 
 - (void)tearDown
@@ -59,38 +59,9 @@ static NSUInteger testFontSize;
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size
-                                withParent:(MNTestCollectionItemView*)parent
-                                 withTitle:(NSString*)title
+- (MNTestBlockStruct*)simple:(id<MNTestParentDelegate>)parent
 {
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    //    // [MNFont setFont:@" 10pt Arial"];
-
-    // withParent:parent withTitle:title];
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
-
-- (MNTestTuple*)simple:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
-{
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNTabNote* (^newNote)(NSDictionary*) = ^MNTabNote*(NSDictionary* tab_struct)
     {
@@ -119,7 +90,7 @@ static NSUInteger testFontSize;
     ];
 
     MNTabStaff* staff = [[MNTabStaff staffWithRect:CGRectMake(10, 20, 450, 0)] addTabGlyph];
-    //    [ret.staves addObject:staff];
+    //   //  [ret.staves addObject:staff];
 
     //     MNVoice* voice =  [MNVoice voiceWithTimeSignature:MNTime4_4];
     //    voice.mode =  MNModeSoft;
@@ -128,8 +99,8 @@ static NSUInteger testFontSize;
     //    MNFormatter* formatter = [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ]
     //    staff:staff];
 
-    //    [ret.voices addObject:voice];
-    //    [ret.formatters addObject:formatter];
+    //  //  [ret.voices addObject:voice];
+    //  //  [ret.formatters addObject:formatter];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
@@ -146,11 +117,11 @@ static NSUInteger testFontSize;
     return ret;
 }
 
-- (MNTestTuple*)standard:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)standard:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 50, 450, 0)] addClefWithName:@"treble"];
-    [ret.staves addObject:staff];
+    //   //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
 
@@ -189,9 +160,9 @@ static NSUInteger testFontSize;
     return ret;
 }
 
-- (MNTestTuple*)harmonic:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)harmonic:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNTabNote* (^newNote)(NSDictionary*) = ^MNTabNote*(NSDictionary* tab_struct)
     {
         return [[MNTabNote alloc] initWithDictionary:tab_struct];
@@ -202,7 +173,7 @@ static NSUInteger testFontSize;
     };
 
     MNTabStaff* staff = [[MNTabStaff staffWithRect:CGRectMake(10, 20, 450, 0)] addTabGlyph];
-    [ret.staves addObject:staff];
+    //   //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
 
@@ -231,9 +202,9 @@ static NSUInteger testFontSize;
     return ret;
 }
 
-- (MNTestTuple*)picking:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)picking:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNTabNote* (^newNote)(NSDictionary*) = ^MNTabNote*(NSDictionary* tab_struct)
     {
         return [[MNTabNote alloc] initWithDictionary:tab_struct];
@@ -251,7 +222,7 @@ static NSUInteger testFontSize;
     };
 
     MNTabStaff* staff = [[MNTabStaff staffWithRect:CGRectMake(10, 20, 450, 0)] addTabGlyph];
-    [ret.staves addObject:staff];
+    //   //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
       NSArray* notes = @[
@@ -294,9 +265,9 @@ static NSUInteger testFontSize;
     return ret;
 }
 
-- (MNTestTuple*)bottom:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)bottom:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* tab_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:tab_struct];
@@ -312,7 +283,7 @@ static NSUInteger testFontSize;
     };
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 20, 300, 0)] addClefWithName:@"treble"];
-    [ret.staves addObject:staff];
+    //   //  [ret.staves addObject:staff];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       [staff draw:ctx];
 
@@ -346,9 +317,9 @@ static NSUInteger testFontSize;
     return ret;
 }
 
-- (MNTestTuple*)justificationStemUp:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)justificationStemUp:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* tab_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:tab_struct];
@@ -402,9 +373,9 @@ static NSUInteger testFontSize;
     return ret;
 }
 
-- (MNTestTuple*)justificationStemDown:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)justificationStemDown:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* tab_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:tab_struct];
@@ -462,16 +433,16 @@ static NSUInteger testFontSize;
     return ret;
 }
 
-- (MNTestTuple*)tabNotes:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)tabNotes:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNAnnotation* (^newAnnotation)(NSString*) = ^MNAnnotation*(NSString* text)
     {
         return [MNAnnotation annotationWithText:text];
     };
 
     MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 80, 550, 0)];
-    //    [ret.staves addObject:staff];
+    //   //  [ret.staves addObject:staff];
 
     NSArray* specs = @[
         @{

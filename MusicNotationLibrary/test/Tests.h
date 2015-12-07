@@ -60,6 +60,7 @@
 #import "MNPercussionTests.h"
 #import "MNRestsTest.h"
 #import "MNRhythmTests.h"
+#import "MNSheetMusicExamplesTests.h"
 #import "MNStaffTests.h"
 #import "MNStaffConnectorTests.h"
 #import "MNStaffHairpinTests.h"
@@ -84,5 +85,7 @@
 #import "MNTupletTests.h"
 #import "MNVibratoTests.h"
 #import "MNVoiceTests.h"
+
+#import "MNTestUtils.h"
 
 #endif

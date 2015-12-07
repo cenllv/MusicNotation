@@ -26,16 +26,17 @@
 //  THE SOFTWARE.
 //
 
-#import "MNModifier.h"
+//#import "MNModifier.h"
+#import "MNArticulation.h"
 #import "MNEnum.h"
 
 /*!
  *  The `MNTremulo` class
  */
-@interface MNTremulo : MNModifier
+@interface MNTremulo : MNArticulation //MNModifier
 
 #pragma mark - Properties
-@property (assign, nonatomic) float num;
+@property (assign, nonatomic) NSUInteger num;
 //@property (strong, nonatomic) MNStaffNote* note;
 //@property (assign, nonatomic) float index;
 @property (assign, nonatomic) MNPositionType position;
@@ -45,5 +46,6 @@
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithNum:(NSUInteger)num;
 
 @end

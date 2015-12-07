@@ -47,14 +47,10 @@
     [self runTest:@"Lengthy Beam" func:@selector(lengthy:) frame:CGRectMake(10, 10, 700, 250)];
     [self runTest:@"Outlier Beam" func:@selector(outlier:) frame:CGRectMake(10, 10, 700, 250)];
     [self runTest:@"Break Secondary Beams" func:@selector(breakSecondaryBeams:) frame:CGRectMake(10, 10, 700, 250)];
-
-    // FIXME: the following tests have errors
-    //    [self runTest:@"TabNote Beams Up" func:@selector(tabBeamsUp:) frame:CGRectMake(10, 10, 700, 250)];
-    //    [self runTest:@"TabNote Beams Down" func:@selector(tabBeamsDown:) frame:CGRectMake(10, 10, 700, 250)];
-    //    [self runTest:@"TabNote Auto Create Beams" func:@selector(autoTabBeams:) frame:CGRectMake(10, 10, 700, 250)];
-    //    [self runTest:@"TabNote Beams Auto Stem" func:@selector(tabBeamsAutoStem:) frame:CGRectMake(10, 10, 700,
-    //    250)];
-
+    [self runTest:@"TabNote Beams Up" func:@selector(tabBeamsUp:) frame:CGRectMake(10, 10, 700, 250)];
+    [self runTest:@"TabNote Beams Down" func:@selector(tabBeamsDown:) frame:CGRectMake(10, 10, 700, 250)];
+    [self runTest:@"TabNote Auto Create Beams" func:@selector(autoTabBeams:) frame:CGRectMake(10, 10, 700, 250)];
+    [self runTest:@"TabNote Beams Auto Stem" func:@selector(tabBeamsAutoStem:) frame:CGRectMake(10, 10, 700, 250)];
     [self runTest:@"Complex Beams with Annotations"
              func:@selector(complexWithAnnotation:)
             frame:CGRectMake(10, 10, 700, 250)];
@@ -66,30 +62,6 @@
 - (void)tearDown
 {
     [super tearDown];
-}
-
-+ (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
-{
-    /*
-    Vex.Flow.Test.Beam.setupContext = function(options, x, y) {
-        var ctx = new options.contextBuilder(options.canvas_sel, x || 450, y || 140);
-        ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-        ctx.font = " 10pt Arial";
-         MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 10, x || 450) addTrebleGlyph] draw:ctx]
-
-        return {context: ctx, staff: staff};
-    }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 450;
-//    h = h != 0 ? h : 140;
-
-    //     // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(50, 50, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
 }
 
 - (void)beamNotes:(NSArray*)notes staff:(MNStaff*)staff context:(CGContextRef)ctx dirtyRect:(CGRect)dirtyRect
@@ -116,9 +88,9 @@
     [beam draw:ctx];
 }
 
-- (MNTestTuple*)simple:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)simple:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -168,9 +140,9 @@
     return ret;
 }
 
-- (MNTestTuple*)multi:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)multi:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -278,9 +250,9 @@
     return ret;
 }
 
-- (MNTestTuple*)sixteenth:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)sixteenth:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -396,9 +368,9 @@
     return ret;
 }
 
-- (MNTestTuple*)breakSecondaryBeams:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)breakSecondaryBeams:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -570,9 +542,9 @@
     return ret;
 }
 
-- (MNTestTuple*)slopey:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)slopey:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -637,9 +609,9 @@
     return ret;
 }
 
-- (MNTestTuple*)autoStem:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)autoStem:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(350, 140) withParent:parent];
 
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
@@ -731,9 +703,9 @@
     return ret;
 }
 
-- (MNTestTuple*)mixed:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)mixed:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -878,9 +850,9 @@
     return ret;
 }
 
-- (MNTestTuple*)mixed2:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)mixed2:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -1020,9 +992,9 @@
     return ret;
 }
 
-- (MNTestTuple*)dotted:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)dotted:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -1107,9 +1079,9 @@
     return ret;
 }
 
-- (MNTestTuple*)tradeoffs:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)tradeoffs:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -1173,9 +1145,9 @@
     return ret;
 }
 
-- (MNTestTuple*)insane:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)insane:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -1239,9 +1211,9 @@
     return ret;
 }
 
-- (MNTestTuple*)lengthy:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)lengthy:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -1286,15 +1258,16 @@
     return ret;
 }
 
-- (MNTestTuple*)outlier:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)outlier:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent];
+    //    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeZero() withParent:parent];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 500, 0)];
 
     NSArray* notes = @[
         newNote(
@@ -1341,8 +1314,8 @@
     MNBeam* beam1_2 = [MNBeam beamWithNotes:[notes slice:[@4:8]]];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [staff draw:ctx];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [beam1_1 draw:ctx];
       [beam1_2 draw:ctx];
 
@@ -1351,51 +1324,49 @@
     return ret;
 }
 
-- (MNTestTuple*)tabBeamsUp:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)tabBeamsUp:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
-    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(500, 200) withParent:parent];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
+    //    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(500, 200) withParent:parent];
 
-    //      MNStaff* staff =  [MNStaff staffWithRect:CGRectMake(10, 10, 550, 0)];
-
-    //      [staff draw:ctx];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 500, 0)];
 
     NSArray* specs = @[
         @{
-            @"positions" : @[ @{@"str" : @(3), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(25)} ],
+            @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
             @"duration" : @"4"
         },
         @{
-            @"positions" : @[ @{@"str" : @(2), @"fret" : @(10)}, @{@"str" : @(5), @"fret" : @(12)} ],
+            @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
             @"duration" : @"8"
         },
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"8"
         },
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"16"
         },
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"32"
         },
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"64"
         },
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"128"
         },
-        @{ @"positions" : @[ @{@"str" : @(3), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"} ],
            @"duration" : @"8" },
-        @{ @"positions" : @[ @{@"str" : @(3), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"} ],
            @"duration" : @"8" },
-        @{ @"positions" : @[ @{@"str" : @(3), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"} ],
            @"duration" : @"8" },
-        @{ @"positions" : @[ @{@"str" : @(3), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"} ],
            @"duration" : @"8" }
     ];
 
@@ -1411,7 +1382,7 @@
     [voice addTickables:notes];
 
     //        MNFormatter *formatter =
-    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:c.staff];
+    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
     MNBeam* beam1 = [MNBeam beamWithNotes:[notes slice:[@1:7]]];
     MNBeam* beam2 = [MNBeam beamWithNotes:[notes slice:[@8:11]]];
@@ -1420,9 +1391,9 @@
     tuplet.ratioed = YES;
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [c.staff draw:ctx];
+      [staff draw:ctx];
 
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:c.staff];
+      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
       [beam1 draw:ctx];
       [beam2 draw:ctx];
 
@@ -1433,54 +1404,55 @@
     return ret;
 }
 
-- (MNTestTuple*)tabBeamsDown:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)tabBeamsDown:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
-    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 550, 0) optionsDict:@{ @"num_lines" : @(10) }];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 550, 0) optionsDict:@{ @"numLines" : @(10) }];
+    staff.numberOfLines = 10;
 
     NSArray* specs = @[
         @{
-            @"positions" : @[ @{@"str" : @(3), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(25)} ],
+            @"positions" : @[ @{@"str" : @(3), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"25"} ],
             @"duration" : @"4"
         },
         @{
-            @"positions" : @[ @{@"str" : @(2), @"fret" : @(10)}, @{@"str" : @(5), @"fret" : @(12)} ],
+            @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(5), @"fret" : @"12"} ],
             @"duration" : @"8dd"
         },
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"8"
         },
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"16"
         },
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"32"
         },
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"64"
         },
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"128"
         },
-        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"} ],
            @"duration" : @"8" },
-        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"} ],
            @"duration" : @"8" },
-        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"} ],
            @"duration" : @"8" },
-        @{ @"positions" : @[ @{@"str" : @(7), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(7), @"fret" : @"6"} ],
            @"duration" : @"8" },
-        @{ @"positions" : @[ @{@"str" : @(7), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(7), @"fret" : @"6"} ],
            @"duration" : @"8" },
-        @{ @"positions" : @[ @{@"str" : @(10), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(10), @"fret" : @"6"} ],
            @"duration" : @"8" },
-        @{ @"positions" : @[ @{@"str" : @(10), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(10), @"fret" : @"6"} ],
            @"duration" : @"8" }
     ];
 
@@ -1525,44 +1497,45 @@
     return ret;
 }
 
-- (MNTestTuple*)autoTabBeams:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)autoTabBeams:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 10, 550, 0) optionsDict:@{ @"num_lines" : @(6) }];
+    staff.numberOfLines = 6;
 
     NSArray* specs = @[
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"8"
         },
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"8"
         },
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"16"
         },
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"16"
         },
-        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"} ],
            @"duration" : @"32" },
-        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"} ],
            @"duration" : @"32" },
-        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"} ],
            @"duration" : @"32" },
-        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"6"} ],
            @"duration" : @"32" },
-        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"6"} ],
            @"duration" : @"16" },
-        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"6"} ],
            @"duration" : @"16" },
-        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"6"} ],
            @"duration" : @"16" },
-        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"6"} ],
            @"duration" : @"16" }
     ];
 
@@ -1581,7 +1554,7 @@
     //        MNFormatter *formatter =
     [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
-    NSArray* beams = [MNBeam applyAndGetBeams:voice direction:-1 groups:nil];
+    NSArray<MNBeam*>* beams = [MNBeam applyAndGetBeams:voice direction:-1 groups:nil];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -1599,55 +1572,57 @@
 
 // This tests makes sure the auto_stem functionality is works.
 // TabNote stems within a beam group should end up normalized
-- (MNTestTuple*)tabBeamsAutoStem:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)tabBeamsAutoStem:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
-    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 550, 0) optionsDict:@{ @"num_lines" : @(6) }];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 550, 0) optionsDict:@{ @"num_lines" : @(6) }];
+    // FIXME: cannot set number of lines correctly
+    staff.numberOfLines = 6;
 
     NSArray* specs = @[
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"8",
             @"stem_direction" : @(-1)
         },
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"8",
             @"stem_direction" : @(1)
         },
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"16",
             @"stem_direction" : @(-1)
         },
         @{
-            @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)}, @{@"str" : @(4), @"fret" : @(5)} ],
+            @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"}, @{@"str" : @(4), @"fret" : @"5"} ],
             @"duration" : @"16",
             @"stem_direction" : @(1)
         },
-        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"} ],
            @"duration" : @"32",
            @"stem_direction" : @(1) },
-        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)} ],
-           @"duration" : @"32",
-           @"stem_direction" : @(-1) },
-        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"} ],
            @"duration" : @"32",
            @"stem_direction" : @(-1) },
-        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(1), @"fret" : @"6"} ],
            @"duration" : @"32",
            @"stem_direction" : @(-1) },
-        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"6"} ],
+           @"duration" : @"32",
+           @"stem_direction" : @(-1) },
+        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"6"} ],
            @"duration" : @"16",
            @"stem_direction" : @(1) },
-        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"6"} ],
            @"duration" : @"16",
            @"stem_direction" : @(1) },
-        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"6"} ],
            @"duration" : @"16",
            @"stem_direction" : @(1) },
-        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @(6)} ],
+        @{ @"positions" : @[ @{@"str" : @(6), @"fret" : @"6"} ],
            @"duration" : @"16",
            @"stem_direction" : @(-1) }
     ];
@@ -1667,7 +1642,7 @@
     //        MNFormatter *formatter =
     [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
 
-    NSArray* beams = @[
+    NSArray<MNBeam*>* beams = @[
         [MNBeam beamWithNotes:[notes slice:[@0:8]] autoStem:YES],    // Stems should format down
         [MNBeam beamWithNotes:[notes slice:[@8:12]] autoStem:YES],   // Stems should format up
     ];
@@ -1685,9 +1660,9 @@
     return ret;
 }
 
-- (MNTestTuple*)complexWithAnnotation:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)complexWithAnnotation:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -1772,9 +1747,9 @@
     return ret;
 }
 
-- (MNTestTuple*)complexWithArticulation:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)complexWithArticulation:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];

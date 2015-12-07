@@ -32,8 +32,14 @@
 - (void)start
 {
     [super start];
+
+#if TARGET_OS_IPHONE
+    [self runTest:@"Draw Sizes" func:@selector(drawSizes:) frame:CGRectMake(10, 10, 450, 400)];
+    [self runTest:@"All Fonts" func:@selector(drawFonts:) frame:CGRectMake(10, 10, 450, 800)];
+#elif TARGET_OS_MAC
     [self runTest:@"Draw Sizes" func:@selector(drawSizes:) frame:CGRectMake(10, 10, 700, 400)];
     [self runTest:@"All Fonts" func:@selector(drawFonts:) frame:CGRectMake(10, 10, 900, 1100)];
+#endif
 }
 
 - (void)tearDown
@@ -41,9 +47,9 @@
     [super tearDown];
 }
 
-- (MNTestTuple*)drawSizes:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawSizes:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       MNFont* font = [MNFont fontWithName:@"verdana" size:12];
@@ -79,9 +85,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawFonts:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawFonts:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       MNFont* font = [MNFont fontWithName:@"verdana" size:12];

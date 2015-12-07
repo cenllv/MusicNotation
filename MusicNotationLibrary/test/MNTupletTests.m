@@ -53,35 +53,11 @@
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
+
+
+- (MNTestBlockStruct*)simple:(id<MNTestParentDelegate>)parent
 {
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
-
-- (MNTestTuple*)simple:(MNTestCollectionItemView*)parent
-{
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* dict)
     {
@@ -142,9 +118,9 @@
     return ret;
 }
 
-- (MNTestTuple*)beamed:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)beamed:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* dict)
     {
@@ -226,9 +202,9 @@
     return ret;
 }
 
-- (MNTestTuple*)ratio:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)ratio:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* dict)
     {
         return [[MNStaffNote alloc] initWithDictionary:dict];
@@ -294,9 +270,9 @@
     return ret;
 }
 
-- (MNTestTuple*)bottom:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)bottom:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* dict)
     {
         return [[MNStaffNote alloc] initWithDictionary:dict];
@@ -362,9 +338,9 @@
     return ret;
 }
 
-- (MNTestTuple*)bottom_ratio:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)bottom_ratio:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* dict)
     {
         return [[MNStaffNote alloc] initWithDictionary:dict];
@@ -431,9 +407,9 @@
     return ret;
 }
 
-- (MNTestTuple*)awkward:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)awkward:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* dict)
     {
         return [[MNStaffNote alloc] initWithDictionary:dict];
@@ -530,9 +506,9 @@
     return ret;
 }
 
-- (MNTestTuple*)complex:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)complex:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* dict)
     {
         return [[MNStaffNote alloc] initWithDictionary:dict];
@@ -676,9 +652,9 @@
     return ret;
 }
 
-- (MNTestTuple*)mixedTop:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)mixedTop:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* dict)
     {
         return [[MNStaffNote alloc] initWithDictionary:dict];
@@ -749,9 +725,9 @@
     return ret;
 }
 
-- (MNTestTuple*)mixedBottom:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)mixedBottom:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* dict)
     {

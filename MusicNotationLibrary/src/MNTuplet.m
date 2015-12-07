@@ -138,7 +138,7 @@
             _tupletLocation = tupletLocation;
             break;
         default:
-            MNLogError(@"BadArgument, Invalid tuplet location: %lu", tupletLocation);
+            MNLogError(@"BadArgument, Invalid tuplet location: %ti", tupletLocation);
             break;
     }
 }
@@ -233,12 +233,12 @@
 {
     for(NSUInteger n = self.numNotes; n >= 1; n /= 10)
     {
-        MNGlyph* glyph = [MNGlyph glyphWithCode:[NSString stringWithFormat:@"v%lu", (n % 10)] withPointSize:1];
+        MNGlyph* glyph = [MNGlyph glyphWithCode:[NSString stringWithFormat:@"v%tu", (n % 10)] withPointSize:1];
         [self.numeratorGlyphs addObject:glyph];
     }
     for(NSUInteger n = self.beatsOccupied; n >= 1; n /= 10)
     {
-        MNGlyph* glyph = [MNGlyph glyphWithCode:[NSString stringWithFormat:@"v%lu", (n % 10)] withPointSize:1];
+        MNGlyph* glyph = [MNGlyph glyphWithCode:[NSString stringWithFormat:@"v%tu", (n % 10)] withPointSize:1];
         [self.denominatorGlyphs addObject:glyph];
     }
 }

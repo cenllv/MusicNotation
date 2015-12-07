@@ -174,7 +174,7 @@ static float kCLEF_SIZE_SMALL = 16;     // 32;
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"clef";
+    return NSStringFromClass([self class]);   // return @"clef";
 }
 - (NSString*)CATEGORY
 {
@@ -496,10 +496,11 @@ static NSDictionary* _annotations;
     }
 }
 
-- (void)setStaff:(MNStaff*)staff
+- (id)setStaff:(MNStaff*)staff
 {
     //    _parent = staff;
     _staff = staff;
+    return self;
 }
 
 - (float)line

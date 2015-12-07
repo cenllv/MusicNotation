@@ -215,7 +215,7 @@
     };
 
     float vx = start.x + self.xShift;
-    float vy = [((MNStemmableNote*)self.note)getYForTopText:self.text_line];   // + 2; // CHANGE:
+    float vy = [((MNStemmableNote*)self.note)getYForTopTextWithLine:self.text_line];   // + 2; // CHANGE:
 
     renderVibrato(vx, vy);
 }

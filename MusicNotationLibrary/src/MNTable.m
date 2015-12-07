@@ -1471,7 +1471,7 @@ static NSDictionary* _clefProperties;
 + (NSMutableArray*)keySignatureForSpec:(NSString*)spec
 {
     MNTableKeySpecStruct* keySpec = [[MNTableKeySpecStruct alloc] initWithDictionary:MNTable.keySpecsDictionary[spec]];
-    keySpec.acc = [keySpec.acc isEqualTo:[NSNull null]] ? nil : keySpec.acc;
+    keySpec.acc = [keySpec.acc isEqual:[NSNull null]] ? nil : keySpec.acc;
 
     if(!keySpec)
     {
@@ -1494,82 +1494,82 @@ static NSDictionary* _clefProperties;
     return acc_list;
 }
 
-+ (MNKeySignature*)keySignatureWithString:(NSString*)key
-{
-    MNKeySignatureType type = [MNEnum typeKeySignatureTypeForString:key];
-    MNKeySignature* (^keySig)(NSString*, NSUInteger) = ^MNKeySignature*(NSString* acc, NSUInteger num)
-    {
-        return [[MNKeySignature alloc] initWithAcc:acc andNumber:num];
-    };
-    switch(type)
-    {
-        // clang-format off
-        case MNKeySignature_C:          //    "C"
-            return keySig(nil, 0);
-        case MNKeySignature_Am:         //    "Am"
-            return keySig(nil, 0);
-        case MNKeySignature_F:          //    "F"
-            return keySig(@"b", 1);
-        case MNKeySignature_Dm:         //    "Dm"
-            return keySig(@"b", 1);
-        case MNKeySignature_Bb:         //    "Bb"
-            return keySig(@"b", 2);
-        case MNKeySignature_Gm:         //    "Gm"
-            return keySig(@"b", 2);
-        case MNKeySignature_Eb:         //    "Eb"
-            return keySig(@"b", 3);
-        case MNKeySignature_Cm:         //    "Cm"
-            return keySig(@"b", 3);
-        case MNKeySignature_Ab:         //    "Ab"
-            return keySig(@"b", 4);
-        case MNKeySignature_Fm:         //    "Fm"
-            return keySig(@"b", 4);
-        case MNKeySignature_Db:         //    "Db"
-            return keySig(@"b", 5);
-        case MNKeySignature_Bbm:        //    "Bbm"
-            return keySig(@"b", 5);
-        case MNKeySignature_Gb:         //    "Gb"
-            return keySig(@"b", 6);
-        case MNKeySignature_Ebm:        //    "Ebm"
-            return keySig(@"b", 6);
-        case MNKeySignature_Cb:         //    "Cb"
-            return keySig(@"b", 7);
-        case MNKeySignature_Abm:        //    "Abm"
-            return keySig(@"b", 7);
-        case MNKeySignature_G:          //    "G"
-            return keySig(@"#", 1);
-        case MNKeySignature_Em:         //    "Em"
-            return keySig(@"#", 1);
-        case MNKeySignature_D:          //    "D"
-            return keySig(@"#", 2);
-        case MNKeySignature_Bm:         //    "Bm"
-            return keySig(@"#", 2);
-        case MNKeySignature_A:          //    "A"
-            return keySig(@"#", 3);
-        case MNKeySignature_FSharpm:    //    "F#m"
-            return keySig(@"#", 3);
-        case MNKeySignature_E:          //    "E"
-            return keySig(@"#", 4);
-        case MNKeySignature_CSharpm:    //    "C#m"
-            return keySig(@"#", 4);
-        case MNKeySignature_B:          //    "B"
-            return keySig(@"#", 5);
-        case MNKeySignature_GSharpm:    //    "G#m"
-            return keySig(@"#", 5);
-        case MNKeySignature_FSharp:     //    "F#"
-            return keySig(@"#", 6);
-        case MNKeySignature_DSharpm:    //    "D#m"
-            return keySig(@"#", 6);
-        case MNKeySignature_CSharp:     //    "C#"
-            return keySig(@"#", 7);
-        case MNKeySignature_ASharpm:    //    "A#m"
-            return keySig(@"#", 7);
-        // clang-format on
-        default:
-            MNLogError(@"UnknownKeySignatureSpecifier, unrecognized key signature: %@", key);
-            return nil;
-    }
-}
+//+ (NSDictionary*)keySignatureWithString:(NSString*)key
+//{
+//    MNKeySignatureType type = [MNEnum typeKeySignatureTypeForString:key];
+//    NSDictionary* (^keySig)(NSString*, NSUInteger) = ^NSDictionary*(NSString* acc, NSUInteger num)
+//    {
+//        return @{@"acc": acc, @"num":@(num)};
+//    };
+//    switch(type)
+//    {
+//        // clang-format off
+//        case MNKeySignature_C:          //    "C"
+//            return keySig(nil, 0);
+//        case MNKeySignature_Am:         //    "Am"
+//            return keySig(nil, 0);
+//        case MNKeySignature_F:          //    "F"
+//            return keySig(@"b", 1);
+//        case MNKeySignature_Dm:         //    "Dm"
+//            return keySig(@"b", 1);
+//        case MNKeySignature_Bb:         //    "Bb"
+//            return keySig(@"b", 2);
+//        case MNKeySignature_Gm:         //    "Gm"
+//            return keySig(@"b", 2);
+//        case MNKeySignature_Eb:         //    "Eb"
+//            return keySig(@"b", 3);
+//        case MNKeySignature_Cm:         //    "Cm"
+//            return keySig(@"b", 3);
+//        case MNKeySignature_Ab:         //    "Ab"
+//            return keySig(@"b", 4);
+//        case MNKeySignature_Fm:         //    "Fm"
+//            return keySig(@"b", 4);
+//        case MNKeySignature_Db:         //    "Db"
+//            return keySig(@"b", 5);
+//        case MNKeySignature_Bbm:        //    "Bbm"
+//            return keySig(@"b", 5);
+//        case MNKeySignature_Gb:         //    "Gb"
+//            return keySig(@"b", 6);
+//        case MNKeySignature_Ebm:        //    "Ebm"
+//            return keySig(@"b", 6);
+//        case MNKeySignature_Cb:         //    "Cb"
+//            return keySig(@"b", 7);
+//        case MNKeySignature_Abm:        //    "Abm"
+//            return keySig(@"b", 7);
+//        case MNKeySignature_G:          //    "G"
+//            return keySig(@"#", 1);
+//        case MNKeySignature_Em:         //    "Em"
+//            return keySig(@"#", 1);
+//        case MNKeySignature_D:          //    "D"
+//            return keySig(@"#", 2);
+//        case MNKeySignature_Bm:         //    "Bm"
+//            return keySig(@"#", 2);
+//        case MNKeySignature_A:          //    "A"
+//            return keySig(@"#", 3);
+//        case MNKeySignature_FSharpm:    //    "F#m"
+//            return keySig(@"#", 3);
+//        case MNKeySignature_E:          //    "E"
+//            return keySig(@"#", 4);
+//        case MNKeySignature_CSharpm:    //    "C#m"
+//            return keySig(@"#", 4);
+//        case MNKeySignature_B:          //    "B"
+//            return keySig(@"#", 5);
+//        case MNKeySignature_GSharpm:    //    "G#m"
+//            return keySig(@"#", 5);
+//        case MNKeySignature_FSharp:     //    "F#"
+//            return keySig(@"#", 6);
+//        case MNKeySignature_DSharpm:    //    "D#m"
+//            return keySig(@"#", 6);
+//        case MNKeySignature_CSharp:     //    "C#"
+//            return keySig(@"#", 7);
+//        case MNKeySignature_ASharpm:    //    "A#m"
+//            return keySig(@"#", 7);
+//        // clang-format on
+//        default:
+//            MNLogError(@"UnknownKeySignatureSpecifier, unrecognized key signature: %@", key);
+//            return nil;
+//    }
+//}
 
 + (NSDictionary*)noteGlyphsDictionary
 {
@@ -2180,7 +2180,7 @@ static NSDictionary* _durationCodesDictionary;
     float shift_y = 0;
 
     // TODO: convert all the @{str fret} dicts to have fret be a string?
-    if([[fret uppercaseString] isEqualToString:@"X"])
+    if([fret isKindOfClass:[NSString class]] && [[fret uppercaseString] isEqualToString:@"X"])
     {
         glyphCode = @"v7f";
         width = 7;
@@ -2223,13 +2223,10 @@ static NSDictionary* _durationCodesDictionary;
         }
     }
 
-    NSArray* pieces = [key split:@"/"];
+    NSMutableArray* pieces = [NSMutableArray arrayWithArray:[key split:@"/"]];
     if(pieces.count == 1)
     {
-        pieces = @[
-            pieces[0],
-            @"",
-        ];
+        pieces[1] = @"";
     }
 
     if(pieces.count < 2)
@@ -2242,6 +2239,11 @@ static NSDictionary* _durationCodesDictionary;
     if(!value)
     {
         MNLogError(@"BadArguments, Invalid key name: %@", k);
+    }
+
+    if(value[@"octave"])
+    {
+        pieces[1] = value[@"octave"];
     }
 
     float o = [pieces[1] floatValue];

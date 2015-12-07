@@ -34,16 +34,16 @@
 - (void)start
 {
     [super start];
-    [self runTest:@"Ornaments" func:@selector(drawOrnaments:withTitle:) frame:CGRectMake(10, 10, 700, 250)];
+    [self runTest:@"Ornaments" func:@selector(drawOrnaments:) frame:CGRectMake(10, 10, 700, 250)];
     [self runTest:@"Ornaments Vertically Shifted"
-             func:@selector(drawOrnamentDisplaced:withTitle:)
+             func:@selector(drawOrnamentDisplaced:)
             frame:CGRectMake(10, 10, 700, 250)];
     [self runTest:@"Ornaments - Delayed turns"
-             func:@selector(drawOrnamentsDelayed:withTitle:)
+             func:@selector(drawOrnamentsDelayed:)
             frame:CGRectMake(10, 10, 700, 250)];
-    [self runTest:@"Stacked" func:@selector(drawOrnamentsStacked:withTitle:) frame:CGRectMake(10, 10, 700, 250)];
+    [self runTest:@"Stacked" func:@selector(drawOrnamentsStacked:) frame:CGRectMake(10, 10, 700, 250)];
     [self runTest:@"With Upper/Lower Accidentals"
-             func:@selector(drawOrnamentWithAccidentals:withTitle:)
+             func:@selector(drawOrnamentWithAccidentals:)
             frame:CGRectMake(10, 10, 700, 250)];
 }
 
@@ -52,38 +52,38 @@
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size
-                                withParent:(MNTestCollectionItemView*)parent
-                                 withTitle:(NSString*)title
+//- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size
+//                                withParent:(id<MNTestParentDelegate>)parent
+//                                 withTitle:(NSString*)title
+//{
+//    /*
+//     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
+//     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
+//     var ctx = Vex.getCanvasContext(options.canvas_sel);
+//     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
+//     ctx.font = " 10pt Arial";
+//      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
+//     setContext(ctx).draw();
+//
+//     return {context: ctx, staff: staff};
+//     }
+//     */
+//    NSUInteger w = size.width;
+////    NSUInteger h = size.height;
+//
+//    w = w != 0 ? w : 350;
+////    h = h != 0 ? h : 150;
+//
+//    // [MNFont setFont:@" 10pt Arial"];
+//
+//    // withParent:parent withTitle:title];
+//    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
+//    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
+//}
+
+- (MNTestBlockStruct*)drawOrnaments:(id<MNTestParentDelegate>)parent
 {
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    // withParent:parent withTitle:title];
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
-
-- (MNTestTuple*)drawOrnaments:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
-{
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -177,9 +177,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawOrnamentDisplaced:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawOrnamentDisplaced:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -273,9 +273,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawOrnamentsDelayed:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawOrnamentsDelayed:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -315,9 +315,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawOrnamentsStacked:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawOrnamentsStacked:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -362,9 +362,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawOrnamentWithAccidentals:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)drawOrnamentWithAccidentals:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 

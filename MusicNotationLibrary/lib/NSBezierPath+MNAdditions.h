@@ -25,10 +25,13 @@
 //  THE SOFTWARE.
 //
 
-
+#if TARGET_OS_IPHONE
+#elif TARGET_OS_MAC
 
 @interface NSBezierPath (MNAdditions)
 
 - (CGPathRef)CGPath;
 
 @end
+
+#endif

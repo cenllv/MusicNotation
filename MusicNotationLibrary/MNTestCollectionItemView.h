@@ -25,34 +25,19 @@
 //  THE SOFTWARE.
 //
 
-#import <TargetConditionals.h>
-
-#if TARGET_OS_IPHONE
-#import <UIKit/UIKit.h>
-#elif TARGET_OS_MAC
-#import <AppKit/AppKit.h>
-#endif
+#include "MNTestParentDelegate.h"
 
 @class MNStaffNote, MNStaff, MNRenderLayer;
 
 #if TARGET_OS_IPHONE
-@interface MNTestCollectionItemView : UIView
+//TODO :this class is not used for iOS see MNCarrierView
+@interface MNTestCollectionItemView : UIView <MNTestParentDelegate>
 #elif TARGET_OS_MAC
-@interface MNTestCollectionItemView : NSView
+@interface MNTestCollectionItemView : NSView <MNTestParentDelegate>
 #endif
 
 @property (weak, nonatomic) MNRenderLayer* hostedRenderLayer;
 
-- (MNStaffNote*)showStaffNote:(MNStaffNote*)staffNote
-                      onStaff:(MNStaff*)staff
-                  withContext:(CGContextRef)ctx
-                          atX:(float)x
-              withBoundingBox:(BOOL)drawBoundingBox;
-- (MNStaffNote*)showNote:(NSDictionary*)noteStruct onStaff:(MNStaff*)staff withContext:(CGContextRef)ctx atX:(float)x;
-- (MNStaffNote*)showNote:(NSDictionary*)noteStruct
-                 onStaff:(MNStaff*)staff
-             withContext:(CGContextRef)ctx
-                     atX:(float)x
-         withBoundingBox:(BOOL)drawBoundingBox;
+
 
 @end

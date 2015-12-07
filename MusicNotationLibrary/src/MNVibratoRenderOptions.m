@@ -35,4 +35,13 @@
 
 @implementation MNVibratoRenderOptions
 
+- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
+{
+    self = [super initWithDictionary:@{}];
+    if(self)
+    {
+    }
+    return self;
+}
+
 @end

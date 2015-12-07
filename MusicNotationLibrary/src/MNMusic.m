@@ -500,9 +500,9 @@ Vex.Flow.Music.prototype.getKeyParts = function(keyString) {
 
     if(matches)
     {
-        NSString* root;
-        NSString* accidental;
-        NSString* type;
+        NSString* root = @"";
+        NSString* accidental = @"";
+        NSString* type = @"";
         if(matches.count > 0)
         {
             //            NSTextCheckingResult* result1 = [matches objectAtIndex:0];

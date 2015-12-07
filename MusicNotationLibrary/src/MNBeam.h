@@ -61,11 +61,11 @@
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-- (instancetype)initWithNotes:(NSArray*)notes;
-- (instancetype)initWithNotes:(NSArray*)notes autoStem:(BOOL)autoStem;
+- (instancetype)initWithNotes:(NSArray<MNStemmableNote*>*)notes;
+- (instancetype)initWithNotes:(NSArray<MNStemmableNote*>*)notes autoStem:(BOOL)autoStem;
 
-+ (MNBeam*)beamWithNotes:(NSArray*)notes;
-+ (MNBeam*)beamWithNotes:(NSArray*)notes autoStem:(BOOL)autoStem;
++ (MNBeam*)beamWithNotes:(NSArray<MNStemmableNote*>*)notes;
++ (MNBeam*)beamWithNotes:(NSArray<MNStemmableNote*>*)notes autoStem:(BOOL)autoStem;
 - (id)breakSecondaryAt:(NSArray*)indices;
 
 + (NSArray*)getDefaultBeamGroupsForTimeSignatureType:(MNTimeType)timeType;
@@ -76,6 +76,6 @@
 + (NSArray<MNBeam*>*)applyAndGetBeams:(MNVoice*)voice
                             direction:(MNStemDirectionType)stem_direction
                                groups:(NSArray*)groups;
-+ (NSArray<MNBeam*>*)generateBeams:(NSArray*)notes withDictionary:(NSDictionary*)config;
++ (NSArray<MNBeam*>*)generateBeams:(NSArray<MNStemmableNote*>*)notes withDictionary:(NSDictionary*)config;
 
 @end

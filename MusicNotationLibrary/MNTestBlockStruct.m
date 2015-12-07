@@ -1,5 +1,5 @@
 //
-//  MNTestTuple.h
+//  MNTestTuple.m
 //  MusicNotation
 //
 //  Created by Scott on 8/7/15.
@@ -25,27 +25,26 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+#import "MNTestBlockStruct.h"
+#import "MNCore.h"
 
-typedef void (^DrawTest)(CGRect dirtyRect, CGRect bounds, CGContextRef ctx);
+@implementation MNTestBlockStruct
 
-@class MNFormatter, MNVoice, MNStaff;
+#pragma mark - Constructors
 
-@interface MNTestTuple : NSObject
+- (instancetype)init
+{
+    self = [super init];
+    if(self)
+    {
+    }
+    return self;
+}
 
-@property (strong, nonatomic) NSMutableArray* formatters;
-@property (strong, nonatomic) NSMutableArray* voices;
-@property (strong, nonatomic) NSMutableArray* staves;
-@property (strong, nonatomic) NSMutableArray* beams;
++ (MNTestBlockStruct*)testTuple
+{
+    return [[MNTestBlockStruct alloc] init];
+}
 
-@property (strong, nonatomic) NSMutableArray* drawables;
-
-@property (strong, nonatomic) DrawTest drawBlock;
-
-@property (strong, nonatomic) NSColor* backgroundColor;
-
-+ (MNTestTuple*)testTuple;
-
-// test.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
 @end

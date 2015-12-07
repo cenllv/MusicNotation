@@ -25,15 +25,14 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNTestType.h"
 
 @interface MNBrowserWindowController : NSWindowController <
-                                         // NSCollectionViewDataSource,
-                                          NSCollectionViewDelegate,
-                                         // NSCollectionViewDelegateFlowLayout,
-                                         NSSplitViewDelegate,
-                                         NSToolbarDelegate>
+                                           // NSCollectionViewDataSource,
+                                           NSCollectionViewDelegate,
+                                           // NSCollectionViewDelegateFlowLayout,
+                                           NSSplitViewDelegate,
+                                           NSToolbarDelegate>
 {
     __weak IBOutlet NSSplitView* _splitView;
     __weak IBOutlet NSCollectionView* _collectionView;
@@ -47,8 +46,7 @@
 @property (weak) IBOutlet NSButton* labelBoundingBoxesCheckBox;
 @property (weak) IBOutlet NSButton* repeatLastTestCheckBox;
 
-@property (weak) IBOutlet NSScrollView *textScrollView;
-
+@property (weak) IBOutlet NSScrollView* textScrollView;
 
 @property (assign, nonatomic) MNTestType testType;
 

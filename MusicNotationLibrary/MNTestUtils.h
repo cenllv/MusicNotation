@@ -1,11 +1,9 @@
 //
-//  AppDelegate.h
-//  MusicNotationMobile
+//  MNTestUtils.h
+//  MusicNotation
 //
-//  Created by Scott on 7/27/15.
-//  Copyright (c) Scott Riccardelli 2015
+//  Created by Scott Riccardelli on 12/5/15.
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
-//  [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,10 +24,8 @@
 //  THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+@interface MNTestUtils : NSObject
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow* window;
++ (NSDictionary*)classForTestType;
 
 @end

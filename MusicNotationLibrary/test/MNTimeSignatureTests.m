@@ -34,45 +34,17 @@
 {
     [super start];
     //    [self runTest:@"Time Signature Parser" func:@selector(parser)];
-    [self runTest:@"Basic Time Signatures" func:@selector(basic:withTitle:) frame:CGRectMake(10, 10, 600, 150)];
-    [self runTest:@"Big Signature Test" func:@selector(big:withTitle:) frame:CGRectMake(10, 10, 600, 150)];
+    [self runTest:@"Basic Time Signatures" func:@selector(basic:) frame:CGRectMake(10, 10, 600, 150)];
+    [self runTest:@"Big Signature Test" func:@selector(big:) frame:CGRectMake(10, 10, 600, 150)];
     [self runTest:@"Time Signature multiple staffs alignment test"
-             func:@selector(multiStaff:withTitle:)
+             func:@selector(multiStaff:)
             frame:CGRectMake(10, 10, 600, 350)];
-    [self runTest:@"Time Signature Change Test"
-             func:@selector(timeSigNote:withTitle:)
-            frame:CGRectMake(10, 10, 900, 350)];
+    [self runTest:@"Time Signature Change Test" func:@selector(timeSigNote:) frame:CGRectMake(10, 10, 900, 350)];
 }
 
 - (void)tearDown
 {
     [super tearDown];
-}
-
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
-{
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-    //    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-    //    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
 }
 
 - (void)catchError:(NSString*)spec
@@ -112,9 +84,9 @@
     ok(YES, @"all pass");
 }
 
-- (MNTestTuple*)basic:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)basic:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
       MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 500, 0)];
@@ -141,9 +113,9 @@
     return ret;
 }
 
-- (MNTestTuple*)big:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)big:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -161,9 +133,9 @@
     return ret;
 }
 
-- (MNTestTuple*)multiStaff:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)multiStaff:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -208,9 +180,9 @@
     return ret;
 }
 
-- (MNTestTuple*)timeSigNote:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)timeSigNote:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 800, 0)];
 

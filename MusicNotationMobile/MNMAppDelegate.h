@@ -1,11 +1,10 @@
 //
-//  MTMTableViewController.h
+//  AppDelegate.h
 //  MusicNotationMobile
 //
-//  Created by Scott on 8/1/15.
+//  Created by Scott on 7/27/15.
 //  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
-//  [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,8 +25,14 @@
 //  THE SOFTWARE.
 //
 
-#import <UIKit/UIKit.h>
+//#import <UIKit/UIKit.h>
 
-@interface MTMTableViewController : UITableViewController
+@class AEAudioController;
+
+@interface MNMAppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow* window;
+
+@property (nonatomic, strong) AEAudioController* audioController;
 
 @end

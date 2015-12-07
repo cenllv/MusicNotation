@@ -1,9 +1,8 @@
 //
-//  MNTestTuple.m
-//  MusicNotation
+//  MNMCarrierView.h
+//  MusicNotationMobile
 //
-//  Created by Scott on 8/7/15.
-//  Copyright (c) Scott Riccardelli 2015
+//  Created by Scott Riccardelli on 12/6/15.
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,72 +24,9 @@
 //  THE SOFTWARE.
 //
 
-#import "MNTestTuple.h"
-#import "MNCore.h"
-
-@implementation MNTestTuple
-
-#pragma mark - Constructors
-
-- (instancetype)init
-{
-    self = [super init];
-    if(self)
-    {
-    }
-    return self;
-}
-
-+ (MNTestTuple*)testTuple
-{
-    return [[MNTestTuple alloc] init];
-}
-
-#pragma mark - Properties
-
-- (NSMutableArray*)formatters
-{
-    if(!_formatters)
-    {
-        _formatters = [NSMutableArray array];
-    }
-    return _formatters;
-}
-
-- (NSMutableArray*)voices
-{
-    if(!_voices)
-    {
-        _voices = [NSMutableArray array];
-    }
-    return _voices;
-}
-
-- (NSMutableArray*)staves
-{
-    if(!_staves)
-    {
-        _staves = [NSMutableArray array];
-    }
-    return _staves;
-}
-
-- (NSMutableArray*)beams
-{
-    if(!_beams)
-    {
-        _beams = [NSMutableArray array];
-    }
-    return _beams;
-}
-
-- (NSMutableArray*)drawables
-{
-    if(!_drawables)
-    {
-        _drawables = [NSMutableArray array];
-    }
-    return _drawables;
-}
+/*!
+ *  The `MNMCarrierView` class allows resizing of table view cell's dynamically
+ */
+@interface MNMCarrierView : UIView
 
 @end

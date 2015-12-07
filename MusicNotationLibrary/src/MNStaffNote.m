@@ -369,7 +369,7 @@
             @"note_type" : self.noteNHMRSString,
             @"duration" : self.durationString,
             @"noteDurationType" : @(self.noteDurationType),
-            @"noteNHMRSType" : @(self.noteNHMRSType),
+            //@"noteNHMRSType" : @(self.noteNHMRSType),
             @"displaced" : @(displaced),
             @"stemDirection" : @(stem_direction),
             @"customGlyphCode" : note_props.glyphCode,
@@ -377,6 +377,7 @@
             @"line" : @(note_props.line),
             @"noteName" : self.durationString,
         }];
+        noteHead.noteNHMRSType = self.noteNHMRSType;   // FIXME: brittle
         [[noteHead renderOptions] setGlyphFontScale:[self->_renderOptions glyphFontScale]];
         self.note_heads[i] = noteHead;   //[self.note_heads insertObject:noteHead atIndex:i];
     }
@@ -1547,8 +1548,10 @@ addModifier: function(index, modifier) {
 - (void)drawModifiers:(CGContextRef)ctx
 {
     //    CGContextRef ctx = context;
-    for(MNModifier* mod in self.modifiers)
+//    for(MNModifier* mod in self.modifiers)
+    for (NSUInteger i = 0; i < self.modifiers.count; ++i)
     {
+        MNModifier* mod = self.modifiers[i];
         MNNoteHead* note_head = self.note_heads[mod.index];   //.getIndex()];
         StyleBlock key_style = note_head.styleBlock;          // .getStyle();
         if(key_style)

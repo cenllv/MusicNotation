@@ -35,6 +35,16 @@
 
 @implementation MNTremulo
 
+- (instancetype)initWithNum:(NSUInteger)num
+{
+    self = [self initWithDictionary:@{}];
+    if(self)
+    {
+        self.num = num;
+    }
+    return self;
+}
+
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];

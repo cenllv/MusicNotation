@@ -54,31 +54,6 @@
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
-{
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-    //    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-    //    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
 
 - (void)ticks
 {
@@ -164,9 +139,9 @@
     return note;
 }
 
-- (MNTestTuple*)draw:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)draw:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     // ctx.font = "10pt Arial";
     MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 30, 550, 0)];
@@ -214,19 +189,19 @@
         MNTabNote* staffNote = [[self class] showNote:note staff:staff context:ctx x:(i + 1) * 25];
 
         BOOL success = staffNote.x > 0;
-        NSString* message = [NSString stringWithFormat:@"Note %li has X value", i];
+        NSString* message = [NSString stringWithFormat:@"Note %tu has X value", i];
         ok(success, message);
         success = staffNote.ys.count > 0;
-        message = [NSString stringWithFormat:@"Note %li has Y values", i];
+        message = [NSString stringWithFormat:@"Note %tu has Y values", i];
         ok(success, message);
       }];
     };
     return ret;
 }
 
-- (MNTestTuple*)drawStemsUp:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawStemsUp:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 30, 550, 0)];
 
@@ -283,9 +258,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawStemsDown:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawStemsDown:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     // ctx.font = "10pt Arial";
     MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 10, 550, 0)];
@@ -346,9 +321,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawStemsUpThrough:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawStemsUpThrough:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     // ctx.font = "10pt Arial";
     MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 30, 550, 0)];
@@ -411,9 +386,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawStemsDownThrough:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawStemsDownThrough:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     // ctx.font = "10pt Arial";
     MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 10, 550, 0)];
@@ -485,9 +460,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawStemsDotted:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawStemsDotted:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNTabStaff* staff = [MNTabStaff staffWithRect:CGRectMake(10, 30, 550, 0)];
 

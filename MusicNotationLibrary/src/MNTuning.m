@@ -156,7 +156,7 @@ static NSDictionary* _tuningNames;
     NSUInteger s = stringNum;
     if(s < 1 || s > self.numStrings)
     {
-        MNLogError(@"BadArguments, String number must be between 1 and %lu : %lu", self.numStrings, stringNum);
+        MNLogError(@"BadArguments, String number must be between 1 and %tu : %tu", self.numStrings, stringNum);
     }
 
     return [self.tuningValues[s - 1] unsignedIntegerValue];
@@ -170,7 +170,7 @@ static NSDictionary* _tuningNames;
 
     if(f < 0)
     {
-        MNLogError("BadArguments, Fret number must be 0 or higher: %lu", fretNum);
+        MNLogError("BadArguments, Fret number must be 0 or higher: %tu", fretNum);
     }
 
     return stringValue + f;
@@ -181,7 +181,7 @@ static NSDictionary* _tuningNames;
     float noteValue = (float)[self getValueForFret:fretNum andStringNum:stringNum];
     NSUInteger octave = floorf(fmodf(noteValue, 12));
     NSString* i = [[MNTable integerToNoteArray] objectAtIndex:octave];
-    return [NSString stringWithFormat:@"%@/%lu", i, octave];
+    return [NSString stringWithFormat:@"%@/%tu", i, octave];
 }
 
 @end

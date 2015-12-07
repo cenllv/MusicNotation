@@ -242,7 +242,7 @@
     }
     if(stemDirection != MNStemDirectionUp && stemDirection != MNStemDirectionDown)
     {
-        MNLogError(@"BadArgument, Invalid stem direction: %li", stemDirection);
+        MNLogError(@"BadArgument, Invalid stem direction: %ti", stemDirection);
     }
     _stemDirection = stemDirection;
     if(self.stem != nil)
@@ -328,7 +328,7 @@
     for(NSUInteger i = 0; i < self.ys.count; ++i)
     {
         float stem_top;
-        stem_top = [[self.ys objectAtIndex:i] floatValue] + (stem_height * -((float)self.stemDirection));
+        stem_top = [self.ys[i] floatValue] + (stem_height * -((float)self.stemDirection));
 
         if(self.stemDirection == MNStemDirectionDown)
         {
@@ -376,7 +376,7 @@
  *  @param textLine line number on staff for text
  *  @return y position on canvas
  */
-- (float)getYForTopText:(float)textLine
+- (float)getYForTopTextWithLine:(float)textLine
 {
     MNExtentStruct* extents = self.stemExtents;
     if(self.hasStem)

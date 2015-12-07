@@ -44,31 +44,6 @@
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
-{
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
 
 /*
 Vex.Flow.Test.NoteHead.setupContext = function(options, x, y) {
@@ -94,9 +69,9 @@ Vex.Flow.Test.NoteHead.setupContext = function(options, x, y) {
 //    };
 //}
 
-- (MNTestTuple*)basic:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)basic:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 300, 0)];
 
@@ -122,9 +97,9 @@ Vex.Flow.Test.NoteHead.setupContext = function(options, x, y) {
     return ret;
 }
 
-- (MNTestTuple*)basicBoundingBox:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)basicBoundingBox:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 10, 300, 0)] addTrebleGlyph];
 

@@ -29,8 +29,19 @@
 
 @class MNTestViewController;
 
-/*! The `MNShapeLayer` class allows for drawing reacting to and animatind a CAShapeLayer
+/*!
+ *  The `MNShapeLayer` class allows for drawing reacting to and animatind a CAShapeLayer
  */
+#if TARGET_OS_IPHONE
+@interface MNShapeLayer : CAShapeLayer   //<MNLayerResponder>
+
+@property (weak, nonatomic) MNTestViewController* controller;
+@property (weak, nonatomic) UIView* superView;
+
+- (void)animate;
+
+@end
+#elif TARGET_OS_MAC
 @interface MNShapeLayer : CAShapeLayer <MNLayerResponder>
 
 @property (weak, nonatomic) MNTestViewController* controller;
@@ -38,3 +49,5 @@
 - (void)animate;
 
 @end
+
+#endif

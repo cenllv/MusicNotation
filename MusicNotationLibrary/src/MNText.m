@@ -295,14 +295,13 @@ static BOOL _showBoundingBox = NO;
 
 @end
 
-@implementation LoremIpsum
-{
-    NSArray* _words;
-}
+@implementation MNLoremIpsum
 
-- (id)init
+static NSArray<NSString*>* _words;
+
++ (NSArray<NSString*>*)words
 {
-    if((self = [super init]))
+    if(!_words)
     {
         _words = [@"lorem,ipsum,dolor,sit,amet,consectetuer,adipiscing,elit," @"integer,in,mi,a,mauris,"
             @"ornare,sagittis,suspendisse,potenti,suspendisse,dapibus,dignissim," @"dolor,nam,"
@@ -390,6 +389,14 @@ static BOOL _showBoundingBox = NO;
             @"justo,tristique,mattis,purus,eros,non,velit,aenean,sagittis,commodo," @"erat,"
             @"aliquam,id,lacus,morbi,vulputate,vestibulum,elit" componentsSeparatedByString:@","];
     }
+    return _words;
+}
+
+- (id)init
+{
+    if((self = [super init]))
+    {
+    }
     return self;
 }
 
@@ -446,7 +453,7 @@ static BOOL _showBoundingBox = NO;
 
 @end
 
-@implementation NSString (Size)
+@implementation NSString (MNSize)
 
 - (CGSize)attributedSizeWithFont:(MNFont*)font
 {
@@ -466,9 +473,10 @@ static BOOL _showBoundingBox = NO;
                                         }];
 
 #if TARGET_OS_IPHONE
-    // TODO: implement size for iphone
-    CGRect textRect = CGRectZero;   // [attributedText boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                    //               options:(NSStringDrawingUsesLineFragmentOrigin)];
+    // TODO: this is unnecessary
+    //    CGRect textRect = CGRectZero;   // [attributedText boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+    //                                    //               options:(NSStringDrawingUsesLineFragmentOrigin)];
+    CGRect textRect = CGRectMake(0, 0, attributedText.size.width, attributedText.size.height);
 #elif TARGET_OS_MAC
     CGRect textRect = [attributedText boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
                                                    options:(NSStringDrawingUsesLineFragmentOrigin)];

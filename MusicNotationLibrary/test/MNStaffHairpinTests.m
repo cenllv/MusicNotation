@@ -35,10 +35,10 @@
 {
     [super start];
     float w = 600, h = 150;
-    [self runTest:@"Simple StaffHairpin" func:@selector(simple:withTitle:) frame:CGRectMake(10, 10, w, h)];
-    [self runTest:@"Horizontal Offset StaffHairpin" func:@selector(ho:withTitle:) frame:CGRectMake(10, 10, w, h)];
-    [self runTest:@"Vertical Offset StaffHairpin" func:@selector(vo:withTitle:) frame:CGRectMake(10, 10, w, h)];
-    [self runTest:@"Height StaffHairpin" func:@selector(height:withTitle:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Simple StaffHairpin" func:@selector(simple:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Horizontal Offset StaffHairpin" func:@selector(ho:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Vertical Offset StaffHairpin" func:@selector(vo:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Height StaffHairpin" func:@selector(height:) frame:CGRectMake(10, 10, w, h)];
 }
 
 - (void)tearDown
@@ -46,31 +46,6 @@
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
-{
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
 
 + (void)drawHairpin:(NSArray*)notes
               staff:(MNStaff*)staff
@@ -106,9 +81,9 @@
 }
 
 static BOOL _debug = NO;
-- (MNTestTuple*)simple:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)simple:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -146,7 +121,7 @@ static BOOL _debug = NO;
       MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 10, 400, 0)] addTrebleGlyph];
       [staff draw:ctx];
       [notes foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
-        [[self class] showNote:note onStaff:staff withContext:ctx atX:(i + 1) * 50 withBoundingBox:_debug];
+        [[self class] showStaffNote:note onStaff:staff withContext:ctx atX:(i + 1) * 50 withBoundingBox:_debug];
       }];
 
       [[self class] drawHairpin:@[ notes[0], notes[2] ]
@@ -168,9 +143,9 @@ static BOOL _debug = NO;
     return ret;
 }
 
-- (MNTestTuple*)ho:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)ho:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -207,7 +182,7 @@ static BOOL _debug = NO;
       ];
 
       [notes foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
-        [[self class] showNote:note onStaff:staff withContext:ctx atX:(i + 1) * 50 withBoundingBox:_debug];
+        [[self class] showStaffNote:note onStaff:staff withContext:ctx atX:(i + 1) * 50 withBoundingBox:_debug];
       }];
 
       NSDictionary* renderOptions1 = @{
@@ -242,9 +217,9 @@ static BOOL _debug = NO;
     return ret;
 }
 
-- (MNTestTuple*)vo:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)vo:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -281,7 +256,7 @@ static BOOL _debug = NO;
       ];
 
       [notes foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
-        [[self class] showNote:note onStaff:staff withContext:ctx atX:(i + 1) * 50 withBoundingBox:_debug];
+        [[self class] showStaffNote:note onStaff:staff withContext:ctx atX:(i + 1) * 50 withBoundingBox:_debug];
       }];
 
       NSDictionary* renderOptions1 = @{
@@ -316,9 +291,9 @@ static BOOL _debug = NO;
     return ret;
 }
 
-- (MNTestTuple*)height:(MNTestCollectionItemView*)parent withTitle:(NSString*)title
+- (MNTestBlockStruct*)height:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
@@ -355,7 +330,7 @@ static BOOL _debug = NO;
       ];
 
       [notes foreach:^(MNStaffNote* note, NSUInteger i, BOOL* stop) {
-        [[self class] showNote:note onStaff:staff withContext:ctx atX:(i + 1) * 50 withBoundingBox:_debug];
+        [[self class] showStaffNote:note onStaff:staff withContext:ctx atX:(i + 1) * 50 withBoundingBox:_debug];
       }];
 
       NSDictionary* renderOptions1 = @{

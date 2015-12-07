@@ -31,6 +31,10 @@
 /*!
  *  The `MNGlyphShapeLayer` class
  */
+#if TARGET_OS_IPHONE
+@interface MNGlyphShapeLayer : CAShapeLayer
+@end
+#elif TARGET_OS_MAC
 @interface MNGlyphShapeLayer : CAShapeLayer <MNLayerResponder>
 {
    @private
@@ -39,3 +43,4 @@
 - (void)animate;
 
 @end
+#endif

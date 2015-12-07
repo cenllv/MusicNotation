@@ -1,11 +1,10 @@
 //
-//  MTM-prefixHeader.m
+//  MNMTableViewController.h
 //  MusicNotationMobile
 //
-//  Created by Scott on 8/3/15.
+//  Created by Scott on 8/1/15.
 //  Copyright (c) Scott Riccardelli 2015
 //  slcott <s.riccardelli@gmail.com> https://github.com/slcott
-//  [VexFlow](http://vexflow.com) - Copyright (c) Mohit Muthanna 2010.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -26,30 +25,9 @@
 //  THE SOFTWARE.
 //
 
-#import <Foundation/Foundation.h>
+/*!
+ *  The `MNTableViewController` class shows a table of tests that can be loaded.
+ */
+@interface MNMTableViewController : UITableViewController
 
-//#import <AFNetworking/AFNetworking.h>
-//#import <ReactiveCocoa/ReactiveCocoa.h>
-#import <CocoaLumberjack/CocoaLumberjack.h>
-
-#import <CocoaLumberjack/DDLog.h>
-#import <CocoaLumberjack/DDLegacyMacros.h>
-#import <CocoaLumberjack/CocoaLumberjack.h>
-
-#import <ReflectableEnum/ReflectableEnum.h>
-//#import <CoreParse/CoreParse.h>
-
-//#ifdef __OBJC__
-
-#import <Foundation/Foundation.h>
-
-#import "DDLog.h"
-//#endif
-
-#ifdef DEBUG
-static const int ddLogLevel = DDLogFlagVerbose; //LOG_LEVEL_VERBOSE;
-#else
-static const int ddLogLevel = DDLogFlagError; //LOG_LEVEL_ERROR;
-#endif
-
-
+@end

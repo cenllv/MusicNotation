@@ -256,7 +256,7 @@ init: function(type) {
 
     // Articulations are centered over/under the note head.
     MNPoint* start = [self.note getModifierstartXYforPosition:self.position andIndex:self.index];
-    float glyph_y = start.y;
+    float glyph_y;// = start.y;
     float shiftY = 0;
     float line_spacing = 1;
     float spacing = staff.spacingBetweenLines;
@@ -339,7 +339,7 @@ init: function(type) {
     glyph_y += shiftY + self.yShift;
 
     [MNLog
-        logInfo:[NSString stringWithFormat:@"Rendering articulation: %lu %f %f", self.articulationType, glyph_x, glyph_y]];
+        logInfo:[NSString stringWithFormat:@"Rendering articulation: %tu %f %f", self.articulationType, glyph_x, glyph_y]];
     [MNGlyph renderGlyph:ctx
                      atX:glyph_x
                      atY:glyph_y

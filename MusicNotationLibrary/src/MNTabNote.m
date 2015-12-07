@@ -237,8 +237,9 @@
 /*!
  *  Set the `MNStaff` to the note
  *  @param staff the staff
+ *  @return this object
  */
-- (void)setStaff:(MNStaff*)staff
+- (id)setStaff:(MNStaff*)staff
 {
     super.staff = staff;
     self.width = 0;
@@ -269,6 +270,7 @@
     }
 
     self.ys = ys;
+    return self;
 }
 
 /*!
@@ -394,7 +396,7 @@
  *  Get the x position for the stem
  *  @return x position
  */
-- (float)getStemX
+- (float)stemX
 {
     return self.centerGlyphX;
 }
@@ -551,7 +553,15 @@
         float note_glyph_width = self.glyphStruct.headWidth;
         float tab_x = x + (note_glyph_width / 2) - (glyph.width / 2);
 
-        CGContextClearRect(ctx, CGRectMake(tab_x - 2, y - 3, glyph.width + 4, 6));
+        CGRect rect = CGRectMake(tab_x - 2, y - 3, glyph.width + 4, 6);
+//        CGContextClearRect(ctx, rect);
+        CGContextSaveGState(ctx);
+        CGContextBeginPath(ctx);
+        CGContextSetFillColorWithColor(ctx, SHEET_MUSIC_COLOR.CGColor);
+        CGContextSetStrokeColorWithColor(ctx, MNColor.clearColor.CGColor);
+        CGContextAddRect(ctx, rect);
+        CGContextFillPath(ctx);
+        CGContextRestoreGState(ctx);
 
         y += 5;
         if(![glyph.code isMemberOfClass:[NSNull class]] && glyph.code.length > 0)
@@ -565,7 +575,7 @@
                 [[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName : self.font.font}];
             [MNText drawText:ctx
                     withFont:self.font
-                     atPoint:MNPointMake(tab_x, y - title.size.height)
+                     atPoint:MNPointMake(tab_x, y - title.size.height / 1.2)
                     withText:title.string];
         }
     }

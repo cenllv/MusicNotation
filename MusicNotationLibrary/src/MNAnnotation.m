@@ -274,7 +274,7 @@
             {
                 float stem_base =
                     (((MNStemmableNote*)self.note).stemDirection == MNStemDirectionUp ? stem_ext.baseY : stem_ext.topY);
-                y = MAX(y, stem_base + (spacing * (self.text_line + 2)));
+                y = MAX(y, stem_base + (spacing * (self.text_line + 1)));
             }
         }
     }
@@ -282,7 +282,7 @@
     {
         if([self.note isKindOfClass:[MNStemmableNote class]])
         {
-            float yt = [((MNStaffNote*)self.note)getYForTopTextWithLine:self.text_line] - 1;
+            float yt = [((MNStemmableNote*)self.note)getYForTopTextWithLine:self.text_line] - 1;
             float yb = [staff getYForBottomTextWithLine:self.text_line];
             y = yt + (yb - yt) / 2 + text_height / 2;
         }
@@ -292,7 +292,7 @@
         y = MIN([staff getYForTopTextWithLine:self.text_line], [self.note.ys[0] floatValue] - 10);
         if(has_stem)
         {
-            y = MIN(y, (stem_ext.topY - 5) - (spacing * self.text_line));
+            y = MIN(y, (stem_ext.topY - 4*5) - (spacing * self.text_line));
         }
     }
     else /* CENTER_STEM */

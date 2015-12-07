@@ -72,7 +72,7 @@
         }
         self.glyph_code = self.glyphStruct.codeHead;
         self.xShift = [optionsDict[@"x_shift"] floatValue];
-        if(optionsDict[@"customGlyphCode"])
+        if(optionsDict[@"customGlyphCode"] && [optionsDict[@"customGlyphCode"] length] > 0)
         {
             self.custom_glyph = YES;
             self.glyph_code = optionsDict[@"customGlyphCode"];
@@ -270,8 +270,12 @@
     }
 }
 
-// Set notehead to a provided `stave`
-- (void)setStaff:(MNStaff*)staff
+/*!
+ *   Set notehead to a provided `stave`
+ *  @param staff staff
+ *  @return this object
+ */
+- (id)setStaff:(MNStaff*)staff
 {
     [super setStaff:staff];
     //    super.staff = staff;
@@ -280,6 +284,7 @@
     float line = self.line;
     [self setY:[staff getYForNoteWithLine:line]];
     //    self.graphicsContext = self.staff.graphicsContext;
+    return self;
 }
 
 // Pre-render formatting

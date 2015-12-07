@@ -229,7 +229,7 @@ static MNStaff* _currentStaff;
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
-    //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
+    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{ @"num_lines" : @"numLines" }];
     return propertiesEntriesMapping;
 }
 
@@ -512,7 +512,7 @@ static MNStaff* _currentStaff;
     }
     else
     {
-        MNLogError(@"InvalidBegBarType, beginning bar type not set to: %li", begBarType);
+        MNLogError(@"InvalidBegBarType, beginning bar type not set to: %tu", begBarType);
     }
     return self;
 }
@@ -1135,8 +1135,7 @@ static MNStaff* _currentStaff;
  */
 - (id)addKeySignatureWithSpec:(NSString*)keySpec
 {
-    // TODO: this is possibly broken
-    [self addModifier:[MNTable keySignatureWithString:keySpec]];
+    [self addModifier:[MNKeySignature keySignatureWithKey:keySpec]];
     return self;
 }
 
@@ -1363,7 +1362,7 @@ static MNStaff* _currentStaff;
         NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         paragraphStyle.alignment = kCTTextAlignmentLeft;
         MNFont* font1 = [MNFont fontWithName:@"TimesNewRomanPS-BoldMT" size:8];
-        NSString* text = [NSString stringWithFormat:@"%lu, %.01f", line, y];
+        NSString* text = [NSString stringWithFormat:@"%tu, %.01f", line, y];
         NSAttributedString* title = [[NSAttributedString alloc]
             initWithString:text
                 attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
@@ -1378,7 +1377,7 @@ static MNStaff* _currentStaff;
         NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         paragraphStyle.alignment = kCTTextAlignmentLeft;
         MNFont* font1 = [MNFont fontWithName:@"TimesNewRomanPS-BoldMT" size:8];
-        NSString* text = [NSString stringWithFormat:@"%li, %.01f", line, y];
+        NSString* text = [NSString stringWithFormat:@"%ti, %.01f", line, y];
         NSAttributedString* title = [[NSAttributedString alloc]
             initWithString:text
                 attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1}];
@@ -1467,7 +1466,7 @@ static MNStaff* _currentStaff;
         NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         paragraphStyle.alignment = kCTTextAlignmentLeft;
         MNFont* font1 = [MNFont fontWithName:@"TimesNewRomanPS-BoldMT" size:10];
-        NSString* text = [NSString stringWithFormat:@"%lu", self.measure];
+        NSString* text = [NSString stringWithFormat:@"%tu", self.measure];
         NSAttributedString* title = [[NSAttributedString alloc]
             initWithString:text
                 attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];

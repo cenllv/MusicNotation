@@ -69,51 +69,9 @@
     [slide draw:ctx];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)simple:(id<MNTestParentDelegate>)parent
 {
-    /*
-     Vex.Flow.Test.ThreeVoices.setupContext = function(options, x, y) {
-     Vex.Flow.Test.resizeCanvas(options.canvas_sel, x || 350, y || 150);
-     var ctx = Vex.getCanvasContext(options.canvas_sel);
-     ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-     ctx.font = " 10pt Arial";
-      MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 30, x || 350, 0) addTrebleGlyph].
-     setContext(ctx).draw();
-
-     return {context: ctx, staff: staff};
-     }
-     */
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
-
-- (void)setupContext
-{
-    /*
-    Vex.Flow.Test.TabSlide.setupContext = function(options, x, y) {
-        var ctx = options.contextBuilder(options.canvas_sel, 350, 140);
-        ctx.scale(0.9, 0.9); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-        ctx.font = "10pt Arial";
-         MNStaff *staff = new Vex.Flow.TabStaff(10, 10, x || 350).addTabGlyph().
-        setContext(ctx).draw();
-
-        return {context: ctx, staff: staff};
-    }
-
-     */
-}
-
-- (MNTestTuple*)simple:(MNTestCollectionItemView*)parent
-{
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     /*
 
         Vex.Flow.Test.TabSlide.tieNotes([
@@ -154,9 +112,9 @@
 
 typedef MNTabTie* (^Factory)(NSDictionary*);
 
-+ (MNTestTuple*)multiTest:(NSDictionary*)options factory:(Factory)factory
++ (MNTestBlockStruct*)multiTest:(NSDictionary*)options factory:(Factory)factory
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNTabNote* (^newNote)(NSDictionary*) = ^MNTabNote*(NSDictionary* note_struct)
     {
@@ -254,7 +212,7 @@ typedef MNTabTie* (^Factory)(NSDictionary*);
     return ret;
 }
 
-- (MNTestTuple*)slideUp:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)slideUp:(id<MNTestParentDelegate>)parent
 {
     /*
     Vex.Flow.Test.TabSlide.slideUp = function(options, contextBuilder) {
@@ -272,7 +230,7 @@ typedef MNTabTie* (^Factory)(NSDictionary*);
                          } factory:factory];
 }
 
-- (MNTestTuple*)slideDown:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)slideDown:(id<MNTestParentDelegate>)parent
 {
     /*
     Vex.Flow.Test.TabSlide.slideDown = function(options, contextBuilder) {

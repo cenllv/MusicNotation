@@ -36,6 +36,10 @@
 {
     MNLogDebug(@"AnimationGlyphBox drawLayer");
 
+    #if TARGET_OS_IPHONE
+    UIGraphicsPushContext(ctx);
+    #endif
+
     CGPoint center;
     center.x = CGRectGetMidX(theLayer.bounds);
     center.y = CGRectGetMidY(theLayer.bounds);
@@ -52,6 +56,10 @@
         renderBoundingBox:NO];
 
     CGContextRestoreGState(ctx);
+    
+#if TARGET_OS_IPHONE
+    UIGraphicsPopContext();
+#endif
 }
 
 @end
@@ -72,30 +80,44 @@
     [test.animateButton removeFromSuperview];
 }
 
-- (MNTestTuple*)basic:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)basic:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     ret.backgroundColor = [MNColor randomBGColor:YES];
     MNAnimationTests* test = self;
 
-    parent.translatesAutoresizingMaskIntoConstraints = YES;
     test.box = [CALayer layer];
     test.box.opacity = 1.0;
-    test.box.backgroundColor = [NSColor whiteColor].CGColor;
+    test.box.backgroundColor = [MNColor whiteColor].CGColor;
     test.box.bounds = CGRectMake(0, 0, 100, 150);
     test.box.position = CGPointMake(100, 100);
     test.boxDelegate = [[AnimationGlyphBox alloc] init];
     test.box.delegate = test.boxDelegate;
     test.box.transform = CATransform3DMakeRotation(0, 0, 0, 0);
-    //    dispatch_async(dispatch_get_main_queue(), ^{
-    //      [parent.layer addSublayer:test.box];
-    //      [test.box setNeedsDisplay];
-    //    });
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//      [parent.layer addSublayer:test.box];
+//      [test.box setNeedsDisplay];
+//    });
 
-    test.animateButton = [[MNButton alloc] init];
+#if TARGET_OS_IPHONE
+
+    // TODO: not working for ios
+    //    ((UIView*)parent).translatesAutoresizingMaskIntoConstraints = NO;
+    test.animateButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 200, 50, 20)];
+    test.animateButton.backgroundColor = UIColor.yellowColor;
+    test.animateButton.titleLabel.textColor = UIColor.blackColor;
+    test.animateButton.layer.cornerRadius = 10;
+    test.animateButton.clipsToBounds = YES;
+    [UIFont fontWithName:@"Helvetica-Bold" size: 11.0];
+    test.animateButton.titleLabel.text = @"Animate";
+    [test.animateButton setTitle:@"Animate" forState:UIControlStateNormal];
+    [test.animateButton sizeToFit];
+    [test.animateButton addTarget:self action:@selector(animate:) forControlEvents:UIControlEventTouchUpInside];
+
+#elif TARGET_OS_MAC
+    test.animateButton = [[NSButton alloc] init];
     [test.animateButton setButtonType:NSMomentaryPushInButton];
     [test.animateButton setBezelStyle:NSRoundedBezelStyle];
-    [test.animateButton setTarget:self];
     test.animateButton.title = @"Animate";
     [test.animateButton sizeToFit];
     [test.animateButton setTarget:test];
@@ -103,9 +125,10 @@
     CGSize size = test.animateButton.frame.size;
     test.animateButton.layer.frame = NSRectFromCGRect(CGRectMake(0, 0, size.width, size.height));
     CGRect rect = test.animateButton.frame;
-    rect.origin = CGPointMake(20, parent.frame.size.height - 50);
+    rect.origin = CGPointMake(20, parent.layer.frame.size.height - 50);
     test.animateButton.frame = rect;
     test.animateButton.wantsLayer = YES;
+#endif
     //    test.animateButton.layer.backgroundColor = [NSColor redColor].CGColor;
     dispatch_async(dispatch_get_main_queue(), ^{
       [parent.layer addSublayer:test.box];

@@ -40,8 +40,8 @@
 @synthesize x = _x;
 @synthesize center_x_shift = _center_x_shift;
 @synthesize centerAlign = _centerAlign;
-@synthesize extraLeftPx = _extraLeftPx;
-@synthesize extraRightPx = _extraRightPx;
+//@synthesize extraLeftPx = _extraLeftPx;
+//@synthesize extraRightPx = _extraRightPx;
 
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
@@ -257,18 +257,14 @@
     abort();
 }
 
-- (float)getExtraLeftPx
+- (float)extraLeftPx
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
-    abort();
-    return 0;
+    return _extraLeftPx;
 }
 
-- (float)getExtraRightPx
+- (float)extraRightPx
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
-    abort();
-    return 0;
+    return _extraRightPx;
 }
 
 - (id)setExtraLeftPx:(float)extraLeftPx

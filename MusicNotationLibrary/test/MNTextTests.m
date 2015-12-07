@@ -42,9 +42,9 @@
     [super tearDown];
 }
 
-- (MNTestTuple*)drawFonts:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawFonts:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       MNFont* font = [MNFont fontWithName:@"times" size:12];
@@ -71,9 +71,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawAlignment:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawAlignment:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
@@ -118,9 +118,9 @@
     return ret;
 }
 
-- (MNTestTuple*)drawColors:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)drawColors:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
       MNFont* font = [MNFont fontWithName:@"times" size:26];

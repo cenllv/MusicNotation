@@ -29,8 +29,9 @@
 
 @interface NSMutableDictionary (MNAdditions)
 
-+ (NSDictionary*)merge:(NSDictionary*)destination with:(NSDictionary*)source;
-- (void)addObjectWithoutReplacing:(id)obj forKey:(id)key;
-- (void)addEntriesFromDictionaryWithoutReplacing:(NSDictionary*)dict;
++ (nonnull NSDictionary*)merge:(nonnull NSDictionary*)destination with:(nullable NSDictionary*)source;
++ (nonnull NSDictionary*)dictionaryByMerging:(nonnull NSDictionary*)destination with:(nullable NSDictionary*)source;
+- (void)addObjectWithoutReplacing:(nullable id)obj forKey:(nonnull id)key;
+- (void)addEntriesFromDictionaryWithoutReplacing:(nonnull NSDictionary*)dict;
 
 @end

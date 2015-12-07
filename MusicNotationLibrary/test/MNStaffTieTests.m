@@ -46,19 +46,19 @@
     [super tearDown];
 }
 
-- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(MNTestCollectionItemView*)parent
-{
-    NSUInteger w = size.width;
-//    NSUInteger h = size.height;
-
-    w = w != 0 ? w : 350;
-//    h = h != 0 ? h : 150;
-
-    // [MNFont setFont:@" 10pt Arial"];
-
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
-    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
-}
+//- (MNViewStaffStruct*)setupContextWithSize:(MNUIntSize*)size withParent:(id<MNTestParentDelegate>)parent
+//{
+//    NSUInteger w = size.width;
+////    NSUInteger h = size.height;
+//
+//    w = w != 0 ? w : 350;
+////    h = h != 0 ? h : 150;
+//
+//    // [MNFont setFont:@" 10pt Arial"];
+//
+//    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, w, 0)] addTrebleGlyph];
+//    return [MNViewStaffStruct contextWithStaff:staff andView:nil];
+//}
 
 + (void)tieNotes:(NSArray*)notes
      withIndices:(NSArray*)indices
@@ -91,9 +91,9 @@
     [[self class] tieNotes:notes withIndices:indices staff:staff context:ctx dirtyRect:CGRectZero];
 }
 
-- (MNTestTuple*)simple:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)simple:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
@@ -126,9 +126,9 @@
     return ret;
 }
 
-- (MNTestTuple*)chord:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)chord:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
@@ -161,9 +161,9 @@
     return ret;
 }
 
-- (MNTestTuple*)stemUp:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)stemUp:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
@@ -196,9 +196,9 @@
     return ret;
 }
 
-- (MNTestTuple*)noEndNote:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)noEndNote:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {
@@ -246,9 +246,9 @@
     return ret;
 }
 
-- (MNTestTuple*)noStartNote:(MNTestCollectionItemView*)parent
+- (MNTestBlockStruct*)noStartNote:(id<MNTestParentDelegate>)parent
 {
-    MNTestTuple* ret = [MNTestTuple testTuple];
+    MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
     {

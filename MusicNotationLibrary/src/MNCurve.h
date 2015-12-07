@@ -26,29 +26,30 @@
 //  THE SOFTWARE.
 //
 
-#import "MNModifier.h"
+//#import "MNModifier.h"
+#import "IAModelBase.h"
 #import "MNEnum.h"
+
+@class MNStaffNote, MNNote, MNPoint;
 
 /*!
  *  The `MNCurve` class implements curves (for slurs)
  */
-@interface MNCurve : MNModifier
-#pragma mark - Properties
+@interface MNCurve : IAModelBase
 
 @property (assign, nonatomic) float spacing;
 @property (assign, nonatomic) float thickness;
-//@property (assign, nonatomic) float x_shift;
-//@property (assign, nonatomic) float y_shift;
-@property (strong, nonatomic) MNStaffNote* fromNote;
-@property (strong, nonatomic) MNStaffNote* toNote;
+@property (assign, nonatomic) float xShift;
+@property (assign, nonatomic) float yShift;
+@property (strong, nonatomic) MNNote* _Nonnull fromNote;
+@property (strong, nonatomic) MNNote* _Nonnull toNote;
 @property (assign, nonatomic) MNCurveType position;
 @property (assign, nonatomic) MNCurveType positionEnd;
 @property (assign, nonatomic) BOOL invert;
 @property (assign, nonatomic, readonly) BOOL isPartial;
-@property (strong, nonatomic) NSArray* cps;   // array of mnpoint
+@property (strong, nonatomic) NSArray<MNPoint*>* _Nonnull cps;
 
-#pragma mark - Methods
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+//- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
 /*!
  *  generate a curve object
@@ -56,9 +57,11 @@
  *  @param toNote   end note
  *  @return a curve object
  */
-+ (MNCurve*)curveFromNote:(MNNote*)fromNote toNote:(MNNote*)toNote;
++ (nonnull MNCurve*)curveFromNote:(nonnull MNNote*)fromNote toNote:(nonnull MNNote*)toNote;
 
-+ (MNCurve*)curveFromNote:(MNNote*)fromNote toNote:(MNNote*)toNote withDictionary:(NSDictionary*)optionsDict;
++ (nonnull MNCurve*)curveFromNote:(nonnull MNNote*)fromNote
+                   toNote:(nonnull MNNote*)toNote
+           withDictionary:(nullable NSDictionary*)optionsDict;
 
 /*!
  *  set the notes to render this curve
@@ -66,6 +69,12 @@
  *  @param toNote   end note
  *  @return this object
  */
-- (id)setNotesFrom:(MNStaffNote*)fromNote toNote:(MNStaffNote*)toNote;
+- (nonnull id)setNotesFrom:(nonnull MNNote*)fromNote toNote:(nonnull MNNote*)toNote;
+
+/*!
+ *  Draw the curve
+ *  @param ctx the core graphics opaque type drawing environment
+ */
+- (void)draw:(nonnull CGContextRef)ctx;
 
 @end

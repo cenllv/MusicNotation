@@ -58,11 +58,11 @@
 
     MNTuplet* _tuplet;
 
-    BOOL _align_center;
+//    BOOL _align_center;
     float _center_x_shift;   // Shift from tick context if center aligned
     BOOL _ignore_ticks;
 
-    float _getCenterXShift;
+//    float _getCenterXShift;
     float _extraLeftPx;
     float _extraRightPx;
     BOOL _shouldIgnoreTicks;
@@ -112,8 +112,8 @@
 - (void)applyTickMultiplier:(NSUInteger)numerator denominator:(NSUInteger)denominator;
 - (void)setTickDuration:(MNRational*)duration;
 
-- (float)getExtraLeftPx;
-- (float)getExtraRightPx;
+- (float)extraLeftPx;
+- (float)extraRightPx;
 - (id)setExtraLeftPx:(float)extraLeftPx;
 - (id)setExtraRightPx:(float)extraRightPx;
 

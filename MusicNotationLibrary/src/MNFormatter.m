@@ -280,7 +280,7 @@ typedef void (^AddFunction)(MNTickable*, id);
     [voice addTickables:notes];   // voice.addTickables(notes);
 
     // Then create beams, if requested.
-    NSArray* beams = nil;
+    NSArray<MNBeam*>* beams = nil;
     if([options[@"auto_beam"] boolValue])
     {
         beams = [MNBeam applyAndGetBeams:voice direction:MNStemDirectionNone groups:nil];
@@ -318,7 +318,7 @@ typedef void (^AddFunction)(MNTickable*, id);
     [voice addTickables:notes];   // voice.addTickables(notes);
 
     // Then create beams, if requested.
-    NSArray* beams = nil;
+    NSArray<MNBeam*>* beams = nil;
     if([options[@"auto_beam"] boolValue])
     {
         beams = [MNBeam applyAndGetBeams:voice direction:MNStemDirectionNone groups:nil];
@@ -407,7 +407,7 @@ typedef void (^AddFunction)(MNTickable*, id);
     [tabvoice addTickables:tabNotes];
 
     // Generate beams if requested.
-    NSArray* beams = nil;
+    NSArray<MNBeam*>* beams = nil;
     if([opts[@"auto_beam"] boolValue])
     {
         beams = [MNBeam applyAndGetBeams:notevoice direction:MNStemDirectionNone groups:nil];
@@ -716,7 +716,7 @@ typedef void (^AddFunction)(MNTickable*, id);
     float center_x = justifyWidth / 2;
     float white_space = 0;   // White space to right of previous note
     float tick_space = 0;    // Pixels from prev note x-pos to curent note x-pos
-    NSNumber* prev_tick = nil;
+    // NSNumber* prev_tick = nil;
     float prev_tick_value = 0;   // NSUInteger prev_tick_value = 0;
     float prev_width = 0;
     id<TickableMetrics> lastMetrics = nil;
@@ -805,7 +805,7 @@ typedef void (^AddFunction)(MNTickable*, id);
 
         lastMetrics = selfMetrics;
         prev_width = width;
-        prev_tick = tick;
+        // prev_tick = tick;
         x = set_x;
     }
 
@@ -827,7 +827,7 @@ typedef void (^AddFunction)(MNTickable*, id);
             tick_space = (tickValue - prev_tick_value) * leftover_pixels_per_tick;
             accumulated_space = accumulated_space + tick_space;
             context.x = (context.x + accumulated_space);
-            prev_tick = tick;
+            // prev_tick = tick;
             prev_tick_value = tickValue;
 
             // Move center aligned tickables to middle
@@ -919,7 +919,7 @@ typedef void (^AddFunction)(MNTickable*, id);
 
     [self preFormatWith:justifyWidth voices:voices staff:staff];
 
-    if([opts.allKeys containsObject:@"staff"] && opts[@"staff"] != [NSNull null])
+    if(opts[@"staff"] && opts[@"staff"] != [NSNull null])
     {
         [self postFormat];
     }
@@ -939,13 +939,14 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param options the collection of voices
  *  @return <#return value description#>
  */
-- (id)formatToStaff:(NSArray<MNVoice*>*)voices staff:(MNStaff*)staff options:(NSDictionary*)options
+- (id)formatToStaff:(NSArray<MNVoice*>*)voices staff:(MNStaff*)staff options:(nonnull NSDictionary*)options
 {
     // TODO: this could be one spot to reduce width from clefs, time sigs, etc.
     float justifyWidth = staff.noteEndX - staff.noteStartX - 10;
     MNLogInfo(@"Formatting voices to width: %f", justifyWidth);
     //    NSDictionary* opts = @{@"context" : [NSValue valueWithPointer:staff.graphicsContext]};
-    NSDictionary* params = [NSMutableDictionary merge:options with:@{ @"staff" : staff }];
+    NSDictionary* dict = staff ?  @{ @"staff" : staff } : nil;
+    NSDictionary* params = [NSMutableDictionary merge:options with:dict];
     return [self formatWith:voices withJustifyWidth:justifyWidth andOptions:params];
 }
 

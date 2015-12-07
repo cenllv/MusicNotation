@@ -103,30 +103,29 @@
 
     switch(self.options.numLines)
     {
-        // TODO: update scale values
         case 8:
-            glyphScale = 55;
+            glyphScale = 55./35.;
             glyphOffset = 14;
             break;
         case 7:
-            glyphScale = 47;
+            glyphScale = 47./35.;
             glyphOffset = 8;
             break;
         case 6:
-            glyphScale = 40;
+            glyphScale = 40./35.;
             glyphOffset = 1;
             break;
         case 5:
-            glyphScale = 30;
+            glyphScale = 30./35.;
             glyphOffset = -6;
             break;
         case 4:
-            glyphScale = 23;
+            glyphScale = 23./35.;
             glyphOffset = -12;
             break;
     }
 
-    MNGlyph* tabGlyph = [[MNGlyph alloc] initWithCode:@"v2f" withScale:1];   // glyphScale];
+    MNGlyph* tabGlyph = [[MNGlyph alloc] initWithCode:@"v2f" withScale:glyphScale];
     tabGlyph.y_shift = glyphOffset;
     [self addGlyph:[self makeSpacer:5]];
     [self addGlyph:tabGlyph];

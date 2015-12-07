@@ -27,6 +27,9 @@
 
 #import "NSBezierPath+MNAdditions.h"
 
+#if TARGET_OS_IPHONE
+#elif TARGET_OS_MAC
+
 @implementation NSBezierPath (MNAdditions)
 
 // https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CocoaDrawingGuide/Paths/Paths.html#//apple_ref/doc/uid/TP40003290-CH206-SW2
@@ -82,4 +85,7 @@
 
     return immutablePath;
 }
+
 @end
+
+#endif
