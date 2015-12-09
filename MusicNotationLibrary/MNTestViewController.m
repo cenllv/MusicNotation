@@ -54,10 +54,13 @@
 
 - (void)tearDown
 {
+    // NOTE: This is not for collection or table views.
+    //       Use UITableViewCell.prepareForReuse() or NSCollectionViewItem.prepareForReuse()
 }
 
 - (void)audioSetup
 {
+    // NOTE: this is currently being done by the `AppDelegate` class.
 }
 
 static NSString* const reuseId = @"customTestCell";

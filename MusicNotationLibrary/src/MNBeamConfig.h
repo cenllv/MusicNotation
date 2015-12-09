@@ -28,6 +28,8 @@
 #import "IAModelBase.h"
 #import "MNEnum.h"
 
+@class MNRational;
+
 /*!
  * The `MNBeamConfig` class
  *
@@ -41,7 +43,7 @@
  */
 @interface MNBeamConfig : IAModelBase
 
-@property (strong, nonatomic) NSMutableArray* groups;
+@property (strong, nonatomic) NSMutableArray<MNRational*>* groups;
 @property (assign, nonatomic) MNStemDirectionType stemDirection;
 @property (assign, nonatomic) BOOL beamRests;
 @property (assign, nonatomic) BOOL beamMiddleOnly;

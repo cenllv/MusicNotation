@@ -541,7 +541,7 @@ static MNStaff* _currentStaff;
  */
 - (float)getModifierXShift
 {
-    return [self getModifierXShift:-1];   // -1 indicates nil
+    return [self getModifierXShift:NSIntegerMin];   // -1 indicates nil
 }
 
 /*!
@@ -552,7 +552,7 @@ static MNStaff* _currentStaff;
  */
 - (float)getModifierXShift:(NSInteger)index
 {
-    if(index < 0)
+    if(index == NSIntegerMin)
     {
         index = self.glyphs.count - 1;
     }
@@ -1102,7 +1102,7 @@ static MNStaff* _currentStaff;
 {
     [self.modifiers push:modifier];
     modifier.staff = self;   // CHANGE
-    [modifier addToStaffEnd:self firstGlyph:(self.glyphs.count == 0)];
+    [modifier addToStaffEnd:self firstGlyph:(self.endGlyphs.count == 0)];
     return self;
 }
 

@@ -281,7 +281,7 @@
     //    super.staff = staff;
     //    _staff = staff;
 
-    float line = self.line;
+    float line = _line;
     [self setY:[staff getYForNoteWithLine:line]];
     //    self.graphicsContext = self.staff.graphicsContext;
     return self;
@@ -380,12 +380,12 @@
     MNStemDirectionType stem_direction = self.stemDirection;
     //    float glyph_font_scale = [self->_renderOptions glyphFontScale];
 
-    float line = self.line;
+    float line = _line;
     if(!self.staff)
     {
         self.staff = [MNStaff currentStaff];
     }
-    y = [self.staff getYForNoteWithLine:self.line];
+    y = [self.staff getYForNoteWithLine:_line];
 
     // If note above/below the staff, draw the small staff
     if(line <= 0 || line >= 6)
@@ -442,7 +442,7 @@
     //    float head_x = self.absoluteX;
     //    float y = self.staff.y;
     float x = self.absoluteX;   // - convertPoint.x;
-    float y = [[MNStaff currentStaff] getYForNoteWithLine:self.line] - self.staff.y;
+    float y = [[MNStaff currentStaff] getYForNoteWithLine:_line] - self.staff.y;
 
     CGPathRef subPath = [MNGlyph createPathwithCode:self.glyph_code withScale:1 atPoint:CGPointMake(x, y)];
     CGPathAddPath(path, NULL, subPath);

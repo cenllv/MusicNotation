@@ -26,13 +26,12 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNModifier.h"
 //#import "MNOptions.h"
 
 @class MNColor;
 
-/*! 
+/*!
  *  The `MNBend` class makes tablature bends
  */
 @interface MNBend : MNModifier
@@ -51,7 +50,7 @@
 @property (strong, nonatomic) NSString* fontName;
 @property (strong, nonatomic) NSMutableArray* phrase;   // array of  MNBendStruct objects
 @property (assign, nonatomic) float draw_width;
-@property (assign, nonatomic) MNBendDirectionType type;
+//@property (assign, nonatomic) MNBendDirectionType bendDirectionType;
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;

@@ -47,35 +47,18 @@
     self = [super initWithDictionary:optionsDict];
     if(self)
     {
-        // Note properties
         self.text = optionsDict[@"text"];
         self.glyph_type = optionsDict[@"glyph"];
         self.glyph = nil;
-        //        self.font = {
-        //        family: "Arial",
-        //        size: 12,
-        //        weight: ""
-        //        }
-
-        //        if (optionsDict.font) self.font = optionsDict.font;
-
         if(self.glyph_type)
         {
-            NSDictionary* textNoteglyphTextNoteDictionary = [MNTable textNoteGlyphs][self.glyph_type];
-            //            if (!struct) throw new Vex.RERR("Invalid glyph type: " + self.glyph_type);
-            if(!textNoteglyphTextNoteDictionary)
+            NSDictionary* glyphDict = [[self class] textNoteGlyphs][self.glyph_type];
+            if(!glyphDict)
             {
                 MNLogError(@"Invalid glyph type: %@", self.glyph_type);
             }
 
-            NSString* code = textNoteglyphTextNoteDictionary[@"code"];
-            float pointSize = [textNoteglyphTextNoteDictionary[@"point"] floatValue];
-            self.glyph = [[MNGlyph alloc] initWithCode:code withPointSize:pointSize];
-
-            //            if(struct.width)
-            //                self.setWidth(struct.width) else self.setWidth(self.glyph.getMetrics().width);
-
-            self.glyphTextNoteStruct = [[MNTextNoteStruct alloc] initWithDictionary:textNoteglyphTextNoteDictionary];
+            self.glyphTextNoteStruct = [[MNTextNoteStruct alloc] initWithDictionary:glyphDict];
         }
         else
         {
@@ -92,7 +75,10 @@
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
-    //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
+    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{
+        @"superscript" : @"superScript",
+        @"subscript" : @"subScript"
+    }];
     return propertiesEntriesMapping;
 }
 
@@ -100,14 +86,59 @@
 {
     if(!_font)
     {
-        _font = [MNFont fontWithName:@"Arial" size:12];
+        _font = [MNFont fontWithName:@"Arial" size:16];
     }
     return _font;
+}
+
+- (id)setJustification:(MNJustiticationType)justification
+{
+    _justification = justification;
+    return self;
 }
 
 - (void)setFont:(MNFont*)font
 {
     _font = font;
+}
+
+// TODO: move to MNTables
+static NSDictionary* _textNoteGlyphs;
++ (NSDictionary*)textNoteGlyphs
+{
+    if(!_textNoteGlyphs)
+    {
+        _textNoteGlyphs = @{
+            @"segno" : @{@"code" : @"v8c", @"pointSize" : @(40. / 40.), @"x_shift" : @0, @"y_shift" : @(-10)},
+            @"tr" : @{@"code" : @"v1f", @"pointSize" : @(40. / 40.), @"x_shift" : @0, @"y_shift" : @0},
+            @"mordent_upper" : @{@"code" : @"v1e", @"pointSize" : @(40. / 40.), @"x_shift" : @0, @"y_shift" : @0},
+            @"mordent_lower" : @{@"code" : @"v45", @"pointSize" : @(40. / 40.), @"x_shift" : @0, @"y_shift" : @0},
+            @"f" : @{@"code" : @"vba", @"pointSize" : @(40. / 40.), @"x_shift" : @0, @"y_shift" : @0},
+            @"p" : @{@"code" : @"vbf", @"pointSize" : @(40. / 40.), @"x_shift" : @0, @"y_shift" : @0},
+            @"m" : @{@"code" : @"v62", @"pointSize" : @(40. / 40.), @"x_shift" : @0, @"y_shift" : @0},
+            @"s" : @{@"code" : @"v4a", @"pointSize" : @(40. / 40.), @"x_shift" : @0, @"y_shift" : @0},
+            @"z" : @{@"code" : @"v80", @"pointSize" : @(40. / 40.), @"x_shift" : @0, @"y_shift" : @0},
+            @"coda" : @{@"code" : @"v4d", @"pointSize" : @(40. / 40.), @"x_shift" : @0, @"y_shift" : @(-8)},
+            @"pedal_open" : @{@"code" : @"v36", @"pointSize" : @(40. / 40.), @"x_shift" : @0, @"y_shift" : @0},
+            @"pedal_close" : @{@"code" : @"v5d", @"pointSize" : @(40. / 40.), @"x_shift" : @0, @"y_shift" : @3},
+            @"caesura_straight" : @{@"code" : @"v34", @"pointSize" : @(40. / 40.), @"x_shift" : @0, @"y_shift" : @2},
+            @"caesura_curved" : @{@"code" : @"v4b", @"pointSize" : @(40. / 40.), @"x_shift" : @0, @"y_shift" : @2},
+            @"breath" : @{@"code" : @"v6c", @"pointSize" : @(40. / 40.), @"x_shift" : @0, @"y_shift" : @0},
+            @"tick" : @{@"code" : @"v6f", @"pointSize" : @(50. / 40.), @"x_shift" : @0, @"y_shift" : @0},
+            @"turn" : @{@"code" : @"v72", @"pointSize" : @(40. / 40.), @"x_shift" : @0, @"y_shift" : @0},
+            @"turn_inverted" : @{@"code" : @"v33", @"pointSize" : @(40. / 40.), @"x_shift" : @0, @"y_shift" : @0},
+
+            // DEPRECATED - please use "mordent_upper" or "mordent_lower"
+            @"mordent" : @{
+                @"code" : @"v1e",
+                @"pointSize" : @(40. / 40.),
+                @"x_shift" : @0,
+                @"y_shift" : @0
+                // width: 10 // optional
+            },
+        };
+    }
+    return _textNoteGlyphs;
 }
 
 // Pre-render formatting
@@ -134,11 +165,11 @@
         }
     }
 
-    if(self.justification == MNJustifyCENTER)
+    if(_justification == MNJustifyCENTER)
     {
         self.extraLeftPx = self.width / 2;
     }
-    else if(self.justification == MNJustifyRIGHT)
+    else if(_justification == MNJustifyRIGHT)
     {
         self.extraLeftPx = self.width;
     }
@@ -149,60 +180,56 @@
 
 - (void)draw:(CGContextRef)ctx
 {
-    /*
-
-        if (self.justification == Vex.Flow.TextNote.Justification.CENTER) {
-            x -= self.getWidth() / 2;
-        } else if (self.justification == Vex.Flow.TextNote.Justification.RIGHT) {
-            x -= self.getWidth();
-        }
-
-        if (self.glyph) {
-            var y = self.Staff.getYForLine(self.line + (-3));
-            self.glyph.render(self.context,
-                              x + self.glyph_struct.x_shift,
-                              y + self.glyph_struct.y_shift)
-        } else {
-            var y = self.Staff.getYForLine(self.line + (-3));
-            ctx.save();
-            ctx.setFont(self.font.family, self.font.size, self.font.weight);
-            ctx.fillText(self.text, x, y);
-            ctx.restore();
-        }
-    }
-
-     */
-
     if(!self.staff)
     {
         MNLogError(@"NoStaff, Can't draw without a Staff.");
     }
     float x = self.absoluteX;
 
-    if(self.glyph)
+    if(_justification == MNJustifyCENTER)
     {
-        [self.glyph renderWithContext:ctx
-                                  atX:(x + self.glyphTextNoteStruct.x_shift)
-                                  atY:(x + self.glyphTextNoteStruct.y_shift)];
+        x -= self.width / 2;
+    }
+    else if(_justification == MNJustifyRIGHT)
+    {
+        x -= self.width;
+    }
+
+    if(self.glyphTextNoteStruct)
+    {
+        MNTextNoteStruct* s = self.glyphTextNoteStruct;
+        float y = [self.staff getYForLine:_line + (-3)];
+        [MNGlyph renderGlyph:ctx atX:(x + s.x_shift)atY:(y + s.y_shift)withScale:s.pointSize forGlyphCode:s.code];
     }
     else
     {
-        float y = [self.staff getYForLine:self.line + (-3)];
-        MNFont* font = [MNFont fontWithName:@"ArialMT" size:8];
+        float y = [self.staff getYForLine:_line + (-3)];
+        [MNText drawText:ctx withFont:self.font atPoint:MNPointMake(x, y) withText:self.text];
 
-        //        NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        //        paragraphStyle.alignment = kCTTextAlignmentCenter;
-        NSAttributedString* description = [[NSAttributedString alloc]
-            initWithString:self.text
-                attributes:@{
-                    //                                                          NSParagraphStyleAttributeName :
-                    //                                                          paragraphStyle,
-                    NSFontAttributeName : font.font,
-                    //                                                          NSForegroundColorAttributeName :
-                    //                                                          MNColor.blackColor
-                }];
-        // description drawAtPoint:CGPointMake(x, y)];
-        [MNText drawText:ctx withFont:font atPoint:MNPointMake(x, y) withText:description];
+        // Get accurate width of text
+        CGSize textSize = [MNText measureText:self.text withFont:self.font];
+        float height = textSize.height;
+        float width = textSize.width;
+
+        // Write superscript
+        if(self.superScript && self.superScript.length > 0)
+        {
+            MNFont* font = [MNFont fontWithName:self.font.family size:self.font.size / 1.3];
+            [MNText drawText:ctx
+                    withFont:font
+                     atPoint:MNPointMake(x + width + 2, y - (height / 2.2))
+                    withText:self.superScript];
+        }
+
+        // Write subscript
+        if(self.subScript && self.subScript.length > 0)
+        {
+            MNFont* font = [MNFont fontWithName:self.font.family size:self.font.size / 1.3];
+            [MNText drawText:ctx
+                    withFont:font
+                     atPoint:MNPointMake(x + width + 2, y + (height / 2.2) - 1)
+                    withText:self.subScript];
+        }
     }
 }
 

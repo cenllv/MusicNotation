@@ -114,6 +114,13 @@
     return NSStringFromClass([self class]);
 }
 
+- (id)setXShift:(float)xShift
+{
+    // TODO: change to using superclass _xShift ivar ?
+    _shift_x = xShift;
+    return self;
+}
+
 - (void)setConnectorType:(MNStaffConnectorType)connectorType
 {
     if(connectorType >= MNStaffConnectorNone && connectorType <= MNStaffConnectorThinDouble)
@@ -174,7 +181,7 @@
             cpy7 = y2 - (0.135 * attachment_height);
             cpx8 = cpx5;
             cpy8 = cpy1;
-//            CGPoint cp1, cp2, cp3, cp4, cp5, cp6, cp7, cp8;
+            //            CGPoint cp1, cp2, cp3, cp4, cp5, cp6, cp7, cp8;
             //            cp1 = CGPointMake(cpx1, cpy1);
             //            cp2 = CGPointMake(cpx2, cpy2);
             //            cp3 = CGPointMake(cpx3, cpy3);
@@ -339,13 +346,13 @@ static BOOL _debugMode = NO;
     CGContextBeginPath(ctx);
     CGContextAddRect(ctx, CGRectMake(topX + x_shift, topY, 1, botY - topY));
     CGContextClosePath(ctx);
-    CGContextDrawPath(ctx, kCGPathFillStroke);
+    CGContextDrawPath(ctx, kCGPathFill);   // Stroke);
     // thick line
     //     [MNRenderer fillRect:ctx withRect:CGRectMake(topX - thickLineOffset, topY, variableWidth, botY - topY)];
     CGContextBeginPath(ctx);
     CGContextAddRect(ctx, CGRectMake(topX - thickLineOffset, topY, variableWidth, botY - topY));
     CGContextClosePath(ctx);
-    CGContextDrawPath(ctx, kCGPathFillStroke);
+    CGContextDrawPath(ctx, kCGPathFill);   // Stroke);
 }
 
 @end

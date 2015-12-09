@@ -35,7 +35,7 @@
 
 /*!
  *  The `MNTestViewController` class is the main controller for each collection of tests.
- *  It caches the tests and later 
+ *  It caches the tests and later
  */
 @interface MNTestViewController
 #if TARGET_OS_IPHONE
@@ -50,7 +50,7 @@
 - (void)start;
 
 /*!
- *  Unloads resources and prepares the container view for reuse.
+ *  Unloads resources for the controller.
  */
 - (void)tearDown;
 

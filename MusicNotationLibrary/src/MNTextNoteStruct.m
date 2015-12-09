@@ -41,7 +41,7 @@
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
-    //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
+    //            [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"point" : @"pointSize"}];
     return propertiesEntriesMapping;
 }
 

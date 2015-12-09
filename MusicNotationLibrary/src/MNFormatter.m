@@ -687,7 +687,7 @@ typedef void (^AddFunction)(MNTickable*, id);
 {
     // Initialize context maps.
     MNFormatterContext* contexts = self.tContexts;
-    NSArray* contextList = contexts.list;
+    NSArray<NSNumber*>* contextList = contexts.list;
     NSDictionary* contextMap = contexts.map;
 
     // If voices and a staff were provided, set the staff for each voice

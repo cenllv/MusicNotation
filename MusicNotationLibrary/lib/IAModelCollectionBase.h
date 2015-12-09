@@ -10,7 +10,7 @@
 #import "IAModelBase.h"
 
 @interface IAModelCollectionBase : NSObject
-- (Class) classForModelBase;
+- (Class)classForModelBase;
 - (NSUInteger)count;
 - (void)addEntry:(IAModelBase*)entry;
 - (IAModelBase*)entryAtIndex:(int)index;

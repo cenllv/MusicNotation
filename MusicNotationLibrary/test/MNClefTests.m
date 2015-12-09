@@ -36,11 +36,12 @@
 {
     [super start];
     //    [MNGlyph setDebugMode:YES];
-    [self runTest:@"Clef Test" func:@selector(draw:) frame:CGRectMake(10, 10, 800, 250)];
-    [self runTest:@"Clef End Test" func:@selector(drawEnd:) frame:CGRectMake(10, 10, 800, 250)];
-    [self runTest:@"Small Clef Test" func:@selector(drawSmall:) frame:CGRectMake(10, 10, 800, 250)];
-    [self runTest:@"Small Clef End Test" func:@selector(drawSmallEnd:) frame:CGRectMake(10, 10, 800, 250)];
-    [self runTest:@"Clef Change Test" func:@selector(drawClefChange:) frame:CGRectMake(10, 10, 800, 250)];
+    float w = 750, h = 150;
+    [self runTest:@"Clef Test" func:@selector(draw:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Clef End Test" func:@selector(drawEnd:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Small Clef Test" func:@selector(drawSmall:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Small Clef End Test" func:@selector(drawSmallEnd:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Clef Change Test" func:@selector(drawClefChange:) frame:CGRectMake(10, 10, w, h + 50)];
 }
 
 - (void)tearDown
@@ -48,29 +49,51 @@
     [super tearDown];
 }
 
+#define STAFF_Y 10
+
 - (MNTestBlockStruct*)draw:(id<MNTestParentDelegate>)parent
 {
     MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 700, 0)];
+      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, STAFF_Y, 700, 0)];
 
+      void (^space)(float) = ^(float w) {
+        [staff addGlyph:[staff makeSpacer:w]];
+      };
+
+      float w = 10;
       [staff addClefWithName:@"treble"];
+      space(w);
       [staff addClefWithName:@"treble" size:@"default" annotation:@"8va"];
+      space(w);
       [staff addClefWithName:@"treble" size:@"default" annotation:@"8vb"];
+      space(w);
       [staff addClefWithName:@"alto"];
+      space(w);
       [staff addClefWithName:@"tenor"];
+      space(w);
       [staff addClefWithName:@"soprano"];
+      space(w);
       [staff addClefWithName:@"bass"];
+      space(w);
       [staff addClefWithName:@"bass" size:@"default" annotation:@"8vb"];
+      space(w);
       [staff addClefWithName:@"mezzo-soprano"];
+      space(w);
       [staff addClefWithName:@"baritone-c"];
+      space(w);
       [staff addClefWithName:@"baritone-f"];
+      space(w);
       [staff addClefWithName:@"subbass"];
+      space(w);
       [staff addClefWithName:@"percussion"];
+      space(w);
       [staff addClefWithName:@"french"];
+      space(w);
 
       [staff addEndClefWithName:@"treble"];
+      space(w);
 
       [staff draw:ctx];
       ok(YES, @"all pass");
@@ -83,23 +106,41 @@
     MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 700, 0)];
+      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, STAFF_Y, 700, 0)];
 
+      void (^space)(float) = ^(float w) {
+        [staff addEndGlyph:[staff makeSpacer:w]];
+      };
+
+      float w = 15;
       [staff addClefWithName:@"bass"];
-
+      //      space(w);
       [staff addEndClefWithName:@"treble"];
+      space(w);
       [staff addEndClefWithName:@"treble" size:@"default" annotation:@"8va"];
+      space(w);
       [staff addEndClefWithName:@"treble" size:@"default" annotation:@"8vb"];
+      space(w);
       [staff addEndClefWithName:@"alto"];
+      space(w);
       [staff addEndClefWithName:@"tenor"];
+      space(w);
       [staff addEndClefWithName:@"soprano"];
+      space(w);
       [staff addEndClefWithName:@"bass"];
+      space(w);
       [staff addEndClefWithName:@"bass" size:@"default" annotation:@"8vb"];
+      space(w);
       [staff addEndClefWithName:@"mezzo-soprano"];
+      space(w);
       [staff addEndClefWithName:@"baritone-c"];
+      space(w);
       [staff addEndClefWithName:@"baritone-f"];
+      space(w);
       [staff addEndClefWithName:@"subbass"];
+      space(w);
       [staff addEndClefWithName:@"percussion"];
+      space(w);
       [staff addEndClefWithName:@"french"];
 
       [staff draw:ctx];
@@ -113,22 +154,41 @@
     MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 700, 0)];
+      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, STAFF_Y, 700, 0)];
+
+      void (^space)(float) = ^(float w) {
+        [staff addGlyph:[staff makeSpacer:w]];
+      };
+      float w = 15;
 
       [staff addClefWithName:@"treble" size:@"small"];
+      space(w);
       [staff addClefWithName:@"treble" size:@"small" annotation:@"8va"];
+      space(w);
       [staff addClefWithName:@"treble" size:@"small" annotation:@"8vb"];
+      space(w);
       [staff addClefWithName:@"alto" size:@"small"];
+      space(w);
       [staff addClefWithName:@"tenor" size:@"small"];
+      space(w);
       [staff addClefWithName:@"soprano" size:@"small"];
+      space(w);
       [staff addClefWithName:@"bass" size:@"small"];
+      space(w);
       [staff addClefWithName:@"bass" size:@"small" annotation:@"8vb"];
+      space(w);
       [staff addClefWithName:@"mezzo-soprano" size:@"small"];
+      space(w);
       [staff addClefWithName:@"baritone-c" size:@"small"];
+      space(w);
       [staff addClefWithName:@"baritone-f" size:@"small"];
+      space(w);
       [staff addClefWithName:@"subbass" size:@"small"];
+      space(w);
       [staff addClefWithName:@"percussion" size:@"small"];
+      space(w);
       [staff addClefWithName:@"french" size:@"small"];
+      space(w);
 
       [staff addEndClefWithName:@"treble" size:@"small"];
 
@@ -143,24 +203,44 @@
     MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 700, 0)];
+      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, STAFF_Y, 700, 0)];
+
+      void (^space)(float) = ^(float w) {
+        [staff addGlyph:[staff makeSpacer:w]];
+      };
+      float w = 15;
 
       [staff addClefWithName:@"bass" size:@"small"];
+      space(w);
 
       [staff addEndClefWithName:@"treble" size:@"small"];
+      space(w);
       [staff addEndClefWithName:@"treble" size:@"small" annotation:@"8va"];
+      space(w);
       [staff addEndClefWithName:@"treble" size:@"small" annotation:@"8vb"];
+      space(w);
       [staff addEndClefWithName:@"alto" size:@"small"];
+      space(w);
       [staff addEndClefWithName:@"tenor" size:@"small"];
+      space(w);
       [staff addEndClefWithName:@"soprano" size:@"small"];
+      space(w);
       [staff addEndClefWithName:@"bass" size:@"small"];
+      space(w);
       [staff addEndClefWithName:@"bass" size:@"small" annotation:@"8vb"];
+      space(w);
       [staff addEndClefWithName:@"mezzo-soprano" size:@"small"];
+      space(w);
       [staff addEndClefWithName:@"baritone-c" size:@"small"];
+      space(w);
       [staff addEndClefWithName:@"baritone-f" size:@"small"];
+      space(w);
       [staff addEndClefWithName:@"subbass" size:@"small"];
+      space(w);
       [staff addEndClefWithName:@"percussion" size:@"small"];
+      space(w);
       [staff addEndClefWithName:@"french" size:@"small"];
+      space(w);
 
       [staff draw:ctx];
       ok(YES, @"all pass");
@@ -172,44 +252,44 @@
 {
     MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, STAFF_Y + 20, 700, 0)];
+    [staff addClefWithName:@"treble"];
+
+    NSArray* notes = @[
+        [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"treble"],
+        [MNClefNote clefNoteWithClef:@"alto" size:@"small"],
+        [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"alto"],
+        [MNClefNote clefNoteWithClef:@"tenor" size:@"small"],
+        [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"tenor"],
+        [MNClefNote clefNoteWithClef:@"soprano" size:@"small"],
+        [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"soprano"],
+        [MNClefNote clefNoteWithClef:@"bass" size:@"small"],
+        [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"bass"],
+        [MNClefNote clefNoteWithClef:@"mezzo-soprano" size:@"small"],
+        [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"mezzo-soprano"],
+        [MNClefNote clefNoteWithClef:@"baritone-c" size:@"small"],
+        [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"baritone-c"],
+        [MNClefNote clefNoteWithClef:@"baritone-f" size:@"small"],
+        [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"baritone-f"],
+        [MNClefNote clefNoteWithClef:@"subbass" size:@"small"],
+        [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"subbass"],
+        [MNClefNote clefNoteWithClef:@"french" size:@"small"],
+        [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"french"],
+        [MNClefNote clefNoteWithClef:@"treble" size:@"small" annotation:@"8vb"],
+        [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"treble" octaveShift:-1],
+        [MNClefNote clefNoteWithClef:@"treble" size:@"small" annotation:@"8va"],
+        [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"treble" octaveShift:1],
+    ];
+
+    MNVoice* voice = [MNVoice voiceWithNumBeats:12 beatValue:4 resolution:kRESOLUTION];
+    [voice addTickables:notes];
+    MNFormatter* formatter = [[MNFormatter alloc] init];
+    [formatter joinVoices:@[ voice ]];
+    //        [formatter formatWith:@[voice] withJustifyWidth:500 andOptions:nil];
+    [formatter formatWith:@[ voice ] withJustifyWidth:500];
+
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 50, 700, 0)];
-      [staff addClefWithName:@"treble"];
-
       [staff draw:ctx];
-
-      NSArray* notes = @[
-          [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"treble"],
-          [MNClefNote clefNoteWithClef:@"alto" size:@"small"],
-          [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"alto"],
-          [MNClefNote clefNoteWithClef:@"tenor" size:@"small"],
-          [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"tenor"],
-          [MNClefNote clefNoteWithClef:@"soprano" size:@"small"],
-          [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"soprano"],
-          [MNClefNote clefNoteWithClef:@"bass" size:@"small"],
-          [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"bass"],
-          [MNClefNote clefNoteWithClef:@"mezzo-soprano" size:@"small"],
-          [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"mezzo-soprano"],
-          [MNClefNote clefNoteWithClef:@"baritone-c" size:@"small"],
-          [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"baritone-c"],
-          [MNClefNote clefNoteWithClef:@"baritone-f" size:@"small"],
-          [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"baritone-f"],
-          [MNClefNote clefNoteWithClef:@"subbass" size:@"small"],
-          [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"subbass"],
-          [MNClefNote clefNoteWithClef:@"french" size:@"small"],
-          [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"french"],
-          [MNClefNote clefNoteWithClef:@"treble" size:@"small" annotation:@"8vb"],
-          [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"treble" octaveShift:-1],
-          [MNClefNote clefNoteWithClef:@"treble" size:@"small" annotation:@"8va"],
-          [MNStaffNote noteWithKeys:@[ @"c/4" ] andDuration:@"q" andClef:@"treble" octaveShift:1],
-      ];
-
-      MNVoice* voice = [MNVoice voiceWithNumBeats:12 beatValue:4 resolution:kRESOLUTION];
-      [voice addTickables:notes];
-      MNFormatter* formatter = [[MNFormatter alloc] init];
-      [formatter joinVoices:@[ voice ]];
-      //        [formatter formatWith:@[voice] withJustifyWidth:500 andOptions:nil];
-      [formatter formatWith:@[ voice ] withJustifyWidth:650];
       [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
       ok(YES, @"all pass");

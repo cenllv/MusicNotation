@@ -89,57 +89,56 @@
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
 
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 650, 0)];
+
+    NSArray* notes = @[
+        [newNote(
+            @{ @"keys" : @[ @"c/4", @"e/4", @"a/4", @"b/4" ],
+               @"duration" : @"w" }) addDotToAll],
+
+        [newNote(
+            @{ @"keys" : @[ @"c/5", @"b/4", @"a/4" ],
+               @"duration" : @"q",
+               @"stem_direction" : @(1) }) addDotToAll],
+
+        [newNote(
+            @{ @"keys" : @[ @"b/4", @"a/4", @"g/4" ],
+               @"duration" : @"q",
+               @"stem_direction" : @(-1) }) addDotToAll],
+
+        [newNote(
+            @{ @"keys" : @[ @"c/5", @"b/4", @"f/4", @"e/4" ],
+               @"duration" : @"q" }) addDotToAll],
+
+        [newNote(
+            @{ @"keys" : @[ @"g/5", @"e/5", @"d/5", @"a/4", @"g/4" ],
+               @"duration" : @"q",
+               @"stem_direction" : @(-1) }) addDotToAll],
+
+        [newNote(
+            @{ @"keys" : @[ @"e/5", @"d/5", @"b/4", @"g/4" ],
+               @"duration" : @"q",
+               @"stem_direction" : @(-1) }) addDotToAll],
+
+        [newNote(
+            @{ @"keys" : @[ @"c/5", @"b/4", @"g/4", @"e/4" ],
+               @"duration" : @"q",
+               @"stem_direction" : @(1) }) addDotToAll],
+
+        [[newNote(
+            @{ @"keys" : @[ @"d/4", @"e/4", @"f/4", @"a/4", @"c/5", @"e/5", @"g/5" ],
+               @"duration" : @"h" }) addDotToAll] addDotToAll],
+
+        [[[newNote(@{
+            @"keys" : @[ @"f/4", @"g/4", @"a/4", @"b/4", @"c/5", @"e/5", @"g/5" ],
+            @"duration" : @"16",
+            @"stem_direction" : @(-1)
+        }) addDotToAll] addDotToAll] addDotToAll]
+    ];
+
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 975, 0)];
-
       [staff draw:ctx];
-
-      NSArray* notes = @[
-          [newNote(
-              @{ @"keys" : @[ @"c/4", @"e/4", @"a/4", @"b/4" ],
-                 @"duration" : @"w" }) addDotToAll],
-
-          [newNote(
-              @{ @"keys" : @[ @"c/5", @"b/4", @"a/4" ],
-                 @"duration" : @"q",
-                 @"stem_direction" : @(1) }) addDotToAll],
-
-          [newNote(
-              @{ @"keys" : @[ @"b/4", @"a/4", @"g/4" ],
-                 @"duration" : @"q",
-                 @"stem_direction" : @(-1) }) addDotToAll],
-
-          [newNote(
-              @{ @"keys" : @[ @"c/5", @"b/4", @"f/4", @"e/4" ],
-                 @"duration" : @"q" }) addDotToAll],
-
-          [newNote(@{
-              @"keys" : @[ @"g/5", @"e/5", @"d/5", @"a/4", @"g/4" ],
-              @"duration" : @"q",
-              @"stem_direction" : @(-1)
-          }) addDotToAll],
-
-          [newNote(
-              @{ @"keys" : @[ @"e/5", @"d/5", @"b/4", @"g/4" ],
-                 @"duration" : @"q",
-                 @"stem_direction" : @(-1) }) addDotToAll],
-
-          [newNote(
-              @{ @"keys" : @[ @"c/5", @"b/4", @"g/4", @"e/4" ],
-                 @"duration" : @"q",
-                 @"stem_direction" : @(1) }) addDotToAll],
-
-          [[newNote(
-              @{ @"keys" : @[ @"d/4", @"e/4", @"f/4", @"a/4", @"c/5", @"e/5", @"g/5" ],
-                 @"duration" : @"h" }) addDotToAll] addDotToAll],
-
-          [[[newNote(@{
-              @"keys" : @[ @"f/4", @"g/4", @"a/4", @"b/4", @"c/5", @"e/5", @"g/5" ],
-              @"duration" : @"16",
-              @"stem_direction" : @(-1)
-          }) addDotToAll] addDotToAll] addDotToAll]
-      ];
 
       for(NSUInteger i = 0; i < notes.count; ++i)
       {

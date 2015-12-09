@@ -88,6 +88,7 @@ typedef void (^StyleBlock)(CGContextRef);
     //    float _extraRightPx;
     //    BOOL _centerAlign;
     //    float _width;
+    float _line;
 }
 
 #pragma mark - Properties
@@ -140,7 +141,11 @@ typedef void (^StyleBlock)(CGContextRef);
 @property (readonly, nonatomic) float upperModifierPoints;
 @property (assign, nonatomic) float minLine;
 @property (assign, nonatomic) float maxLine;
-@property (assign, nonatomic) float line;
+
+//@property (assign, nonatomic) float line;
+- (float)line;
+- (id)setLine:(float)line;
+
 //@property (strong, nonatomic) MNTablesGlyphStruct* glyphStruct;
 @property (strong, nonatomic) NSString* glyphCode;   // code head
 //@property (strong, nonatomic) NSString* code;

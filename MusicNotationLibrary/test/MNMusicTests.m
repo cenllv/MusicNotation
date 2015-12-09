@@ -50,16 +50,10 @@
     [super tearDown];
 }
 
-
 - (void)validNotes
 {
+    //    expect(10);
     /*
-    Vex.Flow.Test.Music.validNotes = function() {
-        expect(10);
-
-        var music = new Vex.Flow.Music();
-
-        var parts = [music getNoteParts(@"c");
         equal(parts.root, @"c");
         equal(parts.accidental, null);
 
@@ -88,6 +82,10 @@
         }
     }
      */
+
+    //    NSArray* parts = [MNMusic getNoteParts:@"c"];
+    //    assertThatUnsignedInteger([MNMusic getNoteParts:@"c"],
+    //                              describedAs(@"Low E string 40", equalToUnsignedInteger(40), nil));
 }
 
 - (void)validKeys

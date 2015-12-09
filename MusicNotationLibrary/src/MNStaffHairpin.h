@@ -47,7 +47,7 @@
 @property (strong, nonatomic) MNStaffNote* first_note;
 @property (strong, nonatomic) MNStaffNote* last_note;
 @property (assign, nonatomic) MNStaffHairpinType hairpin;
-//@property (assign, nonatomic) MNPositionType position;
+@property (assign, nonatomic) MNPositionType position;
 
 // render options
 @property (assign, nonatomic) float height;

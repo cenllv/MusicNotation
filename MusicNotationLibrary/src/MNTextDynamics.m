@@ -27,51 +27,43 @@
 //
 
 #import "MNTextDynamics.h"
+#import "MNStaff.h"
+#import "NSString+Ruby.h"
+#import "MNGlyph.h"
+
+@interface MNTextDynamicsGlyphStruct : IAModelBase
+@property (strong, nonatomic) NSString* code;
+@property (assign, nonatomic) float width;
+@property (assign, nonatomic) float size;
+@end
+
+@implementation MNTextDynamicsGlyphStruct
+@end
+
+@interface MNTextDynamics ()
+
+@property (strong, nonatomic) NSMutableArray* glyphs;
+
+@end
 
 @implementation MNTextDynamics
-/*
-Vex.Flow.TextDynamics = (function(){
-    function TextDynamics(text_struct) {
-        if (arguments.count > 0) self.init(text_struct);
-    }
 
-    // To enable logging for this class. Set `Vex.Flow.TextDynamics.DEBUG` to `YES`.
-    function L() { if (TextDynamics.DEBUG) Vex.L("Vex.Flow.TextDynamics", arguments); }
-
-    // The glyph data for each dynamics letter
-    TextDynamics.GLYPHS = {
-        "f": {
-        code: "vba",
-        width: 12
-        },
-        "p": {
-        code: "vbf",
-        width: 14
-        },
-        "m": {
-        code: "v62",
-        width: 17
-        },
-        "s": {
-        code: "v4a",
-        width: 10
-        },
-        "z": {
-        code: "v80",
-        width: 12
-        },
-        "r": {
-        code: "vb1",
-        width: 12
-        }
-    };
-    */
-
+/*!
+ *  A `TextDynamics` object inherits from `MNNote` so that it can be formatted
+ *  within a `Voice`.
+ *  Create the dynamics marking. `text_struct` is an object
+ *  that contains a `duration` property and a `sequence` of
+ *  letters that represents the letters to render
+ *  @param optionsDict text dynamics struct data
+ *  @return a new text dynamics object
+ */
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict
 {
     self = [super initWithDictionary:optionsDict];
     if(self)
     {
+        self.renderOptions.glyphFontScale = 40;
+        _sequence = _text.lowercaseString;
     }
     return self;
 }
@@ -83,79 +75,111 @@ Vex.Flow.TextDynamics = (function(){
     return propertiesEntriesMapping;
 }
 
-/*
-    // ## Prototype Methods
-    //
-    // A `TextDynamics` object inherits from `MNNote` so that it can be formatted
-    // within a `Voice`.
-    Vex.Inherit(TextDynamics, Vex.Flow.Note, {
-        // Create the dynamics marking. `text_struct` is an object
-        // that contains a `duration` property and a `sequence` of
-        // letters that represents the letters to render
-    init: function(text_struct) {
-        TextDynamics.superclass.init.call(this, text_struct);
+static NSDictionary* _textDynamicsGlyphs;
 
-        self.sequence = text_struct.text.toLowerCase();
-        self.line = text_struct.line || 0;
-        self.glyphs = [];
-
-        Vex.Merge(self.render_options, {
-        glyph_font_size: 40
-        });
-
-        L("New Dynamics Text: ", self.sequence);
-    },
+/*!
+ *  The glyph data for each dynamics letter
+ *  @return a dictionary of the glyph data
  */
-
-/*
-        // Set the Stave line on which the note should be placed
-    setLine: function(line) { self.line = line;  return this; },
- */
-
-/*
-        // Preformat the dynamics text
-    preFormat: function() {
-        var total_width = 0;
-        // Iterate through each letter
-        self.sequence.split('').forEach(function(letter) {
-            // Get the glyph data for the letter
-            var glyph_data = TextDynamics.GLYPHS[letter];
-            if (!glyph_data) throw new Vex.RERR("Invalid dynamics character: " + letter);
-
-            var size =  self.render_options.glyph_font_size;
-            var glyph = new Vex.Flow.Glyph(glyph_data.code, size);
-
-            // Add the glyph
-            self.glyphs.push(glyph);
-
-            total_width += glyph_data.width;
-        }, this);
-
-        // Store the width of the text
-        self.setWidth(total_width);
-        self.preFormatted = YES;
-        return this;
-    },
- */
-
-/*
-        // Draw the dynamics text on the rendering context
-    draw: function() {
-        var x = self.getAbsoluteX();
-        var y = self.stave.getYForLine(self.line + (-3));
-
-        L("Rendering Dynamics: ", self.sequence);
-
-        var letter_x = x;
-        self.glyphs.forEach(function(glyph, index) {
-            var current_letter = self.sequence[index];
-            glyph.render(self.context, letter_x, y);
-            letter_x += TextDynamics.GLYPHS[current_letter].width;
-        }, this);
++ (NSDictionary*)textDynamicsGlyphs
+{
+    if(!_textDynamicsGlyphs)
+    {
+        _textDynamicsGlyphs = @{
+            @"f" : @{@"code" : @"vba", @"width" : @12},
+            @"p" : @{@"code" : @"vbf", @"width" : @14},
+            @"m" : @{@"code" : @"v62", @"width" : @17},
+            @"s" : @{@"code" : @"v4a", @"width" : @10},
+            @"z" : @{@"code" : @"v80", @"width" : @12},
+            @"r" : @{@"code" : @"vb1", @"width" : @12}
+        };
     }
-    });
 
-    return TextDynamics;
-})();
-*/
+    return _textDynamicsGlyphs;
+}
+
+- (NSMutableArray*)glyphs
+{
+    if(!_glyphs)
+    {
+        _glyphs = [NSMutableArray array];
+    }
+    return _glyphs;
+}
+
+/*!
+ *  <#Description#>
+ *  @param text <#text description#>
+ *  @return <#return value description#>
+ */
+- (id)setText:(NSString*)text
+{
+    _text = text;
+    self.sequence = _text.lowercaseString;
+    self.preFormatted = NO;
+    return self;
+}
+
+///*!
+// *  Set the staff line on which the note should be placed
+// *  @param line the line on the staff
+// *  @return this object
+// */
+//- (id)setLine:(float)line
+//{
+//    [super setLine:line];
+//    return self;
+//}
+
+//
+/*!
+ *  Preformat the dynamics text
+ *  @return if successful
+ */
+- (BOOL)preFormat
+{
+    __block BOOL success = [super preFormat];
+    __block float total_width = 0;
+    [[self.sequence split:@""] oct_foreach:^(NSString* letter, NSUInteger i, BOOL* stop) {
+      NSDictionary* glyphDict = [[[self class] textDynamicsGlyphs] objectForKey:letter.lowercaseString];
+      if(!glyphDict)
+      {
+          MNLogError(@"Invalid dynamics character: %@", letter);
+          success = NO;
+      }
+      float size = self.renderOptions.glyphFontScale;
+      MNTextDynamicsGlyphStruct* glyph = [[MNTextDynamicsGlyphStruct alloc] initWithDictionary:glyphDict];
+      glyph.size = size;
+      [self.glyphs push:glyph];
+      total_width += glyph.width;
+    }];
+
+    // Store the width of the text
+    [self setWidth:total_width];
+    self.preFormatted = YES;
+
+    return success;
+}
+
+/*!
+ *  Draw the dynamics text on the rendering context
+ *  @param ctx the core graphics opaque type drawing environment
+ */
+- (void)draw:(CGContextRef)ctx
+{
+    float x, y;
+    x = self.absoluteX;
+    y = [self.staff getYForLine:self.line + (-3)];
+
+    MNLogDebug(@"Rendering Dynamics: %@", self.sequence);
+
+    __block float letter_x = x;
+    [self.glyphs oct_foreach:^(MNTextDynamicsGlyphStruct* glyph, NSUInteger i, BOOL* stop) {
+      //      NSString* current_letter = [self.sequence substringWithRange:NSMakeRange(i, 1)];
+      [MNGlyph renderGlyph:ctx atX:letter_x atY:y withScale:1 forGlyphCode:glyph.code];
+      letter_x += glyph.width;   //[[[[[self class] textDynamicsGlyphs] objectForKey:current_letter]
+      // objectForKey:@"width"] floatValue];
+    }];
+}
+
 @end

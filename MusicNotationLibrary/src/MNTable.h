@@ -51,7 +51,8 @@
 + (NSDictionary*)articulationsDictionary;
 + (NSDictionary*)keySpecsDictionary;
 + (NSDictionary*)ornamentCodes;
-+ (NSDictionary*)textNoteGlyphs;
+//+ (NSDictionary*)textNoteGlyphs;
++ (NSDictionary*)unicode;
 + (NSArray*)integerToNoteArray;
 
 #pragma mark - Class Methods

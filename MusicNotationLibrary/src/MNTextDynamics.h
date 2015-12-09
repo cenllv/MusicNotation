@@ -37,7 +37,14 @@
  *
  */
 @interface MNTextDynamics : MNNote
-#pragma mark - Properties
+{
+   @private
+    NSString* _sequence;
+    NSString* _text;
+}
+@property (strong, nonatomic) NSString* sequence;
+- (id)setText:(NSString*)text;
+//- (id)setLine:(float)line;
 
 #pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;

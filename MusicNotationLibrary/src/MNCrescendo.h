@@ -26,7 +26,7 @@
 //  THE SOFTWARE.
 //
 
-#import "MNNote.h"
+#import "MNStaffNote.h"
 
 /*!
  *  The `MNCrescendo` implements the `Crescendo` object which draws crescendos and
@@ -36,28 +36,15 @@
  *  with `TextNotes` - which are used to represent other dynamics markings.
  */
 @interface MNCrescendo : MNNote
+{
+   @private
+    BOOL _decrescendo;
+    float _height;
+}
 
-#pragma mark - Properties
-@property (assign, nonatomic) BOOL decrescendo;
-@property (assign, nonatomic) float height;
+- (id)setDescrescendo:(BOOL)decres;
+- (id)setHeight:(float)height;
 
-// Extensions to the length of the crescendo on either side
-//@property (assign, nonatomic) float extend_left;
-//@property (assign, nonatomic) float extend_right;
-// Vertical shift
-//@property (assign, nonatomic) float y_shift;
-
-#pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-//- (instancetype)init;
-- (instancetype)initWithNote:(MNNote*)note;
-
-- (void)setHeight:(float)height;
-
-- (void)setDescrescendo:(BOOL)decres;
-
-//- (void)preFormat;
-
-- (void)draw:(CGContextRef)ctx;
 
 @end

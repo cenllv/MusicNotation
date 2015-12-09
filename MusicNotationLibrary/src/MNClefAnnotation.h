@@ -34,6 +34,7 @@
 
 @property (strong, nonatomic) NSString* code;
 @property (assign, nonatomic) float point;
+@property (assign, nonatomic) float scale;
 @property (assign, nonatomic) float line;
 @property (assign, nonatomic) float xShift;
 

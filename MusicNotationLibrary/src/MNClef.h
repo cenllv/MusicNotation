@@ -26,12 +26,11 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNStaffModifier.h"
 
 @class MNClefAnnotation;
 
-/*! 
+/*!
  *  The `MNClef` class performs
  */
 @interface MNClef : MNStaffModifier
@@ -48,7 +47,9 @@
 @property (assign, nonatomic) NSUInteger startingPitch;
 @property (strong, nonatomic) NSString* size;
 @property (strong, nonatomic, readonly) NSString* clefName;
+@property (readonly, nonatomic) BOOL hasAnnotation;
 @property (strong, nonatomic) MNClefAnnotation* annotation;
+@property (assign, nonatomic) float scale;
 
 #pragma mark - Methods
 - (instancetype)initWithType:(MNClefType)clefType;
@@ -59,7 +60,7 @@
 + (MNClef*)clefWithName:(NSString*)clefName;
 + (MNClef*)clefWithName:(NSString*)clefName size:(NSString*)size;
 + (MNClef*)clefWithName:(NSString*)clefName size:(NSString*)size annotationName:(NSString*)annotationName;
-+ (MNClef*)clefWithName:(NSString*)clefName size:(NSString*)size annotation:(MNClefAnnotation*)annotation;
+//+ (MNClef*)clefWithName:(NSString*)clefName size:(NSString*)size annotation:(MNClefAnnotation*)annotation;
 
 - (void)setCodeAndName;
 
@@ -69,4 +70,3 @@
 - (void)addEndModifierToStaff:(MNStaff*)staff;
 
 @end
-

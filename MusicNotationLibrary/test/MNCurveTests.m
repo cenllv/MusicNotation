@@ -35,10 +35,11 @@
 {
     [super start];
     float w = 600, h = 200;
+    [MNCurve setDebug:NO];
     [self runTest:@"Simple Curve" func:@selector(simple:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"Rounded Curve" func:@selector(rounded:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"Thick Thin Curves" func:@selector(thickThin:) frame:CGRectMake(10, 10, w, h)];
-    [self runTest:@"Top Curve" func:@selector(topCurve:) frame:CGRectMake(10, 10, w, h + 100)];
+    [self runTest:@"Top Curve" func:@selector(topCurve:) frame:CGRectMake(10, 10, w, h)];
 }
 
 - (void)tearDown
@@ -303,7 +304,7 @@
     };
 
     //    MNViewStaffStruct* c = [[self class] setupContextWithSize:MNUIntSizeMake(350, 140) withParent:parent];
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 130, 350, 0)] addTrebleGlyph];
+    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(10, 30, 350, 0)] addTrebleGlyph];
 
     NSArray* notes = @[
         newNote(

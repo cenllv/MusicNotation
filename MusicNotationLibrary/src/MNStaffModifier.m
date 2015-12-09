@@ -176,7 +176,7 @@
  */
 - (void)addToStaffEnd:(MNStaff*)staff firstGlyph:(BOOL)firstGlyph
 {
-    if(!firstGlyph)
+    if(firstGlyph)
     {
         [staff addEndGlyph:[self makeSpacer:self.padding]];
     }

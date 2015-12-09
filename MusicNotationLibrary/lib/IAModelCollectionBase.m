@@ -9,48 +9,55 @@
 #import "IAModelCollectionBase.h"
 
 @interface IAModelCollectionBase ()
-@property (nonatomic, strong) NSMutableArray *collection;
+@property (nonatomic, strong) NSMutableArray* collection;
 @end
 
 @implementation IAModelCollectionBase
 //@synthesize collection;
 
-- (id)init; {
+- (id)init;
+{
     self = [super init];
-    if (self) {
+    if(self)
+    {
         self.collection = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
-
-- (id)initWithArray:(NSArray*)array; {
+- (id)initWithArray:(NSArray*)array;
+{
     self = [super init];
-    if (self) {
+    if(self)
+    {
         self.collection = [[NSMutableArray alloc] init];
-        
-        for (NSDictionary *dic in array)
+
+        for(NSDictionary* dic in array)
         {
-            IAModelBase *modelClass = [[[self classForModelBase] alloc] initWithDictionary:dic];
+            IAModelBase* modelClass = [[[self classForModelBase] alloc] initWithDictionary:dic];
             [_collection addObject:modelClass];
         }
     }
     return self;
 }
 
-- (Class)classForModelBase; {
+- (Class)classForModelBase;
+{
     return [self class];
 }
 
-- (NSUInteger)count; {
+- (NSUInteger)count;
+{
     return _collection.count;
 }
 
-- (void) addEntry:(IAModelBase*)entry; {
+- (void)addEntry:(IAModelBase*)entry;
+{
     [_collection addObject:entry];
 }
 
-- (IAModelBase*) entryAtIndex:(int)index; {
+- (IAModelBase*)entryAtIndex:(int)index;
+{
     return [_collection objectAtIndex:index];
 }
 

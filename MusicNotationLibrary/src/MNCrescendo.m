@@ -40,24 +40,15 @@
     self = [super initWithDictionary:optionsDict];
     if(self)
     {
-    }
-    return self;
-}
-
-- (instancetype)initWithNote:(MNNote*)note
-{
-    self = [self initWithDictionary:@{}];
-    if(self)
-    {
-        //        self->_note = note;
-        [self setupCresendo];
-        self.line = note.line;   // The staff line to be placed on
-        self.height = 15;        // The height at the open end of the cresc/decresc
+        _decrescendo = NO;
+        _height = 15;   // The height at the open end of the cresc/decresc
 
         // Extensions to the length of the crescendo on either side
         //        self.extend_left = 0;
         //        self.extend_right = 0;
         //        self.y_shift = 0; // Vertical shift
+
+        [self setValuesForKeyPathsWithDictionary:optionsDict];
     }
     return self;
 }
@@ -67,7 +58,6 @@
     self = [self initWithDictionary:@{}];
     if(self)
     {
-        [self setupCresendo];
     }
     return self;
 }
@@ -79,22 +69,26 @@
     return propertiesEntriesMapping;
 }
 
-- (void)setupCresendo
+/*!
+ *  Set the full height at the open end
+ *  @param height open end height
+ *  @return this object
+ */
+- (id)setHeight:(float)height
 {
-    self.decrescendo = NO;
+    _height = height;
+    return self;
 }
 
-// Set the full height at the open end
-- (void)setHeight:(float)height
+/*!
+ *  Should be a crescendo or decrescendo
+ *  @param decres YES is decrescendo, NO is crescendo
+ *  @return this object
+ */
+- (id)setDescrescendo:(BOOL)decres
 {
-    self.height = height;
-}
-
-// Set whether the sign should be a descresendo by passing a bool
-// to `decresc`
-- (void)setDescrescendo:(BOOL)decres
-{
-    self.decrescendo = decres;
+    _decrescendo = decres;
+    return self;
 }
 
 - (BOOL)preFormat
@@ -103,56 +97,48 @@
     return YES;
 }
 
-// Private helper to draw the hairpin
-- (void)renderHairpin:(CGContextRef)ctx
+/*!
+ *  Draw the hairpin
+ *  @param ctx the core graphics opaque type drawing environment
+ *  @param beginX  left x position
+ *  @param endX    right x position
+ *  @param y       center height
+ *  @param height  opening height
+ *  @param reverse left or right
+ */
++ (void)renderHairpin:(CGContextRef)ctx
                beginX:(float)beginX
                  endX:(float)endX
                   atY:(float)y
            withHeight:(float)height
               reverse:(BOOL)reverse
 {
-    CGContextSaveGState(ctx);
-
     float begin_x = beginX;
     float end_x = endX;
     float half_height = height / 2;
 
-    MNBezierPath* bPath = [MNBezierPath bezierPath];
-    [bPath setLineWidth:1.0];
-    [MNColor.blackColor setStroke];
-    [MNColor.blackColor setFill];
-
-    // TODO: perhaps better to drop  MNBezierPath and draw using CG
+    CGContextSaveGState(ctx);
+    CGContextBeginPath(ctx);
     if(reverse)
     {
-        [bPath moveToPoint:CGPointMake(begin_x, y - half_height)];
-#if TARGET_OS_IPHONE
-        [bPath addLineToPoint:CGPointMake(end_x, y)];
-        [bPath addLineToPoint:CGPointMake(begin_x, y + half_height)];
-#elif TARGET_OS_MAC
-        [bPath lineToPoint:CGPointMake(end_x, y)];
-        [bPath lineToPoint:CGPointMake(begin_x, y + half_height)];
-#endif
+        CGContextMoveToPoint(ctx, begin_x, y - half_height);
+        CGContextAddLineToPoint(ctx, end_x, y);
+        CGContextAddLineToPoint(ctx, begin_x, y + half_height);
     }
     else
     {
-        [bPath moveToPoint:CGPointMake(end_x, y - half_height)];
-#if TARGET_OS_IPHONE
-        [bPath addLineToPoint:CGPointMake(begin_x, y)];
-        [bPath addLineToPoint:CGPointMake(end_x, y + half_height)];
-#elif TARGET_OS_MAC
-        [bPath lineToPoint:CGPointMake(begin_x, y)];
-        [bPath lineToPoint:CGPointMake(end_x, y + half_height)];
-#endif
+        CGContextMoveToPoint(ctx, end_x, y - half_height);
+        CGContextAddLineToPoint(ctx, begin_x, y);
+        CGContextAddLineToPoint(ctx, end_x, y + half_height);
     }
-
-    //    [bPath stroke];
-    [bPath fill];
-
+    CGContextStrokePath(ctx);
     CGContextRestoreGState(ctx);
 }
 
-// Render the Crescendo object onto the canvas
+/*!
+ *  Render the Crescendo object onto the canvas
+ *  @param ctx the core graphics opaque type drawing environment
+ */
 - (void)draw:(CGContextRef)ctx
 {
     [super draw:ctx];
@@ -170,11 +156,11 @@
         end_x = self.staff.x + self.staff.width;
     }
 
-    float y = [self.staff getYForLine:(self.line + (-3)) + 1];
+    float y = [self.staff getYForLine:(_line + (-3)) + 1];
 
-    NSString* type = self.decrescendo ? @"decrescendo " : @"crescendo ";
-    MNLogDebug(@"%@", [NSString stringWithFormat:@"Drawing %@ %f %@ %f", type, self.height, @"x", begin_x - end_x]);
+    NSString* type = _decrescendo ? @"decrescendo " : @"crescendo ";
+    MNLogDebug(@"%@", [NSString stringWithFormat:@"Drawing %@ %f %@ %f", type, _height, @"x", begin_x - end_x]);
 
-    [self renderHairpin:ctx beginX:begin_x endX:end_x atY:y withHeight:self.height reverse:self.decrescendo];
+    [[self class] renderHairpin:ctx beginX:begin_x endX:end_x atY:y withHeight:_height reverse:_decrescendo];
 }
 @end

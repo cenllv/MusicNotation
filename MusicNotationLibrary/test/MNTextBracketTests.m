@@ -28,6 +28,8 @@
 
 #import "MNTextBracketTests.h"
 
+#define DEBUG_TEXT_BRACKET 0   // 1
+
 @implementation MNTextBracketTests
 
 - (void)start
@@ -46,18 +48,19 @@
 {
     MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
-    MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
-    {
-        return [[MNStaffNote alloc] initWithDictionary:note_struct];
-    };
+    // SOURCE: http://stackoverflow.com/a/13521502/629014
+    dispatch_group_t d_group = dispatch_group_create();
+    dispatch_queue_t bg_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_group_async(d_group, bg_queue, ^{
 
-    MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(40, 40, 550, 0)] addTrebleGlyph];
+      MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
+      {
+          return [[MNStaffNote alloc] initWithDictionary:note_struct];
+      };
 
-    //  [ret.staves addObject:staff];
-    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [staff draw:ctx];
+      MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(40, 60, 550, 0)] addTrebleGlyph];
 
-      NSArray* notes = [@[
+      NSArray<MNStaffNote*>* notes = [@[
           @{ @"keys" : @[ @"c/4" ],
              @"duration" : @"4" },
           @{ @"keys" : @[ @"c/4" ],
@@ -74,32 +77,6 @@
       [voice setStrict:NO];
       [voice addTickables:notes];
 
-      /*
-          var octave_top = new Vex.Flow.TextBracket({
-          start: notes[0],
-          stop: notes[3],
-          text: "15",
-          superscript: "va",
-          position: 1
-          });
-
-          var octave_bottom = new Vex.Flow.TextBracket({
-          start: notes[0],
-          stop: notes[3],
-          text: "8",
-          superscript: "vb",
-          position: -1
-          });
-
-          octave_bottom.setLine(3);
-
-          [MNFormatter formatter] joinVoices:@[voice] formatToStaff([voice], staff);
-          [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
-
-          octave_top draw:ctx];
-          octave_bottom draw:ctx];
-      };
-       */
       MNTextBracket* octave_top = [[MNTextBracket alloc] initWithStart:notes[0]
                                                                   stop:notes[3]
                                                                   text:@"15"
@@ -115,121 +92,144 @@
       [octave_bottom setLine:3];
 
       [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
-      [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
 
-      [octave_top draw:ctx];
-      [octave_bottom draw:ctx];
+      ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+        dispatch_group_wait(d_group, DISPATCH_TIME_FOREVER);
 
-    };
+        [staff draw:ctx];
+
+        [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+        if(DEBUG_TEXT_BRACKET)
+        {
+            [MNText showBoundingBox:YES];
+        }
+
+        [octave_top draw:ctx];
+        [octave_bottom draw:ctx];
+
+        if(DEBUG_TEXT_BRACKET)
+        {
+            [MNText showBoundingBox:NO];
+        }
+
+      };
+    });
+
     return ret;
 }
 
 - (MNTestBlockStruct*)simple1:(id<MNTestParentDelegate>)parent
 {
     MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
-    /*
-    Vex.Flow.Test.TextBracket.simple1 = function(options, contextBuilder) {
-        expect(0);
 
-        options.contextBuilder = contextBuilder;
-        var ctx = new options.contextBuilder(options.canvas_sel, 650, 200);
-        ctx.scale(1, 1); ctx.fillStyle = "#221"; ctx.strokeStyle = "#221";
-        ctx.font = " 10pt Arial";
-        //ctx.translate(0.5, 0.5);
-         MNStaff *staff =  [MNStaff staffWithRect:CGRectMake(10, 40, 550).addTrebleGlyph();
-        staff draw:ctx];
+    dispatch_group_t d_group = dispatch_group_create();
+    dispatch_queue_t bg_queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_group_async(d_group, bg_queue, ^{
 
-    */
-
-    //    MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
-    //    {
-    //        return [[MNStaffNote alloc] initWithDictionary:note_struct];
-    //    };
-
-    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(40, 40, 550, 0)];
-
-    //  [ret.staves addObject:staff];
-    ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-      [staff draw:ctx];
-      /*
-
-  / *
-      function newNote(note_struct) { return [[[MNStaffNote alloc]initWithDictionary:(note_struct); }
-
-      NSArray *notes = @[
-                   @{ @"keys" : @[ @"c/4"], @"duration" : @"4"},
-                   @{ @"keys" : @[ @"c/4"], @"duration" : @"4"},
-                   @{ @"keys" : @[ @"c/4"], @"duration" : @"4"},
-                   @{ @"keys" : @[ @"c/4"], @"duration" : @"4"},
-                   @{ @"keys" : @[ @"c/4"], @"duration" : @"4"}
-                   ].map(newNote);
-
-       MNVoice *voice =  [MNVoice voiceWithTimeSignature:MNTime4_4] setStrict:NO];
-      [voice addTickables:notes];
-   */
-
-      /*
-          var octave_top0 = new Vex.Flow.TextBracket({
-          start: notes[0],
-          stop: notes[1],
-          text: "Cool notes",
-          superscript: "",
-          position: 1
-          });
-
-          var octave_bottom0 = new Vex.Flow.TextBracket({
-          start: notes[2],
-          stop: notes[4],
-          text: "Not cool notes",
-          superscript: " super uncool",
-          position: -1
-          });
-
-          octave_bottom0->_renderOptions setbracket_height = 40;
-          octave_bottom0.setLine(4);
-
-          var octave_top1 = new Vex.Flow.TextBracket({
-          start: notes[2],
-          stop: notes[4],
-          text: "Testing",
-          superscript: "superscript",
-          position: 1
-          });
-
-          var octave_bottom1 = new Vex.Flow.TextBracket({
-          start: notes[0],
-          stop: notes[1],
-          text: "8",
-          superscript: "vb",
-          position: -1
-          });
-
-          octave_top1->_renderOptions setline_width = 2;
-          octave_top1->_renderOptions setshow_bracket = NO;
-          octave_bottom1.setDashed(YES, [2, 2]);
-          octave_top1.setFont({
-          weight: "",
-          family: "Arial",
-          size: 15
-          });
-
-          octave_bottom1.font.size = 30;
-          octave_bottom1.setDashed(NO);
-          octave_bottom1->_renderOptions setunderline_superscript = NO;
-
-          octave_bottom1.setLine(3);
-
-          [MNFormatter formatter] joinVoices:@[voice] formatToStaff([voice], staff);
-          [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
-
-          octave_top0 draw:ctx];
-          octave_bottom0 draw:ctx];
-
-          octave_top1 draw:ctx];
-          octave_bottom1 draw:ctx];
+      MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* note_struct)
+      {
+          return [[MNStaffNote alloc] initWithDictionary:note_struct];
       };
-       */
-    };
+
+      MNTextBracket* (^newTextBracket)(NSDictionary*) = ^MNTextBracket*(NSDictionary* note_struct)
+      {
+          return [[MNTextBracket alloc] initWithDictionary:note_struct];
+      };
+
+      MNStaff* staff = [[MNStaff staffWithRect:CGRectMake(40, 60, 550, 0)] addTrebleGlyph];
+
+      NSArray<MNStaffNote*>* notes = [@[
+          @{ @"keys" : @[ @"c/4" ],
+             @"duration" : @"4" },
+          @{ @"keys" : @[ @"c/4" ],
+             @"duration" : @"4" },
+          @{ @"keys" : @[ @"c/4" ],
+             @"duration" : @"4" },
+          @{ @"keys" : @[ @"c/4" ],
+             @"duration" : @"4" },
+          @{ @"keys" : @[ @"c/4" ],
+             @"duration" : @"4" }
+      ] oct_map:^MNStaffNote*(NSDictionary* d) {
+        return newNote(d);
+      }];
+
+      MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
+      [voice setStrict:NO];
+      [voice addTickables:notes];
+
+      MNTextBracket* octave_top0 = newTextBracket(@{
+          @"start" : notes[0],
+          @"stop" : notes[1],
+          @"text" : @"Cool notes",
+          @"superscript" : @"",
+          @"position" : @(MNTextBrackTop)
+      });
+
+      MNTextBracket* octave_bottom0 = newTextBracket(@{
+          @"start" : notes[2],
+          @"stop" : notes[4],
+          @"text" : @"Not cool notes",
+          @"superscript" : @" super uncool",
+          @"position" : @(MNTextBracketBottom)
+      });
+
+      [octave_bottom0 setBracketHeight:40];
+      [octave_bottom0 setLine:4];
+
+      MNTextBracket* octave_top1 = newTextBracket(@{
+          @"start" : notes[2],
+          @"stop" : notes[4],
+          @"text" : @"Testing",
+          @"superscript" : @"superscript",
+          @"position" : @(MNTextBrackTop)
+      });
+
+      MNTextBracket* octave_bottom1 = newTextBracket(@{
+          @"start" : notes[0],
+          @"stop" : notes[1],
+          @"text" : @"8",
+          @"superscript" : @"vb",
+          @"position" : @(MNTextBracketBottom)
+      });
+
+      [octave_top1 setLineWidth:2];
+      [octave_top1 setShowBracket:NO];
+      [[octave_bottom1 setDashed:YES] setDash:@[ @2, @2 ]];
+      [octave_top1 setFontFamily:@"HelveticaNeue-BoldItalic"];   // :[MNFont fontWithName: size:15]]; // @"PTSerif"
+      octave_bottom1.fontSize = 30;                              //.font.size = 30;
+      [octave_bottom1 setDashed:NO];
+      [octave_bottom1 setUnderlineSuperscript:NO];
+      [octave_bottom1 setLine:3];
+
+      [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
+
+      ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+        dispatch_group_wait(d_group, DISPATCH_TIME_FOREVER);
+
+        [staff draw:ctx];
+
+        [voice draw:ctx dirtyRect:CGRectZero toStaff:staff];
+
+        if(DEBUG_TEXT_BRACKET)
+        {
+            [MNText showBoundingBox:YES];
+        }
+
+        [octave_top0 draw:ctx];
+        [octave_bottom0 draw:ctx];
+
+        [octave_top1 draw:ctx];
+        [octave_bottom1 draw:ctx];
+
+        if(DEBUG_TEXT_BRACKET)
+        {
+            [MNText showBoundingBox:NO];
+        }
+
+      };
+    });
+
     return ret;
 }
 

@@ -39,6 +39,7 @@
     self = [super initWithDictionary:optionsDict];
     if(self)
     {
+        _draw_width = 1;
     }
     return self;
 }
@@ -104,9 +105,16 @@
         self.phrase = [@[ [MNBendStruct bendStructWithType:MNBendUP andText:self.text] ] mutableCopy];
         if(self.release_)
         {
-            [self.phrase push:[MNBendStruct bendStructWithType:MNBendDOWN
-                                                       andText:@""]];   //@{ @"type" : @(MNBendDOWN), @"text" : @"" }];
+            [self.phrase
+                push:[MNBendStruct bendStructWithType:MNBendDOWN andText:@""]];   //@{ @"type" : @(MNBendDOWN), @"text"
+            //                                                               : @""
         }
+
+        //        self.bendDirectionType = MNBendUP;
+        //        if(release)
+        //        {
+        //            self.bendDirectionType = MNBendDOWN;
+        //        }
     }
 
     [self updateWidth];
@@ -115,7 +123,7 @@
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
-    //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
+    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{ @"type" : @"bendDirectionType" }];
     return propertiesEntriesMapping;
 }
 
@@ -125,7 +133,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"bends";
+    return NSStringFromClass([self class]);   // return @"bends";
 }
 - (NSString*)CATEGORY
 {
@@ -167,14 +175,9 @@
 
 - (id)setXShift:(float)x_shift
 {
-    /*
-        setX_shift: function(value) {
-            self.x_shift = value;
-            self.updateWidth();
-        },
-    */
-    //    _x_shift = x_shift;
-    [super setXShift:x_shift];
+    // NOTE: this method overrides supclass method entirely
+    // // // //  [super setXShift:x_shift];
+    _xShift = x_shift;
     return [self updateWidth];
 }
 
@@ -186,53 +189,6 @@
 
 - (id)updateWidth
 {
-    /*
-        updateWidth: function() {
-            var that = this;
-
-            function measure_text(text) {
-                var text_width;
-                if (that.context) {
-                    text_width = that.context.measureText(text).width;
-                } else {
-                    text_width = Vex.Flow.textWidth(text);
-                }
-
-                return text_width;
-            }
-
-            var total_width = 0;
-            for (var i=0; i<self.phrase.length; ++i) {
-                var bend = self.phrase[i];
-                if ('width' in bend) {
-                    total_width += bend.width;
-                } else {
-                    var additional_width = (bend.type == Bend.UP) ?
-                    self.render_options.bend_width : self.render_options.release_width;
-
-                    bend.width = Vex.Max(additional_width, measure_text(bend.text)) + 3;
-                    bend.draw_width = bend.width / 2;
-                    total_width += bend.width;
-                }
-            }
-
-            self.setWidth(total_width + self.x_shift);
-            return this;
-        },
-    */
-
-    //    __weak  MNBend* that = self;
-
-    //    function measure_text(text) {
-    //        var text_width;
-    //        if (that.context) {
-    //            text_width = that.context.measureText(text).width;
-    //        } else {
-    //            text_width = Vex.Flow.textWidth(text);
-    //        }
-    //
-    //        return text_width;
-    //    }
     float (^measure_text)(NSString*) = ^float(NSString* text) {
       float text_width;
       //      CTTextAlignment justification = kCTTextAlignmentLeft;
@@ -271,7 +227,11 @@
 
 - (void)draw:(CGContextRef)ctx
 {
+    CGContextSaveGState(ctx);
     [super draw:ctx];
+
+    //    CGContextSetLineWidth(ctx, self.draw_width);
+    //    CGContextSetStrokeColorWithColor(ctx, MNColor.blackColor.CGColor);
 
     MNNote* note = (MNNote*)self.note;
     MNPoint* start = [note getModifierstartXYforPosition:MNPositionRight andIndex:self.index];
@@ -304,22 +264,7 @@
           free(components);
       }
     };
-    /*
-            function renderBend(x, y, width, height) {
-                var cp_x = x + width;
-                var cp_y = y;
 
-                ctx.save();
-                ctx.beginPath();
-                ctx.setLineWidth(that.render_options.line_width);
-                ctx.setStrokeStyle(that.render_options.line_style);
-                ctx.setFillStyle(that.render_options.line_style);
-                ctx.moveTo(x, y);
-                ctx.quadraticCurveTo(cp_x, cp_y, x + width, height);
-                ctx.stroke();
-                ctx.restore();
-            }
-     */
     renderBend = ^void(float x, float y, float width, float height) {
       float cp_x = x + width;
       float cp_y = y;
@@ -335,29 +280,8 @@
       CGContextDrawPath(ctx, kCGPathStroke);
       CGContextRestoreGState(ctx);
 
-      //        MNBezierPath* path = (MNBezierPath*)[MNBezierPath bezierPath];
-      //        [path moveToPoint:CGPointMake(x, y)];
-      //        [path addQuadCurveToPoint:CGPointMake(cp_x, cp_y) controlPoint:CGPointMake(x + width, height)];
-      ////        [path closePath];
-      //        [path stroke];
-      ////        [path fill];
     };
 
-    /*
-        function renderRelease(x, y, width, height) {
-            ctx.save();
-            ctx.beginPath();
-            ctx.setLineWidth(that.render_options.line_width);
-            ctx.setStrokeStyle(that.render_options.line_style);
-            ctx.setFillStyle(that.render_options.line_style);
-            ctx.moveTo(x, height);
-            ctx.quadraticCurveTo(
-                                 x + width, height,
-                                 x + width, y);
-            ctx.stroke();
-            ctx.restore();
-        }
-     */
     renderRelease = ^void(float x, float y, float width, float height) {
       CGContextSaveGState(ctx);
       CGContextBeginPath(ctx);
@@ -370,23 +294,23 @@
       CGContextRestoreGState(ctx);
     };
 
-    /*
-        function renderArrowHead(x, y, direction) {
-            var width = 4;
-            var dir = direction || 1;
-
-            ctx.beginPath();
-            ctx.moveTo(x, y);
-            ctx.lineTo(x - width, y + width * dir);
-            ctx.lineTo(x + width, y + width * dir);
-            ctx.closePath();
-            ctx.fill();
-        }
-     */
     renderArrowHead = ^void(float x, float y, MNBendDirectionType direction) {
       CGContextSaveGState(ctx);
-      NSUInteger width = 4;
-      MNBendDirectionType dir = direction != 0 ? direction : 1;
+      float width = 4;
+      float dir = 1.f;
+      switch(direction)
+      {
+          case MNBendDOWN:
+              dir = -1.f;
+              break;
+          case MNBendUP:
+              dir = 1.f;
+              break;
+          case MNBendNONE:
+          default:
+              dir = 1.f;
+              break;
+      }
       CGContextBeginPath(ctx);
       CGContextMoveToPoint(ctx, x, y);
       CGContextAddLineToPoint(ctx, x - width, y + width * dir);
@@ -396,15 +320,6 @@
       CGContextRestoreGState(ctx);
     };
 
-    /*
-        function renderText(x, text) {
-            ctx.save();
-            ctx.setRawFont(that.font);
-            var render_x = x - (ctx.measureText(text).width / 2);
-            ctx.fillText(text, render_x, annotation_y);
-            ctx.restore();
-        }
-     */
     renderText = ^void(float x, NSString* text) {
       CGContextSaveGState(ctx);
 
@@ -428,48 +343,14 @@
       CGContextRestoreGState(ctx);
     };
 
-    /*
-        var last_bend = null;
-        var last_drawn_width = 0;
-        for (var i=0; i<self.phrase.length; ++i) {
-            var bend = self.phrase[i];
-            if (i === 0) bend.draw_width += x_shift;
-
-            last_drawn_width = bend.draw_width + (last_bend?last_bend.draw_width:0) - (i==1?x_shift:0);
-            if (bend.type == Bend.UP) {
-                if (last_bend && last_bend.type == Bend.UP) {
-                    renderArrowHead(start.x, bend_height);
-                }
-
-                renderBend(start.x, start.y, last_drawn_width, bend_height);
-            }
-
-            if (bend.type == Bend.DOWN) {
-                if (last_bend && last_bend.type == Bend.UP) {
-                    renderRelease(start.x, start.y, last_drawn_width, bend_height);
-                }
-
-                if (last_bend && last_bend.type == Bend.DOWN) {
-                    renderArrowHead(start.x, start.y, -1);
-                    renderRelease(start.x, start.y, last_drawn_width, bend_height);
-                }
-
-                if (last_bend == null) {
-                    last_drawn_width = bend.draw_width;
-                    renderRelease(start.x, start.y, last_drawn_width, bend_height);
-                }
-            }
-
-            renderText(start.x + last_drawn_width, bend.text);
-            last_bend = bend;
-            last_bend.x = start.x;
-
-            start.x += last_drawn_width;
-        }
-    */
-    __block MNBend* last_bend = nil;
+    __block MNBendStruct* last_bend = nil;
     __block float last_drawn_width = 0;
-    [self.phrase enumerateObjectsUsingBlock:^(MNBend* bend, NSUInteger i, BOOL* stop) {
+    [self.phrase enumerateObjectsUsingBlock:^(MNBendStruct* bend, NSUInteger i, BOOL* stop) {
+      if(bend.type == MNBendNONE)
+      {
+          MNLogError(@"Bend needs a direction.");
+      }
+
       if(i == 0)
       {
           bend.draw_width += x_shift;
@@ -516,11 +397,12 @@
     // Final arrowhead and text
     if(last_bend.type == MNBendUP)
     {
-        renderArrowHead(last_bend.x + last_drawn_width, bend_height, 1.f);
+        renderArrowHead(last_bend.x + last_drawn_width, bend_height, MNBendUP);
     }
     else if(last_bend.type == MNBendDOWN)
     {
-        renderArrowHead(last_bend.x + last_drawn_width, start.y, -1.f);
+        renderArrowHead(last_bend.x + last_drawn_width, start.y, MNBendDOWN);
     }
+    CGContextRestoreGState(ctx);
 }
 @end

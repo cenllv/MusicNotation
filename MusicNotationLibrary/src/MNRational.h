@@ -58,11 +58,8 @@
 
 #pragma mark - Methods
 
-/*!---------------------------------------------------------------------------------------------------------------------
- * @name Standard Methods
- *  ---------------------------------------------------------------------------------------
- */
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
+
+//- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
 /*! This is the first super-awesome method.
 
@@ -75,7 +72,7 @@
  @param string A parameter that is passed in.
  @return Whatever it returns.
  */
-- (instancetype)initWithNumerator:(NSInteger)numerator andDenominator:(NSInteger)denominator;
+- (instancetype)initWithNumerator:(NSUInteger)numerator andDenominator:(NSUInteger)denominator;
 
 /*! This is the second super-awesome method.
  Note that there are additional cool things here, like [direct hyperlinks](http://www.cocoanetics.com)
@@ -85,9 +82,9 @@
 
  @bug *Bug:* A yellow background.
  */
-+ (MNRational*)rationalWithNumerator:(NSInteger)numerator andDenominator:(NSInteger)denominator;
++ (MNRational*)rationalWithNumerator:(NSUInteger)numerator andDenominator:(NSUInteger)denominator;
 
-+ (MNRational*)rationalWithNumerator:(NSInteger)numerator;
++ (MNRational*)rationalWithNumerator:(NSUInteger)numerator;
 
 + (MNRational*)rationalZero;
 
@@ -127,7 +124,7 @@
  *  ---------------------------------------------------------------------------------------
  */
 
-- (void)set:(NSInteger)numerator with:(NSInteger)denominator;
+- (void)set:(NSUInteger)numerator with:(NSUInteger)denominator;
 
 + (MNRational*)simplify:(MNRational*)rational;
 
@@ -207,11 +204,11 @@
 /*! Determines the quotient - the integer resulting from decimal division of the numerator and denominator.
  @return An integer as the quotient
  */
-- (NSInteger)quotient;
+- (NSUInteger)quotient;
 
 /*! Determines the remainder after performing modular division.
  */
-- (NSInteger)rational;
+- (NSUInteger)rational;
 
 /*! Performs absolute value on the numerator and the denominator.
  @return Returns this rational.
@@ -226,20 +223,20 @@
  @param v Another integer
  @return The greatest common divisor
  */
-+ (NSInteger)GCD:(NSInteger)u with:(NSInteger)v;
++ (NSUInteger)GCD:(NSUInteger)u with:(NSUInteger)v;
 
 /*! Determines the least common multiple of the two integers.
  @param param1 An integer
  @param param2 Another integer
  @return The least common multiple
  */
-+ (NSInteger)LCM:(NSInteger)param1 with:(NSInteger)param2;
++ (NSUInteger)LCM:(NSUInteger)param1 with:(NSUInteger)param2;
 
 /*! Determines the greatest common divisor of many integers.
  @params Two or more integers integers
  @return the least common multiple
  */
-+ (NSInteger)LCMM:(NSInteger)params, ...;
++ (NSUInteger)LCMM:(NSUInteger)params, ...;
 
 @end
 

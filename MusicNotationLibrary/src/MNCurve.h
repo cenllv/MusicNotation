@@ -60,8 +60,8 @@
 + (nonnull MNCurve*)curveFromNote:(nonnull MNNote*)fromNote toNote:(nonnull MNNote*)toNote;
 
 + (nonnull MNCurve*)curveFromNote:(nonnull MNNote*)fromNote
-                   toNote:(nonnull MNNote*)toNote
-           withDictionary:(nullable NSDictionary*)optionsDict;
+                           toNote:(nonnull MNNote*)toNote
+                   withDictionary:(nullable NSDictionary*)optionsDict;
 
 /*!
  *  set the notes to render this curve
@@ -70,6 +70,12 @@
  *  @return this object
  */
 - (nonnull id)setNotesFrom:(nonnull MNNote*)fromNote toNote:(nonnull MNNote*)toNote;
+
+/*!
+ *  Draw debug control points
+ *  @param mode YES for debuge or NO for release
+ */
++ (void)setDebug:(BOOL)mode;
 
 /*!
  *  Draw the curve

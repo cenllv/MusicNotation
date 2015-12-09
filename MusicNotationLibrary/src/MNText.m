@@ -269,10 +269,6 @@ static BOOL _showBoundingBox = NO;
 
 + (CGSize)measureText:(id)text withFont:(MNFont*)font
 {
-    // TODO: incorrect implementation
-    //    return CGSizeMake(text.length, 1);
-    //    paragraphStyle.alignment = NSTextAlignmentLeft;   // justification;
-
     NSString* str = @"";
     if([text isKindOfClass:[NSAttributedString class]])
     {
@@ -287,9 +283,8 @@ static BOOL _showBoundingBox = NO;
         MNLogError(@"ExpectedNSStringTypeException, Text must be either a NSString* or NSAttributedString*");
     }
 
-    MNFont* font1 = [MNFont fontWithName:@"times" /*self.fontFamily*/ size:12];
     NSAttributedString* title =
-        [[NSAttributedString alloc] initWithString:str attributes:@{NSFontAttributeName : font1.font}];
+        [[NSAttributedString alloc] initWithString:str attributes:@{NSFontAttributeName : font.font}];
     return title.size;
 }
 

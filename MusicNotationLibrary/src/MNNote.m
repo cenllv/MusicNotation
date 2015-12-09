@@ -366,6 +366,17 @@
     return 0;
 }
 
+- (float)line
+{
+    return _line;
+}
+
+- (id)setLine:(float)line
+{
+    _line = line;
+    return self;
+}
+
 /*!
  *  Get the glyph struct associated with this note.
  *  @return a glyph struct

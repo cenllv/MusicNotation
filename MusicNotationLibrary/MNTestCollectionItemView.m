@@ -60,6 +60,7 @@
 #if TARGET_OS_IPHONE
 #elif TARGET_OS_MAC
 
+
 - (void)setLayer:(CALayer*)layer
 {
     [super setLayer:layer];

@@ -3017,72 +3017,95 @@ Vex.Flow.durationToTicks = function(duration) {
     return [[[[self class] durationToTicksDictionary] objectForKey:duration] unsignedIntegerValue];
 }
 
-static NSDictionary* _textNoteGlyphs;
-+ (NSDictionary*)textNoteGlyphs
-{
-    if(!_textNoteGlyphs)
-    {
-        _textNoteGlyphs = @{
+// static NSDictionary* _textNoteGlyphs;
+//+ (NSDictionary*)textNoteGlyphs
+//{
+//    if(!_textNoteGlyphs)
+//    {
+//        _textNoteGlyphs = @{
+//
+//            @"segno" : @{
+//                @"code" : @"v8c",
+//                @"point" : @40,
+//                @"x_shift" : @0,
+//                @"y_shift" : @(-10)
+//                // width: 10 // optional
+//            },
+//            @"tr" : @{
+//                @"code" : @"v1f",
+//                @"point" : @40,
+//                @"x_shift" : @0,
+//                @"y_shift" : @0
+//                // width: 10 // optional
+//            },
+//            @"mordent" : @{
+//                @"code" : @"v1e",
+//                @"point" : @40,
+//                @"x_shift" : @0,
+//                @"y_shift" : @0
+//                // width: 10 // optional
+//            },
+//            @"f" : @{
+//                @"code" : @"vba",
+//                @"point" : @40,
+//                @"x_shift" : @0,
+//                @"y_shift" : @0
+//                // width: 10 // optional
+//            },
+//            @"p" : @{
+//                @"code" : @"vbf",
+//                @"point" : @40,
+//                @"x_shift" : @0,
+//                @"y_shift" : @0
+//                // width: 10 // optional
+//            },
+//            @"m" : @{
+//                @"code" : @"v62",
+//                @"point" : @40,
+//                @"x_shift" : @0,
+//                @"y_shift" : @0
+//                // width: 10 // optional
+//            },
+//            @"s" : @{
+//                @"code" : @"v4a",
+//                @"point" : @40,
+//                @"x_shift" : @0,
+//                @"y_shift" : @0
+//                // width: 10 // optional
+//            },
+//            @"coda" : @{
+//                @"code" : @"v4d",
+//                @"point" : @40,
+//                @"x_shift" : @0,
+//                @"y_shift" : @(-8)
+//                // width: 10 // optional
+//            }
+//        };
+//    }
+//    return _textNoteGlyphs;
+//}
 
-            @"segno" : @{
-                @"code" : @"v8c",
-                @"point" : @40,
-                @"x_shift" : @0,
-                @"y_shift" : @(-10)
-                // width: 10 // optional
-            },
-            @"tr" : @{
-                @"code" : @"v1f",
-                @"point" : @40,
-                @"x_shift" : @0,
-                @"y_shift" : @0
-                // width: 10 // optional
-            },
-            @"mordent" : @{
-                @"code" : @"v1e",
-                @"point" : @40,
-                @"x_shift" : @0,
-                @"y_shift" : @0
-                // width: 10 // optional
-            },
-            @"f" : @{
-                @"code" : @"vba",
-                @"point" : @40,
-                @"x_shift" : @0,
-                @"y_shift" : @0
-                // width: 10 // optional
-            },
-            @"p" : @{
-                @"code" : @"vbf",
-                @"point" : @40,
-                @"x_shift" : @0,
-                @"y_shift" : @0
-                // width: 10 // optional
-            },
-            @"m" : @{
-                @"code" : @"v62",
-                @"point" : @40,
-                @"x_shift" : @0,
-                @"y_shift" : @0
-                // width: 10 // optional
-            },
-            @"s" : @{
-                @"code" : @"v4a",
-                @"point" : @40,
-                @"x_shift" : @0,
-                @"y_shift" : @0
-                // width: 10 // optional
-            },
-            @"coda" : @{
-                @"code" : @"v4d",
-                @"point" : @40,
-                @"x_shift" : @0,
-                @"y_shift" : @(-8)
-                // width: 10 // optional
-            }
+static NSDictionary* _unicode;
+
++ (NSDictionary*)unicode
+{
+    if(!_articulationsDictionary)
+    {
+        _unicode = @{
+            // Unicode accidentals
+            @"sharp" : @"\u266F",     // String.fromCharCode(parseInt('266F', 16)),
+            @"flat" : @"\u266D",      // String.fromCharCode(parseInt('266D', 16)),
+            @"natural" : @"\u266E",   // String.fromCharCode(parseInt('266E', 16)),
+            // Major Chord
+            @"triangle" : @"\u25B3",   // String.fromCharCode(parseInt('25B3', 16)),
+            // half-diminished
+            @"o-with-slash" : @"\u00F8",   // String.fromCharCode(parseInt('00F8', 16)),
+            // Diminished
+            @"degrees" : @"\u00B0",   // String.fromCharCode(parseInt('00B0', 16)),
+            @"circle" : @"\u25CB",    // String.fromCharCode(parseInt('25CB', 16))
         };
     }
-    return _textNoteGlyphs;
+    return _unicode;
 }
 
 @end

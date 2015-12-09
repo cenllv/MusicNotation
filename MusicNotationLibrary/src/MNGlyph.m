@@ -102,7 +102,7 @@
         // self.aOutline = [[MNGlyphList availableGlyphsDictionary] objectForKey:self.code];
         //        self.metrics.bounds.xPosition = point.x;
         self.metrics.bounds.width = self.metrics.width;
-        self.metrics.scale = 1;
+        self.metrics.scale = point;
         //        self.metrics.point.x = point.x;
         //        self.metrics.point.y = point.y;
     }

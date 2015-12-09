@@ -27,6 +27,9 @@
 
 extern NSString* const kTestCollectionItemid;
 
+#define REMOVE_TAG 1
+extern NSString* const kRemoveTag;
+
 /*!
  *  The `MNTestCollectionItem` class is the controller for the views for the tests
  */

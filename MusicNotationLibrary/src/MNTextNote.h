@@ -26,7 +26,7 @@
 //  THE SOFTWARE.
 //
 
-#import "MNNote.h"
+#import "MNStaffNote.h"
 
 @class MNFont;
 
@@ -36,21 +36,18 @@
 @interface MNTextNote : MNNote
 {
    @private
-    //    MNFont* _font;
+    MNJustiticationType _justification;
 }
 
-#pragma mark - Properties
-//@property (strong, nonatomic) MNGlyph* glyph;
 @property (strong, nonatomic) NSString* text;
 @property (strong, nonatomic) NSString* glyph_type;
-//@property (assign, nonatomic) float line;
+
+@property (strong, nonatomic) NSString* superScript;
+@property (strong, nonatomic) NSString* subScript;
+
+- (id)setJustification:(MNJustiticationType)justification;
 @property (assign, nonatomic) BOOL smooth;
-//@property (assign, nonatomic) BOOL ignore_ticks;
-@property (assign, nonatomic) MNJustiticationType justification;
 
-//@property (strong, nonatomic) MNFont* font;
-
-#pragma mark - Methods
 - (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
 
 @end

@@ -769,7 +769,7 @@
                         }]];
 }
 
-+ (NSArray<MNBeam*>*)applyAndGetBeams:(MNVoice*)voice groups:(NSArray*)groups
++ (NSArray<MNBeam*>*)applyAndGetBeams:(MNVoice*)voice groups:(NSArray<MNRational*>*)groups
 {
     return
         [self generateBeams:voice.tickables config:[[MNBeamConfig alloc] initWithDictionary:@{
@@ -828,21 +828,21 @@
     }
 
     // Convert beam groups to tick amounts
-    NSMutableArray<MNRational*>* tickGroups = [config.groups oct_map:^MNRational*(MNRational* group) {
-      if(![group isKindOfClass:[MNRational class]])
+    NSMutableArray<MNRational*>* tickGroups = [config.groups oct_map:^MNRational*(MNRational* r) {
+      if(![r isKindOfClass:[MNRational class]])
       {
           MNLogError(@"InvalidBeamGroups, The beam groups must be an array of Rationals");
       }
-      return [[group clone] multiply:Rational(kRESOLUTION, 1)];
+      return [[r clone] multiply:Rational(kRESOLUTION, 1)];
     }];
 
-    NSArray* unprocessedNotes = notes;
+    NSArray<MNStemmableNote*>* unprocessedNotes = notes;
     __block NSUInteger currentTickGroup = 0;
-    __block NSMutableArray* noteGroups = [NSMutableArray array];
+    __block NSMutableArray<NSArray*>* noteGroups = [NSMutableArray array];
     __block NSMutableArray* currentGroup = [NSMutableArray array];
 
     // forward declarations of all blocks used in this method
-    MNRational* (^getTotalTicks)(NSArray*);
+    MNRational* (^getTotalTicks)(NSArray<MNStemmableNote*>*);
     void (^nextTickGroup)();
     void (^createGroups)();
     NSArray* (^getBeamGroups)();   // get groups able to have beams added
@@ -852,7 +852,7 @@
     __block void (^applyStemDirection)(NSArray*, MNStemDirectionType);
     NSArray* (^getTupletGroups)();
 
-    getTotalTicks = ^MNRational*(NSArray* notes)
+    getTotalTicks = ^MNRational*(NSArray<MNStemmableNote*>* notes)
     {
         //        return [mn_notes reduce:^Rational*(Rational* memo, MNStemmableNote* note) {
         //          return [[note.ticks clone] add:memo];

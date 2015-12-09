@@ -193,13 +193,27 @@
     CGContextRestoreGState(ctx);
 
     // [self bezierRenderDebug:ctx points:@[ firstPoint, self.cps[0], self.cps[1], lastPoint]];
-    [self bezierRenderDebug:ctx
-                     points:@[
-                         firstPoint,
-                         MNPointMake(first_x + cp_spacing + cp0.x, first_y + (cp0.y * direction)),
-                         MNPointMake(last_x - cp_spacing + cp1.x, last_y + (cp1.y * direction)),
-                         lastPoint
-                     ]];
+    if(_debugMode)
+    {
+        [self bezierRenderDebug:ctx
+                         points:@[
+                             firstPoint,
+                             MNPointMake(first_x + cp_spacing + cp0.x, first_y + (cp0.y * direction)),
+                             MNPointMake(last_x - cp_spacing + cp1.x, last_y + (cp1.y * direction)),
+                             lastPoint
+                         ]];
+    }
+}
+
+static BOOL _debugMode = NO;
+
+/*!
+ *  Draw debug control points
+ *  @param mode YES for debuge or NO for release
+ */
++ (void)setDebug:(BOOL)mode
+{
+    _debugMode = mode;
 }
 
 /*!

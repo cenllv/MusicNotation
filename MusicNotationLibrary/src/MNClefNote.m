@@ -73,14 +73,19 @@
 
 + (MNClefNote*)clefNoteWithClef:(NSString*)clef size:(NSString*)size
 {
-    return [[MNClefNote alloc] initWithDictionary:@{@"clefName" : clef, @"clefSize" : size, @"duration" : @"b"}];
+    return [[MNClefNote alloc] initWithDictionary:@{ @"clefName" : clef, @"clefSize" : size, @"duration" : @"b" }];
 }
 
 + (MNClefNote*)clefNoteWithClef:(NSString*)clef size:(NSString*)size annotation:(NSString*)annotation
 {
-    return [[MNClefNote alloc]
-        initWithDictionary:
-            @{@"clefName" : clef, @"clefSize" : size, @"annotationName" : annotation, @"duration" : @"b"}];
+    MNClefNote* ret = [[MNClefNote alloc] initWithDictionary:@{
+        @"clefName" : clef,
+        @"clefSize" : size,
+        @"annotationName" : annotation,
+        @"duration" : @"b"
+    }];
+
+    return ret;
 }
 
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
@@ -114,11 +119,11 @@
 
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"clefnote";
+    return NSStringFromClass([self class]);   // return @"clefnote";
 }
 - (NSString*)category
 {
-    return NSStringFromClass([self class]); //return @"clefnote";
+    return NSStringFromClass([self class]);   // return @"clefnote";
 }
 
 - (id)setClefWithClefName:(NSString*)clefName size:(NSString*)size annotationName:(NSString*)annotationName
@@ -142,7 +147,8 @@
     // new Vex.Flow.Clef(clef, size, annotation);
     self.clefName = self.clef.clefName;
     self.clefType = self.clef.type;
-    self.glyph = [MNGlyph glyphWithCode:self.clef.code withPointSize:1];
+    float pointSize = self.clef.scale;
+    self.glyph = [MNGlyph glyphWithCode:self.clef.code withPointSize:pointSize];
     // new Vex.Flow.Glyph(self.clef.code, self.clef.point);
     self.width = self.glyph.metrics.width;
 
@@ -209,7 +215,7 @@
     [self.glyph renderWithContext:ctx toStaff:self.staff atX:abs_x];
 
     // If the Vex.Flow.Clef has an annotation, such as 8va, draw it.
-    if(self.clef.annotation)
+    if(self.clef.hasAnnotation)
     {
         MNGlyph* attachment =
             [MNGlyph glyphWithCode:self.clef.annotation.code withPointSize:self.clef.annotation.point];

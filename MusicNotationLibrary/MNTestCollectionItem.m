@@ -34,6 +34,7 @@
 #define RENDERLAYER_CORNER_RADIUS 8.0
 
 NSString* const kTestCollectionItemid = @"testCollectionItemid";
+NSString* const kRemoveTag = @"kRemoveTag";
 
 @interface MNTestCollectionItem ()
 
@@ -152,24 +153,26 @@ NSString* const kTestCollectionItemid = @"testCollectionItemid";
 - (void)prepareForReuse
 {
     [super prepareForReuse];
-    //    [self.renderLayer clearLayer];
-    //    for(NSView* subView in self.view.subviews)
-    //    {
-    //        [subView removeFromSuperview];
-    //    }
 
-//    for(CALayer* layer in self.view.layer.sublayers)
-//    {
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//          [layer removeFromSuperlayer];
-//        });
-//    }
+    for(NSView* subView in self.view.subviews)
+    {
+        if([subView tag] == REMOVE_TAG)
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+              [subView removeFromSuperview];
+            });
+        }
+    }
 
-    //
-    //    [self.view addSubview:self.textLabel];
-
-    //    self.textLabel.stringValue = @"Arst";
-    //    [self.textLabel sizeToFit];
+    for(CALayer* layer in self.view.layer.sublayers)
+    {
+        if([[layer name] isEqualToString:kRemoveTag])
+        {
+            dispatch_async(dispatch_get_main_queue(), ^{
+              [layer removeFromSuperlayer];
+            });
+        }
+    }
 }
 
 - (void)applyLayoutAttributes:(NSCollectionViewLayoutAttributes*)layoutAttributes

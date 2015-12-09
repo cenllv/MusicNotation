@@ -58,7 +58,7 @@
                      }]];
 }
 
-- (id)first
+- (id)oct_first
 {
     return [self oct_head];
 }
@@ -111,7 +111,7 @@
     return [[[self oct_asArray] oct_groupBy:groupingBlock] oct_asSequence];
 }
 
-- (id)head
+- (id)oct_head
 {
     id item = [self oct_toEnumerator].nextObject;
     if(item == nil)
@@ -122,7 +122,7 @@
     return item;
 }
 
-- (Option*)headOption
+- (Option*)oct_headOption
 {
     return option([self oct_toEnumerator].nextObject);
 }
@@ -139,21 +139,21 @@
                      }]];
 }
 
-- (Sequence*)mapWithIndex:(id (^)(id, NSInteger))funcBlock
+- (Sequence*)oct_mapWithIndex:(id (^)(id, NSInteger))funcBlock
 {
     return [[self oct_zipWithIndex] oct_map:^(Pair* itemAndIndex) {
       return funcBlock(itemAndIndex.left, [itemAndIndex.right intValue]);
     }];
 }
 
-- (Sequence*)merge:(Sequence*)toMerge
+- (Sequence*)oct_merge:(Sequence*)toMerge
 {
     return [[Sequence oct_with:[EasyEnumerable oct_with:^{
                         return [MergeEnumerator oct_with:[self oct_toEnumerator] toMerge:[toMerge oct_toEnumerator]];
                       }]] oct_flatten];
 }
 
-- (Pair*)partition:(BOOL (^)(id))predicate
+- (Pair*)oct_partition:(BOOL (^)(id))predicate
 {
     Queue* matched = [Queue queue];
     Queue* unmatched = [Queue queue];
@@ -176,28 +176,28 @@
     return [[self oct_asArray] oct_reduce:functorBlock];
 }
 
-- (id)second
+- (id)oct_second
 {
     return [[self oct_tail] oct_head];
 }
 
-- (Pair*)splitAt:(int)splitIndex
+- (Pair*)oct_splitAt:(int)splitIndex
 {
-    return [self splitWhen:TL_not(TL_countTo(splitIndex))];
+    return [self oct_splitWhen:TL_not(TL_countTo(splitIndex))];
 }
 
-- (Pair*)splitOn:(id)splitItem
+- (Pair*)oct_splitOn:(id)splitItem
 {
-    return [self splitWhen:TL_equalTo(splitItem)];
+    return [self oct_splitWhen:TL_equalTo(splitItem)];
 }
 
-- (Pair*)splitWhen:(BOOL (^)(id))predicate
+- (Pair*)oct_splitWhen:(BOOL (^)(id))predicate
 {
-    Pair* partitioned = [self partition:TL_whileTrue(TL_not(predicate))];
+    Pair* partitioned = [self oct_partition:TL_whileTrue(TL_not(predicate))];
     return [Pair left:partitioned.left right:[partitioned.right oct_tail]];
 }
 
-- (Sequence*)tail
+- (Sequence*)oct_tail
 {
     return [Sequence oct_with:[EasyEnumerable oct_with:^{
                        NSEnumerator* const anEnumerator = [self oct_toEnumerator];

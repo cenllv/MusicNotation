@@ -41,6 +41,7 @@
     self = [super initWithDictionary:optionsDict];
     if(self)
     {
+        [self setupTextBracket];
     }
     return self;
 }
@@ -74,8 +75,8 @@
 - (void)setupTextBracket
 {
     _line = 1;
-    _fontFamily = @"Verdana-Bold";   // @"Serif";
-    _fontSize = 15;
+    _fontFamily = @"Arial";   // @"Avenir-Black";
+    _fontSize = 20;
     _fontBold = NO;
     _fontItalic = YES;
     _dashed = YES;
@@ -105,14 +106,6 @@
     CGContextSetLineWidth(ctx, self.lineWidth);
 }
 
-//// set the draw style of a stem:
-//- (void)applyStyle:(DrawStyle)drawStyle {
-//    _drawStyle = drawStyle;
-//}
-//- (DrawStyle)getStyle {
-//    return _drawStyle;
-//}
-
 - (id)setDashed:(BOOL)dashed
 {
     _dashed = dashed;
@@ -127,10 +120,10 @@
     switch(self.position)
     {
         case MNTextBrackTop:
-            y = [self.start.staff getYForTopTextWithLine:self.line];
+            y = [self.start.staff getYForTopTextWithLine:(self.line + 1)];   // CHANGE: -> +1
             break;
         case MNTextBracketBottom:
-            y = [self.start.staff getYForBottomTextWithLine:self.line];
+            y = [self.start.staff getYForBottomTextWithLine:(self.line - 2)];   // CHANGE: -> -1
             break;
         default:
             [MNLog logError:@"InvalidBracketPosition, only top or bottom allowed"];
@@ -139,9 +132,7 @@
     MNPoint* start = [MNPoint pointWithX:self.start.absoluteX andY:y];
     MNPoint* stop = [MNPoint pointWithX:self.stop.absoluteX andY:y];
 
-    MNLogDebug(
-        @"%@",
-        [NSString stringWithFormat:@"Rendering TextBracket: start:%@ stop:%@", [start toString], [stop toString]]);
+    MNLogDebug(@"Rendering TextBracket: start:%@ stop:%@", [start toString], [stop toString]);
 
     float bracketHeight = self.bracketHeight * self.position;
 
@@ -149,51 +140,34 @@
 
     [self applyStyle:ctx];
 
+    [MNText setAlignment:MNTextAlignmentLeft];
+    [MNText setVerticalAlignment:MNTextAlignmentTop];
+
     // Draw text
     MNFont* font = [MNFont fontWithName:self.fontFamily size:self.fontSize];
-    NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.alignment = kCTTextAlignmentLeft;
-
-    NSAttributedString* title = [[NSAttributedString alloc]
-        initWithString:self.text
-            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font.font}];
-
-    //    font.bold = self.fontBold;
-    // TODO: cannot set font size
-    //    font.size = self.fontSize;
-    //         context.setFont(self.font.family, self.font.size, self.font.weight);
-    //     [MNText drawText:ctx withFont:font atPoint:[MNPoint pointWithX:start.x andY:start.y]
-    //    withText:self.text];
-
-    [title drawAtPoint:CGPointMake(start.x, start.y -= title.size.height / 2)];
-
-    // Draw the superscript
-    // TODO: cannot set font size
-    //    font.size = font.size / 1.4;
-    font = [MNFont fontWithName:self.fontFamily size:self.fontSize / 1.4];
-    //     [MNText drawText:ctx
-    //                  withFont:font
-    //                   atPoint:[MNPoint pointWithX:(start.x + mainWidth + 1)andY:super_y]
-    //                  withText:self.superscript];
-
-    paragraphStyle.alignment = kCTTextAlignmentLeft;
-
-    title = [[NSAttributedString alloc]
-        initWithString:self.superscript
-            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font.font}];
+    CGSize size = [MNText measureText:self.text withFont:font];
+    //    [MNText drawText:ctx withFont:font atPoint:MNPointMake(start.x, start.y) withText:self.text];
+    [MNText drawText:ctx withFont:font atRect:CGRectMake(start.x, start.y, size.width, size.height) withText:self.text];
 
     // Get the width and height for the octave number
-    float mainWidth = title.size.width;
-    float mainHeight = title.size.height;
+    float mainWidth = size.width;
+    float mainHeight = size.height;
 
     // Calculate the y position for the super script
-    float super_y = start.y - (mainHeight / 2.5);
-
-    [title drawAtPoint:CGPointMake((start.x + mainWidth + 1), super_y)];
+    float super_x = start.x + mainWidth + 1;
+    float super_y = start.y;   // start.y - (mainHeight / 2.5);
 
     // Determine width and height of the superscript
-    float superscript_width = [MNText measureText:self.superscript withFont:font].width;
-    float super_height = [MNText measureText:@"M" withFont:font].height;
+    MNFont* super_font = [MNFont fontWithName:self.fontFamily size:(self.fontSize / 2)];   // / 1.4)];
+    CGSize super_size = [MNText measureText:self.superscript withFont:super_font];
+    float superscriptWidth = super_size.width;
+    float superHeight = super_size.height;
+
+    // Draw the superscript
+    [MNText drawText:ctx
+            withFont:super_font
+              atRect:CGRectMake(super_x, super_y, super_size.width, super_size.height)
+            withText:self.superscript];
 
     // Setup initial coordinates for the bracket line
     float start_x = start.x;
@@ -203,41 +177,21 @@
     // Adjust x and y coordinates based on position
     if(self.position == MNTextBrackTop)
     {
-        start_x += mainWidth + superscript_width + 5;
-        line_y -= super_height / 2.7;
+        start_x += mainWidth + superscriptWidth + 5;
+         line_y = super_y + superHeight / 1.7;
     }
     else if(self.position == MNTextBracketBottom)
     {
-        line_y += super_height / 2.7;
+        line_y = super_y + superHeight;
         start_x += mainWidth + 2;
         if(!self.underlineSuperscript)
         {
-            start_x += superscript_width;
+            start_x += superscriptWidth;
         }
     }
 
     if(_dashed)
     {
-        ////TODO: finish the following
-        //        // Main line
-        //         [MNRenderer drawDashedLine:ctx
-        //                         withPhase:0
-        //                       withLengths:self.dash
-        //                          withLine:[MNLine lineAtStartX:start_x startY:line_y endX:end_x endY:line_y]];
-        //
-        //
-        //        // Ending bracket
-        //        if(self.showBracket)
-        //        {
-        //             [MNRenderer drawDashedLine:ctx
-        //                             withPhase:0
-        //                           withLengths:self.dash
-        //                              withLine:[MNLine lineAtStartX:end_x
-        //                                                     startY:line_y + (1 * self.position)
-        //                                                       endX:end_x
-        //                                                       endY:line_y + bracketHeight]];
-        //        }
-
         const CGFloat arr[1] = {5.f};
         CGContextSetLineDash(ctx, 0, arr, 1);
         CGContextBeginPath(ctx);
@@ -250,7 +204,7 @@
             CGContextAddLineToPoint(ctx, end_x, line_y + bracketHeight);
         }
         CGContextStrokePath(ctx);
-//        CGContextClosePath(ctx);
+        //        CGContextClosePath(ctx);
     }
     else
     {
@@ -265,7 +219,7 @@
             CGContextAddLineToPoint(ctx, end_x, line_y + bracketHeight);
         }
         CGContextStrokePath(ctx);
-        CGContextClosePath(ctx);
+        //        CGContextClosePath(ctx);
     }
 
     CGContextRestoreGState(ctx);

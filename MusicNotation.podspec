@@ -18,6 +18,6 @@ Pod::Spec.new do |spec|
     spec.dependency 'TheAmazingAudioEngine', '~> 1.5.2'
     spec.dependency 'pop', '~> 1.0'
 #    spec.dependency 'RegExCategories'
-#    spec.dependency 'ReflectableEnum'
+    spec.dependency 'ReflectableEnum'
 #    spec.frameworks = 'AudioToolbox', 'Accelerate'
 end

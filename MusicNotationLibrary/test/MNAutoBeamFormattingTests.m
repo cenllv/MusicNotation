@@ -35,7 +35,7 @@
 {
     [super start];
     float w = 500;
-    //    float h = 200;
+    //        float h = 200;
     [self runTest:@"Simple Auto Beaming" func:@selector(simpleAuto:) frame:CGRectMake(0, 0, w, 150)];
     [self runTest:@"Even Group Stem Directions"
              func:@selector(evenGroupStemDirections:)
@@ -297,12 +297,19 @@
 
     NSArray<MNBeam*>* beams = [MNBeam applyAndGetBeams:voice groups:groups];
 
-    assertThatInteger([beams[0] stemDirection], describedAs(@"Notes are equa-distant from middle line",
-                                                            equalToInteger(MNStemDirectionDown), nil));
-    assertThatInteger([beams[1] stemDirection], equalToInteger(MNStemDirectionDown));
-    assertThatInteger([beams[2] stemDirection], equalToInteger(MNStemDirectionUp));
-    assertThatInteger([beams[3] stemDirection],
-                      describedAs(@"Notes are equadistant from middle line", equalToInteger(MNStemDirectionDown), nil));
+    if(beams.count == 0)
+    {
+        MNLogError(@"No Beams");
+    }
+    else
+    {
+        assertThatInteger([beams[0] stemDirection], describedAs(@"Notes are equa-distant from middle line",
+                                                                equalToInteger(MNStemDirectionDown), nil));
+        assertThatInteger([beams[1] stemDirection], equalToInteger(MNStemDirectionDown));
+        assertThatInteger([beams[2] stemDirection], equalToInteger(MNStemDirectionUp));
+        assertThatInteger([beams[3] stemDirection], describedAs(@"Notes are equadistant from middle line",
+                                                                equalToInteger(MNStemDirectionDown), nil));
+    }
 
     //      MNFormatter* formatter =
     [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];

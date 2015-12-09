@@ -37,7 +37,7 @@
     [self runTest:@"Double Bends" func:@selector(doubleBends:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"Reverse Bends" func:@selector(reverseBends:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"Bend Phrase" func:@selector(bendPhrase:) frame:CGRectMake(10, 10, w, h)];
-    [self runTest:@"Double Bends With Release" func:@selector(doubleBendWithRelease:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Double Bends With Release" func:@selector(doubleBendWithRelease:) frame:CGRectMake(10, 10, w+100, h)];
     [self runTest:@"Whako Bend" func:@selector(whackBends:) frame:CGRectMake(10, 10, w, h)];
 }
 
@@ -105,7 +105,7 @@
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 30, 550, 0)];
+      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 30, 650, 0)];
 
       [staff draw:ctx];
 
@@ -214,35 +214,31 @@
         return [[MNBend alloc] initWithText:nil release:NO phrase:phrase];
     };
 
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 30, 450, 0)];
+
+    NSArray* phrase1 = @[
+        @{ @"type" : @(MNBendUP),
+           @"text" : @"Full" },   //[MNBendStruct bendStructWithType:MNBendUP andText:@"Full"],
+        @{ @"type" : @(MNBendDOWN),
+           @"text" : @"Monstrous" },
+        @{ @"type" : @(MNBendUP),
+           @"text" : @"1/2" },
+        @{ @"type" : @(MNBendDOWN),
+           @"text" : @"" }
+    ];
+
+    MNBend* bend1 = newBend(phrase1);
+    //      bend1.graphicsContext = ctx;
+
+    NSArray* notes = @[
+        [newNote(
+            @{ @"positions" : @[ @{@"str" : @2, @"fret" : @"10"} ],
+               @"duration" : @"w" }) addModifier:bend1
+                                         atIndex:0],
+    ];
+
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 30, 450, 0)];
-
       [staff draw:ctx];
-
-      NSArray* phrase1 = @[
-          @{
-              @"type" : @(MNBendUP),
-              @"text" : @"Full"
-          },   //[MNBendStruct bendStructWithType:MNBendUP andText:@"Full"],
-          @{ @"type" : @(MNBendDOWN),
-             @"text" : @"Monstrous" },
-          @{ @"type" : @(MNBendUP),
-             @"text" : @"1/2" },
-          @{ @"type" : @(MNBendDOWN),
-             @"text" : @"" }
-      ];
-
-      MNBend* bend1 = newBend(phrase1);
-      //      bend1.graphicsContext = ctx;
-
-      NSArray* notes = @[
-          [newNote(
-              @{ @"positions" : @[ @{@"str" : @2, @"fret" : @"10"} ],
-                 @"duration" : @"w" }) addModifier:bend1
-                                           atIndex:0],
-      ];
-
       for(NSUInteger i = 0; i < notes.count; ++i)
       {
           MNTabNote* note = notes[i];

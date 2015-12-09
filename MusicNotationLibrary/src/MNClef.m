@@ -43,8 +43,8 @@
     NSString* _clefName;
 }
 
-static float kCLEF_SIZE_DEFAULT = 20;   // 40;
-static float kCLEF_SIZE_SMALL = 16;     // 32;
+static float kCLEF_SIZE_DEFAULT = 40. / 40.;
+static float kCLEF_SIZE_SMALL = 32. / 40.;
 
 #pragma mark - Initialization
 
@@ -101,25 +101,10 @@ static float kCLEF_SIZE_SMALL = 16;     // 32;
         _size = size;
         _type = [MNClef clefTypeForName:clefName];
         _clefName = clefName;
-        [self setupClef];
-        [self setCodeAndName];
-        [self setupWithAnnotationName:annotationName];
-    }
-    return self;
-}
-
-- (instancetype)initWithName:(NSString*)clefName size:(NSString*)size annotation:(MNClefAnnotation*)annotation
-{
-    self = [self initWithDictionary:@{ @"clefName" : clefName }];
-    if(self)
-    {
-        _size = size;
-        _type = [MNClef clefTypeForName:clefName];
-        _clefName = clefName;
         _name = clefName;
         [self setupClef];
         [self setCodeAndName];
-        _annotation = annotation;
+        [self setupWithAnnotationName:annotationName];
     }
     return self;
 }
@@ -143,12 +128,12 @@ static float kCLEF_SIZE_SMALL = 16;     // 32;
 
 + (MNClef*)clefWithName:(NSString*)clefName
 {
-    return [[MNClef alloc] initWithName:clefName size:@"default" annotation:nil];
+    return [[MNClef alloc] initWithName:clefName size:@"default" annotationName:nil];
 }
 
 + (MNClef*)clefWithName:(NSString*)clefName size:(NSString*)size
 {
-    return [[MNClef alloc] initWithName:clefName size:size annotation:nil];
+    return [[MNClef alloc] initWithName:clefName size:size annotationName:nil];
 }
 
 + (MNClef*)clefWithName:(NSString*)clefName size:(NSString*)size annotationName:(NSString*)annotationName
@@ -156,10 +141,10 @@ static float kCLEF_SIZE_SMALL = 16;     // 32;
     return [[MNClef alloc] initWithName:clefName size:size annotationName:annotationName];
 }
 
-+ (MNClef*)clefWithName:(NSString*)clefName size:(NSString*)size annotation:(MNClefAnnotation*)annotation
-{
-    return [[MNClef alloc] initWithName:clefName size:size annotation:annotation];
-}
+//+ (MNClef*)clefWithName:(NSString*)clefName size:(NSString*)size annotation:(MNClefAnnotation*)annotation
+//{
+//    return [[MNClef alloc] initWithName:clefName size:size annotationName:annotation];
+//}
 
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
@@ -187,38 +172,57 @@ static float kCLEF_SIZE_SMALL = 16;     // 32;
  * ---------------------------------------------------------------------------------------------------------------------
  */
 
+//- (void)setValuesForKeyPathsWithDictionary:(NSDictionary*)keyedValues
+//{
+//    for(NSString* key_keyPath in keyedValues.allKeys)
+//    {
+//        id object = [keyedValues objectForKey:key_keyPath];
+//        if([key_keyPath isEqualToString:@"fromNote"])
+//        {
+//            self.fromNote = object;
+//            continue;
+//        }
+//        [self setValue:object forKeyPath:key_keyPath];
+//    }
+//}
+
 - (void)setupClef
 {
     if(!_size)
     {
-        self.point.x = kCLEF_SIZE_DEFAULT;
+        self.scale = kCLEF_SIZE_DEFAULT;
     }
     else
     {
         if([_size isEqualToString:@"default"])
         {
-            self.point.x = kCLEF_SIZE_DEFAULT;
+            self.scale = kCLEF_SIZE_DEFAULT;
         }
         else if([_size isEqualToString:@"small"])
         {
-            self.point.x = kCLEF_SIZE_SMALL;
+            self.scale = kCLEF_SIZE_SMALL;
         }
         else
         {
             MNLogError(@"clef size missing error");
+            self.scale = 1;
         }
     }
-    //    self.metrics.padding.xLeftPadding = 55.0;
-    //    self.metrics.padding.xRightPadding = 55.0;
-    //    [[((Metrics*)self->_metrics)padding] padAllSidesBy:10];
-    //    self.metrics.bounds = MNBoundingBox boundingBoxWithRect:<#(CGRect)#>
-    //    self.metrics.width
     self.padding = 5;
+}
+
+- (BOOL)hasAnnotation
+{
+    return (_annotation != nil);
 }
 
 - (void)setupWithAnnotationName:(NSString*)name
 {
-    if(name)
+    if(!name)
+    {
+        MNLogError(@"MissingAnnotationForNameException - need a name for the annotation");
+    }
+    else
     {
         NSDictionary* anno_dict = MNClef.annotations[name][@"sizes"][self.size];
         NSString* code = MNClef.annotations[name][@"code"];
@@ -259,27 +263,31 @@ static NSDictionary* _annotations;
             @"8va" : @{
                 @"code" : @"v8",
                 @"sizes" : @{
-                    @"default" :
-                        @{@"point" : @(20), @"attachments" : @{@"treble" : @{@"line" : @(-1.2), @"x_shift" : @(11)}}},
-                    @"small" :
-                        @{@"point" : @(18), @"attachments" : @{@"treble" : @{@"line" : @(-0.4), @"x_shift" : @(8)}}}
+                    @"default" : @{
+                        @"point" : @(20. / 40.),
+                        @"attachments" : @{@"treble" : @{@"line" : @(-0.7), @"x_shift" : @(9.5)}}
+                    },
+                    @"small" : @{
+                        @"point" : @(18. / 40.),
+                        @"attachments" : @{@"treble" : @{@"line" : @(0.1), @"x_shift" : @(7.5)}}
+                    }
                 }
             },
             @"8vb" : @{
                 @"code" : @"v8",
                 @"sizes" : @{
                     @"default" : @{
-                        @"point" : @(20),
+                        @"point" : @(20. / 40.),
                         @"attachments" : @{
-                            @"treble" : @{@"line" : @(6.3), @"x_shift" : @(10)},
-                            @"bass" : @{@"line" : @(4), @"x_shift" : @(1)}
+                            @"treble" : @{@"line" : @(6.0), @"x_shift" : @(8)},
+                            @"bass" : @{@"line" : @(3.6), @"x_shift" : @(0)}
                         }
                     },
                     @"small" : @{
-                        @"point" : @(18),
+                        @"point" : @(18. / 40.),
                         @"attachments" : @{
-                            @"treble" : @{@"line" : @(5.8), @"x_shift" : @(6)},
-                            @"bass" : @{@"line" : @(3.5), @"x_shift" : @(0.5)}
+                            @"treble" : @{@"line" : @(5.5), @"x_shift" : @(6)},
+                            @"bass" : @{@"line" : @(3.2), @"x_shift" : @(0.5)}
                         }
                     }
                 }
@@ -415,65 +423,53 @@ static NSDictionary* _annotations;
     switch(self.type)
     {
         case MNClefTreble:
-            //            [metrics setName:@"Treble"];
-            self.line = 3;   // [self setLine:2];
+            self.line = 3;
             self.code = @"v83";
             self.startingPitch = 46;
             break;
         case MNClefBass:
-            //            [metrics setName:@"Bass"];
-            self.line = 1;   // [self setLine:4];
+            self.line = 1;
             self.code = @"v79";
             self.startingPitch = 32;
             break;
         case MNClefAlto:
-            //            [metrics setName:@"Alto"];
-            self.line = 2;   // [self setLine:3];
+            self.line = 2;
             self.code = @"vad";
             break;
         case MNClefTenor:
-            //            [metrics setName:@"Tenor"];
-            self.line = 1;   // [self setLine:4];
+            self.line = 1;
             self.code = @"vad";
             break;
         case MNClefPercussion:
-            //            [metrics setName:@"Percussion"];
-            self.line = 2;   // [self setLine:3];
+            self.line = 2;
             self.code = @"v59";
             break;
         case MNClefMovableC:
-            //            [metrics setName:@"MoveableC"];
-            self.line = INT32_MAX;   // [self setLine:INT32_MAX];
+            self.line = INT32_MAX;
             self.code = @"v12";
             break;
         case MNClefSoprano:
-            //            [metrics setName:@"Soprano"];
-            self.line = 4;   // [self setLine:4];
+            self.line = 4;
             self.code = @"vad";
             break;
         case MNClefMezzoSoprano:
-            //            [metrics setName:@"MezzoSoprano"];
-            self.line = 3;   // [self setLine:3];
+            self.line = 3;
             self.code = @"vad";
             break;
         case MNClefBaritoneC:
-            //            [metrics setName:@"BaritoneC"];
-            self.line = 0;   // [self setLine:0];
+            self.line = 0;
             self.code = @"vad";
             break;
         case MNClefBaritoneF:
-            //            [metrics setName:@"BaritoneF"];
-            self.line = 2;   // [self setLine:2];
+            self.line = 2;
             self.code = @"v79";
             break;
         case MNClefSubBass:
-            //            [metrics setName:@"SubBass"];
-            self.line = 0;   // [self setLine:0];
+            self.line = 0;
             self.code = @"v79";
             break;
         case MNClefFrench:
-            //            [metrics setName:@"French"];
-            self.line = 4;   // [self setLine:4];
+            self.line = 4;
             self.code = @"v83";
             break;
         default:
@@ -517,8 +513,7 @@ static NSDictionary* _annotations;
 - (void)addModifierToStaff:(MNStaff*)staff
 {
     MNMetrics* metrics = self->_metrics;
-    self.glyph = [MNGlyph glyphWithCode:metrics.code withPointSize:1];
-    //    MNLogInfo(@"%@", self.glyph.description);
+    self.glyph = [MNGlyph glyphWithCode:metrics.code withPointSize:self.scale];
     [self placeGlyphOnLine:self.glyph forStaff:staff onLine:self.line];
     if(self.annotation)
     {
@@ -527,10 +522,10 @@ static NSDictionary* _annotations;
         attachment.y_shift = 0;
         attachment.x_shift = self.annotation.xShift;
         [self placeGlyphOnLine:attachment forStaff:staff onLine:self.annotation.line];
+        attachment.metrics.width = 0;
         [staff addGlyph:attachment];
     }
     [staff addGlyph:self.glyph];
-    //    [staff addGlyph:[staff makeSpacer:self.padding]];
 }
 
 /*!
@@ -540,8 +535,9 @@ static NSDictionary* _annotations;
 - (void)addEndModifierToStaff:(MNStaff*)staff
 {
     MNMetrics* metrics = self->_metrics;
-    self.glyph = [MNGlyph glyphWithCode:metrics.code withPointSize:1];
+    self.glyph = [MNGlyph glyphWithCode:metrics.code withPointSize:self.scale];
     [self placeGlyphOnLine:self.glyph forStaff:staff onLine:self.line];
+    [staff addEndGlyph:self.glyph];
     if(self.annotation)
     {
         MNGlyph* attachment = [[MNGlyph alloc] initWithCode:self.annotation.code withPointSize:self.annotation.point];
@@ -549,9 +545,9 @@ static NSDictionary* _annotations;
         attachment.y_shift = 0;
         attachment.x_shift = self.annotation.xShift;
         [self placeGlyphOnLine:attachment forStaff:staff onLine:self.annotation.line];
+        attachment.metrics.width = 0;
         [staff addEndGlyph:attachment];
     }
-    [staff addEndGlyph:self.glyph];
 }
 
 - (BOOL)preFormat

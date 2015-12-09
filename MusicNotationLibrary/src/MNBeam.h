@@ -72,7 +72,7 @@
 //+ (NSArray*)getDefaultBeamGroupsForTimeSignatureName:(NSString*)timeType;
 
 + (NSArray<MNBeam*>*)applyAndGetBeams:(MNVoice*)voice;
-+ (NSArray<MNBeam*>*)applyAndGetBeams:(MNVoice*)voice groups:(NSArray*)groups;
++ (NSArray<MNBeam*>*)applyAndGetBeams:(MNVoice*)voice groups:(NSArray<MNRational*>*)groups;
 + (NSArray<MNBeam*>*)applyAndGetBeams:(MNVoice*)voice
                             direction:(MNStemDirectionType)stem_direction
                                groups:(NSArray*)groups;

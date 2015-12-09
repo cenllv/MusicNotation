@@ -11,7 +11,7 @@
 		5FC5D54AA3C9A43D576F2221 /* Pods_MusicNotationDesktop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF69A71D7E4769254B6E2C05 /* Pods_MusicNotationDesktop.framework */; };
 		6B0BE79C1C14A4CB0035ADCF /* MNMCarrierView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE79B1C14A4CB0035ADCF /* MNMCarrierView.m */; };
 		6B0BE87E1C162D630035ADCF /* Callables.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE82D1C162D630035ADCF /* Callables.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B0BE87F1C162D630035ADCF /* Callables.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE82D1C162D630035ADCF /* Callables.m */; };
+		6B0BE87F1C162D630035ADCF /* Callables.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE82D1C162D630035ADCF /* Callables.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B0BE8801C162D630035ADCF /* EasyEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8301C162D630035ADCF /* EasyEnumerable.m */; };
 		6B0BE8811C162D630035ADCF /* EasyEnumerable.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8301C162D630035ADCF /* EasyEnumerable.m */; };
 		6B0BE8821C162D630035ADCF /* EmptyEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8341C162D630035ADCF /* EmptyEnumerator.m */; };
@@ -65,7 +65,7 @@
 		6B0BE8B21C162D630035ADCF /* NSSet+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8671C162D630035ADCF /* NSSet+OCTotallyLazy.m */; };
 		6B0BE8B31C162D630035ADCF /* NSSet+OCTotallyLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8671C162D630035ADCF /* NSSet+OCTotallyLazy.m */; };
 		6B0BE8B41C162D630035ADCF /* Numbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE86A1C162D630035ADCF /* Numbers.m */; };
-		6B0BE8B51C162D630035ADCF /* Numbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE86A1C162D630035ADCF /* Numbers.m */; };
+		6B0BE8B51C162D630035ADCF /* Numbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE86A1C162D630035ADCF /* Numbers.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B0BE8B61C162D630035ADCF /* OCTotallyLazy-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B0BE86B1C162D630035ADCF /* OCTotallyLazy-Info.plist */; };
 		6B0BE8B71C162D630035ADCF /* OCTotallyLazy-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B0BE86B1C162D630035ADCF /* OCTotallyLazy-Info.plist */; };
 		6B0BE8B81C162D630035ADCF /* Option.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE86F1C162D630035ADCF /* Option.m */; settings = {COMPILER_FLAGS = "-w"; }; };
@@ -73,7 +73,7 @@
 		6B0BE8BA1C162D630035ADCF /* Pair.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8711C162D630035ADCF /* Pair.m */; };
 		6B0BE8BB1C162D630035ADCF /* Pair.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8711C162D630035ADCF /* Pair.m */; };
 		6B0BE8BC1C162D630035ADCF /* Predicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8741C162D630035ADCF /* Predicates.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		6B0BE8BD1C162D630035ADCF /* Predicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8741C162D630035ADCF /* Predicates.m */; };
+		6B0BE8BD1C162D630035ADCF /* Predicates.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8741C162D630035ADCF /* Predicates.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B0BE8BE1C162D630035ADCF /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8761C162D630035ADCF /* Queue.m */; };
 		6B0BE8BF1C162D630035ADCF /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8761C162D630035ADCF /* Queue.m */; };
 		6B0BE8C01C162D630035ADCF /* Range.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BE8781C162D630035ADCF /* Range.m */; };

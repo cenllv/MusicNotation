@@ -27,16 +27,23 @@
 //
 
 #import "MNNotationsGridTests.h"
-//#import "MNCore.h"
-//#import "GlyphLayer.h"
+#if TARGET_OS_IPHONE
+#elif TARGET_OS_MAC
+#import "MNTestCollectionItem.h"
+#endif
 #import "MNCarrierLayer.h"
 
-@interface MNNotationsGridTests ()
 #if TARGET_OS_IPHONE
-@property (strong, nonatomic) NSMutableArray<UILabel*>* labels;
-#elif TARGET_OS_MAC
-@property (strong, nonatomic) NSMutableArray<NSTextField*>* labels;
+#define REMOVE_TAG 1
+NSString* const kRemoveTag = @"kRemoveTag";
 #endif
+
+@interface MNNotationsGridTests ()
+//#if TARGET_OS_IPHONE
+//@property (strong, nonatomic) NSMutableArray<UILabel*>* labels;
+//#elif TARGET_OS_MAC
+//@property (strong, nonatomic) NSMutableArray<NSTextField*>* labels;
+//#endif
 @end
 
 @implementation MNNotationsGridTests
@@ -58,36 +65,27 @@
 - (void)tearDown
 {
     [super tearDown];
-#if TARGET_OS_IPHONE
-#elif TARGET_OS_MAC
-    // TODO: still not removing labels properly
-    dispatch_async(dispatch_get_main_queue(), ^{
-      for(id label in self.labels)
-      {
-          [label removeFromSuperview];
-      }
-    });
-#endif
 }
 
-#if TARGET_OS_IPHONE
-- (NSMutableArray<UILabel*>*)labels
-#elif TARGET_OS_MAC
-- (NSMutableArray<NSTextField*>*)labels
-#endif
-{
-    if(!_labels)
-    {
-        _labels = [NSMutableArray array];
-    }
-    return _labels;
-}
+//#if TARGET_OS_IPHONE
+//- (NSMutableArray<UILabel*>*)labels
+//#elif TARGET_OS_MAC
+//- (NSMutableArray<NSTextField*>*)labels
+//#endif
+//{
+//    if(!_labels)
+//    {
+//        _labels = [NSMutableArray array];
+//    }
+//    return _labels;
+//}
 
 - (MNTestBlockStruct*)grid:(id<MNTestParentDelegate>)parent drawBoundingBox:(NSNumber*)drawBoundingBox
 {
     MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
+
     };
 
     BOOL shouldDrawBoundingBox = drawBoundingBox.boolValue;
@@ -120,6 +118,8 @@
     CGRect frame = textLabel.frame;
     frame.origin.x -= CGRectGetWidth(frame) / 2;
     textLabel.frame = frame;
+    //    [self.labels oct_add:textLabel];
+    [textLabel setTag:REMOVE_TAG];
     dispatch_async(dispatch_get_main_queue(), ^{
       [parent addSubview:textLabel];
     });
@@ -145,9 +145,11 @@
     frame = textLabel.frame;
     frame.origin.x -= CGRectGetWidth(frame) / 2;
     textLabel.frame = frame;
+
+    //    [self.labels oct_add:textLabel];
+    [textLabel setTag:REMOVE_TAG];
     dispatch_async(dispatch_get_main_queue(), ^{
       [parent addSubview:textLabel];
-      [self.labels oct_add:textLabel];
     });
 
     NSArray* glyphStructArray = [MNGlyphList sharedInstance].availableGlyphStructsArray;
@@ -191,6 +193,7 @@
 #endif
       [textLabel sizeToFit];
       [textLabels addObject:textLabel];
+      [textLabel setTag:REMOVE_TAG];
 
 #if TARGET_OS_IPHONE
 #define GLYPH_SCALE 1.0
@@ -208,26 +211,34 @@
           [((CAShapeLayer*)carrierLayer.sublayers[1])setBackgroundColor:[MNColor crayolaOrangeColor].CGColor];
       }
 
+      [carrierLayer setName:kRemoveTag];
       [subLayers addObject:carrierLayer];
     }];
 
     // calculate how long it took
     CFAbsoluteTime now = CFAbsoluteTimeGetCurrent();
     CFTimeInterval elapsed = now - then;
+    NSString* elapsedString = [NSString stringWithFormat:@"elapsed: %.03f (ms)", elapsed * 1000];
 #if TARGET_OS_IPHONE
     textLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(parent.bounds) - 160, 15, 0, 0)];
-    textLabel.text = [NSString stringWithFormat:@"elapsed: %.03f (ms)", elapsed * 1000];
+    textLabel.text = elapsedString;
 #elif TARGET_OS_MAC
     textLabel = [[NSTextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(parent.bounds) - 160, 15, 0, 0)];
     textLabel.editable = NO;
     textLabel.selectable = NO;
     textLabel.bordered = YES;
     textLabel.drawsBackground = YES;
-    textLabel.stringValue = [NSString stringWithFormat:@"elapsed: %.03f (ms)", elapsed * 1000];
+    textLabel.stringValue = elapsedString;
 #endif
     [textLabel sizeToFit];
     frame = textLabel.frame;
     textLabel.frame = frame;
+
+    //    for(id textLabel in textLabels)
+    //    {
+    //        [self.labels oct_add:textLabel];
+    //    }
+    //    [self.labels oct_add:textLabel];
 
     // add all the stuff to the parent view
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -238,10 +249,8 @@
       for(id textLabel in textLabels)
       {
           [parent addSubview:textLabel];
-          [self.labels oct_add:textLabel];
       }
       [parent addSubview:textLabel];
-      [self.labels oct_add:textLabel];
     });
     //#endif
 

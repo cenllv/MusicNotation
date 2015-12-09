@@ -67,10 +67,9 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 
 | Status    | Count   |
 |-----------|---------|
-| pass      | 31      |
-| almost    | 15      |
-| fail      | 2       |
-| unknown   | 3       |
+| pass      | 36      |
+| FAIL      | 14      |
+| incomplete| 3       |
 
 
 | Test                  | Status    | Issues | Demonstration |
@@ -79,61 +78,55 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | Animation             | pass      |  | animation of basic notations |
 | Annotation            | pass      |  | annotations for tabs, harmonics, fingerpicking |
 | Articulation          | pass      |  | articulations like staccato, accent, marcato, fermata, etc |
-| AutoBeamFormatting    | pass      |  | auto beams for even/odd, breaks, etc |
+| AutoBeamFormatting    | FAIL      |  | auto beams for even/odd, breaks, etc |
 | Beam                  | pass      |  | beams for simple, multi, mixed, insane, tabnotes, complex, etc |
-| Bend                  | almost    |  | bends for double, reverse, phrase, with release |
+| Bend                  | pass      |  | bends for double, reverse, phrase, with release |
 | BoundingBox           | pass      |  | bounding box object init and merge |
-| Chord                 | almost    | bug with number on left side of bar chart |  |
-| Clef                  | almost    | keysignote x posn incorrect | clef start, end small, clef change |
+| Chord                 | FAIL      | bug with number on left side of bar chart |  |
+| Clef                  | pass      |  | clef start, end small, clef change |
 | Curve                 | pass      |  | simple, rounded, thick/thin, top curves |
 | Dot                   | pass      |  | basic and multi-voice |
 | Font                  | pass      |  |   |
-| Formatter             | almost    | minor issues, buildContexts test crashses | staff notes, tab notes, multi-staffs |
+| Formatter             | FAIL      | minor issues, buildContexts test crashses | staff notes, tab notes, multi-staffs |
 | GraceNote             | pass      |  | grace note basic, with slurs, multi-voices |
 | KeyClef               | pass      |  | major/minor clef |
-| KeyManager            | unknown   | not rendering | valid/select notes |
+| KeyManager            | incomplete| not rendering | valid/select notes |
 | KeySignature          | pass      |  | key parser, major/minor, cancelled key |
 | Layer Note            | pass      |  | click/push calayer note for pop animation & aae audio |
 | Modifier              | pass      | not rendering | modifier width, management |
-| Music                 | unknown   |  | valid notes, keys, notes, intervals, canonical notes, scales |
+| Music                 | incomplete|  | valid notes, keys, notes, intervals, canonical notes, scales |
 | NoteHead              | pass      |  | basic head & bounding box render |
-| NotationsGrid         | almost    | teardown not removing all labels  | grid of most basic notations |
+| NotationsGrid         | FAIL      | title label not drawing in correct position  | grid of most basic notations |
 | Ornament              | pass      |  | vertically shifted, delayed turns, stacked, w/ accidentals |
-| PedalMarking          | almost    |  | pedal for simple, release, depress, text, etc |
+| PedalMarking          | FAIL      |  | pedal for simple, release, depress, text, etc |
 | Percussion            | pass      |  | percussion clef, notes, basic, snare |
 | Rests                 | pass      |  | rests dotted, auto align beamed, tuplets, single & multi voice |
-| Rhythm                | almost    |  | rhythm draw slash, beamed, rests, 16th, 32nd, etc  |
+| Rhythm                | FAIL      |  | rhythm draw slash, beamed, rests, 16th, 32nd, etc  |
 | Staff                 | pass      |  | draw basic, vertical bar, mutli bar, barlines, repeats, tempo, single lines, etc |
-| StaffConnector        | almost    | minor formatting bugs | connectors single, double , bold, thin brace, bracket, combined, etc |
-| StaffHairpin          | almost    | minor note modifier clobber | simple, horizontal, vertical, height |
-| StaffLine             | almost    | minor bug with mismatched lines and colors | simple, staffline arrow |
-| StaffModifier         | almost    | may be complete | staff draw, vertical bar |
-| StaffNote             | almost    | slash notes clobber, tab notes incomplete, modifiers clobber | tick, stem, auto, staffline, width, boundingbox, etc |
+| StaffConnector        | pass      |  | connectors single, double , bold, thin brace, bracket, combined, etc |
+| StaffHairpin          | pass      | minor note modifier clobber | simple, horizontal, vertical, height |
+| StaffLine             | FAIL      | minor bug with mismatched lines and colors | simple, staffline arrow |
+| StaffModifier         | FAIL      | may be complete | staff draw, vertical bar |
+| StaffNote             | FAIL      | slash notes clobber, tab notes incomplete, modifiers clobber | tick, stem, auto, staffline, width, boundingbox, etc |
 | StaffTie              | pass      |  | simple, chord, stem up, no end, no start |
 | StringNumber          | pass      |  | string number in notation, fred hand finger, etc |
 | Strokes               | pass      | had to hack tabnote setStaff method | brush/arpeggiate/etc, multi, notation/tab, etc |
-| Table                 | unknown   | n/a | clef, key, etc number constants and ratios, etc |
+| Table                 | incomplete| n/a | clef, key, etc number constants and ratios, etc |
 | TabNote               | pass      |  | tick, tabstaff, tickcontext, tabnote, etc |
 | TabSlide              | pass      |  | tabslide simple, up, down  |
 | TabStaff              | pass      |  | tabstaff draw, bar |
 | TabTie                | pass      |  | tabtie, simple, hammerons, pulloffs, tapping, continuous |
-| TextBracket           | almost    |  | textbracket simple, styles |
-| TextNote              | fail      | not rendering all notations | textnote formatting, super/sub scripts formatting glyphs, crescendo, etc |
+| TextBracket           | pass      |  | textbracket simple, styles |
+| TextNote              | FAIL      | not rendering all notations | textnote formatting, super/sub scripts formatting glyphs, crescendo, etc |
 | Text                  | pass      |  | drawing basic attributed string text, ns/ui labels |
-| ThreeVoice            | almost    | auto adjust missing some rests and not repositioning correctly  | three voiecs, auto adjust rest, etc |
+| ThreeVoice            | FAIL      | auto adjust missing some rests and not repositioning correctly  | three voiecs, auto adjust rest, etc |
 | TickContext           | pass      | no output | current and tracking tick |
 | TimeSignature         | pass      | passes but needs refactoring | parser basic, big time sigs |
-| Tuning                | almost    |  | tuning standard, return note for fret |
-| Tuplet                | almost    | voices out of sync, tuplet ratios render errors, one tuplet ratio incorrect | simple, beamed, ratioed, bottom, etc |
-| Vibrato               | almost    | vibrato clobbering bend | simple vibrato, harsh, with bend |
+| Tuning                | FAIL      |  | tuning standard, return note for fret |
+| Tuplet                | FAIL      | tuplet ratios render errors, one tuplet ratio incorrect | simple, beamed, ratioed, bottom, etc |
+| Vibrato               | FAIL      | vibrato clobbering bend | simple vibrato, harsh, with bend |
 | Voice                 | pass      |  | strict, ignore, full voice |
 
-- **fail:** the test fails by crashing.
-- **incomlete:** not coded.
-- **works:** the test rendes something, but there are major bugs.
-- **almost:** the test renders readable output, but there are minor bugs.
-- **pass:** the test has no identifiable bugs.
-- **unknown:** the test may not render, but could be complete.
 
 ## Coming Later
 

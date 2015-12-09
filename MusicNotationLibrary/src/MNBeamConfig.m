@@ -55,11 +55,23 @@
 - (NSMutableDictionary*)classesForArrayEntries
 {
     NSMutableDictionary* classesForArrayEntries = [super classesForArrayEntries];
-    [classesForArrayEntries
-        addEntriesFromDictionaryWithoutReplacing:@{
-                                                     //        @"groups" : NSStringFromClass([MNRational class])
-                                                 }];
+    [classesForArrayEntries addEntriesFromDictionaryWithoutReplacing:@{
+        @"groups" : NSStringFromClass([MNRational class])
+    }];
     return classesForArrayEntries;
+}
+
+- (void)setValuesForKeyPathsWithDictionary:(NSDictionary*)keyedValues
+{
+    for(NSString* key_keyPath in keyedValues.allKeys)
+    {
+        id object = [keyedValues objectForKey:key_keyPath];
+        if([key_keyPath isEqualToString:@"groups"])
+        {
+            [self.groups addObjectsFromArray:object];
+            continue;
+        }
+    }
 }
 
 - (NSMutableArray*)groups
