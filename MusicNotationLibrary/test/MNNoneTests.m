@@ -37,6 +37,7 @@
 - (void)start
 {
     [super start];
+    [MNTable parseNoteDurationString:@"qd"];
 }
 
 - (void)tearDown

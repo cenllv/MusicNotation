@@ -556,9 +556,8 @@
 		6B5645081BF44680006FDFD9 /* SenTestSuiteRun.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B56447F1BF44680006FDFD9 /* SenTestSuiteRun.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 		6B5D4AC21C04E66A00AA250A /* MNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D4AC11C04E66A00AA250A /* MNConstants.m */; };
 		6B5D4AC31C04E66A00AA250A /* MNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5D4AC11C04E66A00AA250A /* MNConstants.m */; };
-		6B5F6FFC1C1925DC0093B1F8 /* MusicNotationLibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5F6FFB1C1925DC0093B1F8 /* MusicNotationLibraryTests.m */; };
-		6B5F70051C19274F0093B1F8 /* MNRational.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA32E1BF4591500E56C1A /* MNRational.m */; };
-		6B5F70091C19285E0093B1F8 /* RationalTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B5F70081C19285E0093B1F8 /* RationalTest.m */; };
+		6B6AC6081C1A7D5900CC9E11 /* MusicNotationLibraryCatalogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6AC6071C1A7D5900CC9E11 /* MusicNotationLibraryCatalogTests.m */; };
+		6B6AC6101C1A7D8200CC9E11 /* RationalTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6AC60F1C1A7D8200CC9E11 /* RationalTest.m */; };
 		6B8480A81B6D7A0900FB2B48 /* MNMTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8480A71B6D7A0900FB2B48 /* MNMTableViewController.m */; };
 		6B8480AC1B6D7CD800FB2B48 /* MNMProxyTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8480AB1B6D7CD800FB2B48 /* MNMProxyTestViewController.m */; };
 		6B8480B91B6FCFC800FB2B48 /* MNTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B8480B71B6FCF0B00FB2B48 /* MNTestViewController.m */; };
@@ -844,7 +843,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6B5F70061C19278E0093B1F8 /* PBXContainerItemProxy */ = {
+		6B6AC60A1C1A7D5900CC9E11 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D278F50C1A8689AE000C57C1 /* Project object */;
 			proxyType = 1;
@@ -1662,13 +1661,15 @@
 		6B5BD2371BF5CDFA00B16659 /* voicegroup.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = voicegroup.js; sourceTree = "<group>"; };
 		6B5D4AC01C04E4CF00AA250A /* MNConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MNConstants.h; path = MusicNotationLibrary/src/MNConstants.h; sourceTree = SOURCE_ROOT; };
 		6B5D4AC11C04E66A00AA250A /* MNConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MNConstants.m; path = ../test/MNConstants.m; sourceTree = "<group>"; };
-		6B5F6FF91C1925DC0093B1F8 /* MusicNotationLibraryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicNotationLibraryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B5F6FFB1C1925DC0093B1F8 /* MusicNotationLibraryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicNotationLibraryTests.m; sourceTree = "<group>"; };
-		6B5F6FFD1C1925DC0093B1F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B5F70081C19285E0093B1F8 /* RationalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RationalTest.m; sourceTree = "<group>"; };
 		6B60CDFA1BFBB4E90086B343 /* MusicNotation.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = MusicNotation.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		6B60CDFB1BFBBBB90086B343 /* License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		6B60CDFC1BFBCEE90086B343 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		6B6AC6051C1A7D5900CC9E11 /* MusicNotationLibraryCatalogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicNotationLibraryCatalogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B6AC6071C1A7D5900CC9E11 /* MusicNotationLibraryCatalogTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MusicNotationLibraryCatalogTests.m; sourceTree = "<group>"; };
+		6B6AC6091C1A7D5900CC9E11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B6AC60F1C1A7D8200CC9E11 /* RationalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RationalTest.m; sourceTree = "<group>"; };
 		6B8480A61B6D7A0900FB2B48 /* MNMTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNMTableViewController.h; sourceTree = "<group>"; };
 		6B8480A71B6D7A0900FB2B48 /* MNMTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNMTableViewController.m; sourceTree = "<group>"; };
 		6B8480AA1B6D7CD800FB2B48 /* MNMProxyTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNMProxyTestViewController.h; sourceTree = "<group>"; };
@@ -1786,7 +1787,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6B5F6FF61C1925DC0093B1F8 /* Frameworks */ = {
+		6B6AC6021C1A7D5900CC9E11 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2944,7 +2945,6 @@
 			children = (
 				6B5F70081C19285E0093B1F8 /* RationalTest.m */,
 				6B5F6FFB1C1925DC0093B1F8 /* MusicNotationLibraryTests.m */,
-				6B5F6FFD1C1925DC0093B1F8 /* Info.plist */,
 			);
 			path = MusicNotationLibraryTests;
 			sourceTree = "<group>";
@@ -2960,6 +2960,16 @@
 				6B5A4FF51B4B11D20090EF4D /* .clang-format */,
 			);
 			name = Metadata;
+			sourceTree = "<group>";
+		};
+		6B6AC6061C1A7D5900CC9E11 /* MusicNotationLibraryCatalogTests */ = {
+			isa = PBXGroup;
+			children = (
+				6B6AC60F1C1A7D8200CC9E11 /* RationalTest.m */,
+				6B6AC6071C1A7D5900CC9E11 /* MusicNotationLibraryCatalogTests.m */,
+				6B6AC6091C1A7D5900CC9E11 /* Info.plist */,
+			);
+			path = MusicNotationLibraryCatalogTests;
 			sourceTree = "<group>";
 		};
 		6B8631CF1B235E1200786D3D /* application */ = {
@@ -3086,6 +3096,7 @@
 				D278F5161A8689AE000C57C1 /* MusicNotationDesktop */,
 				6BBB49D01B667EE70036081B /* MusicNotationMobile */,
 				6B5F6FFA1C1925DC0093B1F8 /* MusicNotationLibraryTests */,
+				6B6AC6061C1A7D5900CC9E11 /* MusicNotationLibraryCatalogTests */,
 				D278F5151A8689AE000C57C1 /* Products */,
 				8B5B4F1EC62595EBFC86ABA0 /* Frameworks */,
 				959D9DD6F9E3E77B2059B306 /* Pods */,
@@ -3097,7 +3108,7 @@
 			children = (
 				D278F5141A8689AE000C57C1 /* MusicNotationLibraryCatalog.app */,
 				6BBB49CF1B667EE70036081B /* MusicNotationMobile.app */,
-				6B5F6FF91C1925DC0093B1F8 /* MusicNotationLibraryTests.xctest */,
+				6B6AC6051C1A7D5900CC9E11 /* MusicNotationLibraryCatalogTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3130,22 +3141,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6B5F6FF81C1925DC0093B1F8 /* MusicNotationLibraryTests */ = {
+		6B6AC6041C1A7D5900CC9E11 /* MusicNotationLibraryCatalogTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6B5F70001C1925DC0093B1F8 /* Build configuration list for PBXNativeTarget "MusicNotationLibraryTests" */;
+			buildConfigurationList = 6B6AC60C1C1A7D5900CC9E11 /* Build configuration list for PBXNativeTarget "MusicNotationLibraryCatalogTests" */;
 			buildPhases = (
-				6B5F6FF51C1925DC0093B1F8 /* Sources */,
-				6B5F6FF61C1925DC0093B1F8 /* Frameworks */,
-				6B5F6FF71C1925DC0093B1F8 /* Resources */,
+				6B6AC6011C1A7D5900CC9E11 /* Sources */,
+				6B6AC6021C1A7D5900CC9E11 /* Frameworks */,
+				6B6AC6031C1A7D5900CC9E11 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6B5F70071C19278E0093B1F8 /* PBXTargetDependency */,
+				6B6AC60B1C1A7D5900CC9E11 /* PBXTargetDependency */,
 			);
-			name = MusicNotationLibraryTests;
-			productName = MusicNotationLibraryTests;
-			productReference = 6B5F6FF91C1925DC0093B1F8 /* MusicNotationLibraryTests.xctest */;
+			name = MusicNotationLibraryCatalogTests;
+			productName = MusicNotationLibraryCatalogTests;
+			productReference = 6B6AC6051C1A7D5900CC9E11 /* MusicNotationLibraryCatalogTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		6BBB49CE1B667EE70036081B /* MusicNotationMobile */ = {
@@ -3199,7 +3210,7 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = feedbacksoftware.com;
 				TargetAttributes = {
-					6B5F6FF81C1925DC0093B1F8 = {
+					6B6AC6041C1A7D5900CC9E11 = {
 						CreatedOnToolsVersion = 7.1.1;
 						TestTargetID = D278F5131A8689AE000C57C1;
 					};
@@ -3227,13 +3238,13 @@
 			targets = (
 				D278F5131A8689AE000C57C1 /* MusicNotationDesktop */,
 				6BBB49CE1B667EE70036081B /* MusicNotationMobile */,
-				6B5F6FF81C1925DC0093B1F8 /* MusicNotationLibraryTests */,
+				6B6AC6041C1A7D5900CC9E11 /* MusicNotationLibraryCatalogTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		6B5F6FF71C1925DC0093B1F8 /* Resources */ = {
+		6B6AC6031C1A7D5900CC9E11 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3374,13 +3385,12 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6B5F6FF51C1925DC0093B1F8 /* Sources */ = {
+		6B6AC6011C1A7D5900CC9E11 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B5F70051C19274F0093B1F8 /* MNRational.m in Sources */,
-				6B5F6FFC1C1925DC0093B1F8 /* MusicNotationLibraryTests.m in Sources */,
-				6B5F70091C19285E0093B1F8 /* RationalTest.m in Sources */,
+				6B6AC6081C1A7D5900CC9E11 /* MusicNotationLibraryCatalogTests.m in Sources */,
+				6B6AC6101C1A7D8200CC9E11 /* RationalTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4200,10 +4210,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6B5F70071C19278E0093B1F8 /* PBXTargetDependency */ = {
+		6B6AC60B1C1A7D5900CC9E11 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = D278F5131A8689AE000C57C1 /* MusicNotationDesktop */;
-			targetProxy = 6B5F70061C19278E0093B1F8 /* PBXContainerItemProxy */;
+			targetProxy = 6B6AC60A1C1A7D5900CC9E11 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -4227,31 +4237,31 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		6B5F70011C1925DC0093B1F8 /* Debug */ = {
+		6B6AC60D1C1A7D5900CC9E11 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = MusicNotationLibraryTests/Info.plist;
+				INFOPLIST_FILE = MusicNotationLibraryCatalogTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.aqwfp.MusicNotationLibraryTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aqwfp.MusicNotationLibraryCatalogTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MusicNotationLibraryCatalog.app/Contents/MacOS/MusicNotationLibraryCatalog";
 			};
 			name = Debug;
 		};
-		6B5F70021C1925DC0093B1F8 /* Release */ = {
+		6B6AC60E1C1A7D5900CC9E11 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = MusicNotationLibraryTests/Info.plist;
+				INFOPLIST_FILE = MusicNotationLibraryCatalogTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.aqwfp.MusicNotationLibraryTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aqwfp.MusicNotationLibraryCatalogTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MusicNotationLibraryCatalog.app/Contents/MacOS/MusicNotationLibraryCatalog";
 			};
@@ -4493,14 +4503,13 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6B5F70001C1925DC0093B1F8 /* Build configuration list for PBXNativeTarget "MusicNotationLibraryTests" */ = {
+		6B6AC60C1C1A7D5900CC9E11 /* Build configuration list for PBXNativeTarget "MusicNotationLibraryCatalogTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6B5F70011C1925DC0093B1F8 /* Debug */,
-				6B5F70021C1925DC0093B1F8 /* Release */,
+				6B6AC60D1C1A7D5900CC9E11 /* Debug */,
+				6B6AC60E1C1A7D5900CC9E11 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		6BBB49E61B667EE70036081B /* Build configuration list for PBXNativeTarget "MusicNotationMobile" */ = {
 			isa = XCConfigurationList;

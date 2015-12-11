@@ -548,7 +548,7 @@
         [[[((MNStaffNote*)newNote(
             @{ @"keys" : @[ @"c/5", @"e/5" ],
                @"stem_direction" : @(-1),
-               @"duration" : @"q" }))setStaff:staff12]   //,
+               @"duration" : @"q" }))setStaff:staff12]
             addAccidental:newAcc(@"b")
                   atIndex:0] addAccidental:newAcc(@"b")
                                    atIndex:0],

@@ -61,6 +61,10 @@
     if(self)
     {
         _noteDurationType = [MNEnum typeNoteDurationTypeForString:_durationString];
+        
+//        if (_noteDurationType == MNDurationBreveNote) {
+//            NSLog(@"");
+//        }
         [self setValuesForKeyPathsWithDictionary:optionsDict];
     }
     return self;

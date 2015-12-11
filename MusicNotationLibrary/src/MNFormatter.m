@@ -160,7 +160,7 @@ typedef void (^AddFunction)(MNTickable*, id);
     NSUInteger resolutionMultiplier = 1;
 
     // Find out highest common multiple of resolution multipliers.
-    // The purpose of self is to find out a common denominator
+    // The purpose of this is to find out a common denominator
     // for all fractional tick values in all tickables of all voices,
     // so that the values can be expanded and the numerator used
     // as an integer tick value.
@@ -501,20 +501,8 @@ typedef void (^AddFunction)(MNTickable*, id);
  *  @param voices        the collection of voices
  *  @param alignAllNotes <#alignAllNotes description#>
  */
-- (void)alignRests:(NSArray<MNVoice*>*)voices alignAllNotes:(BOOL)alignAllNotes
++ (void)alignRests:(NSArray<MNVoice*>*)voices alignAllNotes:(BOOL)alignAllNotes
 {
-    /*
-    // ## Prototype Methods
-    Formatter.prototype = @{
-
-    alignRests: function(voices, align_all_notes) {
-        if (!voices || !voices.count)  [MNLog LogError:@"BadArgument",
-                                                          "No voices to format rests");
-        for (var i = 0; i < voices.count; i++) {
-            new Formatter.AlignRestsToNotes(voices[i].tickables, align_all_notes);
-        }
-    },
-     */
     if(!voices || voices.count == 0)
     {
         MNLogError(@"BadArgument, No voices to format rests");
@@ -579,18 +567,6 @@ typedef void (^AddFunction)(MNTickable*, id);
  */
 - (float)getMinTotalWidth
 {
-    /*
-    getMinTotalWidth: function() {
-        if (!self.hasMinTotalWidth) {
-             [MNLog LogError:@"NoMinTotalWidth",
-                               "Need to call 'preCalculateMinTotalWidth' or 'preFormat' before" +
-                               " calling 'getMinTotalWidth'");
-        }
-
-        return self.minTotalWidth;
-    },
-
-     */
     if(!self.hasMinTotalWidth)
     {
         MNLogError(@"NoMinTotalWidth, Need to call 'preCalculateMinTotalWidth' or 'preFormat' before calling "
@@ -607,18 +583,6 @@ typedef void (^AddFunction)(MNTickable*, id);
  */
 - (MNFormatterContext*)createModifierContexts:(NSArray<MNVoice*>*)voices
 {
-    /*
-    createModifierContexts: function(voices) {
-        var contexts = createContexts(voices,
-                                      Vex.Flow.ModifierContext,
-                                      function(tickable, context) {
-                                          tickable.addToModifierContext(context);
-                                      });
-        self.mContexts = contexts;
-        return contexts;
-    },
-
-     */
     MNFormatterContext* contexts = [self createContexts:voices
                                         withContextType:[MNModifierContext class]
                                          andAddFunction:^(MNTickable* tickable, MNModifierContext* context) {
@@ -637,21 +601,6 @@ typedef void (^AddFunction)(MNTickable*, id);
  */
 - (MNFormatterContext*)createTickContexts:(NSArray<MNVoice*>*)voices
 {
-    /*
-    createTickContexts: function(voices) {
-        var contexts = createContexts(voices,
-                                      Vex.Flow.TickContext,
-                                      function(tickable, context) { context.addTickable(tickable); });
-
-        contexts.array.forEach(function(context) {
-            context.tContexts = contexts.array;
-        });
-
-        self.totalTicks = voices[0].getTicksUsed().clone();
-        self.tContexts = contexts;
-        return contexts;
-    },
-     */
     MNFormatterContext* contexts = [self createContexts:voices
                                         withContextType:[MNTickContext class]
                                          andAddFunction:^(MNTickable* tickable, MNTickContext* context) {
@@ -912,7 +861,7 @@ typedef void (^AddFunction)(MNTickable*, id);
 {
     NSDictionary* opts = @{ @"align_rests" : @(NO), @"context" : [NSNull null] };
     opts = [NSMutableDictionary merge:opts with:options];
-    [self alignRests:voices alignAllNotes:[opts[@"align_rests"] boolValue]];
+    [[self class] alignRests:voices alignAllNotes:[opts[@"align_rests"] boolValue]];
     [self createTickContexts:voices];
 
     MNStaff* staff = opts[@"staff"];

@@ -95,36 +95,37 @@
     return propertiesEntriesMapping;
 }
 
-/*
-Vex.Inherit(Articulation, Modifier, {
-
-init: function(type) {
-    Articulation.superclass.init.call(self);
-
-    self.note = null;
-    self.index = null;
-    self.type = type;
-    self.position = Modifier.Position.BELOW;
-
-    self.render_options = {
-    font_scale: 38
-    };
-
-    self.articulation = Vex.Flow.articulationCodes(self.type);
-    if (!self.articulation) throw new Vex.RERR("ArgumentError",
-                                               "Articulation not found: '" + self.type + "'");
-
-    // Default width comes from articulation table.
-    self.setWidth(self.articulation.width);
-},*/
-
 - (void)setupArticulation
 {
+    /*
+    Vex.Inherit(Articulation, Modifier, {
+
+    init: function(type) {
+        Articulation.superclass.init.call(self);
+
+        self.note = null;
+        self.index = null;
+        self.type = type;
+        self.position = Modifier.Position.BELOW;
+
+        self.render_options = {
+        font_scale: 38
+        };
+
+        self.articulation = Vex.Flow.articulationCodes(self.type);
+        if (!self.articulation) throw new Vex.RERR("ArgumentError",
+                                                   "Articulation not found: '" + self.type + "'");
+
+        // Default width comes from articulation table.
+        self.setWidth(self.articulation.width);
+    },*/
+
     //    self.note = nil;
     ////    _index = NULL;
     //    _position =  MNPositionBelow;
     //    self.renderOptions.fontScale = 38;
     //    _articulationCode = [self class]articulationCodeForType:<#(MNArticulationType)#>
+    _positionType = MNPositionBelow;
 }
 
 /*!
@@ -256,7 +257,7 @@ init: function(type) {
 
     // Articulations are centered over/under the note head.
     MNPoint* start = [self.note getModifierstartXYforPosition:self.position andIndex:self.index];
-    float glyph_y;// = start.y;
+    float glyph_y;   // = start.y;
     float shiftY = 0;
     float line_spacing = 1;
     float spacing = staff.spacingBetweenLines;
@@ -338,8 +339,8 @@ init: function(type) {
     float glyph_x = start.x + self.shiftRight;
     glyph_y += shiftY + self.yShift;
 
-    [MNLog
-        logInfo:[NSString stringWithFormat:@"Rendering articulation: %tu %f %f", self.articulationType, glyph_x, glyph_y]];
+    [MNLog logInfo:[NSString
+                       stringWithFormat:@"Rendering articulation: %tu %f %f", self.articulationType, glyph_x, glyph_y]];
     [MNGlyph renderGlyph:ctx
                      atX:glyph_x
                      atY:glyph_y

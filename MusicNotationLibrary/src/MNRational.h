@@ -100,7 +100,7 @@
 //+ (nonnull MNRational*)divide:(nonnull MNRational*)param1 with:(nonnull MNRational*)param2;
 - (nonnull MNRational*)divide:(nonnull MNRational*)other;
 - (nonnull MNRational*)divideByValue:(NSUInteger)value;
-- (nonnull MNRational*)divn:(NSUInteger)value;
+- (nonnull MNRational*)invert;
 
 - (BOOL)equals:(nonnull MNRational*)other;
 //+ (BOOL)equals:(nonnull MNRational*)r1 with:(nonnull MNRational*)r2;

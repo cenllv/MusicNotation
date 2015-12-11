@@ -73,4 +73,6 @@
 + (NSUInteger)durationToTicks:(NSString*)duration;
 + (NSString*)articulationCodeForType:(MNArticulationType)type;
 
++ (MNTablesNoteStringData*)parseNoteDurationString:(NSString*)noteStringData;
+
 @end

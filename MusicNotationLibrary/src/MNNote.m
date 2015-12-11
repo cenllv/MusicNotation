@@ -682,7 +682,6 @@
     modifier.note = self;
     modifier.parent = self;
     //    modifier.index = index;
-
     [self.modifiers push:modifier];
     self.preFormatted = NO;
     return self;
@@ -720,19 +719,19 @@
     return [MNPoint pointWithX:self.absoluteX andY:[self.ys[0] floatValue]];
 }
 
-/*!
- *  Get the coordinates for where modifiers begin.
- *  @return an (x,y) point
- */
-- (MNPoint*)modifiersStartXY
-{
-    if(!self.preFormatted)
-    {
-        MNLogError(@"UnformattedNote %@", @"Can't call GetModifierStartXY on an unformatted note");
-    }
-
-    return [MNPoint pointWithX:self.absoluteX andY:[self.ys[0] floatValue]];
-}
+///*!
+// *  Get the coordinates for where modifiers begin.
+// *  @return an (x,y) point
+// */
+//- (MNPoint*)modifiersStartXY
+//{
+//    if(!self.preFormatted)
+//    {
+//        MNLogError(@"UnformattedNote %@", @"Can't call GetModifierStartXY on an unformatted note");
+//    }
+//
+//    return [MNPoint pointWithX:self.absoluteX andY:[self.ys[0] floatValue]];
+//}
 
 /*!
  *   Get bounds and metrics for self note.

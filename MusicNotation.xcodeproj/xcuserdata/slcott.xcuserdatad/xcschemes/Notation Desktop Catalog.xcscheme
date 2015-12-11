@@ -52,6 +52,16 @@
                ReferencedContainer = "container:MusicNotation.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6B6AC6041C1A7D5900CC9E11"
+               BuildableName = "MusicNotationLibraryCatalogTests.xctest"
+               BlueprintName = "MusicNotationLibraryCatalogTests"
+               ReferencedContainer = "container:MusicNotation.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

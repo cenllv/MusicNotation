@@ -1157,9 +1157,9 @@
  *  Get all accidentals in the `ModifierContext`
  *  @return an array of  MNAccidenal
  */
-- (NSMutableArray*)getAccidentals
+- (NSArray*)getAccidentals
 {
-    return [self.modifierContext getModifiersForType:@"accidentals"];
+    return [self.modifierContext getModifiersForType:NSStringFromClass([MNAccidental class])];   //@"accidentals"];
 }
 
 /*!
@@ -1168,7 +1168,7 @@
  */
 - (NSArray*)getDots
 {
-    return [self.modifierContext getModifiersForType:@"dots"];
+    return [self.modifierContext getModifiersForType:NSStringFromClass([MNDot class])];   //@"dots"];
 }
 
 - (float)voiceShiftWidth
@@ -1548,8 +1548,8 @@ addModifier: function(index, modifier) {
 - (void)drawModifiers:(CGContextRef)ctx
 {
     //    CGContextRef ctx = context;
-//    for(MNModifier* mod in self.modifiers)
-    for (NSUInteger i = 0; i < self.modifiers.count; ++i)
+    //    for(MNModifier* mod in self.modifiers)
+    for(NSUInteger i = 0; i < self.modifiers.count; ++i)
     {
         MNModifier* mod = self.modifiers[i];
         MNNoteHead* note_head = self.note_heads[mod.index];   //.getIndex()];

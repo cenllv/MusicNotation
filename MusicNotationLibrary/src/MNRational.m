@@ -313,7 +313,6 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
                                right:(nonnull MNRational*)param2
 {
     MNRational* ret = [[MNRational alloc] initWithNumerator:1 andDenominator:1];
-    //    [ret set:(param1.numerator * param2.numerator)with:(param1.denominator * param2.denominator)];
     [ret setNumerator:(param1.numerator * param2.numerator)];
     [ret setDenominator:(param1.denominator * param2.denominator)];
     //    [ret simplify]; // NOTE: do not simplify
@@ -403,7 +402,23 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
 {
     return [[self class] termOperation:^(NSUInteger a, NSUInteger b) {
       return a / b;
-    } left:self right:other];
+    } left:self right:[[other clone] invert]];
+}
+
+- (nonnull MNRational*)invert
+{
+    if(self.numerator == 0)
+    {
+        //  MNLogError(@"DivisionByZeroException");
+        NSLog(@"DivisionByZeroException");
+        self.denominator = 0;
+        self.numerator = NSUIntegerMax;
+        //  abort();
+    }
+    NSUInteger tmp = self.numerator;
+    self.numerator = self.denominator;
+    self.denominator = tmp;
+    return self;
 }
 
 - (nonnull MNRational*)divideByValue:(NSUInteger)value
@@ -417,14 +432,15 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     }
 
     return [[self class] termOperation:^(NSUInteger a, NSUInteger b) {
-      return a / b;
-    } left:self right:[MNRational rationalWithNumerator:value]];
+      // TODO: termOperation does NOTHING!!!
+      return b / a;
+    } left:self right:[MNRational rationalWithNumerator:1 andDenominator:value]];
 }
 
-- (nonnull MNRational*)divn:(NSUInteger)value
-{
-    return [self divideByValue:value];
-}
+//- (nonnull MNRational*)divn:(NSUInteger)value
+//{
+//    return [self divideByValue:value];
+//}
 
 - (BOOL)equals:(nonnull MNRational*)other
 {

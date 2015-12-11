@@ -1401,65 +1401,6 @@ static NSDictionary* _clefProperties;
             @"D#m" : @{@"acc" : @"#", @"num" : @(6)},
             @"C#" : @{@"acc" : @"#", @"num" : @(7)},
             @"A#m" : @{@"acc" : @"#", @"num" : @(7)}
-            //            @"C" : [[MNKeySignature alloc] initWithAcc:nil andNumber:0],
-            //            @"Am" : [[MNKeySignature alloc] initWithAcc:nil
-            //            andNumber:0],
-            //            @"F" : [[MNKeySignature alloc] initWithAcc:@"b"
-            //            andNumber:1],
-            //            @"Dm" : [[MNKeySignature alloc] initWithAcc:@"b"
-            //            andNumber:1],
-            //            @"Bb" : [[MNKeySignature alloc] initWithAcc:@"b"
-            //            andNumber:2],
-            //            @"Gm" : [[MNKeySignature alloc] initWithAcc:@"b"
-            //            andNumber:2],
-            //            @"Eb" : [[MNKeySignature alloc] initWithAcc:@"b"
-            //            andNumber:3],
-            //            @"Cm" : [[MNKeySignature alloc] initWithAcc:@"b"
-            //            andNumber:3],
-            //            @"Ab" : [[MNKeySignature alloc] initWithAcc:@"b"
-            //            andNumber:4],
-            //            @"Fm" : [[MNKeySignature alloc] initWithAcc:@"b"
-            //            andNumber:4],
-            //            @"Db" : [[MNKeySignature alloc] initWithAcc:@"b"
-            //            andNumber:5],
-            //            @"Bbm" : [[MNKeySignature alloc] initWithAcc:@"b"
-            //            andNumber:5],
-            //            @"Gb" : [[MNKeySignature alloc] initWithAcc:@"b"
-            //            andNumber:6],
-            //            @"Ebm" : [[MNKeySignature alloc] initWithAcc:@"b"
-            //            andNumber:6],
-            //            @"Cb" : [[MNKeySignature alloc] initWithAcc:@"b"
-            //            andNumber:7],
-            //            @"Abm" : [[MNKeySignature alloc] initWithAcc:@"b"
-            //            andNumber:7],
-            //            @"G" : [[MNKeySignature alloc] initWithAcc:@"#"
-            //            andNumber:1],
-            //            @"Em" : [[MNKeySignature alloc] initWithAcc:@"#"
-            //            andNumber:1],
-            //            @"D" : [[MNKeySignature alloc] initWithAcc:@"#"
-            //            andNumber:2],
-            //            @"Bm" : [[MNKeySignature alloc] initWithAcc:@"#"
-            //            andNumber:2],
-            //            @"A" : [[MNKeySignature alloc] initWithAcc:@"#"
-            //            andNumber:3],
-            //            @"F#m" : [[MNKeySignature alloc] initWithAcc:@"#"
-            //            andNumber:3],
-            //            @"E" : [[MNKeySignature alloc] initWithAcc:@"#"
-            //            andNumber:4],
-            //            @"C#m" : [[MNKeySignature alloc] initWithAcc:@"#"
-            //            andNumber:4],
-            //            @"B" : [[MNKeySignature alloc] initWithAcc:@"#"
-            //            andNumber:5],
-            //            @"G#m" : [[MNKeySignature alloc] initWithAcc:@"#"
-            //            andNumber:5],
-            //            @"F#" : [[MNKeySignature alloc] initWithAcc:@"#"
-            //            andNumber:6],
-            //            @"D#m" : [[MNKeySignature alloc] initWithAcc:@"#"
-            //            andNumber:6],
-            //            @"C#" : [[MNKeySignature alloc] initWithAcc:@"#"
-            //            andNumber:7],
-            //            @"A#m" : [[MNKeySignature alloc] initWithAcc:@"#"
-            //            andNumber:7],
         };
     }
     return _keySpecsDictionary;
@@ -2719,7 +2660,7 @@ Vex.Flow.keySignature = function(spec) {
 {
     NSString* regexpPattern = @"(\\d*\\/?\\d+|[a-z])(d*)([nrhms]|$)";
     NSArray* matches = [noteStringData match:regexpPattern];
-
+ 
     if(matches.count == 0)
     {
         [MNLog logError:@"Unable to match any patterns in the durationString"];
@@ -2812,7 +2753,7 @@ Vex.Flow.keySignature = function(spec) {
         MNRational* currentTicks = [ret.ticks clone];
         for(NSUInteger i = 0; i < dots; i++)
         {
-            [currentTicks divn:2];
+            currentTicks = [currentTicks divideByValue:2];
             [ret.ticks add:currentTicks];
         }
     }
@@ -2930,23 +2871,6 @@ static NSDictionary* _noteDurationTypeForDurationStringDictionary;
     }
     return NO;
 }
-
-/*
-
-function sanitizeDuration(duration) {
-    var alias = Vex.Flow.durationAliases[duration];
-    if (alias !== undefined) {
-        duration = alias;
-    }
-
-    if (Vex.Flow.durationToTicks.durations[duration] === undefined) {
-        throw new Vex.RERR('BadArguments',
-                           'The provided duration is not valid');
-    }
-
-    return duration;
-}
-*/
 
 /*!
  *   Used to convert duration aliases to the number based duration.

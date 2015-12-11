@@ -99,7 +99,7 @@
 
 + (void)alignRestsToNotes:(NSArray*)notes withNoteAlignment:(BOOL)alignAllNotes andTupletAlignment:(BOOL)alignTuplets;
 
-- (void)alignRests:(NSArray<MNVoice*>*)voices alignAllNotes:(BOOL)alignAllNotes;
++ (void)alignRests:(NSArray<MNVoice*>*)voices alignAllNotes:(BOOL)alignAllNotes;
 
 - (float)preCalculateMinTotalWidth:(NSArray<MNVoice*>*)voices;
 

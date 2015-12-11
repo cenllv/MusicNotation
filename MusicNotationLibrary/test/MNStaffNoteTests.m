@@ -39,112 +39,95 @@
 {
     [super start];
 
-        [self runTest:@"Tick" func:@selector(ticks)];
-        [self runTest:@"Tick" func:@selector(ticksNewApi)];
-        [self runTest:@"Stem" func:@selector(stem)];
-        [self runTest:@"Automatic" func:@selector(autoStem)];
-        [self runTest:@"Staffline" func:@selector(staffLine)];
-        [self runTest:@"Width" func:@selector(width)];
-        [self runTest:@"TickContext" func:@selector(tickContext)];
-
-    [self runTest:@"StaffNote Draw - Treble"
-             func:@selector(draw:options:)
-            frame:CGRectMake(0, 0, 800, 180)
-           params:@{
-               @"clef" : @"treble",
-               @"octaveShift" : @(0),
-               @"restKey" : @"r/4"
-           }];
-
-    [self runTest:@"StaffNote BoundingBoxes - Treble"
-             func:@selector(drawBoundingBoxes:options:)
-            frame:CGRectMake(0, 0, 800, 180)
-           params:@{
-               @"clef" : @"treble",
-               @"octaveShift" : @(0),
-               @"restKey" : @"r/4"
-           }];
-
-    [self runTest:@"StaffNote Draw - Alto"
-             func:@selector(draw:options:)
-            frame:CGRectMake(0, 0, 800, 180)
-           params:@{
-               @"clef" : @"alto",
-               @"octaveShift" : @(-1),
-               @"restKey" : @"r/4"
-           }];
-
-    [self runTest:@"StaffNote Draw - Tenor"
-             func:@selector(draw:options:)
-            frame:CGRectMake(0, 0, 800, 180)
-           params:@{
-               @"clef" : @"tenor",
-               @"octaveShift" : @(-1),
-               @"restKey" : @"r/3"
-           }];
-
-    [self runTest:@"StaffNote Draw - Bass"
-             func:@selector(draw:options:)
-            frame:CGRectMake(0, 0, 800, 180)
-           params:@{
-               @"clef" : @"bass",
-               @"octaveShift" : @(-2),
-               @"restKey" : @"r/3"
-           }];
-
-    [self runTest:@"StaffNote Draw - Harmonic And Muted"
-             func:@selector(drawHarmonicAndMuted:)
-            frame:CGRectMake(0, 0, 800, 180)];
-
-    [self runTest:@"StaffNote Draw - Slash" func:@selector(drawSlash:) frame:CGRectMake(0, 0, 800, 180)];
-
-    [self runTest:@"Displacements" func:@selector(drawDisplacements:) frame:CGRectMake(0, 0, 800, 180)];
-
-    [self runTest:@"StaffNote Draw - Bass" func:@selector(drawBass:) frame:CGRectMake(0, 0, 800, 180)];
-
-    [self runTest:@"StaffNote Draw - Key Styles" func:@selector(drawKeyStyles:) frame:CGRectMake(0, 0, 600, 180)];
-
-    [self runTest:@"StaffNote Draw - StaffNote Styles"
-             func:@selector(drawNoteStyles:)
-            frame:CGRectMake(0, 0, 600, 180)];
-
-    [self runTest:@"Flag and Dot Placement - Stem Up"
-             func:@selector(drawDotsAndFlagsStemUp:)
-            frame:CGRectMake(0, 0, 1000, 180)];
-
-    [self runTest:@"Flag and Dots Placement - Stem Down"
-             func:@selector(drawDotsAndFlagsStemDown:)
-            frame:CGRectMake(0, 0, 1000, 180)];
-
-    [self runTest:@"Beam and Dot Placement - Stem Up"
-             func:@selector(drawDotsAndBeamsUp:)
-            frame:CGRectMake(0, 0, 1000, 180)];
-
-    [self runTest:@"Beam and Dot Placement - Stem Down"
-             func:@selector(drawDotsAndBeamsDown:)
-            frame:CGRectMake(10, 10, 700, 180)];
-
-    [self runTest:@"Center Aligned Note" func:@selector(drawCenterAlignedRest:) frame:CGRectMake(0, 0, 500, 150)];
+    //    [self runTest:@"Tick" func:@selector(ticks)];
+    //    [self runTest:@"Tick" func:@selector(ticksNewApi)];
+    //    [self runTest:@"Stem" func:@selector(stem)];
+    //    [self runTest:@"Automatic" func:@selector(autoStem)];
+    //    [self runTest:@"Staffline" func:@selector(staffLine)];
+    //    [self runTest:@"Width" func:@selector(width)];
+    //    [self runTest:@"TickContext" func:@selector(tickContext)];
+    //    [self runTest:@"StaffNote Draw - Treble"
+    //             func:@selector(draw:options:)
+    //            frame:CGRectMake(0, 0, 800, 180)
+    //           params:@{
+    //               @"clef" : @"treble",
+    //               @"octaveShift" : @(0),
+    //               @"restKey" : @"r/4"
+    //           }];
+    //    [self runTest:@"StaffNote BoundingBoxes - Treble"
+    //             func:@selector(drawBoundingBoxes:options:)
+    //            frame:CGRectMake(0, 0, 800, 180)
+    //           params:@{
+    //               @"clef" : @"treble",
+    //               @"octaveShift" : @(0),
+    //               @"restKey" : @"r/4"
+    //           }];
+    //    [self runTest:@"StaffNote Draw - Alto"
+    //             func:@selector(draw:options:)
+    //            frame:CGRectMake(0, 0, 800, 180)
+    //           params:@{
+    //               @"clef" : @"alto",
+    //               @"octaveShift" : @(-1),
+    //               @"restKey" : @"r/4"
+    //           }];
+    //    [self runTest:@"StaffNote Draw - Tenor"
+    //             func:@selector(draw:options:)
+    //            frame:CGRectMake(0, 0, 800, 180)
+    //           params:@{
+    //               @"clef" : @"tenor",
+    //               @"octaveShift" : @(-1),
+    //               @"restKey" : @"r/3"
+    //           }];
+    //    [self runTest:@"StaffNote Draw - Bass"
+    //             func:@selector(draw:options:)
+    //            frame:CGRectMake(0, 0, 800, 180)
+    //           params:@{
+    //               @"clef" : @"bass",
+    //               @"octaveShift" : @(-2),
+    //               @"restKey" : @"r/3"
+    //           }];
+    //    [self runTest:@"StaffNote Draw - Harmonic And Muted"
+    //             func:@selector(drawHarmonicAndMuted:)
+    //            frame:CGRectMake(0, 0, 800, 180)];
+    //    [self runTest:@"StaffNote Draw - Slash" func:@selector(drawSlash:) frame:CGRectMake(0, 0, 800, 180)];
+    //    [self runTest:@"Displacements" func:@selector(drawDisplacements:) frame:CGRectMake(0, 0, 800, 180)];
+    //    [self runTest:@"StaffNote Draw - Bass" func:@selector(drawBass:) frame:CGRectMake(0, 0, 800, 180)];
+    //    [self runTest:@"StaffNote Draw - Key Styles" func:@selector(drawKeyStyles:) frame:CGRectMake(0, 0, 600, 180)];
+    //    [self runTest:@"StaffNote Draw - StaffNote Styles"
+    //             func:@selector(drawNoteStyles:)
+    //            frame:CGRectMake(0, 0, 600, 180)];
+    //    [self runTest:@"Flag and Dot Placement - Stem Up"
+    //             func:@selector(drawDotsAndFlagsStemUp:)
+    //            frame:CGRectMake(0, 0, 1000, 180)];
+    //    [self runTest:@"Flag and Dots Placement - Stem Down"
+    //             func:@selector(drawDotsAndFlagsStemDown:)
+    //            frame:CGRectMake(0, 0, 1000, 180)];
+    //    [self runTest:@"Beam and Dot Placement - Stem Up"
+    //             func:@selector(drawDotsAndBeamsUp:)
+    //            frame:CGRectMake(0, 0, 1000, 180)];
+    //    [self runTest:@"Beam and Dot Placement - Stem Down"
+    //             func:@selector(drawDotsAndBeamsDown:)
+    //            frame:CGRectMake(10, 10, 700, 180)];
+    //    [self runTest:@"Center Aligned Note" func:@selector(drawCenterAlignedRest:) frame:CGRectMake(0, 0, 500, 150)];
     [self runTest:@"Center Aligned Note with Articulation"
              func:@selector(drawCenterAlignedRestFermata:)
             frame:CGRectMake(0, 0, 500, 150)];
-    [self runTest:@"Center Aligned Note with Annotation"
-             func:@selector(drawCenterAlignedRestAnnotation:)
-            frame:CGRectMake(0, 0, 500, 150)];
-
-    [self runTest:@"Center Aligned Note with Multiple Modifiers"
-             func:@selector(drawCenterAlignedNoteMultiModifiers:)
-            frame:CGRectMake(0, 0, 500, 150)];
-    [self runTest:@"Center Aligned Note - Multi Voice"
-             func:@selector(drawCenterAlignedMultiVoice:)
-            frame:CGRectMake(0, 0, 500, 150)];
+    //    [self runTest:@"Center Aligned Note with Annotation"
+    //             func:@selector(drawCenterAlignedRestAnnotation:)
+    //            frame:CGRectMake(0, 0, 500, 150)];
+    //
+    //    [self runTest:@"Center Aligned Note with Multiple Modifiers"
+    //             func:@selector(drawCenterAlignedNoteMultiModifiers:)
+    //            frame:CGRectMake(0, 0, 500, 150)];
+    //    [self runTest:@"Center Aligned Note - Multi Voice"
+    //             func:@selector(drawCenterAlignedMultiVoice:)
+    //            frame:CGRectMake(0, 0, 500, 150)];
 }
 
 - (void)tearDown
 {
     [super tearDown];
 }
-
 
 // TODO: move comments to NSLog
 
@@ -1714,7 +1697,7 @@
       return newNote(note_struct);
     }];
 
-    [notes0[0] addArticulation:[[MNArticulation alloc] initWithCode:@"a@a"] atIndex:0];
+    [notes0[0] addArticulation:[[[MNArticulation alloc] initWithCode:@"a@a"] setPosition:MNPositionAbove] atIndex:0];
 
     MNVoice* voice0 = [MNVoice voiceWithTimeSignature:MNTime4_4];
     [voice0 setStrict:NO];

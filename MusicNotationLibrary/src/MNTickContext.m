@@ -232,7 +232,6 @@
 }
 
 #pragma mark - Methods
-//- (void)addTickable:(MNTickable*)tickable
 - (id)addTickable:(id<MNTickableDelegate>)tickable
 {
     if(!tickable)
