@@ -896,11 +896,11 @@
         BOOL unbeamable = val < 8;
         if(unbeamable && unprocessedNote.tuplet)
         {
-            [ticksPerGroup mult:2];
+            [ticksPerGroup multiplyByValue:2];
         }
 
         // If the note that was just added overflows the group tick total
-        if([totalTicks gt:ticksPerGroup])
+        if([totalTicks greaterThan:ticksPerGroup])
         {
             // If the overflow note can be beamed, start the next group
             // with it. Unbeamable notes leave the group overflowed.
@@ -912,7 +912,7 @@
             currentGroup = nextGroup;
             nextTickGroup();
         }
-        else if([totalTicks equalsRational:ticksPerGroup])
+        else if([totalTicks equals:ticksPerGroup])
         {
             [noteGroups push:currentGroup];
             currentGroup = nextGroup;

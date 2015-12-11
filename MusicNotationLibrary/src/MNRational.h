@@ -1,5 +1,5 @@
 //
-//  Rational.h
+//  MNRational.h
 //  MusicNotation
 //
 //  Created by Scott Riccardelli on 1/1/15
@@ -27,220 +27,98 @@
 //  THE SOFTWARE.
 //
 
-#import "IAModelBase.h"
+#import <Foundation/Foundation.h>
 
-/*! The `MNrational` class performs rationalal operations on a numerator and a denominator. It
- is useful for representing logic that involves rationals as opposed to floating point operations.
+/*!
+ *  The `MNrational` class performs rationalal operations on a numerator and a denominator. It
+ *  is useful for representing logic that involves rationals as opposed to floating point operations.
  */
-@interface MNRational : IAModelBase
+@interface MNRational : NSObject
 {
    @private
+    NSUInteger _multiplier;
+    NSUInteger _numerator;
+    NSUInteger _denominator;
+    BOOL _positive;
 }
 
-#pragma mark - Properties
+//@property (assign, nonatomic) NSUInteger multiplier;
+- (NSUInteger)multiplier;
+- (nonnull id)setMultiplier:(NSUInteger)multiplier;
+//@property (assign, nonatomic) NSUInteger numerator;
+- (NSUInteger)numerator;
+- (nonnull id)setNumerator:(NSUInteger)numerator;
+//@property (assign, nonatomic) NSUInteger denominator;
+- (NSUInteger)denominator;
+- (nonnull id)setDenominator:(NSUInteger)denominator;
+//@property (readonly, nonatomic) BOOL positive;
+- (BOOL)positive;
+- (nonnull id)setPositive:(BOOL)positive;
 
-/*!---------------------------------------------------------------------------------------------------------------------
- * Properties
- *  ---------------------------------------------------------------------------------------
- */
-
-/*! The multiplier is the integer that the numerator and denominator are both multiplied by before a rational has been
- simplified.
- @warning The logic for this property has not yet been implemented.
- */
-@property (assign, nonatomic) NSUInteger multiplier;
-@property (assign, nonatomic) NSUInteger numerator;
-@property (assign, nonatomic) NSUInteger denominator;
-@property (assign, nonatomic) BOOL positive;
 @property (readonly, nonatomic) float floatValue;
-@property (strong, nonatomic, getter=getSimplifiedString) NSString* simplifiedString;
-@property (strong, nonatomic, getter=getMixedString) NSString* mixedString;
+@property (strong, nonatomic, readonly) NSString* _Nonnull simplifiedString;
+@property (strong, nonatomic, readonly) NSString* _Nonnull mixedString;
+
+- (nonnull instancetype)initWithNumerator:(NSUInteger)numerator andDenominator:(NSUInteger)denominator;
++ (nonnull MNRational*)rationalWithNumerator:(NSUInteger)numerator andDenominator:(NSUInteger)denominator;
++ (nonnull MNRational*)rationalWithNumerator:(NSUInteger)numerator;
++ (nonnull MNRational*)rationalWithRational:(nonnull MNRational*)otherrational;
++ (nonnull MNRational*)zero;
++ (nonnull MNRational*)one;
 
 #pragma mark - Methods
 
-
-//- (instancetype)initWithDictionary:(NSDictionary*)optionsDict NS_DESIGNATED_INITIALIZER;
-
-/*! This is the first super-awesome method.
-
- You can also add lists, but have to keep an empty line between these blocks.
-
- - One
- - Two
- - Three
-
- @param string A parameter that is passed in.
- @return Whatever it returns.
- */
-- (instancetype)initWithNumerator:(NSUInteger)numerator andDenominator:(NSUInteger)denominator;
-
-/*! This is the second super-awesome method.
- Note that there are additional cool things here, like [direct hyperlinks](http://www.cocoanetics.com)
- @param number A parameter that is passed in, almost as cool as someMethodWithString:
- @return Whatever it returns.
- @see someMethodWithString:
-
- @bug *Bug:* A yellow background.
- */
-+ (MNRational*)rationalWithNumerator:(NSUInteger)numerator andDenominator:(NSUInteger)denominator;
-
-+ (MNRational*)rationalWithNumerator:(NSUInteger)numerator;
-
-+ (MNRational*)rationalZero;
-
-+ (MNRational*)rationalOne;
-
-+ (MNRational*)rationalWithRational:(MNRational*)otherrational;
-
-- (MNRational*)clone;
-
-/*! Converts the rational numerator and denominator and to a float by performing division.
- @return Returns the float value when division is performed.
- */
+- (nonnull id)copy;
+- (nonnull MNRational*)clone;
 - (float)floatValue;
+- (BOOL)boolValue;
+- (nonnull NSNumber*)numberValue;
 
-//- (BOOL)valueAsBool;
+#pragma mark String
 
-- (NSNumber*)numberValue;
+- (nonnull NSString*)description;
+//- (nonnull NSString*)toString;
+//- (NSString*)simplifiedString;
+//- (NSString*)mixedString;
+- (NSUInteger)hash;
+//- (nonnull id)set:(NSUInteger)numerator with:(NSUInteger)denominator;
++ (nonnull MNRational*)simplify:(nonnull MNRational*)rational;
+- (nonnull MNRational*)simplify;
 
-#pragma mark - String operations
-/*!---------------------------------------------------------------------------------------------------------------------
- * @name String operations
- *  ---------------------------------------------------------------------------------------
- */
-//
-//- (NSString *)toString;
-//
-//- (NSString *)toSimplifiedString;
+#pragma mark Math Operations
 
-/*!
- @warning *Warning:* The following method has not been implemented yet.
- */
-//- (NSString *)toMixedString;
+//+ (nonnull MNRational*)add:(nonnull MNRational*)param1 with:(nonnull MNRational*)param2;
+- (nonnull MNRational*)add:(nonnull MNRational*)other;
+- (nonnull MNRational*)addValue:(NSUInteger)value;
+//+ (nonnull MNRational*)subtract:(nonnull MNRational*)param1 with:(nonnull MNRational*)param2;
+- (nonnull MNRational*)subtract:(nonnull MNRational*)other;
+- (nonnull MNRational*)subtractValue:(NSUInteger)value;
+//+ (nonnull MNRational*)multiply:(nonnull MNRational*)param1 with:(nonnull MNRational*)param2;
+- (nonnull MNRational*)multiply:(nonnull MNRational*)other;
+- (nonnull MNRational*)multiplyByValue:(NSUInteger)value;
+//- (nonnull MNRational*)mult:(NSUInteger)value;
+//+ (nonnull MNRational*)divide:(nonnull MNRational*)param1 with:(nonnull MNRational*)param2;
+- (nonnull MNRational*)divide:(nonnull MNRational*)other;
+- (nonnull MNRational*)divideByValue:(NSUInteger)value;
+- (nonnull MNRational*)divn:(NSUInteger)value;
 
-#pragma mark - Math operations
-/*!---------------------------------------------------------------------------------------------------------------------
- * @name Math operations
- *  ---------------------------------------------------------------------------------------
- */
-
-- (void)set:(NSUInteger)numerator with:(NSUInteger)denominator;
-
-+ (MNRational*)simplify:(MNRational*)rational;
-
-- (MNRational*)simplify;
-
-- (MNRational*)add:(MNRational*)other;
-
-+ (MNRational*)add:(MNRational*)param1 with:(MNRational*)param2;
-
-- (MNRational*)addn:(NSUInteger)value;
-
-- (MNRational*)subtract:(MNRational*)other;
-
-+ (MNRational*)subtract:(MNRational*)param1 with:(MNRational*)param2;
-
-- (MNRational*)subt:(NSUInteger)value;
-
-- (MNRational*)multiply:(MNRational*)other;
-
-+ (MNRational*)multiply:(MNRational*)param1 with:(MNRational*)param2;
-
-/*!
- *  Multiplies this Rational by another Rational
- *
- *  @param value another Rational
- *
- *  @return this Rational
- */
-- (MNRational*)mult:(NSUInteger)value;
-
-- (MNRational*)divide:(MNRational*)other;
-
-//+ (MNRational*)divide:(MNRational*)param1 with:(MNRational*)param2;
-
-- (MNRational*)divn:(NSUInteger)value;
-
-#pragma mark - Comparison Operations
-/*!---------------------------------------------------------------------------------------------------------------------
- * @name Comparison operations
- *  ---------------------------------------------------------------------------------------
- */
-
-- (BOOL)equalsFloat:(float)other;
-
-//+ (BOOL)equalsRational:(MNRational*)rat1 with:(MNRational*)rat2;
-
-/*! Determines if this rational is equivalent to another rational.
- @param other The other rational to compare this rational to.
- @return The result of the comparison
- */
-- (BOOL)equalsRational:(MNRational*)other;
-- (BOOL)notEqualsRational:(MNRational*)other;
-- (BOOL)lt:(MNRational*)other;
-
-- (BOOL)gt:(MNRational*)other;
-
-- (BOOL)lte:(MNRational*)other;
-
-- (BOOL)gte:(MNRational*)other;
-
-/*! is the numberat of this rational zero? YES or NO
- */
-- (BOOL)zero;
-
-/*! Copies values of another rational into itself.
- @param sender The rational to be copied
- @return This rational
- */
-- (MNRational*)copy:(MNRational*)sender;
-
-#pragma mark - Math operations
-/*!---------------------------------------------------------------------------------------------------------------------
- * @name Algorithmic operations
- *  ---------------------------------------------------------------------------------------
- */
-
-/*! Determines the quotient - the integer resulting from decimal division of the numerator and denominator.
- @return An integer as the quotient
- */
+- (BOOL)equals:(nonnull MNRational*)other;
+//+ (BOOL)equals:(nonnull MNRational*)r1 with:(nonnull MNRational*)r2;
+- (BOOL)notEquals:(nonnull MNRational*)other;
+- (BOOL)equalsFloat:(float)f;
+- (BOOL)equalsFloat:(float)f withAccuracy:(float)accuracy;
+// static BOOL equalsWithAccuracy(float a, float b, float accuracy);
+- (BOOL)lessThan:(nonnull MNRational*)other;
+- (BOOL)greaterThan:(nonnull MNRational*)other;
+- (BOOL)lessThanOrEquael:(nonnull MNRational*)other;
+- (BOOL)greaterThanOrEqual:(nonnull MNRational*)other;
+- (BOOL)isZero;
 - (NSUInteger)quotient;
-
-/*! Determines the remainder after performing modular division.
- */
-- (NSUInteger)rational;
-
-/*! Performs absolute value on the numerator and the denominator.
- @return Returns this rational.
- */
-- (MNRational*)abs;
-
-// must be in form @"p/q"
-+ (MNRational*)parse:(NSString*)numString;
-
-/*! Determines the greatest common divisor of the two integers.
- @param u An integer
- @param v Another integer
- @return The greatest common divisor
- */
-+ (NSUInteger)GCD:(NSUInteger)u with:(NSUInteger)v;
-
-/*! Determines the least common multiple of the two integers.
- @param param1 An integer
- @param param2 Another integer
- @return The least common multiple
- */
-+ (NSUInteger)LCM:(NSUInteger)param1 with:(NSUInteger)param2;
-
-/*! Determines the greatest common divisor of many integers.
- @params Two or more integers integers
- @return the least common multiple
- */
-+ (NSUInteger)LCMM:(NSUInteger)params, ...;
+- (NSUInteger)fraction;
+- (nonnull MNRational*)abs;
++ (nonnull MNRational*)parse:(nonnull NSString*)numString;
+NSUInteger gcd(NSUInteger param1, NSUInteger param2);
+NSUInteger lcm(NSUInteger param1, NSUInteger param2);
++ (NSUInteger)lcmm:(NSUInteger)params, ...;
 
 @end
-
-//// http://stackoverflow.com/a/21371401/629014
-//
-//#define GET_MACRO(_0, _1, _2, NAME, ...) NAME
-//#define FOO(...) GET_MACRO(_0, ##__VA_ARGS__, FOO2, FOO1, FOO0)(__VA_ARGS__)

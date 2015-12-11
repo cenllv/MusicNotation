@@ -427,13 +427,13 @@
 - (void)setIntrinsicTicks:(NSUInteger)intrinsicTicks
 {
     _intrinsicTicks = intrinsicTicks;
-    _ticks = [[self.tickMultiplier clone] mult:intrinsicTicks];
+    _ticks = [[self.tickMultiplier clone] multiplyByValue:intrinsicTicks];
 }
 
 - (void)applyTickMultiplier:(NSUInteger)numerator denominator:(NSUInteger)denominator
 {
     [self.tickMultiplier multiply:[MNRational rationalWithNumerator:numerator andDenominator:denominator]];
-    _ticks = [[self.tickMultiplier clone] mult:self.intrinsicTicks];
+    _ticks = [[self.tickMultiplier clone] multiplyByValue:self.intrinsicTicks];
 }
 
 //- (void)setDuration:(Rational*)duration;
@@ -446,7 +446,7 @@
 - (void)setTickDuration:(MNRational*)duration
 {
     NSUInteger ticks = duration.numerator * (kRESOLUTION / duration.denominator);
-    _ticks = [[self.tickMultiplier clone] mult:ticks];
+    _ticks = [[self.tickMultiplier clone] multiplyByValue:ticks];
     _intrinsicTicks = [self.ticks floatValue];
 }
 

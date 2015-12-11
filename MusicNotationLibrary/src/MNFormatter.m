@@ -169,7 +169,7 @@ typedef void (^AddFunction)(MNTickable*, id);
     for(i = 0; i < voices.count; ++i)
     {
         voice = (MNVoice*)voices[i];
-        if(!([voice.totalTicks equalsRational:totalTicks]))
+        if(!([voice.totalTicks equals:totalTicks]))
         {
             MNLogError(@"TickMismatch, Voices should have same total note duration in ticks.");
         }
@@ -179,10 +179,10 @@ typedef void (^AddFunction)(MNTickable*, id);
             MNLogError(@"IncompleteVoice, Voice does not have enough notes.");
         }
 
-        NSUInteger lcm = [MNRational LCM:resolutionMultiplier with:voice.resolutionMultiplier];
-        if(resolutionMultiplier < lcm)
+        NSUInteger _lcm = lcm(resolutionMultiplier, voice.resolutionMultiplier);
+        if(resolutionMultiplier < _lcm)
         {
-            resolutionMultiplier = lcm;
+            resolutionMultiplier = _lcm;
         }
     }
 

@@ -28,8 +28,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D278F5291A8689AE000C57C1"
-               BuildableName = "MusicAppTests.xctest"
+               BlueprintIdentifier = "6B5F6FF81C1925DC0093B1F8"
+               BuildableName = "MusicNotationLibraryTests.xctest"
                BlueprintName = "MusicNotationLibraryTests"
                ReferencedContainer = "container:MusicNotation.xcodeproj">
             </BuildableReference>
@@ -46,8 +46,8 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D278F5291A8689AE000C57C1"
-               BuildableName = "MusicAppTests.xctest"
+               BlueprintIdentifier = "6B5F6FF81C1925DC0093B1F8"
+               BuildableName = "MusicNotationLibraryTests.xctest"
                BlueprintName = "MusicNotationLibraryTests"
                ReferencedContainer = "container:MusicNotation.xcodeproj">
             </BuildableReference>

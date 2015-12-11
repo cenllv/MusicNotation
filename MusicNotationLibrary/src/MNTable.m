@@ -46,6 +46,8 @@
 #import "MNText.h"
 #import "MNTableKeySpecStruct.h"
 #import "MNNoteMetrics.h"
+#import "MNGlyphList.h"
+#import "MNSize.h"
 
 #pragma mark -  MNTables Implementation
 
@@ -2153,28 +2155,13 @@ static NSDictionary* _durationCodesDictionary;
     noteNHMRSType = (noteNHMRSType == MNNoteNote) ? MNNoteNote : noteNHMRSType;
     NSDictionary* mergedDict = [NSMutableDictionary merge:code[@"common"] with:code[@"type"][@(noteNHMRSType)]];
     MNTableGlyphStruct* ret = [[MNTableGlyphStruct alloc] initWithDictionary:mergedDict];
+    ret.headWidth = [[MNGlyphList sharedInstance] sizeForName:ret.codeHead].width;   // CHANGE: insertion
     ret.noteNHMRSType = noteNHMRSType;
     return ret;
 }
 
 + (MNGlyphTabStruct*)glyphForTab:(NSString*)fret
 {
-    /*
-     Vex.Flow.tabToGlyph = function(fret) {
-     var glyph = null;
-     var width = 0;
-     var shift_y = 0;
-
-     if (fret.toString().toUpperCase() == @"X") {
-     glyph = @"v7f";
-     width = 7;
-     shift_y = -4.5;
-     } else {
-     width = Vex.Flow.textWidth(fret.toString());
-     }
-
-     */
-
     NSString* glyphCode = nil;   //[NSNull null];
     float width = 0;
     float shift_y = 0;

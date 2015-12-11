@@ -1104,7 +1104,7 @@
     MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNLogInfo(@"");
 
-    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 650, 0)];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 750, 0)];
 
     NSArray* notes = @[
         @{ @"keys" : @[ @"b/4" ],

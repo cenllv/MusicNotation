@@ -1,4 +1,4 @@
-#import "MNStaff.h"//
+#import "MNStaff.h"   //
 //  MNStemmableNote.m
 //  MusicNotation
 //
@@ -38,6 +38,9 @@
 #import "MNRational.h"
 #import "MNConstants.h"
 #import "MNStaff.h"
+
+#import "MNGlyphList.h"
+#import "MNSize.h"
 
 @implementation MNStemmableNote
 
@@ -267,7 +270,11 @@
     float x_begin, x_end;
 
     x_begin = self.absoluteX + self.xShift;
-    x_end = x_begin + self.glyphStruct.headWidth;
+    //    x_end = x_begin + self.glyphStruct.headWidth;
+
+    float head_width = [[MNGlyphList sharedInstance] sizeForName:self.glyphCode].width;
+
+    x_end = x_begin + head_width;
 
     float stem_x = self.stemDirection == MNStemDirectionDown ? x_begin : x_end;
 

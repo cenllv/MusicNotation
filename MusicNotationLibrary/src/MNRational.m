@@ -28,45 +28,16 @@
 //
 
 #import "MNRational.h"
-#import "MNMacros.h"
-#import "MNLog.h"
-
-#pragma mark -  MNrational Implementation
+//#import "MNMacros.h"
+//#import "MNLog.h"
 
 typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
 
-//@interface Rational (private)
-//@property (assign, nonatomic) NSUInteger multiplier;
-//@property (assign, nonatomic) NSUInteger numerator;
-//@property (assign, nonatomic) NSUInteger denominator;
-//@property (assign, nonatomic) BOOL positive;
-//@end
-
 @implementation MNRational
-
-#pragma mark - Initialization
-
-- (instancetype)initWithDictionary:(NSDictionary*)optionsDict
-{
-    self = [super initWithDictionary:@{}];
-    if(self)
-    {
-    }
-    return self;
-}
-
-- (instancetype)init
-{
-    self = [super initWithDictionary:@{}];
-    if(self)
-    {
-    }
-    return self;
-}
 
 - (instancetype)initWithNumerator:(NSUInteger)numerator andDenominator:(NSUInteger)denominator
 {
-    self = [super initWithDictionary:@{}];
+    self = [super init];
     if(self)
     {
         _numerator = (NSUInteger)ABS(numerator);
@@ -81,20 +52,20 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     return self;
 }
 
-+ (MNRational*)rationalWithNumerator:(NSUInteger)numerator andDenominator:(NSUInteger)denominator
++ (nonnull MNRational*)rationalWithNumerator:(NSUInteger)numerator andDenominator:(NSUInteger)denominator
 {
     MNRational* ret = [[MNRational alloc] initWithNumerator:numerator andDenominator:denominator];
     //    [ret simplify];
     return ret;
 }
 
-+ (MNRational*)rationalWithNumerator:(NSUInteger)numerator
++ (nonnull MNRational*)rationalWithNumerator:(NSUInteger)numerator
 {
     MNRational* ret = [[MNRational alloc] initWithNumerator:numerator andDenominator:1];
     return ret;
 }
 
-+ (MNRational*)rationalWithRational:(MNRational*)otherrational
++ (nonnull MNRational*)rationalWithRational:(nonnull MNRational*)otherrational
 {
     MNRational* ret =
         [[MNRational alloc] initWithNumerator:otherrational.numerator andDenominator:otherrational.denominator];
@@ -102,50 +73,99 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     return ret;
 }
 
-+ (MNRational*)rationalZero
++ (nonnull MNRational*)zero
 {
     return [[MNRational alloc] initWithNumerator:0 andDenominator:1];
 }
 
-+ (MNRational*)rationalOne
++ (nonnull MNRational*)one
 {
     return [[MNRational alloc] initWithNumerator:1 andDenominator:1];
 }
 
 #pragma mark - Properties
 
-- (NSUInteger)getNumerator
+- (NSUInteger)multiplier
+{
+    return _multiplier;
+}
+
+- (nonnull id)setMultiplier:(NSUInteger)multiplier
+{
+    _multiplier = multiplier;
+    return self;
+}
+
+- (NSUInteger)numerator
 {
     return _numerator;
 }
 
-- (NSUInteger)getDenominator
+- (nonnull id)setNumerator:(NSUInteger)numerator
+{
+    _positive = ((numerator > 0) != (_numerator > 0)) ? (!_positive) : (_positive);
+    if(numerator == 0)
+    {
+        _positive = YES;
+    }
+    _numerator = ABS(numerator);
+    return self;
+}
+
+- (NSUInteger)denominator
 {
     return _denominator;
 }
 
-- (void)setNumerator:(NSUInteger)numerator
-{
-    self.positive = ((numerator > 0) != (_numerator > 0)) ? (!self.positive) : (self.positive);
-    if(numerator == 0)
-    {
-        self.positive = YES;
-    }
-    _numerator = ABS(numerator);
-}
-
-- (void)setDenominator:(NSUInteger)denominator
+- (nonnull id)setDenominator:(NSUInteger)denominator
 {
     self.positive = ((denominator > 0) != (_denominator > 0)) ? (!self.positive) : (self.positive);
     _denominator = ABS(denominator);
     _denominator = _denominator != 0 ? _denominator : 1;
+    return self;
+}
+
+- (BOOL)positive
+{
+    return _positive;
+}
+
+- (nonnull id)setPositive:(BOOL)positive
+{
+    _positive = positive;
+    return self;
+}
+
+- (nonnull id)setWith:(nonnull MNRational*)other
+{
+    [self setNumerator:[other numerator]];
+    [self setDenominator:[other denominator]];
+    [self setPositive:[other positive]];
+    [self setMultiplier:[other multiplier]];
+    return self;
+}
+
+- (id)setNum:(NSUInteger)numerator andDen:(NSUInteger)denominator
+{
+    self.numerator = numerator;
+    self.denominator = denominator;
+    return self;
 }
 
 #pragma mark - Methods
 
-- (MNRational*)clone
+- (id)copy
 {
-    MNRational* ret = [MNRational rationalOne];
+    MNRational* ret = [MNRational one];
+    ret.numerator = self.numerator;
+    ret.denominator = self.denominator;
+    ret.positive = self.positive;
+    return ret;
+}
+
+- (nonnull MNRational*)clone
+{
+    MNRational* ret = [MNRational one];
     ret.numerator = self.numerator;
     ret.denominator = self.denominator;
     ret.positive = self.positive;
@@ -178,7 +198,7 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
 
 - (NSString*)description
 {
-    return self.simplifiedString;
+    return [self simplifiedString];
 }
 
 - (NSString*)toString
@@ -186,15 +206,15 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     return self.description;
 }
 
-- (NSString*)getSimplifiedString
+- (NSString*)simplifiedString
 {
-    [self simplify];
-    NSString* bit = self.positive ? @"+" : @"-";
-    if(self.numerator == 0)
+    MNRational* tmp = [[self copy] simplify];
+    NSString* bit = tmp.positive ? @"+" : @"-";
+    if(tmp.numerator == 0)
     {
         bit = @"";
     }
-    return [NSString stringWithFormat:@"%@ %tu / %tu", bit, self.numerator, self.denominator];
+    return [NSString stringWithFormat:@"%@ %tu / %tu", bit, tmp.numerator, tmp.denominator];
 }
 
 - (NSString*)getMixedString
@@ -204,15 +224,15 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     [ret appendFormat:@""];
     NSUInteger q = [self quotient];
     MNRational* f = [self clone];
-    [ret appendFormat:@" %ti", [f quotient]];   //
-    if(q < 0)
-    {
-        t = [[f abs] rational];
-    }
-    else
-    {
-        t = [f rational];
-    }
+    [ret appendFormat:@" %ti", [f quotient]];
+    //    if(q < 0)
+    //    {
+    //        t = [[f abs] fraction];
+    //    }
+    //    else
+    //    {
+    t = [f fraction];
+    //    }
     MNRational* u = [[MNRational alloc] init];
     u.denominator = [f denominator];
     u.numerator = t;
@@ -220,7 +240,7 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     {
         if(f.numerator != 0)
         {
-            [ret appendFormat:@" and %@", u.simplifiedString];   //[u toSimplifiedString]];//and; changed f to u
+            [ret appendFormat:@" and %@", [u simplifiedString]];
         }
     }
     else
@@ -231,10 +251,9 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
         }
         else
         {
-            return f.simplifiedString;   //[f toSimplifiedString];
+            return [f simplifiedString];
         }
     }
-    //    return [NSString stringWithString:ret];
     return ret;
 }
 
@@ -243,24 +262,18 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     return self.numerator << 16 | self.denominator;
 }
 
-- (void)set:(NSUInteger)numerator with:(NSUInteger)denominator
-{
-    self.numerator = numerator;
-    self.denominator = denominator;
-}
-
-+ (MNRational*)simplify:(MNRational*)rational
++ (nonnull MNRational*)simplify:(nonnull MNRational*)rational
 {
     return [rational simplify];
 }
 
-- (MNRational*)simplify
+- (nonnull MNRational*)simplify
 {
     NSUInteger u = self.numerator * (self.positive ? 1 : -1);
     NSUInteger d = self.denominator;
-    NSUInteger gcd = [MNRational GCD:u with:d];
-    u /= gcd;
-    d /= gcd;
+    NSUInteger _gcd = gcd(u, d);   //[MNRational gcd:u right:d];
+    u /= _gcd;
+    d /= _gcd;
 
     //    if (d < 0) {
     //        d = -d;
@@ -268,125 +281,57 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     //    }
 
     BOOL posTmp = self.positive;
-    [self set:u with:d];
+    [self setNum:u andDen:d];   // set:u with:d];
     self.positive = posTmp;
     return self;
 }
 
 #pragma mark Math Operations
 
-+ (MNRational*)performOperation:(Operation)operation on:(MNRational*)param1 with:(MNRational*)param2
++ (nonnull MNRational*)expressionOperation:(Operation)operation
+                                      left:(nonnull MNRational*)param1
+                                     right:(nonnull MNRational*)param2
 {
-    if(!param1 || !param2)
-    {
-        //        MNLogError(@"MNrationalOperationError, can't perform operation with
-        //        null params");
-    }
-
     MNRational *p1, *p2;
-    p1 = [param1 simplify];
-    p2 = [param2 simplify];
+    p1 = [param1 copy];   // simplify];
+    p2 = [param2 copy];   // simplify];
+                          //    p1 = [[param1 copy]simplify];
+                          //    p2 = [[param2 copy]simplify];
 
-    NSUInteger lcm = [MNRational LCM:p1.denominator with:p2.denominator];
+    NSUInteger _lcm = lcm(p1.denominator, p2.denominator);
     NSUInteger denominator1 = p1.denominator != 0 ? p1.denominator : 1;
     NSUInteger denominator2 = p2.denominator != 0 ? p2.denominator : 1;
-    NSUInteger a = lcm / denominator1;
-    NSUInteger b = lcm / denominator2;
+    NSUInteger a = _lcm / denominator1;
+    NSUInteger b = _lcm / denominator2;
     NSUInteger u = operation(p1.numerator * a, p2.numerator * b);
 
-    //    NSUInteger lcm = [MNRational LCM:param1.denominator with:param2.denominator];
-    //    NSUInteger denominator1 = param1.denominator != 0 ? param1.denominator : 1;
-    //    NSUInteger denominator2 = param2.denominator != 0 ? param2.denominator : 1;
-    //    NSUInteger a = lcm / denominator1;
-    //    NSUInteger b = lcm / denominator2;
-    //    NSUInteger u = operation(param1.numerator * a, param2.numerator * b);
-    return [[MNRational alloc] initWithNumerator:u andDenominator:lcm];
+    return [[MNRational alloc] initWithNumerator:u andDenominator:_lcm];
 }
 
-/*
- Vex.Flow.rational.prototype.add = function(param1, param2) {
- var otherNumerator;
- var otherDenominator;
-
- otherNumerator = 0;
- otherDenominator = param2; //4
-
- var lcm = Vex.Flow.rational.LCM(self.denominator, otherDenominator); LCM(1, 4) => 1
- var a = lcm / self.denominator; 1 / 1 => 1
- var b = lcm / otherDenominator; 1 / 4 => 1/4
-
- var u = self.numerator * a + otherNumerator * b;  16384 * 1 +
- return self.set(u, lcm);
- }
- */
-/*
- .add = function(b, c) {
- var d;
- if (b instanceof Vex.Flow.rational) {
- d = b.numerator;
- b = b.denominator
- } else {
- d = b !== undefined ? b : 0;
- b = c !== undefined ? c : 1
- }
- c = Vex.Flow.rational.LCM(self.denominator, b);
- return self.set(self.numerator * (c / self.denominator) + d * (c / b), c)
- };
- */
-
-//+ (MNRational*)performOperation:(Operation)operation on:(MNRational*)param1 with:(MNRational*)param2
-//{
-//    if(!param1 || !param2)
-//    {
-//        //        MNLogError(@"MNrationalOperationError, can't perform operation with
-//        //        null params");
-//    }
-//    NSUInteger lcm = [MNRational LCM:param1.denominator with:param2.denominator];
-//    NSUInteger denominator1 = param1.denominator != 0 ? param1.denominator : 1;
-//    NSUInteger denominator2 = param2.denominator != 0 ? param2.denominator : 1;
-//    NSUInteger a = lcm / denominator1;
-//    NSUInteger b = lcm / denominator2;
-//    NSUInteger u = operation(param1.numerator * a, param2.numerator * b);
-//    [self set:u with:lcm];
-//    return self;
-//}
-
-+ (MNRational*)performOperation2:(Operation)operation on:(MNRational*)param1 with:(MNRational*)param2
++ (nonnull MNRational*)termOperation:(Operation)operation
+                                left:(nonnull MNRational*)param1
+                               right:(nonnull MNRational*)param2
 {
-    if(!param1 || !param2)
-    {
-        //        MNLogError(@"MNrationalOperationError, can't perform operation with
-        //        null params");
-    }
     MNRational* ret = [[MNRational alloc] initWithNumerator:1 andDenominator:1];
-    [ret set:(param1.numerator * param2.numerator)with:(param1.denominator * param2.denominator)];
-    [ret simplify];
+    //    [ret set:(param1.numerator * param2.numerator)with:(param1.denominator * param2.denominator)];
+    [ret setNumerator:(param1.numerator * param2.numerator)];
+    [ret setDenominator:(param1.denominator * param2.denominator)];
+    //    [ret simplify]; // NOTE: do not simplify
     return ret;
 }
 
-- (MNRational*)performOperation2:(Operation)operation on:(MNRational*)param1 with:(MNRational*)param2
++ (nonnull MNRational*)add:(nonnull MNRational*)param1 right:(nonnull MNRational*)param2
 {
-    if(!param1 || !param2)
-    {
-        //        MNLogError(@"MNrationalOperationError, can't perform operation with
-        //        null params");
-    }
-    [self set:(param1.numerator * param2.numerator)with:(param1.denominator * param2.denominator)];
-    return self;   //[self simplify];
+    return [MNRational expressionOperation:^(NSUInteger a, NSUInteger b) {
+      return a + b;
+    } left:param1 right:param2];
 }
 
-+ (MNRational*)add:(MNRational*)param1 with:(MNRational*)param2
+- (nonnull MNRational*)add:(nonnull MNRational*)other
 {
-    return [MNRational performOperation:^(NSUInteger a, NSUInteger b) {
+    MNRational* tmpRat = [[self class] expressionOperation:^(NSUInteger a, NSUInteger b) {
       return a + b;
-    } on:param1 with:param2];
-}
-
-- (MNRational*)add:(MNRational*)other
-{
-    MNRational* tmpRat = [[self class] performOperation:^(NSUInteger a, NSUInteger b) {
-      return a + b;
-    } on:self with:other];
+    } left:self right:other];
     self.multiplier = tmpRat.multiplier;
     self.numerator = tmpRat.numerator;
     self.denominator = tmpRat.denominator;
@@ -394,170 +339,135 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     return self;
 }
 
-- (MNRational*)addByValue:(NSUInteger)value
+- (nonnull MNRational*)addValue:(NSUInteger)value
 {
-    return [self performOperation2:^(NSUInteger a, NSUInteger b) {
+    return [[self class] termOperation:^(NSUInteger a, NSUInteger b) {
       return a + b;
-    } on:self with:[MNRational rationalWithNumerator:value]];
+    } left:self right:[MNRational rationalWithNumerator:value]];
 }
 
-- (MNRational*)addn:(NSUInteger)value
++ (nonnull MNRational*)subtract:(nonnull MNRational*)param1 right:(nonnull MNRational*)param2
 {
-    return [self addByValue:value];
-}
-
-+ (MNRational*)subtract:(MNRational*)param1 with:(MNRational*)param2
-{
-    return [MNRational performOperation:^(NSUInteger a, NSUInteger b) {
+    return [[self class] expressionOperation:^(NSUInteger a, NSUInteger b) {
       return a - b;
-    } on:param1 with:param2];
+    } left:param1 right:param2];
 }
 
-- (MNRational*)subtract:(MNRational*)other
+- (nonnull MNRational*)subtract:(nonnull MNRational*)other
 {
-    return [[self class] performOperation:^(NSUInteger a, NSUInteger b) {
+    return [[self class] expressionOperation:^(NSUInteger a, NSUInteger b) {
       return a - b;
-    } on:self with:other];
+    } left:self right:other];
 }
 
-- (MNRational*)subtractByValue:(NSUInteger)value
+- (nonnull MNRational*)subtractValue:(NSUInteger)value
 {
-    return [self performOperation2:^(NSUInteger a, NSUInteger b) {
+    return [[self class] termOperation:^(NSUInteger a, NSUInteger b) {
       return a - b;
-    } on:self with:[MNRational rationalWithNumerator:value]];
+    } left:self right:[MNRational rationalWithNumerator:value]];
 }
 
-- (MNRational*)subt:(NSUInteger)value
++ (nonnull MNRational*)multiply:(nonnull MNRational*)param1 right:(nonnull MNRational*)param2
 {
-    return [self subtractByValue:value];
+    MNRational* a = [param1 copy];
+    MNRational* b = [param2 copy];
+    return [a multiply:b];
 }
 
-+ (MNRational*)multiply:(MNRational*)param1 with:(MNRational*)param2
+- (nonnull MNRational*)multiply:(nonnull MNRational*)other
 {
-    return [MNRational performOperation2:^(NSUInteger a, NSUInteger b) {
+    MNRational* result = [[self class] termOperation:^(NSUInteger a, NSUInteger b) {
       return a * b;
-    } on:param1 with:param2];
-}
+    } left:self right:other];
 
-- (MNRational*)multiply:(MNRational*)other
-{
-    //    return [self performOperation2:^(NSUInteger a, NSUInteger b) {
-    //      return a * b;
-    //    } on:self with:other];
+    [self setWith:result];
 
-//    MNRational* tmpRat = [[self class] performOperation:^(NSUInteger a, NSUInteger b) {
-//      return a * b;
-//    } on:self with:other];
-//    self.multiplier = tmpRat.multiplier;
-//    self.numerator = tmpRat.numerator;
-//    self.denominator = tmpRat.denominator;
-//    self.positive = tmpRat.positive;
-    
-    self.numerator *=  other.numerator;
-    self.denominator *= other.denominator;
-    self.positive *= other.positive;
     return self;
 }
 
-- (MNRational*)multiplyByValue:(NSUInteger)value
+- (nonnull MNRational*)multiplyByValue:(NSUInteger)value
 {
-    return [self performOperation2:^(NSUInteger a, NSUInteger b) {
+    return [[self class] termOperation:^(NSUInteger a, NSUInteger b) {
       return a * b;
-    } on:self with:[MNRational rationalWithNumerator:value]];
+    } left:self right:[MNRational rationalWithNumerator:value]];
 }
 
-- (MNRational*)mult:(NSUInteger)value
++ (nonnull MNRational*)divide:(nonnull MNRational*)param1 right:(nonnull MNRational*)param2
 {
-    return [self multiplyByValue:value];
-}
-
-+ (MNRational*)divide:(MNRational*)param1 with:(MNRational*)param2
-{
-    return [MNRational performOperation2:^(NSUInteger a, NSUInteger b) {
+    return [[self class] termOperation:^(NSUInteger a, NSUInteger b) {
       return a / b;
-    } on:param1 with:param2];
+    } left:param1 right:param2];
 }
 
-- (MNRational*)divide:(MNRational*)other
+- (nonnull MNRational*)divide:(nonnull MNRational*)other
 {
-    return [self performOperation2:^(NSUInteger a, NSUInteger b) {
+    return [[self class] termOperation:^(NSUInteger a, NSUInteger b) {
       return a / b;
-    } on:self with:other];
+    } left:self right:other];
 }
 
-- (MNRational*)divideByValue:(NSUInteger)value
+- (nonnull MNRational*)divideByValue:(NSUInteger)value
 {
-    return [[self class] performOperation:^(NSUInteger a, NSUInteger b) {
-      if(b == 0)
-      {
-          MNLogError(@"DivisionByZeroException");
-          abort();
-      }
+    if(value == 0)
+    {
+        //  MNLogError(@"DivisionByZeroException");
+        NSLog(@"DivisionByZeroException");
+        return [MNRational rationalWithNumerator:NSUIntegerMax andDenominator:1];
+        //  abort();
+    }
+
+    return [[self class] termOperation:^(NSUInteger a, NSUInteger b) {
       return a / b;
-    } on:self with:[MNRational rationalWithNumerator:value]];
+    } left:self right:[MNRational rationalWithNumerator:value]];
 }
 
-- (MNRational*)divn:(NSUInteger)value
+- (nonnull MNRational*)divn:(NSUInteger)value
 {
     return [self divideByValue:value];
 }
 
-- (BOOL)equalsRational:(MNRational*)other
+- (BOOL)equals:(nonnull MNRational*)other
 {
-    /*
-     // Temporary cached objects
-     Vex.Flow.rational.__compareA = new Vex.Flow.rational();
-     Vex.Flow.rational.__compareB = new Vex.Flow.rational();
-     Vex.Flow.rational.__tmp = new Vex.Flow.rational();
+    MNRational *a, *b;
+    a = [[self copy] simplify];
+    b = [[other copy] simplify];
 
-     // Simplifies both sides and checks if they are equal
-     Vex.Flow.rational.prototype.equals = function(compare) {
-     var a = Vex.Flow.rational.__compareA.copy(compare).simplify();
-     var b = Vex.Flow.rational.__compareB.copy(this).simplify();
-
-     return (a.numerator === b.numerator) && (a.denominator === b.denominator);
-     }
-     */
-    [self simplify];
-    [other simplify];
-    return self.numerator == other.numerator && self.denominator == other.denominator &&
-           self.positive == other.positive;
+    return a.numerator == b.numerator && a.denominator == b.denominator && a.positive == b.positive;
 }
 
-- (BOOL)equalsFloat:(float)other
++ (BOOL)equals:(nonnull MNRational*)r1 right:(nonnull MNRational*)r2
 {
-    return [self floatValue] == other;
+    return [r1 equals:r2];
 }
 
-+ (BOOL)equalsRational:(MNRational*)rat1 with:(MNRational*)rat2
+- (BOOL)notEquals:(nonnull MNRational*)other
 {
-    //    [param1 simplify];
-    //    [param2 simplify];
-    //    return param1.numerator == param2.numerator &&
-    //    param1.denominator == param2.denominator;
-    return [rat1 equalsRational:rat2];
+    return ![self equals:other];
 }
 
-- (BOOL)notEqualsRational:(MNRational*)other
+- (BOOL)equalsFloat:(float)f
 {
-    return ![self equalsRational:other];
+    return [self equalsFloat:f withAccuracy:0.0f];
 }
 
-- (MNRational*)copy:(MNRational*)sender
+- (BOOL)equalsFloat:(float)f withAccuracy:(float)accuracy
 {
-    /*
-     // Copies value of another rational into itself
-     Vex.Flow.rational.prototype.copy = function(copy) {
-     return self.set(copy.numerator, copy.denominator);
-     }
-     */
-    self.numerator = sender.numerator;
-    self.denominator = sender.denominator;
-    self.positive = sender.positive;
-    return self;
+    return equalsWithAccuracy([self floatValue], f, accuracy);
 }
 
-- (BOOL)lt:(MNRational*)other
+static BOOL equalsWithAccuracy(float a, float b, float accuracy)
+{
+    if(fabsf(a - b) <= accuracy)
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+
+- (BOOL)lessThan:(nonnull MNRational*)other
 {
     if([self floatValue] < [other floatValue])
     {
@@ -569,7 +479,7 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     }
 }
 
-- (BOOL)gt:(MNRational*)other
+- (BOOL)greaterThan:(nonnull MNRational*)other
 {
     if([self floatValue] > [other floatValue])
     {
@@ -581,7 +491,7 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     }
 }
 
-- (BOOL)lte:(MNRational*)other
+- (BOOL)lessThanOrEquael:(nonnull MNRational*)other
 {
     if([self floatValue] <= [other floatValue])
     {
@@ -593,7 +503,7 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     }
 }
 
-- (BOOL)gte:(MNRational*)other
+- (BOOL)greaterThanOrEqual:(nonnull MNRational*)other
 {
     if(self.floatValue >= other.floatValue)
     {
@@ -605,7 +515,7 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     }
 }
 
-- (BOOL)zero
+- (BOOL)isZero
 {
     return self.numerator == 0;
 }
@@ -615,18 +525,18 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     return (NSUInteger)floorf(self.numerator / self.denominator);
 }
 
-- (NSUInteger)rational
+- (NSUInteger)fraction
 {
     return self.numerator % self.denominator;
 }
 
-- (MNRational*)abs
+- (nonnull MNRational*)abs
 {
     self.positive = YES;
     return self;
 }
 
-+ (MNRational*)parse:(NSString*)numString
++ (nonnull MNRational*)parse:(NSString*)numString
 {
     MNRational* ret;
     @try
@@ -643,8 +553,7 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     }
     @catch(NSException* exception)
     {
-        NSLog(@"%@", [NSString stringWithFormat:@"ParserationalError, can't parse a rational from given string: %@.",
-                                                numString]);
+        NSLog(@"ParserationalError, can't parse a rational from given string: %@.", numString);
         ret = nil;
         ;
     }
@@ -654,7 +563,7 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     }
 }
 
-+ (NSUInteger)GCD:(NSUInteger)param1 with:(NSUInteger)param2
+NSUInteger gcd(NSUInteger param1, NSUInteger param2)
 {
     NSUInteger a, b, t;
     a = param1;
@@ -668,20 +577,20 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     return a;
 }
 
-+ (NSUInteger)LCM:(NSUInteger)param1 with:(NSUInteger)param2
+NSUInteger lcm(NSUInteger param1, NSUInteger param2)
 {
     NSUInteger a, b, ret;
     a = param1;
     b = param2;
-    ret = ((a * b) / [MNRational GCD:a with:b]);
+    ret = (a * b) / gcd(a, b);
     return ret;
 }
 
-+ (NSUInteger)LCMM:(NSUInteger)params, ...
++ (NSUInteger)lcmm:(NSUInteger)params, ...
 {
     va_list args;
-    int ret = 0;
-    int n;
+    NSUInteger ret = 0;
+    NSUInteger n;
     NSMutableArray* arr = [[NSMutableArray alloc] init];
     va_start(args, params);
     while(1)
@@ -695,7 +604,8 @@ typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
     for(NSUInteger i = 1; i < [arr count] - 1; ++i)
     {
         curr = [[arr objectAtIndex:i] integerValue];
-        prev = [MNRational LCM:prev with:curr];
+        // prev = [MNRational LCM:prev right:curr];
+        prev = lcm(prev, curr);
     }
     ret = curr;
     return ret;

@@ -100,7 +100,7 @@
 - (void)setupNote:(NSDictionary*)optionsDict
 {
     // set up  MNTickableDelegate vars
-    self.intrinsicTicks = 0;
+    _intrinsicTicks = 0;
     self.tickMultiplier = Rational(1, 1);
     self.ticks = Rational(0, 1);
     self.width = 0;
@@ -414,7 +414,7 @@
 - (void)applyTickMultiplier:(NSUInteger)numerator denominator:(NSUInteger)denominator
 {
     [self.tickMultiplier multiply:Rational(numerator, denominator)];
-    self.ticks = [[self.tickMultiplier clone] mult:self.intrinsicTicks];
+    self.ticks = [[self.tickMultiplier clone] multiplyByValue:self.intrinsicTicks];
 }
 
 /*!
@@ -424,7 +424,7 @@
 - (void)setTickDuration:(MNRational*)duration
 {
     NSUInteger ticks = duration.numerator * (kRESOLUTION / duration.denominator);
-    self.ticks = [[self.tickMultiplier clone] mult:ticks];
+    self.ticks = [[self.tickMultiplier clone] multiplyByValue:ticks];
     _intrinsicTicks = [_ticks floatValue];
 }
 

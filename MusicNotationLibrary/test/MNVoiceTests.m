@@ -87,15 +87,15 @@
 
     MNVoice* voice = [MNVoice voiceWithTimeSignature:MNTime4_4];
     assertThatFloat(voice.totalTicks.floatValue,
-                    describedAs(@"4/4 Voice has 4 beats", equalToFloat([BEAT mult:4].floatValue), nil));
+                    describedAs(@"4/4 Voice has 4 beats", equalToFloat([BEAT multiplyByValue:4].floatValue), nil));
     assertThatFloat(voice.ticksUsed.floatValue,
-                    describedAs(@"No beats in voice", equalToFloat([BEAT mult:0].floatValue), nil));
+                    describedAs(@"No beats in voice", equalToFloat([BEAT multiplyByValue:0].floatValue), nil));
     [voice addTickables:tickables];
     assertThatFloat(voice.ticksUsed.floatValue,
-                    describedAs(@"Three beats in voice", equalToFloat([BEAT mult:3].floatValue), nil));
+                    describedAs(@"Three beats in voice", equalToFloat([BEAT multiplyByValue:3].floatValue), nil));
     [voice addTickable:[createTickable() setTicks:BEAT]];
     assertThatFloat(voice.ticksUsed.floatValue,
-                    describedAs(@"Four beats in voice", equalToFloat([BEAT mult:4].floatValue), nil));
+                    describedAs(@"Four beats in voice", equalToFloat([BEAT multiplyByValue:4].floatValue), nil));
     assertThatBool(voice.isComplete, describedAs(@"Voice is complete", isTrue(), nil));
 
     /*

@@ -326,7 +326,7 @@
 {
     if(self.mode == MNModeStrict)
     {
-        return [self.ticksUsed equalsRational:self.totalTicks];
+        return [self.ticksUsed equals:self.totalTicks];
     }
     else
     {
@@ -350,14 +350,14 @@
         // update the total ticks for this line
         [self.ticksUsed add:tickable.ticks];
 
-        if((self.mode == MNModeStrict || self.mode == MNModeFull) && [self.ticksUsed gt:self.totalTicks])
+        if((self.mode == MNModeStrict || self.mode == MNModeFull) && [self.ticksUsed greaterThan:self.totalTicks])
         {
             [self.totalTicks subtract:ticks];
             MNLogError(@"BadArgument, Too many ticks.");
         }
 
         // track the smallest tickable for formatting
-        if([ticks lt:self.smallestTickCount])
+        if([ticks lessThan:self.smallestTickCount])
         {
             self.smallestTickCount = [ticks clone];
         }

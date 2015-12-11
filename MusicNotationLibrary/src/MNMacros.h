@@ -42,14 +42,14 @@
 #define MNUIntSizeMake(x, y) [MNUIntSize sizeWithWidth:x andHeight:y]
 #define MNUIntSizeZero() [MNUIntSize sizeWithWidth:0 andHeight:0]
 
+//// http://stackoverflow.com/a/21371401/629014
+//#define GET_MACRO(_0, _1, _2, NAME, ...) NAME
+//#define FOO(...) GET_MACRO(_0, ##__VA_ARGS__, FOO2, FOO1, FOO0)(__VA_ARGS__)
+
 #define RationalParse(s) [MNRational parse:s]
-
 #define Rational(p, q) [MNRational rationalWithNumerator:p andDenominator:q]
-
 #define Rational1(p) Rational(p, 1)
-
 #define RationalZero() Rational(0, 1)
-
 #define RationalOne() Rational(1, 1)
 
 #define kDrawUsingMNKit YES

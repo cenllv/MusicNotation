@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 InfusionApps. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "NSMutableDictionary+MNAdditions.h"
 //#import "DPObject.h"
 

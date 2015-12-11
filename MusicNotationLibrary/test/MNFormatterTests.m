@@ -37,21 +37,21 @@
     [super start];
     //    [self runTest:@"TickContext Building" func:@selector(buildTickContexts)];
     float w = 700;
-    [self runTest:@"StaffNote Formatting" func:@selector(formatStaffNotes:) frame:CGRectMake(10, 10, 400, 200)];
-    [self runTest:@"StaffNote Justification" func:@selector(justifyStaffNotes:) frame:CGRectMake(10, 10, w, 500)];
-    [self runTest:@"Notes with Tab" func:@selector(notesWithTab:) frame:CGRectMake(10, 10, w, 450)];
+//    [self runTest:@"StaffNote Formatting" func:@selector(formatStaffNotes:) frame:CGRectMake(10, 10, 400, 200)];
+//    [self runTest:@"StaffNote Justification" func:@selector(justifyStaffNotes:) frame:CGRectMake(10, 10, w, 500)];
+//    [self runTest:@"Notes with Tab" func:@selector(notesWithTab:) frame:CGRectMake(10, 10, w, 450)];
     [self runTest:@"Format Multiple staffs - No Justification"
              func:@selector(multistaffs:params:)
             frame:CGRectMake(10, 10, w, 350)
            params:@{
                @"justify" : @(0)
            }];
-    [self runTest:@"Format Multiple staffs - Justified"
-             func:@selector(multistaffs:params:)
-            frame:CGRectMake(10, 10, w, 350)
-           params:@{
-               @"justify" : @(200)
-           }];
+//    [self runTest:@"Format Multiple staffs - Justified"
+//             func:@selector(multistaffs:params:)
+//            frame:CGRectMake(10, 10, w, 350)
+//           params:@{
+//               @"justify" : @(200)
+//           }];
 }
 
 - (void)tearDown
@@ -71,12 +71,12 @@
 
     NSArray* tickables1 = @[
         [[((MockTickable*)createTickable())setCustomTicks:BEAT] setCustomWidth:10],
-        [[((MockTickable*)createTickable())setCustomTicks:[BEAT mult:2]] setCustomWidth:20],
+        [[((MockTickable*)createTickable())setCustomTicks:[BEAT multiplyByValue:2]] setCustomWidth:20],
         [[((MockTickable*)createTickable())setCustomTicks:BEAT] setCustomWidth:30],
     ];
 
     NSArray* tickables2 = @[
-        [[((MockTickable*)createTickable())setCustomTicks:[BEAT mult:2]] setCustomWidth:10],
+        [[((MockTickable*)createTickable())setCustomTicks:[BEAT multiplyByValue:2]] setCustomWidth:10],
         [[((MockTickable*)createTickable())setCustomTicks:BEAT] setCustomWidth:20],
         [[((MockTickable*)createTickable())setCustomTicks:BEAT] setCustomWidth:30],
     ];

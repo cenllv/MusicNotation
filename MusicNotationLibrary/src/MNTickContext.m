@@ -252,7 +252,7 @@
             //            abort();
         }
 
-        if([ticks gt:self.maxTicks])
+        if([ticks greaterThan:self.maxTicks])
         {
             self.maxTicks = [ticks clone];
         }
@@ -261,7 +261,7 @@
         {
             self.minTicks = [ticks clone];
         }
-        else if([ticks lt:self.minTicks])
+        else if([ticks lessThan:self.minTicks])
         {
             self.minTicks = [ticks clone];
         }

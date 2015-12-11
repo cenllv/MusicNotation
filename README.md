@@ -67,8 +67,8 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 
 | Status    | Count   |
 |-----------|---------|
-| pass      | 36      |
-| FAIL      | 14      |
+| pass      | 37      |
+| FAIL      | 13      |
 | incomplete| 3       |
 
 
@@ -78,7 +78,7 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | Animation             | pass      |  | animation of basic notations |
 | Annotation            | pass      |  | annotations for tabs, harmonics, fingerpicking |
 | Articulation          | pass      |  | articulations like staccato, accent, marcato, fermata, etc |
-| AutoBeamFormatting    | FAIL      |  | auto beams for even/odd, breaks, etc |
+| AutoBeamFormatting    | pass      |  | auto beams for even/odd, breaks, etc |
 | Beam                  | pass      |  | beams for simple, multi, mixed, insane, tabnotes, complex, etc |
 | Bend                  | pass      |  | bends for double, reverse, phrase, with release |
 | BoundingBox           | pass      |  | bounding box object init and merge |
@@ -107,7 +107,7 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | StaffHairpin          | pass      | minor note modifier clobber | simple, horizontal, vertical, height |
 | StaffLine             | FAIL      | minor bug with mismatched lines and colors | simple, staffline arrow |
 | StaffModifier         | FAIL      | may be complete | staff draw, vertical bar |
-| StaffNote             | FAIL      | slash notes clobber, tab notes incomplete, modifiers clobber | tick, stem, auto, staffline, width, boundingbox, etc |
+| StaffNote             | FAIL      | center aligned note w/ articulation minor error | tick, stem, auto, staffline, width, boundingbox, etc |
 | StaffTie              | pass      |  | simple, chord, stem up, no end, no start |
 | StringNumber          | pass      |  | string number in notation, fred hand finger, etc |
 | Strokes               | pass      | had to hack tabnote setStaff method | brush/arpeggiate/etc, multi, notation/tab, etc |
