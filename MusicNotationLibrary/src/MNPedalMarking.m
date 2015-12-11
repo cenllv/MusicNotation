@@ -356,10 +356,6 @@ static NSDictionary* _pedalMarkingDictionary;
  */
 - (void)drawText:(CGContextRef)ctx
 {
-    if(ctx == NULL)
-    {
-        MNLogError(@"NoContext, Can't draw PedalMarking without a context.");
-    }
     __block BOOL is_pedal_depressed = NO;
     MNPedalMarking* pedal = self;
 

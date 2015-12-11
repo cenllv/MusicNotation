@@ -134,7 +134,6 @@ static NSDictionary* _textNoteGlyphs;
                 @"pointSize" : @(40. / 40.),
                 @"x_shift" : @0,
                 @"y_shift" : @0
-                // width: 10 // optional
             },
         };
     }

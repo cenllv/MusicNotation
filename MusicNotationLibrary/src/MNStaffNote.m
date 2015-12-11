@@ -369,7 +369,7 @@
             @"note_type" : self.noteNHMRSString,
             @"duration" : self.durationString,
             @"noteDurationType" : @(self.noteDurationType),
-            //@"noteNHMRSType" : @(self.noteNHMRSType),
+            @"noteNHMRSType" : @(self.noteNHMRSType),
             @"displaced" : @(displaced),
             @"stemDirection" : @(stem_direction),
             @"customGlyphCode" : note_props.glyphCode,
@@ -377,7 +377,6 @@
             @"line" : @(note_props.line),
             @"noteName" : self.durationString,
         }];
-        noteHead.noteNHMRSType = self.noteNHMRSType;   // FIXME: brittle
         [[noteHead renderOptions] setGlyphFontScale:[self->_renderOptions glyphFontScale]];
         self.note_heads[i] = noteHead;   //[self.note_heads insertObject:noteHead atIndex:i];
     }

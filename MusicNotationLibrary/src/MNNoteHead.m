@@ -64,6 +64,11 @@
         // regular notes, rests, or other custom codes.
         self.noteDurationType = [MNEnum typeNoteDurationTypeForString:self.durationString];
         //        self.noteNHMRSType = [MNEnum typeNoteNHMRSTypeForString:self.noteTypeString];
+        if(optionsDict[@"noteNHMRSType"])
+        {
+            self.noteNHMRSType = [optionsDict[@"noteNHMRSType"] unsignedIntegerValue];
+        }
+
         self.glyphStruct = [MNTable durationToGlyphStruct:self.noteDurationType withNHMRSType:self.noteNHMRSType];
         if(!self.glyphStruct)
         {
@@ -349,7 +354,7 @@
         CGContextStrokePath(ctx);
     }
 
-    if([[MNTable durationToFraction:duration] equalsFloat:0.5])
+    if([[MNTable durationToFraction:duration] lessThanOrEquael:Rational(1,1)])
     {
         NSArray* breve_lines = @[ @(-3), @(-1), @(width + 1), @(width + 3) ];
         for(NSUInteger i = 0; i < breve_lines.count; ++i)

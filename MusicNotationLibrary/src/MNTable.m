@@ -2096,8 +2096,9 @@ static NSDictionary* _durationCodesDictionary;
     noteNHMRSType = (noteNHMRSType == MNNoteNote) ? MNNoteNote : noteNHMRSType;
     NSDictionary* mergedDict = [NSMutableDictionary merge:code[@"common"] with:code[@"type"][@(noteNHMRSType)]];
     MNTableGlyphStruct* ret = [[MNTableGlyphStruct alloc] initWithDictionary:mergedDict];
-    ret.headWidth = [[MNGlyphList sharedInstance] sizeForName:ret.codeHead].width;   // CHANGE: insertion
+//    ret.headWidth = [[MNGlyphList sharedInstance] sizeForName:ret.codeHead].width;   // CHANGE: insertion
     ret.noteNHMRSType = noteNHMRSType;
+    ret.codeHead = mergedDict[@"code_head"];
     return ret;
 }
 

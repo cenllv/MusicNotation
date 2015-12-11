@@ -80,7 +80,7 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"annotations";
+    return NSStringFromClass([self class]);   // return @"annotations";
 }
 - (NSString*)CATEGORY
 {
@@ -222,7 +222,7 @@
     //    paragraphStyle.alignment = kCTTextAlignmentLeft;
     NSAttributedString* title =
         [[NSAttributedString alloc] initWithString:self.text attributes:@{NSFontAttributeName : self.font.font}];
-    
+
     CGSize size = [MNText measureText:title withFont:self.font];
 
     float text_width = size.width;
@@ -292,8 +292,9 @@
         y = MIN([staff getYForTopTextWithLine:self.text_line], [self.note.ys[0] floatValue] - 10);
         if(has_stem)
         {
-            y = MIN(y, (stem_ext.topY - 4*5) - (spacing * self.text_line));
+            y = MIN(y, (stem_ext.topY - 4 * 5) - (spacing * self.text_line));
         }
+        y -= size.height;
     }
     else /* CENTER_STEM */
     {
@@ -305,28 +306,14 @@
         }
     }
 
-    //    [title drawInRect:CGRectMake(self.x, y - 3, 50, 100)];
-    //    [title drawAtPoint:CGPointMake(x, y - text_height)];
-//    [MNText showBoundingBox:YES];
-//    [MNText drawText:ctx
-//             atPoint:MNPointMake(x, YES)
-//          withBounds:CGRectMake(self.x, y - 3, 50, 100)
-//            withText:title.string];
-    
-    [MNText drawText:ctx withFont:self.font atPoint:MNPointMake(x, y - 3) withText:title];
-    
-    
-//    [MNText showBoundingBox:NO];
-
     self.width = size.width;
     self.point = MNPointMake(x, y);
 
-    //    // uncomment to display boundind box
-    //    MNBoundingBox* bb = [MNBoundingBox boundingBoxAtX:x atY:y withWidth:title.size.width
-    //    andHeight:title.size.height];
-    //    [bb draw:ctx];
-
     MNLogInfo(@"Rendering annotation: %@ %f %f", self.text, x, y);
+
+    [MNText drawText:ctx withFont:self.font atPoint:MNPointMake(x, y) withText:title];
+    //    [MNText showBoundingBox:NO];
+
     CGContextRestoreGState(ctx);
 }
 

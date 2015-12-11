@@ -67,8 +67,8 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 
 | Status    | Count   |
 |-----------|---------|
-| pass      | 38      |
-| FAIL      | 12      |
+| pass      | 41      |
+| FAIL      | 9       |
 | incomplete| 3       |
 
 
@@ -87,24 +87,24 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | Curve                 | pass      |  | simple, rounded, thick/thin, top curves |
 | Dot                   | pass      |  | basic and multi-voice |
 | Font                  | pass      |  |   |
-| Formatter             | FAIL      | minor issues, buildContexts test crashses | staff notes, tab notes, multi-staffs |
+| Formatter             | FAIL      | minor issues justification error | staff notes, tab notes, multi-staffs |
 | GraceNote             | pass      |  | grace note basic, with slurs, multi-voices |
 | KeyClef               | pass      |  | major/minor clef |
 | KeyManager            | incomplete| not rendering | valid/select notes |
 | KeySignature          | pass      |  | key parser, major/minor, cancelled key |
 | Layer Note            | pass      |  | click/push calayer note for pop animation & aae audio |
-| Modifier              | pass      | not rendering | modifier width, management |
+| Modifier              | pass      |  | modifier width, management |
 | Music                 | incomplete|  | valid notes, keys, notes, intervals, canonical notes, scales |
 | NoteHead              | pass      |  | basic head & bounding box render |
-| NotationsGrid         | FAIL      | title label not drawing in correct position  | grid of most basic notations |
+| NotationsGrid         | pass      |  | grid of most basic notations |
 | Ornament              | pass      |  | vertically shifted, delayed turns, stacked, w/ accidentals |
 | PedalMarking          | pass      |  | pedal for simple, release, depress, text, etc |
 | Percussion            | pass      |  | percussion clef, notes, basic, snare |
 | Rests                 | pass      |  | rests dotted, auto align beamed, tuplets, single & multi voice |
-| Rhythm                | FAIL      |  | rhythm draw slash, beamed, rests, 16th, 32nd, etc  |
+| Rhythm                | pass      |  | rhythm draw slash, beamed, rests, 16th, 32nd, etc  |
 | Staff                 | pass      |  | draw basic, vertical bar, mutli bar, barlines, repeats, tempo, single lines, etc |
 | StaffConnector        | pass      |  | connectors single, double , bold, thin brace, bracket, combined, etc |
-| StaffHairpin          | pass      | minor note modifier clobber | simple, horizontal, vertical, height |
+| StaffHairpin          | pass      |  | simple, horizontal, vertical, height |
 | StaffLine             | FAIL      | minor bug with mismatched lines and colors | simple, staffline arrow |
 | StaffModifier         | FAIL      | may be complete | staff draw, vertical bar |
 | StaffNote             | FAIL      | center aligned note w/ articulation minor error | tick, stem, auto, staffline, width, boundingbox, etc |
@@ -117,10 +117,10 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | TabStaff              | pass      |  | tabstaff draw, bar |
 | TabTie                | pass      |  | tabtie, simple, hammerons, pulloffs, tapping, continuous |
 | TextBracket           | pass      |  | textbracket simple, styles |
-| TextNote              | FAIL      | not rendering all notations | textnote formatting, super/sub scripts formatting glyphs, crescendo, etc |
+| TextNote              | pass      |  | textnote formatting, super/sub scripts formatting glyphs, crescendo, etc |
 | Text                  | pass      |  | drawing basic attributed string text, ns/ui labels |
-| ThreeVoice            | FAIL      | auto adjust missing some rests and not repositioning correctly  | three voiecs, auto adjust rest, etc |
-| TickContext           | pass      | no output | current and tracking tick |
+| ThreeVoice            | FAIL      | beams upside-down on first test, auto adjust missing some rests and not repositioning correctly  | three voiecs, auto adjust rest, etc |
+| TickContext           | pass      |  | current and tracking tick |
 | TimeSignature         | pass      | passes but needs refactoring | parser basic, big time sigs |
 | Tuning                | FAIL      |  | tuning standard, return note for fret |
 | Tuplet                | FAIL      | tuplet ratios render errors, one tuplet ratio incorrect | simple, beamed, ratioed, bottom, etc |

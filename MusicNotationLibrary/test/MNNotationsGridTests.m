@@ -86,173 +86,178 @@ NSString* const kRemoveTag = @"kRemoveTag";
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-    };
+      BOOL shouldDrawBoundingBox = drawBoundingBox.boolValue;
 
-    BOOL shouldDrawBoundingBox = drawBoundingBox.boolValue;
+      NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+      paragraphStyle.alignment = kCTTextAlignmentLeft;
 
-    NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.alignment = kCTTextAlignmentLeft;
+      // http://iosfonts.com/
+      // Programming iOS 6, 3rd Edition, Attributed Strings
+      // http://goo.gl/CSmaQe
 
-    // http://iosfonts.com/
-    // Programming iOS 6, 3rd Edition, Attributed Strings
-    // http://goo.gl/CSmaQe
-
-    MNFont* font1 = [MNFont fontWithName:@"TimesNewRomanPS-BoldMT" size:25];
-    NSString* titleMessage = @"Vex Glyphs";
-    NSAttributedString* title = [[NSAttributedString alloc]
-        initWithString:titleMessage
-            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
+      MNFont* font1 = [MNFont fontWithName:@"TimesNewRomanPS-BoldMT" size:25];
+      NSString* titleMessage = @"Vex Glyphs";
+      NSAttributedString* title = [[NSAttributedString alloc]
+          initWithString:titleMessage
+              attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font1.font}];
 
 #if TARGET_OS_IPHONE
-    UILabel* textLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMidX(parent.bounds), 5, 0, 0)];
-    textLabel.text = title.string;
+      UILabel* textLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMidX(parent.bounds), 5, 0, 0)];
+      textLabel.text = title.string;
 #elif TARGET_OS_MAC
-    NSTextField* textLabel = [[NSTextField alloc] initWithFrame:CGRectMake(CGRectGetMidX(parent.bounds), 5, 0, 0)];
-    textLabel.editable = NO;
-    textLabel.selectable = NO;
-    textLabel.bordered = NO;
-    textLabel.drawsBackground = YES;
-    textLabel.attributedStringValue = title;
-#endif
-    [textLabel sizeToFit];
-    CGRect frame = textLabel.frame;
-    frame.origin.x -= CGRectGetWidth(frame) / 2;
-    textLabel.frame = frame;
-    //    [self.labels oct_add:textLabel];
-    [textLabel setTag:REMOVE_TAG];
-    dispatch_async(dispatch_get_main_queue(), ^{
-      [parent addSubview:textLabel];
-    });
-
-    MNFont* font2 = [MNFont fontWithName:@"TimesNewRomanPS-ItalicMT" size:15];
-    NSString* subTitleMessage = @"Cross indicates render coordinates.";
-    NSAttributedString* subtitle = [[NSAttributedString alloc]
-        initWithString:subTitleMessage
-            attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font2.font}];
-#if TARGET_OS_IPHONE
-    textLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMidX(parent.bounds), 35, 0, 0)];
-    textLabel.text = subtitle.string;
-#elif TARGET_OS_MAC
-    textLabel = [[NSTextField alloc] initWithFrame:CGRectMake(CGRectGetMidX(parent.bounds), 35, 0, 0)];
-    textLabel.editable = NO;
-    textLabel.selectable = YES;
-    textLabel.bordered = NO;
-    textLabel.drawsBackground = NO;
-    //          textLabel.stringValue = description.string; // ?: @"";
-    textLabel.attributedStringValue = subtitle;
-#endif
-    [textLabel sizeToFit];
-    frame = textLabel.frame;
-    frame.origin.x -= CGRectGetWidth(frame) / 2;
-    textLabel.frame = frame;
-
-    //    [self.labels oct_add:textLabel];
-    [textLabel setTag:REMOVE_TAG];
-    dispatch_async(dispatch_get_main_queue(), ^{
-      [parent addSubview:textLabel];
-    });
-
-    NSArray* glyphStructArray = [MNGlyphList sharedInstance].availableGlyphStructsArray;
-    NSMutableArray* subLayers = [NSMutableArray arrayWithCapacity:glyphStructArray.count];
-    NSMutableArray* textLabels = [NSMutableArray arrayWithCapacity:glyphStructArray.count];
-    CFAbsoluteTime then = CFAbsoluteTimeGetCurrent();
-
-    __block NSUInteger x, y, symbolsAcross;
-#if TARGET_OS_IPHONE
-    y = 40;
-    x = 0;
-    symbolsAcross = 7;
-    [glyphStructArray enumerateObjectsUsingBlock:^(MNGlyphStruct* g, NSUInteger idx, BOOL* stop) {
-      if(idx % symbolsAcross == 0)
+      CGFloat x0 = CGRectGetMidX(parent.bounds);
+      if(x0 == 0)
       {
-          x = 0;
-          y += 50;
+          x0 = CGRectGetMidX(bounds);
       }
-      x += 50;
+      NSTextField* textLabel = [[NSTextField alloc] initWithFrame:CGRectMake(x0, 5, 0, 0)];
+      textLabel.editable = NO;
+      textLabel.selectable = NO;
+      textLabel.bordered = NO;
+      textLabel.drawsBackground = YES;
+      textLabel.attributedStringValue = title;
+#endif
+      [textLabel sizeToFit];
+      CGRect frame = textLabel.frame;
+      frame.origin.x -= CGRectGetWidth(frame) / 2;
+      textLabel.frame = frame;
+      //    [self.labels oct_add:textLabel];
+      [textLabel setTag:REMOVE_TAG];
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [parent addSubview:textLabel];
+      });
+
+      MNFont* font2 = [MNFont fontWithName:@"TimesNewRomanPS-ItalicMT" size:15];
+      NSString* subTitleMessage = @"Cross indicates render coordinates.";
+      NSAttributedString* subtitle = [[NSAttributedString alloc]
+          initWithString:subTitleMessage
+              attributes:@{NSParagraphStyleAttributeName : paragraphStyle, NSFontAttributeName : font2.font}];
+#if TARGET_OS_IPHONE
+      textLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMidX(parent.bounds), 35, 0, 0)];
+      textLabel.text = subtitle.string;
 #elif TARGET_OS_MAC
-    y = 70;
-    x = 0;
-    symbolsAcross = 10;
-    [glyphStructArray enumerateObjectsUsingBlock:^(MNGlyphStruct* g, NSUInteger idx, BOOL* stop) {
-      if(idx % symbolsAcross == 0)
-      {
-          x = 30;
-          y += 90;
-      }
-      x += 90;
+      textLabel = [[NSTextField alloc] initWithFrame:CGRectMake(CGRectGetMidX(parent.bounds), 35, 0, 0)];
+      textLabel.editable = NO;
+      textLabel.selectable = YES;
+      textLabel.bordered = NO;
+      textLabel.drawsBackground = NO;
+      //          textLabel.stringValue = description.string; // ?: @"";
+      textLabel.attributedStringValue = subtitle;
+#endif
+      [textLabel sizeToFit];
+      frame = textLabel.frame;
+      frame.origin.x -= CGRectGetWidth(frame) / 2;
+      textLabel.frame = frame;
+
+      //    [self.labels oct_add:textLabel];
+      [textLabel setTag:REMOVE_TAG];
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [parent addSubview:textLabel];
+      });
+
+      NSArray* glyphStructArray = [MNGlyphList sharedInstance].availableGlyphStructsArray;
+      NSMutableArray* subLayers = [NSMutableArray arrayWithCapacity:glyphStructArray.count];
+      NSMutableArray* textLabels = [NSMutableArray arrayWithCapacity:glyphStructArray.count];
+      CFAbsoluteTime then = CFAbsoluteTimeGetCurrent();
+
+      __block NSUInteger x, y, symbolsAcross;
+#if TARGET_OS_IPHONE
+      y = 40;
+      x = 0;
+      symbolsAcross = 7;
+      [glyphStructArray enumerateObjectsUsingBlock:^(MNGlyphStruct* g, NSUInteger idx, BOOL* stop) {
+        if(idx % symbolsAcross == 0)
+        {
+            x = 0;
+            y += 50;
+        }
+        x += 50;
+#elif TARGET_OS_MAC
+      y = 70;
+      x = 0;
+      symbolsAcross = 10;
+      [glyphStructArray enumerateObjectsUsingBlock:^(MNGlyphStruct* g, NSUInteger idx, BOOL* stop) {
+        if(idx % symbolsAcross == 0)
+        {
+            x = 30;
+            y += 90;
+        }
+        x += 90;
 #endif
 
 // label the glyph
 #if TARGET_OS_IPHONE
-      UILabel* textLabel = [[UILabel alloc] initWithFrame:CGRectMake(x - 45, y - 10, 0, 0)];
+        UILabel* textLabel = [[UILabel alloc] initWithFrame:CGRectMake(x - 45, y - 10, 0, 0)];
 #elif TARGET_OS_MAC
-      NSTextField* textLabel = [[NSTextField alloc] initWithFrame:CGRectMake(x - 45, y - 10, 0, 0)];
-      textLabel.editable = NO;
-      textLabel.selectable = YES;
-      textLabel.attributedStringValue = [[NSAttributedString alloc] initWithString:g.name];
+        NSTextField* textLabel = [[NSTextField alloc] initWithFrame:CGRectMake(x - 45, y - 10, 0, 0)];
+        textLabel.editable = NO;
+        textLabel.selectable = YES;
+        textLabel.attributedStringValue = [[NSAttributedString alloc] initWithString:g.name];
 #endif
-      [textLabel sizeToFit];
-      [textLabels addObject:textLabel];
-      [textLabel setTag:REMOVE_TAG];
+        [textLabel sizeToFit];
+        [textLabels addObject:textLabel];
+        [textLabel setTag:REMOVE_TAG];
 
 #if TARGET_OS_IPHONE
 #define GLYPH_SCALE 1.0
 #elif TARGET_OS_MAC
 #define GLYPH_SCALE 1.4
 #endif
-      MNCarrierLayer* carrierLayer =
-          [MNGlyph createCarrierLayerWithCode:g.name withScale:GLYPH_SCALE hasCross:YES];   //[CarrierLayer layer];
-      carrierLayer.position = CGPointMake(x, y);
+        MNCarrierLayer* carrierLayer =
+            [MNGlyph createCarrierLayerWithCode:g.name withScale:GLYPH_SCALE hasCross:YES];   //[CarrierLayer layer];
+        carrierLayer.position = CGPointMake(x, y);
 
-      // alter the color of the glyph
-      [((CAShapeLayer*)carrierLayer.sublayers[1])setFillColor:[MNColor crayolaRubyColor].CGColor];
-      if(shouldDrawBoundingBox)
-      {
-          [((CAShapeLayer*)carrierLayer.sublayers[1])setBackgroundColor:[MNColor crayolaOrangeColor].CGColor];
-      }
+        // alter the color of the glyph
+        [((CAShapeLayer*)carrierLayer.sublayers[1])setFillColor:[MNColor crayolaRubyColor].CGColor];
+        if(shouldDrawBoundingBox)
+        {
+            [((CAShapeLayer*)carrierLayer.sublayers[1])setBackgroundColor:[MNColor crayolaOrangeColor].CGColor];
+        }
 
-      [carrierLayer setName:kRemoveTag];
-      [subLayers addObject:carrierLayer];
-    }];
+        [carrierLayer setName:kRemoveTag];
+        [subLayers addObject:carrierLayer];
+      }];
 
-    // calculate how long it took
-    CFAbsoluteTime now = CFAbsoluteTimeGetCurrent();
-    CFTimeInterval elapsed = now - then;
-    NSString* elapsedString = [NSString stringWithFormat:@"elapsed: %.03f (ms)", elapsed * 1000];
+      // calculate how long it took
+      CFAbsoluteTime now = CFAbsoluteTimeGetCurrent();
+      CFTimeInterval elapsed = now - then;
+      NSString* elapsedString = [NSString stringWithFormat:@"elapsed: %.03f (ms)", elapsed * 1000];
 #if TARGET_OS_IPHONE
-    textLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(parent.bounds) - 160, 15, 0, 0)];
-    textLabel.text = elapsedString;
+      textLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(parent.bounds) - 160, 15, 0, 0)];
+      textLabel.text = elapsedString;
 #elif TARGET_OS_MAC
-    textLabel = [[NSTextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(parent.bounds) - 160, 15, 0, 0)];
-    textLabel.editable = NO;
-    textLabel.selectable = NO;
-    textLabel.bordered = YES;
-    textLabel.drawsBackground = YES;
-    textLabel.stringValue = elapsedString;
+      textLabel = [[NSTextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(parent.bounds) - 160, 15, 0, 0)];
+      textLabel.editable = NO;
+      textLabel.selectable = NO;
+      textLabel.bordered = YES;
+      textLabel.drawsBackground = YES;
+      textLabel.stringValue = elapsedString;
 #endif
-    [textLabel sizeToFit];
-    frame = textLabel.frame;
-    textLabel.frame = frame;
+      [textLabel sizeToFit];
+      frame = textLabel.frame;
+      textLabel.frame = frame;
 
-    //    for(id textLabel in textLabels)
-    //    {
-    //        [self.labels oct_add:textLabel];
-    //    }
-    //    [self.labels oct_add:textLabel];
+      //    for(id textLabel in textLabels)
+      //    {
+      //        [self.labels oct_add:textLabel];
+      //    }
+      //    [self.labels oct_add:textLabel];
 
-    // add all the stuff to the parent view
-    dispatch_async(dispatch_get_main_queue(), ^{
-      for(CALayer* layer in subLayers)
-      {
-          [parent.layer addSublayer:layer];
-      }
-      for(id textLabel in textLabels)
-      {
-          [parent addSubview:textLabel];
-      }
-      [parent addSubview:textLabel];
-    });
-    //#endif
+      // add all the stuff to the parent view
+      dispatch_async(dispatch_get_main_queue(), ^{
+        for(CALayer* layer in subLayers)
+        {
+            [parent.layer addSublayer:layer];
+        }
+        for(id textLabel in textLabels)
+        {
+            [parent addSubview:textLabel];
+        }
+        [parent addSubview:textLabel];
+      });
+      //#endif
+
+    };
 
     return ret;
 }

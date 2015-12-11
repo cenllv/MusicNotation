@@ -49,7 +49,7 @@ static NSUInteger _testFontSize;
             frame:CGRectMake(10, 10, 700, 150)];
     [self runTest:@"Rhythm Draw - 32nd note rhythm with scratches"
              func:@selector(drawThirtySecondWithScratches:)
-            frame:CGRectMake(10, 10, 700, 150)];
+            frame:CGRectMake(10, 10, 700, 200)];
 }
 
 - (void)tearDown
@@ -514,68 +514,67 @@ static NSUInteger _testFontSize;
 {
     MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
 
+    // bar 1
+    MNStaff* staffBar1 = [MNStaff staffWithRect:CGRectMake(10, 80, 300, 0)];
+    [staffBar1 setBegBarType:MNBarLineDouble];
+    [staffBar1 setEndBarType:MNBarLineSingle];
+    [staffBar1 addClefWithName:@"treble"];
+    [staffBar1 addTimeSignatureWithName:@"4/4"];
+    [staffBar1 addKeySignature:@"F"];
+
+    // bar 1
+    NSArray* notesBar1_part1 = @[
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"b/4" ],
+            @"duration" : @"32s",
+            @"stem_direction" : @(1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"b/4" ],
+            @"duration" : @"32s",
+            @"stem_direction" : @(1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"b/4" ],
+            @"duration" : @"32m",
+            @"stem_direction" : @(1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"b/4" ],
+            @"duration" : @"32s",
+            @"stem_direction" : @(1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"b/4" ],
+            @"duration" : @"32m",
+            @"stem_direction" : @(1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"b/4" ],
+            @"duration" : @"32s",
+            @"stem_direction" : @(1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"b/4" ],
+            @"duration" : @"32r",
+            @"stem_direction" : @(1)
+        }],
+        [[MNStaffNote alloc] initWithDictionary:@{
+            @"keys" : @[ @"b/4" ],
+            @"duration" : @"32s",
+            @"stem_direction" : @(1)
+        }]
+
+    ];
+
+    [notesBar1_part1[0]
+        addModifier:[[MNAnnotation annotationWithText:@"C7"] setFontName:@"Verdana" withSize:_testFontSize + 3]
+            atIndex:0];
+    // create the beams for 8th notes in 2nd measure
+    MNBeam* beam1 = [[MNBeam alloc] initWithNotes:notesBar1_part1];
+
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-
-      // bar 1
-      MNStaff* staffBar1 = [MNStaff staffWithRect:CGRectMake(10, 30, 300, 0)];
-      [staffBar1 setBegBarType:MNBarLineDouble];
-      [staffBar1 setEndBarType:MNBarLineSingle];
-      [staffBar1 addClefWithName:@"treble"];
-      [staffBar1 addTimeSignatureWithName:@"4/4"];
-      [staffBar1 addKeySignature:@"F"];
       [staffBar1 draw:ctx];
-
-      // bar 1
-      NSArray* notesBar1_part1 = @[
-          [[MNStaffNote alloc] initWithDictionary:@{
-              @"keys" : @[ @"b/4" ],
-              @"duration" : @"32s",
-              @"stem_direction" : @(1)
-          }],
-          [[MNStaffNote alloc] initWithDictionary:@{
-              @"keys" : @[ @"b/4" ],
-              @"duration" : @"32s",
-              @"stem_direction" : @(1)
-          }],
-          [[MNStaffNote alloc] initWithDictionary:@{
-              @"keys" : @[ @"b/4" ],
-              @"duration" : @"32m",
-              @"stem_direction" : @(1)
-          }],
-          [[MNStaffNote alloc] initWithDictionary:@{
-              @"keys" : @[ @"b/4" ],
-              @"duration" : @"32s",
-              @"stem_direction" : @(1)
-          }],
-          [[MNStaffNote alloc] initWithDictionary:@{
-              @"keys" : @[ @"b/4" ],
-              @"duration" : @"32m",
-              @"stem_direction" : @(1)
-          }],
-          [[MNStaffNote alloc] initWithDictionary:@{
-              @"keys" : @[ @"b/4" ],
-              @"duration" : @"32s",
-              @"stem_direction" : @(1)
-          }],
-          [[MNStaffNote alloc] initWithDictionary:@{
-              @"keys" : @[ @"b/4" ],
-              @"duration" : @"32r",
-              @"stem_direction" : @(1)
-          }],
-          [[MNStaffNote alloc] initWithDictionary:@{
-              @"keys" : @[ @"b/4" ],
-              @"duration" : @"32s",
-              @"stem_direction" : @(1)
-          }]
-
-      ];
-
-      [notesBar1_part1[0]
-          addModifier:[[MNAnnotation annotationWithText:@"C7"] setFontName:@"Verdana" withSize:_testFontSize + 3]
-              atIndex:0];
-
-      // create the beams for 8th notes in 2nd measure
-      MNBeam* beam1 = [[MNBeam alloc] initWithNotes:notesBar1_part1];
 
       // Helper function to justify and draw a 4/4 voice
       [MNFormatter formatAndDrawWithContext:ctx dirtyRect:CGRectZero toStaff:staffBar1 withNotes:notesBar1_part1];
