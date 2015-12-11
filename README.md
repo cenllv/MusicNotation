@@ -67,8 +67,8 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 
 | Status    | Count   |
 |-----------|---------|
-| pass      | 41      |
-| FAIL      | 9       |
+| pass      | 45      |
+| FAIL      | 5       |
 | incomplete| 3       |
 
 
@@ -105,9 +105,9 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | Staff                 | pass      |  | draw basic, vertical bar, mutli bar, barlines, repeats, tempo, single lines, etc |
 | StaffConnector        | pass      |  | connectors single, double , bold, thin brace, bracket, combined, etc |
 | StaffHairpin          | pass      |  | simple, horizontal, vertical, height |
-| StaffLine             | FAIL      | minor bug with mismatched lines and colors | simple, staffline arrow |
-| StaffModifier         | FAIL      | may be complete | staff draw, vertical bar |
-| StaffNote             | FAIL      | center aligned note w/ articulation minor error | tick, stem, auto, staffline, width, boundingbox, etc |
+| StaffLine             | pass      |  | simple, staffline arrow |
+| StaffModifier         | pass      |  | staff draw, vertical bar |
+| StaffNote             | pass      | center aligned note w/ articulation minor error | tick, stem, auto, staffline, width, boundingbox, etc |
 | StaffTie              | pass      |  | simple, chord, stem up, no end, no start |
 | StringNumber          | pass      |  | string number in notation, fred hand finger, etc |
 | Strokes               | pass      | had to hack tabnote setStaff method | brush/arpeggiate/etc, multi, notation/tab, etc |
@@ -119,7 +119,7 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | TextBracket           | pass      |  | textbracket simple, styles |
 | TextNote              | pass      |  | textnote formatting, super/sub scripts formatting glyphs, crescendo, etc |
 | Text                  | pass      |  | drawing basic attributed string text, ns/ui labels |
-| ThreeVoice            | FAIL      | beams upside-down on first test, auto adjust missing some rests and not repositioning correctly  | three voiecs, auto adjust rest, etc |
+| ThreeVoice            | pass      | beams upside-down on first test, auto adjust missing some rests and not repositioning correctly  | three voiecs, auto adjust rest, etc |
 | TickContext           | pass      |  | current and tracking tick |
 | TimeSignature         | pass      | passes but needs refactoring | parser basic, big time sigs |
 | Tuning                | FAIL      |  | tuning standard, return note for fret |

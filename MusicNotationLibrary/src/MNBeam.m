@@ -762,11 +762,11 @@
                             direction:(MNStemDirectionType)stem_direction
                                groups:(NSArray*)groups
 {
-    return [self generateBeams:voice.tickables
-                        config:[[MNBeamConfig alloc] initWithDictionary:@{
-                            @"groups" : (groups ? groups : @[]),
-                            @"stem_direction" : @(stem_direction)
-                        }]];
+    return [[self class] generateBeams:voice.tickables
+                                config:[[MNBeamConfig alloc] initWithDictionary:@{
+                                    @"groups" : (groups ? groups : @[]),
+                                    @"stem_direction" : @(stem_direction)
+                                }]];
 }
 
 + (NSArray<MNBeam*>*)applyAndGetBeams:(MNVoice*)voice groups:(NSArray<MNRational*>*)groups

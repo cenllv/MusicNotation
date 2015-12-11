@@ -34,6 +34,7 @@
 #import "MNStaffLineRenderOptions.h"
 #import "MNStaffLineNotesStruct.h"
 #import "MNNoteMetrics.h"
+#import "MNText.h"
 
 @implementation MNStaffLine
 
@@ -221,7 +222,7 @@
 /*!
  *  Apply the text styling to the context
  */
-- (void)applyFontStyle
+- (void)applyFontStyle:(MNFont*)font
 {
     /*
 
@@ -262,7 +263,7 @@
 
       // Get initial coordinates for the start/end of the line
       start_position = [first_note getModifierstartXYforPosition:MNPositionRight andIndex:first_index];
-      end_position = [last_note getModifierstartXYforPosition:MNPositionLeft andIndex:first_index];
+      end_position = [last_note getModifierstartXYforPosition:MNPositionLeft andIndex:last_index];
       BOOL upwards_slope = start_position.y > end_position.y;
 
       // Adjust `x` coordinates for modifiers
@@ -289,15 +290,15 @@
       end_position.y += upwards_slope ? 2 : 0;
 
       // drawArrowLine(ctx, start_position, end_position, self.render_options);
-      [self drawArrowLine:ctx
-                fromPoint:start_position
-                  toPoint:end_position
-           drawStartArrow:self.renderOptions.draw_start_arrow
-             drawEndArrow:self.renderOptions.draw_end_arrow
-          arrowheadLength:self.renderOptions.arrowhead_length
-           arrowheadAngle:self.renderOptions.arrowhead_angle
-                fillColor:self.renderOptions.fillColor
-              strokeColor:self.renderOptions.strokeColor];
+      [[self class] drawArrowLine:ctx
+                        fromPoint:start_position
+                          toPoint:end_position
+                   drawStartArrow:self.renderOptions.draw_start_arrow
+                     drawEndArrow:self.renderOptions.draw_end_arrow
+                  arrowheadLength:self.renderOptions.arrowhead_length
+                   arrowheadAngle:self.renderOptions.arrowhead_angle
+                        fillColor:self.renderOptions.fillColor
+                      strokeColor:self.renderOptions.strokeColor];
     }];
 
     // Determine the x coordinate where to start the text
@@ -342,22 +343,31 @@
 
     // Draw the text
     CGContextSaveGState(ctx);
-    [self applyFontStyle];
 
     MNFont* descriptionFont = [MNFont fontWithName:@"ArialMT" size:12];
+    [self applyFontStyle:descriptionFont];
 
-    NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    paragraphStyle.alignment = kCTTextAlignmentCenter;
-    NSAttributedString* description;
+    //    NSMutableParagraphStyle* paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    //    paragraphStyle.alignment = kCTTextAlignmentCenter;
+    //    NSAttributedString* description;
+    //
+    //    description = [[NSAttributedString alloc] initWithString:self.text
+    //                                                  attributes:@{
+    //                                                      NSParagraphStyleAttributeName : paragraphStyle,
+    //                                                      NSFontAttributeName : descriptionFont.font,
+    //                                                      NSForegroundColorAttributeName : MNColor.blueColor
+    //                                                  }];
+    //
+    //    [description drawAtPoint:CGPointMake(x, y)];
 
-    description = [[NSAttributedString alloc] initWithString:self.text
-                                                  attributes:@{
-                                                      NSParagraphStyleAttributeName : paragraphStyle,
-                                                      NSFontAttributeName : descriptionFont.font,
-                                                      NSForegroundColorAttributeName : MNColor.blueColor
-                                                  }];
+    if(!_font)
+    {
+        _font = descriptionFont;
+    }
 
-    [description drawAtPoint:CGPointMake(x, y)];
+    CGSize textSize = [MNText measureText:self.text withFont:self.font];
+
+    [MNText drawText:ctx withFont:self.font atPoint:MNPointMake(x, y - textSize.height / 1.2) withText:self.text];
 
     CGContextRestoreGState(ctx);
 }
@@ -372,7 +382,7 @@
  *                  Patrick Horgan's article, "Drawing lines and arcs with
  *                  arrow heads on  HTML5 Canvas"
  */
-- (void)drawArrowHead:(CGContextRef)ctx points:(NSArray*)points
++ (void)drawArrowHead:(CGContextRef)ctx points:(NSArray*)points
 {
     if(points.count != 3)
     {
@@ -398,7 +408,7 @@
 }
 
 // Helper function to draw a line with arrow heads
-- (void)drawArrowLine:(CGContextRef)ctx
++ (void)drawArrowLine:(CGContextRef)ctx
             fromPoint:(MNPoint*)point1
               toPoint:(MNPoint*)point2
        drawStartArrow:(BOOL)draw_start_arrow
@@ -510,8 +520,9 @@
         bottom_x = x2 + cosf(angle2) * h;
         bottom_y = y2 + sinf(angle2) * h;
 
-        [self drawArrowHead:ctx
-                     points:@[ MNPointMake(top_x, top_y), MNPointMake(x2, y2), MNPointMake(bottom_x, bottom_y) ]];
+        [[self class]
+            drawArrowHead:ctx
+                   points:@[ MNPointMake(top_x, top_y), MNPointMake(x2, y2), MNPointMake(bottom_x, bottom_y) ]];
     }
 
     if(draw_start_arrow || both_arrows)
@@ -524,8 +535,9 @@
         bottom_x = x1 + cosf(angle2) * h;
         bottom_y = y1 + sinf(angle2) * h;
 
-        [self drawArrowHead:ctx
-                     points:@[ MNPointMake(top_x, top_y), MNPointMake(x1, y1), MNPointMake(bottom_x, bottom_y) ]];
+        [[self class]
+            drawArrowHead:ctx
+                   points:@[ MNPointMake(top_x, top_y), MNPointMake(x1, y1), MNPointMake(bottom_x, bottom_y) ]];
     }
 }
 @end

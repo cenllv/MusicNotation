@@ -99,8 +99,10 @@
 
       [[[MNFormatter formatter] joinVoices:@[ voice ]] formatToStaff:@[ voice ] staff:staff];
       [staffLine setText:@"gliss."];
+      [staffLine setFont:[MNFont fontWithName:@"Times-BoldItalic" size:16]];
 
       [staffLine2 setText:@"gliss."];
+      [staffLine2 setFont:[MNFont fontWithName:@"Times-BoldItalic" size:16]];
 
       // TODO: fix this
       //        [staffLine setFont:@{
@@ -242,7 +244,8 @@
       render_options = [staffLine3 renderOptions];
       render_options.draw_end_arrow = YES;
       render_options.draw_start_arrow = YES;
-      render_options.color = @"red";
+      //      render_options.color = @"red";
+      render_options.fillColor = (MNColor*)MNColor.redColor;
       [staffLine3 setText:@"Top"];
       render_options.text_position_vertical = 1;
 

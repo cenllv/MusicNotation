@@ -71,6 +71,10 @@
             [self.groups addObjectsFromArray:object];
             continue;
         }
+        else
+        {
+            [self setValue:object forKey:key_keyPath];
+        }
     }
 }
 

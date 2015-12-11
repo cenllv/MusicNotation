@@ -33,9 +33,9 @@
 - (void)start
 {
     [super start];
-    //    [self runTest:@"Three Voices - #1" func:@selector(threevoices:) frame:CGRectMake(10, 10, 600, 200)];
-    //    [self runTest:@"Three Voices - #2 Complex" func:@selector(threevoices2:) frame:CGRectMake(10, 10, 600, 200)];
-    //    [self runTest:@"Three Voices - #3" func:@selector(threevoices3:) frame:CGRectMake(10, 10, 600, 200)];
+    [self runTest:@"Three Voices - #1" func:@selector(threevoices:) frame:CGRectMake(10, 10, 600, 200)];
+    [self runTest:@"Three Voices - #2 Complex" func:@selector(threevoices2:) frame:CGRectMake(10, 10, 600, 200)];
+    [self runTest:@"Three Voices - #3" func:@selector(threevoices3:) frame:CGRectMake(10, 10, 600, 200)];
     [self runTest:@"Auto Adjust Rest Positions - Two Voices"
              func:@selector(autoresttwovoices:)
             frame:CGRectMake(10, 10, 900, 250)];
@@ -491,18 +491,7 @@
     {
         return [[MNStaffNote alloc] initWithDictionary:note_struct];
     };
-    //    MNAccidental* (^newAcc)(NSString*) = ^MNAccidental*(NSString* type)
-    //    {
-    //        return  [MNAccidental accidentalWithType:type];
-    //    };
-    //    MNFretHandFinger* (^newFinger)(NSString*, MNPositionType) = ^MNFretHandFinger*(NSString* num, MNPositionType
-    //    pos)
-    //    {
-    //        MNFretHandFinger* ret = [[MNFretHandFinger alloc] init];
-    //        ret.position = pos;
-    //        ret.finger = num;
-    //        return ret;
-    //    };
+
     NSDictionary* (^getNotes)(NSString*) = ^NSDictionary*(NSString* text)
     {
         NSArray* notes = @[
