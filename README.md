@@ -67,8 +67,8 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 
 | Status    | Count   |
 |-----------|---------|
-| pass      | 37      |
-| FAIL      | 13      |
+| pass      | 38      |
+| FAIL      | 12      |
 | incomplete| 3       |
 
 
@@ -98,7 +98,7 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | NoteHead              | pass      |  | basic head & bounding box render |
 | NotationsGrid         | FAIL      | title label not drawing in correct position  | grid of most basic notations |
 | Ornament              | pass      |  | vertically shifted, delayed turns, stacked, w/ accidentals |
-| PedalMarking          | FAIL      |  | pedal for simple, release, depress, text, etc |
+| PedalMarking          | pass      |  | pedal for simple, release, depress, text, etc |
 | Percussion            | pass      |  | percussion clef, notes, basic, snare |
 | Rests                 | pass      |  | rests dotted, auto align beamed, tuplets, single & multi voice |
 | Rhythm                | FAIL      |  | rhythm draw slash, beamed, rests, 16th, 32nd, etc  |

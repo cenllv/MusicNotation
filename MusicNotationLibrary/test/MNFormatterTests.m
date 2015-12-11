@@ -37,21 +37,21 @@
     [super start];
     //    [self runTest:@"TickContext Building" func:@selector(buildTickContexts)];
     float w = 700;
-//    [self runTest:@"StaffNote Formatting" func:@selector(formatStaffNotes:) frame:CGRectMake(10, 10, 400, 200)];
-//    [self runTest:@"StaffNote Justification" func:@selector(justifyStaffNotes:) frame:CGRectMake(10, 10, w, 500)];
-//    [self runTest:@"Notes with Tab" func:@selector(notesWithTab:) frame:CGRectMake(10, 10, w, 450)];
+    //    [self runTest:@"StaffNote Formatting" func:@selector(formatStaffNotes:) frame:CGRectMake(10, 10, 400, 200)];
+    //    [self runTest:@"StaffNote Justification" func:@selector(justifyStaffNotes:) frame:CGRectMake(10, 10, w, 500)];
+    //    [self runTest:@"Notes with Tab" func:@selector(notesWithTab:) frame:CGRectMake(10, 10, w, 450)];
     [self runTest:@"Format Multiple staffs - No Justification"
              func:@selector(multistaffs:params:)
             frame:CGRectMake(10, 10, w, 350)
            params:@{
                @"justify" : @(0)
            }];
-//    [self runTest:@"Format Multiple staffs - Justified"
-//             func:@selector(multistaffs:params:)
-//            frame:CGRectMake(10, 10, w, 350)
-//           params:@{
-//               @"justify" : @(200)
-//           }];
+    //    [self runTest:@"Format Multiple staffs - Justified"
+    //             func:@selector(multistaffs:params:)
+    //            frame:CGRectMake(10, 10, w, 350)
+    //           params:@{
+    //               @"justify" : @(200)
+    //           }];
 }
 
 - (void)tearDown
@@ -548,10 +548,9 @@
         [[[((MNStaffNote*)newNote(
             @{ @"keys" : @[ @"c/5", @"e/5" ],
                @"stem_direction" : @(-1),
-               @"duration" : @"q" }))setStaff:staff12]
-            addAccidental:newAcc(@"b")
-                  atIndex:0] addAccidental:newAcc(@"b")
-                                   atIndex:0],
+               @"duration" : @"q" }))setStaff:staff12] addAccidental:newAcc(@"b")
+                                                             atIndex:0] addAccidental:newAcc(@"b")
+                                                                              atIndex:0],
 
         [((MNStaffNote*)newNote(
             @{ @"keys" : @[ @"d/5" ],

@@ -67,6 +67,7 @@
 + (MNFont*)fontWithName:(NSString*)fontName size:(CGFloat)fontSize bold:(BOOL)bold italic:(BOOL)italic;
 
 + (NSArray<NSString*>*)fontNames;
++ (BOOL)fontAvailable:(NSString*)fontName;
 + (NSArray<NSString*>*)availableFonts;
 
 @end

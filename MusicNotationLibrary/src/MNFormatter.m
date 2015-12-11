@@ -687,7 +687,7 @@ typedef void (^AddFunction)(MNTickable*, id);
         // space requirements.
         [context preFormat];
 
-        id<TickableMetrics> selfMetrics = context.metrics;   // .getMetrics();
+        id<TickableMetrics> selfMetrics = context.metrics;
         float width = context.width;
         self.minTotalWidth += width;
         float min_x = 0;

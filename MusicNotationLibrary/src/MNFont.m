@@ -34,6 +34,27 @@
 
 static NSArray<NSString*>* _availableFonts;
 
++ (BOOL)fontAvailable:(NSString*)fontName
+{
+    NSArray* availableFonts = [[self class] availableFonts];
+    NSUInteger foundIndex = NSNotFound;
+    for(NSUInteger i = 0; i < [availableFonts count]; ++i)
+    {
+        if([availableFonts[i] isEqualToString:fontName])
+        {
+            foundIndex = i;
+            break;
+        }
+    }
+    if(foundIndex == NSNotFound)
+    {
+        MNLogError(@"NotAvailableFontError font: %@ is not available.", fontName);
+        MNLogError(@"%@", availableFonts);
+        return NO;
+    }
+    return YES;
+}
+
 + (NSArray<NSString*>*)availableFonts
 {
     if(!_availableFonts)
@@ -87,7 +108,7 @@ static NSArray<NSString*>* _availableFonts;
 + (MNFont*)systemFontWithSize:(CGFloat)fontSize
 {
     MNFont* ret = [(MNFont*)[MNFont alloc] init];
-    //    ret.family = fontName;
+//    ret.family = fontName;
 #if TARGET_OS_IPHONE
     ret.font = [UIFont systemFontOfSize:fontSize];
 #elif TARGET_OS_MAC

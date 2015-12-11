@@ -39,6 +39,7 @@
     self = [super initWithDictionary:optionsDict];
     if(self)
     {
+        [self setupPedalMarking];
     }
     return self;
 }
@@ -49,7 +50,6 @@
     if(self)
     {
         self.notes = notes;
-        [self setupPedalMarking];
     }
     return self;
 }
@@ -63,10 +63,13 @@
     _custom_depress_text = nil;
     _custom_release_text = nil;
 
-    self.fontFamily = @"TimesNewRomanPSMT";
-    self.fontSize = 12;
+    self.fontSize = 16;
     self.fontBold = YES;
     self.fontItalic = YES;
+    //    self.fontFamily = @"TimesNewRomanPSMT";
+    //    self.fontFamily = @"TimesNewRomanPS-BoldItalicMT";
+    //    self.fontFamily = @"Trebuchet-BoldItalic";
+    self.fontFamily = @"Times-BoldItalic";
 
     self.bracket_height = 10;
     self.text_margin_right = 6;
@@ -183,9 +186,43 @@ static NSDictionary* _pedalMarkingDictionary;
 {
     if(!_font)
     {
-        self.font = [MNFont fontWithName:self.fontFamily size:self.fontSize];
+        if(_fontFamily)
+        {
+            _font = [MNFont fontWithName:_fontFamily size:_fontSize];
+        }
+        else
+        {
+            _font = [MNFont systemFontWithSize:_fontSize];
+        }
     }
     return _font;
+}
+
+- (void)setFontFamily:(NSString*)fontFamily
+{
+    if([MNFont fontAvailable:fontFamily])
+    {
+        _fontFamily = fontFamily;
+        _font = nil;
+    }
+    //    NSString* searchString = @"Times-BoldItalic";
+    //    NSUInteger foundIndex = [[MNFont availableFonts] indexOfObjectIdenticalTo:searchString];//_fontFamily];
+    //    NSArray<NSString*>* availableFonts = [MNFont availableFonts];
+    //    NSUInteger foundIndex = NSNotFound;
+    //    for(NSUInteger i = 0; i < availableFonts.count; ++i)
+    //    {
+    //        if([availableFonts[i] isEqualToString:_fontFamily])
+    //        {
+    //            foundIndex = i;
+    //            break;
+    //        }
+    //    }
+    //    if(foundIndex == NSNotFound)
+    //    {
+    //        MNLogError(@"NotAvailableFontError font: %@ is not available.", _fontFamily);
+    //        MNLogError(@"%@", [MNFont availableFonts]);
+    //        _fontFamily = nil;
+    //    }
 }
 
 #pragma mark - methods
@@ -196,8 +233,6 @@ static NSDictionary* _pedalMarkingDictionary;
  */
 - (void)draw:(CGContextRef)ctx
 {
-    //        [super draw:ctx];
-
     CGContextSaveGState(ctx);
     //    CGContextSetStrokeColorWithColor(ctx, self.color.CGColor);
     //    CGContextSetFillColorWithColor(ctx, self.color.CGColor);
@@ -231,11 +266,6 @@ static NSDictionary* _pedalMarkingDictionary;
  */
 - (void)drawBracketed:(CGContextRef)ctx
 {
-    //    if(ctx == NULL)
-    //    {
-    //         [MNLog logError:@"NoContext, Can't draw PedalMarking without a context."];
-    //    }
-
     __block BOOL is_pedal_depressed = NO;
     __block float prev_x, prev_y;
     __block MNPedalMarking* pedal = self;
@@ -276,7 +306,10 @@ static NSDictionary* _pedalMarkingDictionary;
                   // If we have custom text, use instead of the default "Ped" glyph
                   CGSize text_size = [MNText measureText:pedal.custom_depress_text withFont:self.font];
                   float text_width = text_size.width;
-                  [MNText drawText:ctx atPoint:MNPointMake(x - (text_width / 2), y) withText:pedal.custom_depress_text];
+                  [MNText drawText:ctx
+                          withFont:self.font
+                           atPoint:MNPointMake(x - (text_width / 2), y - text_size.height/1.2)
+                          withText:pedal.custom_depress_text];
                   x_shift = (text_width / 2) + pedal.text_margin_right;
               }
               else
@@ -293,7 +326,7 @@ static NSDictionary* _pedalMarkingDictionary;
               CGContextMoveToPoint(ctx, x, y - pedal.bracket_height);
               CGContextAddLineToPoint(ctx, x + x_shift, y);
               CGContextStrokePath(ctx);
-              //              CGContextClosePath(ctx);
+              // CGContextClosePath(ctx);
           }
       }
       else
@@ -338,7 +371,7 @@ static NSDictionary* _pedalMarkingDictionary;
       is_pedal_depressed = !is_pedal_depressed;
       MNStaff* stave = note.staff;
       float x = note.absoluteX;
-      float y = [stave getYForBottomTextWithLine:pedal.line + 3];   // getYForBottomText(pedal.line + 3);
+      float y = [stave getYForBottomTextWithLine:pedal.line + 3];
 
       float text_width = 0;
       if(is_pedal_depressed)
@@ -348,7 +381,10 @@ static NSDictionary* _pedalMarkingDictionary;
               CGSize text_size = [MNText measureText:pedal.custom_depress_text withFont:self.font];
               //              text_width = [MNText measureText:pedal.custom_depress_text].width;
               text_width = text_size.width;
-              [MNText drawText:ctx atPoint:MNPointMake(x - (text_width / 2), y) withText:pedal.custom_depress_text];
+              [MNText drawText:ctx
+                      withFont:self.font
+                       atPoint:MNPointMake(x - (text_width / 2), y - text_size.height)
+                      withText:pedal.custom_depress_text];
           }
           else
           {
@@ -362,7 +398,10 @@ static NSDictionary* _pedalMarkingDictionary;
               CGSize text_size = [MNText measureText:pedal.custom_release_text withFont:self.font];
               //              text_width = [MNText measureText:pedal.custom_release_text].width;
               text_width = text_size.width;
-              [MNText drawText:ctx atPoint:MNPointMake(x - (text_width / 2), y) withText:pedal.custom_release_text];
+              [MNText drawText:ctx
+                      withFont:self.font
+                       atPoint:MNPointMake(x - (text_width / 2), y - text_size.height)
+                      withText:pedal.custom_release_text];
           }
           else
           {
