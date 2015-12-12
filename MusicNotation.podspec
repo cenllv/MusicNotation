@@ -121,7 +121,7 @@ Pod::Spec.new do |s|
     
     # s.resource  = "icon.png"
     # s.resources = "Resources/*.png"
-    s.resources = "MusicNotationLibrary/res/fonts/**/*.js"
+    s.resources = "resources", "resourses/**/*"
     
     # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
     
@@ -134,7 +134,8 @@ Pod::Spec.new do |s|
     
     # s.framework  = "SomeFramework"
     # s.frameworks = "SomeFramework", "AnotherFramework"
-    
+    s.frameworks =  "QuartzCore", "Foundation" #'AudioToolbox', 'Accelerate'
+
     # s.library   = "iconv"
     # s.libraries = "iconv", "xml2"
     
@@ -151,15 +152,14 @@ Pod::Spec.new do |s|
     # s.dependency "JSONKit", "~> 1.4"
     #    s.dependency 'TheAmazingAudioEngine', '~> 1.5.4'
     
+    ## http://stackoverflow.com/a/29392505/629014
     s.subspec 'pop' do |sub|
-#        sub.source_files = "Pods/pop/**/*.{h,m,mm,cpp}"
+        #  sub.source_files = "Pods/pop/**/*.{h,m,mm,cpp}"
         sub.platform = :ios
         sub.dependency "pop" #, "~> 1.0"
     end
-#    s.dependency "pop", "~> 1.0"
-
+    # s.dependency "pop", "~> 1.0"
     # s.dependency 'ReflectableEnum' #, '~> 0.1.1'
-    #    s.dependency 'RegExCategories'
-    s.frameworks =  "QuartzCore", "Foundation" #'AudioToolbox', 'Accelerate'
+    # s.dependency 'RegExCategories'
     
 end

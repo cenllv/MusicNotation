@@ -27,7 +27,7 @@
 //
 
 #import "MNGlyphLayer.h"
-#import <POP/POP.h>
+#import <pop/pop.h>
 
 @implementation MNGlyphShapeLayer
 
