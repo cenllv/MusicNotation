@@ -98,12 +98,13 @@ Pod::Spec.new do |s|
     s.source_files = "MusicNotationLibrary/src/*.{h,m}",
                     "MusicNotationLibrary/lib/*.{h,m}",
                     "MusicNotationLibrary/MNCarrierLayer.{h,m}",
-    s.exclude_files = "MusicNotationLibrary/sentestkit/*.{h,m}"
-                    "MusicNotationLibrary/test/*.{h,m}"
-                    "MusicNotationLibrary/ochamcrest/**/*.{h,m}"
+    s.exclude_files = "MusicNotationLibrary/sentestkit/*.{h,m}",
+                    "MusicNotationLibrary/test/*.{h,m}",
+                    "MusicNotationLibrary/ochamcrest/**/*.{h,m}",
                     "MusicNotationLibrary/src/MNBrowserLogger.{h,m}",
                     "MusicNotationLibrary/src/MNLog.{h,m}",
                     "MusicNotationLibrary/test/*.{h,m}",
+                    "MusicNotationLibrary/MNTestType.h",
                     "MusicNotationLibrary/*.{h,m}"
     s.compiler_flags = ""
     
@@ -148,7 +149,7 @@ Pod::Spec.new do |s|
     # s.dependency "JSONKit", "~> 1.4"
     #    s.dependency 'TheAmazingAudioEngine', '~> 1.5.4'
     #    s.dependency 'pop', '~> 1.0'
-    #    s.dependency 'ReflectableEnum', '~> 0.1.1'
+    # s.dependency 'ReflectableEnum' #, '~> 0.1.1'
     #    s.dependency 'RegExCategories'
     s.frameworks =  'QuartzCore' #'AudioToolbox', 'Accelerate'
     
