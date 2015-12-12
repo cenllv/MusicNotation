@@ -32,7 +32,7 @@
 #import "MNModifierContext.h"
 
 @class MNModifierContext, MNNote, MNTableGlyphStruct, MNStaffNote;
-@class ShiftState, MNMetrics, MNModifierState, MNFont;
+@class MNMetrics, MNModifierState, MNFont;
 
 /*!
  *  The `MNModifier` class modifies a Staffmodifier. What this means more specifically is that it

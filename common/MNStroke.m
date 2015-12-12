@@ -112,7 +112,8 @@
                                   //    self.type = type;
     self.position = MNPositionLeft;
 
-    [self->_renderOptions setFontSize:38];   // = {font_scale : 38, stroke_px : 3, stroke_spacing : 10};
+    //    [self->_renderOptions setFontSize:38];   // = {font_scale : 38, stroke_px : 3, stroke_spacing : 10};
+    [self.font setSize:38];
 
     //    self.font =  [MNFont fontWithName:@"serif" size:10 weight:@"bold italic"];
 
