@@ -329,10 +329,6 @@
 		6BF6A3141C1C9B3D0085743C /* NSMutableDictionary+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A2911C1C9B3D0085743C /* NSMutableDictionary+MNAdditions.m */; };
 		6BF6A3151C1C9B3D0085743C /* NSNumber+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A2931C1C9B3D0085743C /* NSNumber+MNAdditions.m */; };
 		6BF6A3161C1C9B3D0085743C /* NSNumber+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A2931C1C9B3D0085743C /* NSNumber+MNAdditions.m */; };
-		6BF6A3171C1C9B3D0085743C /* NSObject+AutoDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A2951C1C9B3D0085743C /* NSObject+AutoDescription.m */; };
-		6BF6A3181C1C9B3D0085743C /* NSObject+AutoDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A2951C1C9B3D0085743C /* NSObject+AutoDescription.m */; };
-		6BF6A3191C1C9B3D0085743C /* NSObject+CleanDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A2971C1C9B3D0085743C /* NSObject+CleanDescription.m */; };
-		6BF6A31A1C1C9B3D0085743C /* NSObject+CleanDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A2971C1C9B3D0085743C /* NSObject+CleanDescription.m */; };
 		6BF6A31B1C1C9B3D0085743C /* NSObject+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A2991C1C9B3D0085743C /* NSObject+MNAdditions.m */; };
 		6BF6A31C1C1C9B3D0085743C /* NSObject+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A2991C1C9B3D0085743C /* NSObject+MNAdditions.m */; };
 		6BF6A31D1C1C9B3D0085743C /* NSString+Ruby.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A29B1C1C9B3D0085743C /* NSString+Ruby.m */; };
@@ -1221,10 +1217,6 @@
 		6BF6A2911C1C9B3D0085743C /* NSMutableDictionary+MNAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+MNAdditions.m"; sourceTree = "<group>"; };
 		6BF6A2921C1C9B3D0085743C /* NSNumber+MNAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+MNAdditions.h"; sourceTree = "<group>"; };
 		6BF6A2931C1C9B3D0085743C /* NSNumber+MNAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+MNAdditions.m"; sourceTree = "<group>"; };
-		6BF6A2941C1C9B3D0085743C /* NSObject+AutoDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+AutoDescription.h"; sourceTree = "<group>"; };
-		6BF6A2951C1C9B3D0085743C /* NSObject+AutoDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+AutoDescription.m"; sourceTree = "<group>"; };
-		6BF6A2961C1C9B3D0085743C /* NSObject+CleanDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CleanDescription.h"; sourceTree = "<group>"; };
-		6BF6A2971C1C9B3D0085743C /* NSObject+CleanDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CleanDescription.m"; sourceTree = "<group>"; };
 		6BF6A2981C1C9B3D0085743C /* NSObject+MNAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MNAdditions.h"; sourceTree = "<group>"; };
 		6BF6A2991C1C9B3D0085743C /* NSObject+MNAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MNAdditions.m"; sourceTree = "<group>"; };
 		6BF6A29A1C1C9B3D0085743C /* NSString+Ruby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Ruby.h"; sourceTree = "<group>"; };
@@ -2207,10 +2199,6 @@
 				6BF6A2911C1C9B3D0085743C /* NSMutableDictionary+MNAdditions.m */,
 				6BF6A2921C1C9B3D0085743C /* NSNumber+MNAdditions.h */,
 				6BF6A2931C1C9B3D0085743C /* NSNumber+MNAdditions.m */,
-				6BF6A2941C1C9B3D0085743C /* NSObject+AutoDescription.h */,
-				6BF6A2951C1C9B3D0085743C /* NSObject+AutoDescription.m */,
-				6BF6A2961C1C9B3D0085743C /* NSObject+CleanDescription.h */,
-				6BF6A2971C1C9B3D0085743C /* NSObject+CleanDescription.m */,
 				6BF6A2981C1C9B3D0085743C /* NSObject+MNAdditions.h */,
 				6BF6A2991C1C9B3D0085743C /* NSObject+MNAdditions.m */,
 				6BF6A29A1C1C9B3D0085743C /* NSString+Ruby.h */,
@@ -3509,7 +3497,6 @@
 				6BF69F601C1C9A0E0085743C /* MNFormatter.m in Sources */,
 				6BF6A3001C1C9B3D0085743C /* MNMath.m in Sources */,
 				6BF6A6911C1C9CC80085743C /* MNTextTests.m in Sources */,
-				6BF6A3181C1C9B3D0085743C /* NSObject+AutoDescription.m in Sources */,
 				6BF6A5651C1C9CC80085743C /* HCIsDictionaryContaining.m in Sources */,
 				6BF6A5291C1C9CC80085743C /* HCWrapInMatcher.m in Sources */,
 				6BF6A5851C1C9CC80085743C /* HCOrderingComparison.m in Sources */,
@@ -3529,7 +3516,6 @@
 				6BF6A65B1C1C9CC80085743C /* MNMusicTests.m in Sources */,
 				6BF6A2F41C1C9B3D0085743C /* DPObjectProperty.m in Sources */,
 				6BF6A3601C1C9B3D0085743C /* Queue.m in Sources */,
-				6BF6A31A1C1C9B3D0085743C /* NSObject+CleanDescription.m in Sources */,
 				6BF69FD61C1C9A0E0085743C /* MNStaffText.m in Sources */,
 				6BF6A3941C1C9C350085743C /* MNBeamRenderOptions.m in Sources */,
 				6BF6A5FB1C1C9CC80085743C /* IsTypeOfTest.m in Sources */,
@@ -3747,7 +3733,6 @@
 				6BF6A5201C1C9CC80085743C /* HCStringDescription.m in Sources */,
 				6BF69FF51C1C9A0E0085743C /* MNTableNoteValueStruct.m in Sources */,
 				6BF69FBB1C1C9A0E0085743C /* MNStaffHairpin.m in Sources */,
-				6BF6A3171C1C9B3D0085743C /* NSObject+AutoDescription.m in Sources */,
 				6BF6A5BA1C1C9CC80085743C /* IsDictionaryContainingKeyTest.m in Sources */,
 				6BF69FA71C1C9A0E0085743C /* MNOptions.m in Sources */,
 				6BF6A6661C1C9CC80085743C /* MNPedalMarkingTests.m in Sources */,
@@ -3898,7 +3883,6 @@
 				6BF6A64E1C1C9CC80085743C /* MNKeyClefTests.m in Sources */,
 				6BF6A6761C1C9CC80085743C /* MNStaffModifierTests.m in Sources */,
 				6BF6A5B41C1C9CC80085743C /* IsCollectionContainingTest.m in Sources */,
-				6BF6A3191C1C9B3D0085743C /* NSObject+CleanDescription.m in Sources */,
 				6BF6A51A1C1C9CC80085743C /* HCBaseDescription.m in Sources */,
 				6BF69F531C1C9A0E0085743C /* MNCurve.m in Sources */,
 				6BF69FFD1C1C9A0E0085743C /* MNTabNotePositionsStruct.m in Sources */,

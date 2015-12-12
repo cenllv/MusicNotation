@@ -47,7 +47,7 @@
 #import "MNStaffTempo.h"
 #import "MNStaffVolta.h"
 #import "MNStaffRepetition.h"
-#import "NSObject+AutoDescription.h"
+//#import "NSObject+AutoDescription.h"
 #import "MNConstants.h"
 #import "MNGlyphMetrics.h"
 
@@ -318,7 +318,7 @@ static MNStaff* _currentStaff;
 
         else
         {
-            for(NSString* key in [((NSDictionary*)tmpLinesConfiguration[i]) allKeys])
+            for(NSString* key in [((NSDictionary*)tmpLinesConfiguration[i])allKeys])
             {
                 self.options.lineConfig[i][key] = tmpLinesConfiguration[i][key];
             }
@@ -334,11 +334,11 @@ static MNStaff* _currentStaff;
 
 #pragma mark - Properties
 
-- (NSString*)description
-{
-    // TODO: figure this out
-    return [self autoDescription];
-}
+//- (NSString*)description
+//{
+// TODO: figure this out
+//    return [self autoDescription];
+//}
 
 //    NSString* ret = @"";
 //    ret = [ret concat:[NSString stringWithFormat:@"KeySignature: %@", [self.keySignature description]]];
