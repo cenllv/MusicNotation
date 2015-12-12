@@ -166,8 +166,6 @@
 		6B4AA60E1BF45B0800E56C1A /* IAModelBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5A51BF45B0800E56C1A /* IAModelBase.m */; };
 		6B4AA60F1BF45B0800E56C1A /* IAModelCollectionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5A71BF45B0800E56C1A /* IAModelCollectionBase.m */; };
 		6B4AA6101BF45B0800E56C1A /* IAModelCollectionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5A71BF45B0800E56C1A /* IAModelCollectionBase.m */; };
-		6B4AA6111BF45B0800E56C1A /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5A91BF45B0800E56C1A /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
-		6B4AA6121BF45B0800E56C1A /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5A91BF45B0800E56C1A /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w"; }; };
 		6B4AA6131BF45B0800E56C1A /* NSArray+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5AC1BF45B0800E56C1A /* NSArray+MNAdditions.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		6B4AA6141BF45B0800E56C1A /* NSArray+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5AC1BF45B0800E56C1A /* NSArray+MNAdditions.m */; };
 		6B4AA6171BF45B0800E56C1A /* NSMutableArray+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA5B01BF45B0800E56C1A /* NSMutableArray+MNAdditions.m */; };
@@ -1091,8 +1089,6 @@
 		6B4AA5A51BF45B0800E56C1A /* IAModelBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAModelBase.m; sourceTree = "<group>"; };
 		6B4AA5A61BF45B0800E56C1A /* IAModelCollectionBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAModelCollectionBase.h; sourceTree = "<group>"; };
 		6B4AA5A71BF45B0800E56C1A /* IAModelCollectionBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAModelCollectionBase.m; sourceTree = "<group>"; };
-		6B4AA5A81BF45B0800E56C1A /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
-		6B4AA5A91BF45B0800E56C1A /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		6B4AA5AA1BF45B0800E56C1A /* JSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONSerialization.h; sourceTree = "<group>"; };
 		6B4AA5AB1BF45B0800E56C1A /* NSArray+MNAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+MNAdditions.h"; sourceTree = "<group>"; };
 		6B4AA5AC1BF45B0800E56C1A /* NSArray+MNAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+MNAdditions.m"; sourceTree = "<group>"; };
@@ -2307,8 +2303,6 @@
 				6B182C7A1C0E8B3E006F0981 /* DPObject.m */,
 				6B182C7B1C0E8B3E006F0981 /* DPObjectProperty.h */,
 				6B182C7C1C0E8B3E006F0981 /* DPObjectProperty.m */,
-				6B4AA5A81BF45B0800E56C1A /* JSONKit.h */,
-				6B4AA5A91BF45B0800E56C1A /* JSONKit.m */,
 				6B4AA5AA1BF45B0800E56C1A /* JSONSerialization.h */,
 				6B4AA33F1BF4591500E56C1A /* MNBezierPath.h */,
 				6B4AA3401BF4591500E56C1A /* MNBezierPath.m */,
@@ -3769,7 +3763,6 @@
 				6B4AA4381BF4591500E56C1A /* MNColor.m in Sources */,
 				6BBD0CCC1C1BC6E600E84289 /* MNTablesNoteData.m in Sources */,
 				6B4AA6141BF45B0800E56C1A /* NSArray+MNAdditions.m in Sources */,
-				6B4AA6121BF45B0800E56C1A /* JSONKit.m in Sources */,
 				6BBD0C881C1BC6E600E84289 /* MNStaff.m in Sources */,
 				6BBD0C921C1BC6E600E84289 /* MNStaffLineNotesStruct.m in Sources */,
 				6B0BE8B31C162D630035ADCF /* NSSet+OCTotallyLazy.m in Sources */,
@@ -3871,7 +3864,6 @@
 				D278F51D1A8689AE000C57C1 /* main.m in Sources */,
 				6B8631CD1B235C0300786D3D /* MNOutlineViewController.m in Sources */,
 				6BBD0CE51C1BC6E600E84289 /* MNTickableMetrics.m in Sources */,
-				6B4AA6111BF45B0800E56C1A /* JSONKit.m in Sources */,
 				6B5644B91BF44680006FDFD9 /* HCHasDescription.m in Sources */,
 				6BBD0C0B1C1BC6E600E84289 /* MNBeam.m in Sources */,
 				6B5645011BF44680006FDFD9 /* SenTestingUtilities.m in Sources */,

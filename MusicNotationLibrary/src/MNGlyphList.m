@@ -27,9 +27,9 @@
 //
 
 #import "MNGlyphList.h"
-#if TARGET_OS_MAC
-#import "JSONKit.h"
-#endif
+//#if TARGET_OS_MAC
+//#import "JSONKit.h"
+//#endif
 #import "MNGlyph.h"
 #import "MNUtils.h"
 #import "MNSize.h"
@@ -210,10 +210,10 @@ static NSArray* _availableGlyphStructsArray = nil;
             NSDictionary* resultsDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
 #elif TARGET_OS_MAC
             // TODO: the following line broke in MusicNotationLibrary app
-            NSDictionary* resultsDictionary = [jsonData objectFromJSONData];
-//            NSError *errorJson=nil;
-//            NSDictionary* resultsDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions
-//            error:&errorJson];
+//            NSDictionary* resultsDictionary = [jsonData objectFromJSONData];
+            NSError *errorJson=nil;
+            NSDictionary* resultsDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions
+            error:&errorJson];
 
 #endif
 

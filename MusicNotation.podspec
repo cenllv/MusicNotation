@@ -95,15 +95,11 @@ Pod::Spec.new do |s|
     #    s.exclude_files = "Classes/Exclude"
 
     # s.public_header_files = "Classes/**/*.h"
-    
-    s.source_files = "MusicNotation/MusicNotationLibrary/src/*.{h,m}", "MusicNotation/MusicNotationLibrary/lib/*.{h,m}"
-    #    spec.source_files = 'MusicNotation/src/**/*.{h,m}'
-    s.exclude_files = "MusicNotation/MusicNotationLibrary/sentestkit/*",
-                    "MusicNotation/MusicNotationLibrary/test/*",
-                    "MusicNotation/MusicNotationLibrary/ochamcrest/*",
-    #    spec.osx.exclude_files = 'Modules/Filters/AEReverbFilter.*'
-    #    spec.compiler_flags = '-DTPCircularBuffer=AECB',
-    #                        '-D_TPCircularBufferInit=_AECBInit',
+    s.source_files = "MusicNotationLibrary/src/**/*.{h,m}", "MusicNotationLibrary/lib/**/*.{h,m}"
+    s.exclude_files = "MusicNotationLibrary/sentestkit/*",
+                    "MusicNotationLibrary/test/*",
+                    "MusicNotationLibrary/ochamcrest/*",
+    s.compiler_flags = ""
     
     
     # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -116,7 +112,7 @@ Pod::Spec.new do |s|
     
     # s.resource  = "icon.png"
     # s.resources = "Resources/*.png"
-    s.resources = "MusicNotationLibrary/res/fonts/*.js"
+    s.resources = "MusicNotationLibrary/res/fonts/**/*.js"
     
     # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
     
