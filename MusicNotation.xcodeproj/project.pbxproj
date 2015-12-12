@@ -409,8 +409,6 @@
 		6BF6A3641C1C9B3D0085743C /* Sequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A2EB1C1C9B3D0085743C /* Sequence.m */; };
 		6BF6A3651C1C9B3D0085743C /* Some.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A2ED1C1C9B3D0085743C /* Some.m */; };
 		6BF6A3661C1C9B3D0085743C /* Some.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A2ED1C1C9B3D0085743C /* Some.m */; };
-		6BF6A3671C1C9B3D0085743C /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A2F01C1C9B3D0085743C /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		6BF6A3681C1C9B3D0085743C /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A2F01C1C9B3D0085743C /* RegexKitLite.m */; };
 		6BF6A3831C1C9C350085743C /* MNAccidental.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A36A1C1C9C350085743C /* MNAccidental.m */; };
 		6BF6A3841C1C9C350085743C /* MNAccidental.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A36A1C1C9C350085743C /* MNAccidental.m */; };
 		6BF6A3851C1C9C350085743C /* MNAccidentalRenderOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A36C1C1C9C350085743C /* MNAccidentalRenderOptions.m */; };
@@ -1309,8 +1307,6 @@
 		6BF6A2EC1C1C9B3D0085743C /* Some.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Some.h; sourceTree = "<group>"; };
 		6BF6A2ED1C1C9B3D0085743C /* Some.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Some.m; sourceTree = "<group>"; };
 		6BF6A2EE1C1C9B3D0085743C /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
-		6BF6A2EF1C1C9B3D0085743C /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
-		6BF6A2F01C1C9B3D0085743C /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		6BF6A3691C1C9C350085743C /* MNAccidental.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNAccidental.h; path = common/MNAccidental.h; sourceTree = "<group>"; };
 		6BF6A36A1C1C9C350085743C /* MNAccidental.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MNAccidental.m; path = common/MNAccidental.m; sourceTree = "<group>"; };
 		6BF6A36B1C1C9C350085743C /* MNAccidentalRenderOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNAccidentalRenderOptions.h; path = common/MNAccidentalRenderOptions.h; sourceTree = "<group>"; };
@@ -2220,8 +2216,6 @@
 				6BF6A29A1C1C9B3D0085743C /* NSString+Ruby.h */,
 				6BF6A29B1C1C9B3D0085743C /* NSString+Ruby.m */,
 				6BF6A29C1C1C9B3D0085743C /* octotallylazy */,
-				6BF6A2EF1C1C9B3D0085743C /* RegexKitLite.h */,
-				6BF6A2F01C1C9B3D0085743C /* RegexKitLite.m */,
 			);
 			name = lib;
 			path = common/lib;
@@ -3247,7 +3241,6 @@
 				6BF6A3261C1C9B3D0085743C /* EnumerateEnumerator.m in Sources */,
 				6BF6A5F31C1C9CC80085743C /* IsEqualTest.m in Sources */,
 				6BF6A5211C1C9CC80085743C /* HCStringDescription.m in Sources */,
-				6BF6A3681C1C9B3D0085743C /* RegexKitLite.m in Sources */,
 				6BF6A6851C1C9CC80085743C /* MNTabNoteTests.m in Sources */,
 				6BF6A5A51C1C9CC80085743C /* HCStringStartsWith.m in Sources */,
 				6BF6A58F1C1C9CC80085743C /* HCIsEqual.m in Sources */,
@@ -3875,7 +3868,6 @@
 				6BF6A6361C1C9CC80085743C /* MNAutoBeamFormattingTests.m in Sources */,
 				6BF6A2FD1C1C9B3D0085743C /* MNColor.m in Sources */,
 				6BF6A3611C1C9B3D0085743C /* Range.m in Sources */,
-				6BF6A3671C1C9B3D0085743C /* RegexKitLite.m in Sources */,
 				6BF6A39B1C1C9C350085743C /* MNBoundingBox.m in Sources */,
 				6BF69FED1C1C9A0E0085743C /* MNTableChords.m in Sources */,
 				6BF6A0211C1C9A0E0085743C /* MNTremulo.m in Sources */,
