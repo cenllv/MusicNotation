@@ -103,6 +103,7 @@ Pod::Spec.new do |s|
                     "MusicNotationLibrary/ochamcrest/*",
                     "MusicNotationLibrary/src/MNBrowserLogger.{h,m}",
                     "MusicNotationLibrary/src/MNLog.{h,m}",
+                    "MusicNotationLibrary/test/**/*.{h,m}"
     s.compiler_flags = ""
     
     
