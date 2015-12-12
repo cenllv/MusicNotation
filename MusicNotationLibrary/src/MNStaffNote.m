@@ -49,6 +49,7 @@
 #import "MNConstants.h"
 #import "MNStaffNoteFormatNoteStruct.h"
 #import "MNNoteMetrics.h"
+#import "NSString+MNAdditions.h"
 
 @interface MNStaffNote ()
 {

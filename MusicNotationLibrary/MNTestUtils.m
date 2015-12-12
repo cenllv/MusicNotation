@@ -27,6 +27,7 @@
 #import "MNTestUtils.h"
 #import "Tests.h"
 #import "MNTestType.h"
+#import "NSString+MNAdditions.h"
 
 @implementation MNTestUtils
 

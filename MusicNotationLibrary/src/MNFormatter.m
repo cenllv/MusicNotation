@@ -45,6 +45,7 @@
 #import "MNStemmableNote.h"
 #import "MNStaffNote.h"
 #import "MNContextDelegate.h"
+#import "NSString+MNAdditions.h"
 
 typedef void (^AddFunction)(MNTickable*, id);
 

@@ -41,6 +41,7 @@
 #import "MNStroke.h"
 #import "MNConstants.h"
 #import "MNText.h"
+#import "NSString+MNAdditions.h"
 
 @implementation MNTabNote
 

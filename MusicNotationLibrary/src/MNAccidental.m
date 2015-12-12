@@ -42,6 +42,7 @@
 #import "MNLineListStruct.h"
 #import "MNAccListStruct.h"
 #import "MNGraceNote.h"
+#import "NSString+MNAdditions.h"
 
 @implementation MNAccidental
 

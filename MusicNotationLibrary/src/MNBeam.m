@@ -43,6 +43,7 @@
 #import "MNConstants.h"
 #import "MNMacros.h"
 #import "MNStaffNote.h"
+#import "NSString+MNAdditions.h"
 
 @interface MNBeamLine : IAModelBase
 // TODO: is this data type a float or nsuiniteger

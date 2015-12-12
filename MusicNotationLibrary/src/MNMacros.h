@@ -54,12 +54,21 @@
 
 #define kDrawUsingMNKit YES
 
+#ifdef DDLogVerbose
 #define expect(fmt, ...) DDLogVerbose((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define MNLogInfo(fmt, ...) DDLogInfo((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define MNLogDebug(fmt, ...) DDLogDebug((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define MNLogWarn(fmt, ...) DDLogWarn((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define MNLogError(fmt, ...) DDLogError((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define MNLogVerbose(fmt, ...) DDLogVerbose((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#else
+#define expect(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define MNLogInfo(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define MNLogDebug(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define MNLogWarn(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define MNLogError(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define MNLogVerbose(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#endif
 
 //
 //#if !defined(MAX_CGFLOAT)
@@ -88,11 +97,11 @@
 #define SHEET_MUSIC_COLOR [NSColor colorWithRed:0.93f green:0.93f blue:0.87f alpha:1.0f]
 #endif
 
-#if TARGET_OS_IPHONE
-#define MNGraphicsContext() UIGraphicsGetCurrentContext()
-#elif TARGET_OS_MAC
-#define MNGraphicsContext() [[NSGraphicsContext currentContext] graphicsPort]
-#endif
+//#if TARGET_OS_IPHONE
+//#define MNGraphicsContext() UIGraphicsGetCurrentContext()
+//#elif TARGET_OS_MAC
+//#define MNGraphicsContext() [[NSGraphicsContext currentContext] graphicsPort]
+//#endif
 
 #if TARGET_OS_IPHONE
 #define MNButton UIButton

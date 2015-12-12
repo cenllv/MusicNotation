@@ -37,6 +37,7 @@
 #import "MNPoint.h"
 #import "MNTableAccListStruct.h"
 #import "MNTableKeySpecStruct.h"
+#import "NSString+MNAdditions.h"
 
 @interface MNAccidentalCodesStruct : IAModelBase
 @property (strong, nonatomic) NSString* code;
