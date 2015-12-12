@@ -135,7 +135,7 @@
 
     if(ppt == -1)
     {
-        [MNLog logError:@"BadArguments, A valid Formatter must be provide to draw offsets by ticks."];
+        MNLogError(@"BadArguments, A valid Formatter must be provide to draw offsets by ticks.");
     }
 
     float l_shift_px = ppt * leftShiftTicks;
@@ -200,7 +200,7 @@
 {
     if([notes firstObject] == nil && [notes lastObject] == nil)
     {
-        [MNLog logError:@"BadArguments, Hairpin needs to have either first_note or last_note set."];
+        MNLogError(@"BadArguments, Hairpin needs to have either first_note or last_note set.");
     }
 
     // Success. Lets grab 'em notes.

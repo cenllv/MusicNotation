@@ -66,7 +66,7 @@
 
 + (MNClefNote*)clefNoteWithClef:(NSString*)clef
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
     return nil;
 }

@@ -18,11 +18,11 @@
 {
     //    NSException *exception = [self createExceptionForFailure:failure];
     //    [exception raise];
-    //     [MNLog LogError:exception.reason];
+    //     MNLogError(exception.reason];
 
     NSString* failureReason = [NSString stringWithFormat:@"%@:%lu: matcher error: %@", failure.fileName,
                                                          (unsigned long)failure.lineNumber, failure.reason];
-//    [MNLog logError:[self fileNameFromPath:failureReason]];
+//    MNLogError([self fileNameFromPath:failureReason]];
     MNLogError(@"%@", [self fileNameFromPath:failureReason]);
 }
 

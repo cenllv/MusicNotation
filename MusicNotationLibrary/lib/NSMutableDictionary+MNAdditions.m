@@ -26,7 +26,7 @@
 //
 
 #import "NSMutableDictionary+MNAdditions.h"
-#import "MNLog.h"
+#import "MNMacros.h"
 
 @implementation NSMutableDictionary (NSMutableDictionaryAdditions)
 

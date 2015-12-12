@@ -31,6 +31,7 @@
 #import "MNTestCollectionItem.h"
 #import "NSString+MNAdditions.h"
 #import "MNOutlineViewController.h"
+#import "MNLog.h"
 
 @interface MNBrowserWindowController () <NSSplitViewDelegate>
 

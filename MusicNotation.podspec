@@ -99,6 +99,8 @@ Pod::Spec.new do |s|
     s.exclude_files = "MusicNotationLibrary/sentestkit/*",
                     "MusicNotationLibrary/test/*",
                     "MusicNotationLibrary/ochamcrest/*",
+                    "MusicNotationLibrary/src/MNBrowserLogger.{h,m}",
+                    "MusicNotationLibrary/src/MNLog.{h,m}",
     s.compiler_flags = ""
     
     
@@ -144,6 +146,6 @@ Pod::Spec.new do |s|
     #    s.dependency 'pop', '~> 1.0'
     #    s.dependency 'ReflectableEnum', '~> 0.1.1'
     #    s.dependency 'RegExCategories'
-    #    s.frameworks = 'AudioToolbox', 'Accelerate'
+    s.frameworks =  'QuartzCore' #'AudioToolbox', 'Accelerate'
     
 end

@@ -29,7 +29,7 @@
 
 #import "MNRational.h"
 //#import "MNMacros.h"
-//#import "MNLog.h"
+//// #import "MNLog.h"
 
 typedef NSUInteger (^Operation)(NSUInteger operand1, NSUInteger operand2);
 

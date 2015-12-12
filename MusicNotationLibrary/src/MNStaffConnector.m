@@ -240,7 +240,7 @@
             width = 1;
             break;
         case MNStaffConnectorNone:
-            [MNLog logError:@"no connector type specified"];
+            MNLogError(@"no connector type specified");
             break;
         default:
             break;
@@ -328,7 +328,7 @@ static BOOL _debugMode = NO;
 {
     if(self.type != MNStaffConnectorBoldDoubleLeft && self.type != MNStaffConnectorBoldDoubleRight)
     {
-        [MNLog logError:@"InvalidConnector, A REPEAT_BEGIN or REPEAT_END type must be provided."];
+        MNLogError(@"InvalidConnector, A REPEAT_BEGIN or REPEAT_END type must be provided.");
     }
 
     float x_shift = 3;

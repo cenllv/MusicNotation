@@ -133,7 +133,7 @@
 }
 + (MNStaffNote*)noteWithKeys:(NSArray*)keys andDuration:(NSString*)duration type:(NSString*)type
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
     return nil;
 }
@@ -888,7 +888,7 @@
 {
     if(!self.preFormatted)
     {
-        [MNLog logError:@"UnformattedNote, Can't call getBoundingBox on an unformatted note."];
+        MNLogError(@"UnformattedNote, Can't call getBoundingBox on an unformatted note.");
     }
 
     //    TickableMetrics *metrics = self.metrics;
@@ -955,9 +955,7 @@
 {
     if(!self.keyProps.count)
     {
-        [MNLog logError:[NSString
-                            stringWithFormat:@"NoKeyProps %@",
-                                             @"Can't get bottom note line, because note is not initialized properly."]];
+        MNLogError(@"NoKeyProps, Can't get bottom note line, because note is not initialized properly.");
     }
 
     float result_line = ((MNKeyProperty*)self.keyProps[0]).line;
@@ -1028,7 +1026,7 @@
 //- (MNStaff *)staff {
 //    if (!_staff) {
 //        _staff =  [MNStaff currentStaff];
-//         [MNLog LogError:@"Getting current staff for staffnote."];
+//         MNLogError(@"Getting current staff for staffnote."];
 //    }
 //    return  _staff;
 //}

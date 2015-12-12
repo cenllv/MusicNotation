@@ -235,7 +235,7 @@ static BOOL _debugMode = NO;
 
 - (float)headWidth
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
     return 0;
 }
@@ -321,8 +321,8 @@ static BOOL _debugMode = NO;
 
     if(outline.count == 0)
     {
-        [MNLog logInfo:@"EmptyOutlineException, outline for self symbol was not initialized."];
-        [MNLog logInfo:@"Attempting to look up outline before rendering blockscope proceeds."];
+        MNLogInfo(@"EmptyOutlineException, outline for self symbol was not initialized.");
+        MNLogInfo(@"Attempting to look up outline before rendering blockscope proceeds.");
         // attempt to lookup code
         if(metrics.code.length == 0)
         {
@@ -374,7 +374,7 @@ static BOOL _debugMode = NO;
         }
         else
         {
-            //             [MNLog LogError:@"something went wrong: (void)renderOutline:(CGContextRef)ctx"];
+            //             MNLogError(@"something went wrong: (void)renderOutline:(CGContextRef)ctx"];
         }
 #pragma clang diagnostic pop
     }
@@ -481,7 +481,7 @@ static BOOL _debugMode = NO;
         }
         else
         {
-            //[MNLog LogError:@"draw symbol error."];
+            //MNLogError(@"draw symbol error."];
         }
 #pragma clang diagnostic pop
     }
@@ -565,7 +565,7 @@ static BOOL _debugMode = NO;
         }
         else
         {
-            //             [MNLog LogError:@"something went wrong: (void)renderOutline:(CGContextRef)ctx"];
+            //             MNLogError(@"something went wrong: (void)renderOutline:(CGContextRef)ctx"];
         }
         CGPathCloseSubpath(path);
         [paths push:CFBridgingRelease(path)];
@@ -591,8 +591,8 @@ static BOOL _debugMode = NO;
 
     if(outline.count == 0)
     {
-        [MNLog logInfo:@"EmptyOutlineException, outline for self symbol was not initialized."];
-        [MNLog logInfo:@"Attempting to look up outline before rendering blockscope proceeds."];
+        MNLogInfo(@"EmptyOutlineException, outline for self symbol was not initialized.");
+        MNLogInfo(@"Attempting to look up outline before rendering blockscope proceeds.");
         // attempt to lookup code
         if(metrics.code.length == 0)
         {
@@ -639,7 +639,7 @@ static BOOL _debugMode = NO;
         }
         else
         {
-            //[MNLog LogError:@"draw symbol error."];
+            //MNLogError(@"draw symbol error."];
         }
 #pragma clang diagnostic pop
     }

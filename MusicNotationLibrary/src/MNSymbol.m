@@ -320,10 +320,10 @@
 {
     //    if([self.symbolMetrics.code isEqualToString:@""])
     //    {
-    //        //         [MNLog LogError:;
+    //        //         MNLogError(;
     //        //         [MNLog LogVexDump:[NSString stringWithFormat:@"CodeExceptionOnLoading : %@",
     //        self.description]];
-    //        //         [MNLog LogInfo:[NSString stringWithFormat:@"Attempting to load empty nsstring code: -
+    //        //         MNLogInfo([NSString stringWithFormat:@"Attempting to load empty nsstring code: -
     //        (void)load
     //        :
     //        //        %@", self.description]];
@@ -345,7 +345,7 @@
 - (void)draw:(CGContextRef)ctx
 {
     //    if (!self.metrics.graphicsContext) {
-    //         [MNLog LogError:@"NoCanvasContext: Can't draw without a canvas context."];
+    //         MNLogError(@"NoCanvasContext: Can't draw without a canvas context."];
     //        return;
     //    }
     //    [self renderWithContext:self.metrics.context];
@@ -353,7 +353,7 @@
 
 - (void)renderWithContext:(CGContextRef)ctx
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 

@@ -126,7 +126,7 @@
             y = [self.start.staff getYForBottomTextWithLine:(self.line - 2)];   // CHANGE: -> -1
             break;
         default:
-            [MNLog logError:@"InvalidBracketPosition, only top or bottom allowed"];
+            MNLogError(@"InvalidBracketPosition, only top or bottom allowed");
     }
 
     MNPoint* start = [MNPoint pointWithX:self.start.absoluteX andY:y];

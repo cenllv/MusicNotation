@@ -253,7 +253,7 @@
 
 - (void)addModifier:(MNModifier*)modifier
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 
@@ -269,35 +269,35 @@
 
 - (id)setExtraLeftPx:(float)extraLeftPx
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
     return self;
 }
 
 - (id)setExtraRightPx:(float)extraRightPx
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
     return self;
 }
 
 - (MNRational*)ticks
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
     return nil;
 }
 
 - (id)setXShift:(float)xShift
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
     return self;
 }
 
 - (float)xShift
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
     return 0;
 }

@@ -25,7 +25,7 @@
 //  THE SOFTWARE.
 //
 
-#import "MNLog.h"
+ #import "MNLog.h"
 
 #import <objc/runtime.h>
 
@@ -230,36 +230,36 @@ static MNBrowserLogger* _browserLogger = nil;
     [MNLog logVexDump:msg];
 }
 
-+ (void)logNotYetImplementedForClass:(id)obj andSelector:(SEL)sel
-{
-//    Method method = class_getInstanceMethod([obj class], sel);
-
-//    const char *cStr = method_copyReturnType(method) == NULL ? "(null)" : method_copyReturnType(method);
-//    NSString *tmp = [NSString stringWithCString:cStr encoding:NSASCIIStringEncoding]; //[NSString
-//    stringWithCString:];
-//    NSString *returnType =  [tmp isEqualToString:@"(null)"] ? @"(void)" : tmp;
-
-//    NSString *formattedPolymorphicHierachyObj =  [MNVex FormatObject:[NSString stringWithFormat:@"%@",
-//                                                  [obj description]]];
-//    NSString *formattedPolymorphicHierachyObj = [obj prettyPrint];
+//+ (void)logNotYetImplementedForClass:(id)obj andSelector:(SEL)sel
+//{
+////    Method method = class_getInstanceMethod([obj class], sel);
+//
+////    const char *cStr = method_copyReturnType(method) == NULL ? "(null)" : method_copyReturnType(method);
+////    NSString *tmp = [NSString stringWithCString:cStr encoding:NSASCIIStringEncoding]; //[NSString
+////    stringWithCString:];
+////    NSString *returnType =  [tmp isEqualToString:@"(null)"] ? @"(void)" : tmp;
+//
+////    NSString *formattedPolymorphicHierachyObj =  [MNVex FormatObject:[NSString stringWithFormat:@"%@",
+////                                                  [obj description]]];
+////    NSString *formattedPolymorphicHierachyObj = [obj prettyPrint];
+////            withLevel:error];
+////    NSString *prefix = [NSString stringWithFormat:@"NotYetImplemented: -%@%s => \n",
+////                        returnType,
+////                        sel_getName(sel)//,
+////                        /*class_getName([obj class]),*/];
+////    ////     [MNLog LogMessage:[prefix concat:formattedPolymorphicHierachyObj] withLevel:error];
+//#if TARGET_OS_IPHONE
+//    [MNLog LogMessage:[NSString stringWithFormat:@"not yet implemented:\n  [%@ %s] ", NSStringFromClass([obj class]),
+//                                                 sel_getName(sel)]
 //            withLevel:error];
-//    NSString *prefix = [NSString stringWithFormat:@"NotYetImplemented: -%@%s => \n",
-//                        returnType,
-//                        sel_getName(sel)//,
-//                        /*class_getName([obj class]),*/];
-//    ////     [MNLog LogMessage:[prefix concat:formattedPolymorphicHierachyObj] withLevel:error];
-#if TARGET_OS_IPHONE
-    [MNLog LogMessage:[NSString stringWithFormat:@"not yet implemented:\n  [%@ %s] ", NSStringFromClass([obj class]),
-                                                 sel_getName(sel)]
-            withLevel:error];
-#elif TARGET_OS_MAC
-    [MNLog LogMessage:[NSString stringWithFormat:@"not yet implemented:\n  [%@ %s] ", [obj className], sel_getName(sel)]
-            withLevel:error];
-#endif
-
-    //     [MNLog LogMessage:prefix withLevel:error];
-    abort();
-}
+//#elif TARGET_OS_MAC
+//    [MNLog LogMessage:[NSString stringWithFormat:@"not yet implemented:\n  [%@ %s] ", [obj className], sel_getName(sel)]
+//            withLevel:error];
+//#endif
+//
+//    //     [MNLog LogMessage:prefix withLevel:error];
+//    abort();
+//}
 
 + (void)logVexDump:(NSString*)msg
 {
@@ -286,8 +286,8 @@ static MNBrowserLogger* _browserLogger = nil;
           }
       }
     }];
-    //[MNLog LogError:[aFormat stringByAppendingFormat:@"%@",  output]];
-    DDLogError(@"%@", [msg stringByAppendingFormat:@"%@", output]);
+    //MNLogError([aFormat stringByAppendingFormat:@"%@",  output]];
+    MNLogError(@"%@", [msg stringByAppendingFormat:@"%@", output]);
 }
 
 #pragma mark - Description Formatting

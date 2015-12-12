@@ -218,7 +218,7 @@
 {
     if(self.cached)
     {
-        [MNLog logInfo:@"MNMetricsSetOutlineAgain, already set the outline. Enable caching mechanism."];
+        MNLogInfo(@"MNMetricsSetOutlineAgain, already set the outline. Enable caching mechanism.");
         self.arrayOutline = [[[MNGlyphList sharedInstance] availableGlyphStructsDictionary] objectForKey:self.code];
     }
 

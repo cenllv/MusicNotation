@@ -29,7 +29,7 @@
 
 #import "MNFretHandFinger.h"
 #import "MNFont.h"
-#import "MNLog.h"
+// #import "MNLog.h"
 #import "MNStaffNote.h"
 #import "MNText.h"
 #import "MNKeyProperty.h"

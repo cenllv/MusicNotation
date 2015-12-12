@@ -49,7 +49,7 @@
     self = [super init];
     if(self)
     {
-        //         [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+        //         MNLogNotYetImlemented();
         //        abort();
     }
     return self;
@@ -131,7 +131,7 @@
 
 - (MockTickable*)setCustomTicks:(MNRational*)t
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 
@@ -148,19 +148,19 @@
 
 - (id)setXShift:(float)xShift
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 
 - (float)xShift
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 
 - (MockTickable*)setCustomWidth:(float)w
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 
@@ -171,31 +171,31 @@
 
 - (void)addToModifierContext:(MNModifierContext*)mc
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 
 - (id)addModifier:(MNModifier*)modifier
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 
 - (BOOL)postFormat
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 
 - (void)applyTickMultiplier:(NSUInteger)numerator denominator:(NSUInteger)denominator
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 
 - (void)setTickDuration:(MNRational*)duration
 {
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 

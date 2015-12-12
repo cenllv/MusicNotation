@@ -129,7 +129,7 @@
 //    CFRange ran = CFRangeMake(0, attributedString.length);
 //    return CTFramesetterSuggestFrameSizeWithConstraints(frameSetter, ran, NULL, CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX),
 //                                                        NULL);
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     return CGSizeZero;
 }
 

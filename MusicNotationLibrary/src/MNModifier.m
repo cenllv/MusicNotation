@@ -28,7 +28,7 @@
 
 #import "MNModifier.h"
 #import "MNNote.h"
-#import "MNLog.h"
+// #import "MNLog.h"
 #import "MNStaff.h"
 //#import "MNNote.h"
 #import "MNTickContext.h"
@@ -89,7 +89,7 @@
     _xShift = 0;
     _yShift = 0;
     // NOTE: uncomment the folloing for more debug info
-    //     [MNLog logInfo:[NSString stringWithFormat:@"Created new modifier. Class: %@ Category: %@",
+    //     MNLogInfo([NSString stringWithFormat:@"Created new modifier. Class: %@ Category: %@",
     //                                              [object_getClass((id)self) class], [object_getClass((id)self)
     //                                              CATEGORY]]];
 }

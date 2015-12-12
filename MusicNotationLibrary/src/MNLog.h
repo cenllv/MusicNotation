@@ -43,7 +43,6 @@
 + (void)logError:(NSString*)format, ...;
 + (void)logFatal:(NSString*)format, ...;
 + (void)logVexDump:(NSString*)msg;
-+ (void)logNotYetImplementedForClass:(id)obj andSelector:(SEL)sel;
 + (NSString*)formatObject:(id)objString;
 
 @end

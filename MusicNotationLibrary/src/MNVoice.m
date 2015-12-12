@@ -158,7 +158,7 @@
     _resolutionMultiplier = 1;
 
     // Set defaults
-//    _tickables = [NSMutableArray array];
+    //    _tickables = [NSMutableArray array];
     _ticksUsed = RationalZero();
     self.smallestTickCount = [self.totalTicks clone];
     _largestTickWidth = 0;
@@ -252,7 +252,7 @@
 {
     if(!_staff)
     {
-        [MNLog logInfo:[NSString stringWithFormat:@"StaffInstantiationInfo %@", @"no weak staff parent."]];
+        MNLogInfo(@"StaffInstantiationInfo %@", @"no weak staff parent.");
     }
     return _staff;
 }
@@ -292,7 +292,7 @@
         }
         else
         {
-            [MNLog logError:@"Unknown object in tickables array."];
+            MNLogError(@"Unknown object in tickables array.");
         }
     }
     return _boundingBox;
@@ -376,7 +376,7 @@
     }
     else
     {
-        [MNLog logError:@"NoteAddTickableException, cannot set voice on note."];
+        MNLogError(@"NoteAddTickableException, cannot set voice on note.");
     }
     return self;
 }

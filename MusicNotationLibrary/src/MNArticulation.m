@@ -339,8 +339,7 @@
     float glyph_x = start.x + self.shiftRight;
     glyph_y += shiftY + self.yShift;
 
-    [MNLog logInfo:[NSString
-                       stringWithFormat:@"Rendering articulation: %tu %f %f", self.articulationType, glyph_x, glyph_y]];
+    MNLogInfo(@"Rendering articulation: %tu %f %f", self.articulationType, glyph_x, glyph_y);
     [MNGlyph renderGlyph:ctx
                      atX:glyph_x
                      atY:glyph_y

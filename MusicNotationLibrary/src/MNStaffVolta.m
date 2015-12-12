@@ -82,7 +82,7 @@
 {
     float x = shiftX;
     //    if (self.staff.graphicsContext == NULL) {
-    //         [MNLog logError:@"cannot draw without context"];
+    //         MNLogError(@"cannot draw without context"];
     //    }
     //    CGContextRef ctx = staff.graphicsContext;
     float width, top_y, vert_height;

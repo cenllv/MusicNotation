@@ -70,6 +70,9 @@
 #define MNLogVerbose(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #endif
 
+#define MNLogNotYetImlemented(fmt, ...) \
+    NSLog((@"Not yet implemented %s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+
 //
 //#if !defined(MAX_CGFLOAT)
 //#define MAX(A,B)	({ __typeof__(A) __a = (A); __typeof__(B) __b = (B); __a < __b ? __b : __a; })

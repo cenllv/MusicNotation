@@ -102,7 +102,7 @@
 //- (void) renderToStaff:(CGContextRef)ctx {
 //    // additional drawing code here...
 //    if (self.metrics.line == INT32_MAX) {
-//         [MNLog LogError:@"MNClefMovableCException, remember to set the line number."];
+//         MNLogError(@"MNClefMovableCException, remember to set the line number."];
 //    }
 //
 //    [super renderToStaff:context];

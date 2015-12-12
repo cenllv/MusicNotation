@@ -35,7 +35,7 @@
 
 - (void)drawAtPoint:(CGPoint)point
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 
@@ -43,7 +43,7 @@
                              context:(NSGraphicsContext*)referenceContext
                                hints:(NSDictionary*)hints
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
     return nil;
 }

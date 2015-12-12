@@ -101,8 +101,8 @@ static NSMutableDictionary* _anchorPointForGlyphNameDictionary;
 
             if(outline.count == 0)
             {
-                [MNLog logInfo:@"EmptyOutlineException, outline for self symbol was not initialized."];
-                [MNLog logInfo:@"Attempting to look up outline before rendering blockscope proceeds."];
+                MNLogInfo(@"EmptyOutlineException, outline for self symbol was not initialized.");
+                MNLogInfo(@"Attempting to look up outline before rendering blockscope proceeds.");
                 // attempt to lookup name
                 if(glyphStruct.name.length == 0)
                 {
@@ -145,7 +145,7 @@ static NSMutableDictionary* _anchorPointForGlyphNameDictionary;
                 }
                 else
                 {
-                    //[MNLog LogError:@"draw symbol error."];
+                    //MNLogError(@"draw symbol error."];
                 }
                 left = pt.x < left ? pt.x : left;
                 right = pt.x > right ? pt.x : right;

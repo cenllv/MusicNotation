@@ -195,7 +195,7 @@
             self.timeSpec = @"12/8";
             break;
         default:
-            [MNLog logError:@"bad choice of timeType enum"];
+            MNLogError(@"bad choice of timeType enum");
             break;
     }
     [((MNMetrics*)self->_metrics)setName:self.name];

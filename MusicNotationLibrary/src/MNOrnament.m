@@ -423,8 +423,7 @@ static NSDictionary* _acc_mods;
         drawAccidental(ctx, self.accidental_lower, NO, pt);
     }
 
-    [MNLog
-        logDebug:[NSString stringWithFormat:@"Rendering ornament: %@ point:(%f, %f)", self.ornament, glyph_x, glyph_y]];
+    MNLogDebug(@"Rendering ornament: %@ point:(%f, %f)", self.ornament, glyph_x, glyph_y);
 
     MNPoint* pt = [MNPoint pointWithX:glyph_x andY:glyph_y];
     [MNGlyph renderGlyph:ctx atX:pt.x atY:pt.y withScale:1 /*self.font_scale*/ forGlyphCode:self.ornament.code];

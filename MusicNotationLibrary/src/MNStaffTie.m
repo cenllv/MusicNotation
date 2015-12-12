@@ -61,7 +61,7 @@
     self = [super initWithDictionary:optionsDict];
     if(self)
     {
-        //         [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+        //         MNLogNotYetImlemented();
         //        [self setValuesForKeyPathsWithDictionary:optionsDict];
         [self setupStaffTie];
     }
@@ -73,7 +73,7 @@
     self = [self initWithDictionary:optionsDict];
     if(self)
     {
-        //         [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+        //         MNLogNotYetImlemented();
         //        [self setValuesForKeyPathsWithDictionary:optionsDict];
         [self setupStaffTie];
     }
@@ -173,7 +173,7 @@
 {
     if(notes.firstNote == nil && notes.lastNote == nil)
     {
-        [MNLog logError:@"BadArguments, Tie needs to have either first_note or last_note set."];
+        MNLogError(@"BadArguments, Tie needs to have either first_note or last_note set.");
     }
     //    if(notes.firstIndices == nil || [notes.firstIndices isKindOfClass:[NSNull class]])
     //        notes.firstIndices = @[];
@@ -182,7 +182,7 @@
 
     if(notes.firstIndices.count != notes.lastIndices.count)
     {
-        [MNLog logError:@"BadArguments, Tied notes must have similarindex sizes"];
+        MNLogError(@"BadArguments, Tied notes must have similarindex sizes");
     }
 
     // Success. Lets grab 'em notes.
@@ -232,7 +232,7 @@
 
         if(isnan(first_y_px) || isnan(last_y_px))
         {
-            [MNLog logError:@"BadArguments, Bad indices for tie rendering."];
+            MNLogError(@"BadArguments, Bad indices for tie rendering.");
         }
 
         float top_cp_y = ((first_y_px + last_y_px) / 2) + (cp1 * direction);

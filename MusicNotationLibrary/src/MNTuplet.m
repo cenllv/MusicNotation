@@ -75,12 +75,12 @@
     {
         if(!notes || notes.count == 0)
         {
-            [MNLog logError:@"BadArguments, No notes provided for tuplet."];
+            MNLogError(@"BadArguments, No notes provided for tuplet.");
         }
 
         if(notes.count == 1)
         {
-            [MNLog logError:@"BadArguments, Too few notes for tuplet."];
+            MNLogError(@"BadArguments, Too few notes for tuplet.");
         }
         _notes = [notes mutableCopy];
 

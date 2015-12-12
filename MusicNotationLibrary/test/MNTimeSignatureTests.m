@@ -58,7 +58,7 @@
         }
     }
      */
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 

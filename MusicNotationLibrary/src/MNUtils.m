@@ -177,7 +177,7 @@
             //            for (NSUInteger charIndex = 0; charIndex < self.count; ++charIndex) {
             //                [ret addObject:operation([self substringWithRange:NSMakeRange(charIndex, 1)])];
             //            }
-            [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+            MNLogNotYetImlemented();
             abort();
             break;
         default:

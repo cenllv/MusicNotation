@@ -108,7 +108,7 @@
         @"duration" : @"w"
     }];
 
-    [MNLog logInfo:@"expect: \"UnformattedNote\" error"];
+    MNLogInfo(@"expect: \"UnformattedNote\" error");
     assertThatFloat(note.width, describedAs(@"Unformatted note should have no width", equalToFloat(MAXFLOAT), nil));
 }
 

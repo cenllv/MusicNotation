@@ -226,7 +226,7 @@ static NSDictionary* _pitchForClefDictionary;
             return @"a,";
             break;
         default:
-            [MNLog logError:@"unexpected articulation type"];
+            MNLogError(@"unexpected articulation type");
             break;
     }
 }
@@ -421,7 +421,7 @@ static NSDictionary* _clefProperties;
             return 0;
             break;
         default:
-            [MNLog logError:@"UnknownClefTypeException, unknown clef type."];
+            MNLogError(@"UnknownClefTypeException, unknown clef type.");
             return -1;
             break;
     }
@@ -523,7 +523,7 @@ static NSDictionary* _clefProperties;
             break;
         case MNDurationNone:
         default:
-            [MNLog logError:@"no duration."];
+            MNLogError(@"no duration.");
             break;
     }
 
@@ -712,7 +712,7 @@ static NSDictionary* _clefProperties;
 
         // case (MNDurationNone * N +  MNNoteNone):
         default:
-            [MNLog logError:@"no duration."];
+            MNLogError(@"no duration.");
             break;
     }
 }
@@ -1361,7 +1361,7 @@ static NSDictionary* _clefProperties;
 + (NSArray*)keyPropertiesArray
 {
     _keyPropertiesArray = @[];
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
     return _keyPropertiesArray;
 }
@@ -1586,7 +1586,7 @@ static NSDictionary* _clefProperties;
     }
     else
     {
-        [MNLog logError:@"Unrecognized acc sent to accidental list for acc."];
+        MNLogError(@"Unrecognized acc sent to accidental list for acc.");
         return nil;
     }
 }
@@ -2066,7 +2066,7 @@ static NSDictionary* _durationCodesDictionary;
 // withNHMRSType:(MNNoteNHMRSType)noteNHMRSType;
 //{
 //     MNGlyph* glyph = [[MNGlyph alloc] init];
-//     [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+//     MNLogNotYetImlemented();
 //    return glyph;
 //}
 
@@ -2300,7 +2300,7 @@ static NSDictionary* _noteValues;
 
 + (MNTableAccidentalCodes*)objectForAccidental:(NSString*)acc
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
     return ([MNTable accidentalsDictionary])[acc];
 }
@@ -2339,7 +2339,7 @@ static NSDictionary* _noteValues;
     }
      */
 
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
     return nil;
 }
@@ -2664,7 +2664,7 @@ Vex.Flow.keySignature = function(spec) {
  
     if(matches.count == 0)
     {
-        [MNLog logError:@"Unable to match any patterns in the durationString"];
+        MNLogError(@"Unable to match any patterns in the durationString");
         return nil;
     }
 

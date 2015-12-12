@@ -113,7 +113,7 @@ static NSArray* _MINOR_KEYS;
         }
     }
      */
-    [MNLog logNotYetImplementedForClass:[self class] andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 

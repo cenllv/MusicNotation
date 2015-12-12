@@ -132,25 +132,25 @@ static BOOL _showBoundingBox = NO;
 
 + (void)setFont:(MNFont*)font
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 
 + (void)setBold:(BOOL)bold
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 
 + (void)setItalic:(BOOL)italic
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 
 + (void)setColor:(MNColor*)color
 {
-    [MNLog logNotYetImplementedForClass:self andSelector:_cmd];
+    MNLogNotYetImlemented();
     abort();
 }
 

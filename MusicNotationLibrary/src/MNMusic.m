@@ -632,8 +632,7 @@ Vex.Flow.Music.prototype.getCanonicalIntervalName = function(intervalValue) {
 {
     if(![self isValidNoteValue:intervalValue])
     {
-        [MNLog
-            logError:[NSString stringWithFormat:@"BadArguments, Invalid note name: %lu", (unsigned long)intervalValue]];
+        MNLogError(@"BadArguments, Invalid note name: %ti", intervalValue);
         return nil;
     }
     return [self.canonicalNotes objectAtIndex:intervalValue];

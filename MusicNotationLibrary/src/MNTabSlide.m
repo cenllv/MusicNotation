@@ -27,7 +27,7 @@
 //
 
 #import "MNTabSlide.h"
-#import "MNLog.h"
+#import "MNMacros.h"
 #import "MNFont.h"
 #import "MNColor.h"
 
