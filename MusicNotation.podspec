@@ -154,8 +154,8 @@ Pod::Spec.new do |s|
     
     ## http://stackoverflow.com/a/29392505/629014
     s.subspec 'pop' do |sub|
-        #  sub.source_files = "Pods/pop/**/*.{h,m,mm,cpp}"
         sub.platform = :ios
+        sub.source_files = "Pods/pop/**/*.{h,m,mm,cpp}"
         sub.dependency "pop" #, "~> 1.0"
     end
     # s.dependency "pop", "~> 1.0"
