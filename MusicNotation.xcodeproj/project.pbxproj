@@ -938,7 +938,6 @@
 		6BF69E561C1C9A0D0085743C /* MNConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNConstants.h; path = common/MNConstants.h; sourceTree = "<group>"; };
 		6BF69E571C1C9A0D0085743C /* MNConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MNConstants.m; path = common/MNConstants.m; sourceTree = "<group>"; };
 		6BF69E581C1C9A0D0085743C /* MNContextDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNContextDelegate.h; path = common/MNContextDelegate.h; sourceTree = "<group>"; };
-		6BF69E591C1C9A0D0085743C /* MNCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNCore.h; path = common/MNCore.h; sourceTree = "<group>"; };
 		6BF69E5A1C1C9A0D0085743C /* MNCrescendo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNCrescendo.h; path = common/MNCrescendo.h; sourceTree = "<group>"; };
 		6BF69E5B1C1C9A0D0085743C /* MNCrescendo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MNCrescendo.m; path = common/MNCrescendo.m; sourceTree = "<group>"; };
 		6BF69E5C1C1C9A0D0085743C /* MNCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNCurve.h; path = common/MNCurve.h; sourceTree = "<group>"; };
@@ -1888,7 +1887,6 @@
 				6BF69E561C1C9A0D0085743C /* MNConstants.h */,
 				6BF69E571C1C9A0D0085743C /* MNConstants.m */,
 				6BF69E581C1C9A0D0085743C /* MNContextDelegate.h */,
-				6BF69E591C1C9A0D0085743C /* MNCore.h */,
 				6BF69E5A1C1C9A0D0085743C /* MNCrescendo.h */,
 				6BF69E5B1C1C9A0D0085743C /* MNCrescendo.m */,
 				6BF69E5C1C1C9A0D0085743C /* MNCurve.h */,

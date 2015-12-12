@@ -116,8 +116,8 @@
 #import "MusicNotation/MNVoiceGroup.h"
 #import "MusicNotation/MNShift.h"
 
-#import "MusicNotation/lib/MNBezierPath.h"
-#import "MusicNotation/lib/MNRational.h"
-#import "MusicNotation/lib/MNShapeLayer.h"
+#import "MusicNotation/MNBezierPath.h"
+#import "MusicNotation/MNRational.h"
+#import "MusicNotation/MNShapeLayer.h"
 
 #endif
