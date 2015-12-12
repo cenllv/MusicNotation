@@ -51,7 +51,7 @@
     [r simplify];
     XCTAssertTrue(r.numerator == 6);
     XCTAssertTrue(r.denominator == 1);
-
+    
     r = Rational(12, 2);
     [r add:Rational(4, 2)];
     XCTAssertTrue(r.numerator == 16);
@@ -63,7 +63,7 @@
     MNRational* r = Rational(2048, 2);
     MNRational* q = Rational(1024, 1);
     XCTAssertTrue([r equals:q]);
-
+    
     MNRational* m = Rational(1, 1);
     MNRational* n = Rational(2, 1);
     XCTAssertTrue(![m equals:n]);
@@ -74,6 +74,9 @@
     MNRational* r = Rational(2048, 3);
     r = [r multiplyByValue:2];
     XCTAssertEqualWithAccuracy([r floatValue], 2 * (2048. / 3.), 0.1f);
+    MNRational *q = Rational(4096, 1);
+    q = [q divideByValue:2];
+    XCTAssertTrue([q equals:Rational(2048, 1)]);
 }
 
 - (void)testAddSub
@@ -82,7 +85,7 @@
     MNRational* q = Rational(1, 2);
     [[[r add:q] add:q] add:q];
     XCTAssertEqual([r floatValue], [Rational(2, 1) floatValue]);
-
+    
     MNRational* m = Rational(6, 2);
     MNRational* n = Rational(2, 2);
     m = [[m subtract:n] subtract:n];

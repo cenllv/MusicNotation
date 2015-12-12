@@ -68,11 +68,11 @@ Pod::Spec.new do |s|
     # s.platform     = :ios, "5.0"
     
     #  When using multiple platforms
-    s.ios.deployment_target = "5.0"
-    s.osx.deployment_target = "10.11"
-    # s.watchos.deployment_target = "2.0"
-    # s.tvos.deployment_target = "9.0"
-    
+    s.ios.deployment_target = "7.0"
+    s.osx.deployment_target = "10.7"
+    #    s.watchos.deployment_target = "2.0"
+    #    s.tvos.deployment_target = "9.0"
+
     
     # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
     #
@@ -95,19 +95,20 @@ Pod::Spec.new do |s|
     #    s.exclude_files = "Classes/Exclude"
 
     # s.public_header_files = "Classes/**/*.h"
-    s.source_files = "MusicNotationLibrary/src/*.{h,m}",
-                        "MusicNotationLibrary/lib/**/*.{h,m}",
-                        "MusicNotationLibrary/MNCarrierLayer.{h,m}"
-    s.exclude_files = "MusicNotationLibrary/*.{h,m}",
-                        "MusicNotationLibrary/sentestkit/*.{h,m}",
-                        "MusicNotationLibrary/test/*.{h,m}",
-                        "MusicNotationLibrary/ochamcrest/**/*.{h,m}",
-                        "MusicNotationLibrary/src/MNBrowserLogger.{h,m}",
-                        "MusicNotationLibrary/src/MNLog.{h,m}",
-                        "MusicNotationLibrary/test/*.{h,m}",
-                        "MusicNotationLibrary/MNTestType.h",
+    s.public_header_files = "common/MNCore.h"
+    s.source_files = "common", "common/**/*.{h,m}"
+    
+    #    s.exclude_files =
+    #        "MusicNotation/MusicNotationLibrary/test/**/*.{h,m}",
+    #        "MusicNotation/MusicNotationLibrary/*.{h,m}",
+    #        "MusicNotation/MusicNotationLibrary/sentestkit/**/*.{h,m}",
+    #        "MusicNotation/MusicNotationLibrary/ochamcrest/**/*.{h,m}",
+    #        "MusicNotation/MusicNotationLibrary/src/MNBrowserLogger.{h,m}",
+    #        "MusicNotation/MusicNotationLibrary/src/MNLog.{h,m}",
+    #        "MusicNotation/MusicNotationLibrary/test/*.{h,m}",
+    #        "MusicNotation/MusicNotationLibrary/MNTestType.h"
 
-    s.compiler_flags = ""
+
     
     
     # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -149,9 +150,15 @@ Pod::Spec.new do |s|
     # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
     # s.dependency "JSONKit", "~> 1.4"
     #    s.dependency 'TheAmazingAudioEngine', '~> 1.5.4'
-    #    s.dependency 'pop', '~> 1.0'
+    
+#    s.subspec 'pop' do |sub|
+#        sub.source_files = "Pods/pop/**/*.{h,m,mm,cpp}"
+#        sub.dependency "pop" #, "~> 1.0"
+#    end
+    s.dependency "pop", "~> 1.0"
+
     # s.dependency 'ReflectableEnum' #, '~> 0.1.1'
     #    s.dependency 'RegExCategories'
-    s.frameworks =  'QuartzCore' #'AudioToolbox', 'Accelerate'
+    s.frameworks =  "Foundation" #'AudioToolbox', 'Accelerate'
     
 end
