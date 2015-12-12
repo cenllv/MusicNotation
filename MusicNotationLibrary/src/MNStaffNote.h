@@ -249,7 +249,7 @@
                                    atX:(float)x;
 // CALayer Methods
 //- (CGMutablePathRef)path;
-- (CAShapeLayer*)shapeLayer;
+- (MNShapeLayer*)shapeLayer;
 
 #if TARGET_OS_IPHONE
 + (UIImage*)imageForNoteWithDictionary:(NSDictionary*)noteStruct rect:(CGRect)rect;
