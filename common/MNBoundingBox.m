@@ -25,7 +25,6 @@
 //  THE SOFTWARE.
 //
 
-
 #import "MNColor.h"
 #import "MNBoundingBox.h"
 #import "MNFont.h"

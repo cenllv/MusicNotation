@@ -98,12 +98,12 @@ Pod::Spec.new do |s|
     s.public_header_files = "common/MNCore.h"
     s.source_files = "common", "common/**/*.{h,m}"
     
-    #    s.exclude_files =
-    #        "MusicNotation/MusicNotationLibrary/test/**/*.{h,m}",
+#    s.exclude_files = "common/MNBrowserLogger.{h,m}", "common/MNLog.{h,m}",
+    #            "MusicNotation/MusicNotationLibrary/test/**/*.{h,m}",
     #        "MusicNotation/MusicNotationLibrary/*.{h,m}",
     #        "MusicNotation/MusicNotationLibrary/sentestkit/**/*.{h,m}",
     #        "MusicNotation/MusicNotationLibrary/ochamcrest/**/*.{h,m}",
-    #        "MusicNotation/MusicNotationLibrary/src/MNBrowserLogger.{h,m}",
+    #            "MusicNotation/MusicNotationLibrary/src/MNBrowserLogger.{h,m}",
     #        "MusicNotation/MusicNotationLibrary/src/MNLog.{h,m}",
     #        "MusicNotation/MusicNotationLibrary/test/*.{h,m}",
     #        "MusicNotation/MusicNotationLibrary/MNTestType.h"

@@ -33,7 +33,7 @@
 #import "MNMusicRootIndices.h"
 #import "MNKeyManager.h"
 
-#import <RegExCategories/RegExCategories.h>
+//#import <RegExCategories/RegExCategories.h>
 
 @implementation RootAccidentalTypeStruct
 
@@ -485,18 +485,18 @@ Vex.Flow.Music.prototype.getKeyParts = function(keyString) {
     //    }
 
     NSString* key = [keyString lowercaseString];
-    //    NSError* error = NULL;
-    //    NSRegularExpression* regex = [NSRegularExpression
-    //    regularExpressionWithPattern:@"^([cdefgab])|(b|#)?|(mel|harm|m|M)?$"
-    //                                                                           options:NSRegularExpressionCaseInsensitive
-    //                                                                             error:&error];
-    //    NSArray* matches = [regex matchesInString:key options:0 range:NSMakeRange(0, [key length])];
+        NSError* error = NULL;
+        NSRegularExpression* regex = [NSRegularExpression
+        regularExpressionWithPattern:@"^([cdefgab])|(b|#)?|(mel|harm|m|M)?$"
+                                                                               options:NSRegularExpressionCaseInsensitive
+                                                                                 error:&error];
+        NSArray* matches = [regex matchesInString:key options:0 range:NSMakeRange(0, [key length])];
     //
     //    //    NSUInteger numberOfMatches = [regex numberOfMatchesInString:key options:0 range:NSMakeRange(0, [key
     //    length])];
 
-    NSArray* matches =
-        [key matches:[@"^([cdefgab])|(b|#)?|(mel|harm|m|M)?$" toRxWithOptions:NSRegularExpressionCaseInsensitive]];
+//    NSArray* matches =
+//        [key matches:[@"^([cdefgab])|(b|#)?|(mel|harm|m|M)?$" toRxWithOptions:NSRegularExpressionCaseInsensitive]];
 
     if(matches)
     {

@@ -44,8 +44,6 @@
 		6BD133AE1C1280CA00E14741 /* MNMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD133AD1C1280CA00E14741 /* MNMTableViewCell.m */; };
 		6BD133B21C13664E00E14741 /* MNTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD133B11C13664E00E14741 /* MNTestUtils.m */; };
 		6BD133B31C13664E00E14741 /* MNTestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BD133B11C13664E00E14741 /* MNTestUtils.m */; };
-		6BF69F431C1C9A0E0085743C /* MNBrowserLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF69E4B1C1C9A0D0085743C /* MNBrowserLogger.m */; };
-		6BF69F441C1C9A0E0085743C /* MNBrowserLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF69E4B1C1C9A0D0085743C /* MNBrowserLogger.m */; };
 		6BF69F451C1C9A0E0085743C /* MNChordBarStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF69E4D1C1C9A0D0085743C /* MNChordBarStruct.m */; };
 		6BF69F461C1C9A0E0085743C /* MNChordBarStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF69E4D1C1C9A0D0085743C /* MNChordBarStruct.m */; };
 		6BF69F471C1C9A0E0085743C /* MNChordBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF69E4F1C1C9A0D0085743C /* MNChordBox.m */; };
@@ -110,8 +108,6 @@
 		6BF69F821C1C9A0E0085743C /* MNKeySignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF69E8C1C1C9A0E0085743C /* MNKeySignature.m */; };
 		6BF69F831C1C9A0E0085743C /* MNLineListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF69E8E1C1C9A0E0085743C /* MNLineListStruct.m */; };
 		6BF69F841C1C9A0E0085743C /* MNLineListStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF69E8E1C1C9A0E0085743C /* MNLineListStruct.m */; };
-		6BF69F851C1C9A0E0085743C /* MNLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF69E901C1C9A0E0085743C /* MNLog.m */; };
-		6BF69F861C1C9A0E0085743C /* MNLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF69E901C1C9A0E0085743C /* MNLog.m */; };
 		6BF69F871C1C9A0E0085743C /* MNMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF69E931C1C9A0E0085743C /* MNMetrics.m */; };
 		6BF69F881C1C9A0E0085743C /* MNMetrics.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF69E931C1C9A0E0085743C /* MNMetrics.m */; };
 		6BF69F891C1C9A0E0085743C /* MNModifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF69E951C1C9A0E0085743C /* MNModifier.m */; };
@@ -840,6 +836,10 @@
 		6BF6A6A41C1C9D4B0085743C /* gonville_all.js in Resources */ = {isa = PBXBuildFile; fileRef = 6BF6A25A1C1C9AE60085743C /* gonville_all.js */; };
 		6BF6A6A51C1C9D4B0085743C /* gonville_original.js in Resources */ = {isa = PBXBuildFile; fileRef = 6BF6A25B1C1C9AE60085743C /* gonville_original.js */; };
 		6BF6A6A61C1C9D4B0085743C /* vexflow_font.js in Resources */ = {isa = PBXBuildFile; fileRef = 6BF6A25C1C1C9AE60085743C /* vexflow_font.js */; };
+		6BF6A6AB1C1CA2FA0085743C /* MNBrowserLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A6A81C1CA2FA0085743C /* MNBrowserLogger.m */; };
+		6BF6A6AC1C1CA2FA0085743C /* MNBrowserLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A6A81C1CA2FA0085743C /* MNBrowserLogger.m */; };
+		6BF6A6AD1C1CA2FA0085743C /* MNLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A6AA1C1CA2FA0085743C /* MNLog.m */; };
+		6BF6A6AE1C1CA2FA0085743C /* MNLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF6A6AA1C1CA2FA0085743C /* MNLog.m */; };
 		D278F51B1A8689AE000C57C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D278F51A1A8689AE000C57C1 /* AppDelegate.m */; };
 		D278F51D1A8689AE000C57C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D278F51C1A8689AE000C57C1 /* main.m */; };
 		D278F5201A8689AE000C57C1 /* MNBrowserWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = D278F51F1A8689AE000C57C1 /* MNBrowserWindowController.m */; };
@@ -931,8 +931,6 @@
 		6BD133B01C13664E00E14741 /* MNTestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestUtils.h; sourceTree = "<group>"; };
 		6BD133B11C13664E00E14741 /* MNTestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTestUtils.m; sourceTree = "<group>"; };
 		6BE400061C1262EC007573FB /* MNM-PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MNM-PrefixHeader.pch"; sourceTree = "<group>"; };
-		6BF69E4A1C1C9A0D0085743C /* MNBrowserLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNBrowserLogger.h; path = common/MNBrowserLogger.h; sourceTree = "<group>"; };
-		6BF69E4B1C1C9A0D0085743C /* MNBrowserLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MNBrowserLogger.m; path = common/MNBrowserLogger.m; sourceTree = "<group>"; };
 		6BF69E4C1C1C9A0D0085743C /* MNChordBarStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNChordBarStruct.h; path = common/MNChordBarStruct.h; sourceTree = "<group>"; };
 		6BF69E4D1C1C9A0D0085743C /* MNChordBarStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MNChordBarStruct.m; path = common/MNChordBarStruct.m; sourceTree = "<group>"; };
 		6BF69E4E1C1C9A0D0085743C /* MNChordBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNChordBox.h; path = common/MNChordBox.h; sourceTree = "<group>"; };
@@ -1000,8 +998,6 @@
 		6BF69E8C1C1C9A0E0085743C /* MNKeySignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MNKeySignature.m; path = common/MNKeySignature.m; sourceTree = "<group>"; };
 		6BF69E8D1C1C9A0E0085743C /* MNLineListStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNLineListStruct.h; path = common/MNLineListStruct.h; sourceTree = "<group>"; };
 		6BF69E8E1C1C9A0E0085743C /* MNLineListStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MNLineListStruct.m; path = common/MNLineListStruct.m; sourceTree = "<group>"; };
-		6BF69E8F1C1C9A0E0085743C /* MNLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNLog.h; path = common/MNLog.h; sourceTree = "<group>"; };
-		6BF69E901C1C9A0E0085743C /* MNLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MNLog.m; path = common/MNLog.m; sourceTree = "<group>"; };
 		6BF69E911C1C9A0E0085743C /* MNMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNMacros.h; path = common/MNMacros.h; sourceTree = "<group>"; };
 		6BF69E921C1C9A0E0085743C /* MNMetrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNMetrics.h; path = common/MNMetrics.h; sourceTree = "<group>"; };
 		6BF69E931C1C9A0E0085743C /* MNMetrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MNMetrics.m; path = common/MNMetrics.m; sourceTree = "<group>"; };
@@ -1697,6 +1693,10 @@
 		6BF6A5151C1C9CC80085743C /* MNVoiceTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNVoiceTests.h; sourceTree = "<group>"; };
 		6BF6A5161C1C9CC80085743C /* MNVoiceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNVoiceTests.m; sourceTree = "<group>"; };
 		6BF6A5171C1C9CC80085743C /* Tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tests.h; sourceTree = "<group>"; };
+		6BF6A6A71C1CA2FA0085743C /* MNBrowserLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNBrowserLogger.h; sourceTree = "<group>"; };
+		6BF6A6A81C1CA2FA0085743C /* MNBrowserLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNBrowserLogger.m; sourceTree = "<group>"; };
+		6BF6A6A91C1CA2FA0085743C /* MNLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNLog.h; sourceTree = "<group>"; };
+		6BF6A6AA1C1CA2FA0085743C /* MNLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNLog.m; sourceTree = "<group>"; };
 		7931C3BC3335BB59F58AAEA6 /* Pods-MusicNotationDesktop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationDesktop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationDesktop/Pods-MusicNotationDesktop.debug.xcconfig"; sourceTree = "<group>"; };
 		7CAA54FDF931131D4AA3C386 /* Pods-MusicNotationMobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationMobile.release.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationMobile/Pods-MusicNotationMobile.release.xcconfig"; sourceTree = "<group>"; };
 		9DCF05863704306CC41A85BB /* Pods-MusicNotationMobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MusicNotationMobile.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MusicNotationMobile/Pods-MusicNotationMobile.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1792,8 +1792,12 @@
 			children = (
 				D278F5191A8689AE000C57C1 /* AppDelegate.h */,
 				D278F51A1A8689AE000C57C1 /* AppDelegate.m */,
+				6BF6A6A71C1CA2FA0085743C /* MNBrowserLogger.h */,
+				6BF6A6A81C1CA2FA0085743C /* MNBrowserLogger.m */,
 				D278F51E1A8689AE000C57C1 /* MNBrowserWindowController.h */,
 				D278F51F1A8689AE000C57C1 /* MNBrowserWindowController.m */,
+				6BF6A6A91C1CA2FA0085743C /* MNLog.h */,
+				6BF6A6AA1C1CA2FA0085743C /* MNLog.m */,
 				6B0BE79D1C14E7600035ADCF /* MNNoteDrawNotesDelegate.h */,
 				6B8631C81B235C0300786D3D /* MNOutlineViewController.h */,
 				6B8631C91B235C0300786D3D /* MNOutlineViewController.m */,
@@ -1883,8 +1887,6 @@
 				6BF6A3801C1C9C350085743C /* MNBendStruct.m */,
 				6BF6A3811C1C9C350085743C /* MNBoundingBox.h */,
 				6BF6A3821C1C9C350085743C /* MNBoundingBox.m */,
-				6BF69E4A1C1C9A0D0085743C /* MNBrowserLogger.h */,
-				6BF69E4B1C1C9A0D0085743C /* MNBrowserLogger.m */,
 				6BF69E4C1C1C9A0D0085743C /* MNChordBarStruct.h */,
 				6BF69E4D1C1C9A0D0085743C /* MNChordBarStruct.m */,
 				6BF69E4E1C1C9A0D0085743C /* MNChordBox.h */,
@@ -1952,8 +1954,6 @@
 				6BF69E8C1C1C9A0E0085743C /* MNKeySignature.m */,
 				6BF69E8D1C1C9A0E0085743C /* MNLineListStruct.h */,
 				6BF69E8E1C1C9A0E0085743C /* MNLineListStruct.m */,
-				6BF69E8F1C1C9A0E0085743C /* MNLog.h */,
-				6BF69E901C1C9A0E0085743C /* MNLog.m */,
 				6BF69E911C1C9A0E0085743C /* MNMacros.h */,
 				6BF69E921C1C9A0E0085743C /* MNMetrics.h */,
 				6BF69E931C1C9A0E0085743C /* MNMetrics.m */,
@@ -3243,6 +3243,7 @@
 				6BF6A5571C1C9CC80085743C /* HCXCTestFailureHandler.m in Sources */,
 				6BD133AE1C1280CA00E14741 /* MNMTableViewCell.m in Sources */,
 				6BF6A3441C1C9B3D0085743C /* Functions.m in Sources */,
+				6BF6A6AC1C1CA2FA0085743C /* MNBrowserLogger.m in Sources */,
 				6BF6A3261C1C9B3D0085743C /* EnumerateEnumerator.m in Sources */,
 				6BF6A5F31C1C9CC80085743C /* IsEqualTest.m in Sources */,
 				6BF6A5211C1C9CC80085743C /* HCStringDescription.m in Sources */,
@@ -3295,6 +3296,7 @@
 				6BF6A0101C1C9A0E0085743C /* MNTextNoteStruct.m in Sources */,
 				6BF6A0281C1C9A0E0085743C /* MNTuplet.m in Sources */,
 				6BF6A5B31C1C9CC80085743C /* IsCollectionContainingInOrderTest.m in Sources */,
+				6BF6A6AE1C1CA2FA0085743C /* MNLog.m in Sources */,
 				6BF6A6811C1C9CC80085743C /* MNStrokesTests.m in Sources */,
 				6BF69FAC1C1C9A0E0085743C /* MNPadding.m in Sources */,
 				6BF6A2F21C1C9B3D0085743C /* DPObject.m in Sources */,
@@ -3458,7 +3460,6 @@
 				6BF6A54B1C1C9CC80085743C /* HCUnsignedShortReturnGetter.m in Sources */,
 				6BF6A3401C1C9B3D0085743C /* Function1.m in Sources */,
 				6BF6A57D1C1C9CC80085743C /* HCIsCloseTo.m in Sources */,
-				6BF69F861C1C9A0E0085743C /* MNLog.m in Sources */,
 				6BF69F561C1C9A0E0085743C /* MNDot.m in Sources */,
 				6BF6A5911C1C9CC80085743C /* HCIsInstanceOf.m in Sources */,
 				6BF6A6351C1C9CC80085743C /* MNArticulationTests.m in Sources */,
@@ -3605,7 +3606,6 @@
 				6BF6A63F1C1C9CC80085743C /* MNChordTest.m in Sources */,
 				6BF69F7E1C1C9A0E0085743C /* MNKeyManager.m in Sources */,
 				6BF6A59D1C1C9CC80085743C /* HCIsEqualIgnoringWhiteSpace.m in Sources */,
-				6BF69F441C1C9A0E0085743C /* MNBrowserLogger.m in Sources */,
 				6BF6A5551C1C9CC80085743C /* HCTestFailureHandlerChain.m in Sources */,
 				6BF6A52D1C1C9CC80085743C /* HCBoolReturnGetter.m in Sources */,
 				6BF6A5AD1C1C9CC80085743C /* FakeWithoutCount.m in Sources */,
@@ -3717,7 +3717,6 @@
 				6BF6A6961C1C9CC80085743C /* MNTimeSignatureTests.m in Sources */,
 				6BF6A5361C1C9CC80085743C /* HCLongLongReturnGetter.m in Sources */,
 				6BF6A52C1C1C9CC80085743C /* HCBoolReturnGetter.m in Sources */,
-				6BF69F851C1C9A0E0085743C /* MNLog.m in Sources */,
 				6BF69F551C1C9A0E0085743C /* MNDot.m in Sources */,
 				6BF6A5621C1C9CC80085743C /* HCIsCollectionOnlyContaining.m in Sources */,
 				6BF69F671C1C9A0E0085743C /* MNGhostNote.m in Sources */,
@@ -3762,7 +3761,6 @@
 				6BF69F631C1C9A0E0085743C /* MNFretHandFinger.m in Sources */,
 				6BF6A5F01C1C9CC80085743C /* HasPropertyTest.m in Sources */,
 				6BC86D291B768BDD00C6D20B /* MNRenderLayer.m in Sources */,
-				6BF69F431C1C9A0E0085743C /* MNBrowserLogger.m in Sources */,
 				6BF69F6B1C1C9A0E0085743C /* MNGlyphLayer.m in Sources */,
 				6BF6A5AE1C1C9CC80085743C /* HasCountTest.m in Sources */,
 				6BF69FE71C1C9A0E0085743C /* MNTable.m in Sources */,
@@ -3839,6 +3837,7 @@
 				6BF6A30B1C1C9B3D0085743C /* MNShapeLayer.m in Sources */,
 				6BF69FA11C1C9A0E0085743C /* MNNoteMetrics.m in Sources */,
 				6BF6A6121C1C9CC80085743C /* SenInterfaceTestCase.m in Sources */,
+				6BF6A6AB1C1CA2FA0085743C /* MNBrowserLogger.m in Sources */,
 				6BF6A38B1C1C9C350085743C /* MNArticulation.m in Sources */,
 				6BF69FF71C1C9A0E0085743C /* MNTableOrnamentCodes.m in Sources */,
 				6BF6A5D61C1C9CC80085743C /* IsTest.m in Sources */,
@@ -4006,6 +4005,7 @@
 				6BF6A5D01C1C9CC80085743C /* InvocationMatcherTest.m in Sources */,
 				6BF6A3371C1C9B3D0085743C /* PartitionEnumerator.m in Sources */,
 				6BF69FA31C1C9A0E0085743C /* MNNoteRenderOptions.m in Sources */,
+				6BF6A6AD1C1CA2FA0085743C /* MNLog.m in Sources */,
 				6BF69FAF1C1C9A0E0085743C /* MNPedalMarking.m in Sources */,
 				6BF6A5821C1C9CC80085743C /* HCNumberAssert.m in Sources */,
 				6BF6A2F11C1C9B3D0085743C /* DPObject.m in Sources */,
