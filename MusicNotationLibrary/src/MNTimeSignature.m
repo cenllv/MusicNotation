@@ -153,10 +153,6 @@
 }
 
 #pragma mark - LU Tables
-/*!---------------------------------------------------------------------------------------------------------------------
- * @name LU Tables
- * ---------------------------------------------------------------------------------------------------------------------
- */
 
 - (void)setCodeAndName
 {
@@ -211,8 +207,8 @@ static NSDictionary* _standardTimeSignatures;
     if(!_standardTimeSignatures)
     {
         _standardTimeSignatures = @{
-            @"C" : @{@"code" : @"v41", @"point" : @40, @"line" : @2},
-            @"C|" : @{@"code" : @"vb6", @"point" : @40, @"line" : @2},
+            @"C" : @{@"code" : @"v41", @"point" : @(42. / 38.), @"line" : @2},
+            @"C|" : @{@"code" : @"vb6", @"point" : @(42. / 38.), @"line" : @2},
         };
     }
     return _standardTimeSignatures;
@@ -317,13 +313,16 @@ static NSDictionary* _standardTimeSignatures;
 
     float topWidth = 0;
     NSUInteger num;
+    float scale = 1.2;
+    float inter_padding = 3;
     for(NSUInteger i = 0; i < topNums.count; ++i)
     {
         num = [topNums[i] unsignedIntegerValue];
-        MNGlyph* topGlyph = [[MNGlyph alloc] initWithCode:[NSString stringWithFormat:@"v%tu", num] withPointSize:1];
+        MNGlyph* topGlyph = [[MNGlyph alloc] initWithCode:[NSString stringWithFormat:@"v%tu", num] withPointSize:scale];
+        topGlyph.x_shift = inter_padding * i;
 
         [topGlyphs push:topGlyph];
-        topWidth += topGlyph.metrics.width;
+        topWidth += (topGlyph.metrics.width * scale + inter_padding);
     }
     self.topGlyphs = topGlyphs;
 
@@ -331,27 +330,16 @@ static NSDictionary* _standardTimeSignatures;
     for(NSUInteger i = 0; i < botNums.count; ++i)
     {
         num = [botNums[i] unsignedIntegerValue];
-        MNGlyph* botGlyph = [[MNGlyph alloc] initWithCode:[NSString stringWithFormat:@"v%tu", num] withPointSize:1];
+        MNGlyph* botGlyph = [[MNGlyph alloc] initWithCode:[NSString stringWithFormat:@"v%tu", num] withPointSize:scale];
+        botGlyph.x_shift = inter_padding * i;
 
         [botGlyphs push:botGlyph];
-        botWidth += botGlyph.metrics.width;
+        botWidth += (botGlyph.metrics.width * scale + inter_padding);
     }
     self.botGlyphs = botGlyphs;
 
     float width = (topWidth > botWidth ? topWidth : botWidth);
     glyph.width = width;
-
-    //    float xMin = ((TimeSignatureGlyphMetrics*)glyph.metrics).x_min;
-    //    ((TimeSignatureGlyphMetrics*)glyph.metrics).x_min = xMin;
-    //    ((TimeSignatureGlyphMetrics*)glyph.metrics).x_max = xMin + width;
-    //    ((TimeSignatureGlyphMetrics*)glyph.metrics).width = width;
-
-    //    [self.botGlyphs foreach:^(MNGlyph* element, NSUInteger index, BOOL* stop) {
-    //        element.width = width;
-    //    }];
-    //    [self.topGlyphs foreach:^(MNGlyph* element, NSUInteger index, BOOL* stop) {
-    //        element.width = width;
-    //    }];
 
     __block float topStartX = (width - topWidth) / 2.0;
     __block float botStartX = (width - botWidth) / 2.0;
@@ -364,7 +352,6 @@ static NSDictionary* _standardTimeSignatures;
       float _y = 0;
       if(!this.staff)
       {
-          //          _y = y;
           _y = [staff getYForLine:this.topLine] + 1;
       }
       else
@@ -377,7 +364,7 @@ static NSDictionary* _standardTimeSignatures;
           [MNGlyph renderGlyph:ctx
                            atX:start_x + g.x_shift
                            atY:_y
-                     withScale:1.2 /*g.scale*/
+                     withScale:g.metrics.scale
                   forGlyphCode:g.metrics.code];
           start_x += g.metrics.width;
       }
@@ -385,7 +372,6 @@ static NSDictionary* _standardTimeSignatures;
       start_x = x + botStartX;
       if(!this.staff)
       {
-          //          _y = y;
           _y = [staff getYForLine:this.bottomLine] + 1;
       }
       else
@@ -395,12 +381,10 @@ static NSDictionary* _standardTimeSignatures;
       for(NSUInteger i = 0; i < this.botGlyphs.count; ++i)
       {
           g = this.botGlyphs[i];
-          //          [this placeGlyphOnLine(g, this.stave, g.line);
-          //          [this placeGlyphOnLine:glyph forStaff:this.staff onLine:g.line];
           [MNGlyph renderGlyph:ctx
                            atX:start_x + g.x_shift
-                           atY:_y   //[this.staff getYForLine:this.bottomLine] + 1 + y
-                     withScale:1.2    /*g.scale*/
+                           atY:_y                
+                     withScale:g.metrics.scale
                   forGlyphCode:g.metrics.code];
           start_x += g.metrics.width;
       }

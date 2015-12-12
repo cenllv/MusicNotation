@@ -66,7 +66,6 @@
     [super tearDown];
 }
 
-
 - (MNTestBlockStruct*)drawMultipleMeasures:(id<MNTestParentDelegate>)parent
 {
     MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
@@ -657,7 +656,8 @@
 
     [tabVoice addTickables:notes.tabNotes];
 
-    [[[MNFormatter formatter] joinVoices:@[ voice ]] formatWith:@[ voice, tabVoice ] withJustifyWidth:justify];
+    [[[[MNFormatter formatter] joinVoices:@[ voice ]] joinVoices:@[ tabVoice ]] formatWith:@[ voice, tabVoice ]
+                                                                          withJustifyWidth:justify];
 
     [voice draw:ctx dirtyRect:CGRectZero toStaff:staves.notesStaff];
     [beams oct_foreach:^(MNBeam* beam, NSUInteger index, BOOL* stop) {

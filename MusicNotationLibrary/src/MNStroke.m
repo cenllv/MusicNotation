@@ -100,7 +100,7 @@
          self.setWidth(10);
      },
      */
-    self.note = nil;
+    //    self.note = nil;
     //    self.options = Vex.Merge({}, options);
 
     // multi voice - span stroke across all voices if YES
@@ -167,18 +167,23 @@
     {
         str = strokes[i];
         MNNote* note = str.note;
-        MNKeyProperty* props;
+        //        MNKeyProperty* props;
         if([note isKindOfClass:[MNStaffNote class]])
         {
-            props = note.keyProps[str.index];
+            MNKeyProperty* props = note.keyProps[str.index];
             shift = (props.displaced ? note.extraLeftPx : 0);
             [str_list push:@{ @"line" : @(props.line), @"shift" : @(shift), @"str" : str }];
         }
+        else if([note isKindOfClass:[MNTabNote class]])
+        {
+            MNTabNotePositionsStruct* props =
+                (MNTabNotePositionsStruct*)[[((MNTabNote*)note)positions] objectAtIndex:str.index];
+            [str_list push:@{ @"line" : @(props.str), @"shift" : @(0), @"str" : str }];
+        }
         else
         {
-            // TODO: finish for tabnote
-            //            props = note.getPositions()[str.getIndex()];
-            //            [str_list push:@{@"line" : @(props.str), @"shift" : @(0), @"str" : str}];
+            MNLogError(@"Unrecognized note");
+            abort();
         }
     }
 

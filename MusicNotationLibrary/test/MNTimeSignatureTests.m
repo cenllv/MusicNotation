@@ -87,25 +87,38 @@
 - (MNTestBlockStruct*)basic:(id<MNTestParentDelegate>)parent
 {
     MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
+
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 500, 0)];
+    void (^endSpace)(float) = ^(float w) {
+      [staff addEndGlyph:[staff makeSpacer:w]];
+    };
+
+    [staff addTimeSignatureWithName:@"2/2"];
+    [staff addTimeSignatureWithName:@"3/4"];
+    [staff addTimeSignatureWithName:@"4/4"];
+    [staff addTimeSignatureWithName:@"6/8"];
+    [staff addClefWithName:@"treble"];
+    [staff addTimeSignatureWithName:@"C"];
+    [staff addTimeSignatureWithName:@"C|"];
+
+    float w = 6;
+
+    [staff addEndTimeSignatureWithName:@"2/2"];
+    endSpace(w);
+    [staff addEndTimeSignatureWithName:@"3/4"];
+    endSpace(w);
+    [staff addEndTimeSignatureWithName:@"4/4"];
+    endSpace(w);
+    [staff addEndClefWithName:@"treble"];
+    endSpace(w);
+    [staff addEndTimeSignatureWithName:@"6/8"];
+    endSpace(w);
+    [staff addEndTimeSignatureWithName:@"C"];
+    endSpace(w);
+    [staff addEndTimeSignatureWithName:@"C|"];
+    endSpace(w);
+
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 500, 0)];
-      [staff addTimeSignatureWithName:@"2/2"];
-      [staff addTimeSignatureWithName:@"3/4"];
-      [staff addTimeSignatureWithName:@"4/4"];
-      [staff addTimeSignatureWithName:@"6/8"];
-      [staff addClefWithName:@"treble"];
-      [staff addTimeSignatureWithName:@"C"];
-      [staff addTimeSignatureWithName:@"C|"];
-
-      [staff addEndTimeSignatureWithName:@"2/2"];
-      [staff addEndTimeSignatureWithName:@"3/4"];
-      [staff addEndTimeSignatureWithName:@"4/4"];
-      [staff addEndClefWithName:@"treble"];
-      [staff addEndTimeSignatureWithName:@"6/8"];
-      [staff addEndTimeSignatureWithName:@"C"];
-      [staff addEndTimeSignatureWithName:@"C|"];
-
       [staff draw:ctx];
 
       ok(YES, @"all pass");
@@ -119,7 +132,7 @@
 
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
 
-      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 300, 0)];
+      MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 10, 400, 0)];
 
       [staff addTimeSignatureWithName:@"12/8"];
       [staff addTimeSignatureWithName:@"7/16"];

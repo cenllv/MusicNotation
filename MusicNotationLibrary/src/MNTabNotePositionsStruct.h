@@ -25,12 +25,13 @@
 //  THE SOFTWARE.
 //
 
-#import "IAModelBase.h"
+//#import "IAModelBase.h"
+#import "MNKeyProperty.h"
 
 /*!
  *  The `MNTabNotePositionsStruct` class
  */
-@interface MNTabNotePositionsStruct : IAModelBase
+@interface MNTabNotePositionsStruct :  MNKeyProperty //IAModelBase
 {
    @private
     NSUInteger _str;

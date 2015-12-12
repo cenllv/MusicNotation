@@ -110,7 +110,7 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | StaffNote             | pass      |  | tick, stem, auto, staffline, width, boundingbox, etc |
 | StaffTie              | pass      |  | simple, chord, stem up, no end, no start |
 | StringNumber          | pass      |  | string number in notation, fred hand finger, etc |
-| Strokes               | pass      | had to hack tabnote setStaff method | brush/arpeggiate/etc, multi, notation/tab, etc |
+| Strokes               | pass      |  | brush/arpeggiate/etc, multi, notation/tab, etc |
 | Table                 | incomplete| n/a | clef, key, etc number constants and ratios, etc |
 | TabNote               | pass      |  | tick, tabstaff, tickcontext, tabnote, etc |
 | TabSlide              | pass      |  | tabslide simple, up, down  |
