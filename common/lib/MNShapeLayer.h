@@ -26,6 +26,7 @@
 //
 
 #import "MNLayerResponder.h"
+#import <QuartzCore/QuartzCore.h>
 
 @class MNTestViewController;
 
