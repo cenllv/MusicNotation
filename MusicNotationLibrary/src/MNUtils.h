@@ -30,7 +30,7 @@
 #import "MNMacros.h"
 #import "MNMath.h"
 #import "MNPropertyUtil.h"
-#import "NSString+MNAdditions.h"
+//#import "NSString+MNAdditions.h"
 #import "NSMutableArray+MNAdditions.h"
 #import "NSMutableDictionary+MNAdditions.h"
 #import "OCTotallyLazy.h"
