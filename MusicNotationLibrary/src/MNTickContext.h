@@ -26,12 +26,12 @@
 //  THE SOFTWARE.
 //
 
-#import "MNContextDelegate.h"
+//#import "MNContextDelegate.h"
 #import "MNDelegates.h"
 #import "IAModelBase.h"
-#import "MNExtraPoints.h"
+//#import "MNExtraPoints.h"
 
-@class MNRational, MNTickable, MNPoint, MNPadding, MNStaff, MNModifier;
+@class MNRational, MNTickable, MNPoint, MNPadding, MNStaff, MNModifier, MNExtraPoints;
 
 /*!
  *  The `MNTickContext` class  is a A formatter for abstract

@@ -33,6 +33,7 @@
 #import "MNModifier.h"
 #import "MNRational.h"
 #import "MNPadding.h"
+#import "MNExtraPoints.h"
 
 @interface MNTickContext (private)
 @property (assign, nonatomic) BOOL preFormatted;

@@ -39,6 +39,7 @@
 #import "MNTuplet.h"
 #import "MNConstants.h"
 #import "MNNoteMetrics.h"
+#import "MNExtraPoints.h"
 
 @implementation MNNote
 

@@ -44,6 +44,7 @@
 #import "MNBoundingBox.h"
 #import "MNStemmableNote.h"
 #import "MNStaffNote.h"
+#import "MNContextDelegate.h"
 
 typedef void (^AddFunction)(MNTickable*, id);
 

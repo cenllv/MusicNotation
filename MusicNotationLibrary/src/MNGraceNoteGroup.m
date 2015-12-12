@@ -42,6 +42,7 @@
 #import "MNTickContext.h"
 #import "MNConstants.h"
 #import "MNGraceNoteGroupListStruct.h"
+#import "MNExtraPoints.h"
 
 @implementation MNGraceNoteGroup
 /*
