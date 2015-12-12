@@ -95,7 +95,9 @@ Pod::Spec.new do |s|
     #    s.exclude_files = "Classes/Exclude"
 
     # s.public_header_files = "Classes/**/*.h"
-    s.source_files = "MusicNotationLibrary/src/**/*.{h,m}", "MusicNotationLibrary/lib/**/*.{h,m}"
+    s.source_files = "MusicNotationLibrary/src/**/*.{h,m}",
+                    "MusicNotationLibrary/lib/**/*.{h,m}",
+                    "MusicNotationLibrary/MNCarrierLayer.{h,m}",
     s.exclude_files = "MusicNotationLibrary/sentestkit/*",
                     "MusicNotationLibrary/test/*",
                     "MusicNotationLibrary/ochamcrest/*",
