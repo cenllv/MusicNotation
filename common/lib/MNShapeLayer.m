@@ -26,6 +26,7 @@
 //
 
 #import "MNShapeLayer.h"
+#import <pop/pop.h>
 
 @implementation MNShapeLayer
 

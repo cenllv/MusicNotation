@@ -64,7 +64,7 @@ Pod::Spec.new do |s|
     #  the deployment target. You can optionally include the target after the platform.
     #
     
-    # s.platform     = :ios
+     s.platform     = :ios
     # s.platform     = :ios, "5.0"
     
     #  When using multiple platforms
@@ -151,14 +151,15 @@ Pod::Spec.new do |s|
     # s.dependency "JSONKit", "~> 1.4"
     #    s.dependency 'TheAmazingAudioEngine', '~> 1.5.4'
     
-#    s.subspec 'pop' do |sub|
+    s.subspec 'pop' do |sub|
 #        sub.source_files = "Pods/pop/**/*.{h,m,mm,cpp}"
-#        sub.dependency "pop" #, "~> 1.0"
-#    end
-    s.dependency "pop", "~> 1.0"
+        sub.platform = :ios
+        sub.dependency "pop" #, "~> 1.0"
+    end
+#    s.dependency "pop", "~> 1.0"
 
     # s.dependency 'ReflectableEnum' #, '~> 0.1.1'
     #    s.dependency 'RegExCategories'
-    s.frameworks =  "Foundation" #'AudioToolbox', 'Accelerate'
+    s.frameworks =  "QuartzCore", "Foundation" #'AudioToolbox', 'Accelerate'
     
 end
