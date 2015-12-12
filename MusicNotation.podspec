@@ -95,16 +95,15 @@ Pod::Spec.new do |s|
     #    s.exclude_files = "Classes/Exclude"
 
     # s.public_header_files = "Classes/**/*.h"
-    s.source_files = "MusicNotationLibrary/src/**/*.{h,m}",
-                    "MusicNotationLibrary/lib/**/*.{h,m}",
+    s.source_files = "MusicNotationLibrary/src/*.{h,m}",
+                    "MusicNotationLibrary/lib/*.{h,m}",
                     "MusicNotationLibrary/MNCarrierLayer.{h,m}",
-    s.exclude_files = "MusicNotationLibrary/sentestkit/*",
-                    "MusicNotationLibrary/test/*",
-                    "MusicNotationLibrary/ochamcrest/*",
+    s.exclude_files = "MusicNotationLibrary/sentestkit/*.{h,m}"
+                    "MusicNotationLibrary/test/*.{h,m}"
+                    "MusicNotationLibrary/ochamcrest/**/*.{h,m}"
                     "MusicNotationLibrary/src/MNBrowserLogger.{h,m}",
                     "MusicNotationLibrary/src/MNLog.{h,m}",
-                    "MusicNotationLibrary/test/**/*.{h,m}",
-                    "MusicNotationLibrary/**/*.{h,m}"
+                    "MusicNotationLibrary/test/*.{h,m}",
                     "MusicNotationLibrary/*.{h,m}"
     s.compiler_flags = ""
     
