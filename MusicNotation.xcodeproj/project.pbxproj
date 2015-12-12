@@ -1766,9 +1766,9 @@
 			isa = PBXGroup;
 			children = (
 				6B60CDFA1BFBB4E90086B343 /* MusicNotation.podspec */,
+				6B8631D81B237FC400786D3D /* Podfile */,
 				6B5A4FF41B4B0AED0090EF4D /* README.md */,
 				6B60CDFC1BFBCEE90086B343 /* .gitignore */,
-				6B8631D81B237FC400786D3D /* Podfile */,
 				6B60CDFB1BFBBBB90086B343 /* License.txt */,
 				6B5A4FF51B4B11D20090EF4D /* .clang-format */,
 			);

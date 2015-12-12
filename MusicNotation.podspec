@@ -64,7 +64,7 @@ Pod::Spec.new do |s|
     #  the deployment target. You can optionally include the target after the platform.
     #
     
-     s.platform     = :ios
+    # s.platform     = :ios
     # s.platform     = :ios, "5.0"
     
     #  When using multiple platforms
@@ -95,7 +95,7 @@ Pod::Spec.new do |s|
     #    s.exclude_files = "Classes/Exclude"
 
     # s.public_header_files = "Classes/**/*.h"
-    s.public_header_files = "common/MNCore.h"
+    s.public_header_files = "common/**/*.{h}"
     s.source_files = "common", "common/**/*.{h,m}"
     
 #    s.exclude_files = "common/MNBrowserLogger.{h,m}", "common/MNLog.{h,m}",
