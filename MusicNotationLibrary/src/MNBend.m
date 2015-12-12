@@ -167,8 +167,8 @@
     }
 
     // FIXME: these two lines are CHANGE:'d
-    //    state.right_shift += last_width;
-    //    state.text_line += 1;
+    state.right_shift += last_width;
+    state.text_line += 1;
 
     return YES;
 }

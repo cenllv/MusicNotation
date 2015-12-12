@@ -133,6 +133,24 @@
 }
 
 /*!
+ *  Pre-render formatting
+ *  @return YES if successful
+ */
+- (BOOL)preFormat
+{
+    if(self.preFormatted)
+    {
+        return YES;
+    }
+    if(self.modifierContext)
+    {
+        [self.modifierContext preFormat];
+    }
+    self.preFormatted = YES;
+    return YES;
+}
+
+/*!
  *  Set as ghost `MNTabNote`, surrounds the fret positions with parenthesis.
  *  Often used for indicating frets that are being bent to
  *  @param ghost <#ghost description#>
@@ -365,6 +383,11 @@
     return MNPointMake((self.absoluteX + x), [self.ys[index] floatValue]);
 }
 
+- (float)width
+{
+    return _width;
+}
+
 /*!
  *  Get the default line for rest
  *  @return line for rest
@@ -372,24 +395,6 @@
 - (float)getLineForRest
 {
     return [self.positions[0] str];
-}
-
-/*!
- *  Pre-render formatting
- *  @return YES if successful
- */
-- (BOOL)preFormat
-{
-    if(self.preFormatted)
-    {
-        return YES;
-    }
-    if(self.modifierContext)
-    {
-        [self.modifierContext preFormat];
-    }
-    self.preFormatted = YES;
-    return YES;
 }
 
 /*!
@@ -430,6 +435,8 @@
     MNExtentStruct* ret = [MNExtentStruct extentWithTopY:stem_top_y andBaseY:stem_base_y];
     return ret;
 }
+
+#pragma mark - Draw
 
 /*!
  *  draw the flag
@@ -504,9 +511,9 @@
 
         NSArray* unused_strings = [self getUnusedStringGroups:total_lines stringsUsed:strings_used];
         NSArray<NSNumber*>* stem_lines = [self getPartialStemLines:stem_y
-                                          unusedStrings:unused_strings
-                                                  staff:self.staff
-                                          stemDirection:self.stemDirection];
+                                                     unusedStrings:unused_strings
+                                                             staff:self.staff
+                                                     stemDirection:self.stemDirection];
 
         // Fine tune x position to match default stem
         if(!self.beam || self.stemDirection == MNStemDirectionUp)
@@ -554,7 +561,7 @@
         float tab_x = x + (note_glyph_width / 2) - (glyph.width / 2);
 
         CGRect rect = CGRectMake(tab_x - 2, y - 3, glyph.width + 4, 6);
-//        CGContextClearRect(ctx, rect);
+        //        CGContextClearRect(ctx, rect);
         CGContextSaveGState(ctx);
         CGContextBeginPath(ctx);
         CGContextSetFillColorWithColor(ctx, SHEET_MUSIC_COLOR.CGColor);

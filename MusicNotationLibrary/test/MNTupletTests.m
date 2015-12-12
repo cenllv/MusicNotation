@@ -35,11 +35,11 @@
 {
     [super start];
     float w = 550, h = 160;
-    //    [self runTest:@"Simple Tuplet" func:@selector(simple:) frame:CGRectMake(10, 10, w, h)];
-    //    [self runTest:@"Beamed Tuplet" func:@selector(beamed:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Simple Tuplet" func:@selector(simple:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Beamed Tuplet" func:@selector(beamed:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"Ratioed Tuplet" func:@selector(ratio:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"Bottom Tuplet" func:@selector(bottom:) frame:CGRectMake(10, 10, w, h + 50)];
-    [self runTest:@"Bottom Ratioed Tuplet" func:@selector(bottom_ratio:) frame:CGRectMake(10, 10, w, h + 50)];
+    [self runTest:@"Bottom Ratioed Tuplet" func:@selector(bottomRatio:) frame:CGRectMake(10, 10, w, h + 50)];
     [self runTest:@"Awkward Tuplet" func:@selector(awkward:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"Complex Tuplet" func:@selector(complex:) frame:CGRectMake(10, 10, w, h)];
     [self runTest:@"Mixed Stem Direction Tuplet" func:@selector(mixedTop:) frame:CGRectMake(10, 10, w, h + 50)];
@@ -52,8 +52,6 @@
 {
     [super tearDown];
 }
-
-
 
 - (MNTestBlockStruct*)simple:(id<MNTestParentDelegate>)parent
 {
@@ -338,7 +336,7 @@
     return ret;
 }
 
-- (MNTestBlockStruct*)bottom_ratio:(id<MNTestParentDelegate>)parent
+- (MNTestBlockStruct*)bottomRatio:(id<MNTestParentDelegate>)parent
 {
     MNTestBlockStruct* ret = [MNTestBlockStruct testTuple];
     MNStaffNote* (^newNote)(NSDictionary*) = ^MNStaffNote*(NSDictionary* dict)
@@ -617,7 +615,7 @@
             @"beats_occupied" : @4
         }];
 
-    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 30, 450, 0)];
+    MNStaff* staff = [MNStaff staffWithRect:CGRectMake(10, 30, 500, 0)];
     [[staff addTrebleGlyph] addTimeSignatureWithName:@"4/4"];
 
     [voice1 setStrict:YES];

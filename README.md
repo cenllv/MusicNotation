@@ -67,8 +67,8 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 
 | Status    | Count   |
 |-----------|---------|
-| pass      | 45      |
-| FAIL      | 5       |
+| pass      | 47      |
+| FAIL      | 3       |
 | incomplete| 3       |
 
 
@@ -107,7 +107,7 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | StaffHairpin          | pass      |  | simple, horizontal, vertical, height |
 | StaffLine             | pass      |  | simple, staffline arrow |
 | StaffModifier         | pass      |  | staff draw, vertical bar |
-| StaffNote             | pass      | center aligned note w/ articulation minor error | tick, stem, auto, staffline, width, boundingbox, etc |
+| StaffNote             | pass      |  | tick, stem, auto, staffline, width, boundingbox, etc |
 | StaffTie              | pass      |  | simple, chord, stem up, no end, no start |
 | StringNumber          | pass      |  | string number in notation, fred hand finger, etc |
 | Strokes               | pass      | had to hack tabnote setStaff method | brush/arpeggiate/etc, multi, notation/tab, etc |
@@ -119,12 +119,12 @@ Use `Notation Catalog` which builds for Mac, not iOS.
 | TextBracket           | pass      |  | textbracket simple, styles |
 | TextNote              | pass      |  | textnote formatting, super/sub scripts formatting glyphs, crescendo, etc |
 | Text                  | pass      |  | drawing basic attributed string text, ns/ui labels |
-| ThreeVoice            | pass      | beams upside-down on first test, auto adjust missing some rests and not repositioning correctly  | three voiecs, auto adjust rest, etc |
+| ThreeVoice            | pass      |  | three voiecs, auto adjust rest, etc |
 | TickContext           | pass      |  | current and tracking tick |
 | TimeSignature         | pass      | passes but needs refactoring | parser basic, big time sigs |
 | Tuning                | FAIL      |  | tuning standard, return note for fret |
-| Tuplet                | FAIL      | tuplet ratios render errors, one tuplet ratio incorrect | simple, beamed, ratioed, bottom, etc |
-| Vibrato               | FAIL      | vibrato clobbering bend | simple vibrato, harsh, with bend |
+| Tuplet                | pass      |  | simple, beamed, ratioed, bottom, etc |
+| Vibrato               | pass      |  | simple vibrato, harsh, with bend |
 | Voice                 | pass      |  | strict, ignore, full voice |
 
 

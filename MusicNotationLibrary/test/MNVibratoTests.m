@@ -33,17 +33,16 @@
 - (void)start
 {
     [super start];
-    [self runTest:@"Simple Vibrato" func:@selector(simple:) frame:CGRectMake(10, 10, 700, 250)];
-    [self runTest:@"Harsh Vibrato" func:@selector(harsh:) frame:CGRectMake(10, 10, 700, 250)];
-    [self runTest:@"Vibrato with Bend" func:@selector(withBend:) frame:CGRectMake(10, 10, 700, 250)];
+    float w = 600, h = 150;
+    [self runTest:@"Simple Vibrato" func:@selector(simple:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Harsh Vibrato" func:@selector(harsh:) frame:CGRectMake(10, 10, w, h)];
+    [self runTest:@"Vibrato with Bend" func:@selector(withBend:) frame:CGRectMake(10, 10, w, h)];
 }
 
 - (void)tearDown
 {
     [super tearDown];
 }
-
-
 
 - (MNTestBlockStruct*)simple:(id<MNTestParentDelegate>)parent
 {
@@ -92,22 +91,22 @@
         return [[MNVibrato alloc] init];
     };
 
+    MNStaff* staff = [[MNTabStaff staffWithRect:CGRectMake(10, 10, 450, 0)] addTabGlyph];
+
+    NSArray* notes = @[
+        [newNote(@{
+            @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(4), @"fret" : @"9"} ],
+            @"duration" : @"h"
+        }) addModifier:[newVibrato() setHarsh:YES]
+                atIndex:0],
+        [newNote(
+            @{ @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"} ],
+               @"duration" : @"h" }) addModifier:[newVibrato() setHarsh:YES]
+                                         atIndex:0],
+    ];
+
     ret.drawBlock = ^(CGRect dirtyRect, CGRect bounds, CGContextRef ctx) {
-
-      MNStaff* staff = [[MNTabStaff staffWithRect:CGRectMake(10, 10, 450, 0)] addTabGlyph];
       [staff draw:ctx];
-
-      NSArray* notes = @[
-          [newNote(@{
-              @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"}, @{@"str" : @(4), @"fret" : @"9"} ],
-              @"duration" : @"h"
-          }) addModifier:[newVibrato() setHarsh:YES]
-                  atIndex:0],
-          [newNote(
-              @{ @"positions" : @[ @{@"str" : @(2), @"fret" : @"10"} ],
-                 @"duration" : @"h" }) addModifier:[newVibrato() setHarsh:YES]
-                                           atIndex:0],
-      ];
       [MNFormatter formatAndDrawWithContext:ctx dirtyRect:CGRectZero toStaff:staff withNotes:notes];
       ok(YES, @"Harsh Vibrato");
     };

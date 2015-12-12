@@ -80,13 +80,12 @@
  */
 + (NSString*)CATEGORY
 {
-    return NSStringFromClass([self class]); //return @"vibratos";
+    return NSStringFromClass([self class]);   // return @"vibratos";
 }
 - (NSString*)CATEGORY
 {
     return NSStringFromClass([self class]);
 }
-
 
 /*!
  *  Arrange vibratos inside a `ModifierContext`.
@@ -151,8 +150,7 @@
 
     if(!self->_note)
     {
-        [MNLog logError:[NSString
-                            stringWithFormat:@"NoNoteForVibrato %@", @"Can't draw vibrato without an attached note."]];
+        MNLogError(@"NoNoteForVibrato, Can't draw vibrato without an attached note.");
     }
 
     MNPoint* start = [((MNStaffNote*)self.note)getModifierstartXYforPosition:MNPositionRight andIndex:self.index];

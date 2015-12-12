@@ -36,6 +36,12 @@
 #import "MNBezierPath.h"
 #import "MNExtentStruct.h"
 
+@interface MNTuplet ()
+{
+    BOOL _resolved;
+}
+@end
+
 @implementation MNTuplet
 
 #pragma mark - Initialize
@@ -45,6 +51,7 @@
     self = [super initWithDictionary:optionsDict];
     if(self)
     {
+        _resolved = NO;
     }
     return self;
 }
@@ -85,8 +92,24 @@
 - (NSMutableDictionary*)propertiesToDictionaryEntriesMapping
 {
     NSMutableDictionary* propertiesEntriesMapping = [super propertiesToDictionaryEntriesMapping];
-    //        [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{@"virtualName" : @"realName"}];
+    [propertiesEntriesMapping addEntriesFromDictionaryWithoutReplacing:@{
+        @"beats_occupied" : @"beatsOccupied",
+    }];
     return propertiesEntriesMapping;
+}
+
+- (void)setValuesForKeyPathsWithDictionary:(NSDictionary*)keyedValues
+{
+    for(NSString* key_keyPath in keyedValues.allKeys)
+    {
+        id object = [keyedValues objectForKey:key_keyPath];
+        if([key_keyPath isEqualToString:@"num_notes"])
+        {
+            _numNotes = [object unsignedIntegerValue];
+            continue;
+        }
+        [self setValue:object forKeyPath:key_keyPath];
+    }
 }
 
 // Set the notes to attach this tuplet to.
@@ -164,6 +187,10 @@
 
 - (NSUInteger)numNotes
 {
+    if(_numNotes != 0)
+    {
+        return _numNotes;
+    }
     return self.noteCount;
 }
 
@@ -196,21 +223,8 @@
     return _denominatorGlyphs;
 }
 
-//- (void)setPosition:(MNPoint*)pointPosn
-//{
-//    _position = pointPosn;
-//}
-//
-//- (MNPoint*)pointPosition
-//{
-//    if(!_position)
-//    {
-//        _position = [MNPoint pointZero];
-//    }
-//    return _position;
-//}
-
 #pragma mark - Methods
+
 - (void)attach
 {
     for(NSUInteger i = 0; i < self.notes.count; ++i)
@@ -231,16 +245,28 @@
 
 - (void)resolveGlyphs
 {
-    for(NSUInteger n = self.numNotes; n >= 1; n /= 10)
+    _numeratorGlyphs = nil;
+    _denominatorGlyphs = nil;
+
+    NSUInteger n;
+    n = self.numNotes;
+    for(; n >= 1;)
     {
-        MNGlyph* glyph = [MNGlyph glyphWithCode:[NSString stringWithFormat:@"v%tu", (n % 10)] withPointSize:1];
+        NSString* code = [NSString stringWithFormat:@"v%tu", (n % 10)];
+
+        MNGlyph* glyph = [MNGlyph glyphWithCode:code withPointSize:1];
         [self.numeratorGlyphs addObject:glyph];
+        n /= 10;
     }
-    for(NSUInteger n = self.beatsOccupied; n >= 1; n /= 10)
+    n = self.beatsOccupied;
+    for(; n >= 1;)
     {
-        MNGlyph* glyph = [MNGlyph glyphWithCode:[NSString stringWithFormat:@"v%tu", (n % 10)] withPointSize:1];
+        NSString* code = [NSString stringWithFormat:@"v%tu", (n % 10)];
+        MNGlyph* glyph = [MNGlyph glyphWithCode:code withPointSize:1];
         [self.denominatorGlyphs addObject:glyph];
+        n /= 10;
     }
+    //    _resolved = YES;
 }
 
 - (void)draw:(CGContextRef)ctx
@@ -263,11 +289,11 @@
     // determine y value for tuplet
     if(self.tupletLocation == MNTupletLocationTop)
     {
-        self.position.y = [firstNote.staff getYForLine:0] - 15;
+        self.position.y = [firstNote.staff getYForLine:0] - 25;
         for(MNStaffNote* note in self.notes)
         {
             float topY =
-                note.stemDirection == MNStemDirectionUp ? note.stemExtents.topY - 5 : note.stemExtents.baseY - 10;
+                note.stemDirection == MNStemDirectionUp ? note.stemExtents.topY - 10 : note.stemExtents.baseY - 15;
             if(topY < self.position.y)
             {
                 self.position.y = topY;
@@ -280,7 +306,7 @@
         for(MNStaffNote* note in self.notes)
         {
             float bottomY =
-                note.stemDirection == MNStemDirectionUp ? note.stemExtents.baseY + 20 : note.stemExtents.topY + 10;
+                note.stemDirection == MNStemDirectionUp ? note.stemExtents.baseY + 20 : note.stemExtents.topY + 15;
             if(bottomY > self.position.y)
             {
                 self.position.y = bottomY;
@@ -392,7 +418,7 @@
                       endAngle:M_2_PI
                      clockwise:YES];
         [path closePath];
-        [path stroke];
+        //        [path stroke];
         [path fill];
         path = (MNBezierPath*)[MNBezierPath bezierPath];
         [path addArcWithCenter:CGPointMake(colonX, self.position.y + self.points * 0.12)
@@ -400,7 +426,7 @@
                     startAngle:0
                       endAngle:M_2_PI
                      clockwise:YES];
-        [path stroke];
+        //        [path stroke];
         [path fill];
         xOffset += self.points * 0.32;
         size = self.denominatorGlyphs.count;
