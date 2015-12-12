@@ -193,7 +193,6 @@
 		6B4AA6801BF45CD800E56C1A /* gonville_original.js in Resources */ = {isa = PBXBuildFile; fileRef = 6B4AA6731BF45CD800E56C1A /* gonville_original.js */; };
 		6B4AA6811BF45CD800E56C1A /* vexflow_font.js in Resources */ = {isa = PBXBuildFile; fileRef = 6B4AA6741BF45CD800E56C1A /* vexflow_font.js */; };
 		6B4AA6821BF45CD800E56C1A /* vexflow_font.js in Resources */ = {isa = PBXBuildFile; fileRef = 6B4AA6741BF45CD800E56C1A /* vexflow_font.js */; };
-		6B4BC5DC1B7B9CF4002FAA76 /* MNCarrierLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4BC5DB1B7B9CF4002FAA76 /* MNCarrierLayer.m */; };
 		6B4F91B71C13A23600296C6F /* Organ Run.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B4F91B41C13A21000296C6F /* Organ Run.m4a */; };
 		6B4F91B81C13A23600296C6F /* Southern Rock Drums.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B4F91B51C13A21000296C6F /* Southern Rock Drums.m4a */; };
 		6B4F91B91C13A23600296C6F /* Southern Rock Organ.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6B4F91B61C13A21000296C6F /* Southern Rock Organ.m4a */; };
@@ -627,12 +626,13 @@
 		6BBD0D061C1BC6E600E84289 /* MNVoiceTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BBD0BFE1C1BC6E600E84289 /* MNVoiceTime.m */; };
 		6BBD0D081C1BC79E00E84289 /* MNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BBD0D071C1BC79E00E84289 /* MNConstants.m */; };
 		6BBD0D091C1BC79E00E84289 /* MNConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BBD0D071C1BC79E00E84289 /* MNConstants.m */; };
+		6BBD0D0D1C1BEC8E00E84289 /* MNCarrierLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BBD0D0B1C1BEC8E00E84289 /* MNCarrierLayer.m */; };
+		6BBD0D0E1C1BEC8E00E84289 /* MNCarrierLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BBD0D0B1C1BEC8E00E84289 /* MNCarrierLayer.m */; };
 		6BC6F05F1B75774200A582C1 /* MNTestBlockStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC6F05E1B75774200A582C1 /* MNTestBlockStruct.m */; };
 		6BC86D261B76441C00C6D20B /* MNTestActionStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D251B76441C00C6D20B /* MNTestActionStruct.m */; };
 		6BC86D291B768BDD00C6D20B /* MNRenderLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D281B768BDD00C6D20B /* MNRenderLayer.m */; };
 		6BC86D2C1B76A31B00C6D20B /* MNTestCollectionItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D2B1B76A31B00C6D20B /* MNTestCollectionItemView.m */; };
 		6BC86D351B77D75C00C6D20B /* NSString+MNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D341B77D75C00C6D20B /* NSString+MNAdditions.m */; };
-		6BD132E61C126EA300E14741 /* MNCarrierLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4BC5DB1B7B9CF4002FAA76 /* MNCarrierLayer.m */; };
 		6BD132E71C126EA900E14741 /* MNRenderLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D281B768BDD00C6D20B /* MNRenderLayer.m */; };
 		6BD132E81C126EB100E14741 /* MNTestActionStruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC86D251B76441C00C6D20B /* MNTestActionStruct.m */; };
 		6BD132E91C12790800E14741 /* MNAccidentalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4AA4F91BF459B200E56C1A /* MNAccidentalTests.m */; };
@@ -957,7 +957,6 @@
 		6B2C00651B72B1600036AA76 /* MNTestCollectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestCollectionItem.h; sourceTree = "<group>"; };
 		6B2C00661B72B1600036AA76 /* MNTestCollectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTestCollectionItem.m; sourceTree = "<group>"; };
 		6B3184FF1B71315500CCB182 /* BrowserWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowserWindow.xib; sourceTree = "<group>"; };
-		6B3EAAF01B7A637F009C0317 /* MNLayerResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNLayerResponder.h; sourceTree = "<group>"; };
 		6B4AA32D1BF4591500E56C1A /* MNRational.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNRational.h; path = ../src/MNRational.h; sourceTree = "<group>"; };
 		6B4AA32E1BF4591500E56C1A /* MNRational.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MNRational.m; path = ../src/MNRational.m; sourceTree = "<group>"; };
 		6B4AA33F1BF4591500E56C1A /* MNBezierPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MNBezierPath.h; path = ../src/MNBezierPath.h; sourceTree = "<group>"; };
@@ -1113,8 +1112,6 @@
 		6B4AA6721BF45CD800E56C1A /* gonville_all.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = gonville_all.js; sourceTree = "<group>"; };
 		6B4AA6731BF45CD800E56C1A /* gonville_original.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = gonville_original.js; sourceTree = "<group>"; };
 		6B4AA6741BF45CD800E56C1A /* vexflow_font.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = vexflow_font.js; sourceTree = "<group>"; };
-		6B4BC5DA1B7B9CF4002FAA76 /* MNCarrierLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNCarrierLayer.h; sourceTree = "<group>"; };
-		6B4BC5DB1B7B9CF4002FAA76 /* MNCarrierLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNCarrierLayer.m; sourceTree = "<group>"; };
 		6B4F91B41C13A21000296C6F /* Organ Run.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Organ Run.m4a"; sourceTree = "<group>"; };
 		6B4F91B51C13A21000296C6F /* Southern Rock Drums.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Southern Rock Drums.m4a"; sourceTree = "<group>"; };
 		6B4F91B61C13A21000296C6F /* Southern Rock Organ.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Southern Rock Organ.m4a"; sourceTree = "<group>"; };
@@ -1750,6 +1747,9 @@
 		6BBD0BFD1C1BC6E600E84289 /* MNVoiceTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNVoiceTime.h; sourceTree = "<group>"; };
 		6BBD0BFE1C1BC6E600E84289 /* MNVoiceTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNVoiceTime.m; sourceTree = "<group>"; };
 		6BBD0D071C1BC79E00E84289 /* MNConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNConstants.m; sourceTree = "<group>"; };
+		6BBD0D0A1C1BEC8E00E84289 /* MNCarrierLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNCarrierLayer.h; sourceTree = "<group>"; };
+		6BBD0D0B1C1BEC8E00E84289 /* MNCarrierLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNCarrierLayer.m; sourceTree = "<group>"; };
+		6BBD0D0C1C1BEC8E00E84289 /* MNLayerResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNLayerResponder.h; sourceTree = "<group>"; };
 		6BC6F05D1B75774200A582C1 /* MNTestBlockStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestBlockStruct.h; sourceTree = "<group>"; };
 		6BC6F05E1B75774200A582C1 /* MNTestBlockStruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MNTestBlockStruct.m; sourceTree = "<group>"; };
 		6BC86D241B76441C00C6D20B /* MNTestActionStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MNTestActionStruct.h; sourceTree = "<group>"; };
@@ -2308,6 +2308,9 @@
 				6B4AA3401BF4591500E56C1A /* MNBezierPath.m */,
 				6B4AA34D1BF4591500E56C1A /* MNColor.h */,
 				6B4AA34E1BF4591500E56C1A /* MNColor.m */,
+				6BBD0D0A1C1BEC8E00E84289 /* MNCarrierLayer.h */,
+				6BBD0D0B1C1BEC8E00E84289 /* MNCarrierLayer.m */,
+				6BBD0D0C1C1BEC8E00E84289 /* MNLayerResponder.h */,
 				6B4AA3801BF4591500E56C1A /* MNMath.h */,
 				6B4AA3811BF4591500E56C1A /* MNMath.m */,
 				6B4AA3A41BF4591500E56C1A /* MNPoint.h */,
@@ -2975,9 +2978,6 @@
 				6B9A37291BF55DCB00341DF8 /* MNBrowserLogger.m */,
 				D278F51E1A8689AE000C57C1 /* MNBrowserWindowController.h */,
 				D278F51F1A8689AE000C57C1 /* MNBrowserWindowController.m */,
-				6B4BC5DA1B7B9CF4002FAA76 /* MNCarrierLayer.h */,
-				6B4BC5DB1B7B9CF4002FAA76 /* MNCarrierLayer.m */,
-				6B3EAAF01B7A637F009C0317 /* MNLayerResponder.h */,
 				6B0BE79D1C14E7600035ADCF /* MNNoteDrawNotesDelegate.h */,
 				6B8631C81B235C0300786D3D /* MNOutlineViewController.h */,
 				6B8631C91B235C0300786D3D /* MNOutlineViewController.m */,
@@ -3630,6 +3630,7 @@
 				6B0BE8831C162D630035ADCF /* EmptyEnumerator.m in Sources */,
 				6BD132EB1C12790800E14741 /* MNAnnotationTests.m in Sources */,
 				6BD132EC1C12790800E14741 /* MNArticulationTests.m in Sources */,
+				6BBD0D0E1C1BEC8E00E84289 /* MNCarrierLayer.m in Sources */,
 				6BBD0CC21C1BC6E600E84289 /* MNTableGlyphStruct.m in Sources */,
 				6B0BE8C11C162D630035ADCF /* Range.m in Sources */,
 				6BD132ED1C12790800E14741 /* MNAutoBeamFormattingTests.m in Sources */,
@@ -3727,7 +3728,6 @@
 				6BD132E81C126EB100E14741 /* MNTestActionStruct.m in Sources */,
 				6BBD0C661C1BC6E600E84289 /* MNMusicRootIndices.m in Sources */,
 				6BD132E71C126EA900E14741 /* MNRenderLayer.m in Sources */,
-				6BD132E61C126EA300E14741 /* MNCarrierLayer.m in Sources */,
 				6BBD0CA41C1BC6E600E84289 /* MNStaffTempoOptionsStruct.m in Sources */,
 				6B0BE8C51C162D630035ADCF /* Some.m in Sources */,
 				6B4AA61C1BF45B0800E56C1A /* NSObject+AutoDescription.m in Sources */,
@@ -3890,7 +3890,6 @@
 				6B5644EE1BF44680006FDFD9 /* IsInstanceOfTest.m in Sources */,
 				6B5644931BF44680006FDFD9 /* HCReturnValueGetter.m in Sources */,
 				6B5644CC1BF44680006FDFD9 /* IsCollectionContainingInAnyOrderTest.m in Sources */,
-				6B4BC5DC1B7B9CF4002FAA76 /* MNCarrierLayer.m in Sources */,
 				6B4AA6191BF45B0800E56C1A /* NSMutableDictionary+MNAdditions.m in Sources */,
 				6B56449B1BF44680006FDFD9 /* HCSenTestFailureHandler.m in Sources */,
 				6BBD0CA91C1BC6E600E84289 /* MNStaffTie.m in Sources */,
@@ -4128,6 +4127,7 @@
 				6B0BE8B41C162D630035ADCF /* Numbers.m in Sources */,
 				6BBD0C9B1C1BC6E600E84289 /* MNStaffNoteRenderOptions.m in Sources */,
 				6B4AA5761BF459B200E56C1A /* MNFormatterTests.m in Sources */,
+				6BBD0D0D1C1BEC8E00E84289 /* MNCarrierLayer.m in Sources */,
 				6BB7EC201C07CA3B00E09252 /* MNChordTestStruct.m in Sources */,
 				6B0BE8A81C162D630035ADCF /* MemoisedSequence.m in Sources */,
 				6B5644FB1BF44680006FDFD9 /* SenInterfaceTestCase.m in Sources */,
